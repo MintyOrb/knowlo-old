@@ -1,0 +1,29 @@
+{
+  "name": "knowlo",
+  "version": "1.0.0",
+  "description": "A learning community and platform for optimizing access to insight.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "learning",
+    "education",
+    "insight",
+    "community"
+  ],
+  "author": "Knowlo",
+  "license": "ISC",
+  "dependencies": {
+    "flickity": "^2.0.5",
+    "jquery": "^3.1.1",
+    "lodash": "^4.17.4",
+    "materialize-css": "^0.97.8",
+    "vue": "^2.1.10",
+    "vue-analytics": "^2.0.1",
+    "vue-images-loaded": "^1.1.1",
+    "vue-isotope": "^0.1.0",
+    "vue-router": "^2.1.3",
+    "vueisotope": "^2.1.0"
+  }
+}

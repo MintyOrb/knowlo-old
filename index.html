@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="dep/materialize.min.css" media="screen,projection" />
+	<title>knowlo</title>
+</head>
+
+<body>
+
+	<div id="main">
+
+		<div class="navbar-fixed">
+			<nav class='blue'>
+				<div class="nav-wrapper">
+					<router-link to="/" class="brand-logo center thin">knowlo.io</router-link>
+					<ul id="nav-mobile" class="right ">
+						<li><router-link to="/">about</router-link></li>
+						<li><router-link to="/e">explore</router-link></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<router-view></router-view>
+
+		<footer class="page-footer blue">
+			<div class="container">
+				<div class="row">
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="container center">knowlo
+				</div>
+			</div>
+		</footer>
+	</div>
+
+</body>
+
+<!-- <script src="videos.js"></script> -->
+<script src="part1.js"></script>
+<script src="part2.js"></script>
+
+<script src="dep\jquery.min.js"></script>
+<script src="dep\materialize.min.js"></script>
+<script src="dep\vue.js"></script>
+<script src="dep\vue-router.min.js"></script>
+<script src="dep\lodash.min.js"></script>
+<script src="dep\isotope.pkgd.min.js"></script>
+<script src="dep\vue_isotope.js"></script>
+<script src="dep\imagesloaded.pkgd.min.js"></script>
+<script src="dep\vueimagesloaded.js"></script>
+
+<script src="routes.js"></script>
+<script src="main.js"></script>
+
+<style>
+.card {
+	width: 250px;
+	margin: 10px
+}
+.thumb {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+		margin: 10px;
+}
+.thumb img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+}
+.thumb-title {
+    font-weight: 300;
+    margin: 5px;
+}
+.title{
+	font-size: 18px;
+	font-weight: bold;
+  line-height: .1;
+}
+.btn {
+	margin: 10px;
+}
+
+.list {
+    padding: 2% 8% 2% 8%;
+    width: 100vw;
+    min-height: 40px;
+    font-size: 20px;
+    display: flex !important;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: black;
+}
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid black;
+    box-shadow: 0 1px 0 0 black;
+}
+</style>
+</html>

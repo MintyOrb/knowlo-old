@@ -1,0 +1,10 @@
+node_modules\jquery\dist\jquery.min.js
+node_modules\materialize-css\dist\js\materialize.min.js
+node_modules\materialize-css\dist\css\materialize.min.css
+node_modules\vue\dist\vue.js
+node_modules\vue-router\dist\vue-router.min.js
+node_modules\lodash\lodash.min.js
+node_modules\isotope-layout\dist\isotope.pkgd.min.js
+node_modules\vueisotope\src\vue_isotope.js
+node_modules\imagesloaded\imagesloaded.pkgd.min.js
+node_modules\vue-images-loaded\dist\vueimagesloaded.js
