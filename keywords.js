@@ -1,0 +1,1202 @@
+var keywords =
+[{
+    "count": 3,
+    "name": "physicist"
+}, {
+    "count": 3,
+    "name": "proof"
+}, {
+    "count": 3,
+    "name": "metaphor"
+}, {
+    "count": 3,
+    "name": "scientist"
+}, {
+    "count": 3,
+    "name": "discovery"
+}, {
+    "count": 3,
+    "name": "equation"
+}, {
+    "count": 3,
+    "name": "explanation"
+}, {
+    "count": 3,
+    "name": "planet"
+}, {
+    "count": 3,
+    "name": "ocean"
+}, {
+    "count": 3,
+    "name": "magnetic field"
+}, {
+    "count": 3,
+    "name": "nature"
+}, {
+    "count": 3,
+    "name": "birth"
+}, {
+    "count": 3,
+    "name": "frequency"
+}, {
+    "count": 3,
+    "name": "Jeremiah Dickey"
+}, {
+    "count": 3,
+    "name": "TEDGlobal"
+}, {
+    "count": 3,
+    "name": "global issues"
+}, {
+    "count": 3,
+    "name": "policy"
+}, {
+    "count": 3,
+    "name": "statistics"
+}, {
+    "count": 3,
+    "name": "Carbon dioxide"
+}, {
+    "count": 3,
+    "name": "Climate change"
+}, {
+    "count": 3,
+    "name": "Power"
+}, {
+    "count": 3,
+    "name": "Electrons"
+}, {
+    "count": 3,
+    "name": "time travel"
+}, {
+    "count": 3,
+    "name": "Double slit"
+}, {
+    "count": 3,
+    "name": "waves"
+}, {
+    "count": 3,
+    "name": "Feynman"
+}, {
+    "count": 3,
+    "name": "Lectures"
+}, {
+    "count": 3,
+    "name": "Law"
+}, {
+    "count": 3,
+    "name": "Neil"
+}, {
+    "count": 3,
+    "name": "Turok"
+}, {
+    "count": 3,
+    "name": "Massey"
+}, {
+    "count": 3,
+    "name": "Telekinesis"
+}, {
+    "count": 3,
+    "name": "sky"
+}, {
+    "count": 3,
+    "name": "redshift"
+}, {
+    "count": 3,
+    "name": "debt"
+}, {
+    "count": 3,
+    "name": "world history"
+}, {
+    "count": 3,
+    "name": "global warming"
+}, {
+    "count": 3,
+    "name": "plants"
+}, {
+    "count": 3,
+    "name": "ecosystems"
+}, {
+    "count": 3,
+    "name": "eye"
+}, {
+    "count": 3,
+    "name": "Charles Darwin"
+}, {
+    "count": 3,
+    "name": "Bacteria"
+}, {
+    "count": 3,
+    "name": "Sunlight"
+}, {
+    "count": 3,
+    "name": "uranium"
+}, {
+    "count": 3,
+    "name": "light speed"
+}, {
+    "count": 3,
+    "name": "reality"
+}, {
+    "count": 3,
+    "name": "photons"
+}, {
+    "count": 3,
+    "name": "religion"
+}, {
+    "count": 3,
+    "name": "orbit"
+}, {
+    "count": 3,
+    "name": "circle"
+}, {
+    "count": 3,
+    "name": "World"
+}, {
+    "count": 3,
+    "name": "congress"
+}, {
+    "count": 3,
+    "name": "observatory"
+}, {
+    "count": 3,
+    "name": "cmb"
+}, {
+    "count": 3,
+    "name": "simulation"
+}, {
+    "count": 3,
+    "name": "psychology"
+}, {
+    "count": 3,
+    "name": "currency"
+}, {
+    "count": 3,
+    "name": "Bad Astronomer"
+}, {
+    "count": 3,
+    "name": "colour"
+}, {
+    "count": 3,
+    "name": "depression"
+}, {
+    "count": 3,
+    "name": "emotion"
+}, {
+    "count": 3,
+    "name": "neuroscience"
+}, {
+    "count": 3,
+    "name": "Helium"
+}, {
+    "count": 3,
+    "name": "Psychology (Field Of Study)"
+}, {
+    "count": 3,
+    "name": "jupiter"
+}, {
+    "count": 3,
+    "name": "airplane"
+}, {
+    "count": 3,
+    "name": "crash"
+}, {
+    "count": 3,
+    "name": "fuel"
+}, {
+    "count": 3,
+    "name": "Phil Plait"
+}, {
+    "count": 3,
+    "name": "Mercury"
+}, {
+    "count": 3,
+    "name": "retina"
+}, {
+    "count": 3,
+    "name": "numbers"
+}, {
+    "count": 3,
+    "name": "Antarctica"
+}, {
+    "count": 3,
+    "name": "extinction"
+}, {
+    "count": 3,
+    "name": "optics"
+}, {
+    "count": 3,
+    "name": "telescope"
+}, {
+    "count": 3,
+    "name": "vision"
+}, {
+    "count": 3,
+    "name": "food"
+}, {
+    "count": 3,
+    "name": "Chemical Evolution"
+}, {
+    "count": 3,
+    "name": "abiogenesis"
+}, {
+    "count": 3,
+    "name": "facts"
+}, {
+    "count": 3,
+    "name": "Star trek"
+}, {
+    "count": 3,
+    "name": "joy"
+}, {
+    "count": 3,
+    "name": "bigthink"
+}, {
+    "count": 3,
+    "name": "big think"
+}, {
+    "count": 3,
+    "name": "bigthink.com"
+}, {
+    "count": 3,
+    "name": "computer science"
+}, {
+    "count": 3,
+    "name": "pi"
+}, {
+    "count": 3,
+    "name": "Animals"
+}, {
+    "count": 3,
+    "name": "Dinosaur"
+}, {
+    "count": 3,
+    "name": "Test"
+}, {
+    "count": 3,
+    "name": "Scientific method"
+}, {
+    "count": 3,
+    "name": "Poetry"
+}, {
+    "count": 3,
+    "name": "lesson"
+}, {
+    "count": 3,
+    "name": "Copernicus"
+}, {
+    "count": 3,
+    "name": "Genetics"
+}, {
+    "count": 3,
+    "name": "Gold"
+}, {
+    "count": 3,
+    "name": "critical"
+}, {
+    "count": 3,
+    "name": "premise"
+}, {
+    "count": 3,
+    "name": "philosopher"
+}, {
+    "count": 3,
+    "name": "Lessons"
+}, {
+    "count": 3,
+    "name": "Teachers"
+}, {
+    "count": 3,
+    "name": "Matt Anticole"
+}, {
+    "count": 3,
+    "name": "Kornhaber Brown"
+}, {
+    "count": 3,
+    "name": "the universe"
+}, {
+    "count": 3,
+    "name": "supermassive"
+}, {
+    "count": 3,
+    "name": "ai"
+}, {
+    "count": 3,
+    "name": "Globizco"
+}, {
+    "count": 3,
+    "name": "black holes"
+}, {
+    "count": 3,
+    "name": "Patreon"
+}, {
+    "count": 3,
+    "name": "artoftheproblem"
+}, {
+    "count": 3,
+    "name": "Anton Trofimov"
+}, {
+    "count": 3,
+    "name": "virtual reality"
+}, {
+    "count": 3,
+    "name": "language"
+}, {
+    "count": 3,
+    "name": "aranda"
+}, {
+    "count": 3,
+    "name": "animated"
+}, {
+    "count": 3,
+    "name": "amazing facts to blow your mind"
+}, {
+    "count": 3,
+    "name": "therapy"
+}, {
+    "count": 3,
+    "name": "communication"
+}, {
+    "count": 3,
+    "name": "electronics"
+}, {
+    "count": 3,
+    "name": "Google"
+}, {
+    "count": 3,
+    "name": "antimatter"
+}, {
+    "count": 4,
+    "name": "standard model"
+}, {
+    "count": 4,
+    "name": "elements"
+}, {
+    "count": 4,
+    "name": "Temperature"
+}, {
+    "count": 4,
+    "name": "Emma Bryce"
+}, {
+    "count": 4,
+    "name": "Health"
+}, {
+    "count": 4,
+    "name": "Electricity"
+}, {
+    "count": 4,
+    "name": "Lifelong learning"
+}, {
+    "count": 4,
+    "name": "tutorial"
+}, {
+    "count": 4,
+    "name": "quantum theory"
+}, {
+    "count": 4,
+    "name": "iron"
+}, {
+    "count": 4,
+    "name": "special relativity"
+}, {
+    "count": 4,
+    "name": "field"
+}, {
+    "count": 4,
+    "name": "bang"
+}, {
+    "count": 4,
+    "name": "strong"
+}, {
+    "count": 4,
+    "name": "weak"
+}, {
+    "count": 4,
+    "name": "string"
+}, {
+    "count": 4,
+    "name": "Perimeter"
+}, {
+    "count": 4,
+    "name": "Institute"
+}, {
+    "count": 4,
+    "name": "Planck"
+}, {
+    "count": 4,
+    "name": "government"
+}, {
+    "count": 4,
+    "name": "Protein"
+}, {
+    "count": 4,
+    "name": "fission"
+}, {
+    "count": 4,
+    "name": "human"
+}, {
+    "count": 4,
+    "name": "voting"
+}, {
+    "count": 4,
+    "name": "news"
+}, {
+    "count": 4,
+    "name": "water"
+}, {
+    "count": 4,
+    "name": "Anatomy & Physiology"
+}, {
+    "count": 4,
+    "name": "E=MC2"
+}, {
+    "count": 4,
+    "name": "Carl Sagan"
+}, {
+    "count": 4,
+    "name": "war"
+}, {
+    "count": 4,
+    "name": "2015"
+}, {
+    "count": 4,
+    "name": "drawing"
+}, {
+    "count": 4,
+    "name": "The Sun"
+}, {
+    "count": 4,
+    "name": "Augenblick Studios"
+}, {
+    "count": 4,
+    "name": "speed"
+}, {
+    "count": 4,
+    "name": "numberphile"
+}, {
+    "count": 4,
+    "name": "species"
+}, {
+    "count": 4,
+    "name": "origin of life"
+}, {
+    "count": 4,
+    "name": "aliens"
+}, {
+    "count": 4,
+    "name": "mars"
+}, {
+    "count": 4,
+    "name": "Stated Clearly"
+}, {
+    "count": 4,
+    "name": "creationism"
+}, {
+    "count": 4,
+    "name": "work"
+}, {
+    "count": 4,
+    "name": "resource"
+}, {
+    "count": 4,
+    "name": "student"
+}, {
+    "count": 4,
+    "name": "Phil Plait (Academic)"
+}, {
+    "count": 4,
+    "name": "Nuclear fusion"
+}, {
+    "count": 4,
+    "name": "logical"
+}, {
+    "count": 4,
+    "name": "critical thinking"
+}, {
+    "count": 4,
+    "name": "Zedem Media"
+}, {
+    "count": 4,
+    "name": "singularity"
+}, {
+    "count": 4,
+    "name": "joe hanson"
+}, {
+    "count": 4,
+    "name": "its okay to be smart"
+}, {
+    "count": 4,
+    "name": "it's ok to be smart"
+}, {
+    "count": 4,
+    "name": "its ok to be smart"
+}, {
+    "count": 4,
+    "name": "cgpgrey"
+}, {
+    "count": 4,
+    "name": "humanities"
+}, {
+    "count": 4,
+    "name": "engineering"
+}, {
+    "count": 4,
+    "name": "study"
+}, {
+    "count": 4,
+    "name": "isaac newton"
+}, {
+    "count": 4,
+    "name": "scishow space"
+}, {
+    "count": 4,
+    "name": "outer space"
+}, {
+    "count": 5,
+    "name": "quark"
+}, {
+    "count": 5,
+    "name": "future"
+}, {
+    "count": 5,
+    "name": "you"
+}, {
+    "count": 5,
+    "name": "atmosphere"
+}, {
+    "count": 5,
+    "name": "humans"
+}, {
+    "count": 5,
+    "name": "Hubble"
+}, {
+    "count": 5,
+    "name": "natural selection"
+}, {
+    "count": 5,
+    "name": "galaxies"
+}, {
+    "count": 5,
+    "name": "drugs"
+}, {
+    "count": 5,
+    "name": "Nucleus"
+}, {
+    "count": 5,
+    "name": "event horizon"
+}, {
+    "count": 5,
+    "name": "sci show space"
+}, {
+    "count": 5,
+    "name": "politics"
+}, {
+    "count": 5,
+    "name": "spin"
+}, {
+    "count": 5,
+    "name": "infinite"
+}, {
+    "count": 5,
+    "name": "big"
+}, {
+    "count": 5,
+    "name": "electromagnetism"
+}, {
+    "count": 5,
+    "name": "dimension"
+}, {
+    "count": 5,
+    "name": "Tides"
+}, {
+    "count": 5,
+    "name": "General"
+}, {
+    "count": 5,
+    "name": "sound"
+}, {
+    "count": 5,
+    "name": "MinuteEarth"
+}, {
+    "count": 5,
+    "name": "Minute Earth"
+}, {
+    "count": 5,
+    "name": "environmental science"
+}, {
+    "count": 5,
+    "name": "rocket"
+}, {
+    "count": 5,
+    "name": "body"
+}, {
+    "count": 5,
+    "name": "election"
+}, {
+    "count": 5,
+    "name": "cosmology"
+}, {
+    "count": 5,
+    "name": "color"
+}, {
+    "count": 5,
+    "name": "Molecule"
+}, {
+    "count": 5,
+    "name": "Destruction"
+}, {
+    "count": 5,
+    "name": "Whiteboard"
+}, {
+    "count": 5,
+    "name": "Particle physics"
+}, {
+    "count": 5,
+    "name": "Alien"
+}, {
+    "count": 5,
+    "name": "debate"
+}, {
+    "count": 5,
+    "name": "Jon Perry"
+}, {
+    "count": 5,
+    "name": "newton"
+}, {
+    "count": 5,
+    "name": "teacher"
+}, {
+    "count": 5,
+    "name": "it's okay to be smart"
+}, {
+    "count": 5,
+    "name": "big questions"
+}, {
+    "count": 5,
+    "name": "curriculum"
+}, {
+    "count": 5,
+    "name": "pbs space time"
+}, {
+    "count": 5,
+    "name": "thinking"
+}, {
+    "count": 5,
+    "name": "this place"
+}, {
+    "count": 5,
+    "name": "this"
+}, {
+    "count": 5,
+    "name": "place"
+}, {
+    "count": 5,
+    "name": "thisplace"
+}, {
+    "count": 5,
+    "name": "thisplacechannel"
+}, {
+    "count": 5,
+    "name": "this place channel"
+}, {
+    "count": 5,
+    "name": "michael aranda"
+}, {
+    "count": 6,
+    "name": "explained"
+}, {
+    "count": 6,
+    "name": "research"
+}, {
+    "count": 6,
+    "name": "\\TED"
+}, {
+    "count": 6,
+    "name": "Ed\\"
+}, {
+    "count": 6,
+    "name": "solar system"
+}, {
+    "count": 6,
+    "name": "milky way"
+}, {
+    "count": 6,
+    "name": "dna"
+}, {
+    "count": 6,
+    "name": "economics"
+}, {
+    "count": 6,
+    "name": "Laser"
+}, {
+    "count": 6,
+    "name": "Oxygen"
+}, {
+    "count": 6,
+    "name": "radiation"
+}, {
+    "count": 6,
+    "name": "neutron"
+}, {
+    "count": 6,
+    "name": "sci show"
+}, {
+    "count": 6,
+    "name": "minute physics"
+}, {
+    "count": 6,
+    "name": "Paradox"
+}, {
+    "count": 6,
+    "name": "Henry"
+}, {
+    "count": 6,
+    "name": "Reich"
+}, {
+    "count": 6,
+    "name": "Quantum Mechanics (Field Of Study)"
+}, {
+    "count": 6,
+    "name": "Planets"
+}, {
+    "count": 6,
+    "name": "Hydrogen"
+}, {
+    "count": 6,
+    "name": "Supernova"
+}, {
+    "count": 6,
+    "name": "wave"
+}, {
+    "count": 6,
+    "name": "X-ray"
+}, {
+    "count": 6,
+    "name": "sustainability"
+}, {
+    "count": 6,
+    "name": "edu"
+}, {
+    "count": 6,
+    "name": "Astronomy (Field Of Study)"
+}, {
+    "count": 6,
+    "name": "improvement"
+}, {
+    "count": 6,
+    "name": "wisdom"
+}, {
+    "count": 6,
+    "name": "talk"
+}, {
+    "count": 6,
+    "name": "secular"
+}, {
+    "count": 6,
+    "name": "aristotle"
+}, {
+    "count": 6,
+    "name": "environmental"
+}, {
+    "count": 6,
+    "name": "vox"
+}, {
+    "count": 7,
+    "name": "LHC"
+}, {
+    "count": 7,
+    "name": "boson"
+}, {
+    "count": 7,
+    "name": "atoms"
+}, {
+    "count": 7,
+    "name": "particles"
+}, {
+    "count": 7,
+    "name": "force"
+}, {
+    "count": 7,
+    "name": "dark matter"
+}, {
+    "count": 7,
+    "name": "of"
+}, {
+    "count": 7,
+    "name": "cosmic"
+}, {
+    "count": 7,
+    "name": "proton"
+}, {
+    "count": 7,
+    "name": "minute"
+}, {
+    "count": 7,
+    "name": "infinity"
+}, {
+    "count": 7,
+    "name": "special"
+}, {
+    "count": 7,
+    "name": "cat"
+}, {
+    "count": 7,
+    "name": "schrodinger"
+}, {
+    "count": 7,
+    "name": "culture"
+}, {
+    "count": 7,
+    "name": "Earth science"
+}, {
+    "count": 7,
+    "name": "quantum physics"
+}, {
+    "count": 7,
+    "name": "flat design"
+}, {
+    "count": 7,
+    "name": "anatomy"
+}, {
+    "count": 7,
+    "name": "physiology"
+}, {
+    "count": 7,
+    "name": "mind"
+}, {
+    "count": 7,
+    "name": "in a nutshell"
+}, {
+    "count": 7,
+    "name": "AsapSCIENCE"
+}, {
+    "count": 7,
+    "name": "Stop motion"
+}, {
+    "count": 7,
+    "name": "General Relativity"
+}, {
+    "count": 7,
+    "name": "interest"
+}, {
+    "count": 7,
+    "name": "wonder"
+}, {
+    "count": 7,
+    "name": "mood"
+}, {
+    "count": 7,
+    "name": "logic"
+}, {
+    "count": 8,
+    "name": "CERN"
+}, {
+    "count": 8,
+    "name": "experiment"
+}, {
+    "count": 8,
+    "name": "atomic"
+}, {
+    "count": 8,
+    "name": "mass"
+}, {
+    "count": 8,
+    "name": "cartoon"
+}, {
+    "count": 8,
+    "name": "pbs digital studios"
+}, {
+    "count": 8,
+    "name": "thought"
+}, {
+    "count": 8,
+    "name": "London"
+}, {
+    "count": 9,
+    "name": "higgs"
+}, {
+    "count": 9,
+    "name": "matter"
+}, {
+    "count": 9,
+    "name": "death"
+}, {
+    "count": 9,
+    "name": "TEDTalk"
+}, {
+    "count": 9,
+    "name": "veritasium"
+}, {
+    "count": 9,
+    "name": "vsauce"
+}, {
+    "count": 9,
+    "name": "Neutrino"
+}, {
+    "count": 9,
+    "name": "nuclear"
+}, {
+    "count": 9,
+    "name": "love"
+}, {
+    "count": 9,
+    "name": "Happiness"
+}, {
+    "count": 9,
+    "name": "money"
+}, {
+    "count": 9,
+    "name": "pbs"
+}, {
+    "count": 9,
+    "name": "Darwin"
+}, {
+    "count": 9,
+    "name": "school"
+}, {
+    "count": 9,
+    "name": "relationships"
+}, {
+    "count": 10,
+    "name": "particle"
+}, {
+    "count": 10,
+    "name": "Biology"
+}, {
+    "count": 10,
+    "name": "stars"
+}, {
+    "count": 10,
+    "name": "TEDTalks"
+}, {
+    "count": 10,
+    "name": "Albert Einstein"
+}, {
+    "count": 10,
+    "name": "Physics (Field Of Study)"
+}, {
+    "count": 10,
+    "name": "speed of light"
+}, {
+    "count": 10,
+    "name": "dark"
+}, {
+    "count": 10,
+    "name": "Documentary"
+}, {
+    "count": 10,
+    "name": "space time"
+}, {
+    "count": 10,
+    "name": "spacetime"
+}, {
+    "count": 10,
+    "name": "think"
+}, {
+    "count": 10,
+    "name": "alain de botton"
+}, {
+    "count": 10,
+    "name": "sermon"
+}, {
+    "count": 11,
+    "name": "learn"
+}, {
+    "count": 11,
+    "name": "big bang"
+}, {
+    "count": 11,
+    "name": "theory"
+}, {
+    "count": 11,
+    "name": "infographic"
+}, {
+    "count": 11,
+    "name": "TED Talk"
+}, {
+    "count": 11,
+    "name": "quantum mechanics"
+}, {
+    "count": 11,
+    "name": "moon"
+}, {
+    "count": 11,
+    "name": "photon"
+}, {
+    "count": 11,
+    "name": "star"
+}, {
+    "count": 11,
+    "name": "lecture"
+}, {
+    "count": 11,
+    "name": "TSOL"
+}, {
+    "count": 11,
+    "name": "SOL"
+}, {
+    "count": 11,
+    "name": "the school of life"
+}, {
+    "count": 11,
+    "name": "Hank"
+}, {
+    "count": 11,
+    "name": "Green"
+}, {
+    "count": 12,
+    "name": "educational"
+}, {
+    "count": 12,
+    "name": "time"
+}, {
+    "count": 12,
+    "name": "TED Talks"
+}, {
+    "count": 12,
+    "name": "brain"
+}, {
+    "count": 12,
+    "name": "self"
+}, {
+    "count": 13,
+    "name": "math"
+}, {
+    "count": 13,
+    "name": "life"
+}, {
+    "count": 13,
+    "name": "Environment"
+}, {
+    "count": 13,
+    "name": "galaxy"
+}, {
+    "count": 13,
+    "name": "quantum"
+}, {
+    "count": 13,
+    "name": "relativity"
+}, {
+    "count": 13,
+    "name": "nasa"
+}, {
+    "count": 14,
+    "name": "technology"
+}, {
+    "count": 14,
+    "name": "atom"
+}, {
+    "count": 14,
+    "name": "TEDEd"
+}, {
+    "count": 14,
+    "name": "black hole"
+}, {
+    "count": 14,
+    "name": "history"
+}, {
+    "count": 15,
+    "name": "funny"
+}, {
+    "count": 15,
+    "name": "kurzgesagt"
+}, {
+    "count": 15,
+    "name": "Learning"
+}, {
+    "count": 16,
+    "name": "electron"
+}, {
+    "count": 16,
+    "name": "Light"
+}, {
+    "count": 16,
+    "name": "crashcourse"
+}, {
+    "count": 17,
+    "name": "mathematics"
+}, {
+    "count": 17,
+    "name": "astrophysics"
+}, {
+    "count": 18,
+    "name": "chemistry"
+}, {
+    "count": 19,
+    "name": "Einstein"
+}, {
+    "count": 19,
+    "name": "gravity"
+}, {
+    "count": 19,
+    "name": "john green"
+}, {
+    "count": 19,
+    "name": "vlogbrothers"
+}, {
+    "count": 20,
+    "name": "sun"
+}, {
+    "count": 20,
+    "name": "scishow"
+}, {
+    "count": 21,
+    "name": "animation"
+}, {
+    "count": 22,
+    "name": "earth"
+}, {
+    "count": 22,
+    "name": "TEDx"
+}, {
+    "count": 22,
+    "name": "crash course"
+}, {
+    "count": 23,
+    "name": "Evolution"
+}, {
+    "count": 24,
+    "name": "energy"
+}, {
+    "count": 24,
+    "name": "astronomy"
+}, {
+    "count": 24,
+    "name": "Minutephysics"
+}, {
+    "count": 29,
+    "name": "TED Ed"
+}, {
+    "count": 31,
+    "name": "philosophy"
+}, {
+    "count": 32,
+    "name": "TEDEducation"
+}, {
+    "count": 35,
+    "name": "universe"
+}, {
+    "count": 35,
+    "name": "TED Education"
+}, {
+    "count": 36,
+    "name": "hank green"
+}, {
+    "count": 43,
+    "name": "Education"
+}, {
+    "count": 44,
+    "name": "space"
+}, {
+    "count": 67,
+    "name": "TED-Ed"
+}, {
+    "count": 68,
+    "name": "Physics"
+}, {
+    "count": 70,
+    "name": "TED"
+}, {
+    "count": 117,
+    "name": "science"
+}]
