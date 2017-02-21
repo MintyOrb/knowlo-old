@@ -59,7 +59,7 @@ const landing = {
                   <span>
                     <p>Right now? Not much more than a collection of interesting videos. However, the intention is for knowlo to become the best place to stand on the shoulder of giants.</p>
                     <p>Thanks to the internet, the sum of human knowedge is at our fingertips. But, there is no guide and it's difficult to search for something if you don't know that it exists.</p>
-                    <p>Knowlo wants to provide a complete map of human knowledge. To show the best paths to the highest summits and to illustrate the current edges while provide the tools to expand them.</p>
+                    <p>Knowlo wants to provide a map of human knowledge. To show the best paths to the highest summits and to illustrate the current edges while provide the tools to expand them.</p>
                     <p>This map across all of time and size provides context for how our best insights relate to one another and are fundamentally part of the same fabric.</p>
                     <p>The goal is to make this map personal. To help you in identiying the current limits of your knowledge and how to push them.</p>
                 </span>
@@ -89,9 +89,9 @@ const explore = Vue.extend({
     </div>
 
     <div>
-        <isotope ref="selected" :list="selected" :options='getSelectedOptions()' >
-          <div v-for="word in selected"  class='selected'>
-            <div @click="removeFromSelected(word)" class="hoverable chip">
+        <isotope style="min-height:80px" ref="selected" :list="selected" :options='getSelectedOptions()' >
+          <div  v-for="word in selected"  class='selected'>
+            <div @click="addToFrom(word, words, selected)"  class="hoverable chip">
                   {{word.name}} {{word.count}}
             </div>
           </div>
@@ -101,7 +101,7 @@ const explore = Vue.extend({
     <div>
         <isotope ref="key" :list="words" :options='getSuggestionOptions()' >
           <div v-for="word in words"  class='suggestion'>
-            <div @click="addToSelected(word)" class="hoverable chip">
+            <div @click="addToFrom(word, selected, words)" class="hoverable chip">
                   {{word.name}} {{word.count}}
             </div>
           </div>
@@ -186,21 +186,25 @@ const explore = Vue.extend({
         }
     },
     methods: {
-        addToSelected: function(item){
-          this.selected.push(item)
+        addToFrom: function(name, to, from){
+          this.addTo(name, to)
+          this.removeFrom(name, from)
         },
-        removeFromSelected: function(item){
-          // this.selected = this.selected.filter(function(el) {
+        addTo: function(item, theArray){
+          theArray.push(item)
+        },
+        removeFrom: function(item, theArray){
+          // this.selected = this.selected.filter(function(el) { // returns new array
           //     return el.name !== item.name;
           // });
-          for( i=this.selected.length-1; i>=0; i--) {
-              if( this.selected[i].name == item.name) this.selected.splice(i,1);
+          for( i=theArray.length-1; i>=0; i--) { // used same array
+              if( theArray[i].name == item.name) theArray.splice(i,1);
           }
         },
         changeDisplay: function(disp){
           this.display = disp
-
-          this.$nextTick(function(){ // weird to wrap a timeout with next tick, but css lags and screws up the layout after transistion
+          // weird to wrap a timeout with next tick, but css lags and screws up the layout after transistion
+          this.$nextTick(function(){
             window.setTimeout(()=>{
               this.layout()
             }, 375)
@@ -272,13 +276,15 @@ const explore = Vue.extend({
         imagesLoaded
     },
     mounted: function(){
-      videos = videos.concat(videos2) /// combine split json (split becuase it was too large as a single file for simplehttpserver)
+      videos = videos.concat(videos2) // combine split json (split becuase it was too large as a single file for simplehttpserver)
       this.list = videos;
-      window.setTimeout(()=>{ // temporary
+      window.setTimeout(()=>{ // temporary until a better way to determine when the page is ready is found
         this.layout()
       }, 1000)
+
+      // limit number of initally displayed keys
       for(word in keywords){
-        if(keywords[word]['count'] > 10){
+        if(keywords[word]['count'] > 20){
           this.words.push(keywords[word])
         }
       }
