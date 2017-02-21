@@ -24,31 +24,48 @@ const landing = {
         <div class="row">
           <div class="col s12 m4">
             <div class="icon-block">
-              <h2 class="center light-blue-text"><i class="material-icons">collections</i></h2>
-              <h5 class="center">add content</h5>
+              <h2 class="center light-blue-text"><i class="material-icons large">collections</i></h2>
+              <h5 class="center">excellent content</h5>
 
-              <p class="light">Submit and rank the most insightful images, articles, and videos, the internet has to offer on every subject.</p>
+              <p class="light">Gather and rank the most insightful images, articles, and videos the internet has to offer on every subject.</p>
             </div>
           </div>
 
           <div class="col s12 m4">
             <div class="icon-block">
-              <h2 class="center light-blue-text"><i class="material-icons">explore</i></h2>
-              <h5 class="center">add context</h5>
+              <h2 class="center light-blue-text"><i class="material-icons large">explore</i></h2>
+              <h5 class="center">universal context</h5>
 
-              <p class="light">Understand the big picture by seeing how the content relates to the time and size scales of the universe.</p>
+              <p class="light">Understand the big picture by seeing how the media and ideas they teach relate to the time and size scales of the universe.</p>
             </div>
           </div>
 
           <div class="col s12 m4">
             <div class="icon-block">
-              <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+              <h2 class="center light-blue-text"><i class="material-icons large">group</i></h2>
               <h5 class="center">see futher</h5>
 
-              <p class="light">Test and expand the depth of your understanding by contributing questions, answers, comments, criticims, and insights.</p>
+              <p class="light">Test and expand the depth of your knowledge by contributing questions, answers, comments, criticims, and insights.</p>
             </div>
           </div>
 
+        </div>
+
+        <div class="row">
+          <ul class="collapsible" data-collapsible="accordion">
+              <li>
+                <div class="collapsible-header active"><i class="material-icons">filter_drama</i>What is Knowlo?</div>
+                <div class="collapsible-body">
+                  <span>
+                    <p>Right now? Not much more than a collection of interesting videos. However, the intention is for knowlo to become the best place to stand on the shoulder of giants.</p>
+                    <p>Thanks to the internet, the sum of human knowedge is at our fingertips. But, there is no guide and it's difficult to search for something if you don't know that it exists.</p>
+                    <p>Knowlo wants to provide a complete map of human knowledge. To show the best paths to the highest summits and to illustrate the current edges while provide the tools to expand them.</p>
+                    <p>This map across all of time and size provides context for how our best insights relate to one another and are fundamentally part of the same fabric.</p>
+                    <p>The goal is to make this map personal. To help you in identiying the current limits of your knowledge and how to push them.</p>
+                </span>
+                </div>
+              </li>
+            </ul>
         </div>
 
       </div>
@@ -70,82 +87,76 @@ const explore = Vue.extend({
         <label for='search'>search</label>
       </div>
     </div>
+
+    <div>
+        <isotope ref="selected" :list="selected" :options='getSelectedOptions()' >
+          <div v-for="word in selected"  class='selected'>
+            <div @click="removeFromSelected(word)" class="hoverable chip">
+                  {{word.name}} {{word.count}}
+            </div>
+          </div>
+        </isotope>
+    </div>
+
+    <div>
+        <isotope ref="key" :list="words" :options='getSuggestionOptions()' >
+          <div v-for="word in words"  class='suggestion'>
+            <div @click="addToSelected(word)" class="hoverable chip">
+                  {{word.name}} {{word.count}}
+            </div>
+          </div>
+        </isotope>
+    </div>
     <button @click="shuffle()" class='btn blue'>Shuffle<i class="material-icons right">shuffle</i></button>
     <button class="btn blue" @click="filter('show all')">show all</button>
 
-    <!-- <div class="center pad">
-    				<span class="viewBtn" :click="changeDisplay('list')"></span><i class="material-icons">view_list</i></span>
-    				<span class="viewBtn" :click="changeDisplay('card')"></span><i class="material-icons">dashboard</i></span>
-    				<span class="viewBtn" :click="changeDisplay('thumb')"></span><i class="material-icons">dialpad</i></span>
+    <div class="center pad">
+    				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
+    				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
+    				<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
     				<br/>
-    				<div class="right thin" style="margin-right: 8%;">Showing </div>
-    				<br>
-		</div> -->
+		</div>
 
     <div class="button-group">
         <button class="btn blue" :class="[sortOption==='original-order'? 'is-checked' : '']" @click="sort('original-order')">original order</button>
         <button v-for="(key, val) in getSortData" class="btn blue" :class="[key===sortOption? 'is-checked' : '']" @click="sort(key)">{{key}}</button>
     </div>
-
-    <!-- <isotope ref="keywords" id="keywordss" :item-selector="'list-item'" :list="words" :options='getOptions' @filter="filterOption=arguments[2]" @sort="" @layout="currentLayout=arguments[0]">
-      <div v-for="element in words" :class='[element.category]'>
-        <p>{{element.word}}</p>
-        <p>{{element.cound}}</p>
-      </div>
-    </isotope> -->
-
-    <!-- <div class="fixed-action-btn horizontal click-to-toggle">
-    <a class="btn-floating btn-large red">
-      <i class="material-icons">menu</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-    </ul>
-  </div> -->
-
-    <isotope ref="elementBin" :list="list" :options='getOptions()' >
-        <div v-for="item in list" class=''>
-          <!-- <div class="thumb card-image waves-effect waves-block waves-light z-depth-1 hoverable">
+    <isotope ref="contentBin" :list="list" :options='getContentOptions()' >
+        <div v-for="item in list" class='element-item'>
+          <div v-if="display == 'thumb'" class="thumb card-image waves-effect waves-block waves-light z-depth-1 hoverable">
               <a target="blank" :href="item.url">
                 <img :src="'thumbs/'+item.videoid+'_SMALL_default.jpg'">
               </a>
-          </div> -->
-          <!-- <div class="list hoverable waves-effect waves-light" >
+          </div>
+         <div  v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
                <span class='truncate thin'>{{item.title}}</span>
-          </div> -->
-          <div class="card hoverable">
+          </div>
+          <div v-if="display == 'card'" class="card hoverable">
             <div class='card-image'>
                 <router-link :to="'/c/'+item.videoid">
-                <!-- <a target="blank" :href="item.url"> -->
-                  <img :src="'thumbs/'+item.videoid+'_SMALL_default.jpg'" class='card-image' alt="Not found">
-                  <!-- <img :src= "item.thumb" class='card-image' alt="Not found"> -->
-                <!-- </a> -->
+                  <img :src= "item.thumb" class='card-image' alt="Not found">
                </router-link>
-                <!-- <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a> -->
             </div>
             <div class='card-content'>
                 <span class='title'>{{item.title}}</span>
                 <p class="truncate">{{item.author}}</p>
             </div>
-            <hr />
-            <div class=''>
-              <span class='left'><i class="small material-icons">visibility</i>{{trimNumber(item.viewcount,1)}}</span>
-              <span class='right'>{{item.rating.toString().substring(0,3)}}<i class="small material-icons">star</i></span>
+            <div class='card-action'>
+              <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.viewcount,1)}}</span>
+              <span class='right card-bottom'>{{item.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
             </div>
-          </div>
         </div>
       </isotope>
 </div>
   `,
   data: function() {
         return {
+            displayed: "",
             words: [],
-            list: videos,
+            list: [],
+            display: 'card',
             currentLayout: 'masonry',
-            selected: null,
+            selected: [],
             sortOption: "original-order",
             filterOption: "show all",
             searchStr: null,
@@ -163,17 +174,59 @@ const explore = Vue.extend({
                     return true;
                 },
                 "contains": (el) => {
-                    return el.description.toLowerCase().includes(this.searchStr.toLowerCase())
-                    // return el.keywords.indexOf(this.searchStr.toLowerCase()) > 0;
+                    // return el.description.toLowerCase().includes(this.searchStr.toLowerCase())
+                    return el.keywords.some((element, i) =>{
+                        if (this.searchStr.toLowerCase().trim() === element.toLowerCase().trim()) {
+                            index = i;
+                            return true;
+                        }
+                    });
                 }
             },
         }
     },
     methods: {
-        getOptions: function() {
+        addToSelected: function(item){
+          this.selected.push(item)
+        },
+        removeFromSelected: function(item){
+          // this.selected = this.selected.filter(function(el) {
+          //     return el.name !== item.name;
+          // });
+          for( i=this.selected.length-1; i>=0; i--) {
+              if( this.selected[i].name == item.name) this.selected.splice(i,1);
+          }
+        },
+        changeDisplay: function(disp){
+          this.display = disp
+
+          this.$nextTick(function(){ // weird to wrap a timeout with next tick, but css lags and screws up the layout after transistion
+            window.setTimeout(()=>{
+              this.layout()
+            }, 375)
+          })
+
+        },
+        getContentOptions: function() {
             return {
                 sortAscending: this.sortAscending,
                 itemSelector: ".element-item",
+                getSortData: this.getSortData,
+                getFilterData: this.getFilterData,
+            }
+        },
+        getSelectedOptions: function() {
+            return {
+                masonry:{columnWidth: 1},
+                sortAscending: this.sortAscending,
+                getSortData: this.getSortData,
+                getFilterData: this.getFilterData,
+            }
+        },
+        getSuggestionOptions: function() {
+            return {
+                masonry:{columnWidth: 1},
+                sortAscending: this.sortAscending,
                 getSortData: this.getSortData,
                 getFilterData: this.getFilterData,
             }
@@ -183,18 +236,20 @@ const explore = Vue.extend({
               this.sortAscending = !this.sortAscending;
             }
             this.$nextTick(()=>{
-              this.$refs.elementBin.sort(key);
+              this.$refs.contentBin.sort(key);
               this.sortOption = key;
             })
         },
         shuffle: function(key) {
-            this.$refs.elementBin.shuffle();
+            this.$refs.contentBin.shuffle();
+            this.$refs.key.shuffle();
         },
         filter: function(key) {
-            this.$refs.elementBin.filter(key);
+            this.$refs.contentBin.filter(key);
         },
-        layout () {
-            this.$refs.elementBin.layout('masonry');
+        layout: function() {
+          this.$refs.contentBin.layout('masonry');
+          this.$refs.key.layout('masonry');
         },
         trimNumber: function(num, digits) { // from http://stackoverflow.com/a/9462382/2061741
           var si = [
@@ -218,43 +273,29 @@ const explore = Vue.extend({
     },
     mounted: function(){
       videos = videos.concat(videos2) /// combine split json (split becuase it was too large as a single file for simplehttpserver)
+      this.list = videos;
       window.setTimeout(()=>{ // temporary
         this.layout()
-      }, 500)
-
-    //   for (var video = 0; video < videos.length; video++) { // each video
-    //
-    //     for (var key = 0; key <   videos[video]['keywords'].length; key++) { // each keyword
-    //       console.log(videos[video]['keywords'][key].toLowerCase())
-    //       found = false;
-    //       for (var word = 0; word < this.words.length; word++) { // each cumulative
-    //
-    //         if(this.words[word]['word'].toLowerCase() == videos[video]['keywords'][key].toLowerCase()){
-    //           found = true;
-    //           this.words[word]['count'] +=1;
-    //           break
-    //         }
-    //       }
-    //       if(!found){
-    //         this.words.push({
-    //           'count': 0,
-    //           'word': videos[video]['keywords'][key].toLowerCase()
-    //         })
-    //       }
-    //
-    //     }
-    //   }
-    //   console.log('done')
-    //   console.log(this.words)
+      }, 1000)
+      for(word in keywords){
+        if(keywords[word]['count'] > 10){
+          this.words.push(keywords[word])
+        }
+      }
+      // this.words = keywords;
     }
+
 });
 
 
 const content = Vue.extend({
     template: `
-    <div>
-      <h1>{{content.title}}</h1>
-      <iframe :src="content.url">
+    <div class="container">
+      <h4 class="center thin">{{content.title}}</h4>
+      <div class="row video-container ">
+          <iframe :src="'http://youtube.com/embed/'+content.videoid">
+      </div>
+
     </div>
     `,
     data: function() {
