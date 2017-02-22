@@ -171,19 +171,17 @@ const explore = Vue.extend({
             sortAscending: true,
             getFilterData: {
                 "keywords": (el) => {
-                  if(this.selected.length === 0){
-                    found = true
-                  } else {
-                    found = false
-                  }
+                  foundAll = true
                   for (var keyIndex = 0; keyIndex < this.selected.length; keyIndex++) {
+                    foundOne = false
                     el.keywords.some((element, i) =>{
                       if (this.selected[keyIndex]['name'].toLowerCase().trim() === element.toLowerCase().trim()) {
-                          found = true;
+                          foundOne = true;
                       }
                     })
+                    foundAll = foundAll && foundOne // "AND" search
                   }
-                  return found
+                  return foundAll
                 },
                 "show all": function() {
                     return true;
@@ -216,6 +214,29 @@ const explore = Vue.extend({
       //     }
       //     return filtString
       //   },
+        updateSuggestedKewords: function(){
+          for (var contentIndex = 0; contentIndex < this.list.length; contentIndex++) {
+            for (var key = 0; key < this.list[contentIndex]['keywords'].length; key++) { // each keyword
+              console.log(this.list[contentIndex]['keywords'][key].toLowerCase())
+              found = false;
+              for (var word = 0; word < this.words.length; word++) { // each cumulative
+
+                if(this.words[word]['word'].toLowerCase() == this.list[contentIndex]['keywords'][key].toLowerCase()){
+                  found = true;
+                  this.words[word]['count'] +=1;
+                  break
+                }
+              }
+              if(!found){
+                this.words.push({
+                  'count': 0,
+                  'word': this.list[contentIndex]['keywords'][key]
+                })
+              }
+
+            }
+          }
+        },
         addToFrom: function(name, to, from){
           this.addTo(name, to)
           this.removeFrom(name, from)
