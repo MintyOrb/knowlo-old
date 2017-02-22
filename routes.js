@@ -170,25 +170,56 @@ const explore = Vue.extend({
             },
             sortAscending: true,
             getFilterData: {
+                "keywords": (el) => {
+                  if(this.selected.length === 0){
+                    found = true
+                  } else {
+                    found = false
+                  }
+                  for (var keyIndex = 0; keyIndex < this.selected.length; keyIndex++) {
+                    el.keywords.some((element, i) =>{
+                      if (this.selected[keyIndex]['name'].toLowerCase().trim() === element.toLowerCase().trim()) {
+                          found = true;
+                      }
+                    })
+                  }
+                  return found
+                },
                 "show all": function() {
                     return true;
                 },
                 "contains": (el) => {
-                    // return el.description.toLowerCase().includes(this.searchStr.toLowerCase())
-                    return el.keywords.some((element, i) =>{
-                        if (this.searchStr.toLowerCase().trim() === element.toLowerCase().trim()) {
-                            index = i;
-                            return true;
-                        }
-                    });
+                    return el.description.toLowerCase().includes(this.searchStr.toLowerCase())
+                    // return el.keywords.some((element, i) =>{
+                    //     if (this.searchStr.toLowerCase().trim() === element.toLowerCase().trim()) {
+                    //         return true;
+                    //     }
+                    // });
                 }
             },
         }
     },
     methods: {
+      // getFilterString: function(content) {
+      //     var filtString = "";
+      //     for (var filter = this.filterFields.length - 1; filter >= 0; filter--) {
+      //       if (content[this.filterFields[filter]]) {
+      //         if (content[this.filterFields[filter]].indexOf(',') > -1) {
+      //           var filties = content[this.filterFields[filter]].split(',');
+      //           for (var filt in filties) {
+      //             filtString += filties[filt].replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}).trim().replace(/\W+/g, "_") + " ";
+      //           }
+      //         } else {
+      //           filtString += content[this.filterFields[filter]].trim().replace(/\W+/g, "_") + " ";
+      //         }
+      //       }
+      //     }
+      //     return filtString
+      //   },
         addToFrom: function(name, to, from){
           this.addTo(name, to)
           this.removeFrom(name, from)
+          this.filter('keywords')
         },
         addTo: function(item, theArray){
           theArray.push(item)
@@ -256,14 +287,7 @@ const explore = Vue.extend({
           this.$refs.key.layout('masonry');
         },
         trimNumber: function(num, digits) { // from http://stackoverflow.com/a/9462382/2061741
-          var si = [
-            { value: 1E18, symbol: "E" },
-            { value: 1E15, symbol: "P" },
-            { value: 1E12, symbol: "T" },
-            { value: 1E9,  symbol: "G" },
-            { value: 1E6,  symbol: "M" },
-            { value: 1E3,  symbol: "k" }
-          ], rx = /\.0+$|(\.[0-9]*[1-9])0+$/, i;
+          var si = [ { value: 1E18, symbol: "E" }, { value: 1E15, symbol: "P" }, { value: 1E12, symbol: "T" }, { value: 1E9,  symbol: "G" }, { value: 1E6,  symbol: "M" }, { value: 1E3,  symbol: "k" }], rx = /\.0+$|(\.[0-9]*[1-9])0+$/, i;
           for (i = 0; i < si.length; i++) {
             if (num >= si[i].value) {
               return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
