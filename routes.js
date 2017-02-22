@@ -215,9 +215,11 @@ const explore = Vue.extend({
       //     return filtString
       //   },
         updateSuggestedKewords: function(){
-          for (var contentIndex = 0; contentIndex < this.list.length; contentIndex++) {
+          this.words = []
+          // build array of suggested
+          for (var contentIndex = 0; contentIndex < this.list.length; contentIndex++) { // each returned content
             for (var key = 0; key < this.list[contentIndex]['keywords'].length; key++) { // each keyword
-              console.log(this.list[contentIndex]['keywords'][key].toLowerCase())
+              // console.log(this.list[contentIndex]['keywords'][key].toLowerCase())
               found = false;
               for (var word = 0; word < this.words.length; word++) { // each cumulative
 
@@ -233,9 +235,9 @@ const explore = Vue.extend({
                   'word': this.list[contentIndex]['keywords'][key]
                 })
               }
-
             }
           }
+          // add/remove from words
         },
         addToFrom: function(name, to, from){
           this.addTo(name, to)
@@ -321,8 +323,9 @@ const explore = Vue.extend({
         imagesLoaded
     },
     mounted: function(){
-      videos = videos.concat(videos2) // combine split json (split becuase it was too large as a single file for simplehttpserver)
+
       this.list = videos;
+      
       window.setTimeout(()=>{ // temporary until a better way to determine when the page is ready is found
         this.layout()
       }, 1000)
