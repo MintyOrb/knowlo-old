@@ -100,13 +100,29 @@ const explore = Vue.extend({
 
     <div>
         <isotope ref="key" :list="words" :options='getSuggestionOptions()' >
-          <div v-for="word in words"  class='suggestion'>
-            <div @click="addToFrom(word, selected, words)" class="hoverable chip">
+          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }">
+
+            <div @click="addToFrom(word, selected, words)" class="hoverable chip dropdown-button" :data-activates='word.name' data-hover="true" data-belowOrigin="true" data-gutter="20">
                   {{word.name}} {{word.count}}
             </div>
+
+            <!-- <ul :id='word.name' class='dropdown-content'>
+              <li v-if="word.group && !word.expanded"><a @click="bigSmallTag(word)">expand</a></li>
+              <li v-if="word.group && word.expanded"><a @click="bigSmallTag(word)">shrink</a></li>
+              <li><a @click="addToFrom(word,selected, words)">add</a></li>
+              <li class="divider"></li>
+              <li><a>exclude</a></li>
+              <li><a>focus</a></li>
+            </ul> -->
+
+            <div :class="'flickContainer'+word.name">
+              <div v-if="word.expanded" v-for="item in word.members" class="flickItem chip">{{item}}</div>
+            </div>
+
           </div>
         </isotope>
     </div>
+
     <button @click="shuffle()" class='btn blue'>Shuffle<i class="material-icons right">shuffle</i></button>
     <button class="btn blue" @click="filter('show all')">show all</button>
 
@@ -117,10 +133,15 @@ const explore = Vue.extend({
     				<br/>
 		</div>
 
-    <div class="button-group">
-        <button class="btn blue" :class="[sortOption==='original-order'? 'is-checked' : '']" @click="sort('original-order')">original order</button>
-        <button v-for="(key, val) in getSortData" class="btn blue" :class="[key===sortOption? 'is-checked' : '']" @click="sort(key)">{{key}}</button>
-    </div>
+    <div class="btn blue dropdown-button" data-activates='sortOp' data-hover="true" data-gutter="10">sort order</div>
+    <ul id='sortOp' class='dropdown-content'>
+      <li ><a @click="sort('original-order')">original order</a></li>
+      <li v-for="(key, val) in getSortData"><a @click="sort(key)">{{key}}</a></li>
+    </ul>
+
+
+
+
     <isotope ref="contentBin" :list="list" :options='getContentOptions()' >
         <div v-for="item in list" class='element-item'>
           <div v-if="display == 'thumb'" class="thumb card-image waves-effect waves-block waves-light z-depth-1 hoverable">
@@ -151,6 +172,7 @@ const explore = Vue.extend({
   `,
   data: function() {
         return {
+            flickRegistry: [],
             displayed: "",
             words: [],
             list: [],
@@ -214,6 +236,42 @@ const explore = Vue.extend({
       //     }
       //     return filtString
       //   },
+      createFlickity: function(id){
+        this.flickRegistry.push(id);// register flick
+
+        setTimeout(function(){ // allow time for card reveal
+          $('.flickContainer' + id).flickity({
+            wrapAround: true,
+            pageDots: false,
+            prevNextButtons: false,
+            accessibility: false, // to prevent jumping when focused
+          });
+
+          //   $('.flickNav' + id).flickity({
+          //     asNavFor: '.flickContainer' + id,
+          //     contain: true,
+          //     pageDots: false,
+          //     prevNextButtons: false
+          //   });
+          // }, 10);
+          })
+        },
+        destroySingleFlickity: function(id){
+          $('.flickContainer' + id).flickity('destroy');
+          $('.flickNav' + id).flickity('destroy');
+          for(index in this.flickRegistry){
+            if(this.flickRegistry[index] == id){
+              this.flickRegistry.splice(index,1)
+              break
+            }
+          }
+        },
+        destroyAllFlickity: function(){
+          for(var index in this.flickRegistry){
+            this.destroySingleFlickity(this.flickRegistry[index]);
+          }
+          this.flickRegistry=[];
+        },
         updateSuggestedKewords: function(){
           this.words = []
           // build array of suggested
@@ -238,6 +296,17 @@ const explore = Vue.extend({
             }
           }
           // add/remove from words
+        },
+        bigSmallTag: function(word){
+          word.expanded = !word.expanded
+          this.$nextTick(function(){
+            if(word.expanded){
+              this.createFlickity(word.name)
+            }else{
+              this.destroySingleFlickity(word.name)
+            }
+            this.layout()
+          })
         },
         addToFrom: function(name, to, from){
           this.addTo(name, to)
@@ -325,7 +394,7 @@ const explore = Vue.extend({
     mounted: function(){
 
       this.list = videos;
-      
+
       window.setTimeout(()=>{ // temporary until a better way to determine when the page is ready is found
         this.layout()
       }, 1000)
