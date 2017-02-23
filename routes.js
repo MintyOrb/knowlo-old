@@ -1,7 +1,21 @@
+/*
+██       █████  ███    ██ ██████  ██ ███    ██  ██████
+██      ██   ██ ████   ██ ██   ██ ██ ████   ██ ██
+██      ███████ ██ ██  ██ ██   ██ ██ ██ ██  ██ ██   ███
+██      ██   ██ ██  ██ ██ ██   ██ ██ ██  ██ ██ ██    ██
+███████ ██   ██ ██   ████ ██████  ██ ██   ████  ██████
+*/
 const landing = {
     template: "#landingTemplate"
 }
 
+/*
+███████ ██   ██ ██████  ██       ██████  ██████  ███████
+██       ██ ██  ██   ██ ██      ██    ██ ██   ██ ██
+█████     ███   ██████  ██      ██    ██ ██████  █████
+██       ██ ██  ██      ██      ██    ██ ██   ██ ██
+███████ ██   ██ ██      ███████  ██████  ██   ██ ███████
+*/
 const explore = Vue.extend({
   template: "#exploreTemplate",
   data: function() {
@@ -10,6 +24,7 @@ const explore = Vue.extend({
             displayed: "",
             words: [],
             list: [],
+            numberOfDisplayed: 0,
             display: 'card',
             currentLayout: 'masonry',
             selected: [],
@@ -54,22 +69,6 @@ const explore = Vue.extend({
         }
     },
     methods: {
-      // getFilterString: function(content) {
-      //     var filtString = "";
-      //     for (var filter = this.filterFields.length - 1; filter >= 0; filter--) {
-      //       if (content[this.filterFields[filter]]) {
-      //         if (content[this.filterFields[filter]].indexOf(',') > -1) {
-      //           var filties = content[this.filterFields[filter]].split(',');
-      //           for (var filt in filties) {
-      //             filtString += filties[filt].replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}).trim().replace(/\W+/g, "_") + " ";
-      //           }
-      //         } else {
-      //           filtString += content[this.filterFields[filter]].trim().replace(/\W+/g, "_") + " ";
-      //         }
-      //       }
-      //     }
-      //     return filtString
-      //   },
       createFlickity: function(id){
         this.flickRegistry.push(id);// register flick
 
@@ -106,7 +105,7 @@ const explore = Vue.extend({
           }
           this.flickRegistry=[];
         },
-        updateSuggestedKewords: function(){
+        updateSuggestedKewords: function(){ // this solution is wayyyy to slow. try something here? http://codereview.stackexchange.com/questions/96096/find-common-elements-in-a-list-of-arrays
           this.words = []
           // build array of suggested
           for (var contentIndex = 0; contentIndex < this.list.length; contentIndex++) { // each returned content
@@ -132,29 +131,32 @@ const explore = Vue.extend({
           // add/remove from words
         },
         bigSmallTag: function(word){
+          if(word.expanded){
+            this.destroySingleFlickity(word.name)
+          } else {
+            this.createFlickity(word.name)
+          }
           word.expanded = !word.expanded
           this.$nextTick(function(){
-            if(word.expanded){
-              this.createFlickity(word.name)
-            }else{
-              this.destroySingleFlickity(word.name)
-            }
             this.layout()
           })
         },
-        addToFrom: function(name, to, from){
-          this.addTo(name, to)
-          this.removeFrom(name, from)
+        addToFrom: function(tag, to, from){
+          if(tag.expanded){
+              this.destroySingleFlickity(tag.name)
+              tag.expanded = false;
+          }
+
+          if(to){this.addTo(tag, to)};
+          if (from) {this.removeFrom(tag, from)};
+
           this.filter('keywords')
         },
         addTo: function(item, theArray){
           theArray.push(item)
         },
-        removeFrom: function(item, theArray){
-          // this.selected = this.selected.filter(function(el) { // returns new array
-          //     return el.name !== item.name;
-          // });
-          for( i=theArray.length-1; i>=0; i--) { // used same array
+        removeFrom: function(item, theArray){ // removal looks funny...open issue: https://github.com/David-Desmaisons/Vue.Isotope/issues/24
+          for( i=theArray.length-1; i>=0; i--) {
               if( theArray[i].name == item.name) theArray.splice(i,1);
           }
         },
@@ -168,7 +170,7 @@ const explore = Vue.extend({
           })
 
         },
-        getContentOptions: function() {
+        getContentOptions: function() { // need to rethink managing multiple iso instances
             return {
                 sortAscending: this.sortAscending,
                 itemSelector: ".element-item",
@@ -209,8 +211,11 @@ const explore = Vue.extend({
             this.$refs.contentBin.filter(key);
         },
         layout: function() {
-          this.$refs.contentBin.layout('masonry');
-          this.$refs.key.layout('masonry');
+          if(this.$refs.contentBin){
+            this.$refs.contentBin.layout('masonry');
+            this.$refs.key.layout('masonry');
+          }
+
         },
         trimNumber: function(num, digits) { // from http://stackoverflow.com/a/9462382/2061741
           var si = [ { value: 1E18, symbol: "E" }, { value: 1E15, symbol: "P" }, { value: 1E12, symbol: "T" }, { value: 1E9,  symbol: "G" }, { value: 1E6,  symbol: "M" }, { value: 1E3,  symbol: "k" }], rx = /\.0+$|(\.[0-9]*[1-9])0+$/, i;
@@ -229,7 +234,7 @@ const explore = Vue.extend({
 
       this.list = videos;
 
-      window.setTimeout(()=>{ // temporary until a better way to determine when the page is ready is found
+      window.setTimeout(()=>{ // temporary until a better way to layout after things have loaded
         this.layout()
       }, 1000)
 
@@ -240,9 +245,25 @@ const explore = Vue.extend({
         }
       }
       // this.words = keywords;
+      //alpha warning
+      if(!Cookies.get('alpha-warning-seen')){
+        console.log('in coooooook')
+        Cookies.set('alpha-warning-seen', true, { expires: 7 });
+        var $toastContent = $("<span>Hi! Knowlo is pre-alpha right now. There's not a lot to see and what there is will probably break.</span>");
+        Materialize.toast($toastContent, 10000);
+      } else {
+        Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
+      }
     }
-
 });
+
+/*
+ ██████  ██████  ███    ██ ████████ ███████ ███    ██ ████████     ██████   █████   ██████  ███████
+██      ██    ██ ████   ██    ██    ██      ████   ██    ██        ██   ██ ██   ██ ██       ██
+██      ██    ██ ██ ██  ██    ██    █████   ██ ██  ██    ██        ██████  ███████ ██   ███ █████
+██      ██    ██ ██  ██ ██    ██    ██      ██  ██ ██    ██        ██      ██   ██ ██    ██ ██
+ ██████  ██████  ██   ████    ██    ███████ ██   ████    ██        ██      ██   ██  ██████  ███████
+*/
 
 
 const content = Vue.extend({

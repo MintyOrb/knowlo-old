@@ -42,7 +42,210 @@
 		</footer>
 	</div>
 
+	<!--
+	███████ ██   ██ ██████  ██       ██████  ██████  ███████
+	██       ██ ██  ██   ██ ██      ██    ██ ██   ██ ██
+	█████     ███   ██████  ██      ██    ██ ██████  █████
+	██       ██ ██  ██      ██      ██    ██ ██   ██ ██
+	███████ ██   ██ ██      ███████  ██████  ██   ██ ███████
+	-->
+
+	<template id="exploreTemplate">
+		<div>
+		    <div class='row'>
+		     <div style="height:100px"></div>   <!---temporary filler -->
+		      <div class="input-field col s10 offset-s1">
+		        <input type='text' id='search'  @keyup="filter('contains')" v-model="searchStr">
+		        <label for='search'>search</label>
+		      </div>
+		    </div>
+
+		    <div>
+		        <isotope style="min-height:80px" ref="selected" :list="selected" :options='getSelectedOptions()' >
+		          <div  v-for="word in selected"  class='selected'>
+		            <div @click="addToFrom(word, words, selected)"  class="hoverable chip">
+		                  {{word.name}} {{word.count}}
+		            </div>
+		          </div>
+		        </isotope>
+		    </div>
+
+		    <div>
+		        <isotope ref="key" :list="words" :options='getSuggestionOptions()' >
+		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }">
+
+		            <div @click="addToFrom(word, selected, words)" class="hoverable chip dropdown-button" :data-activates='word.name' data-hover="true" data-belowOrigin="true" data-gutter="10">
+		                  {{word.name}} {{word.count}}
+		            </div>
+		            <ul :id='word.name' class='dropdown-content'>
+		              <li v-if="word.group && !word.expanded"><a @click="bigSmallTag(word)">expand</a></li>
+		              <li v-if="word.group && word.expanded"><a @click="bigSmallTag(word)">shrink</a></li>
+		              <li><a @click="addToFrom(word,selected, words)">add</a></li>
+		              <li class="divider"></li>
+		              <li><a>exclude</a></li>
+		              <li><a>focus</a></li>
+		            </ul>
+
+		            <div v-if="word.expanded" :class="'flickContainer'+word.name" class="flickContainer">
+		              <div v-for="item in word.members" class="flickItem dropdown-button" :data-activates='item.name' data-hover="true" data-belowOrigin="true" data-gutter="10">
+										<span @click="addToFrom(item, selected)" class="chip">{{item.name}}</span>
+										<ul :id='item.name' class='dropdown-content'>
+											<li v-if="word.group && !word.expanded"><a @click="bigSmallTag(word)">expand</a></li>
+											<li v-if="word.group && word.expanded"><a @click="bigSmallTag(word)">shrink</a></li>
+											<li><a @click="addToFrom(item,selected)">add</a></li>
+											<li class="divider"></li>
+											<li><a>exclude</a></li>
+											<li><a>focus</a></li>
+										</ul>
+									</div>
+		            </div>
+
+
+		          </div>
+		        </isotope>
+		    </div>
+
+		    <div class="center pad">
+		    				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
+		    				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
+		    				<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
+		    				<br/>
+				</div>
+				<div class="flexCenter">
+					<div class="btn blue dropdown-button" data-activates='sortOp' data-hover="true">sort order</div>
+  		    <ul id='sortOp' class='dropdown-content'>
+  		      <li><a @click="sort('original-order')">original order</a></li>
+  					<li><a @click="shuffle()">Shuffle<i class="material-icons right">shuffle</i></a></li>
+  		      <li v-for="(key, val) in getSortData"><a @click="sort(key)">{{key}}</a></li>
+  		    </ul>
+				</div>
+
+
+		    <isotope ref="contentBin" :list="list" :options='getContentOptions()'>
+						<!-- <div v-show="">
+							no results! Have someting you want to ad?
+						</div> -->
+		        <div v-for="item in list" class='element-item'>
+		          <div v-if="display == 'thumb'" class="thumb card-image waves-effect waves-block waves-light z-depth-1 hoverable">
+		              <a target="blank" :href="item.url">
+		                <img :src="'thumbs/'+item.videoid+'_SMALL_default.jpg'">
+		              </a>
+		          </div>
+		         <div v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
+		               <span class='truncate thin'>{{item.title}}</span>
+		          </div>
+		          <div v-if="display == 'card'" class="card hoverable">
+		            <div class='card-image'>
+		                <router-link :to="'/c/'+item.videoid">
+		                  <img :src="item.thumb" class='card-image' alt="Not found">
+		               </router-link>
+		            </div>
+		            <div class='card-content'>
+		                <span class='title'>{{item.title}}</span>
+		                <p class="truncate">{{item.author}}</p>
+		            </div>
+		            <div class='card-action'>
+		              <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.viewcount,1)}}</span>
+		              <span class='right card-bottom'>{{item.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
+		            </div>
+		        </div>
+		      </isotope>
+		</div>
+	</template>
+
+	<!--
+	██       █████  ███    ██ ██████  ██ ███    ██  ██████
+	██      ██   ██ ████   ██ ██   ██ ██ ████   ██ ██
+	██      ███████ ██ ██  ██ ██   ██ ██ ██ ██  ██ ██   ███
+	██      ██   ██ ██  ██ ██ ██   ██ ██ ██  ██ ██ ██    ██
+	███████ ██   ██ ██   ████ ██████  ██ ██   ████  ██████
+	-->
+
+	<template id="landingTemplate">
+		<main>
+			<div class="section no-pad-bot" id="index-banner">
+				<div class="container">
+					<br>
+					<br>
+					<h1 class="header center blue-text thin">knowlo</h1>
+					<div class="row center">
+						<h5 class="header col s12 light">condensed insight.</h5>
+					</div>
+					<div class="row center">
+						<router-link to="/e" class="btn-large waves-effect waves-light blue">expore</router-link>
+					</div>
+					<br>
+					<br>
+
+				</div>
+			</div>
+			<div class="container">
+				<div class="section">
+
+					<!--   Icon Section   -->
+					<div class="row">
+						<div class="col s12 m4">
+							<div class="icon-block">
+								<h2 class="center light-blue-text"><i class="material-icons large">collections</i></h2>
+								<h5 class="center">excellent content</h5>
+
+								<p class="light">Gather and rank the most insightful images, articles, and videos the internet has to offer on every subject.</p>
+							</div>
+						</div>
+
+						<div class="col s12 m4">
+							<div class="icon-block">
+								<h2 class="center light-blue-text"><i class="material-icons large">explore</i></h2>
+								<h5 class="center">universal context</h5>
+
+								<p class="light">Understand the big picture by seeing how the media and ideas they teach relate to the time and size scales of the universe.</p>
+							</div>
+						</div>
+
+						<div class="col s12 m4">
+							<div class="icon-block">
+								<h2 class="center light-blue-text"><i class="material-icons large">group</i></h2>
+								<h5 class="center">see futher</h5>
+
+								<p class="light">Test and expand the depth of your knowledge by contributing questions, answers, comments, criticims, and insights.</p>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<ul class="collapsible" data-collapsible="accordion">
+								<li>
+									<div class="collapsible-header active"><i class="material-icons">filter_drama</i>What is Knowlo?</div>
+									<div class="collapsible-body">
+										<span>
+											<p>Right now? Not much more than a collection of interesting videos. However, the intention is for knowlo to become the best place to stand on the shoulder of giants.</p>
+											<p>Thanks to the internet, the sum of human knowedge is at our fingertips. But, there is no guide and it's difficult to search for something if you don't know that it exists.</p>
+											<p>Knowlo wants to provide a map of human knowledge. To show the best paths to the highest summits and to illustrate the current edges while provide the tools to expand them.</p>
+											<p>This map across all of time and size provides context for how our best insights relate to one another and are fundamentally part of the same fabric.</p>
+											<p>The goal is to make this map personal. To help you in identiying the current limits of your knowledge and how to push them.</p>
+									</span>
+									</div>
+								</li>
+							</ul>
+					</div>
+
+				</div>
+				<br>
+				<br>
+
+			</div>
+		</main>
+	</template>
 </body>
+
+<!--
+███████  ██████ ██████  ██ ██████  ████████ ███████
+██      ██      ██   ██ ██ ██   ██    ██    ██
+███████ ██      ██████  ██ ██████     ██    ███████
+     ██ ██      ██   ██ ██ ██         ██         ██
+███████  ██████ ██   ██ ██ ██         ██    ███████
+-->
 
 <!-- <script src="videos.js"></script> -->
 <script src="part1.js"></script>
@@ -63,10 +266,18 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 <script src="dep\imagesloaded.pkgd.min.js"></script>
 <script src="dep\vueimagesloaded.js"></script>
 <script src="dep\flickity.pkgd.min.js"></script>
+<script src="dep\js.cookie.js"></script>
 
 <script src="routes.js"></script>
 <script src="main.js"></script>
 
+<!--
+███████ ████████ ██    ██ ██      ███████
+██         ██     ██  ██  ██      ██
+███████    ██      ████   ██      █████
+     ██    ██       ██    ██      ██
+███████    ██       ██    ███████ ███████
+-->
 
 <style>
 .card {
@@ -108,9 +319,6 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
     font-weight: bold;
     line-height: .1;
 }
-.btn {
-    margin: 10px;
-}
 .list {
     padding: 2% 8% 2% 8%;
     width: 100vw;
@@ -149,6 +357,7 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
     border: 1px solid;
     background: white;
     height: auto;
+		cursor: pointer;
 }
 .viewBtn {
     transition: color .3s;
@@ -159,186 +368,26 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 }
 
 .expanded {
-	width: 60%;
+	width: 100%;
 	height: 120px;
 }
+.flickContainer{
+	border-right: 1px solid darkgray;
+	border-left: 1px solid darkgray;
+}
 .flickItem{
-	width: 150px;
+	width: 200px;
+	margin-left: 15px;
+	margin-right: 15px;
 	/*height: 100px;*/
   text-align: center;
+}
+
+.flexCenter{
+	display: flex;
+	align-content: center;
+	justify-content: center;
 }
 /**{outline: 1px solid black;}*/
 </style>
 </html>
-
-<template id="exploreTempalte">
-	<div>
-	    <div class='row'>
-	     <div style="height:100px"></div>   <!---temporary filler -->
-	      <div class="input-field col s10 offset-s1">
-	        <input type='text' id='search'  @keyup="filter('contains')" v-model="searchStr">
-	        <label for='search'>search</label>
-	      </div>
-	    </div>
-
-	    <div>
-	        <isotope style="min-height:80px" ref="selected" :list="selected" :options='getSelectedOptions()' >
-	          <div  v-for="word in selected"  class='selected'>
-	            <div @click="addToFrom(word, words, selected)"  class="hoverable chip">
-	                  {{word.name}} {{word.count}}
-	            </div>
-	          </div>
-	        </isotope>
-	    </div>
-
-	    <div>
-	        <isotope ref="key" :list="words" :options='getSuggestionOptions()' >
-	          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }">
-
-	            <div @click="addToFrom(word, selected, words)" class="hoverable chip dropdown-button" :data-activates='word.name' data-hover="true" data-belowOrigin="true" data-gutter="20">
-	                  {{word.name}} {{word.count}}
-	            </div>
-
-	            <ul :id='word.name' class='dropdown-content'>
-	              <li v-if="word.group && !word.expanded"><a @click="bigSmallTag(word)">expand</a></li>
-	              <li v-if="word.group && word.expanded"><a @click="bigSmallTag(word)">shrink</a></li>
-	              <li><a @click="addToFrom(word,selected, words)">add</a></li>
-	              <li class="divider"></li>
-	              <li><a>exclude</a></li>
-	              <li><a>focus</a></li>
-	            </ul>
-
-	            <div :class="'flickContainer'+word.name">
-	              <div v-if="word.expanded" v-for="item in word.members" class="flickItem chip">{{item}}</div>
-	            </div>
-
-	          </div>
-	        </isotope>
-	    </div>
-
-	    <button @click="shuffle()" class='btn blue'>Shuffle<i class="material-icons right">shuffle</i></button>
-	    <button class="btn blue" @click="filter('show all')">show all</button>
-
-	    <div class="center pad">
-	    				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
-	    				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
-	    				<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
-	    				<br/>
-			</div>
-
-	    <div class="btn blue dropdown-button" data-activates='sortOp' data-hover="true" data-gutter="10">sort order</div>
-	    <ul id='sortOp' class='dropdown-content'>
-	      <li ><a @click="sort('original-order')">original order</a></li>
-	      <li v-for="(key, val) in getSortData"><a @click="sort(key)">{{key}}</a></li>
-	    </ul>
-
-
-
-
-	    <isotope ref="contentBin" :list="list" :options='getContentOptions()' >
-	        <div v-for="item in list" class='element-item'>
-	          <div v-if="display == 'thumb'" class="thumb card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-	              <a target="blank" :href="item.url">
-	                <img :src="'thumbs/'+item.videoid+'_SMALL_default.jpg'">
-	              </a>
-	          </div>
-	         <div  v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
-	               <span class='truncate thin'>{{item.title}}</span>
-	          </div>
-	          <div v-if="display == 'card'" class="card hoverable">
-	            <div class='card-image'>
-	                <router-link :to="'/c/'+item.videoid">
-	                  <img :src= "item.thumb" class='card-image' alt="Not found">
-	               </router-link>
-	            </div>
-	            <div class='card-content'>
-	                <span class='title'>{{item.title}}</span>
-	                <p class="truncate">{{item.author}}</p>
-	            </div>
-	            <div class='card-action'>
-	              <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.viewcount,1)}}</span>
-	              <span class='right card-bottom'>{{item.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
-	            </div>
-	        </div>
-	      </isotope>
-	</div>
-</template>
-
-
-
-<template id="landingTemplate">
-	<main>
-		<div class="section no-pad-bot" id="index-banner">
-			<div class="container">
-				<br>
-				<br>
-				<h1 class="header center blue-text thin">knowlo</h1>
-				<div class="row center">
-					<h5 class="header col s12 light">condensed insight.</h5>
-				</div>
-				<div class="row center">
-					<router-link to="/e" class="btn-large waves-effect waves-light blue">expore</router-link>
-				</div>
-				<br>
-				<br>
-
-			</div>
-		</div>
-		<div class="container">
-			<div class="section">
-
-				<!--   Icon Section   -->
-				<div class="row">
-					<div class="col s12 m4">
-						<div class="icon-block">
-							<h2 class="center light-blue-text"><i class="material-icons large">collections</i></h2>
-							<h5 class="center">excellent content</h5>
-
-							<p class="light">Gather and rank the most insightful images, articles, and videos the internet has to offer on every subject.</p>
-						</div>
-					</div>
-
-					<div class="col s12 m4">
-						<div class="icon-block">
-							<h2 class="center light-blue-text"><i class="material-icons large">explore</i></h2>
-							<h5 class="center">universal context</h5>
-
-							<p class="light">Understand the big picture by seeing how the media and ideas they teach relate to the time and size scales of the universe.</p>
-						</div>
-					</div>
-
-					<div class="col s12 m4">
-						<div class="icon-block">
-							<h2 class="center light-blue-text"><i class="material-icons large">group</i></h2>
-							<h5 class="center">see futher</h5>
-
-							<p class="light">Test and expand the depth of your knowledge by contributing questions, answers, comments, criticims, and insights.</p>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="row">
-					<ul class="collapsible" data-collapsible="accordion">
-							<li>
-								<div class="collapsible-header active"><i class="material-icons">filter_drama</i>What is Knowlo?</div>
-								<div class="collapsible-body">
-									<span>
-										<p>Right now? Not much more than a collection of interesting videos. However, the intention is for knowlo to become the best place to stand on the shoulder of giants.</p>
-										<p>Thanks to the internet, the sum of human knowedge is at our fingertips. But, there is no guide and it's difficult to search for something if you don't know that it exists.</p>
-										<p>Knowlo wants to provide a map of human knowledge. To show the best paths to the highest summits and to illustrate the current edges while provide the tools to expand them.</p>
-										<p>This map across all of time and size provides context for how our best insights relate to one another and are fundamentally part of the same fabric.</p>
-										<p>The goal is to make this map personal. To help you in identiying the current limits of your knowledge and how to push them.</p>
-								</span>
-								</div>
-							</li>
-						</ul>
-				</div>
-
-			</div>
-			<br>
-			<br>
-
-		</div>
-	</main>
-</template>

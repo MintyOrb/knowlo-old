@@ -10,3 +10,4 @@ node_modules\imagesloaded\imagesloaded.pkgd.min.js
 node_modules\vue-images-loaded\dist\vueimagesloaded.js
 node_modules\flickity\dist\flickity.pkgd.min.js
 node_modules\flickity\dist\flickity.min.css
+node_modules\js-cookie\src\js-cookie.js
