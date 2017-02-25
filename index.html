@@ -54,8 +54,9 @@
 
 	<template id="exploreTemplate">
 		<div>
+		<div class='container'>
 		    <div class='row'>
-		     <div style="height:100px"></div>   <!---temporary filler -->
+		     <div style="height:70px"></div>   <!---temporary filler -->
 		      <div class="input-field col s10 offset-s1">
 		        <input type='text' id='search'  @keyup="filter('contains')" v-model="searchStr">
 		        <label for='search'>search</label>
@@ -65,7 +66,7 @@
 		    <div>
 		        <isotope style="min-height:80px" ref="selected" :list="selected" :options='getSelectedOptions()' >
 		          <div  v-for="word in selected"  class='selected'>
-		            <tag :tag="word"></tag>
+		            <tag :tag="word" v-on:add-me="addToFrom(word, words, selected)" v-on:lay-me="layout"></tag>
 		          </div>
 		        </isotope>
 		    </div>
@@ -73,7 +74,7 @@
 		    <div>
 		        <isotope ref="key" :list="words" :options='getSuggestionOptions()'>
 		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }">
-								<tag :tag="word"  v-on:add-me="addToFrom(word, selected, words)" v-on:lay-me="layout" ></tag>
+								<tag class="expandedFlex" :tag="word"  v-on:add-me="addToFrom(word, selected, words)" v-on:lay-me="layout" ></tag>
 		          </div>
 		        </isotope>
 		    </div>
@@ -93,7 +94,8 @@
   		    </ul>
 				</div>
 
-
+			</div>
+			<div>
 		    <isotope ref="contentBin" :list="list" :options='getContentOptions()'>
 		        <div v-for="item in list" class='element-item'>
 		          <div v-if="display == 'thumb'" class="thumb card-image waves-effect waves-block waves-light z-depth-1 hoverable">
@@ -126,6 +128,7 @@
 							no results! Have someting you want to add?
 						</p>
 					</div>
+		</div>
 		</div>
 	</template>
 
@@ -223,58 +226,64 @@
 -->
 <template id="tagContainer">
 	<div>
-		<div class="menu" @mouseOver="delayHover(tag)" @mouseleave="tag.left=true;tag.hover=false" v-bind:class="{'active': tag.hover}">
-			<div class="mbtn trigger">
-				<span class="flexCenter"> {{tag.name[0]}}</span>
-			</div>
-			<div class="icons">
-				<div class="rotater">
-					<div class="mbtn mbtn-icon flexCenter">
-						<i class="fa fa-thumb-tack nope" style="transform:rotate(-45deg)"></i>
+		<div class="tagWidth">
+			<div class="menu" @mouseOver="delayHover(tag)" @mouseleave="tag.left=true;tag.hover=false" v-bind:class="{'active': tag.hover}">
+				<div class="">
+					<div class="mbtn trigger">
+						<span class="flexCenter"> {{tag.name[0]}}</span>
 					</div>
-				</div>
-				<div  v-if="!tag.expanded" class="rotater">
-					<div v-bind:class="{'nope':!tag.group}" class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)">
-						<i class="fa fa-expand"></i>
-					</div>
-				</div>
-				<div  v-if="tag.expanded" class="rotater">
-					<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)">
-						<i class="fa fa-compress"></i>
-					</div>
-				</div>
-				<div class="rotater">
-					<div class="mbtn mbtn-icon flexCenter">
-						<i class="fa fa-bars nope"></i>
-					</div>
-				</div>
-				<div class="rotater">
-					<div class="mbtn mbtn-icon flexCenter">
-						<i class="fa fa-minus nope"></i>
-					</div>
-				</div>
-				<div class="rotater">
-					<div @click="addToFrom(tag)" class="mbtn mbtn-icon flexCenter">
-						<i class="fa fa-plus"></i>
-					</div>
-				</div>
-				<div class="rotater">
-					<div class="mbtn mbtn-icon flexCenter">
-						<i class="fa fa-crosshairs nope"></i>
-					</div>
-				</div>
+					<div class="icons">
+						<div class="rotater">
+							<div class="mbtn mbtn-icon flexCenter">
+								<i class="fa fa-thumb-tack nope" style="transform:rotate(-45deg)"></i>
+							</div>
+						</div>
+						<div  v-if="!tag.expanded" class="rotater">
+							<div :class="'nope':!tag.group" class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)">
+								<i class="fa fa-expand"></i>
+							</div>
+						</div>
+						<div  v-if="tag.expanded" class="rotater">
+							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)">
+								<i class="fa fa-compress"></i>
+							</div>
+						</div>
+						<div class="rotater">
+							<div class="mbtn mbtn-icon flexCenter">
+								<i class="fa fa-bars nope"></i>
+							</div>
+						</div>
+						<div class="rotater">
+							<div class="mbtn mbtn-icon flexCenter">
+								<i class="fa fa-minus nope"></i>
+							</div>
+						</div>
+						<div class="rotater">
+							<div @click="addToFrom(tag)" class="mbtn mbtn-icon flexCenter">
+								<i class="fa fa-plus"></i>
+							</div>
+						</div>
+						<div class="rotater">
+							<div class="mbtn mbtn-icon flexCenter">
+								<i class="fa fa-crosshairs nope"></i>
+							</div>
+						</div>
 
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="flexCenter name">
-			{{tag.name}}
+			<div class="flexCenter name">
+				{{tag.name}}
+			</div>
 		</div>
 
-		<div v-if="tag.expanded" :class="'flickContainer'+tag.name" class="flickContainer">
-			<div v-for="item in tag.members" class="flickItem">
-				<tag :tag="item" v-on:add-me="addFromSub(item)"></tag>
+	 <transition name="fade">
+			<div v-if="tag.expanded" :class="'flickContainer'+tag.name" class="flickContainer">
+				<div v-for="item in tag.members" class="flickItem">
+					<tag :tag="item" v-on:add-me="addFromSub(item)"></tag>
+				</div>
 			</div>
-		</div>
+		</transition>
 	</div>
 </template>
 
@@ -410,18 +419,20 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 
 .expanded {
 	width: 100%;
-	height: 220px;
 }
 .flickContainer{
 	border-right: 1px solid darkgray;
 	border-left: 1px solid darkgray;
+	width: 100%;
+	margin:15px;
 }
 .flickItem{
-	width: 200px;
 	margin-left: 15px;
 	margin-right: 15px;
-	/*height: 100px;*/
-  text-align: center;
+	margin-top: 10px;
+}
+.flickity-viewport {
+	height: 115px;
 }
 
 .flexCenter{
@@ -445,13 +456,13 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 	margin:20px;
 }
 .menu .mbtn {
-	  position: absolute;
+	  position: relative;
 	  top: 0;
 	  left: 0;
 	  width: 100%;
 	  height: 100%;
 	  border-radius: 50%;
-	  background: rgba(255, 255, 255, 0.15);
+	  background: rgba(255, 255, 255, 0.6)
 	  opacity: 0;
 	  z-index: -10;
 	  cursor: pointer;
@@ -534,6 +545,9 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 .menu.active .rotater:nth-child(1) .mbtn-icon {
 	  transform: translateY(-3.5em) rotate(30deg);
 }
+.mbtn.active .rotater:nth-child(1) .mbtn-icon {
+	  transform: translateY(-3.5em) rotate(30deg);
+}
 .rotater:nth-child(2) {
 	  transform: rotate(30deg);
 }
@@ -570,10 +584,23 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 }
 .name {
 		font-weight: 300;
-    margin-top: -20px;
-		margin-bottom:10px;
+    margin-top: -18px;
+}
+.expandedFlex {
+	display: flex;
+	align-items: center;
+}
+.tagWidth {
+	width:100px;
 }
 
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-active{
+  opacity: 0
+}
 
 </style>
 </html>

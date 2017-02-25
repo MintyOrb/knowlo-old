@@ -93,7 +93,6 @@ const explore = Vue.extend({
         //   }
         // },
         addToFrom: function(tag, to, from){
-          console.log(tag)
           if(to){this.addTo(tag, to)};
           if (from) {this.removeFrom(tag, from)};
 
@@ -247,15 +246,15 @@ Vue.component('tag',{
             this.createFlickity(word.name)
           }
           word.expanded = !word.expanded
-          this.$nextTick(function(){
-            this.$emit('lay-me')
-          })
         }
+        window.setTimeout(()=>{
+          this.$emit('lay-me')
+        },500)
       },
       createFlickity: function(id){
         this.flickRegistry.push(id);// register flick
 
-        setTimeout(function(){ // allow time for card reveal
+        setTimeout(()=>{ // allow time for card reveal
           $('.flickContainer' + id).flickity({
             wrapAround: true,
             pageDots: false,
@@ -269,18 +268,21 @@ Vue.component('tag',{
           //     pageDots: false,
           //     prevNextButtons: false
           //   });
-          // }, 10);
-          })
+          this.$emit('lay-me')
+          }, 10);
+
         },
         destroySingleFlickity: function(id){
-          $('.flickContainer' + id).flickity('destroy');
-          $('.flickNav' + id).flickity('destroy');
-          for(index in this.flickRegistry){
-            if(this.flickRegistry[index] == id){
-              this.flickRegistry.splice(index,1)
-              break
+          window.setTimeout(()=>{
+            $('.flickContainer' + id).flickity('destroy');
+            $('.flickNav' + id).flickity('destroy');
+            for(index in this.flickRegistry){
+              if(this.flickRegistry[index] == id){
+                this.flickRegistry.splice(index,1)
+                break
+              }
             }
-          }
+          },1000)
         },
         destroyAllFlickity: function(){
           for(var index in this.flickRegistry){
