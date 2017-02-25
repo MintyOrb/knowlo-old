@@ -71,18 +71,18 @@
 		    </div>
 
 		    <div>
-		        <isotope ref="key" :list="words" :options='getSuggestionOptions()' >
+		        <isotope ref="key" :list="words" :options='getSuggestionOptions()'>
 		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }">
-								<tag :tag="word"></tag>
+								<tag :tag="word"  v-on:add-me="addToFrom(word, selected, words)" v-on:lay-me="layout" ></tag>
 		          </div>
 		        </isotope>
 		    </div>
 
 		    <div class="center pad">
-		    				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
-		    				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
-		    				<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
-		    				<br/>
+  				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
+  				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
+  				<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
+  				<br/>
 				</div>
 				<div class="flexCenter">
 					<div class="btn blue dropdown-button" data-activates='sortOp' data-hover="true">sort order</div>
@@ -254,7 +254,7 @@
 					</div>
 				</div>
 				<div class="rotater">
-					<div @click="addToFrom(word,selected, words)" class="mbtn mbtn-icon flexCenter">
+					<div @click="addToFrom(tag)" class="mbtn mbtn-icon flexCenter">
 						<i class="fa fa-plus"></i>
 					</div>
 				</div>
@@ -272,7 +272,7 @@
 
 		<div v-if="tag.expanded" :class="'flickContainer'+tag.name" class="flickContainer">
 			<div v-for="item in tag.members" class="flickItem">
-				<tag :tag="item"></tag>
+				<tag :tag="item" v-on:add-me="addFromSub(item)"></tag>
 			</div>
 		</div>
 	</div>
@@ -410,7 +410,7 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 
 .expanded {
 	width: 100%;
-	height: 120px;
+	height: 220px;
 }
 .flickContainer{
 	border-right: 1px solid darkgray;
@@ -435,13 +435,10 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 
 
 /* tag radial button based on this pen: http://codepen.io/suez/pen/vAais/*/
+ /*there's some superfluous stuff in here now...mostly with .line*/
 .absolute-center, .menu, .menu .btn .fa, .menu .btn.trigger .line {
   position: relative;
-  /*top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);*/
 }
-
 .menu {
   width: 60px;
   height: 60px;
@@ -460,16 +457,16 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 	  cursor: pointer;
 	  transition: opacity .2s, z-index 0.1s, transform .3s;
 	  transform: translateX(0);
-	}
-	.menu .mbtn .fa {
+}
+.menu .mbtn .fa {
 	  font-size: 1.5em;
 	  transition: color 0.3s;
 		margin-top:18px
-	}
-	.menu .mbtn:hover .fa {
+}
+.menu .mbtn:hover .fa {
 	  color: rgba(140, 139, 139, 0.68);
-	}
-	.menu .mbtn.trigger {
+}
+.menu .mbtn.trigger {
 		color:black;
 	  opacity: 1;
 	  z-index: 100;
@@ -478,19 +475,17 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 	  cursor: pointer;
 		text-transform: uppercase;
 	  transition: transform 0.1s;
-	}
-
-	.menu .mbtn.trigger:hover {
+}
+.menu .mbtn.trigger:hover {
 	  transform: scale(1.2);
-	}
-	.menu .mbtn.trigger:hover .line {
+}
+.menu .mbtn.trigger:hover .line {
 	  background-color: rgba(255, 255, 255, 0.7);
-	}
-	.menu .mbtn.trigger:hover .line:before, .menu .mbtn.trigger:hover .line:after {
+}
+.menu .mbtn.trigger:hover .line:before, .menu .mbtn.trigger:hover .line:after {
 	  background-color: rgba(255, 255, 255, 0.7);
-	}
-
-	.menu .mbtn.trigger .line:before, .menu .mbtn.trigger .line:after {
+}
+.menu .mbtn.trigger .line:before, .menu .mbtn.trigger .line:after {
 	  content: "";
 	  display: block;
 	  position: absolute;
@@ -500,95 +495,84 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 	  background: #000;
 	  border-radius: 6px;
 	  transition: background-color 0.1s, transform 0.1s;
-	}
-	.menu .mbtn.trigger .line:before {
+}
+.menu .mbtn.trigger .line:before {
 	  top: -12px;
 	  transform-origin: 15% 100%;
-	}
-	.menu .mbtn.trigger .line:after {
+}
+.menu .mbtn.trigger .line:after {
 	  top: 12px;
 	  transform-origin: 25% 30%;
-	}
-	.menu .rotater {
+}
+.menu .rotater {
 	  position: absolute;
 	  top: 0;
 	  left: 0;
 	  width: 100%;
 	  height: 100%;
 	  transform-origin: 50% 50%;
-	}
-	.menu.active .mbtn-icon {
+}
+.menu.active .mbtn-icon {
 	  opacity: 1;
 	  z-index: 50;
-	}
-	.menu.active .trigger .line {
+}
+.menu.active .trigger .line {
 	  height: 0px;
 	  top: 45%;
-	}
-	.menu.active .trigger .line:before {
+}
+.menu.active .trigger .line:before {
 	  transform: rotate(45deg);
 	  width: 110%;
-	}
-	.menu.active .trigger .line:after {
+}
+.menu.active .trigger .line:after {
 	  transform: rotate(-45deg);
 	  width: 110%;
-	}
-
-	.rotater:nth-child(1) {
+}
+.rotater:nth-child(1) {
 	  transform: rotate(-30deg);
-	}
-
-	.menu.active .rotater:nth-child(1) .mbtn-icon {
+}
+.menu.active .rotater:nth-child(1) .mbtn-icon {
 	  transform: translateY(-3.5em) rotate(30deg);
-	}
-
-	.rotater:nth-child(2) {
+}
+.rotater:nth-child(2) {
 	  transform: rotate(30deg);
-	}
-
-	.menu.active .rotater:nth-child(2) .mbtn-icon {
+}
+.menu.active .rotater:nth-child(2) .mbtn-icon {
 	  transform: translateY(-3.5em) rotate(-30deg);
-	}
-
-	.rotater:nth-child(3) {
+}
+.rotater:nth-child(3) {
 	  transform: rotate(90deg);
-	}
-
-	.menu.active .rotater:nth-child(3) .mbtn-icon {
+}
+.menu.active .rotater:nth-child(3) .mbtn-icon {
 	  transform: translateY(-3.5em) rotate(-90deg);
-	}
-
-	.rotater:nth-child(4) {
+}
+.rotater:nth-child(4) {
 	  transform: rotate(150deg);
-	}
-
-	.menu.active .rotater:nth-child(4) .mbtn-icon {
+}
+.menu.active .rotater:nth-child(4) .mbtn-icon {
 	  transform: translateY(-3.5em) rotate(-150deg);
-	}
-
-	.rotater:nth-child(5) {
+}
+.rotater:nth-child(5) {
 	  transform: rotate(210deg);
-	}
-
-	.menu.active .rotater:nth-child(5) .mbtn-icon {
+}
+.menu.active .rotater:nth-child(5) .mbtn-icon {
 	  transform: translateY(-3.5em) rotate(-210deg);
-	}
-
-	.rotater:nth-child(6) {
+}
+.rotater:nth-child(6) {
 	  transform: rotate(270deg);
-	}
-
-	.menu.active .rotater:nth-child(6) .mbtn-icon {
+}
+.menu.active .rotater:nth-child(6) .mbtn-icon {
 	  transform: translateY(-3.5em) rotate(-270deg);
-	}
-	.nope {
+}
+
+.nope {
 		color: rgba(140, 139, 139, 0.68);
-	}
-	.name {
+}
+.name {
 		font-weight: 300;
     margin-top: -20px;
 		margin-bottom:10px;
-	}
+}
 
 
 </style>

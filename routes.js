@@ -21,12 +21,12 @@ const explore = Vue.extend({
   data: function() {
         return {
             displayed: "",
+            selected: [],
             words: [],
             list: [],
             numberOfDisplayed: null,
             display: 'card',
             currentLayout: 'masonry',
-            selected: [],
             sortOption: "original-order",
             filterOption: "show all",
             searchStr: null,
@@ -68,38 +68,32 @@ const explore = Vue.extend({
         }
     },
     methods: {
-        updateSuggestedKewords: function(){ // this solution is wayyyy to slow. try something here? http://codereview.stackexchange.com/questions/96096/find-common-elements-in-a-list-of-arrays
-          this.words = []
-          // build array of suggested
-          for (var contentIndex = 0; contentIndex < this.list.length; contentIndex++) { // each returned content
-            for (var key = 0; key < this.list[contentIndex]['keywords'].length; key++) { // each keyword
-              // console.log(this.list[contentIndex]['keywords'][key].toLowerCase())
-              found = false;
-              for (var word = 0; word < this.words.length; word++) { // each cumulative
-
-                if(this.words[word]['word'].toLowerCase() == this.list[contentIndex]['keywords'][key].toLowerCase()){
-                  found = true;
-                  this.words[word]['count'] +=1;
-                  break
-                }
-              }
-              if(!found){
-                this.words.push({
-                  'count': 0,
-                  'word': this.list[contentIndex]['keywords'][key]
-                })
-              }
-            }
-          }
-          // add/remove from words
-        },
+        // updateSuggestedKewords: function(){ // this solution is wayyyy to slow. try something here? http://codereview.stackexchange.com/questions/96096/find-common-elements-in-a-list-of-arrays
+        //   this.words = []
+        //   // build array of suggested
+        //   for (var contentIndex = 0; contentIndex < this.list.length; contentIndex++) { // each returned content
+        //     for (var key = 0; key < this.list[contentIndex]['keywords'].length; key++) { // each keyword
+        //       // console.log(this.list[contentIndex]['keywords'][key].toLowerCase())
+        //       found = false;
+        //       for (var word = 0; word < this.words.length; word++) { // each cumulative
+        //
+        //         if(this.words[word]['word'].toLowerCase() == this.list[contentIndex]['keywords'][key].toLowerCase()){
+        //           found = true;
+        //           this.words[word]['count'] +=1;
+        //           break
+        //         }
+        //       }
+        //       if(!found){
+        //         this.words.push({
+        //           'count': 0,
+        //           'word': this.list[contentIndex]['keywords'][key]
+        //         })
+        //       }
+        //     }
+        //   }
+        // },
         addToFrom: function(tag, to, from){
-          if(tag.expanded){
-              this.destroySingleFlickity(tag.name)
-              tag.expanded = false;
-              tag.hover = false;
-          }
-
+          console.log(tag)
           if(to){this.addTo(tag, to)};
           if (from) {this.removeFrom(tag, from)};
 
@@ -165,7 +159,7 @@ const explore = Vue.extend({
             this.numberOfDisplayed =   this.$refs.contentBin.getFilteredItemElements().length
         },
         layout: function(mes) {
-          console.log('in laytou: ', mes)
+          console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
           if(this.$refs.contentBin){
             this.$refs.contentBin.layout('masonry');
             this.$refs.key.layout('masonry');
@@ -183,13 +177,13 @@ const explore = Vue.extend({
         }
     },
     directives: {
-        imagesLoaded
+        imagesLoaded // can't get this to work.
     },
     mounted: function(){
 
       this.list = videos;
 
-      window.setTimeout(()=>{ // temporary until a better way to layout after things have loaded
+      window.setTimeout(()=>{ // temporary until a better way to layout after things have loaded ... vue-images-loaded?
         this.layout()
       }, 1000)
 
@@ -200,6 +194,7 @@ const explore = Vue.extend({
         }
       }
       // this.words = keywords;
+
       //alpha warning
       if(!Cookies.get('alpha-warning-seen')){
         Cookies.set('alpha-warning-seen', true, { expires: 7 });
@@ -208,6 +203,11 @@ const explore = Vue.extend({
       } else {
         Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
       }
+    },
+    created: function(){
+        bus.$on('addTagSubTag', (tag) => {
+          this.addToFrom(tag, this.selected)
+        })
     }
 });
 
@@ -224,10 +224,21 @@ Vue.component('tag',{
     props: ['tag'],
     data: () =>  {
       return {
-        flickRegistry: []  
+        flickRegistry: []
       }
     },
     methods: {
+      addFromSub: function(tag){ // there must be a better way to add sub tag...
+        bus.$emit('addTagSubTag', tag)
+      },
+      addToFrom: function(tag){
+        if(tag.expanded){
+            this.destroySingleFlickity(tag.name)
+            tag.expanded = false;
+        }
+        tag.hover = false;
+        this.$emit('add-me')
+      },
       bigSmallTag: function(word){
         if(word.group){
           if(word.expanded){
@@ -237,7 +248,7 @@ Vue.component('tag',{
           }
           word.expanded = !word.expanded
           this.$nextTick(function(){
-            this.layout()
+            this.$emit('lay-me')
           })
         }
       },
@@ -288,7 +299,7 @@ Vue.component('tag',{
     }
 });
 
-
+var bus = new Vue() // this feels dumb, but can't see how else to tell explore what sub tag was added
 
 /*
  ██████  ██████  ███    ██ ████████ ███████ ███    ██ ████████     ██████   █████   ██████  ███████
