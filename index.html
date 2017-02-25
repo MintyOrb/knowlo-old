@@ -9,6 +9,8 @@
 	<!--Import materialize.css-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 	<link rel="stylesheet" href="dep/flickity.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	<title>knowlo</title>
 </head>
 
@@ -63,9 +65,7 @@
 		    <div>
 		        <isotope style="min-height:80px" ref="selected" :list="selected" :options='getSelectedOptions()' >
 		          <div  v-for="word in selected"  class='selected'>
-		            <div @click="addToFrom(word, words, selected)"  class="hoverable chip">
-		                  {{word.name}} {{word.count}}
-		            </div>
+		            <tag :tag="word"></tag>
 		          </div>
 		        </isotope>
 		    </div>
@@ -73,34 +73,7 @@
 		    <div>
 		        <isotope ref="key" :list="words" :options='getSuggestionOptions()' >
 		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }">
-
-		            <div @click="addToFrom(word, selected, words)" class="hoverable chip dropdown-button" :data-activates='word.name' data-hover="true" data-belowOrigin="true" data-gutter="10">
-		                  {{word.name}} {{word.count}}
-		            </div>
-		            <ul :id='word.name' class='dropdown-content'>
-		              <li v-if="word.group && !word.expanded"><a @click="bigSmallTag(word)">expand</a></li>
-		              <li v-if="word.group && word.expanded"><a @click="bigSmallTag(word)">shrink</a></li>
-		              <li><a @click="addToFrom(word,selected, words)">add</a></li>
-		              <li class="divider"></li>
-		              <li><a>exclude</a></li>
-		              <li><a>focus</a></li>
-		            </ul>
-
-		            <div v-if="word.expanded" :class="'flickContainer'+word.name" class="flickContainer">
-		              <div v-for="item in word.members" class="flickItem dropdown-button" :data-activates='item.name' data-hover="true" data-belowOrigin="true" data-gutter="10">
-										<span @click="addToFrom(item, selected)" class="chip">{{item.name}}</span>
-										<ul :id='item.name' class='dropdown-content'>
-											<li v-if="word.group && !word.expanded"><a @click="bigSmallTag(word)">expand</a></li>
-											<li v-if="word.group && word.expanded"><a @click="bigSmallTag(word)">shrink</a></li>
-											<li><a @click="addToFrom(item,selected)">add</a></li>
-											<li class="divider"></li>
-											<li><a>exclude</a></li>
-											<li><a>focus</a></li>
-										</ul>
-									</div>
-		            </div>
-
-
+								<tag :tag="word"></tag>
 		          </div>
 		        </isotope>
 		    </div>
@@ -122,9 +95,6 @@
 
 
 		    <isotope ref="contentBin" :list="list" :options='getContentOptions()'>
-						<!-- <div v-show="">
-							no results! Have someting you want to ad?
-						</div> -->
 		        <div v-for="item in list" class='element-item'>
 		          <div v-if="display == 'thumb'" class="thumb card-image waves-effect waves-block waves-light z-depth-1 hoverable">
 		              <a target="blank" :href="item.url">
@@ -134,7 +104,7 @@
 		         <div v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
 		               <span class='truncate thin'>{{item.title}}</span>
 		          </div>
-		          <div v-if="display == 'card'" class="card hoverable">
+		          <div  v-if="display == 'card'" class="card hoverable">
 		            <div class='card-image'>
 		                <router-link :to="'/c/'+item.videoid">
 		                  <img :src="item.thumb" class='card-image' alt="Not found">
@@ -148,8 +118,14 @@
 		              <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.viewcount,1)}}</span>
 		              <span class='right card-bottom'>{{item.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
 		            </div>
+							</div>
 		        </div>
 		      </isotope>
+					<div class="flexCenter" v-show="this.numberOfDisplayed === 0">
+						<p>
+							no results! Have someting you want to add?
+						</p>
+					</div>
 		</div>
 	</template>
 
@@ -237,6 +213,71 @@
 			</div>
 		</main>
 	</template>
+
+	<!--
+████████  █████   ██████
+   ██    ██   ██ ██
+   ██    ███████ ██   ███
+   ██    ██   ██ ██    ██
+   ██    ██   ██  ██████
+-->
+<template id="tagContainer">
+	<div>
+		<div class="menu" @mouseOver="delayHover(tag)" @mouseleave="tag.left=true;tag.hover=false" v-bind:class="{'active': tag.hover}">
+			<div class="mbtn trigger">
+				<span class="flexCenter"> {{tag.name[0]}}</span>
+			</div>
+			<div class="icons">
+				<div class="rotater">
+					<div class="mbtn mbtn-icon flexCenter">
+						<i class="fa fa-thumb-tack nope" style="transform:rotate(-45deg)"></i>
+					</div>
+				</div>
+				<div  v-if="!tag.expanded" class="rotater">
+					<div v-bind:class="{'nope':!tag.group}" class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)">
+						<i class="fa fa-expand"></i>
+					</div>
+				</div>
+				<div  v-if="tag.expanded" class="rotater">
+					<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)">
+						<i class="fa fa-compress"></i>
+					</div>
+				</div>
+				<div class="rotater">
+					<div class="mbtn mbtn-icon flexCenter">
+						<i class="fa fa-bars nope"></i>
+					</div>
+				</div>
+				<div class="rotater">
+					<div class="mbtn mbtn-icon flexCenter">
+						<i class="fa fa-minus nope"></i>
+					</div>
+				</div>
+				<div class="rotater">
+					<div @click="addToFrom(word,selected, words)" class="mbtn mbtn-icon flexCenter">
+						<i class="fa fa-plus"></i>
+					</div>
+				</div>
+				<div class="rotater">
+					<div class="mbtn mbtn-icon flexCenter">
+						<i class="fa fa-crosshairs nope"></i>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="flexCenter name">
+			{{tag.name}}
+		</div>
+
+		<div v-if="tag.expanded" :class="'flickContainer'+tag.name" class="flickContainer">
+			<div v-for="item in tag.members" class="flickItem">
+				<tag :tag="item"></tag>
+			</div>
+		</div>
+	</div>
+</template>
+
 </body>
 
 <!--
@@ -389,5 +430,166 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 	justify-content: center;
 }
 /**{outline: 1px solid black;}*/
+
+
+
+
+/* tag radial button based on this pen: http://codepen.io/suez/pen/vAais/*/
+.absolute-center, .menu, .menu .btn .fa, .menu .btn.trigger .line {
+  position: relative;
+  /*top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);*/
+}
+
+.menu {
+  width: 60px;
+  height: 60px;
+	margin:20px;
+}
+.menu .mbtn {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  border-radius: 50%;
+	  background: rgba(255, 255, 255, 0.15);
+	  opacity: 0;
+	  z-index: -10;
+	  cursor: pointer;
+	  transition: opacity .2s, z-index 0.1s, transform .3s;
+	  transform: translateX(0);
+	}
+	.menu .mbtn .fa {
+	  font-size: 1.5em;
+	  transition: color 0.3s;
+		margin-top:18px
+	}
+	.menu .mbtn:hover .fa {
+	  color: rgba(140, 139, 139, 0.68);
+	}
+	.menu .mbtn.trigger {
+		color:black;
+	  opacity: 1;
+	  z-index: 100;
+		font-size: 40px;
+		font-weight: 200;
+	  cursor: pointer;
+		text-transform: uppercase;
+	  transition: transform 0.1s;
+	}
+
+	.menu .mbtn.trigger:hover {
+	  transform: scale(1.2);
+	}
+	.menu .mbtn.trigger:hover .line {
+	  background-color: rgba(255, 255, 255, 0.7);
+	}
+	.menu .mbtn.trigger:hover .line:before, .menu .mbtn.trigger:hover .line:after {
+	  background-color: rgba(255, 255, 255, 0.7);
+	}
+
+	.menu .mbtn.trigger .line:before, .menu .mbtn.trigger .line:after {
+	  content: "";
+	  display: block;
+	  position: absolute;
+	  left: 0;
+	  width: 100%;
+	  height: 6px;
+	  background: #000;
+	  border-radius: 6px;
+	  transition: background-color 0.1s, transform 0.1s;
+	}
+	.menu .mbtn.trigger .line:before {
+	  top: -12px;
+	  transform-origin: 15% 100%;
+	}
+	.menu .mbtn.trigger .line:after {
+	  top: 12px;
+	  transform-origin: 25% 30%;
+	}
+	.menu .rotater {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  transform-origin: 50% 50%;
+	}
+	.menu.active .mbtn-icon {
+	  opacity: 1;
+	  z-index: 50;
+	}
+	.menu.active .trigger .line {
+	  height: 0px;
+	  top: 45%;
+	}
+	.menu.active .trigger .line:before {
+	  transform: rotate(45deg);
+	  width: 110%;
+	}
+	.menu.active .trigger .line:after {
+	  transform: rotate(-45deg);
+	  width: 110%;
+	}
+
+	.rotater:nth-child(1) {
+	  transform: rotate(-30deg);
+	}
+
+	.menu.active .rotater:nth-child(1) .mbtn-icon {
+	  transform: translateY(-3.5em) rotate(30deg);
+	}
+
+	.rotater:nth-child(2) {
+	  transform: rotate(30deg);
+	}
+
+	.menu.active .rotater:nth-child(2) .mbtn-icon {
+	  transform: translateY(-3.5em) rotate(-30deg);
+	}
+
+	.rotater:nth-child(3) {
+	  transform: rotate(90deg);
+	}
+
+	.menu.active .rotater:nth-child(3) .mbtn-icon {
+	  transform: translateY(-3.5em) rotate(-90deg);
+	}
+
+	.rotater:nth-child(4) {
+	  transform: rotate(150deg);
+	}
+
+	.menu.active .rotater:nth-child(4) .mbtn-icon {
+	  transform: translateY(-3.5em) rotate(-150deg);
+	}
+
+	.rotater:nth-child(5) {
+	  transform: rotate(210deg);
+	}
+
+	.menu.active .rotater:nth-child(5) .mbtn-icon {
+	  transform: translateY(-3.5em) rotate(-210deg);
+	}
+
+	.rotater:nth-child(6) {
+	  transform: rotate(270deg);
+	}
+
+	.menu.active .rotater:nth-child(6) .mbtn-icon {
+	  transform: translateY(-3.5em) rotate(-270deg);
+	}
+	.nope {
+		color: rgba(140, 139, 139, 0.68);
+	}
+	.name {
+		font-weight: 300;
+    margin-top: -20px;
+		margin-bottom:10px;
+	}
+
+
 </style>
 </html>

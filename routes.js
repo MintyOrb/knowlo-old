@@ -20,11 +20,10 @@ const explore = Vue.extend({
   template: "#exploreTemplate",
   data: function() {
         return {
-            flickRegistry: [],
             displayed: "",
             words: [],
             list: [],
-            numberOfDisplayed: 0,
+            numberOfDisplayed: null,
             display: 'card',
             currentLayout: 'masonry',
             selected: [],
@@ -69,42 +68,6 @@ const explore = Vue.extend({
         }
     },
     methods: {
-      createFlickity: function(id){
-        this.flickRegistry.push(id);// register flick
-
-        setTimeout(function(){ // allow time for card reveal
-          $('.flickContainer' + id).flickity({
-            wrapAround: true,
-            pageDots: false,
-            prevNextButtons: false,
-            accessibility: false, // to prevent jumping when focused
-          });
-
-          //   $('.flickNav' + id).flickity({
-          //     asNavFor: '.flickContainer' + id,
-          //     contain: true,
-          //     pageDots: false,
-          //     prevNextButtons: false
-          //   });
-          // }, 10);
-          })
-        },
-        destroySingleFlickity: function(id){
-          $('.flickContainer' + id).flickity('destroy');
-          $('.flickNav' + id).flickity('destroy');
-          for(index in this.flickRegistry){
-            if(this.flickRegistry[index] == id){
-              this.flickRegistry.splice(index,1)
-              break
-            }
-          }
-        },
-        destroyAllFlickity: function(){
-          for(var index in this.flickRegistry){
-            this.destroySingleFlickity(this.flickRegistry[index]);
-          }
-          this.flickRegistry=[];
-        },
         updateSuggestedKewords: function(){ // this solution is wayyyy to slow. try something here? http://codereview.stackexchange.com/questions/96096/find-common-elements-in-a-list-of-arrays
           this.words = []
           // build array of suggested
@@ -130,21 +93,11 @@ const explore = Vue.extend({
           }
           // add/remove from words
         },
-        bigSmallTag: function(word){
-          if(word.expanded){
-            this.destroySingleFlickity(word.name)
-          } else {
-            this.createFlickity(word.name)
-          }
-          word.expanded = !word.expanded
-          this.$nextTick(function(){
-            this.layout()
-          })
-        },
         addToFrom: function(tag, to, from){
           if(tag.expanded){
               this.destroySingleFlickity(tag.name)
               tag.expanded = false;
+              tag.hover = false;
           }
 
           if(to){this.addTo(tag, to)};
@@ -209,8 +162,10 @@ const explore = Vue.extend({
         },
         filter: function(key) {
             this.$refs.contentBin.filter(key);
+            this.numberOfDisplayed =   this.$refs.contentBin.getFilteredItemElements().length
         },
-        layout: function() {
+        layout: function(mes) {
+          console.log('in laytou: ', mes)
           if(this.$refs.contentBin){
             this.$refs.contentBin.layout('masonry');
             this.$refs.key.layout('masonry');
@@ -247,7 +202,6 @@ const explore = Vue.extend({
       // this.words = keywords;
       //alpha warning
       if(!Cookies.get('alpha-warning-seen')){
-        console.log('in coooooook')
         Cookies.set('alpha-warning-seen', true, { expires: 7 });
         var $toastContent = $("<span>Hi! Knowlo is pre-alpha right now. There's not a lot to see and what there is will probably break.</span>");
         Materialize.toast($toastContent, 10000);
@@ -258,14 +212,91 @@ const explore = Vue.extend({
 });
 
 /*
+████████  █████   ██████
+   ██    ██   ██ ██
+   ██    ███████ ██   ███
+   ██    ██   ██ ██    ██
+   ██    ██   ██  ██████
+*/
+Vue.component('tag',{
+    template: "#tagContainer",
+    name: "tag",
+    props: ['tag'],
+    data: () =>  {
+      return {
+        flickRegistry: []  
+      }
+    },
+    methods: {
+      bigSmallTag: function(word){
+        if(word.group){
+          if(word.expanded){
+            this.destroySingleFlickity(word.name)
+          } else {
+            this.createFlickity(word.name)
+          }
+          word.expanded = !word.expanded
+          this.$nextTick(function(){
+            this.layout()
+          })
+        }
+      },
+      createFlickity: function(id){
+        this.flickRegistry.push(id);// register flick
+
+        setTimeout(function(){ // allow time for card reveal
+          $('.flickContainer' + id).flickity({
+            wrapAround: true,
+            pageDots: false,
+            prevNextButtons: false,
+            accessibility: false, // to prevent jumping when focused
+          });
+
+          //   $('.flickNav' + id).flickity({
+          //     asNavFor: '.flickContainer' + id,
+          //     contain: true,
+          //     pageDots: false,
+          //     prevNextButtons: false
+          //   });
+          // }, 10);
+          })
+        },
+        destroySingleFlickity: function(id){
+          $('.flickContainer' + id).flickity('destroy');
+          $('.flickNav' + id).flickity('destroy');
+          for(index in this.flickRegistry){
+            if(this.flickRegistry[index] == id){
+              this.flickRegistry.splice(index,1)
+              break
+            }
+          }
+        },
+        destroyAllFlickity: function(){
+          for(var index in this.flickRegistry){
+            this.destroySingleFlickity(this.flickRegistry[index]);
+          }
+          this.flickRegistry=[];
+        },
+        delayHover: function(item){
+          item.left=false;
+          window.setTimeout(()=>{
+            if(!item.left){
+                item.hover=true
+            }
+          }, 300)
+        },
+    }
+});
+
+
+
+/*
  ██████  ██████  ███    ██ ████████ ███████ ███    ██ ████████     ██████   █████   ██████  ███████
 ██      ██    ██ ████   ██    ██    ██      ████   ██    ██        ██   ██ ██   ██ ██       ██
 ██      ██    ██ ██ ██  ██    ██    █████   ██ ██  ██    ██        ██████  ███████ ██   ███ █████
 ██      ██    ██ ██  ██ ██    ██    ██      ██  ██ ██    ██        ██      ██   ██ ██    ██ ██
  ██████  ██████  ██   ████    ██    ███████ ██   ████    ██        ██      ██   ██  ██████  ███████
 */
-
-
 const content = Vue.extend({
     template: `
     <div class="container">
