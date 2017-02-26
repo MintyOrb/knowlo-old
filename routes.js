@@ -6,7 +6,10 @@
 ███████ ██   ██ ██   ████ ██████  ██ ██   ████  ██████
 */
 const landing = {
-    template: "#landingTemplate"
+    template: "#landingTemplate",
+    mounted: function(){
+      $('.collapsible').collapsible();
+    }
 }
 
 /*
@@ -202,6 +205,7 @@ const explore = Vue.extend({
       } else {
         Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
       }
+      $('.dropdown-button').dropdown();
     },
     created: function(){
         bus.$on('addTagSubTag', (tag) => {
@@ -254,20 +258,13 @@ Vue.component('tag',{
       createFlickity: function(id){
         this.flickRegistry.push(id);// register flick
 
-        setTimeout(()=>{ // allow time for card reveal
+        setTimeout(()=>{ // allow time for size change
           $('.flickContainer' + id).flickity({
             wrapAround: true,
-            pageDots: false,
-            prevNextButtons: false,
-            accessibility: false, // to prevent jumping when focused
+            pageDots: true,
+            prevNextButtons: true,
+            // accessibility: false, // to prevent jumping when focused
           });
-
-          //   $('.flickNav' + id).flickity({
-          //     asNavFor: '.flickContainer' + id,
-          //     contain: true,
-          //     pageDots: false,
-          //     prevNextButtons: false
-          //   });
           this.$emit('lay-me')
           }, 10);
 
@@ -275,7 +272,6 @@ Vue.component('tag',{
         destroySingleFlickity: function(id){
           window.setTimeout(()=>{
             $('.flickContainer' + id).flickity('destroy');
-            $('.flickNav' + id).flickity('destroy');
             for(index in this.flickRegistry){
               if(this.flickRegistry[index] == id){
                 this.flickRegistry.splice(index,1)
@@ -290,7 +286,8 @@ Vue.component('tag',{
           }
           this.flickRegistry=[];
         },
-        delayHover: function(item){
+        delayHover: function(item, parentID){
+          item.parentID = parentID;
           item.left=false;
           window.setTimeout(()=>{
             if(!item.left){

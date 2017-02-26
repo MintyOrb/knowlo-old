@@ -4,9 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--Import Google Icon Font-->
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<!--Import materialize.css-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 	<link rel="stylesheet" href="dep/flickity.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -56,7 +54,7 @@
 		<div>
 		<div class='container'>
 		    <div class='row'>
-		     <div style="height:70px"></div>   <!---temporary filler -->
+		     <div style="height:70px"></div>   <!---temporary filler? -->
 		      <div class="input-field col s10 offset-s1">
 		        <input type='text' id='search'  @keyup="filter('contains')" v-model="searchStr">
 		        <label for='search'>search</label>
@@ -79,13 +77,13 @@
 		        </isotope>
 		    </div>
 
-		    <div class="center pad">
+		    <div class="center pad margin20">
   				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
   				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
   				<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
   				<br/>
 				</div>
-				<div class="flexCenter">
+				<div class="flexCenter margin20">
 					<div class="btn blue dropdown-button" data-activates='sortOp' data-hover="true">sort order</div>
   		    <ul id='sortOp' class='dropdown-content'>
   		      <li><a @click="sort('original-order')">original order</a></li>
@@ -227,7 +225,7 @@
 <template id="tagContainer">
 	<div>
 		<div class="tagWidth">
-			<div class="menu" @mouseOver="delayHover(tag)" @mouseleave="tag.left=true;tag.hover=false" v-bind:class="{'active': tag.hover}">
+			<div class="menu" @mouseOver="delayHover(tag, $parent._uid)" @mouseleave="tag.left=true;tag.hover=false" v-bind:class="{'active': tag.hover && $parent._uid == tag.parentID}">
 				<div class="">
 					<div class="mbtn trigger">
 						<span class="flexCenter"> {{tag.name[0]}}</span>
@@ -239,7 +237,7 @@
 							</div>
 						</div>
 						<div  v-if="!tag.expanded" class="rotater">
-							<div :class="'nope':!tag.group" class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)">
+							<div :class="{'nope':!tag.group}" class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)">
 								<i class="fa fa-expand"></i>
 							</div>
 						</div>
@@ -250,7 +248,7 @@
 						</div>
 						<div class="rotater">
 							<div class="mbtn mbtn-icon flexCenter">
-								<i class="fa fa-bars nope"></i>
+								<i class="fa fa-info nope"></i>
 							</div>
 						</div>
 						<div class="rotater">
@@ -434,6 +432,17 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 .flickity-viewport {
 	height: 115px;
 }
+/* position dots up a bit */
+.flickity-page-dots {
+  bottom: -15px;
+}
+/* dots are lines */
+.flickity-page-dots .dot {
+  height: 4px;
+  width: 40px;
+  margin: 0;
+  border-radius: 0;
+}
 
 .flexCenter{
 	display: flex;
@@ -462,7 +471,7 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 	  width: 100%;
 	  height: 100%;
 	  border-radius: 50%;
-	  background: rgba(255, 255, 255, 0.6)
+	  background: rgba(255, 255, 255, 0.6);
 	  opacity: 0;
 	  z-index: -10;
 	  cursor: pointer;
@@ -545,9 +554,9 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 .menu.active .rotater:nth-child(1) .mbtn-icon {
 	  transform: translateY(-3.5em) rotate(30deg);
 }
-.mbtn.active .rotater:nth-child(1) .mbtn-icon {
+/*.mbtn.active .rotater:nth-child(1) .mbtn-icon {
 	  transform: translateY(-3.5em) rotate(30deg);
-}
+}*/
 .rotater:nth-child(2) {
 	  transform: rotate(30deg);
 }
@@ -591,15 +600,21 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 	align-items: center;
 }
 .tagWidth {
-	width:100px;
+	width:120px;
 }
+
+
 
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
+  transition: opacity .8s
 }
 .fade-enter, .fade-leave-active{
   opacity: 0
+}
+
+.margin20 {
+	margin:20px
 }
 
 </style>
