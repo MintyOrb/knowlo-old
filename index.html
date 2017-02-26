@@ -63,7 +63,7 @@
 
 		    <div>
 		        <isotope style="min-height:80px" ref="selected" :list="selected" :options='getSelectedOptions()' >
-		          <div  v-for="word in selected"  class='selected'>
+		          <div  v-for="word in selected"  class='selected' v-bind:class="{ expanded: word.status.expanded }">
 		            <tag :tag="word" v-on:add-me="addToFrom(word, words, selected)" v-on:lay-me="layout"></tag>
 		          </div>
 		        </isotope>
@@ -71,7 +71,7 @@
 
 		    <div>
 		        <isotope ref="key" :list="words" :options='getSuggestionOptions()'>
-		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }">
+		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.status.expanded }">
 								<tag class="expandedFlex" :tag="word"  v-on:add-me="addToFrom(word, selected, words)" v-on:lay-me="layout" ></tag>
 		          </div>
 		        </isotope>
@@ -225,24 +225,24 @@
 <template id="tagContainer">
 	<div>
 		<div class="tagWidth">
-			<div class="menu" @mouseOver="delayHover(tag, $parent._uid)" @mouseleave="tag.left=true;tag.hover=false" v-bind:class="{'active': tag.hover && $parent._uid == tag.parentID}">
+			<div class="menu" @mouseOver="delayHover(tag, $parent._uid)" @mouseleave="tag.left=true;tag.status.hover=false" v-bind:class="{'active': tag.status.hover && $parent._uid == tag.parentID}">
 				<div class="">
 					<div class="mbtn trigger">
 						<span class="flexCenter"> {{tag.name[0]}}</span>
 					</div>
 					<div class="icons">
 						<div class="rotater">
-							<div class="mbtn mbtn-icon flexCenter">
+							<div @click="addToFrom('', 'pin')" class="mbtn mbtn-icon flexCenter" :class="{showPin: tag.status.pin }">
 								<i class="fa fa-thumb-tack nope" style="transform:rotate(-45deg)"></i>
 							</div>
 						</div>
-						<div  v-if="!tag.expanded" class="rotater">
+						<div  v-if="!tag.status.expanded" class="rotater">
 							<div :class="{'nope':!tag.group}" class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)">
 								<i class="fa fa-expand"></i>
 							</div>
 						</div>
-						<div  v-if="tag.expanded" class="rotater">
-							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)">
+						<div  v-if="tag.status.expanded" class="rotater">
+							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)" :class="{showCompress: tag.status.expanded }">
 								<i class="fa fa-compress"></i>
 							</div>
 						</div>
@@ -252,17 +252,17 @@
 							</div>
 						</div>
 						<div class="rotater">
-							<div class="mbtn mbtn-icon flexCenter">
+							<div @click="addToFrom('', 'exclude')" class="mbtn mbtn-icon flexCenter" :class="{showMinus: tag.status.exclude }">
 								<i class="fa fa-minus nope"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom(tag)" class="mbtn mbtn-icon flexCenter">
+							<div @click="addToFrom(tag, 'include')" class="mbtn mbtn-icon flexCenter" :class="{showPlus: tag.status.include }">
 								<i class="fa fa-plus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div class="mbtn mbtn-icon flexCenter">
+							<div @click="addToFrom(tag, 'focus')" class="mbtn mbtn-icon flexCenter">
 								<i class="fa fa-crosshairs nope"></i>
 							</div>
 						</div>
@@ -276,7 +276,7 @@
 		</div>
 
 	 <transition name="fade">
-			<div v-if="tag.expanded" :class="'flickContainer'+tag.name" class="flickContainer">
+			<div v-if="tag.status.expanded" :class="'flickContainer'+tag.name" class="flickContainer">
 				<div v-for="item in tag.members" class="flickItem">
 					<tag :tag="item" v-on:add-me="addFromSub(item)"></tag>
 				</div>
@@ -429,9 +429,6 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 	margin-right: 15px;
 	margin-top: 10px;
 }
-.flickity-viewport {
-	height: 115px;
-}
 /* position dots up a bit */
 .flickity-page-dots {
   bottom: -15px;
@@ -551,12 +548,17 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 .rotater:nth-child(1) {
 	  transform: rotate(-30deg);
 }
+.showCompress {
+	transform: translateY(-3.5em) rotate(-30deg)!important;
+	opacity: 1!important;
+}
 .menu.active .rotater:nth-child(1) .mbtn-icon {
 	  transform: translateY(-3.5em) rotate(30deg);
 }
-/*.mbtn.active .rotater:nth-child(1) .mbtn-icon {
-	  transform: translateY(-3.5em) rotate(30deg);
-}*/
+.showPin {
+	transform: translateY(-3.5em) rotate(30deg)!important;
+	opacity: 1!important;
+}
 .rotater:nth-child(2) {
 	  transform: rotate(30deg);
 }
@@ -575,11 +577,19 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 .menu.active .rotater:nth-child(4) .mbtn-icon {
 	  transform: translateY(-3.5em) rotate(-150deg);
 }
+.showMinus {
+	transform: translateY(-3.5em) rotate(-150deg)!important;
+	opacity: 1!important;
+}
 .rotater:nth-child(5) {
 	  transform: rotate(210deg);
 }
 .menu.active .rotater:nth-child(5) .mbtn-icon {
 	  transform: translateY(-3.5em) rotate(-210deg);
+}
+.showPlus {
+	transform: translateY(-3.5em) rotate(-210deg)!important;
+	opacity: 1!important;
 }
 .rotater:nth-child(6) {
 	  transform: rotate(270deg);
@@ -600,9 +610,8 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 	align-items: center;
 }
 .tagWidth {
-	width:120px;
+	width:100px;
 }
-
 
 
 

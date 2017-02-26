@@ -12,5 +12,3 @@ const router = new VueRouter({
 const app = new Vue({
   router
 }).$mount('#main')
-
-app.use(VueMaterial)

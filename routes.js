@@ -96,6 +96,7 @@ const explore = Vue.extend({
         //   }
         // },
         addToFrom: function(tag, to, from){
+
           if(to){this.addTo(tag, to)};
           if (from) {this.removeFrom(tag, from)};
 
@@ -234,22 +235,27 @@ Vue.component('tag',{
       addFromSub: function(tag){ // there must be a better way to add sub tag...
         bus.$emit('addTagSubTag', tag)
       },
-      addToFrom: function(tag){
-        if(tag.expanded){
-            this.destroySingleFlickity(tag.name)
-            tag.expanded = false;
+      addToFrom: function(tag, type){
+        if(tag.status[type] == undefined){
+          tag.status[type] = true; // need to add logic for combinations...can't be both inclded and excluded
+        } else {
+          tag.status[type] = !tag.status[type]
         }
-        tag.hover = false;
+        if(tag.status.expanded){
+            this.destroySingleFlickity(tag.name)
+            tag.status.expanded = false;
+        }
+        tag.status.hover = false;
         this.$emit('add-me')
       },
       bigSmallTag: function(word){
         if(word.group){
-          if(word.expanded){
+          if(word.status.expanded){
             this.destroySingleFlickity(word.name)
           } else {
             this.createFlickity(word.name)
           }
-          word.expanded = !word.expanded
+          word.status.expanded = !word.status.expanded
         }
         window.setTimeout(()=>{
           this.$emit('lay-me')
@@ -263,7 +269,7 @@ Vue.component('tag',{
             wrapAround: true,
             pageDots: true,
             prevNextButtons: true,
-            // accessibility: false, // to prevent jumping when focused
+            accessibility: false, // to prevent jumping when focused
           });
           this.$emit('lay-me')
           }, 10);
@@ -291,7 +297,7 @@ Vue.component('tag',{
           item.left=false;
           window.setTimeout(()=>{
             if(!item.left){
-                item.hover=true
+                item.status.hover=true
             }
           }, 300)
         },
