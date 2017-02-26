@@ -266,7 +266,6 @@
 								<i class="fa fa-crosshairs nope"></i>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -276,7 +275,7 @@
 		</div>
 
 	 <transition name="fade">
-			<div v-if="tag.status.expanded" :class="'flickContainer'+tag.name" class="flickContainer">
+			<div v-if="tag.status.expanded" :class="'flickContainer'+tag.name" class=" flickContainer ">
 				<div v-for="item in tag.members" class="flickItem">
 					<tag :tag="item" v-on:add-me="addFromSub(item)"></tag>
 				</div>
@@ -328,6 +327,9 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 -->
 
 <style>
+.dropdown-content li>a {
+	color: #2196F3
+}
 .card {
     width: 250px;
     margin: 10px;
@@ -419,6 +421,7 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 	width: 100%;
 }
 .flickContainer{
+	position: relative;
 	border-right: 1px solid darkgray;
 	border-left: 1px solid darkgray;
 	width: 100%;
@@ -431,7 +434,7 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 }
 /* position dots up a bit */
 .flickity-page-dots {
-  bottom: -15px;
+  bottom: -10px;
 }
 /* dots are lines */
 .flickity-page-dots .dot {
@@ -452,14 +455,13 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 
 
 /* tag radial button based on this pen: http://codepen.io/suez/pen/vAais/*/
- /*there's some superfluous stuff in here now...mostly with .line*/
-.absolute-center, .menu, .menu .btn .fa, .menu .btn.trigger .line {
+.menu, .menu .btn .fa, .menu .btn.trigger {
   position: relative;
 }
 .menu {
   width: 60px;
   height: 60px;
-	margin:20px;
+	margin: 20px;
 }
 .menu .mbtn {
 	  position: relative;
@@ -468,7 +470,6 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 	  width: 100%;
 	  height: 100%;
 	  border-radius: 50%;
-	  background: rgba(255, 255, 255, 0.6);
 	  opacity: 0;
 	  z-index: -10;
 	  cursor: pointer;
@@ -484,42 +485,18 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 	  color: rgba(140, 139, 139, 0.68);
 }
 .menu .mbtn.trigger {
+		z-index: 10;
+		border:1px solid black;
 		color:black;
 	  opacity: 1;
-	  z-index: 100;
 		font-size: 40px;
 		font-weight: 200;
 	  cursor: pointer;
 		text-transform: uppercase;
-	  transition: transform 0.1s;
+	  transition: transform 0.4s;
 }
 .menu .mbtn.trigger:hover {
-	  transform: scale(1.2);
-}
-.menu .mbtn.trigger:hover .line {
-	  background-color: rgba(255, 255, 255, 0.7);
-}
-.menu .mbtn.trigger:hover .line:before, .menu .mbtn.trigger:hover .line:after {
-	  background-color: rgba(255, 255, 255, 0.7);
-}
-.menu .mbtn.trigger .line:before, .menu .mbtn.trigger .line:after {
-	  content: "";
-	  display: block;
-	  position: absolute;
-	  left: 0;
-	  width: 100%;
-	  height: 6px;
-	  background: #000;
-	  border-radius: 6px;
-	  transition: background-color 0.1s, transform 0.1s;
-}
-.menu .mbtn.trigger .line:before {
-	  top: -12px;
-	  transform-origin: 15% 100%;
-}
-.menu .mbtn.trigger .line:after {
-	  top: 12px;
-	  transform-origin: 25% 30%;
+	  transform: scale(.9);
 }
 .menu .rotater {
 	  position: absolute;
@@ -531,71 +508,58 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 }
 .menu.active .mbtn-icon {
 	  opacity: 1;
-	  z-index: 50;
-}
-.menu.active .trigger .line {
-	  height: 0px;
-	  top: 45%;
-}
-.menu.active .trigger .line:before {
-	  transform: rotate(45deg);
-	  width: 110%;
-}
-.menu.active .trigger .line:after {
-	  transform: rotate(-45deg);
-	  width: 110%;
 }
 .rotater:nth-child(1) {
 	  transform: rotate(-30deg);
 }
 .showCompress {
-	transform: translateY(-3.5em) rotate(-30deg)!important;
+	transform: translateY(-2.9em) rotate(-30deg)!important;
 	opacity: 1!important;
 }
 .menu.active .rotater:nth-child(1) .mbtn-icon {
-	  transform: translateY(-3.5em) rotate(30deg);
+	  transform: translateY(-2.9em) rotate(30deg);
 }
 .showPin {
-	transform: translateY(-3.5em) rotate(30deg)!important;
+	transform: translateY(-2.9em) rotate(30deg)!important;
 	opacity: 1!important;
 }
 .rotater:nth-child(2) {
 	  transform: rotate(30deg);
 }
 .menu.active .rotater:nth-child(2) .mbtn-icon {
-	  transform: translateY(-3.5em) rotate(-30deg);
+	  transform: translateY(-2.9em) rotate(-30deg);
 }
 .rotater:nth-child(3) {
 	  transform: rotate(90deg);
 }
 .menu.active .rotater:nth-child(3) .mbtn-icon {
-	  transform: translateY(-3.5em) rotate(-90deg);
+	  transform: translateY(-2.9em) rotate(-90deg);
 }
 .rotater:nth-child(4) {
 	  transform: rotate(150deg);
 }
 .menu.active .rotater:nth-child(4) .mbtn-icon {
-	  transform: translateY(-3.5em) rotate(-150deg);
+	  transform: translateY(-2.9em) rotate(-150deg);
 }
 .showMinus {
-	transform: translateY(-3.5em) rotate(-150deg)!important;
+	transform: translateY(-2.9em) rotate(-150deg)!important;
 	opacity: 1!important;
 }
 .rotater:nth-child(5) {
 	  transform: rotate(210deg);
 }
 .menu.active .rotater:nth-child(5) .mbtn-icon {
-	  transform: translateY(-3.5em) rotate(-210deg);
+	  transform: translateY(-2.9em) rotate(-210deg);
 }
 .showPlus {
-	transform: translateY(-3.5em) rotate(-210deg)!important;
+	transform: translateY(-2.9em) rotate(-210deg)!important;
 	opacity: 1!important;
 }
 .rotater:nth-child(6) {
 	  transform: rotate(270deg);
 }
 .menu.active .rotater:nth-child(6) .mbtn-icon {
-	  transform: translateY(-3.5em) rotate(-270deg);
+	  transform: translateY(-2.9em) rotate(-270deg);
 }
 
 .nope {
@@ -603,7 +567,7 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 }
 .name {
 		font-weight: 300;
-    margin-top: -18px;
+    margin-top: -3px;
 }
 .expandedFlex {
 	display: flex;

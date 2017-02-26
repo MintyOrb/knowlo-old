@@ -15,6 +15,7 @@
   "author": "Knowlo",
   "license": "ISC",
   "dependencies": {
+    "babelnet": "0.0.1",
     "flickity": "^2.0.5",
     "jquery": "^3.1.1",
     "js-cookie": "^2.1.3",

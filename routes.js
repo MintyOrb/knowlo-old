@@ -237,7 +237,7 @@ Vue.component('tag',{
       },
       addToFrom: function(tag, type){
         if(tag.status[type] == undefined){
-          tag.status[type] = true; // need to add logic for combinations...can't be both inclded and excluded
+          tag.status[type] = true; // need to add logic for combinations... ex: can't be both inclded and excluded. Track with string instead? status.type = "exclude"
         } else {
           tag.status[type] = !tag.status[type]
         }
