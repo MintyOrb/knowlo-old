@@ -1,0 +1,274 @@
+/*
+███████ ████████ ██    ██ ██      ███████
+██         ██     ██  ██  ██      ██
+███████    ██      ████   ██      █████
+     ██    ██       ██    ██      ██
+███████    ██       ██    ███████ ███████
+*/
+.bold {
+	font-weight: 700;
+}
+.dropdown-content li>a {
+	color: #2196F3
+}
+.card {
+    width: 250px;
+    margin: 10px;
+		box-shadow: none;
+}
+.card-bottom {
+    margin: -11px;
+}
+.card-bottom i {
+    vertical-align: middle;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.card .card-content {
+    padding-bottom: 3px;
+    padding-top: 14px;
+}
+.card .card-action {
+		border-top: none
+}
+.thumb {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    /*margin: 10px;*/
+}
+.thumb img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+}
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: .1;
+}
+.list {
+    padding: 2% 8% 2% 8%;
+    width: 100vw;
+    min-height: 40px;
+    font-size: 20px;
+    display: flex !important;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+/* label focus color */
+
+.input-field input[type=text]:focus+label {
+    color: black;
+}
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid black;
+    box-shadow: 0 1px 0 0 black;
+}
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+.video-container iframe, .video-container object, .video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.chip {
+    margin: 10px;
+    border: 1px solid;
+    background: white;
+    height: auto;
+		cursor: pointer;
+}
+.viewBtn {
+    transition: color .3s;
+}
+.viewBtn:hover {
+    cursor: pointer;
+    color: gray;
+}
+
+.expanded {
+	width: 100%;
+}
+.flickContainer{
+	position: relative;
+	border-right: 1px solid darkgray;
+	border-left: 1px solid darkgray;
+	width: 100%;
+	margin:15px;
+}
+.flickItem{
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 10px;
+}
+/* position dots up a bit */
+.flickity-page-dots {
+  bottom: -10px;
+}
+/* dots are lines */
+.flickity-page-dots .dot {
+  height: 4px;
+  width: 40px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.flexCenter{
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
+/**{outline: 1px solid black;}*/
+
+
+
+
+/* tag radial button based on this pen: http://codepen.io/suez/pen/vAais/*/
+.menu, .menu .btn .fa, .menu .btn.trigger {
+  position: relative;
+}
+.menu {
+  width: 60px;
+  height: 60px;
+	margin: 20px;
+}
+.menu .mbtn {
+	  position: relative;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  opacity: 0;
+	  z-index: -10;
+	  cursor: pointer;
+	  transition: opacity .2s, z-index 0.1s, transform .3s;
+	  transform: translateX(0);
+}
+.menu .mbtn .fa {
+	  font-size: 1.5em;
+	  transition: color 0.3s;
+		margin-top:18px
+}
+.menu .mbtn:hover .fa {
+	  color: rgba(140, 139, 139, 0.68);
+}
+.border {
+  border:1px solid black;
+  border-radius: 50%;
+}
+.menu .mbtn.trigger {
+		z-index: 10;
+		color:black;
+	  opacity: 1;
+		font-size: 40px;
+		font-weight: 200;
+	  cursor: pointer;
+		text-transform: uppercase;
+	  transition: transform 0.4s;
+}
+.menu .mbtn.trigger:hover {
+	  transform: scale(.9);
+}
+.menu .rotater {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  transform-origin: 50% 50%;
+}
+.menu.active .mbtn-icon {
+	  opacity: 1;
+}
+.rotater:nth-child(1) {
+	  transform: rotate(-30deg);
+}
+.showCompress {
+	transform: translateY(-2.9em) rotate(-30deg)!important;
+	opacity: 1!important;
+}
+.menu.active .rotater:nth-child(1) .mbtn-icon {
+	  transform: translateY(-2.9em) rotate(30deg);
+}
+.showPin {
+	transform: translateY(-2.9em) rotate(30deg)!important;
+	opacity: 1!important;
+}
+.rotater:nth-child(2) {
+	  transform: rotate(30deg);
+}
+.menu.active .rotater:nth-child(2) .mbtn-icon {
+	  transform: translateY(-2.9em) rotate(-30deg);
+}
+.rotater:nth-child(3) {
+	  transform: rotate(90deg);
+}
+.menu.active .rotater:nth-child(3) .mbtn-icon {
+	  transform: translateY(-2.9em) rotate(-90deg);
+}
+.rotater:nth-child(4) {
+	  transform: rotate(150deg);
+}
+.menu.active .rotater:nth-child(4) .mbtn-icon {
+	  transform: translateY(-2.9em) rotate(-150deg);
+}
+.showMinus {
+	transform: translateY(-2.9em) rotate(-150deg)!important;
+	opacity: 1!important;
+}
+.rotater:nth-child(5) {
+	  transform: rotate(210deg);
+}
+.menu.active .rotater:nth-child(5) .mbtn-icon {
+	  transform: translateY(-2.9em) rotate(-210deg);
+}
+.showPlus {
+	transform: translateY(-2.9em) rotate(-210deg)!important;
+	opacity: 1!important;
+}
+.rotater:nth-child(6) {
+	  transform: rotate(270deg);
+}
+.menu.active .rotater:nth-child(6) .mbtn-icon {
+	  transform: translateY(-2.9em) rotate(-270deg);
+}
+
+.nope {
+		color: rgba(140, 139, 139, 0.68);
+}
+.name {
+		font-weight: 300;
+    margin-top: -3px;
+}
+.expandedFlex {
+	display: flex;
+	align-items: center;
+}
+.tagWidth {
+	width:100px;
+}
+
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .8s
+}
+.fade-enter, .fade-leave-active{
+  opacity: 0
+}
+
+.margin20 {
+	margin:20px
+}

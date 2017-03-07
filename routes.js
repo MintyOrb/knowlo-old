@@ -156,6 +156,7 @@ const explore = Vue.extend({
         shuffle: function(key) {
             this.$refs.contentBin.shuffle();
             this.$refs.key.shuffle();
+            this.$refs.selected.shuffle();
         },
         filter: function(key) {
             this.$refs.contentBin.filter(key);
@@ -166,6 +167,7 @@ const explore = Vue.extend({
           if(this.$refs.contentBin){
             this.$refs.contentBin.layout('masonry');
             this.$refs.key.layout('masonry');
+            this.$refs.selected.layout('masonry');
           }
 
         },
@@ -320,7 +322,6 @@ const content = Vue.extend({
       <div class="row video-container ">
           <iframe :src="'http://youtube.com/embed/'+content.videoid">
       </div>
-
     </div>
     `,
     data: function() {
