@@ -3,15 +3,15 @@ import json
 
 videoData = []
 
-for line in open('youtubeurls.txt'):
+for line in open('failedVideos.txt'):
 
     videoObj = {}
 
     try:
-        video = pafy.new(line.strip())
+        video = pafy.new(line.strip().encode("utf-8"))
     except ValueError:
         print "error here - ", line
-        with open('videos.json', 'w') as outfile:
+        with open('dump.json', 'w') as outfile:
             json.dump(videoData, outfile)
         print "dumped combined video object."
     else:
@@ -35,8 +35,8 @@ for line in open('youtubeurls.txt'):
 
         videoData.append(videoObj)
 
-        print len(videoData), " - ", video.title
-    
+        print len(videoData), " - ", video.title.encode("utf-8")
 
-with open('videos.json', 'w') as outfile:
+
+with open('videos4.json', 'w') as outfile:
     json.dump(videoData, outfile)

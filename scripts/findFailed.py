@@ -2,10 +2,10 @@ import json
 
 failed = []
 
-with open("videos.json") as videoFile:
+with open("videos3.json") as videoFile:
     videos = json.load(videoFile)
 
-    for line in open('youtubeurls.txt'):
+    for line in open('add2.txt'):
         found = False
         for video in videos:
             if line.strip() == video['url']:

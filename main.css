@@ -244,6 +244,10 @@
 .menu.active .rotater:nth-child(6) .mbtn-icon {
 	  transform: translateY(-2.9em) rotate(-270deg);
 }
+.showFocus {
+	transform: translateY(-2.9em) rotate(-270deg)!important;
+	opacity: 1!important;
+}
 
 .nope {
 		color: rgba(140, 139, 139, 0.68);

@@ -98,7 +98,7 @@ const explore = Vue.extend({
         addToFrom: function(tag, to, from){
 
           if(to){this.addTo(tag, to)};
-          if (from) {this.removeFrom(tag, from)};
+          if(from) {this.removeFrom(tag, from)};
 
           this.filter('keywords')
         },

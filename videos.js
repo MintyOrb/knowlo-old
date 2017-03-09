@@ -1,4 +1,494 @@
 var videos = [{
+    "tags": [],
+    "size": ["atoms", "molecules"],
+    "time": ["New Chemical Elements"],
+    "teaches": ["chemical bonds","atomic structure","energy","covalent bonds","ionic bonds","periodic table", "hydrogen bonds", "electronegativity"],
+    "is": ["video","Cassiopeia Project"],
+    "discipline": ["chemistry"],
+    "username": "cassiopeiaproject",
+    "rating": 4.86246395111,
+    "description": "Find out more about Chemical Bonds!",
+    "viewcount": 96761,
+    "author": "cassiopeiaproject",
+    "url": "https://www.youtube.com/watch?v=hEFeLYWTKX0",
+    "title": "Chemical Bonds",
+    "dislikes": 12,
+    "bigthumb": "",
+    "videoid": "hEFeLYWTKX0",
+    "keywords": ["Chemistry", "chemical", "bond", "periodic", "table", "element", "atom", "molecule", "electron", "proton", "polar", "covalent", "orbital", "energy", "electronegat"],
+    "length": 438,
+    "likes": 337,
+    "duration": "00:07:18",
+    "thumb": "http://i.ytimg.com/vi/hEFeLYWTKX0/default.jpg"
+}, {
+    "tags": [],
+    "size": ["species"],
+    "time": ["Modern Revolution"],
+    "teaches": ["telescopes","Hubble Space Telescope","James Webb Space Telescope","light","infrared", "Giant Magellan Telescope (GMT)", "adaptive optics", "The Large Synoptic Survey Telescope (LSST)"],
+    "is": ["video", "PBS Space Time"],
+    "discipline": ["physics","cosmology"],
+    "username": "PBS Space Time",
+    "rating": 4.9619160964,
+    "description": "Super telescopes are coming! Thanks to The Great Courses Plus for sponsoring this episode of Space Time. Try a 30 day trial of The Great Course Plus at http://ow.ly/Fxt1306GoOa NASA\u2019s Hubble Space Telescope is now 27 years old, but a new generation of telescopes are on their way. Find out about the James Webb Space Telescope, the Giant Magellan Telescope and the Large Synoptic Survey Telescope. \n\nYou can further support us on Patreon at https://www.patreon.com/pbsspacetime\nGet your own Space Time t\u00adshirt at http://bit.ly/1QlzoBi\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\n\nHelp translate our videos! https://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nThe telescopes of tomorrow will see in infrared and ultraviolet. They will peer through space and scan across time. They will allow us to find new supernovae, spot potentially hazardous asteroids, better understand dark energy and peer into the earliest moments of space time.  \n\nPrevious Episode\nThe Geometry of Causality\nhttps://www.youtube.com/watch?v=1YFrISfN7jo\n\nWritten by Alexandra Yep and Matt O\u2019Dowd\nHosted by Matt O\u2019Dowd\nProduced by Rusty Ward\nGraphics by Grayson Blackmon\nMade by Kornhaber Brown (www.kornhaberbrown.com)\n\nResources:\nThe James Webb Space Telescope https://jwst.nasa.gov\nThe Giant Magellan Telescope https://www.gmto.org/\nThe Large Synoptic Survey Telescope https://www.lsst.org\n\nComments Answered by Matt:\n\nLouis Anthes\nhttps://www.youtube.com/watch?v=1YFrISfN7jo&lc=z12pcp34szazy1qqz04cgvpg0sjnivjq0to0k\n\nQED\nhttps://www.youtube.com/watch?v=1YFrISfN7jo&lc=z131xd1xbrihsrdm3231i5fr0sz1yb2ff\n\n\nSpecial thanks to our Patreon Big Bang, Quasar and Hypernova Supporters: \n\nBig Bang\nHenry Van Styn\nDavid Nicklas\n\nQuasar\nJelle Slaets\nTambe Barsbay\nLuna IT Solutions\n\nHypernova\nCoolAsCats\nChuck Zegar\nCraig Peterson\nJordan Young\nRatfeast\nJohn Hofmann\n\nThanks to our Patreon Gamma Ray Burst Supporters: \nMichael Peanut-Karmi\nBernardo Higuera\nErik Stein\nDaniel Lyons\nAvan & Kyan Griggs\nJade Bilkey\nKevin Warne\nJJ Bagnell\nJ Rejc\nMichael Fischer\nDylan Merida\nAmy Jie\nAnthony Caridi\nAvi Goldfinger\nCorey Smeaton\nJohn Pettit\nShannan Catalano\nFlorian Stinglmayr\nYubo Du\nBenoit Pag\u00e9-Guitard\nRonny Polonia\nNathan Leniz\nJessica Fraley\nKirk Mathews\nLoro Lukic\nCarl P. Corliss\nBrandon labonte\nDavid Crane\nGreg Weiss\nEric Jackson",
+    "viewcount": 261074,
+    "author": "PBS Space Time",
+    "url": "https://www.youtube.com/watch?v=CoQE5J346mU",
+    "title": "Telescopes of Tomorrow | Space Time",
+    "dislikes": 96,
+    "bigthumb": "https://i.ytimg.com/vi/CoQE5J346mU/sddefault.jpg",
+    "videoid": "CoQE5J346mU",
+    "keywords": ["Space", "time", "space time", "pbs", "physics", "astrophysics", "astronomy", "education", "science", "big bang", "comic microwave background", "radiation", "supernova", "telescopes", "telescope", "james webb telescope", "james webb", "giant magellan telescope", "lare synoptic survey telescope", "gmt", "lsst", "hubble", "hubble space telescope", "universe", "cosmos"],
+    "length": 781,
+    "likes": 9987,
+    "duration": "00:13:01",
+    "thumb": "http://i.ytimg.com/vi/CoQE5J346mU/default.jpg"
+}, {
+    "tags": ["Edward Jenner"],
+    "size": ["cells","organisms","species","biological community"],
+    "time": [],
+    "teaches": ["germ theory","vaccination","immune system","germs","disease"],
+    "is": ["video","history"],
+    "discipline": ["history","biology","molecular biology"],
+    "username": "NPR",
+    "rating": 4.93043478261,
+    "description": "For most of human history, we had a lot of bad ideas about how we were getting sick: angry gods, misaligned planets, stinky fumes. We also had plenty of bad ideas about how to prevent it, like bloodletting, large holes in the head and drinking arsenic.\n\nThings started changing only about 200 years ago. An English doctor named Edward Jenner decided to take a closer look at a promising folk remedy. (We'll leave the details for the video.) Eventually, he invented vaccination, our first safe and effective way to fight disease. About time!\n\nSo what did that do for us? Consider that in 1900, the average person lived only about 30 years. Today, most of us live to seventy. We were so successful in such a short time, the U.S. Surgeon General reportedly exclaimed in 1967 that we had closed the book on infectious disease.\n\nIf only! The history of humans and germs turns out to be way more complicated.\n\n\u2022 Visit http://npr.org/pandemic for more stories in this series\n\n------------------------------------------------------\n\nSubscribe to NPR on YouTube: https://www.youtube.com/npr\n\nFollow NPR elsewhere, too:\n\u2022 Twitter: https://twitter.com/npr\n\u2022 Facebook: https://www.facebook.com/NPR\n\u2022 Instagram: https://www.instagram.com/npr/\n\u2022 Tumblr: http://npr.tumblr.com/\n\u2022 Snapchat: https://www.snapchat.com/add/npr\n\nABOUT NPR\nNPR connects to audiences on the air, on demand, online, and in person. More than 26 million radio listeners tune in to NPR stations each week and more than 36 million unique visitors access NPR.org each month making NPR one of the most trusted sources of news and insights on life and the arts. NPR is also the leading publisher of podcasts, with 36 original shows and an average of 4 million listeners per week. NPR shares compelling stories, audio and photos with millions of social media users on Facebook, Twitter, Instagram, Pinterest, YouTube and Snapchat; NPR News and NPR One apps, online streaming, podcasts, iTunes radio and connected car dashboards help meet audiences where they are. NPR's live events bring to the stage two-way conversations between NPR hosts and the audience in collaboration with the public radio Member Station community. This robust access to public service journalism makes NPR an indispensable resource in the media landscape.",
+    "viewcount": 23632,
+    "author": "NPR",
+    "url": "https://www.youtube.com/watch?v=xOFH57Do2EM",
+    "title": "A Short History Of Humans And Germs: Humans Get A Clue | Goats & Soda | NPR",
+    "dislikes": 4,
+    "bigthumb": "https://i.ytimg.com/vi/xOFH57Do2EM/sddefault.jpg",
+    "videoid": "xOFH57Do2EM",
+    "keywords": ["npr", "pandemic", "epidemic", "germs", "history", "short history", "humans", "science", "history of science", "vaccination", "jenner", "ecohealth", "outbreak"],
+    "length": 217,
+    "likes": 226,
+    "duration": "00:03:37",
+    "thumb": "http://i.ytimg.com/vi/xOFH57Do2EM/default.jpg"
+}, {
+    "tags": [],
+    "size": ["cells","organisms","species","biological community"],
+    "time": ["Agriculture"],
+    "teaches": ["germ theory","immune system","germs","disease"],
+    "is": ["video","history"],
+    "discipline": ["history","biology","molecular biology"],
+    "username": "NPR",
+    "rating": 4.94920634921,
+    "description": "Humans get along pretty well with most microbes. Which is lucky, because there are a lot more of them in the world than there are of us. We couldn\u2019t even live without many of them. But a few hundred have evolved, and are still evolving, to exploit our bodies in ways that can make us really sick. These are the microbes we call germs. Think  plague, HIV, SARS, Ebola, Zika, measles.\n\nThis is a series is about where germs come from.  In this first of three episodes, we see what our early encounters with germs may have been like, and how germs initially got an upper hand.\n\n-----------------\n\nSubscribe to NPR on YouTube: https://www.youtube.com/npr\n\nFollow NPR elsewhere, too:\n\u2022 Twitter: https://twitter.com/npr\n\u2022 Facebook: https://www.facebook.com/NPR\n\u2022 Instagram: https://www.instagram.com/npr/\n\u2022 Tumblr: http://npr.tumblr.com/\n\u2022 Snapchat: https://www.snapchat.com/add/npr\n\nABOUT NPR\nNPR connects to audiences on the air, on demand, online, and in person. More than 26 million radio listeners tune in to NPR stations each week and more than 36 million unique visitors access NPR.org each month making NPR one of the most trusted sources of news and insights on life and the arts. NPR is also the leading publisher of podcasts, with 36 original shows and an average of 4 million listeners per week. NPR shares compelling stories, audio and photos with millions of social media users on Facebook, Twitter, Instagram, Pinterest, YouTube and Snapchat; NPR News and NPR One apps, online streaming, podcasts, iTunes radio and connected car dashboards help meet audiences where they are. NPR's live events bring to the stage two-way conversations between NPR hosts and the audience in collaboration with the public radio Member Station community. This robust access to public service journalism makes NPR an indispensable resource in the media landscape.",
+    "viewcount": 46376,
+    "author": "NPR",
+    "url": "https://www.youtube.com/watch?v=Utcn6LGYHSI",
+    "title": "A Short History Of Humans And Germs: Early Encounters | Goats & Soda | NPR",
+    "dislikes": 4,
+    "bigthumb": "https://i.ytimg.com/vi/Utcn6LGYHSI/sddefault.jpg",
+    "videoid": "Utcn6LGYHSI",
+    "keywords": ["npr", "science", "goatsandsoda", "microbes", "germs", "epidemic", "history", "outbreak", "contagion", "pandemic"],
+    "length": 161,
+    "likes": 311,
+    "duration": "00:02:41",
+    "thumb": "http://i.ytimg.com/vi/Utcn6LGYHSI/default.jpg"
+}, {
+    "tags": [],
+    "size": ["cells","organisms","species","biological community"],
+    "time": ["Agriculture"],
+    "teaches": ["germ theory","germs","disease"],
+    "is": ["video","history"],
+    "discipline": ["history","biology","molecular biology"],
+    "username": "NPR",
+    "rating": 5.0,
+    "description": "Ten thousand years ago, at the dawn of the agricultural revolution, many of our deadly human diseases didn't exist. What changed?\n\nFor the first time in history, humans were living in close contact with domesticated animals - milking them, taking care of them, living with them and eating them. All that touching and sharing gave animal germs plenty of chances to get inside of us.\n\nTake measles. Researchers think that up until about 5,000 years ago, it didn\u2019t exist. But its older cousin Rinderpest, a cattle disease, did. Now that humans were spending so much quality time with cows, little Rinderpest germs started jumping over into us. And a few of them had a lucky mutation that allowed Rinderpest to evolve from a cattle disease into measles, a deadly human virus.\n\nBut our ancestors had no idea what the problem was - or how to fix it. See how humans finally get a clue, in  Episode 3, coming Feb. 16.\n\nWatch Episode 1: A Short History of Humans and Germs: Early Encounters https://www.youtube.com/watch?v=Utcn6LGYHSI\nAnd see what new viruses are emerging in your backyard: http://n.pr/2lr8mRf\n\n\n------------------------------------------------------\n\nSubscribe to NPR on YouTube: https://www.youtube.com/npr\n\nFollow NPR elsewhere, too:\n\u2022 Twitter: https://twitter.com/npr\n\u2022 Facebook: https://www.facebook.com/NPR\n\u2022 Instagram: https://www.instagram.com/npr/\n\u2022 Tumblr: http://npr.tumblr.com/\n\u2022 Snapchat: https://www.snapchat.com/add/npr\n\nABOUT NPR\nNPR connects to audiences on the air, on demand, online, and in person. More than 26 million radio listeners tune in to NPR stations each week and more than 36 million unique visitors access NPR.org each month making NPR one of the most trusted sources of news and insights on life and the arts. NPR is also the leading publisher of podcasts, with 36 original shows and an average of 4 million listeners per week. NPR shares compelling stories, audio and photos with millions of social media users on Facebook, Twitter, Instagram, Pinterest, YouTube and Snapchat; NPR News and NPR One apps, online streaming, podcasts, iTunes radio and connected car dashboards help meet audiences where they are. NPR's live events bring to the stage two-way conversations between NPR hosts and the audience in collaboration with the public radio Member Station community. This robust access to public service journalism makes NPR an indispensable resource in the media landscape.",
+    "viewcount": 50210,
+    "author": "NPR",
+    "url": "https://www.youtube.com/watch?v=9bsqLmwAq-w",
+    "title": "A Short History Of Humans And Germs: The Golden Age Of Germs | Goats & Soda | NPR",
+    "dislikes": 0,
+    "bigthumb": "https://i.ytimg.com/vi/9bsqLmwAq-w/sddefault.jpg",
+    "videoid": "9bsqLmwAq-w",
+    "keywords": ["npr", "germs", "contagion", "disease", "history", "virus", "pandemic", "superspreader", "viruses", "a short history", "golden age", "age of discovery", "measles"],
+    "length": 176,
+    "likes": 293,
+    "duration": "00:02:56",
+    "thumb": "http://i.ytimg.com/vi/9bsqLmwAq-w/default.jpg"
+}, {
+    "tags": [],
+    "size": ['fundamental particles and forces'],
+    "time": ['big bang'],
+    "teaches": ["wave-particle duality","uncertainty principal","wave function"],
+    "is": ["video","simulation"],
+    "discipline": ['quantum mechancis','physics'],
+    "username": "udiprod",
+    "rating": 4.93954168698,
+    "description": "This video visually demonstrates some basic quantum physics concepts using the simple case of a free particle. \n\nAll the simulations here are based on real equations and laws. See more information here: http://www.zutopedia.com/quantum_physics.html\n\nThe mathematics involved was taken from this excellent book:\nhttps://www.amazon.com/exec/obidos/ASIN/0387989293/visualquantummec",
+    "viewcount": 138877,
+    "author": "udiprod",
+    "url": "https://www.youtube.com/watch?v=p7bzE1E5PMY",
+    "title": "Visualization of Quantum Physics (Quantum Mechanics)",
+    "dislikes": 62,
+    "bigthumb": "https://i.ytimg.com/vi/p7bzE1E5PMY/sddefault.jpg",
+    "videoid": "p7bzE1E5PMY",
+    "keywords": ["quantum physics", "animation", "quantum mechanics", "physics", "popular science"],
+    "length": 874,
+    "likes": 4040,
+    "duration": "00:14:34",
+    "thumb": "http://i.ytimg.com/vi/p7bzE1E5PMY/default.jpg"
+}, {
+    "tags": ["Charles Babbage","Difference Engine","Analytical Engine"],
+    "size": ["organisms","species"],
+    "time": ["Modern Revolution"],
+    "teaches": ["computing"],
+    "is": ["video","history"],
+    "discipline": ["computer science"],
+    "username": "CrashCourse",
+    "rating": 4.94163892627,
+    "description": "Hello, world! Welcome to Crash Course Computer Science! So today, we\u2019re going to take a look at computing\u2019s origins, because even though our digital computers are relatively new, the need for computation is not. Since the start of civilization itself, humans have had an increasing need for special devices to help manage laborious tasks, and as the scale of society continued to grow, these computational devices began to play a crucial role in amplifying our mental abilities. From the abacus and astrolabe to the difference engine and tabulating machine, we\u2019ve come a long way to satisfying this increasing need, and in the process completely transformed commerce, government, and daily life. \n\nProduced in collaboration with PBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nWant to know more about Carrie Anne?\nhttps://about.me/carrieannephilbin\n\nWant more Crash Course in person? We'll be at NerdCon: Nerdfighteria in Boston on February 25th and 26th! For more information, go to http://www.nerdconnerdfighteria.com/\n\nThe Latest from PBS Digital Studios: https://www.youtube.com/playlist?list...\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashC...\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport Crash Course on Patreon: http://patreon.com/crashcourse\n\nCC Kids: http://www.youtube.com/crashcoursekids",
+    "viewcount": 286061,
+    "author": "CrashCourse",
+    "url": "https://www.youtube.com/watch?v=O5nskjZ_GoI",
+    "title": "Early Computing: Crash Course Computer Science #1",
+    "dislikes": 206,
+    "bigthumb": "https://i.ytimg.com/vi/O5nskjZ_GoI/sddefault.jpg",
+    "videoid": "O5nskjZ_GoI",
+    "keywords": ["John Green", "Hank Green", "vlogbrothers", "Crash Course", "crashcourse", "education", "computers", "computation", "computer science", "electronic age", "history", "Mesopotamia", "Astrolabe", "abacus", "Hollerith machine", "step reckoner", "tabulating machine", "Charles Babbage", "ada Lovelace", "Katherine Johnson", "international business machines", "ibm", "range tables", "difference engine", "analytical engine", "census", "Herman Hollerith", "punch cards"],
+    "length": 713,
+    "likes": 13913,
+    "duration": "00:11:53",
+    "thumb": "http://i.ytimg.com/vi/O5nskjZ_GoI/default.jpg"
+}, {
+    "tags": [],
+    "size": ["planetary bodies","solar systems"],
+    "time": ["Earth and the Solar System"],
+    "teaches": ['fomelhaut',"protoplanetary disc","protostar","core accretion","Nice Model","planet formation","solar sytem formation"],
+    "is": ["video","beginning","PBS Space Time"],
+    "discipline": ["Astronomy"],
+    "username": "PBS Space Time",
+    "rating": 4.92965587045,
+    "description": "Fomalhaut is a massive young star surrounded by a ring of dust debris that can tell us a great deal about the formation of our own solar system. Get your first two months of Curiosity Stream free by going to http://curiositystream.com/spacetime and using the promo code \u201cspacetime\u201d.\n\nYou can further support us on Patreon at https://www.patreon.com/pbsspacetime\nGet your own Space Time t\u00adshirt at http://bit.ly/1QlzoBi\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\n\nHelp translate our videos! https://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nFomalhaut is an awe-inspiring star that could unlock many mysteries concerning how our own solar system formed.\n\nPrevious Episode\nTelescopes of Tomorrow\nhttps://www.youtube.com/watch?v=CoQE5J346mU\n\nWritten by Alexandra Yep and Matt O\u2019Dowd\nHosted by Matt O\u2019Dowd\nProduced by Rusty Ward\nGraphics by Grayson Blackmon\nMade by Kornhaber Brown (www.kornhaberbrown.com)\n\nSources:\nA Planetary System as the Origin of Structure in Fomalhaut\u2019s Dust Belt\nKalas, Graham & Clampin (2005)\nhttps://arxiv.org/abs/astro-ph/0506574\n\nSTIS Coronographic Imaging OF Fomalhaut: Main Belt Structure and teh Orbit of Fomalhaut b\nKalas, Graham ,Fitzgerald & Clampin (2013)\nhttp://iopscience.iop.org/article/10.1088/0004-637X/775/1/56\n\nInfrared Non-detection of Fomalhaut b -- Implications for the Planet Interpretation\nJanson, Carson, Lafreniere, Spiegel, Bent & Wong (2012)\nhttps://arxiv.org/abs/1201.4388\n\nSpecial thanks to our Patreon Big Bang, Quasar and Hypernova Supporters: \n\nBig Bang\nHenry Van Styn\nDavid Nicklas\n\nQuasar\nTambe Barsbay\nLuna IT Solutions\n\nHypernova\nCoolAsCats (The Patron formerly known as Joe)\nChuck Zegar\nCraig Peterson\nJordan Young\nRatfeast\nJohn Hofmann\n\nThanks to our Patreon Gamma Ray Burst Supporters: \nMichal-Peanut Karmi\nBernardo Higuera\nErik Stein\nDaniel Lyons\nAvan & Kyan Griggs\nJade Bilkey\nKevin Warne\nJJ Bagnell\nJ Rejc\nMichael Fischer\nDylan Merida\nAmy Jie\nAnthony Caridi\nAvi Goldfinger\nCorey Smeaton\nJohn Pettit\nShannan Catalano\nFlorian Stinglmayr\nYubo Du\nBenoit Pag\u00e9-Guitard\nRonny Polonia\nNathan Leniz\nJessica Fraley\nKirk Mathews\nLoro Lukic\nCarl P. Corliss\nBrandon labonte\nDavid Crane\nGreg Weiss\nEric Jackson",
+    "viewcount": 256013,
+    "author": "PBS Space Time",
+    "url": "https://www.youtube.com/watch?v=TQZyaMRp7_0",
+    "title": "The Eye of Sauron Reveals a Forming Solar System! | Space Time",
+    "dislikes": 139,
+    "bigthumb": "https://i.ytimg.com/vi/TQZyaMRp7_0/sddefault.jpg",
+    "videoid": "TQZyaMRp7_0",
+    "keywords": ["stars", "star", "astrophysics", "physics", "astronomy", "space", "time", "space time", "education", "science", "planettessimal", "planet", "sun", "solar system", "jupiter", "hot jupiter", "star formation", "fomelhaut", "fomelhaut b", "dagon", "coronagraph", "alma", "discovery", "earth-like planets", "nasa"],
+    "length": 647,
+    "likes": 7765,
+    "duration": "00:10:47",
+    "thumb": "http://i.ytimg.com/vi/TQZyaMRp7_0/default.jpg"
+}, {
+    "tags": ["Artifical intelligence","robots"],
+    "size": ["species","organisms"],
+    "time": ["Modern Revolution"],
+    "teaches": ["rights","morality"],
+    "is": ["video"],
+    "discipline": ["Philosophy","Ethics"],
+    "username": "Kurzgesagt \u2013 In a Nutshell",
+    "rating": 4.89524416773,
+    "description": "What shall we do once machines become conscious? Do we need to grant them rights?\n\nCheck out Wisecrack and their video:  https://goo.gl/oaUbAF\n\n'The Philosophy of Westworld': https://goo.gl/8Tn2m5\n\nSupport us on Patreon so we can make more videos (and get cool stuff in return): https://www.patreon.com/Kurzgesagt?ty=h\n\nKurzgesagt merch here:  http://bit.ly/1P1hQIH\n\nGet the music of the video here: \n\nSoundcloud: http://bit.ly/2loQhFv\nBandcamp: http://bit.ly/2mlxs3q\nFacebook: https://www.facebook.com/epic-mountain-music\n\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nMarius Guran, BrightKnight, Torbj\u00f8rn Lundstr\u00f8m, Cameron Lilley, Dennis J Trammell, Valentino Gantz, Jonas Hejde, Oliver Emberton, Zsolt Kocsi, \u201a@B_Strohmayer, Sumesh Thakur, Josh Webb, Arron Creswell, Sultan Alkhulaifi, Carminatti, Everett Greenwood, Ahmed Abduljabar, Mel Osborne, Alex Rozumiy, Isabel Garcia, Darnell holder, Emma, Jorge Emilio Santaella Glez, Jan Jacobsen, Sven Kr\u00e4mer, Philipp Gagel, Kyle Myers, Phillip Blackwell, Matthias Opsomer, Eduardo Santos, Vasilios Bikoulis, punch, James Hornby, Briana Hunt, Moch Faisal Rasid, Alexandru Bitca, Ben Thayer, Adam Spangler, Franz Palomares, Thomas van Gulick, Ryan Nightingale, Kedar Deshpande, Joseph Markham, Pascal Schmidt, Devashish Shanker, Aschwin Berkhout, Aaron Taylor, Gon\u00e7alo Marques, Ronald Susanto, Joseph stachow, David Darking, Alexander Jo, Niels lagcher, jackattack22, Luke Simmons, Hunter Gatewood, Mary Duhig, Johann Pardanaud, Martin Machava, Henkou, Ben Thompson, Danny Shaw, JI DE YI, James Turner,Jodi Doherty, Simon Pyne, Kim Home, elliot ward, G, Daniel Moul, Alan Huang, Jonathan Ling\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2\n\nDo Robots Deserve Rights? What if machines become conscious?",
+    "viewcount": 2202564,
+    "author": "Kurzgesagt \u2013 In a Nutshell",
+    "url": "https://www.youtube.com/watch?v=DHyUYg8X31c",
+    "title": "Do Robots Deserve Rights? What if Machines Become Conscious?",
+    "dislikes": 2793,
+    "bigthumb": "https://i.ytimg.com/vi/DHyUYg8X31c/sddefault.jpg",
+    "videoid": "DHyUYg8X31c",
+    "keywords": ["robots", "ai", "singularity", "artificial intelligence", "morals", "laws", "westworld"],
+    "length": 395,
+    "likes": 103855,
+    "duration": "00:06:35",
+    "thumb": "http://i.ytimg.com/vi/DHyUYg8X31c/default.jpg"
+}, {
+    "tags": ["kamal","stick chart","compass","ocean","astrolabe","lodestone","calcite"],
+    "size": ["organims","species"],
+    "time": ["Collective Learning"],
+    "teaches": ["navigation","human migration","tools"],
+    "is": ["video","history"],
+    "discipline": ["Sociology","Anthropology"],
+    "username": "SciShow",
+    "rating": 4.96432062561,
+    "description": "People have been exploring the oceans since prehistoric times, way before they had GPS to help them figure out where they were. Here are 6 ingenious ways our ancestors navigated the oceans.\n\nHosted by: Hank Green\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters\u2014we couldn't make SciShow without them! Shout out to Kevin Bealer, Mark Terrio-Cameron, KatieMarie Magnone, Patrick Merrithew, Charles Southerland, Fatima Iqbal, Benny, Kyle Anderson, Tim Curwick, Scott Satovsky Jr, Will and Sonja Marple, Philippe von Bergen, Bella Nash, Bryce Daifuku, Chris Peters, Patrick D. Ashmore, Charles George, Bader AlGhamdi\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttp://ageofex.marinersmuseum.org/index.php?type=navigationtool&id=14\nhttp://www.surveyhistory.org/jacob's_staff1.htm\nhttp://www.vos.noaa.gov/MWL/aug_08/navigation_tools.shtml\nhttp://www.math.nus.edu.sg/aslaksen/gem-projects/hm/0203-1-10-instruments/cross_staff.htm\nhttp://www.smithsonianmag.com/smithsonian-institution/how-sticks-and-shell-charts-became-sophisticated-system-navigation-180954018/\nhttp://www.metmuseum.org/toah/works-of-art/1978.412.826/\nhttp://ageofex.marinersmuseum.org/index.php?type=navigationtool&id=10\nhttp://www.independent.co.uk/news/science/archaeology/not-just-the-stuff-of-legend-famed-viking-sunstone-did-exist-believe-scientists-8521522.html\nhttp://www.sciencemag.org/news/2011/11/viking-sunstone-revealed\nhttp://www.livescience.com/27696-viking-sunstone-shipwreck.html\nhttp://www.visiteskifjordur.is/icelandic-spar/iceland-spar-vikings-use-navigation/\nhttp://www.oceannavigator.com/January-February-2003/Arab-navigators-used-a-Kamal-to-find-latitude/\nhttp://exploration.marinersmuseum.org/object/kamal/\nhttp://www.nature.com/nature/journal/v459/n7248/full/459778a.html\nhttp://www.cultural-china.com/chinaWH/html/en/History206bye774.html\nhttp://afe.easia.columbia.edu/special/china_1000ce_mingvoyages.htm\nhttp://nationalgeographic.org/encyclopedia/compass/\nhttp://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/biref.html\nhttps://www.astrolabes.org/pages/mariner.htm\nhttp://exploration.marinersmuseum.org/object/astrolabe/\nhttp://ageofex.marinersmuseum.org/index.php?type=navigationtool&id=12\nhttp://www.sciencemag.org/news/2014/10/epic-pre-columbian-voyage-suggested-genes\nhttp://www.newworldencyclopedia.org/entry/Compass\nhttp://www.livescience.com/32732-how-does-a-compass-work.html\nhttp://galileo.rice.edu/sci/observations/longitude.html\nhttp://www.pbs.org/weta/roughscience/series1/challenges/latlong/page4.html\nhttps://www.timeanddate.com/astronomy/tell-time-by-stars.html\nhttp://www.pbs.org/wayfinders/polynesian6.html\nhttps://www.quora.com/Why-is-the-light-coming-from-the-sun-semi-polarized-Is-it-because-of-the-Faraday-rotation\nhttp://www.olympusmicro.com/primer/lightandcolor/birefringence.html\nhttps://books.google.com/books?id=5VAVDAAAQBAJ&pg=PA288&\nhttp://www.sciencedirect.com/science/article/pii/S0315086085710300\nhttp://www.tandfonline.com/doi/abs/10.1080/03085696008592173?journalCode=rimu20\nhttps://www.britannica.com/place/Marshall-Islands",
+    "viewcount": 216025,
+    "author": "SciShow",
+    "url": "https://www.youtube.com/watch?v=2Bv8dc19HQ0",
+    "title": "6 Creative Ways People Used to Navigate the Oceans",
+    "dislikes": 73,
+    "bigthumb": "https://i.ytimg.com/vi/2Bv8dc19HQ0/sddefault.jpg",
+    "videoid": "2Bv8dc19HQ0",
+    "keywords": ["SciShow", "science", "Hank", "Green", "education", "learn", "navigation", "ocean", "sunstone", "viking", "compass", "lodestone", "stick chart", "sailing", "sailor", "mariner", "boat", "ship", "pacific", "micronesia", "marshall islands", "kamal", "north star", "polaris", "direction", "magnet", "latitude", "astrolabe", "china", "navy", "ming dynasty", "history", "calcite", "light", "refraction", "explore", "iceland"],
+    "length": 628,
+    "likes": 8111,
+    "duration": "00:10:28",
+    "thumb": "http://i.ytimg.com/vi/2Bv8dc19HQ0/default.jpg"
+}, {
+    "tags": [],
+    "size": ["species"],
+    "time": ["Modern Revolution"],
+    "teaches": ["The Internet","arpanet","Domain Name System (DNS)","Packet Switching"],
+    "is": ["video","history","beginning"],
+    "discipline": ["Computer Science"],
+    "username": "SciShow",
+    "rating": 4.69104245388,
+    "description": "The Internet is older than you might think!\n\nHosted by: Olivia Gordon\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters\u2014we couldn't make SciShow without them! Shout out to Kevin Bealer, Mark Terrio-Cameron, KatieMarie Magnone, Patrick Merrithew, Charles Southerland, Fatima Iqbal, Benny, Kyle Anderson, Tim Curwick, Scott Satovsky Jr, Will and Sonja Marple, Philippe von Bergen, Bella Nash, Bryce Daifuku, Chris Peters, Patrick D. Ashmore, Charles George, Bader AlGhamdi\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttp://royal.pingdom.com/2008/04/11/map-of-all-google-data-center-locations/\nhttps://web.archive.org/web/20120129120350/http://www.tildefrugal.net/tech/arp.php \nhttp://www.gartner.com/newsroom/id/3165317 \nhttp://www.atomicheritage.org/history/computing-and-manhattan-project \nhttps://amazon.com/Pleasure-Finding-Things-Out-Richard/dp/0465023959/ \nhttps://www.dlsweb.rmit.edu.au/set/Courses/Content/CSIT/oua/cpt160/2014sp4/chapter/10/ErrorCorrectionRedundancy.html \nhttps://books.google.com/books?id=5Jaa1BVverIC&pg=PA700\nhttp://www.pcmag.com/article2/0,2817,2372163,00.asp \nhttp://www.livinginternet.com/i/ii_darpa.htm \nhttps://www.zakon.org/robert/internet/timeline/ \nhttp://www.packet.cc/files/toward-coop-net.html \nhttp://www.unr.edu/cse/prospective-students/what-is-networking\nhttp://firstmonday.org/ojs/index.php/fm/article/view/612/533 \nhttp://www.historyofcomputercommunications.info/Book/2/2.8-The%20RFQ%20and%20Bidding68.html \nhttps://www.sri.com/work/timeline-innovation/timeline.php?timeline=computing-digital#!&innovation=arpanet \nhttp://www.livinginternet.com/i/ii_arpanet.htm\nhttp://www.packet.cc/files/ev-packet-sw.html\nhttp://searchnetworking.techtarget.com/definition/routing-table\nhttps://www.computer.org/csdl/proceedings/afips/1972/5079/00/50790243.pdf\nhttp://www.cs.ucsb.edu/~almeroth/classes/F04.176A/homework1_good_papers/jay-akkad.html\nhttps://www.cs.rutgers.edu/~pxk/352/exam/study-guide-final.html\nhttps://www.computer.org/csdl/mags/it/2014/03/mit2014030066-abs.html\nhttps://books.google.com/books?id=6KPMBQAAQBAJ&pg=PA18\nhttp://www.historyofcomputercommunications.info/Book/2/2.3-Circuit%20Switching.html \nhttp://privateline.com/?page_id=303 \nhttp://mason.gmu.edu/~afinn/html/tele/tech%20chapters/T12.htm \nhttp://ethw.org/Electromechanical_Telephone-Switching\nhttps://www.nytimes.com/2016/02/18/technology/personaltech/free-tools-to-keep-those-creepy-online-ads-from-watching-you.html\nhttp://www.science.smith.edu/~jcardell/Courses/EGR328/Readings/KuroseRoss%20Ch1.pdf \nhttp://www.rand.org/content/dam/rand/pubs/research_memoranda/2006/RM3420.pdf \nhttp://www.rand.org/pubs/research_memoranda/RM3420.html \nhttp://www.historyofcomputercommunications.info/Book/2/2.2-TheSeminalExperiment-65.html\nhttp://www.livinginternet.com/i/iw_packet_inv.htm\nhttp://www.historyofcomputercommunications.info/Book/2/2.7-PlanningARPANET67-68.html \nhttp://www.livinginternet.com/i/ii_imp.htm\nhttp://www.livinginternet.com/i/ii_imp_walden.htm\nhttp://www.livinginternet.com/i/iw_dns_history.htm \nhttp://www.computerhistory.org/internethistory/1970s/\nhttp://nrg.cs.ucl.ac.uk/internet-history.html \nhttp://www.livinginternet.com/i/ii_arpanet_gateways.htm\nhttp://www.nethistory.info/History%20of%20the%20Internet/beginnings.html \nhttp://www.hostingadvice.com/blog/tcpip-make-internet-work/\nhttp://searchnetworking.techtarget.com/definition/TCP-IP \nhttp://www.ifa.hawaii.edu/users/gmm/intro_ip/sec1.html \nhttp://www.computerhistory.org/internethistory/1980s/\nhttp://www.columbia.edu/~hauben/CS/arpanet-encyc.txt \nhttp://www.livinginternet.com/i/ii_tcpip.htm \nhttps://www.cs.umd.edu/class/spring2002/cmsc434-0101/MUIseum/applications/firstemail.html\nhttp://www.tldp.org/LDP/nag/node189.html \nhttp://www.livinginternet.com/References/Ian%20Hardy%20Email%20Thesis.txt\nhttp://www.livinginternet.com/e/ew_addr.htm \nhttps://technet.microsoft.com/en-us/library/2005.01.howitworksdns.aspx \nhttp://www.internetsociety.org/internet/what-internet/history-internet/brief-history-internet\nhttp://www.webhostingsearch.com/articles/history-of-domains-names.php \nhttp://www-math.mit.edu/~steng/18.996/lecture2_mit.pdf\nhttp://www.academia.edu/1416892/Getting_Started_Computing_at_the_AI_Lab \nhttps://books.google.com/books?id=cla-CgAAQBAJ&pg=PA28\nImages:\nhttps://commons.wikimedia.org/w/index.php?title=File:ARPANET_Info_Brochure.pdf&page=21#filelinks\nhttps://commons.wikimedia.org/wiki/File:J._C._R._Licklider.jpg\nhttps://upload.wikimedia.org/wikipedia/commons/5/50/Telephone_operators%2C_1952.jpg",
+    "viewcount": 188383,
+    "author": "SciShow",
+    "url": "https://www.youtube.com/watch?v=1UStbvRnwmQ",
+    "title": "How the Internet Was Invented | The History of the Internet, Part 1",
+    "dislikes": 695,
+    "bigthumb": "https://i.ytimg.com/vi/1UStbvRnwmQ/sddefault.jpg",
+    "videoid": "1UStbvRnwmQ",
+    "keywords": ["SciShow", "science", "Hank", "Green", "education", "learn", "history", "internet", "part", "one", "computer", "network", "darpa", "arpa", "arpanet", "olivia", "gordon"],
+    "length": 697,
+    "likes": 8303,
+    "duration": "00:11:37",
+    "thumb": "http://i.ytimg.com/vi/1UStbvRnwmQ/default.jpg"
+}, {
+    "tags": [],
+    "size": ["The Universe","Observable Universe"],
+    "time": ["Big Bang"],
+    "teaches": ["Horizon Problem","Space","Cosmic Inflation","Speed of Light"],
+    "is": ["video"],
+    "discipline": ["Cosmology","Physics"],
+    "username": "New Scientist",
+    "rating": 4.87368421053,
+    "description": "In an expanding universe, bits of the far-flung cosmos could never have been in contact with each other. So why do they all look the same?\n\nRead the whole story at https://www.newscientist.com/round-up/cosmic-uncertainty/",
+    "viewcount": 8598,
+    "author": "New Scientist",
+    "url": "https://www.youtube.com/watch?v=axrbSOFIdnk",
+    "title": "The horizon problem - why does the universe look the same in all directions?",
+    "dislikes": 6,
+    "bigthumb": "https://i.ytimg.com/vi/axrbSOFIdnk/sddefault.jpg",
+    "videoid": "axrbSOFIdnk",
+    "keywords": ["science", "physics", "space", "cosmology", "horizon problem", "new scientist", "animation"],
+    "length": 151,
+    "likes": 184,
+    "duration": "00:02:31",
+    "thumb": "http://i.ytimg.com/vi/axrbSOFIdnk/default.jpg"
+}, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
+    "username": "TED-Ed",
+    "rating": 4.87229660144,
+    "description": "View full lesson: http://ed.ted.com/lessons/what-happened-to-trial-by-jury-suja-a-thomas\n\nIn the United States today, juries decide less than 4% of criminal cases and less than 1% of civil cases filed in court. At the same time, jury systems in other countries are growing. So what happened in the US? And could the disappearance of juries be a good thing? Suja A. Thomas explores both sides of this dilemma. \n\nLesson by Suja A. Thomas, animation by Globizco.",
+    "viewcount": 226483,
+    "author": "TED-Ed",
+    "url": "https://www.youtube.com/watch?v=qVoYFYxGJPg",
+    "title": "What happened to trial by jury? - Suja A. Thomas",
+    "dislikes": 186,
+    "bigthumb": "https://i.ytimg.com/vi/qVoYFYxGJPg/sddefault.jpg",
+    "videoid": "qVoYFYxGJPg",
+    "keywords": ["TED", "TED-Ed", "TED Ed", "TED Education", "Suja A. Thomas", "Globizco", "jury", "trial", "trial by jury", "legal system", "judge", "legislative branch", "constitution", "plea bargain", "Supreme Court", "summary judgment", "civil case", "criminal case", "arbitration", "bias"],
+    "length": 252,
+    "likes": 5640,
+    "duration": "00:04:12",
+    "thumb": "http://i.ytimg.com/vi/qVoYFYxGJPg/default.jpg"
+}, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
+    "username": "Vsauce",
+    "rating": 4.8933938139,
+    "description": "my twitter: @tweetsauce\nmy instagram: electricpants\n\nSources and links to learn more below!\n\nI\u2019m very grateful to mathematician Hugh Woodin, Professor of Philosophy and Mathematics at Harvard, for taking the time on multiple occasions to discuss this topic with me and help me wrap my (finite) head around it.\n\nI\u2019m also grateful to David Eisenbud, the Director of the Mathematical Sciences Research Institute (MSRI) and professor of mathematics at the University of California, Berkeley, for his help and for connecting me with Hugh Woodin.\n\nAnd of course, big thanks to Brady Haran who created the \u201cmile of pi\u201d seen in this video and connected me with all these mathematicians in the first place. His channel, Numberphile, is superb: https://www.youtube.com/user/numberphile\n\nBOOKS related to these topics that I used:\n\n\u201cThe Outer Limits of Reason\u201d by Noson S. Yanofsky: http://amzn.com/0262019353\n\u201cInfinity and The Mind\u201d by Rudy Rucker: http://amzn.com/0691121273\n\u201cRoads to Infinity\u201d by John C. Stilwell: http://amzn.com/1568814666\n\u201cMore Precisely: The Math You Need to Do Philosophy\u201d by Eric Steinhart: http://amzn.com/1551119099\n\u201cSatan, Cantor and Infinity: Mind-Boggling Puzzles\u201d by Raymond M. Smullyan: http://amzn.com/0486470369\n\nclassic book that helps introduce concept of axioms: \u201cIntroduction to the Foundations of Mathematics\u201d by Raymond L. Wilder: http://amzn.com/0486488209\n\nHugh Woodin speaking about infinity at the World Science Festival: https://youtu.be/KDCJZ81PwVM?t=29m45s\n\nNames of large (finite) numbers: https://en.wikipedia.org/wiki/Names_of_large_numbers\n\nGeoglyphs:\n\nThe biggest number: https://goo.gl/maps/7GWcpnzo7iG2\n\nFovant badges: https://en.wikipedia.org/wiki/Fovant_Badges\n\nBattalion Park: https://en.wikipedia.org/wiki/Battalion_Park\n\nA mile of pi [VIDEO]: https://www.youtube.com/watch?v=0r3cEKZiLmg\n\nWikipedia\u2019s great visualization of ordinals out to omega^omega: https://en.wikipedia.org/wiki/File:Omega-exp-omega-labeled.svg\n\nas seen on: https://en.wikipedia.org/wiki/Ordinal_number\n\nthis is also a good page about ordinals: http://math.wikia.com/wiki/Ordinal_Number\n\nalso: http://www.cut-the-knot.org/WhatIs/Infinity/Ordinals.shtml\n\nand: https://en.wikipedia.org/wiki/Order_type and https://en.wikipedia.org/wiki/Well-order\n\nAxioms: \nhttps://en.wikipedia.org/wiki/Axiom\nhttps://www.reddit.com/r/askscience/comments/30xokb/have_there_been_axioms_that_later_have_been/\nhttp://philosophy.stackexchange.com/questions/5922/what-is-the-difference-between-dogma-and-an-axiom\nhttp://www.cs.umd.edu/~gasarch/BLOGPAPERS/belaxioms1.pdf\nhttp://www.cs.umd.edu/~gasarch/BLOGPAPERS/belaxioms2.pdf\n\nTHE UNREASONABLE EFFECTIVENSS OF MATHEMATICS IN THE NATURAL SCIENCES\n[PDF]: http://www.maths.ed.ac.uk/~aar/papers/wigner.pdf\nhttps://en.wikipedia.org/wiki/The_Unreasonable_Effectiveness_of_Mathematics_in_the_Natural_Sciences\n\nLarge Cardinal game based on 2048: http://cantorontheshore.blogspot.it/2014/10/one-reinhardt-and-counting.html\n\nOther good resources:\n\nhttp://quibb.blogspot.com/2012/01/infinity-first-transfinite-cardinal.html\nhttp://plato.stanford.edu/entries/set-theory/\nhttp://cantorsattic.info/Cantor%27s_Attic\nhttp://cantorontheshore.blogspot.co.at/2014/09/artemis-fowl-and-large-cardinals_22.html\nhttp://isomorphism.es/post/10782081422/what-comes-after-infinity-transfinite-arithmetic-and-ord\nhttps://lukepalmer.wordpress.com/2007/06/14/the-lesser-of-infinitely-many-evils/\n\nMUSIC BY:\nhttp://www.youtube.com/JakeChudnow\nhttp://www.audionetwork.com",
+    "viewcount": 7916645,
+    "author": "Vsauce",
+    "url": "https://www.youtube.com/watch?v=SrU9YDoXE88",
+    "title": "How To Count Past Infinity",
+    "dislikes": 5805,
+    "bigthumb": "https://i.ytimg.com/vi/SrU9YDoXE88/sddefault.jpg",
+    "videoid": "SrU9YDoXE88",
+    "keywords": ["infinity", "math", "maths", "vsauce", "michael stevens", "aleph", "omega", "transfinite", "ordinals", "cardinals", "inaccessible", "large cardinals", "set theory", "biggest number", "largest number", "biggest infinity", "last number", "end of numberline", "types of number", "number", "axiom", "science", "theory", "cantor", "beyond", "bigger than infinity", "after infinity", "counting", "ordinal numbers", "learn", "stem", "college", "high school", "test prep", "exam", "hugh woodin", "woodin cardinal", "woodin", "vihart", "the fault in our stars"],
+    "length": 1426,
+    "likes": 212006,
+    "duration": "00:23:46",
+    "thumb": "http://i.ytimg.com/vi/SrU9YDoXE88/default.jpg"
+}, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
+    "username": "Vox",
+    "rating": 4.92920353982,
+    "description": "A tiny spacecraft has been traveling 9 years for this moment \u2014 the day we finally get a close look at Pluto. Here's what you need to know about NASA's New Horizon's mission.\n\nLearn more: http://www.vox.com/2015/7/9/8921713/pluto-mission-new-horizons-nasa-flyby\n\nSubscribe to our channel! http://goo.gl/0bsAjO\n\nVox.com is a news website that helps you cut through the noise and understand what's really driving the events in the headlines. Check out http://www.vox.com to get up to speed on everything from Kurdistan to the Kim Kardashian app. \n\nCheck out our full video catalog: http://goo.gl/IZONyE\nFollow Vox on Twitter: http://goo.gl/XFrZ5H\nOr on Facebook: http://goo.gl/U2g06o",
+    "viewcount": 431730,
+    "author": "Vox",
+    "url": "https://www.youtube.com/watch?v=Eo3EJYo2dX8",
+    "title": "NASA's incredible mission to Pluto, explained",
+    "dislikes": 88,
+    "bigthumb": "https://i.ytimg.com/vi/Eo3EJYo2dX8/sddefault.jpg",
+    "videoid": "Eo3EJYo2dX8",
+    "keywords": ["vox", "news", "current events", "world", "cnn", "vice", "fox", "msnbc", "breakdown", "eli5", "NASA (Spacecraft Manufacturer)", "Pluto (Astronomical Discovery)", "Astronomy (Field Of Study)", "space", "new horizons", "New Horizons (Space Mission)", "dwarf planet", "charon", "solar system", "Spacecraft (Industry)", "Space Exploration (Literature Subject)", "launch"],
+    "length": 227,
+    "likes": 4884,
+    "duration": "00:03:47",
+    "thumb": "http://i.ytimg.com/vi/Eo3EJYo2dX8/default.jpg"
+}, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
+    "username": "TED-Ed",
+    "rating": 4.96780933494,
+    "description": "Adam Savage walks through two spectacular examples of profound scientific discoveries that came from simple, creative methods anyone could have followed -- Eratosthenes' calculation of the Earth's circumference around 200 BC and Hippolyte Fizeau's measurement of the speed of light in 1849.",
+    "viewcount": 2203078,
+    "author": "TED-Ed",
+    "url": "https://www.youtube.com/watch?v=F8UFGu2M2gM",
+    "title": "How simple ideas lead to scientific discoveries",
+    "dislikes": 227,
+    "bigthumb": "https://i.ytimg.com/vi/F8UFGu2M2gM/sddefault.jpg",
+    "videoid": "F8UFGu2M2gM",
+    "keywords": ["Science and Technology", "Nature of Scientific Invention", "Adam Savage", "Inventions That Shaped History", "Science", "Technology", "Scientific Method", "Speed of Light", "Circumference of the Earth", "Inertia", "Physics", "Invention", "Scientific Discoveries", "Math", "TED", "TED-Ed", "TED Education", "TED-Ed Animation", "Jeremiah Dickey", "Celeste Lai", "Kari Mulholland", "Franz Palomares"],
+    "length": 452,
+    "likes": 28011,
+    "duration": "00:07:32",
+    "thumb": "http://i.ytimg.com/vi/F8UFGu2M2gM/default.jpg"
+}, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
+    "username": "Vox",
+    "rating": 4.94953596288,
+    "description": "The science buried under the pseudoscience.\n\n\nSubscribe to our channel! http://goo.gl/0bsAjO\n\nSources:\nMars photography by Tun\u00e7 Tezel: http://www.twanight.org/newtwan/galleries.asp?Sort=Photographer&Value=Tunc%20Tezel&page=1\nMars visualization from Nooch 86: https://www.youtube.com/watch?v=TK9ozJYELR8\nSolar system orbits via Michael Van Daniker, Andrew Lund, and the Astronomy Workshop of Douglas Hamilton at U. Maryland http://janus.astro.umd.edu/SolarSystems/\nPtolemaic system vsualizer via Nebraka Astronomy Applet Project: http://astro.unl.edu/naap/ssm/animations/ptolemaic.html\nRetrograde motion visualizer via MHeducation: http://highered.mheducation.com/olcweb/cgi/pluginpop.cgi?it=swf::800::600::/sites/dl/free/0072482621/78780/Retro_Nav.swf::Retrograde%20Motion\n\n\n\n\nVox.com is a news website that helps you cut through the noise and understand what's really driving the events in the headlines. Check out http://www.vox.com to get up to speed on everything from Kurdistan to the Kim Kardashian app. \n\nCheck out our full video catalog: http://goo.gl/IZONyE\nFollow Vox on Twitter: http://goo.gl/XFrZ5H\nOr on Facebook: http://goo.gl/U2g06o",
+    "viewcount": 400405,
+    "author": "Vox",
+    "url": "https://www.youtube.com/watch?v=FtV0PV9MF88",
+    "title": "Mercury retrograde, explained without astrology",
+    "dislikes": 174,
+    "bigthumb": "https://i.ytimg.com/vi/FtV0PV9MF88/sddefault.jpg",
+    "videoid": "FtV0PV9MF88",
+    "keywords": ["mercury retrograde", "astrology", "astronomy", "retrograde motion", "explained", "space", "solar system", "geocentric", "heliocentric", "ptolemy", "copernicus", "illusion", "optical illusion", "orbit", "Earth", "mercury", "mars retrograde", "horoscopes", "science", "vox", "mercury in retrograde", "flat earth"],
+    "length": 230,
+    "likes": 13618,
+    "duration": "00:03:50",
+    "thumb": "http://i.ytimg.com/vi/FtV0PV9MF88/default.jpg"
+}, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
+    "username": "Kurzgesagt \u2013 In a Nutshell",
+    "rating": 4.96466864746,
+    "description": "We are so used to some things that we stopped wondering about them. Like light. What is light? Some kind of wavy thing, right? Kind of. \n\nShort bonus video for the people waiting for new stuff. \n\nMusic by: \n\nhttps://soundcloud.com/epicmountain/light\nhttps://epicmountainmusic.bandcamp.com/track/light\nwww.epic-mountain.com\n\nOur Patreon: https://www.patreon.com/Kurzgesagt?ty=h\n\nVisit us on reddit/facebook/twitter. You know. Social media stuff.\n\nhttps://www.reddit.com/r/kurzgesagt\nhttp://kurzgesagt.org\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nPhiroze Dalal, T0T0S, Ryan OHoro, Kay Brinkmann, A La Mode, Marcelo Fernandes de Souza Filho, Vince, Thomas Shiels, Tom Wardrop, Shawn Marincas, Pontus Att\u00e5sen, Paul, Horacio Medina, Jim Yang, Arnav Guleria, Clemens, Robert McKone, Tahseen Mushtaque, Todd Binkley, Jochen, Vahur S, Matthew von der Ahe, Thomas Russell, Erick, Vivek Kotecha, Nils Caspar, Holger Fassel, Artur Szczypta, Jeff Fellows, Daniel Duffee, Konstantin Shabashov, Jackson R Hanna, Tim drake, Pascal de Reuck, Mike Galles, ByeongWook Lee, Guus Ketelings, Franko Papi\u0107, Thalia, Narat Suchartsunthorn, Lorenz Zahn, Brian Aparicio, J\u00f6rg Vogelsang, Rashed Ali, Darwin Ranzone, Tyler Thornton, Bernat Unanue, David Pfister, Ash Patel, Han Saini, Ute Moll, Vrm Vee Are Em, Ioanna Bischinioti, Jenny Zhou, Vince Babbra, Dan Cortes, Matt K\n\nWhat is light?\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
+    "viewcount": 2731775,
+    "author": "Kurzgesagt \u2013 In a Nutshell",
+    "url": "https://www.youtube.com/watch?v=IXxZRZxafEQ",
+    "title": "What Is Light?",
+    "dislikes": 547,
+    "bigthumb": "https://i.ytimg.com/vi/IXxZRZxafEQ/sddefault.jpg",
+    "videoid": "IXxZRZxafEQ",
+    "keywords": ["light", "physics", "photon", "wave", "visible light", "universe", "sun", "star", "speed of light", "particle", "energy", "funny", "earth", "magnet", "electromagnetism", "electron", "magnet field", "electric field", "science", "lights", "infographic", "kurzgesagt", "in a nutshell"],
+    "length": 279,
+    "likes": 61381,
+    "duration": "00:04:39",
+    "thumb": "http://i.ytimg.com/vi/IXxZRZxafEQ/default.jpg"
+}, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
+    "username": "Kurzgesagt \u2013 In a Nutshell",
+    "rating": 4.97089447726,
+    "description": "What is dark energy? What is dark matter? Well, if we knew exactly we would have a nobel prize \u2013 we know that they exist though. So what do we know about those strange things?\n\nCheck out THE NOVA PROJECT to learn more about dark energy: www.nova.org.au \n\nMusic by: www.epic-mountain.com\n\nVisit us on our Website, Twitter, Facebook, Patreon or Behance to say hi!\n\nhttp://kurzgesagt.org\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\nhttp://www.patreon.com/Kurzgesagt\nhttp://www.behance.net/Kurzgesagt\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nAjay Shekhar, Charles Kelsey, Daniel P, Enrico, Eduardo Rampelotto Gatto, Philip, Andrew Cochran, Mahmut Kaynar, Jon Moroney, Charles Kuang, Eugene Cham, Brandon Helvie, David Garcia Quintas, Renaud Savignard, Yuki Reid, James, Maximilian Ritter, Loren Barcus, Viktor Asklund, Georg Faber, Bruno Deschatelets, Pablo Zetina, Massimiliano Cacciotti, Pranab Shenoy, Ignacio Flores, Yousif, Tom Langford, Luca Friedrich, Roy Ston, Jesse Powell, Dave, Philipi Adolfo Willemann, Koen Driessen, Terry Lipstein, Mike Horner, Peter Dexter, William Iverson, Wouter ten Bosch, Samuel Morissette, Tim Carll, Tersol, Dennis van Ruijven, Eugene schula, Wilker, \u51a0\u744b \u9673, Mason Y, Wei Wong, Hata'ab, Artem Anchugov, Anton Sterenborg, Nikki Toss, Jan Berdel, Torin Rettig, Jon Davis, ryandelsol, Sieglinde Geisel, Pierre Lacasse, Danylo Bozhagora, Jens-Ejnar Stephansen, Erven, Philly Cashion, varinder singh bal, Jerome Dimaano, Clayton Fussell, Daniel Ahlstr\u00f6m, Dan Q, Andres Jacobsen, Mikkel Jespersen, Igor Benicio de Mesquita, Don Smith, Dave Hng, Weston, Samuel Pacheco, Bear, Nate Rice, Victor C., Yeonghoon Park, Stephen Morris, Paul Strauss, Martin Fink-Jensen, Josh Allen, Eric, Karl Snickars, Greeny Liu, Marc Dumont, Jennifer Hiller, Tibor Schiemann, Michael Koldsgaard, Gilberto, Christian Fernandez, dante harper, John, B\u00fcnyamin Tetik, Ernst, Matthew Sample, Elchus, Hugo, Stefan Ghizelea, David, Lightbow, Simon Thibodeau, Stephen Morse, Amdrew, Nicolas Huguet-Latour, Peter \u0160iru\u010dek, Evan Low, Mehmet Sevil, Markus Wolski, Philip Freeman, Chris Thompson, Jesse MacLean, Soares, Harry, Dario W\u00fcnsch, Matt Collins, Yannick, Geoffrey Lee, Daniel McCouid-Carr, Doc Matthews, Dan Treasure, Romi Kuntsman, Laurence Dixon, Aurelien Gouny, Russell McCallion, Patrick Noble, Ziggy Freed, M4tc4t, ThereIsNoYeti, Erika Marks, Samuel Matchain, BurmansHealthShop, Cory Wright, Per Markus Edvardsen, Thomas Wagteveld, Brian David Henderson, THEGURUDK, Magnus Erichsen, Theo Alves Monteiro, Brett Cowie, Valentin, Sergio Uribe, Alejandro Medrano Gil, Tony Montuori, Praveen, Jeff, Malthe Agger, Harrison Leake, Robert Varasciuc, Bahjat, Spencer Clark, Joshua Grose, Eugene Foss, Mike Mintz, Colin Palin, James Khoo, Daniel OCL, Ben Nunan, Jay Kidd, Denis Smajlovic, Sofian Madi, Steffen Weng, CoVis CoWorking, Hamad, Pongskorn, Chris Smith, Jan E, Vojt\u011bch S\u00e1zel, Lethargicpanda, Gabriel Tougas, David Torres ,Mark Scheurwater, Andrew Connor, Lars Vas Dias, Peter Ficinus, Zahan Malkani, Collin Banko, Jacob Schirm, Erik Brizzee, Robby Olivam, Vaelohs, Applied Science, Alex Thaler, Nathanael, S\u00e9bastien Blanchet, Howard Lince III, William Parker, Steven, Lance White, Allan Farrell, Eli Fisker, Osric Lord-Williams, Alexander Kosenkov, Ryan A. Schauer, A Patron, Colman Joeri, Oren Milman, Maggie Chok, Emil, Diego Nakama, Rainbow Bleh, Lennart Rosam, Andrej Gukov, Adam Kenningham-Brown, James Spellman, John Gietzen, Chris Anderson, Joe Uong, \u00deorsteinn S\u00e6var Hjartarson, Richard Harrison, Paul Nel, Nick Yonge, Benoit Pette, Levi, Gustavo, Alexander Brazie, Albert Z, Dany, charlie, Evgenia Yigitalieva, Casey Mazzarella, Dave Neu, Scott Laing, Zr4g0n, Dimitry Ivanov, Doug Wollison, JAMES RUDNET, Gizem G\u00fcrkan, Lotean Loris, Brian Butler, George Chearswat, somersault18:24, Alto Ono, Ben Shackman, Matthew Gill, Reinaldo Mizutani, Jackson Tan, Julius Hofman, Demian Rosenblatt, Muath, Lucas Lohr, Edgar Duarte Ortega, Marvin, Javier de la Garza, Avi Yashchin , Peter \u017dnuderl, Stephen Chen, Bruno Ara\u00fajo, Alipasha Sadri, Jeff Churchill, Fernando Henrique, Timothy Noble, Carlos Garc\u00eda Rojas, Matthew Willhite, Daniel, Roman Doboni, Jose Caetano, Kevin P, Seona Tea, Carlos Bohorquez, Steven Ratner, Alexander, JiaJunQiu, Rob PT, Kymate, Bruce low, Jos\u00e9, Morten Myrland, Alessandro Frau, Brad Wardell, Simon Younan, Thomas Lee, David Harbinson, Danilo Caires, Alexander Scheffer, Finn Edwards, Rikard Nyberg, Nicholas Holtz, Adriano Collalti, Josh Yates-Walker, Jason Berlin, Bret Brizzee, Dylan, Florian Guitton, Andreas Kollmann, Steven Byrd, Jezariael Demos, Eric Austin\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
+    "viewcount": 2796062,
+    "author": "Kurzgesagt \u2013 In a Nutshell",
+    "url": "https://www.youtube.com/watch?v=QAa2O_8wBUQ",
+    "title": "What is Dark Matter and Dark Energy?",
+    "dislikes": 478,
+    "bigthumb": "https://i.ytimg.com/vi/QAa2O_8wBUQ/sddefault.jpg",
+    "videoid": "QAa2O_8wBUQ",
+    "keywords": ["Dark Energy", "Dark Matter", "Energy (Industry)", "Condensed Matter Physics (Field Of Study)"],
+    "length": 381,
+    "likes": 65214,
+    "duration": "00:06:21",
+    "thumb": "http://i.ytimg.com/vi/QAa2O_8wBUQ/default.jpg"
+}, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
+    "username": "ouLearn on YouTube",
+    "rating": 4.94274094636,
+    "description": "TELL US WHAT YOU THINK and help us improve our Free Educational Resources\n\nhttps://www.surveymonkey.com/r/2015_YouTube_descr\n\nFor more like this subscribe to the Open University channel https://www.youtube.com/channel/UCXsH4hSV_kEdAOsupMMm4Qw\n\n\nFree learning from The Open University http://www.open.ac.uk/openlearn/history-the-arts/culture/english-language\n\n---\n\nA look at the history of the English language. (this is a combination of all 10 parts of the series into one video)\n\n(all parts - combined)\nPlaylist link - http://www.youtube.com/playlist?list=PLA03075BAD88B909E\n\n---\n\nStudy 'English Language' at the Open University: http://www3.open.ac.uk/study/undergraduate/languages/english-language/index.htm \n\nExplore qualifications in Languages with the OU\nhttp://www3.open.ac.uk/study/undergraduate/languages/index.htm\n\nExplore qualifications in Arts and Humanities with the OU http://www3.open.ac.uk/study/undergraduate/arts-and-humanities/index.htm\n\nStudy 'Worlds of English' with the OU http://www3.open.ac.uk/study/undergraduate/course/u214.htm\n\n---",
+    "viewcount": 1559830,
+    "author": "ouLearn on YouTube",
+    "url": "https://www.youtube.com/watch?v=H3r9bOkYW9s",
+    "title": "History of English (combined)",
+    "dislikes": 222,
+    "bigthumb": "https://i.ytimg.com/vi/H3r9bOkYW9s/sddefault.jpg",
+    "videoid": "H3r9bOkYW9s",
+    "keywords": ["History", "of", "English", "combined"],
+    "length": 681,
+    "likes": 15269,
+    "duration": "00:11:21",
+    "thumb": "http://i.ytimg.com/vi/H3r9bOkYW9s/default.jpg"
+}, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
+    "username": "Kurzgesagt \u2013 In a Nutshell",
+    "rating": 4.954164505,
+    "description": "The last star in the universe will be a red dwarf. Red dwarfs in general might be great places to look for aliens \u2013 or planets for humans to find a new home after our solar system has died.\n\nSupport us on Patreon so we can make more stuff (and get cool wallpapers): https://www.patreon.com/Kurzgesagt?ty=h\n\nGet the music of the video here: \n\nhttps://epicmountainmusic.bandcamp.com/track/red-dwarfs\n\nhttps://soundcloud.com/epicmountain/red-dwarfs\n\nhttp://epic-mountain.com\n\nOr follow us on social media or reddit: \n\nhttp://kurzgesagt.org\nhttps://www.reddit.com/r/kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\nhttps://www.facebook.com/Kurzgesagt\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\n(This video has been uploaded on the road, Patrons will be added on Monday!!)\n\nThe Last Star in the Universe \u2013 Red Dwarfs Explained\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
+    "viewcount": 4361777,
+    "author": "Kurzgesagt \u2013 In a Nutshell",
+    "url": "https://www.youtube.com/watch?v=LS-VPyLaJFM",
+    "title": "The Last Star in the Universe \u2013 Red Dwarfs Explained",
+    "dislikes": 1067,
+    "bigthumb": "https://i.ytimg.com/vi/LS-VPyLaJFM/sddefault.jpg",
+    "videoid": "LS-VPyLaJFM",
+    "keywords": ["red dwarf", "universe", "heat death", "end of the universe", "death", "space", "sun", "star", "physics", "astronomy", "life cycle", "hydrogen", "helium", "humans", "earth", "aliens", "alien life", "exoplanet", "gas giant", "super earth", "white dwarf", "black dwarf", "life", "last star", "funny", "kurzgesagt", "in a nutshell", "future"],
+    "length": 350,
+    "likes": 92049,
+    "duration": "00:05:50",
+    "thumb": "http://i.ytimg.com/vi/LS-VPyLaJFM/default.jpg"
+}, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
+    "username": "cassiopeiaproject",
+    "rating": 4.66666650772,
+    "description": "Find out more about the Periodic Table!",
+    "viewcount": 123810,
+    "author": "cassiopeiaproject",
+    "url": "https://www.youtube.com/watch?v=5MMWpeJ5dn4",
+    "title": "Periodic Table",
+    "dislikes": 25,
+    "bigthumb": "",
+    "videoid": "5MMWpeJ5dn4",
+    "keywords": ["Chemistry", "Periodic", "Table", "atom", "electron", "element", "quantum", "number", "orbital", "energy"],
+    "length": 230,
+    "likes": 275,
+    "duration": "00:03:50",
+    "thumb": "http://i.ytimg.com/vi/5MMWpeJ5dn4/default.jpg"
+}, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Fermilab",
     "rating": 4.9588688946,
     "description": "The Large Hadron Collider or LHC is the world\u2019s biggest particle accelerator, but it can only get particles moving very quickly.  To make measurements, scientists must employ particle detectors. There are four big detectors at the LHC: ALICE, ATLAS, CMS, and LHCb.  In this video, Fermilab\u2019s Dr. Don Lincoln introduces us to these detectors and gives us an idea of each one\u2019s capabilities.\n\nRelated videos:\nhttp://www.youtube.com/watch?v=debQ60QVtYQ\nhttp://www.youtube.com/watch?v=-d6sKfPfYTU",
@@ -15,6 +505,12 @@ var videos = [{
     "duration": "00:06:55",
     "thumb": "http://i.ytimg.com/vi/X3tvgyrb2X4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Fermilab",
     "rating": 4.86897313213,
     "description": "In this video, Fermilab's Dr. Don Lincoln describes the principle of supersymmetry in an easy-to-understand way.  A theory is supersymmetric if it treats forces and matter on an equal footing.  While supersymmetry is an unproven idea, it is popular with particle physics researchers as a possible next step in particle physics.",
@@ -31,6 +527,12 @@ var videos = [{
     "duration": "00:05:44",
     "thumb": "http://i.ytimg.com/vi/0CeLRrBAI60/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "BBC Radio 4",
     "rating": 4.97688888889,
     "description": "From the BBC Radio 4 series about life's big questions - http://www.bbc.co.uk/historyofideas\n\nThe existentialist Jean-Paul Sartre thought that human beings live in anguish. Not because life is terrible. But rather because, we\u2019re \u2018condemned to be free\u2019. We're \u2018thrown\u2019 into existence, become aware of ourselves, and have to make choices. Even deciding not to choose is a choice. According to Sartre, every choice reveals what we think a human being should be.\n\nNarrated by Stephen Fry. Scripted by Nigel Warburton. \n\nThis project is from the BBC in partnership with The Open University, the animations were created by Cognitive.",
@@ -47,6 +549,12 @@ var videos = [{
     "duration": "00:02:05",
     "thumb": "http://i.ytimg.com/vi/qpXNRrtuo38/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.91014332966,
     "description": "View full lesson: http://ed.ted.com/lessons/the-genius-of-mendeleev-s-periodic-table-lou-serico\n\nThe elements had been listed and carefully arranged before Dmitri Mendeleev. They had even been organized by similar properties before. So why is Mendeelev's periodic table the one that has endured? Lou Serico explains via eka-aluminum, an element whose existence Mendeelev predicted years before it was discovered.\n\nLesson by Lou Serico, animation by TED-Ed.",
@@ -63,6 +571,12 @@ var videos = [{
     "duration": "00:04:25",
     "thumb": "http://i.ytimg.com/vi/fPnwBITSmgU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.8795962509,
     "description": "View full lesson: http://ed.ted.com/lessons/your-brain-can-solve-algorithms-david-j-malan\n\nAn algorithm is a mathematical method of solving problems both big and small. Though computers run algorithms constantly, humans can also solve problems with algorithms. David J. Malan explains how algorithms can be used in seemingly simple situations and also complex ones.\n\nLesson by David J. Malan, animation by enjoyanimation.",
@@ -79,6 +593,12 @@ var videos = [{
     "duration": "00:04:58",
     "thumb": "http://i.ytimg.com/vi/6hfOvs8pY1k/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.96042524005,
     "description": "Planet Earth is this solid thing you are standing on right now. In your everyday life you don't really waste a thought about how amazing this is. A giant, ancient, hot rock. How did it come into existence and how big is it really? You will be surprised. The ground you are standing on is just a very, very small part of the big picture. \n\nTHANK YOU FOR AN AWESOME YEAR YOUTUBE! :D\n\nLINK\n\nThomas who makes our MUSIC has his own company now!! So if you want music as awesome as ours or just take a look at the music from the last videos, here is Thomas' new website and his soundcloud at  & epic-mountain.com & soundcloud.com/epicmountain.\n\nVideos, explaining things. Like evolution, time, space, global energy or our existence in this strange universe. \nWe are a team of designers, journalists and musicians who want to make science look beautiful. Because it is beautiful. \n\nVisit us on our Website, Twitter, Facebook, Patreon or Behance to say hi!\n\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\nhttp://kurzgesagt.org\nhttp://www.patreon.com/Kurzgesagt\nhttp://www.behance.net/kurzgesagt\n\nTHANKS A LOT TO OUR PATRONS FOR SUPPORTING US:\n\nJustin Degenaars\nOpal Hartbower\njordan gardner\nJeff Le\nDevir Islas\nScott Zell\nJeroen Koerts\nDerek Loa\nChris Kitching\nTony Morley\nTanya Smirnova\nPatrick Eyrich\nJ.J.\nChris Linardos\nDean Herbert\nAdam Primaeros\nRory Bennett\nGa\u00ebtan Duvaux\nRasmus Lind\nCaroline Andrewes\nDeanie Adams\nChris Dudley\nAlex Kaplan\nKokLiang Lim\nAlexander Law McCormack Heavens\nChris Doughty\nDario Pagnia\nSara Shah\nEduardo Barbosa\nGhitea Andrei Paul\nNeve Laughery\nEliud Vasquez\nMaximilian Heitsch\nSebastian Laiseca\nAlejandro Liechty\nDavid Davenport-Firth\nJanne Jaukkuri\nPascal B.\nBrandon Liu\nTim\nJustin T.\nDaniel O.C.L.\nLeigh Thompson\nHeemi Kutia\nValerie Brunet\nsomersault18:24 \nJavier de la Garza\nPeter \u017dnuderl\nRandy Knapp\nBeno\u00eet Graham\nJeff Churchill\nJonathan Velazquez Gore\nDaniel \nPol Lutgen\nSeona Tea\nDaniel Fuchs\nThomas Lee\nFinn Edwards\nPetr Pila\u0159\nBalazs-Hegedus Jozsef\nFabricio Godoy\nCharles Kuang\nMaximilian Ritter\nYousif\nJesse Powell\nPeter Wagner\nIgor Benicio de Mesquita\nSiddharth Bajaj\nGreeny Liu\nTibor Schiemann\ndante harper\nB\u00fcnyamin Tetik\nStephen Morse\nEvan Low\nDario *Liquid TLO* W\u00fcnsch\nMatthew Macomber\nEvan\nZiggy Freed\nChase Gotlieb\nBrian David Henderson\n\nEverything You Need to Know About Planet Earth\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -95,6 +615,12 @@ var videos = [{
     "duration": "00:07:22",
     "thumb": "http://i.ytimg.com/vi/JGXi_9A__Vc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.90729881722,
     "description": "How did everything get started? \n\nHas the universe a beginning or was it here since forever? Well, evidence suggests that there was indeed a starting point to this universe we are part of right now. But how can this be? How can something come from nothing? And what about time? We don't have all the answers yet so let's talk about what we know.\n\nAlso, we try to make this one not depressing. Tell us if we succeeded. \n\nwww.Kurzgesagt.org\n\nBY THE WAY. We have a website now. We'll try to blog from time to time, show you guys how we make the videos and give more insight to our process. Also we sell stuff. We really don't know where this whole kurzgesagt stuff leads us. But we are really thankful for all the attention and positive feedback and yeah, maybe we can make this our jobs -- it would be pretty nice and we could do more content each month. But we'll see. For now, thank you very much everybody for making this little adventure possible. \n\nwww.Kurzgesagt.org\n\nIf you like the MUSIC of the video, you can get it here: http://bit.ly/1fCOlLI\nThomas did an aweful good job again. :)\n\nNext Video: April. (as soon as we can but we kind of have to make a living and visit college) Topic: Nuclear Energy (probably, if we finish the research in time -- if not something else)\n\nShort videos, explaining things. For example Evolution, the Universe, Time, the Stock Exchange or controversial topics like Fracking. Because we love science.\n\nWe're a bunch of Information designers from munich, visit us on our website, twitter, facebook or behance to say hi!\n\nhttps://kurzgesagt.org\n\nhttps://twitter.com/Kurz_Gesagt\n\nhttps://www.facebook.com/Kurzgesagt\n\nhttps://www.behance.net/kurzgesagt\n\n\nThe Beginning of Everything -- The Big Bang\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -111,6 +637,12 @@ var videos = [{
     "duration": "00:05:55",
     "thumb": "http://i.ytimg.com/vi/wNDGgL73ihY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.88201938906,
     "description": "View full lesson: http://ed.ted.com/lessons/five-fingers-of-evolution\n\nHow can a \"thumbs up\" sign help us remember five processes that impact evolution? The story of the Five Fingers of Evolution gives us a clever way of understanding change in gene pools over time. \n\nLesson by Paul Andersen, animation by Alan Foreman.",
@@ -127,6 +659,12 @@ var videos = [{
     "duration": "00:05:24",
     "thumb": "http://i.ytimg.com/vi/5NdMnlt2keE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.895256917,
     "description": "View full lesson: http://ed.ted.com/lessons/the-uncertain-location-of-electrons-george-zaidan-and-charles-morton\n\nThe tiny atoms that make up our world are made up of even tinier protons, neutrons and electrons. Though the number of protons determine an atom's identity, it's the electrons -- specifically, their exact location outside the nucleus -- that particularly perplex scientists. George Zaidan and Charles Morton show how to make an educated guess of where those itty-bitty freewheeling electrons might be.\n\nLesson by George Zaidan and Charles Morton, animation by Karrot Animation.",
@@ -143,6 +681,12 @@ var videos = [{
     "duration": "00:03:47",
     "thumb": "http://i.ytimg.com/vi/8ROHpZ0A70I/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.88862217955,
     "description": "View full lesson: http://ed.ted.com/lessons/what-happened-to-antimatter-rolf-landua\n\nParticles come in pairs, which is why there should be an equal amount of matter and antimatter in the universe. Yet, scientists have not been able to detect any in the visible universe. Where is this missing antimatter? CERN scientist Rolf Landua returns to the seconds after the Big Bang to explain the disparity that allows humans to exist today.\n\nLesson by Rolf Landua, animation by TED-Ed.",
@@ -159,6 +703,12 @@ var videos = [{
     "duration": "00:05:17",
     "thumb": "http://i.ytimg.com/vi/CtR5EkvLNfg/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.98010657194,
     "description": "View full lesson: http://ed.ted.com/lessons/how-do-we-study-the-stars-yuan-sen-ting\n\nOur best technology can send men to the Moon and probes to the edge of our solar system, but these distances are vanishingly small compared to the size of the universe. How then can we learn about the galaxies beyond our own? Yuan-Sen Ting takes us into deep space to show how astronomers study the stars beyond our reach. \n\nLesson by Yuan-Sen Ting, animation by Kozmonot Animation Studio.",
@@ -175,6 +725,12 @@ var videos = [{
     "duration": "00:04:46",
     "thumb": "http://i.ytimg.com/vi/i7930fj3T54/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.95654026417,
     "description": "View full lesson: http://ed.ted.com/lessons/how-do-we-measure-distances-in-space-yuan-sen-ting\n\nWhen we look at the sky, we have a flat, two-dimensional view. So how do astronomers figure the distances of stars and galaxies from Earth? Yuan-Sen Ting shows us how trigonometric parallaxes, standard candles and more help us determine the distance of objects several billion light years away from Earth. \n\nLesson by Yuan-Sen Ting, animation by TED-Ed.",
@@ -191,6 +747,12 @@ var videos = [{
     "duration": "00:05:30",
     "thumb": "http://i.ytimg.com/vi/Op3AYaJc0Xw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Eames Office",
     "rating": 4.95248357964,
     "description": "Powers of Ten takes us on an adventure in magnitudes.  Starting at a picnic by the lakeside in Chicago, this famous film transports us to the outer edges of the universe.  Every ten seconds we view the starting point from ten times farther out until our own galaxy is visible only a s a speck of light among many others.  Returning to Earth with breathtaking speed, we move inward- into the hand of the sleeping picnicker- with ten times more magnification every ten seconds. Our journey ends inside a proton of a carbon atom within a DNA molecule in a white blood cell.  POWERS OF TEN   \u00a9 1977 EAMES OFFICE LLC (Available at www.eamesoffice.com)",
@@ -207,6 +769,12 @@ var videos = [{
     "duration": "00:09:01",
     "thumb": "http://i.ytimg.com/vi/0fKBhvDjuy0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "DutchChain",
     "rating": 4.92467902996,
     "description": "Bitcoin in five minutes: Blockchain technology will drastically change our lives.\n\nIn the coming years, the technology behind crypto currencies such as Bitcoin will inevitably and radically change the role of traditional trusted parties such as banks, accountants, notaries, and governments. The animated video about Bitcoin that was released today on http://bitcoinproperly.org is the first to specifically address the technology behind Bitcoin: the Blockchain. Within five minutes, it is explained how the essential functions of the \u201ctrusted third party\u201d can be automatized through the Blockchain as well as what the implications of this are.\n\nFrom Bitcoin hype to Blockchain revolution: an internet of trust.\nWith the arrival of crypto currencies such as Bitcoin, everyone around the world can trade with each other without any involvement from traditional third parties such as banks, notaries, accountants, and governments. Trade is a fundamental pillar of our economy and society, and traditional trusted parties play a crucial role in this.\n\nThe technology behind Bitcoin making all this possible \u2013 the Blockchain \u2013 ensures that the essential functions of the \u201ctrusted third party\u2019, are fully automatized through the internet. This way, these functions are as freely available, accessible, and programmable as the internet itself. \n\nThe animated video, available in both Dutch and English, explains how this works, also mentioning practical applications. The implications are clear: in the coming years, the role of the traditional trusted parties will inevitably and drastically change, strongly impacting our daily lives.\n\nThe creators of this animated video invite its viewers to think about and discuss the fundamental and radical innovations made possible by crypto currencies.\n\nRutger van Zuidam ecommerce entrepreneur and founder of IntoBitcoin.com: \u201cThe Netherlands have all the assets to become Europe\u2019s Silicon Valley of financial technology. It is possible for the Netherlands to position itself favourably in comparison to the US and UK, who are currently still ahead. The technology behind crypto currencies like Bitcoin plays an essential role in leveraging these opportunities. We hope that the animated video about the technology behind crypto currencies will positively affect this development.\u201d\n\nLykle de Vries: \u201dBitcoin is not the new money for internet,but it is the new internet for money, value and ownership in all forms. Crypto currencies like Bitcoin are the next step in the emancipation of all world citizens, and can help create a new dynamic for democracy, society and economy.\u201d\n\nAbout the creators\nThe animated video is a non-profit initiative by designers Patrick Loonstra (www.patrickloonstra.nl) and Sebas van den Brink (sebasvandenbrink.nl) and entrepreneurs Lykle de Vries (ThesisOne.com) and Rutger van Zuidam (Senanga.net, IntoBitcoin.com).",
@@ -223,6 +791,12 @@ var videos = [{
     "duration": "00:06:16",
     "thumb": "http://i.ytimg.com/vi/YIVAluSL9SU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED",
     "rating": 4.88206167004,
     "description": "Is the War on Drugs doing more harm than good? In a bold talk, drug policy reformist Ethan Nadelmann makes an impassioned plea to end the \"backward, heartless, disastrous\" movement to stamp out the drug trade. He gives two big reasons we should focus on intelligent regulation instead.\n\nTEDTalks is a daily video podcast of the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and much more.\nFind closed captions and translated subtitles in many languages at http://www.ted.com/translate\n\nFollow TED news on Twitter: http://www.twitter.com/tednews\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: http://www.youtube.com/user/TEDtalksDirector",
@@ -239,6 +813,12 @@ var videos = [{
     "duration": "00:17:31",
     "thumb": "http://i.ytimg.com/vi/uWfLwKH_Eko/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED",
     "rating": 4.84229390681,
     "description": "The term Gross Domestic Product is often talked about as if it were \u201chanded down from god on tablets of stone.\u201d But this concept was invented by an economist in the 1920s. We need a more effective measurement tool to match 21st century needs, says Michael Green: the Social Progress Index. With charm and wit, he shows how this tool measures societies across the three dimensions that actually matter. And reveals the dramatic reordering of nations that occurs when you use it.\n\nTEDTalks is a daily video podcast of the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and much more.\nFind closed captions and translated subtitles in many languages at http://www.ted.com/translate\n\nFollow TED news on Twitter: http://www.twitter.com/tednews\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: http://www.youtube.com/user/TEDtalksDirector",
@@ -255,6 +835,12 @@ var videos = [{
     "duration": "00:15:01",
     "thumb": "http://i.ytimg.com/vi/N8Votwxx8a0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.97929844738,
     "description": "Throughout history, scientists have proposed conflicting ideas on how the brain carries out functions like perception, memory, and movement. Is each of these tasks carried out by a specific area of the brain? Or do multiple areas work together to accomplish them? Ted Altschuler investigates both sides of the debate.",
@@ -271,6 +857,12 @@ var videos = [{
     "duration": "00:05:20",
     "thumb": "http://i.ytimg.com/vi/pv6QHxkBFzY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Muon Ray",
     "rating": 4.84002499609,
     "description": "A short video explaining how a Bose-Einstein Condensate of sodium atoms is created in lab at MIT by Martin Zwierlein. Using highly focused, single frequency lasers it is possible to cool the single sodium atoms, negating their thermal vibrations by inducing electronic transitions which effectively \"pushes\" them into place. This brings the atoms down to millikelivn temperatures. \n\nHowever to achieve nanokelvin temperatures, magnetic fields are used to trap the atoms in a well or cup so that the atomic resonance of the atoms begins to match the frequency of the laser light so that , like in a cup of coffee or tea, the hottest atoms are boiled off the surface by \"blowing\" on the atoms with polarized laser light. This makes the atoms that are in resonance with the light move towards the center, leaving the hotter atoms to boil off. This then shrinks the gas cloud into a supercool sphere.\n\nThis arrangement is known as a magneto-optical trap and using it the atoms can be made colder than anywhere else in the universe, cold enough for the subtle effects of quantum mechanics to make the wavefunction of the atoms coherent, just like how a laser makes the photons in a laser medium coherent. The wavefunctions then constructively interfere until the atoms behave as a single quantum object known as a Bose-Einstein Condensate.\n\nIn quantum mechanics, a class of particles which have an integer quantum spin are called bosons. For example, photons, gluons, higgs boson etc. Any number of bosons can go to the same quantum state. Thus they obey Bose-Einstein statistics. The wave function associated with bosons is symmetric.\n\nA class of particles which have a half- integer spin are called fermions. Example - proton, neutron, electron, etc. Unlike bosons, only two fermions (at maximum) can go to the same quantum state, as dictated by the Pauli Exclusion Principle. They obey Fermi-Dirac statistics. The wave function associated with fermions is anti-symmetric.\n\nAn atom can also be classified as a composite boson or a composite fermion.  To find whether an atom is a composite boson or a composite fermion, you need to look at the net spin of the atom due to its constituent particles that make it. For example, consider the simplest of the atoms - Hydrogen. Hydrogen has a proton and an electron. A proton is a half-integer particle and so is an electron. Therefore, the net spin of a normal hydrogen atom is one, which is an integer. Therefore, hydrogen is a composite boson. If we consider a helium-4 atom, there are two protons, two neutrons and two electrons. Each of these particles has a half integer spin. Therefore, the net spin of a normal helium atom is an integer. Hence, helium is also a composite boson.\n\nWith Sodium, the number of protons is 11, the number of neutrons is 12, and therefore, the number nucleons is 23 which is an odd number. Since the number of electrons in Sodium atom is 11, this makes the total number of constituent particles 34 which is even and hence Sodium atom is a composite boson. \n\nSo by this reasoning, all Sodium-23 (as well as Rubidium-87) atoms are bosons which means that the spin of the atoms is an integer. Bosons obey Bose-Einstein statistics and do not obey the Pauli Exclusion prinipcle and can form non degenerate condensates. \n\nSo, because bosons tend to bunch together it is possible for a macroscopic group of N-bosons to form a giant wave function called a Bose-Einstein Condensate. \nTherefore, a Bose-Einstein Condensate is essentially a macroscopic occupation of the ground state of a quantum system at thermal equilibrium, and is considered to be a quantum phase transistion just like superfluidity and superconductivity. \n\nThis quantum state can be seen in wildly differing physical systems, from liquid helium to electron pairs in superconductors to the laser-cooled atoms in vacuum chambers as shown in the video.\nBose--Einstein condensates composed of a wide range of bosonic atoms and isotopes have been produced.\n\nRelated experiments in cooling fermions rather than bosons to extremely low temperatures have created degenerate gases, where the atoms do not congregate in a single state due to the Pauli exclusion principle. To exhibit Bose--Einstein condensation, the fermions must \"pair up\" to form compound particles (e.g. molecules or Cooper pairs) that are bosons. The first molecular Bose--Einstein condensates were created in November 2003 by the groups of Rudolf Grimm at the University of Innsbruck, Deborah S. Jin at the University of Colorado at Boulder and Wolfgang Ketterle at MIT. Jin quickly went on to create the first fermionic condensate composed of Cooper pairs in a superconductor.",
@@ -287,6 +879,12 @@ var videos = [{
     "duration": "00:06:12",
     "thumb": "http://i.ytimg.com/vi/1RpLOKqTcSk/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.93430844239,
     "description": "View full lesson: http://ed.ted.com/lessons/what-do-the-lungs-do-emma-bryce\n\nWhen you breathe, you transport oxygen to the body\u2019s cells to keep them working, while also clearing your system of the carbon dioxide that this work generates. How do we accomplish this crucial and complex task without even thinking about it? Emma Bryce takes us into the lungs to investigate how they help keep us alive.\n\nLesson by Emma Bryce, animation by Andrew Zimbelman for The Foreign Correspondents' Club.",
@@ -303,6 +901,12 @@ var videos = [{
     "duration": "00:03:22",
     "thumb": "http://i.ytimg.com/vi/8NUxvJS-_0k/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.96355190281,
     "description": "View full lesson: http://ed.ted.com/lessons/what-does-the-liver-do-emma-bryce\n\nThere\u2019s a factory inside you that weighs about 1.4 kilograms and runs for 24 hours a day. It\u2019s your liver: the heaviest organ in your body, which simultaneously acts as a storehouse, a manufacturing hub, and a processing plant. Emma Bryce gives a crash course on the liver and how it helps keep us alive.\n\nLesson by Emma Bryce, animation by Andrew Zimbelman for The Foreign Correspondents' Club.",
@@ -319,6 +923,12 @@ var videos = [{
     "duration": "00:03:25",
     "thumb": "http://i.ytimg.com/vi/wbh3SjzydnQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.78048780488,
     "description": "View full lesson here: http://ed.ted.com/lessons/how-to-create-cleaner-coal-emma-bryce\n\nIt takes a lot of fuel to heat our homes, preserve our food, and power our gadgets. And for 40 percent of the world, cheap, plentiful coal gets the job done. But coal also releases pollutants into the air, causing environmental damage like acid rain and serious health problems. Can we create a cleaner version of coal? Emma Bryce details the three ways we might strip coal of its foul forces.\n\nLesson by Emma Bryce, animation by Artrake Studio.",
@@ -335,6 +945,12 @@ var videos = [{
     "duration": "00:05:54",
     "thumb": "http://i.ytimg.com/vi/rO6S93FKIUM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.92938931298,
     "description": "View full lesson: http://ed.ted.com/lessons/the-2-400-year-search-for-the-atom-theresa-doud\n\nHow do we know what matter is made of? The quest for the atom has been a long one, beginning 2,400 years ago with the work of a Greek philosopher and later continued by a Quaker and a few Nobel Prize-winning scientists. Theresa Doud details the history of atomic theory.\n\nLesson by Theresa Doud, animation by TED-Ed.",
@@ -351,6 +967,12 @@ var videos = [{
     "duration": "00:05:23",
     "thumb": "http://i.ytimg.com/vi/xazQRcSCRaY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow Space",
     "rating": 4.97377190154,
     "description": "SciShow Space explores the supermassive black hole spinning at the center of our galaxy, and how we\u2019ve all learned to live with it in harmony.\n\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/artist/52/SciShow\n\nOr help support us by subscribing to our page on Subbable: https://subbable.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\n\nThanks Tank Tumblr: http://thankstank.tumblr.com\n\nSources:\nhttp://www.sciencemag.org/content/345/6202/1330.abstract\nhttp://science.nasa.gov/astrophysics/focus-areas/black-holes/\nhttp://eagle.phys.utk.edu/guidry/astro490/lectures/lecture490_ch13.pdf",
@@ -367,6 +989,12 @@ var videos = [{
     "duration": "00:04:18",
     "thumb": "http://i.ytimg.com/vi/kq4u7Sv7GT4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.90169198469,
     "description": "SciShow explains what makes atoms bond (and what makes them sometimes seem promiscuous).\n\nHosted by: Michael Aranda\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n\nOr help support us by subscribing to our page on Subbable: https://subbable.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\n\nThanks Tank Tumblr: http://thankstank.tumblr.com\n\nSources:",
@@ -383,6 +1011,12 @@ var videos = [{
     "duration": "00:02:24",
     "thumb": "http://i.ytimg.com/vi/JOL-nUt_vfo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "politizane",
     "rating": 4.7827501297,
     "description": "Infographics on the distribution of wealth in America, highlighting both the inequality and the difference between our perception of inequality and the actual numbers. The reality is often not what we think it is.\n\nReferences:\nhttp://www.motherjones.com/politics/2011/02/income-inequality-in-america-chart-graph\nhttp://danariely.com/2010/09/30/wealth-inequality/\nhttp://thinkprogress.org/economy/2011/10/03/334156/top-five-wealthiest-one-percent/\nhttp://money.cnn.com/2012/04/19/news/economy/ceo-pay/index.htm",
@@ -399,6 +1033,12 @@ var videos = [{
     "duration": "00:06:23",
     "thumb": "http://i.ytimg.com/vi/QPKKQnijnsM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The Great Courses",
     "rating": 4.66540084388,
     "description": "In this clip from The Inexplicable Universe: Unsolved Mysteries, Professor Neil deGrasse Tyson describes the Twins Paradox, a hypothetical scenario which uses identical twins to illustrate one of the more bizarre phenomena predicted by Einstein\u2019s theory of relativity\u2014the idea that the passage of time is affected by the speed you are going or the amount of gravity that you are exposed to.\n\nTry a free month trial of The Great Courses Plus and watch the course here: https://www.thegreatcoursesplus.com/special-offer?utm_source=US_OnlineVideo&utm_medium=SocialMediaEditorialYouTube&utm_campaign=136222\n\nThis is an excerpt of The Inexplicable Universe: Unsolved Mysteries, a series of online courses presented by Dr. Tyson in Hayden Planetarium, American Museum of Natural History.  \n\n#InExUniverse",
@@ -415,6 +1055,12 @@ var videos = [{
     "duration": "00:04:09",
     "thumb": "http://i.ytimg.com/vi/n2s1-RHuljo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Jerobeam Fenderson",
     "rating": 4.97789556784,
     "description": "lissajous shrooms tutorial\nfull audiovisual album: http://oscilloscopemusic.com\n\naudio download for proof that it works (192kHz WAV): https://jerobeamfenderson.bandcamp.com/track/how-to-draw-mushrooms-on-an-oscilloscope-with-sound\nmore mushrooms: https://www.youtube.com/watch?v=19jv0HM92kw\nPd patch: http://www.jerobeamfenderson.net/post/81583572716/i-know-you-want-this-heres-a-pd-patch-to-draw\nMax4Live patch: http://www.maxforlive.com/library/device/3734/mushrooms\nhow it works: http://www.jerobeamfenderson.net/post/101351329308/how-it-works",
@@ -431,6 +1077,12 @@ var videos = [{
     "duration": "00:03:07",
     "thumb": "http://i.ytimg.com/vi/rtR63-ecUNo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The Royal Institution",
     "rating": 4.87262745098,
     "description": "\"If you can explain this using common sense and logic, do let me know, because there is a Nobel Prize for you..\"\nTell us what you think of our videos & win \u00a3100! https://www.surveymonkey.co.uk/r/QCVL88N\nProfessor Jim Al-Khalili explains the experiment that reveals the \"central mystery of quantum mechanics\" - the double slit experiment.\n\nWatch the full lecture here:\nhttp://www.youtube.com/watch?v=wwgQVZju1ZM\n\nSometimes called the \"two-slit\" or \"Young's\" experiment, it demonstrates that matter and energy can display the characteristics of both waves and particles, establishing the principle known as wave-particle duality. Furthermore, it questions the role of the observer in the outcome of events and demonstrates the fundamental limitation of an observer to predict experimental results. \n\nFor this reason, Richard Feynman called it \"a phenomenon which is impossible ... to explain in any classical way, and which has in it the heart of quantum mechanics. In reality, it contains the only mystery [of quantum mechanics],\" (see more at http://en.wikipedia.org/wiki/Double-slit_experiment).\n\nThe Ri is on Twitter: http://twitter.com/ri_science\nand Facebook: http://www.facebook.com/royalinstitution\nSubscribe for the latest science videos: http://richannel.org/newsletter",
@@ -447,6 +1099,12 @@ var videos = [{
     "duration": "00:09:08",
     "thumb": "http://i.ytimg.com/vi/A9tKncAdlHQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "eHistory.org",
     "rating": 4.87557603687,
     "description": "Please visit our interactive map:\ninvasionofamerica.ehistory.org\n\nBetween 1776 and 1887, the United States seized over 1.5 billion acres from America's indigenous people by treaty and executive order. The Invasion of America shows how by mapping every treaty and executive order during that period. It concludes with a map of present-day federal Indian reservations.",
@@ -463,6 +1121,12 @@ var videos = [{
     "duration": "00:01:28",
     "thumb": "http://i.ytimg.com/vi/pJxrTzfG2bo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TehPhysicalist",
     "rating": 4.97053121365,
     "description": "Richard Feynman on the differences of merely knowing how to reason mathematically and understanding how and why things are physically analyzed in the way they are.",
@@ -479,6 +1143,12 @@ var videos = [{
     "duration": "00:05:37",
     "thumb": "http://i.ytimg.com/vi/NM-zWTU7X-k/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Narayan Behera",
     "rating": 4.917383821,
     "description": "Richard Feynman on Quantum Mechanics",
@@ -495,6 +1165,12 @@ var videos = [{
     "duration": "01:17:58",
     "thumb": "http://i.ytimg.com/vi/xdZMXWmlp9g/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.94173924019,
     "description": "The Conquest Continues over on Veritasium: http://bit.ly/VEMagnets_m\n\nTHANK YOU to our amazing Subbable.com subscribers whose donations help keep MinutePhysics running!\nCalvin Kennell-Heiling\nBendik \u00c5shaug Holm\nMatthew Joseph Woolley\nTheTripleBstudios - http://www.youtube.com/TheTripleBstudios\nMike Ledermueller\nMark Liederbach - https://plus.google.com/112637595591573891595/posts\nStephanie Ahlberg-Rosell - scoutingwithmeurr.wordpress.com\nK. Repking\n@lifeasasleeper\n\nHow do magnets work? Why do they attract and repel at long distances? Is it magic? No... it's quantum mechanics, and a bit more, as we explain in this, the longest MinutePhysics video ever.\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nMusic by Nathaniel Schroeder http://www.soundcloud.com/drschroeder\nAdditional music by Kevin MacLeod http://www.incompetech.com Created by Henry Reich",
@@ -511,6 +1187,12 @@ var videos = [{
     "duration": "00:06:26",
     "thumb": "http://i.ytimg.com/vi/hFAOXdXZ5TM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.95299859598,
     "description": "Check out the Massey Lectures with Neil Turok: http://dft.ba/-massey\nPerimeter Institute for Theoretical Physics: http://pitp.ca\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nMusic by Nathaniel Schroeder http://www.soundcloud.com/drschroeder\n\nThanks to Nima Doroud for contributions and to Perimeter Institute for support.\nhttp://www.perimeterinstitute.ca\n\nProduced in association with the 2012 Massey Lecture Series http://dft.ba/-massey Created by Henry Reich",
@@ -527,6 +1209,12 @@ var videos = [{
     "duration": "00:05:12",
     "thumb": "http://i.ytimg.com/vi/NMgcX8UNIGY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.93303766631,
     "description": "Check out the Massey Lectures with Neil Turok: http://dft.ba/-massey\nPerimeter Institute for Theoretical Physics: http://pitp.ca\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nMusic by Nathaniel Schroeder: http://www.soundcloud.com/drschroeder\n\nThanks to Nima Doroud and Bruno LeFloch for contributions and to Perimeter Institute for support.\nhttp://www.perimeterinstitute.ca\n\nProduced in association with the 2012 Massey Lecture Series http://dft.ba/-massey Created by Henry Reich",
@@ -543,6 +1231,12 @@ var videos = [{
     "duration": "00:04:20",
     "thumb": "http://i.ytimg.com/vi/i1TVZIBj7UA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The RSA",
     "rating": 4.94131088394,
     "description": "What is the best way to ease someone's pain and suffering? In this beautifully animated RSA Short, Dr Bren\u00e9 Brown reminds us that we can only create a genuine empathic connection if we are brave enough to really get in touch with our own fragilities. \n\nVoice: Dr Bren\u00e9 Brown\nAnimation: Katy Davis (AKA Gobblynne) www.gobblynne.com\nProduction and Editing: Al Francis-Sears and Abi Stephenson \n\nWatch Dr Bren\u00e9 Brown's full talk 'The Power of Vulnerability' here:\nhttps://www.youtube.com/watch?v=sXSjc-pbXk4 \n\nDr Bren\u00e9 Brown is a research professor and best-selling author of \"Daring Greatly: How the Courage to be Vulnerable Transforms the Way We Live, Love, Parent and Lead\" (Penguin Portfolio, 2013).  \nShe has spent the past decade studying vulnerability, courage, worthiness, and shame. \n\nFind out more about the RSA: http://www.thersa.org \nFollow the RSA on Twitter: http://www.twitter.com/thersaorg\nLike the RSA on Facebook: http://www.facebook.com/thersaorg",
@@ -559,6 +1253,12 @@ var videos = [{
     "duration": "00:02:54",
     "thumb": "http://i.ytimg.com/vi/1Evwgu369Jw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED",
     "rating": 4.74228816868,
     "description": "Here's a TED first: an animated Socratic dialog! In a time when irrationality seems to rule both politics and culture, has reasoned thinking finally lost its power? Watch as psychologist Steven Pinker is gradually, brilliantly persuaded by philosopher Rebecca Newberger Goldstein that reason is actually the key driver of human moral progress, even if its effect sometimes takes generations to unfold. The dialog was recorded live at TED, and animated, in incredible, often hilarious, detail by Cognitive.\n\nTEDTalks is a daily video podcast of the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and much more.\nFind closed captions and translated subtitles in many languages at http://www.ted.com/translate\n\nFollow TED news on Twitter: http://www.twitter.com/tednews\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: http://www.youtube.com/user/TEDtalksDirector",
@@ -575,6 +1275,12 @@ var videos = [{
     "duration": "00:15:24",
     "thumb": "http://i.ytimg.com/vi/uk7gKixqVNU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.7545335848,
     "description": "View full lesson: http://ed.ted.com/lessons/what-gives-a-dollar-bill-its-value-doug-levinson\n\nThe value of money is determined by how much (or how little) of it is in circulation. But who makes that decision, and how does their choice affect the economy at large? Doug Levinson takes a trip into the United States Federal Reserve, examining how the people who work there aim to balance the value of the dollar to prevent inflation or deflation.\n\nLesson by Doug Levinson, animation by Qa'ed Mai.",
@@ -591,6 +1297,12 @@ var videos = [{
     "duration": "00:03:52",
     "thumb": "http://i.ytimg.com/vi/XNu5ppFZbHo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.91162474507,
     "description": "View full lesson: http://ed.ted.com/lessons/a-guide-to-the-energy-of-the-earth-joshua-m-sneideman\n\nEnergy is neither created nor destroyed \u2014 and yet the global demand for it continues to increase. But where does energy come from, and where does it go? Joshua M. Sneideman examines the many ways in which energy cycles through our planet, from the sun to our food chain to electricity and beyond. \n\nLesson by Joshua M. Sneideman, animation by Marc Christoforidis.",
@@ -607,6 +1319,12 @@ var videos = [{
     "duration": "00:04:44",
     "thumb": "http://i.ytimg.com/vi/fHztd6k5ZXY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.92010133489,
     "description": "In which John Green teaches about filthy, filthy lucre. Money. And Debt. So, what is money? And what is it for? And why do we use money? And why does it all disappear so quickly after payday? John will look into 75% of these questions, and if he doesn't come up with answers, we'll get into some interesting ideas along the way, at least. This week we'll investigate whether money displaces barter, then leads to war, slavery, and what we think of as civilized social orders. We'll also see what old Adam Smith thinks of big money, no whammies, this week on Crash Course.\n\nWe'll also talk quite a bit about Debt: The First 5000 Years by David Graeber. You can buy that book here: http://dft.ba/-debt5000\n\nYou can directly support Crash Course at https://www.patreon.com/crashcourse Subscribe for as little as $0 to keep up with everything we're doing. Also, if you can afford to pay a little every month, it really helps us to continue producing great content.",
@@ -623,6 +1341,12 @@ var videos = [{
     "duration": "00:14:04",
     "thumb": "http://i.ytimg.com/vi/94BtOtGVqLw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.93252827295,
     "description": "View full lesson: http://ed.ted.com/lessons/how-quantum-mechanics-explains-global-warming-lieven-scheire\n\nYou've probably heard that carbon dioxide is warming the Earth. But how exactly is it doing it? Lieven Scheire uses a rainbow, a light bulb and a bit of quantum physics to describe the science behind global warming. \n\nLesson by Lieven Scheire, animation by STK Films.",
@@ -639,6 +1363,12 @@ var videos = [{
     "duration": "00:05:01",
     "thumb": "http://i.ytimg.com/vi/-EJOO3xAjTk/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "WIRED Science",
     "rating": 5.0,
     "description": "Researchers have designed a three-dimensional model of an \"average\" synapse. This film shows various views of synapse organization, highlighting components such as the plasma membrane, cytosolic proteins, microtubles, actin, and septin. The camera later zooms in to show the synaptic vesicle and other features at higher resolution. [Wilhelm et al. 2014, Science] \n",
@@ -655,6 +1385,12 @@ var videos = [{
     "duration": "00:02:39",
     "thumb": "http://i.ytimg.com/vi/CXoNY_Qa9CM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "XVIVO Scientific Animation",
     "rating": 4.95510204082,
     "description": "Harvard University and XVIVO come together again to add to the growing series of scientific animations for BioVisions -- Harvard's multimedia lab in the department of Molecular and Cellular Biology. 'Protein Packing' strives to more accurately depict the molecular chaos in each and every cell, with proteins jittering around in what may seem like random motion. Proteins occupy roughly 40% of the cytoplasm, creating an environment that risks unintentional interaction and aggregation. Via diffusion and motor protein transport, these molecules are directed to sites where they are needed.\n\nWebsite: http://www.xvivo.net/\n\nFollow us:\nGoogle+ http://bit.ly/1maXxwD\nFacebook http://on.fb.me/1gJJvml\nTwitter https://twitter.com/XVIVO",
@@ -671,6 +1407,12 @@ var videos = [{
     "duration": "00:02:44",
     "thumb": "http://i.ytimg.com/vi/uHeTQLNFTgU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "HubbleESA",
     "rating": 4.91715976331,
     "description": "Astronomers using the Hubble Space Telescope have captured the most comprehensive picture ever assembled of the evolving Universe \u2014 and one of the most colourful. The study is called the Ultraviolet Coverage of the Hubble Ultra Deep Field (UVUDF) project.\n\nMore information and download options:\nhttp://www.spacetelescope.org/videos/heic1411a/\n\nCredit: \nNASA, ESA, and G. Bacon (STScI) Acknowledgement: H. Teplitz and M. Rafelski (IPAC/Caltech), A. Koekemoer (STScI), R. Windhorst (Arizona State University), and Z. Levay (STScI)\n",
@@ -687,6 +1429,12 @@ var videos = [{
     "duration": "00:00:42",
     "thumb": "http://i.ytimg.com/vi/peqCfW8hSzQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED",
     "rating": 4.97296222664,
     "description": "Meet the \u201cmotion microscope,\u201d a video-processing tool that plays up tiny changes in motion and color impossible to see with the naked eye. Video researcher Michael Rubinstein plays us clip after jaw-dropping clip showing how this tech can track an individual\u2019s pulse and heartbeat simply from a piece of footage. Watch him recreate a conversation by amplifying the movements from sound waves bouncing off a bag of chips. The wow-inspiring and sinister applications of this tech you have to see to believe.\n\nTEDTalks is a daily video podcast of the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and much more.\nFind closed captions and translated subtitles in many languages at http://www.ted.com/translate\n\nFollow TED news on Twitter: http://www.twitter.com/tednews\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: http://www.youtube.com/user/TEDtalksDirector",
@@ -703,6 +1451,12 @@ var videos = [{
     "duration": "00:13:23",
     "thumb": "http://i.ytimg.com/vi/fHfhorJnAEI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.94134419552,
     "description": "View full lesson: http://ed.ted.com/lessons/how-atoms-bond-george-zaidan-and-charles-morton\n\nAtoms can (and do) bond constantly; it's how they form molecules. Sometimes, in an atomic tug-of-war, one atom pulls electrons from another, forming an ionic bond. Atoms can also play nicely and share electrons in a covalent bond. From simple oxygen to complex human chromosome 13, George Zaidan and Charles Morton break down the humble chemical bond. \n\nLesson by George Zaidan and Charles Morton, animation by Bevan Lynch.",
@@ -719,6 +1473,12 @@ var videos = [{
     "duration": "00:03:34",
     "thumb": "http://i.ytimg.com/vi/NgD9yHSJ29I/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "MinuteEarth",
     "rating": 4.93650534563,
     "description": "Thanks to The Kwongan Foundation at the University of Western Australia for supporting this video: http://www.plants.uwa.edu.au/alumni/kwongan\n\nMinuteEarth is now on Patreon! Please support us at: http://www.patreon.com/minuteearth\n\nAnd subscribe! - http://www.youtube.com/user/minuteearth?sub_confirmation=1\n________________________\nCreated by Henry Reich\nProduction and Writing Team: Alex Reich, Peter Reich, Emily Elert, Ever Salazar, Kate Yoshida, and Henry Reich\nMusic by Nathaniel Schroeder: http://www.soundcloud.com/drschroeder\n\n________________________\nFree iTunes podcasts of MinuteEarth! - https://goo.gl/sfwS6n\nFacebook - http://facebook.com/minuteearth\nTwitter - http://twitter.com/MinuteEarth\n\nMinuteEarth provides an energetic and entertaining view of trends in earth's environment -- in just a few minutes!\n\n________________________\nReferences\n\nBorer, ET et al. 2014. Herbivores and nutrients control grassland plant diversity via light limitation. Nature 508, 517\u2013520\n\nFearon, J. 2003. Ethnic and Cultural Diversity by Country. Journal of Economic Growth 8: 195\u2013222. doi:10.1023/A:1024419522867.\n\nGuyana Fourth National Report to the Convention on Biological Diversity, Guyana Environmental Protection Agency 2010, 83 pages\n\nIyigun, M.F. and A.L. Owen. 1998. Risk, entrepreneurship, and human-capital accumulation, American Economic Review, No. 2, Papers and Proceedings 88 (2), 454-457.\n\nLambers, H (ed). 2014. Plant Life on the Sandplains in Southwest Australia, a Global Biodiversity Hotspot - Kwongan Matters. Publisher: University of Western Australia Publishing, Crawley. ISBN: 978-1-74258-564-2\n\nMaffi L. 2005. Linguistic, cultural and biological diversity. Annual Review of Anthropology\nVol. 34: 599-617\n\nNettle, D. 1998. Explaining global patterns of language diversity. Journal of Anthropological Archaeology, 17(4):354--74.\n\nNew Atlas of the British and Irish Flora. 2002., CD Preston, DA Pearman, TD Dines (editors), Oxford University Press. 910 pages\n\nSutherland, W. J. 2003. Parallel extinction risk and global distribution of languages and species. Nature, 423:276--279.\n\nS. Wennekers, A. van Stel, M. Carree, and R. Thurik, 2010. The Relationship between Entrepreneurship and Economic Foundations and Trends in Entrepreneurship 6: 167-237.\n\nYamada G. 1996. Urban Informal Employment and Self-Employment in Developing Countries: Theory and Evidence. ECONOMIC DEVELOPMENT AND CULTURAL CHANGE. 44: 289-314.\n\nIMAGE CREDITS:\n\nKwongan - Kwongan Foundation\nhttp://www.plants.uwa.edu.au/alumni/kwongan\n\nRainforest - Bishnu Sarangi (Public Domain)\nhttp://pixabay.com/es/selva-parque-nacional-mollem-384944/\n\nMeadows - Wikimedia user Nikater (Public Domain)\nhttp://en.wikipedia.org/wiki/File:Blumenwiese_bei_Obermaiselstein05.jpg\n\nForest - Hansueli Krapf\nhttp://en.wikipedia.org/wiki/File:Swiss_National_Park_131.JPG\n\nWetland - Wikimedia user Martinsnm\nhttp://en.wikipedia.org/wiki/File:Laguna01.jpg\n\nIndian Market - Courtesy Shutterstock\n\nChinatown Bangkok - Yoav David\nhttp://en.wikipedia.org/wiki/File:Chinatown_Bangkok.jpg\n\nLanguage and Poverty map data:\nhttp://data.un.org/Data.aspx?d=WDI&f=Indicator_Code%3ANY.GNP.PCAP.CD\nhttp://asjp.clld.org/",
@@ -735,6 +1495,12 @@ var videos = [{
     "duration": "00:03:33",
     "thumb": "http://i.ytimg.com/vi/mWVATekt4ZA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.87388155092,
     "description": "View full lesson: http://ed.ted.com/lessons/the-evolution-of-the-human-eye-joshua-harvey\n\nThe human eye is an amazing mechanism, able to detect anywhere from a few photons to a few quadrillion, or switch focus from the screen in front of you to the distant horizon in a third of a second. How did these complex structures evolve? Joshua Harvey details the 500 million year story of the human eye.\n\nLesson by Joshua Harvey, animation by Artrake Studio.",
@@ -751,6 +1517,12 @@ var videos = [{
     "duration": "00:04:44",
     "thumb": "http://i.ytimg.com/vi/qrKZBh8BL_U/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.90482315113,
     "description": "View full lesson: http://ed.ted.com/lessons/how-we-think-complex-cells-evolved-adam-jacobson\n\nImagine you swallowed a small bird and suddenly gained the ability to fly \u2026 or you ate a cobra and were able to spit poisonous venom! Well, throughout the history of life (and specifically during the evolution of complex eukaryotic cells) things like this happened all the time. Adam Jacobson explains endosymbiosis, a type of symbiosis in which one symbiotic organism lives inside another. \n\nLesson by Adam Jacobson, animation by Camilla Gunborg Pedersen.",
@@ -767,6 +1539,12 @@ var videos = [{
     "duration": "00:05:42",
     "thumb": "http://i.ytimg.com/vi/9i7kAt97XYU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Steven Sanders",
     "rating": 4.87301587302,
     "description": "I often get asked about the Tilt and Rotation of the planets. Here is a video that shows how fast the other planets rotate compared to the Earth and also shows the respective tilt of each planet. \n\nAnd yes Venus and Mercury are rotation but just really slow!\n\nMusic: Twilight by Stellardrone (http://www.last.fm/music/Stellardrone?ac=stellard)",
@@ -783,6 +1561,12 @@ var videos = [{
     "duration": "00:01:17",
     "thumb": "http://i.ytimg.com/vi/GY6Pya_0OuU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.94237676126,
     "description": "SciShow takes you to a uranium deposit in Africa where, eons ago, a unique set of conditions came together to form the world\u2019s only known natural nuclear reactor. Check it out! No radiation suit required!\n\n\nHosted by: Hank Green\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n\nOr help support us by subscribing to our page on Subbable: https://subbable.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\n\nThanks Tank Tumblr: http://thankstank.tumblr.com\n\nSources:",
@@ -799,6 +1583,12 @@ var videos = [{
     "duration": "00:04:34",
     "thumb": "http://i.ytimg.com/vi/yS53AA_WaUk/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Aditya Chopra",
     "rating": 4.90243902439,
     "description": "John Walker shared his Nobel Prize with the Paul Boyer for their elucidation of the enzymatic mechanism underlying the synthesis of adenosine triphosphate (ATP). Here is an animation showing the architecture and catalytic function of ATP synthase. It sits in the inner membranes of the organelle, where it uses the trans-membrane proton motive force (pmf) generated by the oxidation of nutrients as a source of energy for making ATP. The pmf across the inner membrane of the organelle is coupled to the chemical synthesis of ATP from ADP and phosphate by a rotary mechanism. During ATP synthesis, the central rotor turns in the direction shown about 150 times every second. In order to provide energy to sustain our lives, every day, each one us produces a quantity of ATP by this mechanism that is approximately equal to our body weights.\n\nCredit: Mitochondrial Biology Unit (musical adaptation by Aditya Chopra)",
@@ -815,6 +1605,12 @@ var videos = [{
     "duration": "00:02:29",
     "thumb": "http://i.ytimg.com/vi/GM9buhWJjlA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Vsauce",
     "rating": 4.96033763885,
     "description": "If you were driving at the speed of light and turned on your headlights, what would happen?\nTwitter: http://www.twitter.com/tweetsauce\nInstagram: http://www.instagram.com/electricpants\nSources and extras below!!\n\nThanks to Jude for asking me this question on twitter! https://twitter.com/stefanikj5/status/550865272895447041\n\n\u201cThe Life of the Cosmos\u201d by Lee Smolin: http://www.amazon.co.uk/The-Life-Cosmos-Lee-Smolin/dp/0195126645\n\u201cIn Search of the Multiverse\u201d by John Gribbin: http://www.amazon.co.uk/In-Search-Multiverse-John-Gribbin/dp/0141036117\n\u201cThe Pig That Wants to be Eaten: by Julian Baggini: http://www.amazon.co.uk/The-Pig-That-Wants-Eaten/dp/1847081282\n\nRelevant MinutePhysics videos:\n\nhttps://www.youtube.com/watch?v=IM630Z8lho8\nhttps://www.youtube.com/watch?v=NnMIhxWRGNw\nlight slowing down in glass: https://www.youtube.com/watch?v=FAivtXJOsiI\na different perspective from Sixty Symbols about light slowing down: https://www.youtube.com/watch?v=CiHN0ZWE5bk\n\nWhy is \u201cc\u201d the speed of light?\n\nhttp://math.ucr.edu/home/baez/physics/Relativity/SpeedOfLight/c.html\n\nCar at light speed:\n\nhttp://www.sydneyobservatory.com.au/2010/what-happens-when-a-car-travelling-near-the-speed-of-light-turns-on-its-headlights/\nhttps://van.physics.illinois.edu/qa/listing.php?id=1355\nhttp://www.scienceforums.net/topic/82191-i-am-driving-my-car-at-the-speed-of-light-and-i-turn-on-my-headlights-what-do-i-see/\nhttp://www.desy.de/user/projects/Physics/Relativity/SpeedOfLight/headlights.html\n\nLight speed is the same in all inertial frames of reference:\n\nhttp://www.physlink.com/Education/AskExperts/ae558.cfm\nhttps://van.physics.illinois.edu/qa/listing.php?id=2605\nhttp://hyperphysics.phy-astr.gsu.edu/hbase/relativ/mmhist.html#c1\n\nRelativistic addition of velocities:\n\nhttp://demonstrations.wolfram.com/EinsteinsFormulaForAddingVelocities/\nhttp://cnx.org/contents/e3a41220-af3f-40c6-b8ba-1a5d1bcbed92@6/Relativistic_Addition_of_Veloc\n\ndoppler shift:\n\nhttp://commons.wikimedia.org/wiki/File:XYCoordinates.gif#mediaviewer/File:Doppler-velocity89.jpg\n\nRelativity:\n\nhttp://www.refsmmat.com/jsphys/relativity/relativity.html\nhttp://www.astro.virginia.edu/~jh8h/Foundations/quest7.html\n\nLight speed and catching-up to light.\n\nhttp://www.pitt.edu/~jdnorton/Goodies/Chasing_the_light/\nhttp://math.ucr.edu/home/baez/physics/Relativity/SpeedOfLight/speed_of_light.html\nhttp://www.askamathematician.com/2010/11/q-what-would-you-experience-if-you-were-going-the-speed-of-light/\nhttp://scienceline.ucsb.edu/getkey.php?key=1571\nhttps://van.physics.illinois.edu/qa/listing.php?id=1354\n\nOther good relativity resources: http://newt.phys.unsw.edu.au/einsteinlight/\n\nLight echo footage: http://www.spacetelescope.org/videos/heic0617a/\n\n\u201cfine-tuned\u201d universe:\n\nhttp://io9.com/5989467/how-does-the-anthropic-principle-change-the-meaning-of-the-universe\nhttp://en.wikipedia.org/wiki/Fine-tuned_Universe\nhttp://rationalwiki.org/wiki/Anthropic_principle\n\nIrrational numbers: http://mathworld.wolfram.com/IrrationalNumber.html\n\na million digits of pi: http://www.piday.org/million/\n\nTHERE'S MORE VSAUCE!!\n\nVsauce2: http://www.youtube.com/Vsauce2\nVsauce3: http://www.youtube.com/Vsauce3\n\nanimated drawings by Guy Larsen https://twitter.com/guylar\nrocketship animation by Eric Langay https://twitter.com/ericlanglay",
@@ -831,6 +1627,12 @@ var videos = [{
     "duration": "00:12:23",
     "thumb": "http://i.ytimg.com/vi/ACUuFg9Y9dY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Veritasium",
     "rating": 4.92937690843,
     "description": "Does quantum entanglement make faster-than-light communication possible?\nWhat is NOT random? http://bit.ly/NOTrandoVe\nFirst, I know this video is not easy to understand. Thank you for taking the time to attempt to understand it. I've been working on this for over six months over which time my understanding has improved. Quantum entanglement and spooky action at a distance are still debated by professors of quantum physics (I know because I discussed this topic with two of them).\n\nDoes hidden information (called hidden variables by physicists) exist? If it does, the experiment violating Bell inequalities indicates that hidden variables must update faster than light - they would be considered 'non-local'. On the other hand if you don't consider the spins before you make the measurement then you could simply say hidden variables don't exist and whenever you measure spins in the same direction you always get opposite results, which makes sense since angular momentum must be conserved in the universe.\n\nEveryone agrees that quantum entanglement does not allow information to be transmitted faster that light. There is no action either detector operator could take to signal the other one - regardless of the choice of measurement direction, the measured spins are random with 50/50 probability of up/down.\n\nSpecial thanks to:\nProf. Stephen Bartlett, University of Sydney: http://bit.ly/1xSosoJ\nProf. John Preskill, Caltech: http://bit.ly/1y8mJut\n\nLooking Glass Universe: http://bit.ly/17zZH7l\nPhysics Girl: http://bit.ly/PhysGirl\nMinutePhysics: http://bit.ly/MinPhys\nCommunity Channel: http://bit.ly/CommChannel\nNigel, Helen, Luke, and Simon for comments on earlier drafts of this video.\n\nFilmed in part by Scott Lewis: http://google.com/+scottlewis\n\nMusic by Amarante \"One Last Time\": http://bit.ly/VeAmarante",
@@ -847,6 +1649,12 @@ var videos = [{
     "duration": "00:09:16",
     "thumb": "http://i.ytimg.com/vi/ZuvK-od647c/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "MinuteEarth",
     "rating": 4.94942044257,
     "description": "How do plate tectonics REALLY work?\n\nPlease support us on Patreon at: http://www.patreon.com/minuteearth\n\nAnd subscribe! - http://www.youtube.com/user/minuteearth?sub_confirmation=1\n\nThanks to our Patreon patrons:\n   - @AntoineCoeur\n   - salar tel\n   - @TodayIFoundOut1\n   - @82abhilash\n\n________________________\nCreated by Henry Reich\nProduction and Writing Team: Alex Reich, Peter Reich, Emily Elert, Ever Salazar, Kate Yoshida, and Henry Reich\nMusic by Nathaniel Schroeder: http://www.soundcloud.com/drschroeder\n\n________________________\nFree iTunes podcasts of MinuteEarth! - https://goo.gl/sfwS6n\nFacebook - http://facebook.com/minuteearth\nTwitter - http://twitter.com/MinuteEarth\n\nMinuteEarth provides an energetic and entertaining view of trends in earth's environment -- in just a few minutes!\n\n________________________\nReferences\n\nAnderson, D. L. (2001). Top-down tectonics?. Science, 293(5537), 2016-2018. http://www.sciencemag.org/content/293/5537/2016.short\n\nConrad, C. P., & Lithgow-Bertelloni, C. (2002). How mantle slabs drive plate tectonics. Science, 298(5591), 207-209. ftp://128.171.151.230/engels/Stanley/Textbook_update/Science_298/Conrad-02.pdf\n\nConrad, C.P., 2014. Personal Communication\n\nDietz, R. S. (1961). Continent and ocean basin evolution by spreading of the sea floor. Nature, 190(4779), 854-857. http://eps.mcgill.ca/~courses/c350/lecturestuff/jan28/Dietz_1961.pdf\n\nForsyth, D., & Uyeda, S. (1975). On the relative importance of the driving forces of plate motion. Geophysical Journal International, 43(1), 163-200. http://gji.oxfordjournals.org/content/43/1/163.short\n\nHecht, J. 2014, Aug 29. Earth's tectonic plates have doubled their speed. New Scientist. http://www.newscientist.com/article/mg22329843.000-earths-tectonic-plates-have-doubled-their-speed.html#.VBDAJ7ywJ_Q\n\nSmil, V. 2007. Energy in Nature and Society: General Energetics of Complex Systems. MIT Press. http://mitpress.mit.edu/books/energy-nature-and-society\n\nDriving forces of plate tectonics (website):\nhttp://www.columbia.edu/~vjd1/driving_forces_basic.htm",
@@ -863,6 +1671,12 @@ var videos = [{
     "duration": "00:02:37",
     "thumb": "http://i.ytimg.com/vi/kwfNGatxUJI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED",
     "rating": 4.81758376256,
     "description": "http://www.ted.com Questions of good and evil, right and wrong are commonly thought unanswerable by science. But Sam Harris argues that science can -- and should -- be an authority on moral issues, shaping human values and setting out what constitutes a good life.\n\nTEDTalks is a daily video podcast of the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes. Featured speakers have included Al Gore on climate change, Philippe Starck on design, Jill Bolte Taylor on observing her own stroke, Nicholas Negroponte on One Laptop per Child, Jane Goodall on chimpanzees, Bill Gates on malaria and mosquitoes, Pattie Maes on the \"Sixth Sense\" wearable tech, and \"Lost\" producer JJ Abrams on the allure of mystery. TED stands for Technology, Entertainment, Design, and TEDTalks cover these topics as well as science, business, development and the arts. Closed captions and translated subtitles in a variety of languages are now available on TED.com, at http://www.ted.com/translate. Watch a highlight reel of the Top 10 TEDTalks at http://www.ted.com/index.php/talks/top10",
@@ -879,6 +1693,12 @@ var videos = [{
     "duration": "00:23:35",
     "thumb": "http://i.ytimg.com/vi/Hj9oB4zpHww/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "ouLearn on YouTube",
     "rating": 4.91785538613,
     "description": "TELL US WHAT YOU THINK and help us improve our Free Educational Resources\n\nhttps://www.surveymonkey.com/r/2015_YouTube_descr\n\nFor more like this subscribe to the Open University channel https://www.youtube.com/channel/UCXsH4hSV_kEdAOsupMMm4Qw\n\nFree learning from The Open University http://www.open.edu/openlearn/money-management/money/economics\n\n---\n\nEver shaken an invisible hand? Been flattened by a falling market? Or wondered what took the bend out of Phillips' curve? David Mitchell helps reveal some of the great dilemmas faced by governments trying to run an economy - whether to save or spend, control inflation, regulate trade, fix exchange rates, or just leave everyone to get on with it and not intervene. You'll learn why Adam Smith put such a high price on free markets, how Keynes found a bold new way to reduce unemployment, and what economists went on to discover about the impact of policy on people's and businesses' behaviour - which may not always be entirely rational.\n\nPlaylist link - http://www.youtube.com/playlist?list=PLhQpDGfX5e7DDGEQvLonjDQsbclAF2N-t\n\n---\n\nStudy economics with the OU http://www3.open.ac.uk/study/undergraduate/course/social-sciences/economics/index.htm\n\n---",
@@ -895,6 +1715,12 @@ var videos = [{
     "duration": "00:06:42",
     "thumb": "http://i.ytimg.com/vi/LCRNI04tnN8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.95222341568,
     "description": "http://audible.com/minutephysics\nEDWARD SNOWDEN book on Audible: http://www.audible.com/pd/Nonfiction/No-Place-to-Hide-Audiobook/B00MEL9RTI/ref=a_search_c4_1_1_srTtl/191-2173915-6184263?qid=1421950758&sr=1-1\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nMusic by Nathaniel Schroeder http://www.soundcloud.com/drschroeder Created by Henry Reich",
@@ -911,6 +1737,12 @@ var videos = [{
     "duration": "00:03:19",
     "thumb": "http://i.ytimg.com/vi/iWSu6U0Ujs8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.97282219997,
     "description": "Atoms are very weird. Wrapping your head around exactly how weird, is close to impossible \u2013 how can you describe something that is SO removed from humans experience? But then again, they kind of make up everything, so let us try anyways.\n\nYou can the MUSIC from the video here:\n\nhttps://soundcloud.com/epicmountain/atoms-original-music-kurzgesagt-science-videos\n\nhttps://epicmountainmusic.bandcamp.com/track/atoms\n\nhttp://epic-mountain.com\n\nVideos, explaining things. Like evolution, time, space, global energy or our existence in this strange universe. \nWe are a team of designers, journalists and musicians who want to make science look beautiful. Because it is beautiful. \n\nVisit us on our Website, Twitter, Facebook, Patreon or Behance to say hi!\n\nhttp://kurzgesagt.org\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\nhttp://www.patreon.com/Kurzgesagt\nhttp://www.behance.net/Kurzgesagt\n\nHow small is an atom? Spoiler: Very small\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nStephen Bassett, Paul Kuhns, Opal Hartbower, Andrzej Rejman, Andrew Jagasothy, Russell Common, jordan gardner, Jan Berdel, Scott Zell, David Walsh, AgentK, Mehmet Sevil, Carly Tawse, [ K A I ] = \u77f3 , Jonathan, Christopher Lang, Chris Kitching, Jeff Le, Devir Islas, Francesca Monteiro, Duncan Cheong, Derek, Juan Manuel Corredor, Patrick Eyrich, J.J., Chris Linardos, Tony Morley, J\u00f3natan Nilsson, Ga\u00ebtan Duvaux, Caroline Andrewes, Tom Alexander Kutil, Alex Kaplan, Vincent, Okan, KokLiang Lim, trefmanic, Dean Herbert, Adam Smith, David Garcia Quintas, Alexander Gavin Zodda, Sara Shah, Kimberly Powell, Eduardo Barbosa, Lasse Kurki, Jeroen Koerts, Michal, maarten ligtenberg, Ghitea Andrei Paul, Valantis Mavridis, Ozan, Ryan, Larry Bunyard, Malthe Agger, Josh Maleszewski, Sebastian Laiseca, Chase Gotlieb, Matthew Gill, Alexander Heavens, Kevin Yapaola, Adam Primaeros, Jan Schmid, Tim Carll, Javier de la Garza, Sieglinde Geisel, Rory Bennett, Randy Knapp, Jeff Churchill, Jonathan Velazquez Gore, Daniel, Pol Lutgen, Clayton Fussell, Daniel Gonzalez, Seona Tea, Stephen Joseph DCruz, Morten, Thomas Lee, Finn Edwards, Ernst van Wijk, David Taylor, Corbin Greene, Alan Feyaerts, Fabricio Godoy, Charles Kuang, Jesse MacLean, Maximilian Ritter, Yousif, Jesse Powell, Praveen Muthu, Bahjat, Wei Wong, Jon Davis, Mike Mintz, Jem Arnold, Steffen Weng, Igor Benicio de Mesquita, Greeny Liu, Tibor Schiemann, dante harper, Eli Fisker, B\u00fcnyamin Tetik, Joe Pond, Stephen Morse, Gustavo, J\u00f8rgen Smal\u00e5s, Dario W\u00fcnsch, Matthew Macomber, Daniel McCouid-Carr, Theo Alves Monteiro, Tony Montuori, David Davenport-Firth, Hamad, Michael Ren, Andrew Connor, Peter Schuller, Brandy Alexander, Alexander Kosenkov, Pascal B., Eric, Scott Laing, Gizem G\u00fcrkan, George Chearswat, Brandon Liu, oscar gautama, Tim, Bruno Ara\u00fajo, Carlos Bohorquez, Christian Lyster Bl\u00e6sbjerg, Daniel OCL, David Harbinson, Lethargicpanda, Rikard Nyberg, Heemi Kutia, Florian Guitton, Jezariael Demos, Ajay Shekhar, Ryan Nai, Eugene Cham, Renaud Savignard, James, Ryan, Pranab Shenoy, somersault18:24, Ben Shackman, Terry Lipstein\n\nHow Small is an Atom? Spoiler: Very small.\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -927,6 +1759,12 @@ var videos = [{
     "duration": "00:04:58",
     "thumb": "http://i.ytimg.com/vi/_lNF3_30lUE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.91754929118,
     "description": "Your body has all sorts of complicated processes going on, and a lot of them are carried out by incredibly powerful molecules. We\u2019re not talking nutrients -- we\u2019re talking about 5 of the molecules that keep you ticking!\n\nHosted by: Michael Aranda\n\nMessages from our Subbable Subscribers:\n\nGoodluck in your exams Mark! Can't wait until your back!\n - Kyle Renfrey\n\nLearning is the best thing you do with your you!\n - Laura Love Rathbun\n\nI pray for rising complexity & compassion for all living species.\n - C. C. Scott\n\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n\nOr help support us by subscribing to our page on Subbable: https://subbable.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\n\nThanks Tank Tumblr: http://thankstank.tumblr.com\n\nSources:\nhttp://ghr.nlm.nih.gov/handbook/basics?show=all\nhttp://www.nhm.ac.uk/nature-online/evolution/what-is-the-evidence/morphology/dna-molecules/\nhttp://www.sigmaaldrich.com/life-science/metabolomics/enzyme-explorer/analytical-enzymes/pepsin.html\nhttp://www.ncbi.nlm.nih.gov/pubmed/6785873\nhttp://www.chemistry.wustl.edu/~edudev/LabTutorials/Hemoglobin/MetalComplexinBlood.html\nhttp://chemed.chem.purdue.edu/genchem/topicreview/bp/1biochem/blood3.html\nhttp://themedicalbiochemistrypage.org/hemoglobin-myoglobin.php\nhttp://education-portal.com/academy/lesson/muscle-metabolism-processes-to-generate-atp.html\nhttp://employees.csbsju.edu/hjakubowski/classes/ch331/signaltrans/olsignalenergy.html\nhttp://www.health.harvard.edu/newsweek/Understanding_Cholesterol.htm\nhttp://themedicalbiochemistrypage.org/cholesterol.php\nhttp://www.ncbi.nlm.nih.gov/books/NBK22339/",
@@ -943,6 +1781,12 @@ var videos = [{
     "duration": "00:07:55",
     "thumb": "http://i.ytimg.com/vi/0MDyXaTDX3E/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.92652591511,
     "description": "In which Craig Benzine introduces a brand new Crash Course about U.S. Government and Politics! This course will provide you with an overview of how the government of the United States is supposed to function, and we'll get into how it actually does function. The two aren't always the same thing. We'll be learning about the branches of government, politics, elections, political parties, pizza parties, and much, much more!\n\nProduced in collaboration with PBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nSupport is provided by Voqal: http://www.voqal.org\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nInstagram - http://instagram.com/thecrashcourse\nSupport CrashCourse on Subbable: http://subbable.com/crashcourse",
@@ -959,6 +1803,12 @@ var videos = [{
     "duration": "00:06:47",
     "thumb": "http://i.ytimg.com/vi/lrk4oY7UxpQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow Space",
     "rating": 4.9736724009,
     "description": "SciShow Space News revisits one of the biggest (potential) astronomical discoveries of 2014, one that promised to revolutionize our understanding of the formation of the universe. Turns out, we\u2019re not quite there yet.\n\nHosted by: Hank Green\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/SciShow\n\nOr help support us by subscribing to our page on Subbable: https://subbable.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n\nSources:\nhttp://www.scientificamerican.com/article/what-is-the-cosmic-microw/\nhttp://www.ctc.cam.ac.uk/outreach/origins/inflation_zero.php\nhttp://www.space.com/25075-cosmic-inflation-universe-expansion-big-bang-infographic.html\nhttp://www.cfa.harvard.edu/news/2014-05\nhttp://sci.esa.int/planck/55362-planck-gravitational-waves-remain-elusive/\nhttp://journals.aps.org/prl/abstract/10.1103/PhysRevLett.112.241101#fulltext\nhttp://arxiv.org/pdf/1502.00612v1.pdf\nhttp://www.ma.utexas.edu/mp_arc/c/14/14-78.pdf\nhttp://www.nature.com/news/gravitational-wave-hunt-enters-next-phase-1.16838",
@@ -975,6 +1825,12 @@ var videos = [{
     "duration": "00:04:31",
     "thumb": "http://i.ytimg.com/vi/wvtRXjQXaI0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "science4all",
     "rating": 4.93690851735,
     "description": "A Brief introduction to molecular dynamics.  For more similar videos see\nhttp://www.youtube.com/user/Thunderf00t",
@@ -991,6 +1847,12 @@ var videos = [{
     "duration": "00:04:12",
     "thumb": "http://i.ytimg.com/vi/lLFEqKl3sm4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.79295506855,
     "description": "Fewer children in the United States are getting vaccinated. That\u2019s bad news for those kids, and also for public health in general. Often, the response is to argue and debate and get angry at people who are we see as making terrible, irrational decisions. Instead of doing that, let\u2019s use science to understand why this is happening in the first place.\n\nHosted by: Hank Green\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n\nOr help support us by subscribing to our page on Subbable: https://subbable.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n\nSources:\nMeta-Analysis of the Safety of Vaccines: http://pediatrics.aappublications.org/content/134/2/325\nThe Internet and the Psychology of Vaccination Decisions: http://www.eurosurveillance.org/ViewArticle.aspx?ArticleId=19849\nNaturalness Bias: http://www.ncbi.nlm.nih.gov/pubmed/18319507\nOmission Bias and Vaccines: http://mdm.sagepub.com/content/14/2/118\nDifficulty in changing minds once they\u2019re made: http://pediatrics.aappublications.org/content/early/2014/02/25/peds.2013-2365\nOnset Patterns of Autism: http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2857525/\nBad is Stronger than Good - Negativity Bias: http://assets.csom.umn.edu/assets/71516.pdf\nParental Vaccine Decision Making: http://www.ncbi.nlm.nih.gov/pubmed/24011751\nRead more about Risk Perception: https://en.wikipedia.org/wiki/Risk_perception\nAnd Explanatory Style: https://en.wikipedia.org/wiki/Explanatory_style\nhttp://www.ninds.nih.gov/disorders/autism/detail_autism.htm",
@@ -1007,6 +1869,12 @@ var videos = [{
     "duration": "00:09:16",
     "thumb": "http://i.ytimg.com/vi/Rzxr9FeZf1g/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "New Scientist",
     "rating": 4.94382022472,
     "description": "Full story: http://bit.ly/1BxzuA0\nFind out what\u2019s behind the volatile new world of virtual money.",
@@ -1023,6 +1891,12 @@ var videos = [{
     "duration": "00:03:27",
     "thumb": "http://i.ytimg.com/vi/5LMS0PIzGh8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Graham Johnson",
     "rating": 4.99211045365,
     "description": "I created this animation of the molecular motor \"kinesin\" walking along a protofilament of a microtubule in 1999 for the Ron Milligan and Ron Vale Science paper referenced below. It was my first major project using Cinema4D instead of my old favorite StrataStudioPro on a mac.\n   Mike Morales and Peter Walter created a narration for Garland publishers Molecular Biology of the Cell, Alberts et al.\n\nFor details on the science behind the animated visualization, please check out the original paper:\nVale, R. D. & Milligan, R. A. The Way Things Move: Looking Under the\nHood of Molecular Motor Proteins Science, 2000, 288, 88-95\n\nCreated by Graham Johnson of fivth.com and Graham Johnson medical media www.grahamj.com, for Molecular Biology of the Cell, 4e by Alberts, Walter, et al, Gardland Publishers. \u00a92002  \n\nFor more on simulating and animating molecules, cells and helpful plugins, please visit www.grahamj.com",
@@ -1039,6 +1913,12 @@ var videos = [{
     "duration": "00:02:09",
     "thumb": "http://i.ytimg.com/vi/YAva4g3Pk6k/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.96761530913,
     "description": "View full lesson: http://ed.ted.com/lessons/how-do-dogs-see-with-their-noses-alexandra-horowitz\n\nYou may have heard the expression that dogs \u2018see with their noses.\u2019 But these creature\u2019s amazing nasal architecture actually reveals a whole world beyond what we can see. Alexandra Horowitz illustrates how the dog\u2019s nose can smell the past, the future and even things that can\u2019t be seen at all. \n\nLesson by Alexandra Horowitz, animation by Prov\u00edncia Studio.",
@@ -1055,6 +1935,12 @@ var videos = [{
     "duration": "00:04:28",
     "thumb": "http://i.ytimg.com/vi/p7fXa2Occ_U/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.92308443143,
     "description": "In this episode of Crash Course Astronomy, Phil takes you through the cause and name of the Moon's phases.\n\n--\n\nWhy the Moon Has Phases 0:36.1\nSpheres in Orbit 1:05.4\nName of the Moon Phases 2:25.5\nHow We See It 7:48.2\n\n--\n\nPBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nFollow Phil on Twitter: https://twitter.com/badastronomer\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Subbable: http://subbable.com/crashcourse\n\n--\n\nPHOTOS\nhttp://en.wikipedia.org/wiki/Moon#mediaviewer/File:FullMoon2010.jpg\nhttps://solarsystem.nasa.gov/multimedia/display.cfm?IM_ID=1879\nhttp://svs.gsfc.nasa.gov/vis/a000000/a004200/a004236/frames/730x730_1x1_30p/moon.0505.jpg\nhttp://svs.gsfc.nasa.gov/vis/a000000/a004200/a004236/frames/730x730_1x1_30p/moon.0553.jpg\nhttp://svs.gsfc.nasa.gov/vis/a000000/a004200/a004236/frames/730x730_1x1_30p/moon.0634.jpg\nhttp://svs.gsfc.nasa.gov/vis/a000000/a004200/a004236/frames/730x730_1x1_30p/moon.0706.jpg\nhttp://svs.gsfc.nasa.gov/vis/a000000/a004200/a004236/frames/730x730_1x1_30p/moon.0809.jpg\nhttp://svs.gsfc.nasa.gov/vis/a000000/a004200/a004236/frames/730x730_1x1_30p/moon.0905.jpg\nhttp://svs.gsfc.nasa.gov/vis/a000000/a004200/a004236/frames/730x730_1x1_30p/moon.1011.jpg\nhttp://svs.gsfc.nasa.gov/vis/a000000/a004200/a004236/frames/730x730_1x1_30p/moon.1145.jpg\nhttp://en.wikipedia.org/wiki/Moon#mediaviewer/File:NASA-Apollo8-Dec24-Earthrise.jpg\nhttp://global.jaxa.jp/press/2008/04/img/20080411_kaguya_01l.jpg\nhttp://global.jaxa.jp/press/2008/04/20080411_kaguya_e.html\nhttp://www.esa.int/Our_Activities/Operations/First_view_of_Earth_as_Rosetta_approaches_home\nhttp://commons.wikimedia.org/wiki/File:Sachin_Nigam_-_starry_moon_%28by-sa%29.jpg\nhttps://www.flickr.com/photos/badastronomy/14397419837/",
@@ -1071,6 +1957,12 @@ var videos = [{
     "duration": "00:09:46",
     "thumb": "http://i.ytimg.com/vi/AQ5vty8f9Xc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Veritasium",
     "rating": 4.96180081855,
     "description": "New research shows chameleons actively tune nano-crystals to change their color.\nFor a 10-day free trial, check out http://lynda.com/veritasium\nChameleon research in Nature Communications: http://bit.ly/1FacHO2\n\"Photonic Crystals Cause Active Colour Change in Chameleons\" \n\nThis research was carried out by J\u00e9r\u00e9mie Teyssier, Suzanne V. Saenko, Dirk van der Marel & Michel C. Milinkovitch at the University of Geneva Department of Quantum Matter Physics and the Laboratory of Artificial and Natural Evolution (LANE)\n\nOriginal videos of chameleons are here:\nhttps://www.youtube.com/watch?v=YIRiCwHlUd8\nhttps://www.youtube.com/watch?v=XdQvtP8EKrM\nhttps://www.youtube.com/watch?v=YSH7EmXFMac\nhttps://www.youtube.com/watch?v=egwueh6wj1E\n\nAdditional details available at: http://www.lanevol.org/LANE/chameleon_colour_change.html\nFor correspondence: Michel C. Milinkovitch, Laboratory of Artificial & Natural Evolution (LANE), Dept. of Genetics & Evolution, University of Geneva, Switzerland.\n\nThe melanin spreading out video is courtesy of Richard Wheeler:\nhttps://www.youtube.com/watch?v=hL0USeWjTHQ\nhttp://www.richardwheeler.net\n\nSpecial thanks to:\nHarry, Jo, Daniella and Raquel for helping me produce and film this video - it looks great thanks to you!",
@@ -1087,6 +1979,12 @@ var videos = [{
     "duration": "00:05:42",
     "thumb": "http://i.ytimg.com/vi/SQggDnScsvI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow Space",
     "rating": 4.89801363771,
     "description": "Did you know the moon has a tail? No one did, until 1998, and we\u2019ve been trying to figure it out ever since.\n\nHosted by: Caitlin Hofmeister\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/SciShow\n\nOr help support us by subscribing to our page on Subbable: https://subbable.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n\nSources:\nhttp://epss.ucla.edu/seminars/spring-2014/m288c-space-science-seminar/barnstorming-moon-adventures-lunar-atmosphere-and-dust-environment-explorer-ladee/\nhttp://sirius.bu.edu/aeronomy/Matta%20et%20al%202009.pdf\nhttp://www.nasa.gov/mission_pages/LADEE/news/lunar-atmosphere.html#.VMJ9eSvF_cA\nhttp://science.nasa.gov/science-news/science-at-nasa/2000/ast26oct_1/\nhttp://epss.ucla.edu/seminars/spring-2014/m288c-space-science-seminar/barnstorming-moon-adventures-lunar-atmosphere-and-dust-environment-explorer-ladee/\nhttp://www.nasa.gov/ames/ladee-project-update-100-days-of-science-observations/#.VMIIXCvF_cA\nhttp://sirius.bu.edu/aeronomy/Matta%20et%20al%202009.pdf",
@@ -1103,6 +2001,12 @@ var videos = [{
     "duration": "00:03:40",
     "thumb": "http://i.ytimg.com/vi/0bWvj0veDeY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "New Scientist",
     "rating": 4.91397849462,
     "description": "Full story: http://bit.ly/1z1aePI\nTime-lapse images have helped uncover the molecular messages that drive the formation of a kidney",
@@ -1119,6 +2023,12 @@ var videos = [{
     "duration": "00:00:30",
     "thumb": "http://i.ytimg.com/vi/VQJfwCf3zvw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Veritasium",
     "rating": 4.95951466374,
     "description": "What it's like to see the Earth from orbit.\nSpecial thanks to Col. Chris Hadfield for chatting with me. http://chrishadfield.ca/\n\nSpace imagery courtesy of NASA and the ESA\nhttp://eol.jsc.nasa.gov/\nhttp://www.esa.int/spaceinvideos/Videos\n\nMusic by Kevin MacLeod \"New Frontier\" http://incompetech.com\nAnd \"Eureka\" by Huma-Huma",
@@ -1135,6 +2045,12 @@ var videos = [{
     "duration": "00:04:01",
     "thumb": "http://i.ytimg.com/vi/6YOz9Pxnzho/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.96276276276,
     "description": "View full lesson: http://ed.ted.com/lessons/how-do-your-kidneys-work-emma-bryce\n\nAfter drinking a few glasses of water on a hot day, you might be struck with a sudden ... urge. Behind that feeling are two bean-shaped organs that work as fine-tuned internal sensors. Emma Bryce details how the incredible kidneys balance the amount of fluid in your body, detect waste in your blood, and know when to release the vitamins, minerals, and hormones you need to stay alive. \n\nLesson by Emma Bryce, animation by Tremendousness.",
@@ -1151,6 +2067,12 @@ var videos = [{
     "duration": "00:03:55",
     "thumb": "http://i.ytimg.com/vi/FN3MFhYPWWo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED",
     "rating": 4.9703043801,
     "description": "We'll go to the doctor when we feel flu-ish or a nagging pain. So why don\u2019t we see a health professional when we feel emotional pain: guilt, loss, loneliness? Too many of us deal with common psychological-health issues on our own, says Guy Winch. But we don\u2019t have to. He makes a compelling case to practice emotional hygiene \u2014 taking care of our emotions, our minds, with the same diligence we take care of our bodies.\n\nTEDTalks is a daily video podcast of the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and much more.\nFind closed captions and translated subtitles in many languages at http://www.ted.com/talks/guy_winch_the_case_for_emotional_hygiene\n\nFollow TED news on Twitter: http://www.twitter.com/tednews\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: http://www.youtube.com/user/TEDtalksDirector",
@@ -1167,6 +2089,12 @@ var videos = [{
     "duration": "00:17:29",
     "thumb": "http://i.ytimg.com/vi/F2hc2FLOdhI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.96400625978,
     "description": "Today Phil explains how telescopes work and offers up some astronomical shopping advice.\n\n--\n\nHow Telescopes Work 1:07\nRefractors vs Reflectors 2:50\nTechnology and the Light Spectrum 7:45\n\n--\n\nPBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nFollow Phil on Twitter: https://twitter.com/badastronomer\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Subbable: http://subbable.com/crashcourse\n\n--\n\nPHOTOS/VIDEOS\nhttp://en.wikipedia.org/wiki/Galileo_Galilei#mediaviewer/File:Justus_Sustermans_-_Portrait_of_Galileo_Galilei,_1636.jpg\nhttp://en.wikipedia.org/wiki/Human_eye#mediaviewer/File:Human_eye_with_blood_vessels.jpg\nhttp://en.wikipedia.org/wiki/Refracting_telescope#mediaviewer/File:Refractor_Cincinnati_observatory.jpg\nhttp://commons.wikimedia.org/wiki/File:Positive_lens_2.svg\nhttp://www.eso.org/public/images/yb_vlt_moon_cnn_cc/\nhttp://en.wikipedia.org/wiki/Jupiter#mediaviewer/File:Jupiter_MAD.jpg\nhttp://en.wikipedia.org/wiki/Wide_Field_and_Planetary_Camera#mediaviewer/File:Hubble_Images_of_M100_Before_and_After_Mirror_Repair_-_GPN-2002-000064.jpg\nhttp://commons.wikimedia.org/wiki/File:Prime_focus_telescope.svg\nhttp://commons.wikimedia.org/wiki/File:Inspection_of_the_primary_mirror_of_the_Hubble_Space_Telescope8218871.jpg\nhttps://www.youtube.com/watch?v=ui6ernRFxOg#t=2m22s\nhttp://en.wikipedia.org/wiki/William_Herschel#mediaviewer/File:William_Herschel01.jpg\nhttp://commons.wikimedia.org/wiki/File:Grand_Canyon_National_Park,_23_Annual_Star_Party_2013_-_0082_-_Flickr_-_Grand_Canyon_NPS.jpg\nhttp://commons.wikimedia.org/wiki/File_talk:EM_spectrum.svg#mediaviewer/File:EM_spectrumrevised.png\nhttps://www.youtube.com/watch?v=RqX9vLj3_7w#t=4m52s\nhttp://pprc.qmul.ac.uk/~still/wordpress/?page_id=138\nhttp://en.wikipedia.org/wiki/VERITAS#mediaviewer/File:MMT_FLWO_Amado_AZ_10359.jpg\nhttp://en.wikipedia.org/wiki/Astrophotography#mediaviewer/File:Henry_Drape_Orion_nebula_1880_inverted.jpg\nhttp://en.wikipedia.org/wiki/Astrophotography#mediaviewer/File:Orion-Nebula_A_A_Common.jpg\nhttp://en.wikipedia.org/wiki/File:PIA18593-Mars-CometSidingSpring-NEOWISE-20140728.jpg\nhttp://en.wikipedia.org/wiki/File:NASA-HS201427a-HubbleUltraDeepField2014-20140603.jpg\nhttp://upload.wikimedia.org/wikipedia/commons/2/2b/Jupiter_and_its_shrunken_Great_Red_Spot.jpg\nhttp://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Chromatic_aberration_3.svg/2000px-Chromatic_aberration_3.svg.png\nhttp://upload.wikimedia.org/wikipedia/commons/5/56/The_Whirlpool_Galaxy_%28M51%29.jpg\nhttp://hubblesite.org/newscenter/archive/releases/2005/12/image/a/",
@@ -1183,6 +2111,12 @@ var videos = [{
     "duration": "00:12:01",
     "thumb": "http://i.ytimg.com/vi/mYhy7eaazIk/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED",
     "rating": 4.92751235585,
     "description": "Brain imaging pioneer Nancy Kanwisher, who uses fMRI scans to see activity in brain regions (often her own), shares what she and her colleagues have learned: The brain is made up of both highly specialized components and general-purpose \"machinery.\" Another surprise: There's so much left to learn.\n\nTEDTalks is a daily video podcast of the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and much more.\nFind closed captions and translated subtitles in many languages at http://www.ted.com/translate\n\nFollow TED news on Twitter: http://www.twitter.com/tednews\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: http://www.youtube.com/user/TEDtalksDirector",
@@ -1199,6 +2133,12 @@ var videos = [{
     "duration": "00:17:45",
     "thumb": "http://i.ytimg.com/vi/5Yj3nGv0kn8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED",
     "rating": 4.94057807202,
     "description": "The brain uses a quarter of the body's entire energy supply, yet only accounts for about two percent of the body's mass. So how does this unique organ receive and, perhaps more importantly, rid itself of vital nutrients? New research suggests it has to do with sleep.\n\nTEDTalks is a daily video podcast of the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and much more.\nFind closed captions and translated subtitles in many languages at http://www.ted.com/translate\n\nFollow TED news on Twitter: http://www.twitter.com/tednews\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: http://www.youtube.com/user/TEDtalksDirector",
@@ -1215,6 +2155,12 @@ var videos = [{
     "duration": "00:11:46",
     "thumb": "http://i.ytimg.com/vi/MJK-dMlATmM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.96008316008,
     "description": "View full lesson: http://ed.ted.com/lessons/what-does-the-pancreas-do-emma-bryce\n\nBeneath your ribs, you\u2019ll find, among other things, the pancreas -- an organ that works a lot like a personal health coach. Emma Bryce explains how this organ controls your sugar levels and produces a special juice that releases the nutrients from your food to help keep you in the best possible shape. \n\nLesson by Emma Bryce, animation by Tremendousness.",
@@ -1231,6 +2177,12 @@ var videos = [{
     "duration": "00:03:21",
     "thumb": "http://i.ytimg.com/vi/8dgoeYPoE-0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.95116846878,
     "description": "\u2022\u2022\u2022SUBBABLE MESSAGE\u2022\u2022\u2022\n\nTO: Kerry\nFROM: Cale\n\nI love you with all my ha-art. Deadset.\n\n***\n\nYou can directly support Crash Course at http://www.subbable.com/crashcourse Subscribe for as little as $0 to keep up with everything we're doing. Also, if you can afford to pay a little every month, it really helps us to continue producing great content.\n\n***\n\nToday Hank kicks off our look around MISSION CONTROL: your nervous system.\n\n--\n\nTable of Contents:\n\nSensory Input, Integration and Motor Output 1:36\nOrganization of Central and Peripheral Systems 2:16\nGlial Cells 3:54\nRole, Anatomy and Function of Neuron Types 5:23\nStructure and Function of Neurons 6:20\n\n--\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Subbable: http://subbable.com/crashcourse",
@@ -1247,6 +2199,12 @@ var videos = [{
     "duration": "00:10:36",
     "thumb": "http://i.ytimg.com/vi/qPix_X-9t7E/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SmarterEveryDay",
     "rating": 4.98127266733,
     "description": "Scott reads tweets on the ISS!  Tweet him and see if he replies! http://bit.ly/Twt_Scott\nCheck out his Instagram: http://bit.ly/InstaSPACE\n\u21ca\u21ca\u21ca\u21ca\u21ca   More info Below  \u21ca\u21ca\u21ca\u21ca\u21ca\n\nPlease consider following Scott on both Instagram and Twitter.  This will probably be NASA's measure of how successful working with Smarter Every Day is.\n\nFollow ISS Research while he's on orbit:\nhttps://twitter.com/iss_research\n\nA special thanks to Scott Kelly \nhttp://en.wikipedia.org/wiki/Scott_Kelly_%28astronaut%29\n\nand Reid Wiseman (Follow Reid on Twitter)\nhttp://en.wikipedia.org/wiki/Gregory_R._Wiseman\nhttps://twitter.com/astro_reid\n\nNASA footage courtesy of Devin Boldt, who also gave me a cool piece of Japanese green apple candy once.  His co-workers say he's \"a pretty cool dude\".\n\nComment thread on Reddit: http://bit.ly/1GCoZ0t\nTweet ideas to me @SmarterEveryDay\n\nAwesome orbital animations by:\nhttp://eisenfeuer.com/\n\nMusic is \"PoleCat\" by A Shell In The Pit.  Download it here:\nhttp://ashellinthepit.bandcamp.com/album/mammals\n\nSoyuz and ISS Graphic by:\nhttp://www.emilyweddledesign.com\n\nBeautiful Outro Timelapse by Kenneth Brandon - Dark Sky Chaser\nhttps://www.youtube.com/user/KennethBrandon Check his work out!\n~~~~~~~~~~~~~~~~~~\nhttp://www.smartereveryday.com\nMy Instagram account: http://instagram.com/smartereveryday\nPatreon Support Link: http://www.patreon.com/smartereveryday\nTwitter: https://twitter.com/smartereveryday\nwww.facebook.com/SmarterEveryDay\n~~~~~~~~~~~~~~~~~~~\n\nGET SMARTER SECTION:\n\nHohmann Transfer:\nhttp://en.wikipedia.org/wiki/Hohmann_transfer_orbit\n\nBielliptic Transfer:\nhttp://en.wikipedia.org/wiki/Bi-elliptic_transfer\n\nSoyuz \nhttp://www.spaceflight101.com/soyuz-spacecraft-information.html\n\nISS Research is tweeted live daily\nhttp://twitter.com/iss_research\nMore general ISS info tweeted here:\nhttp://twitter.com/Space_Station\n\nISS Facebook page here:\nhttp://www.facebook.com/ISS\n\n~~~~~~~~~~~~~~~~~~~~\n\n\nInstead of saving for my kids' college, I make videos using the money I would have saved.\nThe thought is it will help educate the world as a whole, and one day generate enough revenue to pay for their education. Until then if you appreciate what you've learned in this video and the effort that went in to it, please SHARE THE VIDEO!\n\nIf you REALLY liked it, feel free to pitch a few dollars towards their college fund by clicking here:\nhttp://bit.ly/KidsCollege\n\nWarm Regards,\n\nDestin",
@@ -1263,6 +2221,12 @@ var videos = [{
     "duration": "00:10:06",
     "thumb": "http://i.ytimg.com/vi/qFjw6Lc6J2g/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.87933568812,
     "description": "Banks are a riddle wrapped up in an enigma. We all kind of know that they do stuff with money we don\u2019t understand, while the last crisis left a feeling of deep mistrust and confusion. We try to shed a bit of light onto the banking system. Why were banks invented, why did they cause the last crisis and are there alternatives?\n\nThe music from the video is available here!\n\nhttp://epicmountainmusic.bandcamp.com/track/banking\n\nhttp://soundcloud.com/epicmountain/banking\n\nhttp://www.epic-mountain.com\n\nVisit us on our Website, Twitter, Facebook, Patreon or Behance to say hi!\n\nhttp://kurzgesagt.org\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\nhttp://www.patreon.com/Kurzgesagt\nhttp://www.behance.net/Kurzgesagt\n\nBanking Explained \u2013 Money and Credit\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -1279,6 +2243,12 @@ var videos = [{
     "duration": "00:06:10",
     "thumb": "http://i.ytimg.com/vi/fTTGALaRZoc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.8352402746,
     "description": "View full lesson: http://ed.ted.com/lessons/the-law-of-conservation-of-mass-todd-ramsey\n\nEverything in our universe has mass \u2014 from the smallest atom to the largest star. But the amount of mass has remained constant throughout existence even during the birth and death of stars, planets and you. How can the universe grow while maintaining its mass? Todd Ramsey answers that question by unravelling the law of conservation of mass.\n\nLesson by Todd Ramsey, animation by Vegso/Banyai.",
@@ -1295,6 +2265,12 @@ var videos = [{
     "duration": "00:04:37",
     "thumb": "http://i.ytimg.com/vi/2S6e11NBwiw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Brit Lab",
     "rating": 4.98179979778,
     "description": "From 1982, Tomorrow's World takes a look at the beginning of computer generated images.\n\nSubscribe for more awesome science - http://www.youtube.com/subscription_center?add_user=HeadsqueezeTV",
@@ -1311,6 +2287,12 @@ var videos = [{
     "duration": "00:04:03",
     "thumb": "http://i.ytimg.com/vi/gSpXMH9xJy0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.77228988628,
     "description": "Nuclear energy might be a failed experiment. In over sixty years the technology has not only failed to keep its promise of cheap, clean and safe energy, it also caused major catastrophes and enabled more nuclear weapons while the nuclear waste problem is still not solved.\n\nWhy nuclear energy is awesome: http://bit.ly/1F1V8Mc\n\nBrief Introduction into nuclear energy: http://bit.ly/1CdmAIk\n\nIf you want to support us and get a free audiobook go to www.audible.com/nutshell\n\n\nAlso thanks a lot for the help to Michael B\u00fcker! Follow him @emtiu\n\nVisit us on our Website, Twitter, Facebook, Patreon or on Behance to say hi!\n\nhttp://kurzgesagt.org\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\nhttp://www.patreon.com/Kurzgesagt\nhttp://www.behance.net/Kurzgesagt\n\nThe music was composed by Thomas Veith, you can get it here:\n\nhttps://soundcloud.com/epicmountain/sets/kurzgesagt-nuclear\n\nhttps://epicmountainmusic.bandcamp.com/track/nuclear-pro\n\nhttps://epicmountainmusic.bandcamp.com/track/nuclear-contra\n\nhttp://www.epic-mountain.com\n\n\nThanks a lot to our lovely Patrons for their ongoing support!\n\nStephen Bassett, Raphael Hviding, Sam Elitzer, Andrzej Rejman, OpenGG,\u00a0Andrew Jagasothy,\u00a0jordan gardner,\u00a0AgentK,\u00a0Mehmet Sevil,\u00a0Carly Tawse, K A I, Kevin Dam,\u00a0Charlie,\u00a0Christopher Lang,\u00a0Nat Ryall,\u00a0Jeff Le, Nicholas Holtz,\u00a0Devir Islas,\u00a0Arnas Valeika,\u00a0Kirstie,\u00a0Francesca Monteiro,\u00a0James Craver,\u00a0Broderick,\u00a0Duncan Cheong,\u00a0Derek,\u00a0Juan Manuel Corredor,\u00a0Osric Lord-Williams,\u00a0Scott Zell,\u00a0Jeroen Koerts,\u00a0Patrick Eyrich,\u00a0tekbit, Chris Linardos,\u00a0Tony Morley,\u00a0J\u00f3natan Nilsson, Nat Thomas Golder,\u00a0Zr4g0n,\u00a0Cody,\u00a0Michal,\u00a0Caroline Andrewes,\u00a0Alex Kaplan,\u00a0Tom Alexander Kutil,\u00a0Vincent,\u00a0Okan,\u00a0Sasha C,\u00a0KokLiang Lim,\u00a0Marcelo,\u00a0Mikel De Uranga,\u00a0Dean Herbert,\u00a0Anton Efimenko,\u00a0trefmanic,\u00a0Adam Smith,\u00a0David Garcia Quintas,\u00a0Ga\u00ebtan Duvaux,\u00a0Eduardo Barbosa,\u00a0maarten ligtenberg,\u00a0Ghitea Andrei Paul,\u00a0Ozan,\u00a0Ryan,\u00a0Larry Bunyard,\u00a0Josh Maleszewski,\u00a0Volodymyr Khomenko,\u00a0Sebastian Laiseca,\u00a0Chase,\u00a0Michael Slade,\u00a0Scarlet Barton,\u00a0Matthew Gill,\u00a0Aaron,\u00a0Alexander Heavens,\u00a0Alexander Ahn,\u00a0Arrngrim,\u00a0Fluffy19,\u00a0Adam Primaeros,\u00a0Jan Schmid,\u00a0Sara Shah,\nGard Fredrik Skuland,\u00a0Veselin Kostadinov, Jonathan Velazquez Gore,\u00a0Daniel,\u00a0Philly Cashion,\u00a0Seona Tea,\u00a0Clayton Fussell,\u00a0Daniel Gonzalez,\u00a0Stephen Joseph DCruz,\u00a0Morten,\u00a0Dan Q,\u00a0Thomas Lee,\u00a0Finn Edwards, David Taylor,\u00a0Corbin,\u00a0Fabricio Godoy,\u00a0Charles Kuang,\u00a0Alan Feyaerts,\u00a0Maximilian Ritter,\u00a0Jesse MacLean,\u00a0Matt Collins,\u00a0Yousif,\u00a0Jesse Powell,\u00a0Dan Treasure,\u00a0nga\u2074,\u00a0\u51a0\u744b \u9673,\u00a0Wei Wong,\u00a0Praveen Muthu,\u00a0Jon Davis,\u00a0Bahjat,\u00a0Mike Mintz,\u00a0Jem Arnold,\u00a0Steffen Weng,\u00a0Igor Benicio de Mesquita,\u00a0Lars Vas Dias,\u00a0Greeny Liu,\u00a0Tibor Schiemann,\u00a0dante harper,\u00a0B\u00fcnyamin Tetik,\u00a0Eli Fisker,\u00a0Joe Pond,\u00a0J\u00f8rgen Smal\u00e5s,\u00a0Gustavo,\u00a0Tommi Mansikka,\u00a0Dario W\u00fcnsch,\u00a0Matthew Macomber,\u00a0Daniel McCouid-Carr,\u00a0Neelfyn,\u00a0Muath,\u00a0Edgar Duarte Ortega,\u00a0Stephen Chen,\u00a0Alipasha Sadri,\u00a0Kevin P,\u00a0Steven Ratner,\u00a0Theo Alves Monteiro,\u00a0Brucelow,\u00a0Jos\u00e9,\u00a0Tony Montuori,\u00a0Philipp Weber,\u00a0Brad Wardell,\u00a0David Davenport-Firth,\u00a0Alexander Scheffer,\u00a0Eric, Austin,\u00a0Enrico,\u00a0Hamad,\u00a0Andrew Connor,\u00a0Ignacio Flores,\u00a0Tom Langford,\u00a0Vaelohs,\u00a0Peter Schuller,\u00a0Bear, Brandy Alexander,\u00a0Mark Govea,\u00a0Alexander Kosenkov,\u00a0Eric,\u00a0Wesley Sheridan Montgomery,\u00a0Artem Anchugov,\u00a0Brandon Liu,\u00a0Erven,\u00a0varinder singh bal,\u00a0Scott Laing,\u00a0Philip Freeman,\u00a0Gizem G\u00fcrkan,\u00a0George Chearswat,\u00a0Tim,\u00a0Victor,\u00a0Martin Fink-Jensen,\u00a0Josh Allen,\u00a0oscar gautama,\u00a0Karl Snickars,\u00a0Jennifer Hiller,\u00a0Bruno Ara\u00fajo,\u00a0Maarten Bremer,\u00a0Daniel OCL,\u00a0Carlos Bohorquez,\u00a0Elchus,\u00a0RobPT,\u00a0Hugo,\u00a0Lethargicpanda,\u00a0Amdrew,\u00a0Minghan Ko,\u00a0Mark Scheurwater,\u00a0David Harbinson,\u00a0Rikard Nyberg,\u00a0Collin Banko,\u00a0Florian Guitton,\u00a0Jezariael Demos,\u00a0Ajay Shekhar, \u00a0Nick Yonge,\u00a0Jon Moroney, Eugene Cham,\u00a0Renaud Savignard,\u00a0James,\u00a0Viktor Asklund,\u00a0Ryan,\u00a0somersault18:24,\u00a0Ben Shackman,\u00a0Pranab Shenoy,\u00a0Terry Lipstein,\u00a0Tim Carll,\u00a0Javier de la Garza,\u00a0Rory Bennett,\u00a0Jan Berdel,\u00a0Sieglinde Geisel, Jeff Churchill\n\n3 Reasons Why Nuclear Energy Is Terrible!\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -1327,6 +2309,12 @@ var videos = [{
     "duration": "00:04:10",
     "thumb": "http://i.ytimg.com/vi/HEYbgyL5n1g/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "AsapSCIENCE",
     "rating": 4.94769532527,
     "description": "How do \"Magic Mushrooms\" chemically alter your brain?\nType A. vs. Type B. Personalities: http://youtu.be/1PxwRNvk9y0\nGET THE BOOK: http://asapscience.com/book/\n\nCOME MEET US!\n\nMarch 15 @ 4pm\nAUSTIN - at SXSW\nAustin Convention Centre (Ballroom G)\n\nMarch 17 @ 6pm\nYouTube Space New York\nRSVP Link: http://bit.ly/1Mq5MAv\n\nMarch 18 @ 7:30pm\nJERSEY CITY - WORD Jersey City\n123 Newark Ave, Jersey City, New Jersey 07302\nhttp://on.fb.me/1AcSoNM\n\nMarch 19th @ 7 pm\nNEW YORK - Barnes & Noble Union Square\n33 East 17th St, New York, New York 10003\nhttp://on.fb.me/1DGJUPO\n\nMarch 25th @ 7pm\nTORONTO - Indigo\n55 Bloor Street West, Manulife Centre, Toronto, ON M4W 1A5\nhttp://on.fb.me/1EjU2QH\n\nSubscribe! (It's free): http://bit.ly/asapsci\n\nInstagram and Twitter: @whalewatchmeplz and @mitchellmoffit \nClickable: http://bit.ly/16F1jeC and http://bit.ly/15J7ube\n\nFacebook: http://on.fb.me/1fjWszw\nTwitter: http://bit.ly/1d84R71\nTumblr: http://bit.ly/1amIPjF\nVine: Search \"AsapSCIENCE\" on vine!\n\nCreated by Mitchell Moffit (twitter @mitchellmoffit) and Gregory Brown (twitter @whalewatchmeplz).\n\nSend us stuff!\n\nASAPSCIENCE INC.\nP.O. Box 93, Toronto P\nToronto, ON, M5S2S6\n\n -- Further Reading -- \n\nPharmacology of Hallucinations: Several Mechanisms for One Single Symptom?\nhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC4065763/\n\nThis Brain Map Shows Why People On Shrooms See Sounds And Hear Colors\nhttp://www.businessinsider.com/how-brain-changes-on-mushrooms-2014-10#ixzz3U2ieww00\n\nThis Is Your Brain on Magic Mushrooms\nhttp://blogs.discovermagazine.com/d-brief/2014/10/29/brain-psychedelic-drugs/\n\nhttp://www.wired.com/2014/10/magic-mushroom-brain/\n\nYour Brain On Magic Mushrooms Is Actually Similar To Dreaming, Brain Scan Study Shows\nhttp://www.huffingtonpost.com/2014/07/06/magic-mushrooms-alter-mind_n_5554297.html\n\nYour Brain On Magic Mushrooms\nhttp://www.iflscience.com/brain/your-brain-magic-mushrooms",
@@ -1343,6 +2331,12 @@ var videos = [{
     "duration": "00:02:51",
     "thumb": "http://i.ytimg.com/vi/F5kqThVON18/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow Space",
     "rating": 4.9746835443,
     "description": "If you could pilot a spaceship into Jupiter and Saturn, would you ever hit anything solid? And what\u2019s it like in there? SciShow Space takes you on a tour of the two biggest gas giants in the solar system.\n----------\nDooblydoo thanks to the following Patreon supporters -- we couldn't make SciShow without them! Shout outs go to Justin Lentz, John Szymakowski, Ruben Galvao, and Peso255.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/SciShow\n\nOr help support us by becoming our patron on Patreon:\nhttps://www.patreon.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n\nSources:\nhttp://m.teachastronomy.com/astropedia/article/Atmospheres-of-Gas-Giant-Planets\nhttp://www.universetoday.com/35796/atmosphere-of-the-planets/\nhttp://www.space.com/7-jupiter-largest-planet-solar-system.html\nhttp://www.space.com/48-saturn-the-solar-systems-major-ring-bearer.html\nhttp://www.universetoday.com/22719/surface-of-jupiter/\nhttp://www.universetoday.com/15301/what-is-saturn-made-of/\nhttp://www.popsci.com/technology/article/2013-08/it-possible-spacecraft-fly-straight-through-jupiter\nhttp://www.uni.edu/morgans/astro/course/Notes/section4/new20.html\nhttp://science.nasa.gov/missions/galileo/\nhttp://csep10.phys.utk.edu/astr161/lect/jupiter/interior.html\nhttp://cseligman.com/text/planets/metallichydrogen.htm",
@@ -1359,6 +2353,12 @@ var videos = [{
     "duration": "00:04:44",
     "thumb": "http://i.ytimg.com/vi/cdUjjgANT7k/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.94776170563,
     "description": "How Airplanes Are Made: https://www.youtube.com/watch?v=7rMgpExA4kM\nThanks to Airbus for supporting this video http://www.a350xwb.com\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nMusic by Nathaniel Schroeder http://www.soundcloud.com/drschroeder\n\nThanks to the following Subbable subscribers for making MinutePhysics possible:\n\nMarcus Boden\nPineappleman2\n@kubakun\nAlex Haig\nBrian @devinsba\nThe Talley Family\nChris Romano\nCameron Johnson\nAlison Gupta\nNicholas Buckendorf\nMikael @skaramicke Gr\u00f6n\nChrisBrowne3D\nViktor Liljeblad\nAleksander Bach Lorentzen\nMichael Jiang\nAdam Berkan\nLiam Callaway @liamcallaway\nMichael D'Costa\nPeter Z\u00fcrcher\nJohn L Alvizuri\nMaggie Hanna\nWill Sabol @sabol.drums youtube.com/jindodied\nTPRJones\nTPRJones\nLiz Ball\nAndrew Fghqrafxv\nJeremy Ray Quick\nOrontes Ovasi\nTravis Miyashiro\nRob Montgomery\nNick Pietrzak\nJabe\nbeckiejean on twitter\nElliott Collins\nhttps://www.youtube.com/user/TroubleBrewingStudio\nAndi Davis @ AndriaKDavis\nRaymond Cason\nJonathan Seggie\nHo Yin Michael Cheng\nJakub (@Kubakun at Twitter)\nDominik Steenken\nBrandon Liu\nEthi Raj\n@bdb_i_am\nDamian Shaw\nJanel Christensen\nIan R. - @ARoarNixed\nJeff Ouellette\nVanessa Benavent\nRandy Goldberg MD\n\nThis video also made possible by the following Patreon Supporters:\n\nJeff Straathof\nMark \nWes Brown\nJohn Green\nFlorian Philipp\nRens van der Heijden\nIan Foote\nEszter Szikora\nTasso Kostalas (MavericSun)\nAmandeep Hayer\nAbra\u00e3o Caldas\nEric Ma\nConner Fissell\nMuhmammad \nBob Bolch\nDaniel Ametsreiter\nJo\u00ebl Quenneville\nRichard Pearson\nDavid Dailey\nSteven Mulder\nKarim \nEthi Raj\nRyan Kyle\nWilliam Ricketts\nCollin Mandris\nJonathan Foster\nSiddharth Sadanand\nRobby Olivam\nAlan Browning\nJonathan Piersa\nJake Stolhandske\nJulia Person\nJames Craver\nSarah Chavis\nYonatan Bisk\nRichard Campbell\nMikael \nRichie Swift\nChris Barrett\nJan A\nChristopher Coleman\nKelvin Dueck\nDaniel \u201cYoureDown\u201d Breger\nHendrik Payer\nGeoff Wallace\nFredrik Samuelsson\nMelissa Harkins\nJason Talley\nKeith Marrocco\nMaarten Bremer\nEric Laberge\nLacey Larson\nNeil Ramroop\nMatthew Norton\nAnastasia Vashkevich\nBela9a \nEfe Efevich\nMark \nDonal Botkin\nSylvan Ruud\nDaniel Friesen\nPhilipi Adolfo Willemann\nJeffrey McCullough\nOddgeir Gitlestad\nAnn Priess Maclean\nBrendon Davis\nJeff Fellows\nFilip \nChristopher Jimenez\nMichel Payette\nJuha Niittynen\nJeff Ross\nViktor Liljeblad\nRobert E DeLapp\nSean Linsley\nJames Lacy\nChristopher O'Neal\nMarcus \nPhilip Freeman\nMatthew Heermann\nMarsha Woerner\nDaniel Yip\nMatt K\nWilliam Pearson\nKevin Lynch\nNick Ward\nKevin \njohn eriksson\nAllan Farrell\nTobias Olesen\nChris Chapin\nMichael Keefe\nJon Mann\nBert \nJoji Wata\nAdam Naber\nRob Ibsen\nJacob Gumpert\nPeter Collier\nAndi Davis\nAarthy \nRaymond Cason\nEvan Gale\nPaul \nTori McClanahan\nDominik Steenken\nDanilo Metzger\nChristian Altenhofen\nRoy Morgan\nOlivia Darroch\nAmber Ciarvella\nryan horlacher\nKeith Chang\nMilokot \nJanel Christensen\nWill Scherer\nMike Fulcher\nLarom Lancaster\nJohn Harman\nMatt \nChristos Papandreou\nFernando Pazin\nJohnathon Kinville\nJason Medrano\nAndrew Barnett\nKatharina Schuchmann\nJohn Gietzen\nMichael Tardibuono\nMatthew Hebert\nChristy Filipich\nPierre-Louis Bourgeois\nGenevieve Lawrence\nBrian D'Agostini\nChris \nDominik Menzi\nRyan A. Schauer\nDaniel Johnson\nNico Houbraken\nMichael Carr\nRagnhild \nElizabeth Meisterling\nLysann Schlegel\nMagnus Krokstad\nChase Turner\nOwain Blackwood\nRuss Arrell\nMaarten Daalder\nBrenden Bullock\nAsaf Gartner\nMark Samberg\nTina Johnston\nMike Cochrane\nTom Murphy\nPeter L\nJeff \nErica Pratt\nDavid \nArtur Szczypta\nDavid Drueding\nNicklas Ulvn\u00e4s\nNigel W\nJames Nelson\nMary Foster-Smith\nClayton Neff\nMichael Merino\nJason and Gayle Corfman\nMihaly Barasz\nSteven Klurfeld\nRichard Bairwell\nTamas Bartal\nErven \nJustin Prahl\nMichael Maitlen\nJohn Harman\nHans van Staveren\nKasey \nKarlin Nazario\nM K\nJacques LABB\u00c9\nGeralyn Byers\njason black\nCandice Blodgett\nDaniel Gibbs\nHenry Berthelsen\nAndy Kittner\nSteve Hall\nRob Snyder\nJohn Kelly\nJessica Rosenstein\nBill Tomiyasu\nVasco Sim\u00f5es\nSimon Hammersley\niain \nHolger \nAlexis Carpenter\nJay Goodman\nJoseph Perry\nMark Govea\nEduardo Rampelotto Gatto Created by Henry Reich",
@@ -1375,6 +2375,12 @@ var videos = [{
     "duration": "00:03:11",
     "thumb": "http://i.ytimg.com/vi/Gg0TXNXgz-w/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.95104979004,
     "description": "In today's Crash Course Astronomy, Phil takes a look at the explosive history of our cosmic backyard. We explore how we went from a giant ball of gas to the system of planets and other celestial objects we have today.\n\nThis episode is sponsored by Squarespace: http://www.squarespace.com/crashcourse\n\n--\n\nMakeup of a Solar System 2:38\nFrom Gas to a Disc 5:36\nPlanet Formation Depends on Distance to Sun 7:14\nMotion of a System 8:21\n\n--\n\nPBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nFollow Phil on Twitter: https://twitter.com/badastronomer\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Subbable: http://subbable.com/crashcourse\n\n--\n\nPHOTO/VIDEO CREDITS\nSun: http://www.nasa.gov/sites/default/files/706436main_20121114-304-193blend_m6-orig_full.jpg [credit: NASA/ESA]\nJupiter: http://www.jpl.nasa.gov/images/hubble/20140515/jupiter20140515-full.jpg [credit: NASA/ESA]\nGeocentric celestial spheres; Peter Apian's Cosmographia (Antwerp, 1539): http://en.wikipedia.org/wiki/Celestial_spheres#mediaviewer/File:Ptolemaicsystem-small.png\nGanymede: http://en.wikipedia.org/wiki/File:Noaa_ganymede.jpg\nMercury: http://messenger.jhuapl.edu/gallery/sciencePhotos/pics/CW0131775256F_web.png [credit: NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington]\nUnderstanding Solar System Dynamics: Orbits and Kepler's Laws (2008): https://archive.org/details/OrbitsAndKeplersLaws\nMercury: http://apod.nasa.gov/apod/ap080116.html\nVenus: http://www.msss.com/all_projects/magellan.php\nEarth: http://earthobservatory.nasa.gov/IOTD/view.php?id=36019\nMars: http://nssdc.gsfc.nasa.gov/photo_gallery/photogallery-mars.html\nJupiter: http://www.nasa.gov/mission_pages/cassini/multimedia/pia04866.html\nSaturn: http://www.slate.com/content/dam/slate/blogs/bad_astronomy/2014/06/Ten%20Years%20at%20Saturn/cassini_ugarkovic_saturn.jpg.CROP.original-original.jpg [credit: Photo by NASA/JPL/Space Science Institute/Gordan Ugarkovic]\nUranus: http://hubblesite.org/newscenter/archive/releases/1998/35/image/a/\nNeptune: http://www.slate.com/blogs/bad_astronomy/2014/05/15/neptune_voyager_images_updated_for_portrait_of_the_eighth_planet.html\nhttp://www.nasa.gov/sites/default/files/hs-2014-29-a-large_web.jpg [credit: JHUAPL/SwRI/Dan Durda]\nBennu\u2019s Journey: http://svs.gsfc.nasa.gov/cgi-bin/details.cgi?aid=20220&button=recent\nhttp://svs.gsfc.nasa.gov/cgi-bin/details.cgi?aid=11541\nArtist's impression of a protoplanetary disk: http://en.wikipedia.org/wiki/Protoplanetary_disk#mediaviewer/File:Artist%E2%80%99s_Impression_of_a_Baby_Star_Still_Surrounded_by_a_Protoplanetary_Disc.jpg\nRocky Ring of Debris Around Vega: http://www.nasa.gov/mission_pages/spitzer/multimedia/pia16610.html [image credit: NASA/JPL-Caltech]\nProplyds in the Orion Nebula: http://www.esa.int/Our_Activities/Space_Science/Born_in_beauty_proplyds_in_the_Orion_Nebula",
@@ -1391,6 +2397,12 @@ var videos = [{
     "duration": "00:10:17",
     "thumb": "http://i.ytimg.com/vi/TKM0P3XlMNA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.94759397576,
     "description": "Today Hank talks about your central nervous system. In this episode we'll explore how your brain develops and how important location is for each of your brain's many functions.\n\nTable of Contents\nCentral Nervous System, Location and Brain Function 1:48\nBrain Development 3:21\nNeural Tube 3:27\nThree Primary Vesicles 3:37\nFour Adult Structures and Their Basic Functions 4:17\n\n***\n\nCrash Course is now on Patreon! You can support us directly (and, until April 30th, have your contributions matched by Patreon!) by signing up at http://www.patreon.com/crashcourse\n\n***SUBBABLE MESSAGES***\n\nTO: Clay Compton\nFROM: Bill Compton\n\nHappy birthday, Dad!\n\n--\n\nTO: My Psychology Students\nFROM: Dr. Caitlin Faas\n\nAny observant eyes catching this message? We love Crash Course!\n\n***SUPPORTER THANK YOU!***\n\nThank you so much to all of our awesome supporters for their contributions to help make Crash Course possible and freely available for everyone forever:\n\nCreatrix Tiara\nDr. Sarah Hinzman\nCaroline Haas\nMason R Norris\nAlton Toth of Sechelt\nRodrigo Groppa\nS\u00f6nke\nRebecca Karger\nGregle\nAriana Flewelling (@EdTechAri)\n\n--\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport Crash Course on Patreon: http://patreon.com/crashcourse\n\nCC Kids: http://www.youtube.com/crashcoursekids",
@@ -1407,6 +2419,12 @@ var videos = [{
     "duration": "00:10:08",
     "thumb": "http://i.ytimg.com/vi/q8NtmDrb_qo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED",
     "rating": 4.93400526822,
     "description": "In a robot lab at TEDGlobal, Raffaello D'Andrea demos his flying quadcopters: robots that think like athletes, solving physical problems with algorithms that help them learn. In a series of nifty demos, D'Andrea show drones that play catch, balance and make decisions together -- and watch out for an I-want-this-now demo of Kinect-controlled quads.\n\nTEDTalks is a daily video podcast of the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and much more.\nFind closed captions and translated subtitles in many languages at http://www.ted.com/translate\n\nFollow TED news on Twitter: http://www.twitter.com/tednews\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: http://www.youtube.com/user/TEDtalksDirector",
@@ -1423,6 +2441,12 @@ var videos = [{
     "duration": "00:16:09",
     "thumb": "http://i.ytimg.com/vi/w2itwFJCgFQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.95915442494,
     "description": "It is now time to meet the system that helps your crazy brain stay in touch with the outside world. We follow up last week's tour of the central nervous system with a look at your peripheral nervous system, its afferent and efferent divisions, how it processes information, the reflex arc, and what your brain has to say about pain.\n\nTable of Contents\nPeripheral Nervous System 0:38\nAfferent and Efferent Divisions 5:42\nInformation and Responses to Pain 3:12\nFive Steps of the Reflex Arc 4:35\nDifferent Kinds of Reflexes 6:44\nWhat the Brain Says About Pain 8:09\n\n\n***\n\nCrash Course is now on Patreon! You can support us directly (and, for the next month, have your contributions matched by Patreon!) by signing up at http://www.patreon.com/crashcourse\n\n***SUBBABLE MESSAGES***\n\nTO: Brayden and Cody\nFROM: Dad\n\nFor my favourite sons. Remember that Science Rocks!!\n\n--\n\nTO: CraftLit Listeners \nFROM: Heather at CraftLit\n\nBig Hugs to CraftLit Fans Who (also) Love Crash Course!\n\n***SUPPORTER THANK YOU!***\n\nThank you so much to all of our awesome supporters for their contributions to help make Crash Course possible and freely available for everyone forever:\n\nDan Rajan\nJosh Greenberg @wordlessrage\nTanmay Sheth\nChriztopher North\nTeodora Miclaus\nJessica Baker\nJulie Anne Mathieu\nMoti Lieberman\nLeanne Gover\nwww.justplainsomething.com\n\n--\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport Crash Course on Patreon: http://patreon.com/crashcourse\n\nCC Kids: http://www.youtube.com/crashcoursekids",
@@ -1439,6 +2463,12 @@ var videos = [{
     "duration": "00:10:02",
     "thumb": "http://i.ytimg.com/vi/QY9NTVh-Awo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.95114705397,
     "description": "Hank takes you on a tour of your two-part autonomic nervous system. This episode explains how your sympathetic nervous system and parasympathetic nervous system work together as foils, balancing each other out. Their key anatomical differences - where nerve fibers originate and where their ganglia are located - drive their distinct anatomical functions, making your sympathetic nervous system the \"fight or flight\" while your parasympathetic nervous system is for \"resting and digesting.\"\n\n--\n\nTable of Contents\nThe Basic Two-Part System of the Autonomic Nervous System 0:48\nSympathetic Nervous System 2:33\nParasympathetic Nervous System 2:54\nTheir Nerve Fibers Originate in Different Parts of the Body 3:22\nSympathetic Ganglia Are Close to the Spinal Cord 4:36\nParasympathetic Ganglia Are Close to Their Effectors 4:59\n\n\n***\n\nCrash Course is now on Patreon! You can support us directly (and, until April 30th, have your contributions matched by Patreon!) by signing up at http://www.patreon.com/crashcourse\n\nThanks to the following Patrons for their generous monthly contributions that help keep Crash Course free for everyone forever:\n\nMark Brouwer, Simun Niclasen, Brad Wardell, Roger C. Rocha, Jan Schmid, Elliot Beter, Nevin Spoljaric, Sandra Aft, SR Foxley, Jessica Simmons, Stefan R. Finnerup, Jason A Saslow, Robert Kunz, Jessica Wode, Mike Drew, Steve Marshall, Anna-Ester Volozh, Christian Ludvigsen, Jeffrey Thompson, James Craver\n\n\n***SUBBABLE MESSAGES***\n\nTO: SEM Students\nFROM: Mrs. S\n\nYou are confident and courageous!  I believe in you! DFTBA!\n\n--\n\nTO: Zachary\nFROM: She who gave you life!\n\nYou, like the Mongols, will always be the exception.\n\n***EPISODE CO-SPONSORS***\n\nLink\nKelly Naylor - http://www.aertenart.com\nTim Webster\nSteven Meekel\n\n***SUPPORTER THANK YOU!***\n\nThank you so much to all of our awesome supporters for their contributions to help make Crash Course possible and freely available for everyone forever:\n\nCaitlin Steinert, BryanGriffith.com, Maia McGuire, That one guy from Midland who teaches science at highschool, Michael Longwell, Justice H, Martha (splicegrrl), Casey Rule, Manuel Kovats, and @simplscientist\n\n--\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport Crash Course on Patreon: http://patreon.com/crashcourse\n\nCC Kids: http://www.youtube.com/crashcoursekids",
@@ -1455,6 +2485,12 @@ var videos = [{
     "duration": "00:08:49",
     "thumb": "http://i.ytimg.com/vi/71pCilo8k4M/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.95262390671,
     "description": "View full lesson: http://ed.ted.com/lessons/why-are-manhole-covers-round-marc-chamberland\n\nWhy are most manhole covers round? Sure it makes them easy to roll, and slide into place in any alignment. But there\u2019s another, more compelling reason, involving a peculiar geometric property of circles and other shapes. Marc Chamberland explains curves of constant width and Barbier\u2019s theorem. \n\nLesson by Marc Chamberland, animation by Pew36 Animation Studios.",
@@ -1471,6 +2507,12 @@ var videos = [{
     "duration": "00:03:35",
     "thumb": "http://i.ytimg.com/vi/wDBb2_I-oC4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.96695869837,
     "description": "Mercury is the closest planet to the sun. It has no atmosphere and is, as such, covered in craters. It's also incredibly hot but, surprisingly, has water ice hiding beneath its surface.\n\n--\n\nTable of Contents\nClosest Planet to the Sun 0:03\nRotation Locked to its 2 to 3 Orbit Ratio 3:10\nDeep Crater Water Ice 8:39\n\n--\n\nPBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nFollow Phil on Twitter: https://twitter.com/badastronomer\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Patreon: http://www.patreon.com/crashcourse\n\n--\n\nPHOTOS/VIDEOS\nMercury relief in Olomouc: http://commons.wikimedia.org/wiki/File:Mercury_relief_in_Olomouc.jpg [credit: Michal Ma\u0148as]\nMercury: Phil Plait\nMercury in color: http://en.wikipedia.org/wiki/File:Mercury_in_color_c1000_700_430.png [credit: NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington]\nEarth Based View of Mercury: http://airandspace.si.edu/explore-and-learn/multimedia/detail.cfm?id=3726 [credit: Catalina Observatory]\nCaloris Basin: http://apod.nasa.gov/apod/image/1503/PIA19216MessengerCaloris.jpg [credit: NASA, Johns Hopkins Univ. APL, Arizona State U., CIW]\nMESSENGER photos:\nhttp://messenger.jhuapl.edu/gallery/sciencePhotos/pics/EW1010234404_500_web.jpg\nhttp://messenger.jhuapl.edu/gallery/sciencePhotos/pics/EN0108830230M.jpg\nhttp://messenger.jhuapl.edu/gallery/sciencePhotos/pics/EW0224377798G.nomap.png\n[credit: NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington]\nMercury\u2019s core: http://astrosun2.astro.cornell.edu/~jlm/out/Mercury/mercury_NSF_printsize.jpg [credit: Nicolle Rager Fuller, National Science Foundation]\nMercury\u2019s Ice Lockers: http://svs.gsfc.nasa.gov/cgi-bin/details.cgi?aid=11184 [credit: NASA Goddard Space Flight Center/Massachusetts Institute of Technology/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington]\nMercury\u2019s Tail: http://geeked.gsfc.nasa.gov/wp-content/uploads/2011/03/Mercury_exosphere_600-full.jpg [credit: NASA]",
@@ -1487,6 +2529,12 @@ var videos = [{
     "duration": "00:10:18",
     "thumb": "http://i.ytimg.com/vi/P3GkZe3nRQ0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "engineerguy",
     "rating": 4.97441904641,
     "description": "Bill details the engineering choices underlying the design of a beverage can He explains why it is cylindrical, outlines the manufacturing steps needed to created the can, notes why the can narrows near it lid, show close ups of the double-seam that hold the lid on, and details the complex operation of the tab that opens the can. \n\u261b Links to additional videos:\nRexam: http://www.youtube.com/watch?v=7dK1VVtja5c\nHow It\u2019s Made: http://www.youtube.com/watch?v=V7Y0zAzoggY\nAnim1: https://www.youtube.com/watch?v=WU_iSQa37aA\nAnim2:https://www.youtube.com/watch?v=hcsDxCagWrY\nDrawing: https://www.youtube.com/watch?v=DF4v-phuneI\nRedrawing: http://www.youtube.com/watch?v=iUAijpuzwCU",
@@ -1503,6 +2551,12 @@ var videos = [{
     "duration": "00:11:39",
     "thumb": "http://i.ytimg.com/vi/hUhisi2FBuw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.85719335454,
     "description": "View full lesson: http://ed.ted.com/lessons/is-light-a-particle-or-a-wave-colm-kelleher\n\nCan we accurately describe light as exclusively a wave or just a particle? Are the two mutually exclusive? In this third part of his series on light and color, Colm Kelleher discusses wave-particle duality and its relationship to how we see light and, therefore, color.\n\nLesson by Colm Kelleher, animation by Nelson Diaz.",
@@ -1519,6 +2573,12 @@ var videos = [{
     "duration": "00:04:24",
     "thumb": "http://i.ytimg.com/vi/J1yIApZtLos/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.94045839562,
     "description": "Watch the whole lesson on http://ed.ted.com/lessons/how-do-we-see-color-colm-kelleher\n\nHave you ever wondered what color is? In this first installment of a series on light, Colm Kelleher describes the physics behind colors-- why the colors we see are related to the period of motion and the frequency of waves.\n\nLesson by Colm Kelleher, animation by Vitreous.",
@@ -1535,6 +2595,12 @@ var videos = [{
     "duration": "00:03:10",
     "thumb": "http://i.ytimg.com/vi/UZ5UGnU7oOI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.9591717702,
     "description": "View full lesson: http://ed.ted.com/lessons/how-we-see-color-colm-kelleher\n\nThere are three types of color receptors in your eye: red, green and blue. But how do we see the amazing kaleidoscope of other colors that make up our world? Colm Kelleher explains how humans can see everything from auburn to aquamarine.\n\nTalk by Colm Kelleher, animation by TED-Ed.",
@@ -1551,6 +2617,12 @@ var videos = [{
     "duration": "00:03:44",
     "thumb": "http://i.ytimg.com/vi/l8_fZPHasdo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.81002782974,
     "description": "View full lesson: http://ed.ted.com/lessons/the-five-major-world-religions-john-bellaimey\n\nIt's perfectly human to grapple with questions, like 'Where do we come from?' and 'How do I live a life of meaning?' These existential questions are central to the five major world religions -- and that's not all that connects these faiths. John Bellaimey explains the intertwined histories and cultures of Hinduism, Judaism, Buddhism, Christianity and Islam.\n\nLesson by John Bellaimey, animation by TED-Ed.",
@@ -1567,6 +2639,12 @@ var videos = [{
     "duration": "00:11:10",
     "thumb": "http://i.ytimg.com/vi/m6dCxo7t_aE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "MinuteEarth",
     "rating": 4.97241016882,
     "description": "Thanks to the awesome science YouTube channel Animalogic for supporting this video. Check them out! https://www.youtube.com/channel/UCwg6_F2hDHYrqbNSGjmar4w?sub_confirmation=1\n\nThanks also to our Patreon patrons:\n- @AntoineCoeur\n- Jeff Straathof\n- Mark\n- facebook.com/maarten.bremer\n- Emil Kampp\n- @TodayIFoundOut1\n\nAnd our Subbable Sponsors:\n- Joseph Perry\n- @visticuffs 3\n- Austin Spafford\n- @WY_Tang\n- Moti Lieberman -  www.youtube.com/user/thelingspace/\n- Candice Blodgett\n- Ryan Brown\n- John Harman (from Dayton, OH)! - http://www.givewell.org/\n- @rbairwell\n- Matt Chaput\n- Nicklas Ulvn\u00e4s\n- Merry Beeman\n- James Fleming - http://robot.wpi.edu/\n- @BryLikeDaCheese \n- Brandon Heanssler - http://bhcreates.com/\n- Damien Bargiacchi - http://bccancerfoundation.com/\n\nYou can also support us on Patreon: https://goo.gl/ZVgLQZ\n___________________________________________\n\nMinuteEarth provides an energetic and entertaining view of trends in earth\u2019s environment \u2013 in just a few minutes!\n\nCreated by Henry Reich\nWith the MinuteEarth team: Alex Reich, Peter Reich, Emily Elert, Ever Salazar, Kate Yoshida, and Henry Reich. Music by Nathaniel Schroeder: http://www.soundcloud.com/drschroeder\n________________________\n\nPlease support us on Patreon: https://www.patreon.com/minuteearth\nAnd follow us on Vessel: https://www.vessel.com/shows/6891774506155638\nAnd YouTube: http://www.youtube.com/user/minuteearth?sub_confirmation=1\nAnd find us on itunes:  https://goo.gl/sfwS6n\n\nAlso, say hello on:  \nFacebook: http://facebook.com/minuteearth\nTwitter: http://twitter.com/MinuteEarth\n________________________\n\nWant to learn more about the topic in this week\u2019s video? Here are some key words/phrases to get your googling started: \n\u2013 Lifting Condensation Level (LCL): The altitude at which the water vapor in rising air begins to condense\n\u2013 Adiabatic Cooling: describes the process by which an air blob cools as it rises (and as air pressure drops)\n\u2013 Latent heat: the energy absorbed by water molecules during evaporation and released during condensation\n\u2013 Energy of Vaporization: The amount of energy it takes for a liquid to evaporate\n\u2013 Ideal Gas Law: The rule about how a volume of gas at a constant temperature and pressure always has the same number of molecules\n\u2013 Supercell: A really big thunderstorm. Like, the biggest. \n\n\n________________________\n\nReferences:\n\nAbraham. F.F. (1974) Homogeneous Nucleation Theory: The Pretransition Theory of Vapor Condensation. Academic Press\nhttp://books.google.com/books?hl=en&lr=&id=Kr0YJs7WPl8C&oi=fnd&pg=PP1&dq=water+vapor+condensation&ots=rczn1FI2Va&sig=uzYFuWSXR6cq6Yqo1-f4PcNcO4A#v=onepage&q=galaxy&f=false\n\nCameron Balloons (Accessed February 2015) Web Resource\nhttp://www.cameronballoons.com/atype.html\n\nGr\u00fctzun, V. (Accessed February 2015) Cloud Microphysics Part I. Lecture Notes. Web Resource\nhttp://www.mi.uni-hamburg.de/fileadmin/user_upload/staff/gruetzun/Teaching/IMPRS_Course/imprs-course_20111205-09.pdf\n\nGr\u00fctzun, V., personal communication, 2015\n\nHouze, R.A., Jr. (2014) Cloud Dynamics. Academic Press. eBook\nhttps://books.google.com/books?id=GXEpAgAAQBAJ\n\nMental Floss (Accessed February 2015 ) How Much Does a Cloud Weigh? Web Resource http://mentalfloss.com/article/49786/how-much-does-cloud-weigh\n\nPruppacher, H.R.,  Klett, J.D. (2010) Microphysics of Clouds and Precipitation. eBook Springer Science & Business Media, Jun 25, 2010. \nhttps://books.google.com/books?id=0MURkyjuoGMC\n\nThe Weather Window (Accessed March 2015) Web Resource\nhttp://weather.mailasail.com/Franks-Weather/Latent-Heat",
@@ -1583,6 +2661,12 @@ var videos = [{
     "duration": "00:03:15",
     "thumb": "http://i.ytimg.com/vi/QC2x_RRnk8E/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.96523491624,
     "description": "View full lesson: http://ed.ted.com/lessons/what-really-happens-to-the-plastic-you-throw-away-emma-bryce\n\nWe\u2019ve all been told that we should recycle plastic bottles and containers. But what actually happens to the plastic if we just throw it away? Emma Bryce traces the life cycles of three different plastic bottles, shedding light on the dangers these disposables present to our world. \n\nLesson by Emma Bryce, animation by Sharon Colman.",
@@ -1599,6 +2683,12 @@ var videos = [{
     "duration": "00:04:07",
     "thumb": "http://i.ytimg.com/vi/_6xlNyWPpB8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.91916167665,
     "description": "View full lesson: http://ed.ted.com/lessons/how-big-is-infinity\n\nUsing the fundamentals of set theory, explore the mind-bending concept of the \"infinity of infinities\" -- and how it led mathematicians to conclude that math itself contains unanswerable questions.\n\nLesson by Dennis Wildfogel, animation by Augenblick Studios.",
@@ -1615,6 +2705,12 @@ var videos = [{
     "duration": "00:07:13",
     "thumb": "http://i.ytimg.com/vi/UPA3bwVVzGI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.87158703072,
     "description": "View the full lesson here: http://ed.ted.com/lessons/michael-mitchell-a-clever-way-to-estimate-enormous-numbers\n\nHave you ever tried to guess how many pieces of candy there are in a jar? Or tackled a mindbender like: \"How many piano tuners are there in Chicago?\" Physicist Enrico Fermi was very good at problems like these -- learn how he used the power of 10 to make amazingly fast estimations of big numbers.\n\nLesson by Michael Mitchell, animation by Mark Phillips.",
@@ -1631,6 +2727,12 @@ var videos = [{
     "duration": "00:04:15",
     "thumb": "http://i.ytimg.com/vi/0YzvupOX8Is/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.95656279509,
     "description": "View full lesson: http://ed.ted.com/lessons/why-neutrinos-matter-silvia-bravo-gallart\n\nElementary particles are the smallest known building blocks in the universe\u2014and the neutrino is one of the smallest of the small. These tiny neutrinos can tell us about the furthest reaches and most extreme environments of the universe ... but only if we can catch them. S\u00edlvia Bravo Gallart details how the IceCube telescope in Antarctica is working to do just that.  \n\nLesson by S\u00edlvia Bravo Gallart, animation by Steff Lee.",
@@ -1647,6 +2749,12 @@ var videos = [{
     "duration": "00:04:41",
     "thumb": "http://i.ytimg.com/vi/nkydJXigkRE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.89090616967,
     "description": "Neutrinos are the vampires of physics.\r\n\r\nTweet it - http://bit.ly/sJgKV0\r\nFacebook it - http://on.fb.me/rPfLOA\r\n\r\nminutephysics is now on Google+ - http://bit.ly/qzEwc6 \r\nAnd facebook - http://facebook.com/minutephysics\r\nAnd twitter - @minutephysics\r\n\r\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\r\n\r\nMusic by Nathaniel Schroeder\r\nyoutube: http://bit.ly/pakJLE\r\nmyspace: http://mysp.ac/qtmZQj Created by Henry Reich",
@@ -1663,6 +2771,12 @@ var videos = [{
     "duration": "00:01:25",
     "thumb": "http://i.ytimg.com/vi/lAAmAbJvvJg/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.86918238994,
     "description": "View full lesson: http://ed.ted.com/lessons/what-we-can-learn-from-galaxies-far-far-away-henry-lin\n\nIn a fun, excited talk, teenager Henry Lin looks at something unexpected in the sky: galaxy clusters. By studying the properties of the universe's largest pieces, says the Intel Science Fair winner, we can learn quite a lot about our own world and galaxy.\n\nTalk by Henry Lin.",
@@ -1679,6 +2793,12 @@ var videos = [{
     "duration": "00:06:44",
     "thumb": "http://i.ytimg.com/vi/kpzEsgSBUqc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Numberphile",
     "rating": 4.81291151437,
     "description": "Sometimes infinity is even bigger than you think... Dr James Grime explains with a little help from Georg Cantor.\n\nWebsite: http://www.numberphile.com/\nNumberphile on Facebook: http://www.facebook.com/numberphile\nNumberphile tweets: https://twitter.com/numberphile\nJames Grime: http://singingbanana.com/\n\nVideos by Brady Haran\n\nMinute Physics video on this topic http://www.youtube.com/watch?v=A-QoutHCu4o (somewhat more fast-paced... but we did film ours BEFORE his was uploaded, so similarities are coincidental... well actually, no they are not... we are all building upon Cantor's work!!)",
@@ -1695,6 +2815,12 @@ var videos = [{
     "duration": "00:08:00",
     "thumb": "http://i.ytimg.com/vi/elvOZm0d4H0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "MinuteEarth",
     "rating": 4.90554615529,
     "description": "Thanks to http://www.harrys.com for supporting this video. Use the coupon code MINUTEEARTH for $5 off your order! http://www.harrys.com \nHelp fund MinuteEarth on Patreon: https://goo.gl/ZVgLQZ\n\nThanks to our Patreon patrons:\n- @AntoineCoeur\n- Nicholas Buckendorf\n- Nasser Hamed Alminji\n- Jeff Straathof\n- Mark\n- facebook.com/maarten.bremer\n- Emil Kampp\n- @TodayIFoundOut1\n\nThanks also to our Subbable supporters:\n- @Kubakun :-)\n- Ethi Raj\n- Damian Shaw\n- Ernesto Carvajal - https://www.facebook.com/erne.carvajal\n- Shelley Jones - https://twitter.com/ShelleytheJonas\n- Vanessa Benavent\n- BouwsT\n- Zoe Reidinger\n- @prosystrangers\n- Pigmy Wurm\n- John Harman (from Dayton, OH)! - http://www.youtube.com/watch?v=0fKBhvDjuy0#at=29\n- @WY_Tang\n___________________________________________\n\nMinuteEarth provides an energetic and entertaining view of trends in earth\u2019s environment \u2013 in just a few minutes!\n\nCreated by Henry Reich\n\nWith the MinuteEarth team: Alex Reich, Peter Reich, Emily Elert, Ever Salazar, Kate Yoshida, and Henry Reich. Music by Nathaniel Schroeder: http://www.soundcloud.com/drschroeder\n________________________\n\nPlease support us on Patreon: https://www.patreon.com/minuteearth\n\nAnd follow us on Vessel: https://www.vessel.com/shows/6891774506155638\n\nAnd YouTube: http://www.youtube.com/user/minuteearth?sub_confirmation=1\n\nAnd ...  iTunes: https://goo.gl/sfwS6n\n\nFacebook: http://facebook.com/minuteearth\n\nTwitter: http://twitter.com/MinuteEarth\n________________________\n\nWant to learn more about the topic in this week\u2019s video? Here are some key words/phrases to get your googling started:\n\n- keystone species \u2013 a species that plays a crucial role in the functioning of an ecosystem\n- flagship species \u2013 species used as an icon for an environmental cause\n- threatened species - species assessed by the IUCN as critically endangered, endangered, or vulnerable\n- triage - assigning degrees of urgency to a large number of patients to determine the order of treatment\n________________________\n\nReferences:\n\nIUCN 2014. The IUCN Red List of Threatened Species. Version 2014.3. http://www.iucnredlist.org/\n\nJoseph, L. N., Maloney R. F., & Possingham, H. P. (2009) Optimal allocation of resources among threatened species: a project prioritization protocol. Conservation Biology 23:328-338. http://www.uq.edu.au/spatialecology/docs/Publications/2009_Joseph_etal_OptimalAllocation.pdf\n\nSmall, E. (2011) The new Noah\u2019s Ark: beautiful and useful species only. Part 1. Biodiversity conservation issues and priorities. Biodiversity 12(4): 232 - 247. http://www.tandfonline.com/doi/abs/10.1080/14888386.2011.642663#\n\nSmith, R.J., Verissimo, D.; Isaac, N.J.B., & Jones, K.E. (2012) Identifying Cinderella species: uncovering mammals with conservation flagship appeal. Conservation Letters, 5 (3): 205 - 212. http://onlinelibrary.wiley.com/doi/10.1111/j.1755-263X.2012.00229.x/abstract\n\nSitas, N., Baillie, J.E.M., and Isaac, N.J.B. (2009) What are we saving? Developing a standardized approach for conservation action. Animal Conservation, 12(3): 231- 237. http://onlinelibrary.wiley.com/doi/10.1111/j.1469-1795.2009.00244.x/full\n\nUS Fish and Wildlife Service. (1999) South Florida Multi-Species Recovery Plan. Mangroves: 3-519 - 3-552. http://www.fws.gov/verobeach/msrppdfs/mangroves.pdf\n\nWarren, L. (June 2006) Panda, Inc. National Geographic Magazine. http://ngm.nationalgeographic.com/2006/07/panda/warren-text\n\nWorld Wildlife Fund. (2014) Annual Report. http://assets.worldwildlife.org/financial_reports/21/reports/original/2014_Annual_Report.pdf?1418325091&_ga=1.146888247.1239564205.1427657892\n________________________\n\nImage Credits:\n\nStinking Cedar (Torreya taxifolia) - Jerry A. Payne - http://bit.ly/1EyduHa\n\nPygmy hog-sucking Louse (Haematopinus oliveri) - Zoological Survey of India - http://bit.ly/1JdxxvD\n\nSturgeon - Wikimedia user Cacophony - http://bit.ly/1DOjpFA\n\nSaiga Anthelope - Wikimedia user Seilov - http://bit.ly/1E0O0Pq\n\nEchinocactus grusonii - Andr\u00e9 Karwath - http://bit.ly/1IucNBw\n\nCork Oak (Quercus suber) - Wikimedia user Joergsam - http://bit.ly/1ziQOLU\n\nHumphead wrasse (Cheilinus undulatus) - Patryk Krzyzak - http://bit.ly/1GLUf0g\n\nPaddlefish - U.S. Fish and Wildlife Service Headquarters - http://bit.ly/1GLUdFX\n\nSwietenia macrophylla - Flickr User jayeshpatil912 - http://bit.ly/1HWzhuB\n\nArakan forest turtle - Public Domain - http://bit.ly/1dzlAqh\n\nPurple Frog - Wikimedia User Karthickbala - http://bit.ly/1JF1Hv8\n\nCute Panda - Wikimedia User Sheilalau (Public Domain) - http://bit.ly/1c0JURt\n\nFrohawk Dodo - Frederick William Frohawk (Public Domain) - http://bit.ly/1bInEer",
@@ -1711,6 +2837,12 @@ var videos = [{
     "duration": "00:03:08",
     "thumb": "http://i.ytimg.com/vi/VEMtc1w4z6c/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.97625817851,
     "description": "Thanks to our Subbable subscriber SlugBooks.com - head over to http://www.slugbooks.com to find cheaper textbooks for college or university.       And go to http://www.subbable.com/minutephysics if you want to support MinutePhysics on Subbable!\n\nAnd also to our Subbable subscriber Mathias Larssen!\n\nPaper on diffraction through the lens of the human eye: http://goo.gl/XEdMVd\n\"Shape of stars and optical quality of the human eye\" by Rafael Navarro and M. Angeles Losada, Vol. 14, No. 2/February 1997/J. Opt. Soc. Am. A\n\nEye Photos courtesy of:\nAnthony Kelly\nElliot Bennett\nflickr user jyotsna210\nflickr user martinak15\nwikimedia user Hminden\nMagdalena Roeseler\nMichael Ga\u0308bler\nwikimedia user Woodwalker\nSteve Jurvetson\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nMusic by Nathaniel Schroeder http://www.soundcloud.com/drschroeder Created by Henry Reich",
@@ -1727,6 +2859,12 @@ var videos = [{
     "duration": "00:03:29",
     "thumb": "http://i.ytimg.com/vi/VVAKFJ8VVp4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED",
     "rating": 4.43022881083,
     "description": "Pamela Ronald studies the genes that make plants more resistant to disease and stress. In an eye-opening talk, she describes her decade-long quest to help create a variety of rice that can survive prolonged flooding. She shows how the genetic improvement of seeds saved the Hawaiian papaya crop in the 1950s \u2014 and makes the case that it may simply be the most effective way to enhance food security for our planet\u2019s growing population.\n\nTEDTalks is a daily video podcast of the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and much more.\nFind closed captions and translated subtitles in many languages at http://www.ted.com/translate\n\nFollow TED news on Twitter: http://www.twitter.com/tednews\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: http://www.youtube.com/user/TEDtalksDirector",
@@ -1743,6 +2881,12 @@ var videos = [{
     "duration": "00:17:50",
     "thumb": "http://i.ytimg.com/vi/wZ2TF8-PGQ4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.94990512334,
     "description": "View full lesson: http://ed.ted.com/lessons/what-causes-economic-bubbles-prateek-singh\n\n During the 1600\u2019s, the exotic tulip became a nationwide sensation; some single bulbs even sold for ten times the yearly salary of a skilled craftsman. Suddenly, though, the demand completely plummeted, leaving the tulip market in a depression. What happened? Prateek Singh explains the peak of a business cycle, commonly referred to as a mania.\n\nLesson by Prateek Singh, animation by Simon Ampel.",
@@ -1759,6 +2903,12 @@ var videos = [{
     "duration": "00:04:17",
     "thumb": "http://i.ytimg.com/vi/I5ZR0jMlxX0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.9649467402,
     "description": "The internet uses a lot of energy! But people have come up with ways to make it more efficient. This episode was produced in collaboration with and sponsored by Emerson. http://www.emerson.com/ilovestem\n\nHosted by: Hank Green\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Christopher Prevoe, Justin Ove, John Szymakowski, Peso255, Ruben Galvao, Fatima Iqbal, Justin Lentz, and David Campos.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n\nOr help support us by becoming our patron on Patreon:\nhttps://www.patreon.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n\nSources:\nhttp://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/VNI_Hyperconnectivity_WP.html\nhttp://www.nrdc.org/energy/data-center-efficiency-assessment.asp\nhttp://www.energystar.gov/ia/products/power_mgt/downloads/DataCenter-Top12-Brochure-Final.pdf?b8eb-2c2a\nhttp://www.livescience.com/47552-data-centers-suck-enormous-aounts-of-electricity.html\nhttp://news.nationalgeographic.com/news/energy/2014/08/140826-nrdc-data-center-energy-waste/\nhttp://www.nytimes.com/2012/09/23/technology/data-centers-waste-vast-amounts-of-energy-belying-industry-image.html?_r=0\nhttp://science.time.com/2013/08/14/power-drain-the-digital-cloud-is-using-more-energy-than-you-think/\nhttps://www.energystar.gov/index.cfm?c=power_mgt.datacenter_efficiency_hotcold_aisles\nhttps://www.energystar.gov/index.cfm?c=power_mgt.datacenter_efficiency_virtualization\nhttps://www.energystar.gov/index.cfm?c=power_mgt.datacenter_efficiency_inlet_temp",
@@ -1775,6 +2925,12 @@ var videos = [{
     "duration": "00:04:39",
     "thumb": "http://i.ytimg.com/vi/iuZDylVFbhs/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.95230478406,
     "description": "Next stop in our tour of your sensory systems? VISION. With a little help from an optical illusion, we take a look inside your eyes to try to figure out how your sense of vision works -- and how it can be tricked.\n\n\n***\n\nTable of Contents\nThe Structure of the Eye 2:31\nThe Fibrous, Vascular, and Inner Layers 3:33.2\nThe Retina 4:56\nPhotoreceptors, Bipolar Cells, and Ganglion Neurons 5:09.2\nRods and Cones 6:07.5\n\n\n***\n\nCrash Course is now on Patreon! You can support us directly by signing up at http://www.patreon.com/crashcourse\n\nThanks to the following Patrons for their generous monthly contributions that help keep Crash Course free for everyone forever:\n\nMark Brouwer, Jan Schmid, Steve Marshall, Anna-Ester Volozh, Sandra Aft, Brad Wardell, Christian Ludvigsen, Robert Kunz, Jason, A Saslow, Jacob Ash, Jeffrey Thompson, Jessica Simmons, James Craver, Simun Niclasen, SR Foxley, Roger C. Rocha, Nevin, Spoljaric, Eric Knight, Elliot Beter, Jessica Wode\n\n***SUBBABLE MESSAGES***\n\nTO: THE WORLD\nFROM: Future Is The Future\n\nAwesome gender neutral vintage clothing: http://futureisthefuture.com\n\n--\n\nTO: Beth\nFROM: Joey\n\nI Love You Beth Ronie With All Of My Heart!\n\n***SUPPORTER THANK YOU!***\n\nThank you so much to all of our awesome supporters for their contributions to help make Crash Course possible and freely available for everyone forever:\n\nSofie Harning\nSour Bags & Totes\nDon Phillips\nChristian Dodson\nChristian Dodson (once again)\nChristian Dodson (again)\nChristian Dodson (NO EDGE)\nSour Bags & Totes\ntuseroni\nAmy Guerrero\n\n\n--\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport Crash Course on Patreon: http://patreon.com/crashcourse\n\nCC Kids: http://www.youtube.com/crashcoursekids",
@@ -1791,6 +2947,12 @@ var videos = [{
     "duration": "00:09:39",
     "thumb": "http://i.ytimg.com/vi/o0DYP-u1rNM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Stated Clearly",
     "rating": 4.94648051193,
     "description": "Support Stated Clearly on Patreon: https://www.patreon.com/statedclearly\n\nHave you ever wondered how life first got started on Earth? So do scientists! Though the question has not yet been fully answered, a careful study of Chemical Evolution is beginning to shed light on this mystery.\n\nIn this film you will learn what Chemical Evolution is, how it works, and how it is different from Biological Evolution.  \n\nThis animation was paid for by the Center for Chemical Evolution, the National Science Foundation, and NASA!\n\n3D GRAPHICS\n\nThis animation is our first to include 3D graphics which were produced by artist Jason Moon. If you need 3D work done for your project, we highly recommend the guy. He can be reached at jason.daniel.moon@gmail.com\n\nLEARN MORE\n\nFor an overview of research that has been done on abiotic fatty-acid membrane formation, check out this paper by Dr. Pierre-Alain Monnard and Stated Clearly\u2019s science advisor Dr. David W. Deamer.\nhttp://onlinelibrary.wiley.com/doi/10.1002/ar.10154/full\n  \nRead about the solubility of fatty-acids in warm water. It is this solubility of fatty acids which allows natural selection to sort them out of the mess they are typically produced in during abiotic synthesis. \nhttp://www.tandfonline.com/doi/pdf/10.1271/bbb.66.1723\n\nLearn of the bio-molecules discovered on meteorites. These biomolecules were not produced by living creatures, instead, they were created abiotically in a way similar to how we think the first biomolecules formed on Earth!\nhttp://cshperspectives.cshlp.org/content/2/3/a002105.full\n\nLearn of research done by the Center For Chemical Evolution on a possible precursor to modern genes!\nhttp://news.sciencemag.org/2013/02/self-assembling-molecules-offer-new-clues-lifes-possible-origin\n\nCheck out more of the work done by Center for Chemical Evolution:\nhttp://centerforchemicalevolution.com/\n\nVisit the Stated Clearly website for more on genetics, evolution, and the origin of life:\nhttp://statedclearly.com/",
@@ -1807,6 +2969,12 @@ var videos = [{
     "duration": "00:09:15",
     "thumb": "http://i.ytimg.com/vi/mRzxTzKIsp8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.9578027094,
     "description": "The universe is unbelievably big \u2013 trillions of stars and even more planets. Soo\u2026 there just has to be life out there, right? But where is it? Why don\u2019t we see any aliens? Where are they? And more importantly, what does this tell us about our own fate in this gigantic and scary universe?\n\nVideos, explaining things. Like evolution, time, space, global energy or our existence in this strange universe. \nWe are a team of designers, journalists and musicians who want to make science look beautiful. Because it is beautiful. \n\nYou can get the music for the video here:\n\nhttps://soundcloud.com/epicmountain/fermi\nhttps://epicmountainmusic.bandcamp.com/track/the-fermi-paradox\nhttp://www.epic-mountain.com\n\n\nAlso, for more in depth information take a look at the WAIT BUT WHY article about Fermi Paradox: \n\nhttp://waitbutwhy.com/2014/05/fermi-paradox.html\n\n\nVisit us on our Website, Twitter, Facebook, Patreon or Behance to say hi!\n\nhttp://kurzgesagt.org\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\nhttp://www.patreon.com/Kurzgesagt\nhttp://www.behance.net/Kurzgesagt\n\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nTony Morley, Ben Nunan, Sam Elitzer, Andrzej Rejman, Matthew Datcher, Stephen Bassett, Raphael Hviding, Jeff Le, Nat Ryall, Nicholas Holtz, Arnas, Francesca Monteiro, Duncan Cheong, Derek, James Craver, Juan Manuel Corredor, Osric Lord-Williams, Broderick, Maarten Bremer, Nat Thomas Golder, Scott Zell, John Green, AgentK, Carly Tawse, Chris Simpson, Ngo Vo Hoang Viet, [ K A I ] = \u00e7\u0178\u00b3 : :, Taylor Hadden, Chris Linardos, tekbit, Kirstie, Richard Reynolds, Jeroen Koerts, Alex Kaplan, Patrick Eyrich, Cody, KokLiang Lim, Okan, Sasha C, Marcelo, Dean Herbert, trefmanic, Adam Smith, Anton Efimenko, Ga\u00ebtan Duvaux, Rachel Proctor, Lukas Grossar, Sam Pottinger, Michal, Caroline Andrewes, Tom Alexander Kutil, Justin Bull, Ivin spates, Sebastian Laiseca, Adam Dunlap, Chase, Marius Apalseth, Daniel and Sigrid C, Volodymyr Khomenko, Cerlinfia Chen, Chris Wills, Peter Emelone, Alexandre C, Radek Falhar, Michael Slade, Miranda Willan, Alexander Heavens, Mark Govea, Andrew Knudson, Fluffy19, Adam Primaeros, Aaron, Alexander Ahn, Daniel Jones, Adamliu, Sara Shah, Jan Schmid, Susan Love, Ghitea Andrei Paul, Harry Brisson, Stian Bluth Levik, maarten ligtenberg, Larry Bunyard, Ryan, Ann, Josh Maleszewski, Matthew Russell, Veselin Kostadinov, Dario W\u00fcnsch, Eli Fisker, Daniel McCouid-Carr, Dennis van Ruijven, Ryan A. Schauer, Nikki Toss, Pierre Lacasse, Gustavo, Albert Z, Theo Alves Monteiro, Stephen Morris, Tony Montuori, Muath, David Davenport-Firth, Edgar Duarte Ortega, Stephen Chen, Christian Fernandez, Alipasha Sadri, Matthew Sample, Hamad, Mikel De Uranga, Kevin P, Steven Ratner, Eric, Andrew Connor, Bruce low, Jos\u00e9, Wesley Sheridan Montgomery, Philipp Weber, Brad Wardell, Vaelohs, Brandon Liu, Alexander Scheffer, Peter Schuller, Eric Austin, Alexander Kosenkov, Enrico, Markus Wolski, Tim, Scott Laing, Ignacio Flores, Gizem G\u00fcrkan, Philipi Adolfo Willemann, George Chearswat, The Partisan Pundits, Matthew Gill, oscar gautama, Artem Anchugov, Bruno Ara\u00fajo, Lethargicpanda, Erven, varinder singh bal, Minghan Ko, Carlos Bohorquez, Mark Scheurwater, Rob PT, Collin Banko, Arrngrim, David Harbinson, Rikard Nyberg, Jordan Rutherford, Victor, Florian Guitton, Jezariael Demos, Ajay Shekhar, Martin Fink-Jensen, Josh Allen, Nick Yonge, Karl Snickars, Jennifer Hiller, Zr4g0n, Jon Moroney, Eugene Cham, Ryan, David Garcia Quintas, somersault18:24, Renaud Savignard, Ben Shackman, James, Viktor Asklund, Elchus, Hugo, Amdrew, Pranab Shenoy, Javier de la Garza, Yannick, Terry Lipstein, Mike Horner, Laurence Dixon, Russell McCallion, Jeff Churchill, Tim Carll, Daniel, Seona Tea, Jan Berdel, Ugurcan Kutluoglu, Morten, Sieglinde Geisel, Jeff, Finn Edwards, Dylan, Philly Cashion, Colin Palin, Clayton Fussell, Daniel Gonzalez, Denis Smajlovic, Ryan Deschamps, Dan Q, Gabriel Tougas, Fabricio Godoy, Charles Kuang, Damian Johnson, Brandon Helvie, Alex Thaler, Maximilian Ritter, Ernst, Yousif, Jesse Powell, David Taylor, Mehmet Sevil, \u51a0\u744b \u9673, Jesse MacLean, Wei Wong, Matt Collins, Jon Davis, Doc Matthews, Tori McClanahan, Dan Treasure, nga\u2074, Carlos Garc\u00eda Rojas, Igor Benicio de Mesquita, Nate Rice, Sergio Uribe, Praveen Muthu, Greeny Liu, Malthe Agger, Bahjat, Tibor Schiemann, Josh Yates-Walker, dante harper, Mike Mintz, B\u00fcnyamin Tetik, Joe Pond, Steffen Weng, Lars Vas Dias, Bruno Deschatelets, Massimiliano Cacciotti\n\nThe Fermi Paradox \u2014 Where Are All The Aliens?\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -1823,6 +2991,12 @@ var videos = [{
     "duration": "00:06:22",
     "thumb": "http://i.ytimg.com/vi/sNhhvQGsMEc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Big Think",
     "rating": 4.9173553719,
     "description": "Peter Baumann, former member of the band Tangerine Dream and founder of the Baumann Foundation, argues that our baseline is a kind of joy of living, but that we're easily distracted from it. He explains the ancient Greek distinction between happiness in the moment and lasting, existential happiness, and the value of both.\n\nRead more at BigThink.com: http://bigthink.com/videos/peter-baumann-on-happiness\n\nFollow Big Think here:\nYouTube: http://goo.gl/CPTsV5\nFacebook: https://www.facebook.com/BigThinkdotcom\nTwitter: https://twitter.com/bigthink\n\nTranscript - The upwelling of positive feelings that we have when we are \u201chappy\u201d is also an evolutionary adaptation and it really signals that what we experience is beneficial for us. Something that really enhances our lives or protects us or gives us joy like a newborn or a new relationship or something like that. But if we were constantly happy we wouldn\u2019t see any threats that potentially are around the corner. So there is basically a positive and a negative wave that goes through our lives. Negative when we perceive things that are potentially threatening to us and positive when there are things that are really life enhancing. Having said that I believe that we have an underlying positive attitude towards life. We prefer to live than not to live. And again we have to have that. So the baseline is not zero where we have some days above zero and some days below zero.\n\nBut the baseline is positive in and of itself. In Greek they have two different words for happiness. One is hedonic and that\u2019s the typical pleasure of happiness, you know. The joyful like oh, this is wonderful and great. And then they have a word called eudaimonia and that is that positive baseline that simply is a joy of simply living.\n\nThere is so much happening in our lives that we pay attention to and quite frankly, you know, the little devices that we carry around don\u2019t help very much because our attention gets totally absorbed into that attraction from these little devices. And we get a little bit of dopamine all the time when we get information, information is valuable instinctively. So we want to know what\u2019s happening and what\u2019s going on. That\u2019s true for gossip and it\u2019s true for why we watch the news. But the problem is that our attention is so much absorbed in that that we rarely, if ever, pay attention to just being present. And that is really what mindfulness and meditation is trying to balance out a little bit so that when the mind quiets and you actually are at home in your body that that distraction fades away and you actually get in touch with that underlying happiness that the Greeks call eudaimonia.\n\nJust to recognize I\u2019m alive. Just that simple fact is in and of itself positive. And that does not waver. That is always there. And that quality of happiness is there even when sad things happen, you know. So you cannot be always happy because if a loved one dies, you know, obviously you\u2019re not happy, you\u2019re sad. But within that you can have still the joy of living. So those are two different aspects of happiness that I think are very important to distinguish.",
@@ -1839,6 +3013,12 @@ var videos = [{
     "duration": "00:02:57",
     "thumb": "http://i.ytimg.com/vi/WZQI-dbQw_4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.94207723036,
     "description": "View full lesson: http://ed.ted.com/lessons/why-batteries-die-adam-jacobson\n   \nBatteries are a triumph of science\u2014they allow smartphones and other technologies to exist without anchoring us to an infernal tangle of power cables. Yet even the best batteries will diminish daily, slowly losing capacity until they finally die. Why does this happen, and how do our batteries even store so much charge in the first place? Adam Jacobson gives the basics on batteries.\n\nLesson by Adam Jacobson, animation by FOX Animation Domination High-Def.",
@@ -1855,6 +3035,12 @@ var videos = [{
     "duration": "00:04:20",
     "thumb": "http://i.ytimg.com/vi/9OVtk6G2TnQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "hackerdashery",
     "rating": 4.96650155747,
     "description": "Hackerdashery #2\n\nInspired by the Complexity Zoo wiki: https://complexityzoo.uwaterloo.ca/Complexity_Zoo\n\nFor more advanced reading, I highly recommend Scott Aaronson's blog, Shtetl-Optimized: http://www.scottaaronson.com/blog/\n\n-----\n\nRetro-fabulous, cabinet-sized computers: \n\nSystem/360: http://en.wikipedia.org/wiki/IBM_System/360\n\nphoto: \"360-91-panel\". Licensed under Public domain via Wikimedia Commons - http://commons.wikimedia.org/wiki/File:360-91-panel.jpg#mediaviewer/File:360-91-panel.jpg\n\nPDP-8: http://en.wikipedia.org/wiki/PDP-8\n\nphoto: \"PDP-8\". Licensed under Public domain via Wikimedia Commons - http://commons.wikimedia.org/wiki/File:PDP-8.jpg#mediaviewer/File:PDP-8.jpg\n \n-----\n\nProtein folding illustration: \"Protein folding schematic\" by Tomixdf (talk) - Own work (Original text: \u201cself-made\u201d). Licensed under Public domain via Wikimedia Commons - http://commons.wikimedia.org/wiki/File:Protein_folding_schematic.png#mediaviewer/File:Protein_folding_schematic.png\n\nP vs. NP opinion poll: http://www.cs.umd.edu/~gasarch/papers/poll2012.pdf",
@@ -1871,6 +3057,12 @@ var videos = [{
     "duration": "00:10:44",
     "thumb": "http://i.ytimg.com/vi/YX40hbAHx3s/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.93503311859,
     "description": "View full lesson: http://ed.ted.com/lessons/is-math-discovered-or-invented-jeff-dekofsky\n\nWould mathematics exist if people didn't? Did we create mathematical concepts to help us understand the world around us, or is math the native language of the universe itself? Jeff Dekofsky traces some famous arguments in this ancient and hotly debated question. \n\nLesson by Jeff Dekofsky, animation by The Tremendousness Collective.",
@@ -1887,6 +3079,12 @@ var videos = [{
     "duration": "00:05:11",
     "thumb": "http://i.ytimg.com/vi/X_xR5Kes4Rs/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.56543735854,
     "description": "View full lesson: http://ed.ted.com/lessons/how-to-defeat-a-dragon-with-math-garth-sundem\n\nHaving trouble remembering the order of operations? Let's raise the stakes a little bit. What if the future of your (theoretical) kingdom depended on it? Garth Sundem creates a world in which PEMDAS is the hero but only heroic when in the proper order.\n\nLesson by Garth Sundem, animation by Mark Phillips.",
@@ -1903,6 +3101,12 @@ var videos = [{
     "duration": "00:03:47",
     "thumb": "http://i.ytimg.com/vi/H6syI3xiBBg/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.66055389222,
     "description": "View full lesson: http://ed.ted.com/lessons/myths-and-misconceptions-about-evolution-alex-gendler\n\nHow does evolution really work? Actually, not how some of our common evolutionary metaphors would have us believe. For instance, it's species, not individual organisms, that adapt to produce evolution, and genes don't \"want\" to be passed on -- a gene can't want anything at all! Alex Gendler sets the record straight on the finer points of evolution. \n\nLesson by Alex Gendler, animation by Giant Animation Studios.",
@@ -1919,6 +3123,12 @@ var videos = [{
     "duration": "00:04:23",
     "thumb": "http://i.ytimg.com/vi/mZt1Gn0R22Q/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.97521982414,
     "description": "View full lesson: http://ed.ted.com/lessons/will-future-spaceships-fit-in-our-pockets-dhonam-pemba\n\nWhen you picture a rocket, you might imagine a giant ship carrying lots of fuel, people and supplies. But what if the next wave of spacecraft were small enough to fit into our pockets? Dhonam Pemba details the future of microspacecraft, and how scientists at NASA are hoping to use micropropulsion to launch these tiny vessels outside of Earth\u2019s orbit.\n\nLesson by Dhonam Pemba, animation by Qa'ed Mai.",
@@ -1935,6 +3145,12 @@ var videos = [{
     "duration": "00:04:37",
     "thumb": "http://i.ytimg.com/vi/Y7IsyjFROHE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "AsapSCIENCE",
     "rating": 4.84596492952,
     "description": "The earth has been through some major changes!\nAnimals we wish still existed: http://youtu.be/wutj5z1lElU\nSUBSCRIBE (it's free): http://bit.ly/10kWnZ7\n\nGET THE BOOK: http://asapscience.com/book/\n\nWritten by Tyler Irving (@tylereirving), Mitchell Moffit and Greg Brown\nInstagram and Twitter: @whalewatchmeplz and @mitchellmoffit \nClickable: http://bit.ly/16F1jeC and http://bit.ly/15J7ube\n\nAsapINSTAGRAM: https://instagram.com/asapscience/\nFacebook: http://facebook.com/AsapSCIENCE\nTwitter: http://twitter.com/AsapSCIENCE\nTumblr: http://asapscience.tumblr.com\nVine: Search \"AsapSCIENCE\" on vine!\n\nSNAPCHAT 'whalewatchmeplz' and 'pixelmitch'\n\nCreated by Mitchell Moffit (twitter @mitchellmoffit) and Gregory Brown (twitter @whalewatchmeplz).\n\nSend us stuff!\n\nASAPSCIENCE INC.\nP.O. Box 93, Toronto P\nToronto, ON, M5S2S6\n\nFurther Reading--\n\nOverviews:\n\nhttp://listverse.com/2012/03/09/top-10-mass-extinctions/\n\nhttp://www.nature.com/nature/journal/v471/n7336/full/nature09678.html \n\nOrdovician:\n\nRole of CO2 levels:\n\nhttp://www.sciencedirect.com/science/article/pii/S003101821000115X\n\nhttp://geology.gsapubs.org/content/37/10/951.abstract\n\nhttp://www.skepticalscience.com/CO2-was-higher-in-late-Ordovician.htm\n\nhttp://www.newscientist.com/article/dn18618-highcarbon-ice-age-mystery-solved.html#.VK1lhmTF98s\n\nDevonian:\n\nhttp://en.wikipedia.org/wiki/Late_Devonian_extinction\n\nhttp://www.devoniantimes.org/opportunity/massExtinction.html\n\nhttp://www.nhm.ac.uk/nature-online/life/dinosaurs-other-extinct-creatures/mass-extinctions/late-devonian-mass-extinction/index.html\n\nPermian\n\nGood overviews:\n\nhttp://science.nationalgeographic.com/science/prehistoric-world/permian-extinction/\n\nhttp://www.businessinsider.com/volcanic-eruptions-caused-permian-extinction-2014-12\n\nSize of lava fields:\n\nhttp://en.wikipedia.org/wiki/Siberian_Traps\n\nEffect of volcanoes;\n\nhttp://articles.latimes.com/2005/jan/21/science/sci-extinct21\n\nhttp://www.livescience.com/41909-new-clues-permian-mass-extinction.html\n\nRecovery:\n\nhttp://scitechdaily.com/earth-recovered-10-million-years-after-permian-triassic-mass-extinction/\n\nTriassic\n\nhttp://www.nhm.ac.uk/nature-online/life/dinosaurs-other-extinct-creatures/mass-extinctions/end-triassic-mass-extinction/index.html\n\nhttp://earth.columbia.edu/articles/view/3070\n\nhttp://www.wired.com/2011/07/mass-extinction-methane/\n\nCretaceous:\n\nhttp://www.nhm.ac.uk/nature-online/life/dinosaurs-other-extinct-creatures/mass-extinctions/end-cretaceous-mass-extinction/index.html\n\nhttp://www.space.com/19681-dinosaur-killing-asteroid-chicxulub-crater.html\n\n6th mass extinction:\n\nhttp://www.businessinsider.com/earths-sixth-mass-extinction-is-already-happening-2014-7\n\nhttp://www.independent.co.uk/environment/animal-extinction--the-greatest-threat-to-mankind-\n\n397939.html\n\nBy the numbers:\n\nhttp://www.sciencemag.org/content/345/6195/401\n\nExtinction rates:\n\nhttp://www.nature.com/nature/journal/v471/n7336/full/nature09678.html\n\nhttp://onlinelibrary.wiley.com/doi/10.1111/cobi.12380/abstract",
@@ -1951,6 +3167,12 @@ var videos = [{
     "duration": "00:04:27",
     "thumb": "http://i.ytimg.com/vi/wissIOikrqc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Stated Clearly",
     "rating": 4.80249823238,
     "description": "Support Stated Clearly on Patreon: https://www.patreon.com/statedclearly\n\nDarwin's theory of biological evolution helps us understand how simple life forms can give rise to complex lifeforms, but how did the first reproducing creatures come about? The origin of life needs its own explanation.\n\nScientists don't currently have a complete explanation for life's origins, but different labs around the globe are looking into the idea that life may have emerged from chemistry. In this animation you will learn why they are studying this idea, and you'll get to see a few of the fascinating things they have discovered.\n\nHere are some links for further learning (organized by topic):\n\nOVERVIEW OF CURRENT RESEARCH\n\nHere David Deamer gives a wonderful overview of our current understanding of the origin of life. This hour long lecture is presented in clear language for all to follow:\nhttp://youtu.be/_SHHfnIHXQI\n\n\nSELF-ASSEMBLY\n\nNews article on the self assembly of gene-like columns: http://www.huffingtonpost.com/2013/02/12/origin-of-life-rna_n_2670326.html\n\nVideo series on the self assembly of primitive cell membranes: \nhttp://exploringorigins.org/fattyacids.html\n\nVideo interview with chemist Jack Szostak. In it he goes over his work on self-assembling membranes and genes.\nhttps://www.youtube.com/watch?v=3OwSARYTK7w\n\nScientific journal exploring molecules with self-assembly properties. (You need a subscription to the journal to get past the abstract)\nhttp://www.ncbi.nlm.nih.gov/pubmed/19879180\n\n\nRNA SYNTHESIS\n\nVideo on John Sutherland's production of RNA nucleotides  \nhttp://youtu.be/nVnAYDdM1iM?t=15m31s\n\n\nEARLY FOSSILS\n\nDavid Attenborough explores the lives of early organisms found in the fossil record. This video explores the evolution of early organisms but does not go over the origin of the first living things.  \nhttp://youtu.be/leLpFwjjn8M\n\n\nMETABOLIC PATHWAYS\n\nThis research explores a primitive metabolic pathway which could have easily formed through chemical evolution on the ancient earth (you need a subscription to the journal to get past the abstract) http://link.springer.com/article/10.1007%2Fs11084-006-9059-9\n\n\nWebsites for further learning:\n\nThis Interactive website outlines many of the discoveries made by life origin researchers. http://exploringorigins.org/\n\nThis website explains the research goals and findings of the Center for Chemical Evolution at Georgia Tech: http://centerforchemicalevolution.com/",
@@ -1967,6 +3189,12 @@ var videos = [{
     "duration": "00:07:11",
     "thumb": "http://i.ytimg.com/vi/fgQLyqWaCbA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Numberphile",
     "rating": 4.96048785405,
     "description": "Here is the biggest (?) unsolved problem in maths... The Riemann Hypothesis.\nPrime Number Theorem: http://youtu.be/l8ezziaEeNE\nFermat's Last Theorem: http://youtu.be/qiNcEguuFSA\n\nProf Edward Frenkel's book Love and Math: http://amzn.to/1g6XP6j\nProfessor Frenkel is a mathematics professor at the University of California, Berkeley - http://edwardfrenkel.com\n\nThe Millennium Prize at the Clay Mathematics Institute: http://www.claymath.org\n\nNumber Line: http://youtu.be/JmyLeESQWGw\n\nWebsite: http://www.numberphile.com/\nNumberphile on Facebook: http://www.facebook.com/numberphile\nNumberphile tweets: https://twitter.com/numberphile\nGoogle Plus: http://bit.ly/numberGplus\nTumblr: http://numberphile.tumblr.com\n\nNumberphile is supported by the Mathematical Sciences Research Institute (MSRI): http://bit.ly/MSRINumberphile\n\nVideos by Brady Haran\n\nA run-down of Brady's channels: http://bit.ly/bradychannels\n\nCORRECTION: At 7:20 the zeta function of 2 should be (Pi^2)/6 as correctly stated earlier in the video (Basel Problem)",
@@ -1983,6 +3211,12 @@ var videos = [{
     "duration": "00:17:04",
     "thumb": "http://i.ytimg.com/vi/d6c6uIyieoo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.97665782493,
     "description": "View full lesson: http://ed.ted.com/lessons/how-to-detect-a-supernova-samantha-kuula\n\nJust now, somewhere in the universe, a star exploded. In fact, a supernova occurs every second or so in the observable universe. Yet, we\u2019ve never actually been able to watch a supernova in its first violent moments. Is early detection possible? Samantha Kuula details the science behind an early supernova warning system.\n\nLesson by Samantha Kuula, animation by Nick Hilditch.",
@@ -1999,6 +3233,12 @@ var videos = [{
     "duration": "00:04:42",
     "thumb": "http://i.ytimg.com/vi/xYxyTZG7APQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Ruslan Berdichevsky",
     "rating": 4.98449612403,
     "description": "frames of reference part 2",
@@ -2015,6 +3255,12 @@ var videos = [{
     "duration": "00:08:12",
     "thumb": "http://i.ytimg.com/vi/dAoGpflOmdw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.83223008446,
     "description": "Want to ask some sort of crazy question about Space?:\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\nSupport us on Patreon! http://www.patreon.com/pbsspacetime\n\nHelp translate our videos! http://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nLet us know what topics you want to learn more about:\nhttp://bit.ly/spacetimepoll\n\nMost of us take gravity as an assumed part of our living realities, but why? Basic physics introduces us to the concept of gravity from a Newtonian sense, but when you start factoring Einstein into an understanding of gravity, things get\u2026 weird. For example, gravity may simply not exist. Why? Watch this week\u2019s episode of PBS Space Time and find out why gravity may be an illusion! \n\nExtra Credit:\n\n1960 Frames of Reference video (abridged version)\nhttps://www.youtube.com/watch?v=Y75kEf8xLxI\n\n1960 Frames of Reference video (full version)\nhttps://archive.org/details/frames_of_reference\n\nSmarterEveryDay Baffling Balloon Physics\nhttps://www.youtube.com/watch?v=y8mzDvpKzfY\n\nEinstein 1907 paper (translation) on the equivalence principle\nhttp://www.pitt.edu/~jdnorton/teaching/GR&Grav_2007/pdf/Einstein_1907.pdf\n\nAdditional info the equivalence principle\nhttp://www.einstein-online.info/spotlights/equivalence_principle\n\nPBS Learning Media animation about frames of reference:\nhttp://www.pbslearningmedia.org/resource/lsps07.sci.phys.fund.frameref/frames-of-reference/\n\n----------------------------------------\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad-----------------------------\u00ad-\u00ad-\n\nComments:\n\nMiguel Portela\nhttps://www.youtube.com/watch?v=9Q_0vOdzw4Y&lc=z13ry1pogumff5rrz04cihaipqukifwjpbo\n\nLutranereis\nhttps://www.youtube.com/watch?v=9Q_0vOdzw4Y&lc=z12pcllrpk3me35nj22kc1wbnwzvjjh4i04\n\nLukos0036\nhttps://www.youtube.com/watch?v=9Q_0vOdzw4Y&lc=z13rtftpiprfcbj2o23pidj54ripyvv3a\n\nPikminiman\nhttps://www.youtube.com/watch?v=9Q_0vOdzw4Y&lc=z134vjni4yjdzr1xq04cdbgjgrylsherqus0k\n\n\nMusic:\nBuster - Patternbased (https://soundcloud.com/patternbased)\nPhilly D Jr. - Patternbased (https://soundcloud.com/patternbased)\nDr Dreidel - Patternbased (https://soundcloud.com/patternbased)\nWindmills - Anitek (https://soundcloud.com/anitek/02-windmills)\nSecret Society - Logical Disorder (http://logicaldisorder.bandcamp.com/)\nu dont know im fadin\nPinball Beat - Patternbased (https://soundcloud.com/patternbased)\nmiracle - slow (http://www.restingbell.net/releases/r)\nHeisse Luft - Thompson and Kuhl (https://soundcloud.com/phlow/05-x-com)\n\nNew SpaceTime episodes every Wednesday!\n\nHosted by Gabe Perez-Giz\nMade by Kornhaber Brown (www.kornhaberbrown.com)",
@@ -2031,6 +3277,12 @@ var videos = [{
     "duration": "00:12:33",
     "thumb": "http://i.ytimg.com/vi/NblR01hHK6U/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.96562680531,
     "description": "Join SciShow as we explore what happens to your stuff after you toss it into the little green bin with the arrows on it.\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Justin Ove, Justin Lentz, David Campos, John Szymakowski, Peso255, Jeremy Peng, Avi Yaschin, and Fatima Iqbal.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n\nOr help support us by becoming our patron on Patreon:\nhttps://www.patreon.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n\nSources:\nhttp://www.epa.gov/epawaste/nonhaz/municipal/pubs/msw_2010_rev_factsheet.pdf\nhttp://www.economist.com/node/9249262\nhttp://www4.uwm.edu/shwec/publications/cabinet/recycling/Single%20Stream%205-24a.pdf\nhttp://www.mcmua.com/sw_recy_singlestream.asp\nhttp://www.tappi.org/paperu/all_about_paper/earth_answers/earthanswers_recycle.pdf\nhttp://gizmodo.com/5928991/how-to-keep-beer-from-going-bad\nhttp://www.wm.com/thinkgreen/what-can-i-recycle.jsp\nhttp://www.eurekarecycling.org/imageupload/file/Plastics_Fact_Sheet-2012.pdf\nhttp://www.nytimes.com/2013/07/02/science/polymers-why-some-recyclable-items-just-dont-mix.html?_r=1\nhttp://www.cpmfg.com/material-recovery-facility/single-stream-recycling/single-stream-recycling-equipment/",
@@ -2047,6 +3299,12 @@ var videos = [{
     "duration": "00:08:54",
     "thumb": "http://i.ytimg.com/vi/b7GMpjx2jDQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "ouLearn on YouTube",
     "rating": 4.87012987013,
     "description": "For more like this subscribe to the Open University channel https://www.youtube.com/channel/UCXsH4hSV_kEdAOsupMMm4Qw\n\nLearn more about the International Year of Light from The Open University\nhttp://www.open.edu/openlearn/whats-on/events/international-year-light-2015\n\n---\n\nDESCRIPTION\n\nThis film explores a series of fascinating discoveries and inventions that relate to the field of light within physics looking at the impact of the 5 scientists, Ibn al-Haytham, Augustin-Jean Fresnel, James Clerk Maxwell, Albert Einstein and Charles Kao.\n\nTranscript - \nhttp://podcast.open.ac.uk/feeds/3263_transcriptsforyoutubecollectionsthatmightnotg/transcript/35318_year_of_light_v5.pdf\n\n\nFor other languages please go to the International year of light playlist\nhttps://www.youtube.com/watch?v=8U_GEa4bM1M&list=PLhQpDGfX5e7Akd0xlHcgdczEHkkV60bDa\n\n---\n\nStudy at the OU\nhttp://www.open.ac.uk/courses/modules/s217",
@@ -2063,6 +3321,12 @@ var videos = [{
     "duration": "00:04:29",
     "thumb": "http://i.ytimg.com/vi/8U_GEa4bM1M/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.96801650761,
     "description": "View full lesson: http://ed.ted.com/lessons/how-x-rays-see-through-your-skin-ge-wang\n\nOriginally discovered by accident, X-rays are now used about 100 million times a year in clinics around the world. How do these magic eyes work? Ge Wang details the history and mechanics of the X-ray machine and CT scanners.\n\nLesson by Ge Wang, animation by Pink Kong Studios.",
@@ -2079,6 +3343,12 @@ var videos = [{
     "duration": "00:04:43",
     "thumb": "http://i.ytimg.com/vi/gsV7SJDDCY4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Big Think",
     "rating": 4.76020408163,
     "description": "Stress can be your friend, says psychologist Kelly McGonigal. It's all a matter of how you respond to it.  Kelly McGonigal's latest book is \"The Upside of Stress\" (http://goo.gl/4QlqPu).\n\nRead more at BigThink.com: http://bigthink.com/videos/the-threat-and-challenge-response\n\nFollow Big Think here:\nYouTube: http://goo.gl/CPTsV5\nFacebook: https://www.facebook.com/BigThinkdotcom\nTwitter: https://twitter.com/bigthink\n\nTranscript - Most people believe that there is one way that the body responds to stress, you know. Everyone\u2019s heard the fight-or-flight response. But it actually turns out that that\u2019s just one way that the body and brain can respond to a stressful circumstance. And it\u2019s often not a very helpful way to respond to a stressful circumstance, especially one in which you really want to rise to the challenge and perform your best where it\u2019s really not about survival mode. And it turns out that the brain and the body actually has another way of responding to these kind of high-stakes challenges, you know, whether it\u2019s an important negotiation or you have to give a speech or an athletic competition. Those moments where you really want to show up and do your best. And that other way of responding to stress is called a challenge response. That it\u2019s a way for your brain and body to give you maximum focus, attention, and energy. And it\u2019s physically different than the sort of the fight-or-flight response that we have when we feel- deeply threatened by a stressful situation. When you have a threat response, you know, your body and brain are shifting into the state that is really sort of the classic association with the harmful stress response.\n\nIt\u2019s going to make you more likely to choke under pressure. It\u2019s going to feel more like dread or overwhelm. When you have a challenge response, the brain and body actually sift into a state that gives you more access to your resources. You know your heart might still be pounding, but your blood vessels are going to relax and open up so you get more blood flow to your muscles and to your brain. Your brain shifts into a state \u2014 it\u2019s actually better at paying attention to everything in your environment rather than sort of being laser-focused like you might be in a fight-or-flight response on what\u2019s going wrong or what\u2019s dangerous. When you have a challenge response, all of your senses open to all the information that\u2019s available to you, which means that you\u2019re basically smarter under stress. And researchers have gotten really interested in figuring out how do you get people to shift from a threat response into a challenge response. Because unless your life is on the line in some sort of crazy emergency situation, it\u2019s going to be better for you to have a challenge response than a threat response. You\u2019ll perform better and that\u2019s been shown in situations ranging from people performing surgery to athletes on the field to students taking difficult exams. That when you have a challenge response, you just do better. And it seems like one of the best ways to shift from a threat response to a challenge response is actually to view your own stress response as a resource.\n\nYou know the reason that many people have a threat response in a stressful situation is that the very first signs if anxiety when they notice some sweat on their brow or they\u2019re starting to feel their heart pound they think, \"Uh oh, I\u2019m about to blow it,\" and they turn their attention to trying to calm down or trying to suppress whatever stress is arising. And research originally coming out of Harvard University has shown that when people say, \"Okay, I\u2019m stressed out. I feel stress happening right now. And that\u2019s a resource. That stress can actually help me do better.\" It actually changes the physiology of the stress response from threat to challenge and it helps people perform better whether they\u2019re giving a talk in public, whether they are engaging in a business negotiation, whether they\u2019re a student taking an exam \u2014 across many scenarios. Literally just embracing your own stress energy, arousal, or anxiety can transform what\u2019s happening in your brain and body to really help you rise to the challenge.",
@@ -2095,6 +3365,12 @@ var videos = [{
     "duration": "00:03:35",
     "thumb": "http://i.ytimg.com/vi/IaVKXx767rw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.97633097933,
     "description": "Neutron Stars are some of the strangest things in the Universe. Not quite massive enough to become black holes they \nare basically atoms as big as mountains with properties so extreme it's mind-blowing. And if you get too close to a neutron star you are in big trouble\u2026\n\nLots of you told us youtube doesn't tell you when we release new content. So we made a newsletter. No spam ever: http://eepurl.com/2bzP1 (Never miss a new video again)\n\n\nThe music of the video can be found here: \n\nhttps://www.epicmountainmusic.bandcamp.com/track/neutron-star\n&\nhttps://www.soundcloud.com/epicmountain\n\n\nVideos, explaining things. Like evolution, time, space, global energy or our existence in this strange universe. \nWe are a team of designers, journalists and musicians who want to make science look beautiful. Because it is beautiful. \n\nVisit us on our Website, Twitter, Facebook, Patreon or Behance to say hi!\n\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\nhttp://kurzgesagt.org\nhttp://www.patreon.com/Kurzgesagt\nhttp://www.behance.net/kurzgesagt\n\nTHANKS A LOT TO OUR PATRONS FOR SUPPORTING US:\n\n \nJustin Degenaars \nOpal Hartbower\njordan gardner\nDerek Loa\nChris Kitching\nJeff Le\nDevir Islas\nAndrew Connor\nFrancesca Monteiro\nScott Zell\nJeroen Koerts\nTanya Smirnova\nPatrick Eyrich\nJ.J.\nChris Linardos\nTony Morley\nBen Nunan\nMoe Levin\nPholpat Durongbhan\nRaphael\nCaroline Andrewes\nAlex Kaplan\nKokLiang Lim\nThomas Borg\ntrefmanic\nMathias Westad Larssen\nKatia Lira\nAdam Smith\nDean Herbert\nGiovanna Cardoso\nAdam Primaeros\nRory Bennett\nGa\u00ebtan Duvaux\nRasmus Lind\nGhitea Andrei Paul\nLarry Bunyard\nMaximilian Heitsch \nSebastian Laiseca\nAta Celbis\nAndrzej Rejman\nBenjamin Fries\nAlexander Heavens\nChris Doughty\nDario Pagnia\nSara Shah\nEduardo Barbosa\nMaximilian Ritter\nYousif\nJesse Powell\nPeter Wagner\nEliud Vasquez\nIgor Benicio de Mesquita\nSiddharth Bajaj\nGreeny Liu\nTibor Schiemann\ndante harper\nB\u00fcnyamin Tetik\nJoe Pond\nStephen Morse\nJ\u00f8rgen Smal\u00e5s\nEvan Low\nDario \u201eTLO\u201c W\u00fcnsch\nMatthew Macomber\nZiggy Freed\nChase Gotlieb\nBrian David Henderson\nAlejandro Liechty\nDavid Davenport-Firth\nJanne Jaukkuri\nMichael Ren\nPeter Schuller\ntBinger\nBrandy Alexander\nAlexander Kosenkov\nScott Laing\nGizem G\u00fcrkan\nGeorge Chearswat\noscar gautama\nPascal B.\nBrandon Liu\nTim\nJustin T.\nDaniel O.C.L.\nLeigh Thompson\nHeemi Kutia\nValerie Brunet\nsomersault18:24\nJan Lukas Lehmann\nJavier de la Garza\nPeter \u017dnuderl\nRandy Knapp\nBeno\u00eet Graham\nJeff Churchill\nJonathan Velazquez Gore\nDaniel\nRoman Zolotorevich\nPol Lutgen\nSeona Tea\nDaniel Fuchs\nThomas Lee\nFinn Edwards\nPetr Pila\u0159\nBalazs-Hegedus Jozsef\nFabricio Godoy\nCharles Kuang\n\nAtoms As Big As Mountains \u2013 Neutron Stars Explained\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -2111,6 +3387,12 @@ var videos = [{
     "duration": "00:05:11",
     "thumb": "http://i.ytimg.com/vi/ZW3aV7U-aik/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.64466860161,
     "description": "Why are GMOs bad? They aren\u2019t. They just aren\u2019t, not intrinsically, and certainly not for your health. We\u2019ve been eating them for decades with no ill effects, which makes sense, because a genetically modified organism is simply an organism, like every other organism, produces hundreds of thousands of proteins, but one or two of them are proteins that were chosen specifically by humans.\n\nHosted by: Hank Green\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Justin Ove, Chris Peters, John Szymakowski, Peso255, Fatima Iqbal, Justin Lentz, and David Campos.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n\nOr help support us by becoming our patron on Patreon:\nhttps://www.patreon.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n\nSources:\nGMO Salmon\nhttp://www.independent.co.uk/news/science/a-giant-leap-into-the-unknown-gm-salmon-that-grows-and-grows-2085856.html\nhttp://www.aquabounty.com/products/products-295.aspx\n\nHow are GMOs Made\nhttp://cls.casa.colostate.edu/transgeniccrops/history.html\nhttp://www.hudsonalpha.org/education/kits/gmod/gmos-made\n\nGlycophosphate / Monsanto\nhttp://npic.orst.edu/factsheets/glyphogen.pdf\nhttp://www.scientificamerican.com/article.cfm?id=do-seed-companies-control-gm-crop-research\nhttp://www.nature.com/scitable/topicpage/genetically-modified-organisms-gmos-transgenic-crops-and-732\nhttp://blogs.scientificamerican.com/guest-blog/2011/08/11/genetically-engineered-crops/\n\nhttp://californiaagriculture.ucanr.org/landingpage.cfm?articleid=ca.v054n04p6\nhttp://www.scq.ubc.ca/transgenic-crops-how-genetics-is-providing-new-ways-to-envision-agriculture/\nhttp://www.ca.uky.edu/entomology/entfacts/ef130.asp\nhttp://agbiosafety.unl.edu/education/summary.htm\nhttp://medicine.jrank.org/pages/2902/Transgenic-Plants.html\nhttp://www.news.cornell.edu/stories/Aug11/BtLooper.html\nhttp://www.ucsusa.org/assets/documents/food_and_agriculture/failure-to-yield-brochure.pdf\nhttp://www.chiefscientist.gov.au/2011/11/genetically-modified-food-explained/\nhttp://www.independent.co.uk/news/science/ready-to-eat-the-first-gm-fish-for-the-dinner-table-8430639.html\nhttp://www.scientificamerican.com/article.cfm?id=genetically-modified-crop\nhttp://www.independent.co.uk/news/science/ready-to-eat-the-first-gm-fish-for-the-dinner-table-8430639.html\nhttp://www.popsci.com/science/article/2011-01/life-cycle-genetically-modified-seed\nhttp://passel.unl.edu/pages/informationmodule.php?idinformationmodule=958077244&topicorder=4&maxto=7&minto=1\nhttp://passel.unl.edu/pages/informationmodule.php?idinformationmodule=958077244&topicorder=3&maxto=7\nhttp://www.nytimes.com/2009/02/20/business/20crop.html\nhttp://benthamscience.com/open/tonutraj/articles/V004/3TONUTRAJ.pdf\nhttp://www.gov.pe.ca/af/agweb/index.php3?number=72724",
@@ -2127,6 +3409,12 @@ var videos = [{
     "duration": "00:11:26",
     "thumb": "http://i.ytimg.com/vi/sH4bi60alZU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Sixty Symbols",
     "rating": 4.97627224477,
     "description": "Professor Merrifield with a space prop... Thanks Professor AJ Bird of the University of Southampton of the \"loaner\".\nHST: https://youtu.be/U-VtdUqK4Eg\nSpace Wood: https://youtu.be/Z58ULnlRjXE\nBrady's Telescope Tours: http://bit.ly/telescopetours\n\nVisit our website at http://www.sixtysymbols.com/\nWe're on Facebook at http://www.facebook.com/sixtysymbols\nAnd Twitter at http://twitter.com/#!/periodicvideos\nThis project features scientists from The University of Nottingham\nhttp://bit.ly/NottsPhysics\n\nSixty Symbols videos by Brady Haran",
@@ -2143,6 +3431,12 @@ var videos = [{
     "duration": "00:08:41",
     "thumb": "http://i.ytimg.com/vi/_ezhdhHNku0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.80118946474,
     "description": "View full lesson: http://ed.ted.com/lessons/light-waves-visible-and-invisible-lucianne-walkowicz\n\nEach kind of light has a unique wavelength, but human eyes can only perceive a tiny slice of the full spectrum -- the very narrow range from red to violet. Microwaves, radio waves, x-rays and more are hiding, invisible, just beyond our perception. Lucianne Walkowicz shows us the waves we can't see. \n\nLesson by Lucianne Walkowicz, animation by Pew36 Animation Studios.",
@@ -2159,6 +3453,12 @@ var videos = [{
     "duration": "00:05:58",
     "thumb": "http://i.ytimg.com/vi/O0PawPSdk28/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow Space",
     "rating": 4.96391394865,
     "description": "Celebrate Asteroid Day by learning about the 3 biggest collisions that Earth has experienced with celestial objects.\n----------\nDooblydoo thanks to the following Patreon supporters -- we couldn't make SciShow without them! Shout outs go to Justin Ove, Justin Lentz, David Campos, John Szymakowski, Peso255, Jeremy Peng, Avi Yaschin, and Fatima Iqbal.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/SciShow\n\nOr help support us by becoming our patron on Patreon:\nhttps://www.patreon.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n\nSources:\nhttp://www.livescience.com/50227-biggest-asteroid-impact-zone-found-under-australia.html\nhttp://www.sciencedirect.com/science/article/pii/S0040195114006477\nhttp://www.livescience.com/45172-vredefort-crater-impact-melt-ejecta.html\nhttp://news.nationalgeographic.com/news/2013/13/130214-biggest-asteroid-impacts-meteorites-space-2012da14/\nhttp://science.nasa.gov/science-news/science-at-nasa/2008/30jun_tunguska/\nhttp://www.livescience.com/48793-sudbury-basin-origins-revealed.html\nhttp://www.nature.com/news/rock-samples-suggest-meteor-caused-tunguska-blast-1.13163",
@@ -2175,6 +3475,12 @@ var videos = [{
     "duration": "00:05:19",
     "thumb": "http://i.ytimg.com/vi/dofWYGka2g8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "LastWeekTonight",
     "rating": 4.91944414865,
     "description": "Cities spend massive amounts of public money on privately-owned stadiums. Cities issue tax-exempt municipal bonds that \u2014 wait, don\u2019t fall asleep!\n\nConnect with Last Week Tonight online...\n\nSubscribe to the Last Week Tonight YouTube channel for more almost news as it almost happens: \nwww.youtube.com/user/LastWeekTonight\n\nFind Last Week Tonight on Facebook like your mom would:\nhttp://Facebook.com/LastWeekTonight\n\nFollow us on Twitter for news about jokes and jokes about news:\nhttp://Twitter.com/LastWeekTonight\n\nVisit our official site for all that other stuff at once:\nhttp://www.hbo.com/lastweektonight",
@@ -2191,6 +3497,12 @@ var videos = [{
     "duration": "00:19:08",
     "thumb": "http://i.ytimg.com/vi/xcwJt4bcnXs/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.9821656051,
     "description": "View full lesson: http://ed.ted.com/lessons/what-is-the-shape-of-a-molecule-george-zaidan-and-charles-morton\n\nA molecule is nearly all empty space, apart from the extremely dense nuclei of its atoms and the clouds of electrons that bond them together. When that molecule forms, it arranges itself to maximize attraction of opposite charges and minimize repulsion of unlike. George Zaidan and Charles Morton shape our image of molecules. \n\nLesson by George Zaidan and Charles Morton, animation by Bevan Lynch.",
@@ -2207,6 +3519,12 @@ var videos = [{
     "duration": "00:03:48",
     "thumb": "http://i.ytimg.com/vi/Jq_Ca-HKh1g/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Veritasium",
     "rating": 4.94797554505,
     "description": "Light is so common that we rarely think about what it really is. But just over two hundred years ago, a groundbreaking experiment answered the question that had occupied physicists for centuries. Is light made up of waves or particles?\n\nThe experiment was conducted by Thomas Young and is known as Young's Double Slit Experiment. This famous experiment is actually a simplification of a series of experiments on light conducted by Young. In a completely darkened room, Young allowed a thin beam of sunlight to pass through an aperture on his window and onto two narrow, closely spaced openings (the double slit). This sunlight then cast a shadow onto the wall behind the apparatus. Young found that the light diffracted as it passed through the slits, and then interfered with itself, created a series of light and dark spots. Since the sunlight consists of all colours of the rainbow, these colours were also visible in the projected spots. Young concluded that light consist of waves and not particles since only waves were known to diffract and interfere in exactly the manner that light did in his experiment.\n\nThe way I have always seen this experiment performed is with a laser and a manufactured double slit but since the experiment was conducted in 1801 I have always thought that it should be possible to recreate the experiment using sunlight and household materials. That is basically what I did here. I will show the interference pattern I observed with my homemade double slit on 2Veritasium but I chose to use a manufactured double slit here to ensure that the pattern was impressive for observers at the beach.\n\nSpecial thanks to Henry, Brady, and Rupert for their cameos, Glen for filming and Josh for helping create the apparatus. Thanks also to the Royal Society for allowing us to view the original manuscript of Young's lecture and the University of Sydney for lending the double slits.\n\nMusic by Kevin Mcleod (incompetech.com) Danse Macabre, Scissors",
@@ -2223,6 +3541,12 @@ var videos = [{
     "duration": "00:07:40",
     "thumb": "http://i.ytimg.com/vi/Iuv6hY6zsd0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.95635572997,
     "description": "This video brought to you by http://www.audible.com/minutephysics\nThanks to Neil deGrasse Tyson for his amazing writing and narration!\n\nMusic: \"The Firebird Suite\" by Igor Stravinsky, performed by the USAF Band, licensed from Naxos of America, Inc. for worldwide use.\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nAnd thanks to the following Patreon.com supporters: minutephysics.com/supporters.html\n\nCreated by Henry Reich",
@@ -2239,6 +3563,12 @@ var videos = [{
     "duration": "00:08:30",
     "thumb": "http://i.ytimg.com/vi/7KYTJ8tBoZ8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.94234618978,
     "description": "View full lesson: http://ed.ted.com/lessons/how-do-pregnancy-tests-work-tien-nguyen\n\nOver-the-counter pregnancy tests give potentially life-changing results with a pretty high rate of accuracy. But how do they work? Tien Nguyen explains how each test performs a scientifically rigorous, multi-stage experiment that goes from start to finish in the time that it\u2019ll take you to watch this video.\n\nLesson by Tien Nguyen, animation by Andrew Foerster.",
@@ -2255,6 +3585,12 @@ var videos = [{
     "duration": "00:04:34",
     "thumb": "http://i.ytimg.com/vi/aOfWTscU8YM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.90243902439,
     "description": "View full lesson: http://ed.ted.com/lessons/the-scientific-origins-of-the-minotaur-matt-kaplan\n\nThe myth of the Minotaur tells the story of an enraged beast forever wandering the corridors of a damp labyrinth, filled with a rage so intense that its deafening roar shakes the earth. But is this story just fiction, or an attempt of our early ancestors to make sense of the natural world? Matt Kaplan examines the myth for its scientific roots.\n\nLesson by Matt Kaplan, animation by Artrake Studio.",
@@ -2271,6 +3607,12 @@ var videos = [{
     "duration": "00:04:41",
     "thumb": "http://i.ytimg.com/vi/2aoIs-5zqoI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Numberphile",
     "rating": 4.92779259947,
     "description": "Dividing by zero, zero divided by zero and zero to the power of zero - all pose problems!\n\nNumberphile on Facebook: http://www.facebook.com/numberphile\nNumberphile tweets: https://twitter.com/numberphile\n\nThis video features Matt Parker and James Grime - https://twitter.com/standupmaths and https://twitter.com/jamesgrime\n\nVideos by Brady Haran\n\nA run-down of Brady's channels: \nhttp://periodicvideos.blogspot.co.uk/2012/06/here-are-my-channels.html",
@@ -2287,6 +3629,12 @@ var videos = [{
     "duration": "00:13:00",
     "thumb": "http://i.ytimg.com/vi/BRRolKTlF6Q/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.90721129602,
     "description": "Energy is like the bestest best friend ever and yet, most of the time we take it for granted. Hank feels bad for our friend and wants us to learn more about it so that we can understand what it's trying to tell us - like that any bond between two atoms contains energy. How much energy? That's not the simplest question to answer, but today Hank will answer it (kinda), by teaching us about a nifty little thing called enthalpy.\n\nIf you are paying attention to this episode you'll learn what the state function is, and how it varies from a path-dependent function; why enthalpy change is different from heat; that bonds are energy and to form and break them they release and absorb heat to and from their environment. You'll get the quickest introduction to calorimetry ever (more on that in upcoming episodes) and learn the power of Hess's Law and how to use Germain Hess's concept of the standard enthalpy of formation to calculate exactly how much heat is produced by any chemical reaction. \n\nSo much to learn! Let's get started! \n\n--\nTable of Contents\nState Function 1:50\nPath-Dependent Function 1:15\nEnthalpy 2:58\nBonds are Energy 5:10\nColorimetry 5:36\nHess' Law 6:19\nStandard Enthalpy of Formation 7:24\n\n--\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashC...\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com Support CrashCourse on Subbable: http://subbable.com/crashcourse",
@@ -2303,6 +3651,12 @@ var videos = [{
     "duration": "00:11:24",
     "thumb": "http://i.ytimg.com/vi/SV7U4yAXL5I/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.88534759358,
     "description": "Tweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\nSupport us on Patreon! http://www.patreon.com/pbsspacetime\n\nHelp translate our videos! http://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nBlack holes! From Stephen Hawking to Interstellar, black holes are mammoths in the world of science AND sci-fi.  But what exactly IS a black hole? Do events happen inside black holes? Are black holes really a hole? Are black holes really black?! Join Gabe on this week\u2019s episode of PBS Space Time as he debunks popular black hole misconceptions, and rethinks what the term, \u2018black hole\u2019, even means.  Thought you knew what a black hole was? Think again!\n\n----------------------------------------\u00ad---------\n\nComment Links\n\nhauslerful \nhttps://www.youtube.com/watch?v=pwChk4S99i4&lc=z12ct3gh0qydgpze422ldfqw3ue0xhnoc04\n\nAndrew Brown\nhttps://www.youtube.com/watch?v=pwChk4S99i4&lc=z121d3lrjsqnvpcz404cilxpznycs3rinls0k\n\nIvan Chagas \nhttps://www.youtube.com/watch?v=pwChk4S99i4&lc=z12chtix2oajdnew504cf50jmpykwpr4wao\n\nErgoCogita\nhttps://www.youtube.com/watch?v=pwChk4S99i4&lc=z13aglkq0wukvbct322ljf0oywnmzpavt\n\nThe Science Asylum\nhttps://www.youtube.com/watch?v=pwChk4S99i4&lc=z12wcfyx1wertxkld231wbazntrtcb43d\n\nRomesh Srivastava\nhttps://www.youtube.com/watch?v=pwChk4S99i4&lc=z121hpt5zlysivs1u23einxhfuymunhqi04\n\nshoofle\nhttps://www.youtube.com/watch?v=pwChk4S99i4&lc=z121dvyj2xzei3aj104ce3kqvofucd5rr3o\n\ngottabweird\nhttps://www.youtube.com/watch?v=pwChk4S99i4&lc=z12qevf4ku2mcbtmv22auzkanyfxzxtpo04\n\nMadhu Sujan Paudel\nhttps://www.youtube.com/watch?v=pwChk4S99i4&lc=z134vt0g0qnfupqui22zzb4wqszxuprmh\n\nTim VanBuren\nhttps://www.youtube.com/watch?v=pwChk4S99i4&lc=z12iuftarmnjsnonh23ezfl5cwmmglkfn\n\nDox\nhttps://www.youtube.com/watch?v=pwChk4S99i4&lc=z13dztcqquy4ihqdk23celmxjnfgcdzcb\n\n----------------------------------------\u00ad---------\nLet us know what topics you want to learn more about:http://bit.ly/spacetimepoll",
@@ -2319,6 +3673,12 @@ var videos = [{
     "duration": "00:14:25",
     "thumb": "http://i.ytimg.com/vi/vNaEBbFbvcY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.88652764644,
     "description": "Want to ask some sort of crazy question about Space?:\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\nSupport us on Patreon! http://www.patreon.com/pbsspacetime\n\nHelp translate our videos! http://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nLet us know what topics you want to learn more about:\n\nhttp://bit.ly/spacetimepoll\n\nYou\u2019ve probably known OF E=mc\u00b2 since you were born, and were also probably told that it meant that it proved Mass equaled Energy, or something along those lines. BUT WAIT. Was E=mc\u00b2 explained to you properly? Mass equalling energy is mostly true,  but E=mc\u00b2 actually describes a much more interesting, and frankly mind-blowing aspect of reality that likely wasn\u2019t covered in your high school physics class. Join Gabe on this week\u2019s episode of PBS Space Time he discusses THE TRUE MEANING OF E=mc\u00b2\n\nExtra Credit:\n\nEinstein's 1905 E=mc^2 paper (English translation):\nhttp://einsteinpapers.press.princeton.edu/vol2-trans/188\n\nhttp://www.astro.puc.cl/~rparra/tools/PAPERS/e_mc2.pdf (more modern notation)\n\nVeritasium: Your Mass is NOT From the Higgs Boson\nhttps://www.youtube.com/watch?v=Ztc6QPNUqls\n----------------------------------------\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad------------------------------\u00ad-\n\nComments:\n\nRyan Brown\nhttps://www.youtube.com/watch?v=w5TSfjvzMGs&lc=z12sirbrxxfbjh4da22hzjggxpr1f1emr\n\nDavid Shi\nhttps://www.youtube.com/watch?v=w5TSfjvzMGs&lc=z134itjxxtvbtzaiv04cjjlgyojxgjqhleg\n\nUndamagedLlama2\nhttps://www.youtube.com/watch?v=w5TSfjvzMGs&lc=z122z3rp0zaghfxxx04cfzfyomftexpqcdk\n\nJay Perrin\nhttps://www.youtube.com/watch?v=w5TSfjvzMGs&lc=z12mxzzawve2dxfgj04ccljhxyj2exto4qw0k\n\njancultis\nhttps://www.youtube.com/watch?v=w5TSfjvzMGs&lc=z12zjjvjswjbfnttd22mxhro3pjry5unj\n\n\nMusic:\nMovement 3 - Janne Hanhisuanto (https://soundcloud.com/jannehanhisuanto)\nmiracle - slow (http://www.restingbell.net/releases/r)\nSecret Society - Logical Disorder (http://logicaldisorder.bandcamp.com/)\nSaw Slicing - Patternbased (https://soundcloud.com/patternbased)\nDr Dreidel - Patternbased (https://soundcloud.com/patternbased)\nEarth Breath - Human Terminal (http://freemusicarchive.org/music/Human_Terminal/Press_Any_Key/01_Earth_Breath)\nPinball Beat - Patternbased (https://soundcloud.com/patternbased)\nHeisse Luft - Thompson and Kuhl (https://soundcloud.com/phlow/05-x-com)\n\n\nNew SpaceTime episodes every Wednesday!\n\nHosted by Gabe Perez-Giz\nMade by Kornhaber Brown (www.kornhaberbrown.com)",
@@ -2335,6 +3695,12 @@ var videos = [{
     "duration": "00:10:24",
     "thumb": "http://i.ytimg.com/vi/Xo232kyTsO0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The School of Life",
     "rating": 4.62743499139,
     "description": "Religion was an ingenious solution to many of mankind's earliest fears and needs. Religion is now implausible to many, but the needs remain. That is the challenge of our times. Please subscribe here: http://tinyurl.com/o28mut7\nIf you like our films take a look at our shop (we ship worldwide): http://www.theschooloflife.com/shop/all/\n\nBrought to you by http://www.theschooloflife.com\n\nProduced in collaboration with Mike Booth\nhttp://www.youtube.com/somegreybloke",
@@ -2351,6 +3717,12 @@ var videos = [{
     "duration": "00:11:00",
     "thumb": "http://i.ytimg.com/vi/ge071m9bGeY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "QualiaSoup",
     "rating": 4.94471288909,
     "description": "Explaining some of the basics of the scientific theory of evolution.\nSlovak subtitles: Peter \u0160\u010digulinsk\u00fd\nVideo index:\n\n0:03 What is evolution (and what is it not)?\n\n0:34 What is a theory in science?\n\n1:14 Genetic inheritance\n\n1:24 Artificial selection and natural selection\n\n2:29 Mutation\n\n2:59 Epigenetic variation\n\n3:16 Genetic drift\n\n     and the impact of variations\n\n3:58 Evolution is not 'pure accident'\n\n4:41 No 'one size fits all'\n\n5:09 Correcting the one-armed bandit analogy\n\n5:36 Dramatic change one step at a time\n\n6:30 Dogs don't produce cats\n\n     and individual apes don't morph into humans\n\n6:47 Why there are 'still' apes\n\n7:48 The rise and demise of the crocoduck\n\n8:37 Recognizing reality is not a supremacist policy\n\n9:08 Misrepresentation of evolution\n\n9:51 Evolution as fact and theory\n\n10:01 Why understanding evolution is important\n\n10:20 Scientific inheritance that benefits us all",
@@ -2367,6 +3739,12 @@ var videos = [{
     "duration": "00:10:49",
     "thumb": "http://i.ytimg.com/vi/XdddbYILel0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.96651982379,
     "description": "Today Phil follows up last week\u2019s look at the death of low mass stars with what comes next: a white dwarf. White dwarfs are incredibly hot and dense objects roughly the size of Earth. They also can form planetary nebulae: huge, intricately detailed objects created when the wind blown from the dying stars is lit up by the central white dwarf. They only last a few millennia. The Sun probably won\u2019t form one, but higher mass stars do.\n\n--\n\nTable of Contents\nWhen low mass stars die they form white dwarfs 0:54\nWhite dwarfs are roughly the size of Earth 2:16\nCloudy with a chance of Planetary Nebulae 3:59\nLife Span 9:06\n\n--\n\nPBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nFollow Phil on Twitter: https://twitter.com/badastronomer\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Patreon: http://www.patreon.com/crashcourse\n\n--\n\nPHOTOS/VIDEOS\nJourney to the centre of the Sun http://www.spacetelescope.org/videos/astro_ac/ [credit: ESA/Hubble (M. Kornmesser & L. L. Christensen)]\nBlowing Bubbles http://chandra.harvard.edu/resources/animations/pne.html [credit: (NASA/CXC/April Jubett)]\nArtist's impression of the sizes of Sirius B and the Earth http://www.spacetelescope.org/images/heic0516c/ [credit: ESA and NASA]\nThe Dog Star, Sirius A, and its tiny companion http://www.spacetelescope.org/images/heic0516a/ [credit: NASA, ESA, H. Bond (STScI), and M. Barstow (University of Leicester)]\nThe Spirograph Nebula https://www.spacetelescope.org/images/opo0028a/ [credit: NASA/ESA and The Hubble Heritage Team STScI/AURA]\nM27, NGC6853, Dumbbell Nebula https://www.noao.edu/image_gallery/html/im0688.html [credit: REU program/NOAO/AURA/NSF]\nSoap Bubble Nebula, PN G75.5+1.7 https://www.noao.edu/image_gallery/html/im1059.html [credit: T. A. Rector/University of Alaska Anchorage, H. Schweiker/WIYN and NOAO/AURA/NSF]\nHubble Sees Supersonic Exhaust From Nebula http://www.spacetelescope.org/images/opo9738a/ [credit: Bruce Balick (University of Washington), Vincent Icke (Leiden University, The Netherlands), Garrelt Mellema (Stockholm University), and NASA/ESA]\nHubble snaps NGC 5189 http://www.spacetelescope.org/images/heic1220a/ [credit: NASA, ESA and the Hubble Heritage Team (STScI/AURA)]\nA dying star\u2019s toxic legacy http://www.spacetelescope.org/images/potw1110a/ [credit: ESA/Hubble & NASA]\nEskimo Nebula http://www.nasa.gov/multimedia/imagegallery/image_feature_762.html [credit: NASA/Andrew Fruchter (STScI)]\nPlanetary nebula Abell 39 http://www.noao.edu/image_gallery/html/im0636.html [credit: WIYN/NOAO/NSF]\nThe Butterfly Hunter http://chandra.harvard.edu/resources/animations/pne.html [credit: (NASA/CXC/April Jubett)]\nRed Giant Sun (video) http://www.spacetelescope.org/videos/hst15_red_giant_sun/ [credit: ESA/Hubble (M. Kornmesser & L. L. Christensen)]\nThe planetary nebula Abell 33 captured using ESO's Very Large Telescope https://commons.wikimedia.org/wiki/File:The_planetary_nebula_Abell_33_captured_using_ESO%27s_Very_Large_Telescope.jpg [credit: ESO, Wikimedia Commons]\nESO's VLT images the planetary nebula IC 1295 http://www.eso.org/public/usa/images/eso1317a/ [credit: ESO]\nLooking Down a Barrel of Gas at a Doomed Star http://hubblesite.org/newscenter/archive/releases/1999/01/image/a/ [credit: The Hubble Heritage Team (AURA/STScI/NASA)]",
@@ -2383,6 +3761,12 @@ var videos = [{
     "duration": "00:11:10",
     "thumb": "http://i.ytimg.com/vi/Mj06h8BeeOA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.92441162898,
     "description": "Pianos can't be perfectly tuned - it's a mathematical fact! \nThanks to http://www.audible.com/minutephysics for supporting MinutePhysics.\n\nEqual tempered tuning: https://en.wikipedia.org/wiki/Equal_temperament\n\nJust Tuning: https://en.wikipedia.org/wiki/Just_intonation\n\nHarmonics: https://en.wikipedia.org/wiki/Harmonic\n\nPythagorean vs Just Tuning: https://www.youtube.com/watch?v=QaYOwIIvgHg\n\nThanks to Patreon supporters for making MinutePhysics possible!\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nMusic by Nathaniel Schroeder http://www.soundcloud.com/drschroeder Created by Henry Reich",
@@ -2399,6 +3783,12 @@ var videos = [{
     "duration": "00:04:20",
     "thumb": "http://i.ytimg.com/vi/1Hqm0dYKUx4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.96053962901,
     "description": "In the aftermath of a 8 \u2013 20 solar mass star\u2019s demise we find a weird little object known as a neutron star. Neutrons stars are incredibly dense, spin rapidly, and have very strong magnetic fields. Some of them we see as pulsars, flashing in brightness as they spin. Neutrons stars with the strongest magnetic fields are called magnetars, and are capable of colossal bursts of energy that can be detected over vast distances.\n\nCrash Course Astronomy Poster: http://store.dftba.com/products/crashcourse-astronomy-poster\n\n--\n\nTable of Contents\nA Star Can Collapse to Form a Neutron Star 0:59\nNeutron Star Characteristics 2:24\nPulsars 5:56\nMagnetars 8:15\n\n--\n\nPBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nFollow Phil on Twitter: https://twitter.com/badastronomer\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Patreon: http://www.patreon.com/crashcourse\n\n--\n\nPHOTOS/VIDEOS\nStar Burst https://svs.gsfc.nasa.gov/cgi-bin/details.cgi?aid=11447 [credit: NASA's Goddard Space Flight Center]\nX-ray Images of G292.0+1.8 http://chandra.harvard.edu/resources/animations/snr.html/?page=8 [credit: X-ray: NASA/CXC/Penn State/S.Park et al.; Optical: Pal.Obs. DSS]\nNeutron star cross section https://commons.wikimedia.org/wiki/File:Neutron_star_cross_section.jpg [credit: NASA]\nFermi Spots 'Superflares' in the Crab Nebula https://www.youtube.com/watch?v=qDhdwgK218E [credit: NASA/Goddard Space Flight Center]\nWhat is a pulsar? https://www.youtube.com/watch?v=gjLk_72V9Bw [credit: NASA's Goddard Space Flight Center]\nJocelyn Bell http://blog.sciencemuseum.org.uk/insight/2013/03/20/1960-discovery-of-pulsars/ [credit: National Media Museum / Science & Society Picture Library]\nBeacons of X-ray Light https://www.youtube.com/watch?v=6p2OGc6a_TQ [credit: NASA/JPL-Caltech]\nChandra Time-Lapse Movie http://chandra.harvard.edu/photo/2002/0052/animations.html [credit: NASA/CXC/ASU/J.Hester et al.]\nNASA's Fermi Satellite Finds Hints of Starquakes in Magnetar 'Storm' http://www.nasa.gov/content/goddard/nasas-fermi-satellite-finds-hints-of-starquakes-in-magnetar-storm [credit: NASA's Goddard Space Flight Center/S. Wiessinger]\nNASA's Swift Reveals New Phenomenon in a Neutron Star http://www.nasa.gov/mission_pages/swift/bursts/new-phenom.html#.Vcp-6flVhBe [credit: NASA's Goddard Space Flight Center]\nCosmic Explosion Second Only to the Sun in Brightness https://svs.gsfc.nasa.gov/cgi-bin/details.cgi?aid=20077 [credit: NASA/Goddard Space Flight Center Conceptual Image Lab]",
@@ -2415,6 +3805,12 @@ var videos = [{
     "duration": "00:12:57",
     "thumb": "http://i.ytimg.com/vi/RrMvUL8HFlM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.8221841052,
     "description": "The Speed of Causality\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\nSupport us on Patreon! http://www.patreon.com/pbsspacetime\n\nHelp translate our videos! http://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nThe speed of light is often cited as the fastest anything can travel in our universe.  While this might be true, the speed of light is the EFFECT and not the CAUSE of this phenomenon.  So what's the cause?  On this week's episode of Space Time, Matt helps explain what the speed of light REALLY is and why it\u2019s the cosmic speed limit of our universe!\n\n\"The Real Meaning of E=mc\u00b2\":\nhttps://www.youtube.com/watch?v=Xo232kyTsO0\n\n\"Are Space And Time An Illusion?\":\nhttps://www.youtube.com/watch?v=YycAzdtUIko\n\n----------------------------------------\u00ad\u00ad---------\n\nSOURCES:\n\nEinstein's derivation or the Lorentz transformation from the invariant speed of light:\nEinstein, Albert (1916) \"Relativity: The Special and General Theory\"\nhttp://www.archive.org/stream/cu31924011804774#page/n159/mode/2up\n\nLorentz Transformation without invariant speed of light, from relativity, isotropy, and consistency of frame transitions (closure group postulate):\nvon Ignatowsky, \u201cDas Relativitatsprinzip,\u201d Archiv der Mathematik und Physik 17, 1\u201324 (1911)\n\nBerzi1 & Gorini, J. Math. Phys. 10, 1518 (1969)\nhttp://dx.doi.org/10.1063/1.1665000\n\nPelissetto & Testa, American Journal of Physics, 83, 338, (2015) \"Getting the Lorentz transformations without requiring an invariant speed\"\nhttp://arxiv.org/abs/1504.02423\n\nhttps://en.wikipedia.org/wiki/Derivations_of_the_Lorentz_transformations\n\n----------------------------------------\u00ad\u00ad---------\n\nCOMMENTS:\n\nDenny Hiu\nhttps://www.youtube.com/watch?v=AwwIFcdUFrE&lc=z124w3dhotmtx34lk224wzxyhwqufdefe\n\n. (RadimaxRadimaX)\nhttps://www.youtube.com/watch?v=AwwIFcdUFrE&lc=z124xv145zzkzpiei233spnqjzraejjig04\n\nEpsilon Lazerface\nhttps://www.youtube.com/watch?v=AwwIFcdUFrE&lc=z12fv5ejyzyyc1dbv04cgzhyxknfzdnjcao\n\nLassieDog999\nhttps://www.youtube.com/watch?v=AwwIFcdUFrE&lc=z12zz13iezrqh142k23kitgxuqjqy35su\n\nTenebrae\nhttps://www.youtube.com/watch?v=AwwIFcdUFrE&lc=z134yj2pcvrkhnu4u04ccdxhuufvuvkomd0\n\n----------------------------------------\u00ad\u00ad---------\n\nREFERENCES:\n\nKrauss & Scherrer 2007 http://arxiv.org/abs/0704.0221\n\nVardanyan, Trotta & Silk, 2011 http://arxiv.org/abs/1101.5476\n\n----------------------------------------\u00ad\u00ad---------\n\nLet us know what topics you want to learn more about:http://bit.ly/spacetimepoll",
@@ -2431,6 +3827,12 @@ var videos = [{
     "duration": "00:12:46",
     "thumb": "http://i.ytimg.com/vi/msVuCEs8Ydo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "nature video",
     "rating": 4.953307393,
     "description": "How to break a fundamental law of physics and win a Nobel Prize to boot. Stefan Hell explains super-resolved fluorescence microscopy for which he shared the 2014 Nobel Prize in chemistry.\n\nA sponsor message from Mars, Incorporated \u2013 partner of the Lindau Nobel Laureate Meetings \u2013 follows the credits.",
@@ -2447,6 +3849,12 @@ var videos = [{
     "duration": "00:03:59",
     "thumb": "http://i.ytimg.com/vi/la2dPt8dLy8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.95385249279,
     "description": "View full lesson: http://ed.ted.com/lessons/the-race-to-sequence-the-human-genome-tien-nguyen\n\nThis video was created with support from the U.S. Office of Research Integrity: http://ori.hhs.gov.\n\nIn 1990, The Human Genome Project proposed to sequence the entire human genome over 15 years with $3 billion of public funds. Then, seven years before its scheduled completion, a private company called Celera announced that they could accomplish the same goal in just three years at a fraction of the cost. Tien Nguyen details the history of this race to sequence the human genome.\n\nLesson by Tien Nguyen, animation by Boico Visual House.",
@@ -2463,6 +3871,12 @@ var videos = [{
     "duration": "00:05:00",
     "thumb": "http://i.ytimg.com/vi/AhsIF-cmoQQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "seabala",
     "rating": 4.97695473251,
     "description": "Physicist Richard Feynman explains the scientific and unscientific methods of understanding nature.",
@@ -2479,6 +3893,12 @@ var videos = [{
     "duration": "00:09:59",
     "thumb": "http://i.ytimg.com/vi/EYPapE-3FRw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.97162683115,
     "description": "Last week we covered multiple star systems, but what if we added thousands or even millions of stars to the mix? A star cluster. There are different kinds of clusters, though. Open clusters contain hundreds or thousands of stars held together by gravity. They\u2019re young, and evaporate over time, their stars let loose to roam space freely. Globular clusters, on the other hand, are larger, have hundreds of thousands of stars, and are more spherical. They\u2019re very old, a significant fraction of the age of the Universe itself, and that means their stars have less heavy elements in them, are redder, and probably don\u2019t have planets (though we\u2019re not really sure).\n\nCrash Course Astronomy Poster: http://store.dftba.com/products/crashcourse-astronomy-poster\n\n--\n\nTable of Contents\nOpen clusters contain hundreds or thousands of young stars 00:29\nOver time, open clusters evaporate 3:23\nGlobular clusters contain hundreds of thousands of old stars in spherical formation 5:50\nGlobular clusters have less heavy elements, thus probably do not have planets 6:43\n\n--\n\nPBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nFollow Phil on Twitter: https://twitter.com/badastronomer\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Patreon: http://www.patreon.com/crashcourse\n\n--\n\nPHOTOS/VIDEOS\nMagellanic gemstone in the southern sky [NGC 290] http://www.spacetelescope.org/images/heic0603c/ [credit: European Space Agency & NASA]\nExtreme star cluster bursts into life in new Hubble image http://www.spacetelescope.org/images/heic0715a/ [credit: NASA, ESA and the Hubble Heritage (STScI/AURA)-ESA/Hubble Collaboration]\nView of a Sun-like star within an open cluster (artist\u2019s impression) http://www.spacetelescope.org/videos/heic1321d/ [credit: NASA, ESA, and M. Kornmesser]\nMotion of stars in Omega Centauri http://www.spacetelescope.org/videos/heic1017a/ [credit: NASA, ESA, J. Anderson and R. van der Marel (STScI)]\n47 Tucanae: Probing Extreme Matter Through Observations of Neutron Stars http://chandra.harvard.edu/photo/2013/47tuc/ [credit: NASA/CXC/Michigan State/A.Steiner et al]\nHubble Refines Distance to Pleiades Star Cluster http://hubblesite.org/newscenter/archive/releases/2004/20/image/a/ [credit: NASA, ESA and AURA/Caltech]\nM45 Pleiades https://www.noao.edu/image_gallery/html/im1116.html [credit: T.A. Rector (University of Alaska Anchorage), Richard Cool (University of Arizona) and WIYN]\nFrom the Pleiades to the Hyades http://www.deepskycolors.com/archive/2011/11/06/from-the-Pleiades-to-the-Hyades.html [credit: Rogelio Bernal Andreo]\nMessier 035 Atlas Image https://commons.wikimedia.org/wiki/File:Messier_035_2MASS.jpg [credit: Two Micron All Sky Survey (2MASS), a joint project of the University of Massachusetts and the Infrared Processing and Analysis Center/California Institute of Technology, funded by the National Aeronautics and Space Administration and the National Science Foundation]\nGlobular cluster 47 Tucanae http://www.spacetelescope.org/images/heic1510a/ [credit: NASA, ESA, and the Hubble Heritage (STScI/AURA)-ESA/Hubble Collaboration]\nThe oldest cluster in its cloud http://www.spacetelescope.org/images/potw1428a/ [credit: ESA/Hubble & NASA]\nAn unexpected population of young-looking stars http://www.spacetelescope.org/images/potw1244a/ [credit: ESA/Hubble & NASA]\nView of a globular cluster (artist\u2019s impression) http://www.spacetelescope.org/videos/heic1321c/ [credit: NASA, ESA, and M. Kornmesser]\nAll that glitters http://www.spacetelescope.org/images/potw1449a/ [credit: ESA/Hubble & NASA]",
@@ -2495,6 +3915,12 @@ var videos = [{
     "duration": "00:10:36",
     "thumb": "http://i.ytimg.com/vi/an4rgJ3O21A/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.9055936485,
     "description": "View full lesson: http://ed.ted.com/lessons/where-does-gold-come-from-david-lunney\n\nDid you know that gold is extraterrestrial? Instead of arising from our planet\u2019s rocky crust, it was actually cooked up in space and is present on Earth because of cataclysmic stellar explosions called supernovae. CERN Scientist David Lunney outlines the incredible journey of gold from space to Earth.\n\nLesson by David Lunney, animation by Andrew Foerster.",
@@ -2511,6 +3937,12 @@ var videos = [{
     "duration": "00:04:35",
     "thumb": "http://i.ytimg.com/vi/jf_4z4AKwJg/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "3Blue1Brown",
     "rating": 4.66693539099,
     "description": "The enigmatic equation e^{pi i} = -1 is usually explained using Taylor's formula during a calculus class.  This video offers a different perspective, which involves thinking about numbers as actions, and about e^x as something which turns one action into another.\n\nFor more information on viewing exponential functions in this new light, check out this article: http://goo.gl/LPyc4R\n\nMusic: \"Wyoming 307\" by Time For Three, http://www.tf3.com/",
@@ -2527,6 +3959,12 @@ var videos = [{
     "duration": "00:06:14",
     "thumb": "http://i.ytimg.com/vi/F_0yfvm0UoU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.97162162162,
     "description": "View full lesson: http://ed.ted.com/lessons/how-a-few-scientists-transformed-the-way-we-think-about-disease-tien-nguyen\n\nThis video was created with support from the U.S. Office of Research Integrity: http://ori.hhs.gov.\n\nFor several centuries, people though diseases were caused by wandering clouds of poisonous vapor. We now know that this theory is pretty ridiculous, and that diseases are caused by specific bacteria. But how did we get to this new idea of germ theory? Tien Nguyen describes the work of several scientists who discredited a widely accepted theory in a way that was beneficial to human health.\n\nLesson by Tien Nguyen, animation by Brandon Denmark.",
@@ -2543,6 +3981,12 @@ var videos = [{
     "duration": "00:04:40",
     "thumb": "http://i.ytimg.com/vi/N9LC-3ZKiok/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow Space",
     "rating": 4.91835577605,
     "description": "Most of the world believed that Earth was the center of the universe for a really long time. Then a few scientists decided to take a closer look.\n\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Justin Ove, Justin Lentz, David Campos, Philippe von Bergen, Chris Peters, Lilly Grainger, Happy Birthday!!, and Fatima Iqbal.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/SciShow\n\nOr help support us by becoming our patron on Patreon:\nhttps://www.patreon.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n\nSources:\nhttp://csep10.phys.utk.edu/astr161/lect/retrograde/aristotle.html\nhttp://csep10.phys.utk.edu/astr161/lect/retrograde/copernican.html\nhttp://io9.com/5464810/the-earth-revolves-around-the-sun--prove-it\nhttp://www.universetoday.com/18097/the-earth-goes-around-the-sun/\nhttp://earthobservatory.nasa.gov/Features/OrbitsHistory/\nhttp://scienceblogs.com/startswithabang/2010/09/13/geocentrism-was-galileo-wrong/\nhttp://www.realclearscience.com/blog/2014/08/technically_the_earth_does_not_orbit_the_sun.html\nhttp://www.wired.com/2014/04/how-do-we-know-the-earth-orbits-the-sun/\nhttp://www.universetoday.com/36487/difference-between-geocentric-and-heliocentric/\nhttp://www.astro.umd.edu/~miller/teaching/honr229Xs11/lecture03.pdf\nhttp://hyperphysics.phy-astr.gsu.edu/hbase/cm.html",
@@ -2559,6 +4003,12 @@ var videos = [{
     "duration": "00:04:41",
     "thumb": "http://i.ytimg.com/vi/khIzr6610cQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "techNyouvids",
     "rating": 4.92079207921,
     "description": "Part 1 of 'This thing called Science'; the second series of the continuing TechNyou critical thinking resource.\n\nThe resource continues themes covered in the first critical thinking series on strengthening critical thinking with scepticism and analysis and introduces thebasic elements of the scientific process. \n\nSuitable for high school years 8-10, and focused on science issues, the module can be adapted to suit classroom plans. \n\nThe education resource is available here: https://education.technyou.edu.au/view/1454/scientific-process\n\nSee https://education.technyou.edu.au/critical-thinking for the first part of the resource.\n\nFor the first series of videos on critical thinking visit: http://youtu.be/iSZ3BUru59A\n\nThere are also two downloadable Critical Thinking guides:\nA postcard-sized one: http://technyou.edu.au/wp-content/uploads/2012/07/DodgyArgumentsPostcard.pdf\n\nand\n\nAn extended version for secondary school teachers: http://technyou.edu.au/wp-content/uploads/2012/07/DodgyArgumentsExtendedA4.pdf\n\nAnimated and directed by James Hutson, Bridge8.\nWritten by Mike Mcrae",
@@ -2575,6 +4025,12 @@ var videos = [{
     "duration": "00:02:02",
     "thumb": "http://i.ytimg.com/vi/W9IoN8Tb1wg/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Stated Clearly",
     "rating": 4.9190821256,
     "description": "This animation was sponsored by the Center for Chemical Evolution, NSF, and NASA: http://centerforchemicalevolution.com/\n\nHelp support Stated Clearly on Patreon: https://www.patreon.com/statedclearly\n\nThe Miller-Urey experiment was the first attempt to scientifically explore ideas about the origin of life. Stanley Miller simulated conditions thought be common on the ancient Earth. The purpose was to test the idea that the complex molecules of life (in this case, amino acids) could have arisen on our young planet through simple, natural chemical reactions.\n\nThe experiment was a success in that amino acids, the building blocks of life, were produced during the simulation. The finding was so significant that it kick started an entirely new field of study: Prebiotic Chemistry. \n\nScientists now have reason to believe that the gases used in the Miller-Urey simulation were not actually the same as those of the ancient atmosphere. Because of this, many experiments have since been done, testing a wide variety of atmospheres and different environmental conditions. The results are overwhelming: the molecules of life can form under a wide variety of ancient Earth-like conditions. \n\nMany questions about the origin of life remain to be answered but these findings give strong support to the idea that the first living cells on Earth may have emerged from natural chemical reactions.\n\nSources:\n\n\nThe Miller-Urey Experiment (actual paper from 1953):\nhttp://abenteuer-universum.de/pdf/miller_1953.pdf\n\nBiomolecules found in meteorites:\nhttp://www.nasa.gov/topics/solarsystem/features/life-components.html\n\nhttp://www.nasa.gov/topics/solarsystem/features/dna-meteorites.html\n\nhttp://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20120001640.pdf\n\nBiomolecules form in asteroid simulations:\nhttp://www.ncbi.nlm.nih.gov/pubmed/20358044\n\nBiomolecules form in Volcanic Simulations:\nhttp://astrobiology.gsfc.nasa.gov/analytical/PDF/Johnsonetal2008.pdf\n\nBiomolecules (amino acids) form in non-reducing atmosphere simulations: \nhttp://link.springer.com/article/10.1007%2Fs11084-007-9120-3\n\nSealed chemical vials from some origional Miller experiments were recently re-examined with modern tools. All kinds of great things were found! \nhttp://www.livescience.com/13339-primordial-soup-chemistry-reaction-amino-acids-life.html",
@@ -2591,6 +4047,12 @@ var videos = [{
     "duration": "00:07:30",
     "thumb": "http://i.ytimg.com/vi/NNijmxsKGbc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "techNyouvids",
     "rating": 4.89787234043,
     "description": "Part 6 of the TechNyou critical thinking resource.\r\n\r\nTranscript can be found here:\r\nhttp://technyou.edu.au/fun-stuff/videos/video-transcripts/ \r\n\r\nStarts in Part 1: A valuable argument\r\nhttp://youtu.be/iSZ3BUru59A\r\n\r\nThe resource covers basic logic and faulty arguments, developing student's critical thinking skills. \r\n\r\nSuitable for year 8-10, focused on science issues, the module can be adapted to suit classroom plans. \r\n\r\nThe resource is found here: \r\nhttps://education.technyou.edu.au/critical-thinking\r\n\r\nThere are also two new downloadable Critical Thinking guides:\r\nA postcard-sized one: http://technyou.edu.au/wp-content/uploads/2012/07/DodgyArgumentsPostcard.pdf\r\nand\r\nAn extended version for secondary school teachers: http://technyou.edu.au/wp-content/uploads/2012/07/DodgyArgumentsExtendedA4.pdf\r\n\r\nAnimated and directed by James Hutson, Bridge8.\r\nWritten by Mike Mcrae and James Hutson",
@@ -2607,6 +4069,12 @@ var videos = [{
     "duration": "00:02:54",
     "thumb": "http://i.ytimg.com/vi/vjaqM4yd_RA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "techNyouvids",
     "rating": 4.9572815534,
     "description": "Part 1 of the TechNyou critical thinking resource.\r\n\r\nThe resource covers basic logic and faulty arguments, developing student's critical thinking skills. \r\n\r\nSuitable for year 8-10, focused on science issues, the module can be adapted to suit classroom plans.  \r\n\r\nThe resource is found here: \r\nhttps://education.technyou.edu.au/critical-thinking\r\n\r\nTranscript can be found here:\r\nhttp://technyou.edu.au/fun-stuff/videos/video-transcripts/ \r\n\r\nThere are also two new downloadable Critical Thinking guides:\r\nA postcard-sized one: http://technyou.edu.au/wp-content/uploads/2012/07/DodgyArgumentsPostcard.pdf\r\nand\r\nAn extended version for secondary school teachers: http://technyou.edu.au/wp-content/uploads/2012/07/DodgyArgumentsExtendedA4.pdf\r\n\r\nContinued in Part 2: \r\nBroken Logic: \r\nhttp://youtu.be/VRZk62QNOsM\r\n\r\nAnimated and directed by James Hutson, Bridge8.\r\nWritten by Mike Mcrae and James Hutson",
@@ -2623,6 +4091,12 @@ var videos = [{
     "duration": "00:02:21",
     "thumb": "http://i.ytimg.com/vi/iSZ3BUru59A/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "nature video",
     "rating": 4.93981481481,
     "description": "Scientists can float objects in mid-air, using just the power of sound. Now, using ultrasonic speakers, they can levitate things with more control than ever before, moving small objects in three dimensions even with the whole array turned upside down. They have also developed virtual \u2018holograms\u2019 to visualise how the shapes made by the sound waves can \u2018grab\u2019 objects.\n\nFind the full paper here: http://nature.com/articles/doi:10.1038/ncomms9661",
@@ -2639,6 +4113,12 @@ var videos = [{
     "duration": "00:03:10",
     "thumb": "http://i.ytimg.com/vi/6hE6KjLUkiw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.91391363948,
     "description": "View full lesson: http://ed.ted.com/lessons/what-s-the-difference-between-a-scientific-law-and-theory-matt-anticole\n\nChat with a friend about an established scientific theory, and she might reply, \u201cWell, that\u2019s just a theory.\u201d But a conversation about an established scientific law rarely ends with \u201cWell, that\u2019s just a law.\u201d Why is that? What is the difference between a theory and a law... and is one \u201cbetter\u201d? Matt Anticole shows why science needs both laws and theories to understand the whole picture.\n\nLesson by Matt Anticole, animation by Zedem Media.",
@@ -2655,6 +4135,12 @@ var videos = [{
     "duration": "00:05:12",
     "thumb": "http://i.ytimg.com/vi/GyN2RhbhiEU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.92077689752,
     "description": "View full lesson: http://ed.ted.com/lessons/would-you-opt-for-a-life-with-no-pain-hayley-levitt-and-bethany-rickwald\n\nImagine if you could plug your brain into a machine that would bring you ultimate pleasure for the rest of your life. The only catch? You have to permanently leave reality behind. Hayley Levitt and Bethany Rickwald explore Robert Nozick\u2019s thought experiment that he called the Experience Machine.\n\nLesson by Hayley Levitt and Bethany Rickwald, animation by Avi Ofer.",
@@ -2671,6 +4157,12 @@ var videos = [{
     "duration": "00:04:10",
     "thumb": "http://i.ytimg.com/vi/XNP1x11Z2Ig/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.96498223108,
     "description": "Today on Crash Course Astronomy, Phil dives into some very dark matters. The stuff we can actually observe in the universe isn\u2019t all there is. Galaxies and other large structures in the universe are created and shifted by a force we detect mostly indirectly, by observing its impact: DARK MATTER.\n\nCrash Course Astronomy Poster: http://store.dftba.com/products/crashcourse-astronomy-poster\n\n--\n\nTable of Contents\nNormal and Dark Matter 0:55\nDark Matter Only Interacts With Normal Matter Through Gravity 4:27\nDark Matter Bends Light 5:08\n\n--\n\nPBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nFollow Phil on Twitter: https://twitter.com/badastronomer\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Patreon: http://www.patreon.com/crashcourse\n\n--\n\nPHOTOS/VIDEOS\nVirtual tour in our Solar System (Artist's impression) http://www.spacetelescope.org/videos/hubblecast27b/ [credit: ESA/Hubble (M. Kornmesser & L. L. Christensen)]\nHubblecast 11: A grand design in a galactic festoon http://www.spacetelescope.org/videos/heic0719a/ [credit: ESA/Hubble (M. Kornmesser & L. L. Christensen)]\nHubble's High-Definition Panoramic View of the Andromeda Galaxy http://hubblesite.org/newscenter/archive/releases/2015/02/image/a/ [credit: NASA, ESA, J. Dalcanton, B.F. Williams, and L.C. Johnson (University of Washington), the PHAT team, and R. Gendler]\nPanning and zooming on Abell 1689 http://www.spacetelescope.org/videos/heic0805b/ [credit: ESA/Hubble (M. Kornmesser & L. L. Christensen)]\nAll-sky image of molecular gas and three molecular cloud complexes seen by Planck http://www.nasa.gov/mission_pages/planck/multimedia/pia15227.html#.ViZwA36rSUl [credit: ESA/Planck Collaboration]\nHow to Become a Star http://www.eso.org/public/images/eso0102a/ [credit: ESO]\nNeutron star illustrated https://commons.wikimedia.org/wiki/File:Neutron_star_illustrated.jpg [credit: NASA, Casey Reed - Penn State University]\nAlone in Space - Astronomers Find New Kind of Planet http://www.nasa.gov/topics/universe/features/pia14093.html [credit: NASA/JPL-Caltech]\nBlack hole deforms space http://www.spacetelescope.org/videos/hst15_blackhole_grid/ [credit: ESA/Hubble (M. Kornmesser & L. L. Christensen)]\nGravitational lensing in action http://www.spacetelescope.org/videos/heic1106a/ [credit: NASA, ESA & L. Cal\u00e7ada]\nBullet Cluster http://apod.nasa.gov/apod/image/0608/bulletcluster_comp_f2048.jpg [credit: X-ray: NASA/CXC/CfA/ M.Markevitch et al.; Lensing Map: NASA/STScI; ESO WFI; Magellan/U.Arizona/ D.Clowe et al. Optical: NASA/STScI; Magellan/U.Arizona/D.Clowe et al.]\nBullet Cluster, Optical http://chandra.harvard.edu/photo/2008/bullet/bullet_optical.jpg [credit: NASA/STScI; Magellan/U.Arizona/D.Clowe et al.]\nBullet Cluster, X-ray http://chandra.harvard.edu/photo/2008/bullet/bullet_xray.jpg [credit: NASA/CXC/CfA/ M.Markevitch et al.]\nThe Bullet Cluster http://www.esa.int/spaceinimages/Images/2007/07/The_Bullet_Cluster2 [credit: X-ray: NASA/CXC/CfA/M.Markevitch, Optical and lensing map: NASA/STScI, Magellan/U.Arizona/D.Clowe, Lensing map: ESO WFI]\nPandora\u2019s Cluster \u2014 Clash of the Titans http://www.nasa.gov/mission_pages/hubble/science/pandora-cluster.html [credit: NASA]\nHubble Refines Distance to Pleiades Star Cluster http://hubblesite.org/newscenter/archive/releases/2004/20/image/a/ [credit: NASA, ESA and AURA/Caltech]\nStephan\u2019s Quintet http://apod.nasa.gov/apod/ap120225.html [credit: Hubble Legacy Archive, ESA, NASA]\nVirgo Cluster Galaxies http://apod.nasa.gov/apod/ap150804.html [credit: Rogelio Bernal Andreo]\nIllustration of the distribution dark matter in the Universe http://www.nasa.gov/mission_pages/hubble/science/hst_img_20080520.html [credit: NASA, ESA, and E. Hallman (University of Colorado, Boulder)]",
@@ -2687,6 +4179,12 @@ var videos = [{
     "duration": "00:12:00",
     "thumb": "http://i.ytimg.com/vi/9W3RsaWuCuE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.93700203817,
     "description": "View full lesson: http://ed.ted.com/lessons/einstein-s-brilliant-mistake-entangled-states-chad-orzel\n\nWhen you think about Einstein and physics, E=mc^2 is probably the first thing that comes to mind. But one of his greatest contributions to the field actually came in the form of an odd philosophical footnote in a 1935 paper he co-wrote -- which ended up being wrong. Chad Orzel details Einstein's \"EPR\" paper and its insights on the strange phenomena of entangled states. \n\nLesson by Chad Orzel, animation by Gunborg/Banyai.",
@@ -2703,6 +4201,12 @@ var videos = [{
     "duration": "00:05:10",
     "thumb": "http://i.ytimg.com/vi/DbbWx2COU0E/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.94905041568,
     "description": "View full lesson: http://ed.ted.com/lessons/dark-matter-the-matter-we-can-t-see-james-gillies\n\nThe Greeks had a simple and elegant formula for the universe: just earth, fire, wind, and water. Turns out there's more to it than that -- a lot more. Visible matter (and that goes beyond the four Greek elements) comprises only 4% of the universe. CERN scientist James Gillies tells us what accounts for the remaining 96% (dark matter and dark energy) and how we might go about detecting it.\n\nLesson by James Gillies, animation by TED-Ed.",
@@ -2719,6 +4223,12 @@ var videos = [{
     "duration": "00:05:35",
     "thumb": "http://i.ytimg.com/vi/HneiEA1B8ks/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "This Place",
     "rating": 4.95813510942,
     "description": "Not literally selfish, but seemingly selfish. If a gene codes for that which allows it to continue is self reproduction... then it will reproduce. All the genes that don't help reproduction tend to go away.\n\nFor more information on stuff related to this video, check out the side notes:\nhttps://www.youtube.com/watch?v=1Nt2I...\n\nPhoto Credits\nJacobs Sheep\nEd Bierman (cropped)- http://www.flickr.com/photos/edbierma...\n\nReferences\nThe selfish gene- Richard Dawkins\nThe extended phenotype- Richard Dawkins\n\nPatreon https://patreon.com/user?u=849925",
@@ -2735,6 +4245,12 @@ var videos = [{
     "duration": "00:06:51",
     "thumb": "http://i.ytimg.com/vi/WGL4HPuFKZA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Vsauce",
     "rating": 4.92390722686,
     "description": "The Vsauce Holiday Box is here! It's full of exclusive Vsauce merch, cool science toys, and ALL Vsauce proceeds are donated to Alzheimer\u2019s research!! ORDER HERE: http://geekfuel.com/Vsauce\n\nSOURCES AND EXTRAS:\n\nmy twitter: http://www.twitter.com/tweetsauce\nmy instagram: http://www.instagram.com/electricpants\n\nGabriel\u2019s horn: \n\nhttps://en.wikipedia.org/wiki/Gabriel%27s_Horn\nhttp://blog.plover.com/math/gabriels-horn.html\n\nGabriel\u2019s wedding cake:\n\nhttps://oumathclub.wordpress.com/2015/01/25/gabriels-wedding-cake/\nPDF: http://people.emich.edu/aross15/math121/misc/gabriels-horn-ma044.pdf\n\nSupersolid PDF: http://people.emich.edu/aross15/math121/misc/love-1989-supersolids.pdf\n\nZeno\u2019s supertask paradoxes:\n\nhttps://en.wikipedia.org/wiki/Zeno%27s_paradoxes\nhttps://math.dartmouth.edu/~matc/Readers/HowManyAngels/SpaceTimeMotion/STM.html\nhttps://www.youtube.com/watch?v=u7Z9UnWOJNY\n\nStaccato Zeno runner with no velocity/acceleration discontinuities: https://goo.gl/2mYdcT\n\nGeneral supertask reads:\n\nhttp://personal.lse.ac.uk/robert49/ebooks/PhilSciAdventures/lecture25.html\nhttp://plato.stanford.edu/entries/spacetime-supertasks/\nhttp://mathpages.com/rr/s3-07/3-07.htm\nhttps://math.dartmouth.edu/~matc/Readers/HowManyAngels/SpaceTimeMotion/STM.html\nhttps://en.wikipedia.org/wiki/Supertask\nhttp://www.vordenker.de/gunther_web/achill1.htm\n\nBig book of collected supertask writing: https://books.google.co.uk/books?id=0AzP9WLLJLcC&dq=order+type+of+the+integers&source=gbs_navlinks_s\n\nPDF\u2019s about supertasks:\n\nhttp://pitt.edu/~jearman/EarmanNorton1996a.pdf\nhttp://www.interciencia.es/infinity/thomsonlamp.pdf\nhttp://arxiv.org/pdf/1309.0144.pdf\nhttp://www.pitt.edu/~jdnorton/papers/onjpl.pdf\nhttp://personal.lse.ac.uk/ROBERT49/teaching/ph103/2013-2014/pdf/EarmanNorton_CommentsOnLauraudogoita.pdf\nhttp://arxiv.org/pdf/1503.05847v1.pdf\nhttp://www.phys.nthu.edu.tw/~pep/download/Drawer/187.pdf\nhttp://arxiv.org/pdf/math/0212047.pdf\n\nPlank scale:\n\nhttps://en.wikipedia.org/wiki/Planck_scale\nhttp://astronomy.swin.edu.au/cosmos/P/Planck+Units\nhttps://www.reddit.com/r/explainlikeimfive/comments/1oetkk/eli5_why_is_a_planck_length_the_smallest_possible/\n\nHyper computation and supertasks:\n\nhttp://georgschauer.com/2013/04/03/overcoming-constraints-on-reliability-in-nomologically-accessible-m-h-relativistic-hypercomputers/\nhttp://www.hypercomputation.net/download/1996a_hogarth.pdf\n\nThomson\u2019s Lamp:\n\nhttps://en.wikipedia.org/wiki/Thomson%27s_lamp\nhttp://alexanderpruss.blogspot.ro/2009/05/thomson-lamp.html\n\nBenacerraf on supertasks: [PDF] http://joelvelasco.net/teaching/hum9/benacerraf62-supertasks.pdf\n\nOrdinal numbers (omega and omega+1):\n\nhttps://en.wikipedia.org/wiki/Ordinal_number\nhttp://www.sjsu.edu/faculty/watkins/ordinals.htm\nhttp://math.wikia.com/wiki/Ordinal_number\n\nRoss-Littlewood paradox:\n\nhttps://en.wikipedia.org/wiki/Ross%E2%80%93Littlewood_paradox\nhttps://angryfaic.wordpress.com/2011/02/25/four-paradoxes-involving-infinity/\n\nNew York Times Neanderthal genome article: http://www.newyorker.com/magazine/2011/08/15/sleeping-with-the-enemy\n\nNeanderthals: \n\nhttps://en.wikipedia.org/wiki/Neanderthal\nhttp://ngm.nationalgeographic.com/2013/01/125-restless-genes/dobbs-text\nhttps://rogerdhansen.wordpress.com/2011/08/21/the-wandering-gene/\nand boats: https://www.newscientist.com/article/mg21328544.800-neanderthals-were-ancient-mariners/\n\nAnother fun infinity paradox: http://lesswrong.com/lw/isp/on_the_importance_of_taking_limits_infinite/\n\nSMBC Zeno comic: http://www.smbc-comics.com/?id=2759\n\nMATH!\n\nhttps://www.youtube.com/user/standupmaths\nhttps://www.youtube.com/user/numberphile\nhttps://www.youtube.com/user/singingbanana\nhttps://www.youtube.com/user/Vihart\n\nmusic from:\n\nhttp://www.youtube.com/JakeChudnow\nand\nhttp://www.audionetwork.com",
@@ -2751,6 +4267,12 @@ var videos = [{
     "duration": "00:21:09",
     "thumb": "http://i.ytimg.com/vi/ffUnNaQTfZE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "This Place",
     "rating": 4.96529549862,
     "description": "About... how we can learn about the world, how to test hypothesis, and the basics of science. What is science? \nPreviously titled- \"How does do science?\"\n\nSIDE NOTES / OUTTAKES/ ADDITIONAL STUFF\nConcerning Universal Ideas\nIf the pen falls just once, then it has instantly falsified all other \u201cuniversal\u201d actions the pen could take. The pen can\u2019t always go up, we\u2019ve falsified that idea. So if there is a universal idea about the behaviour as the pen, can we deduce it as verified then maybe? \nMaybe, but we can\u2019t assume that this is a universal idea. If in space the pen wouldn\u2019t fall and this idea is untrue.\nHow about more simply :\u201dgravity will always work\u201d?\nBut I think we then have to verify the idea that\u2026 there are universal phenomena. Just because we\u2019ve never seen something go against these basic phenomena and the rules we build about them (I don\u2019t know of any documented examples to the counter of this). But this one truly is unfalsifiable idea I think.\n\nConcerning vague hypothesis\nThere are so many kinds of hypothesis. \u201cCarrots can shrink lumps\u201d. One kind of carrot shrinks all kinds of lumps? All kinds of carrots shrink one kind of lump?  \nWhy don\u2019t we take the hypothesis: \u201ccarrots shrink most lumps\u201d, or \u201ccarrots can shrink some lumps\u201d? \nIt\u2019s because these are very vague visions of the world. We can shift how we think about our data to either verify or falsify them. And if we do verify or falsify them, really what have we learned? Like with horoscopes. I pulled this out of the Globe and Mail: \n\u201cSome people have been rather critical of you in recent weeks but over the next few days you will be able to show that you were right and they were wrong. They won\u2019t thank you for it, of course, but you will be smiling.\u201d\nSo if anybody said anything wrong about you, even a little, the first idea is verified in your mind. And the second part as long as you feel like you\u2019re right at some point in the next few days, even a little, that part of the horoscope is verified in your mind. And your mind may further justify it like, \u201cmaybe it happened and I missed it\u201d.\nAlthough we do it day to day because it could be useful. If rain sometimes comes after thunder then we just put away horse meat regardless and we\u2019ll be doing ok.\nHow about the hypothesis that carrots shrink 90% of lump? \nThis is more concrete. Kind of like hypothesizing that a dice will role a five 1/6th of the time. \nBut it\u2019s different in the case with lump, because we don\u2019t know what the \u201cdice\u201d look like. \u201cCarrots only shrink 90% of lumps\u201d without observational basis for it is a strange hypothesis. Maybe if we consistently see carrots only shrinking 90% of lumps we could hold that an observation and investigate. \nWith actual dice, there is observational basis to hold the idea.\n\nConcerning quantum physics\nQuantum physics may be a world where detecting the thing, changes what is observed on a fundamental level. Not just an interfering detection method like\u2026 trying to detect the position of a bus by throwing buses at it. It\u2019s apparently a much more fundamental observation quirk. \nBut it is so in predictable and repeatable ways. The fact that observing, affects what we see\u2026 would just be the observation in this case. The apparent effect of the observation is the observation. \n\u2026..although maybe I just don\u2019t understand quantum physics. \n \nConcerning Objective Truth\nThe brain in a vat thought experiment I think is meant to make us think that there may be no objective truth. You know, don't even assume what you see is the same as what others see. I really hesitated to ever show the outside world (with the white background) and wanted the \"truth\" or \"facts\" to always be in the golden circles as a construct in the mind. But I did show the outside world because I feel like it's how we think about the world. I think you could go your whole life never thinking about how the world is only experienced by your brain, never thinking about whether your experiences are genuine or the same as other people, and still come out fine. And what's the alternative? Making reality whatever you want? We can go ride a walrus to an ice cream tree.\n\nConcerning other kinds of \u201cbrain pictures\u201d\nThere\u2019s other concepts and thoughts and ideas we can have like fantasy and fiction. And other sentences we can build like questions or commands. Not just statements and ideas about the way the world is.\n Our brains also do more than look at and build concepts of the world. Like make us move around and eat spray cheese.\n\nPatreon https://patreon.com/user?u=849925",
@@ -2767,6 +4289,12 @@ var videos = [{
     "duration": "00:18:52",
     "thumb": "http://i.ytimg.com/vi/3MRHcYtZjFY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.96231546232,
     "description": "Let\u2019s build a black hole! \n\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\nSupport us on Patreon! http://www.patreon.com/pbsspacetime\n\nHelp translate our videos! http://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nBlack holes have mystified physicists for decades, but with the help of quantum mechanics, we are beginning to make serious progress in understanding these strange objects. This week on Space Time, Matt dives deeper into the physical process of creating a black hole, and what that can tell us about how black holes behave.\n\nFor a primer/refresher, be sure to check out our previous video on Black Holes:\nhttps://youtu.be/vNaEBbFbvcY\n\nAlso, check out our friends over at The Good Stuff. They made a video about a man attempting to build an Alcubierre Drive in his garage!\nhttps://www.youtube.com/watch?v=ovDV711BszM\n______________________\n\nFurther Reading:\n\nPauli Exclusion Principle\nhttps://en.wikipedia.org/wiki/Pauli_exclusion_principle\n\nHeisenburg Uncertainty Principle\nhttps://en.wikipedia.org/wiki/Uncertainty_principle\n\n______________________\n\nComments:\n\nJoshuaSny\nhttps://www.youtube.com/watch?v=dEIjKjIgCA0&lc=z123y1i5as2jvllut23tjfsaytbofldtl\n\nmoxshyfter\nhttps://www.youtube.com/watch?v=dEIjKjIgCA0&lc=z12rw1zi5nfhw5avf22kurgosvyhz1guv\n\nSam Gilfellan\nhttps://www.youtube.com/watch?v=dEIjKjIgCA0&lc=z13dhdcg0wbdt3fua23fvzew3qrdf5zoi04\n\nMohamed Zakaria\nhttps://www.youtube.com/watch?v=dEIjKjIgCA0&lc=z13ehpfobty5e3jzb04cgda4ypmmdfhieus0k",
@@ -2783,6 +4311,12 @@ var videos = [{
     "duration": "00:13:22",
     "thumb": "http://i.ytimg.com/vi/xx4562gesw0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.929008822,
     "description": "Thanks to observations of galaxy redshifts, we can tell that the universe is EXPANDING! Knowing that the universe is expanding and how quickly its expanding also allows us to run the clock backwards 14 billion years to the way the universe began - with a bang.\n\nCrash Course Astronomy Poster: http://store.dftba.com/products/crashcourse-astronomy-poster\n\n--\n\nTable of Contents\nDistant Galaxies Show a Red Shift in Their Spectra 2:07\nThe Universe is Expanding 2:51\nThis Model is Called \u201cThe Big Bang\u201d 5:12\nThe Universe is Almost 14 Billion Years Old 11:43\n\n\n--\n\nPBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nFollow Phil on Twitter: https://twitter.com/badastronomer\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Patreon: http://www.patreon.com/crashcourse\n\n--\n\nPHOTOS/VIDEOS\nHubble Goes to the eXtreme to Assemble Farthest-Ever View of the Universe http://www.nasa.gov/mission_pages/hubble/science/xdf.html [credit: NASA; ESA; G. Illingworth, D. Magee, and P. Oesch, University of California, Santa Cruz; R. Bouwens, Leiden University; and the HUDF09 Team]\nOut of this whirl: The Whirlpool Galaxy (M51) and companion galaxy http://www.spacetelescope.org/images/heic0506a/ [credit: NASA, ESA, S. Beckwith (STScI), and The Hubble Heritage Team STScI/AURA)]\nRed-Shifts in the Spectra of Extra-glactic Nebuale http://articles.adsabs.harvard.edu/cgi-bin/nph-iarticle_query?1936ApJ....83...10H&amp;data_type=PDF_HIGH&amp;whole_paper=YES&amp;type=PRINTER&amp;filetype=.pdf [credit: American Astronomical Society, NASA Astrophysics Data System]\nAndromeda http://www.nasa.gov/images/content/386910main_M31_optical_wide.jpg [credit: Bill Schoening, Vanessa Harvey/REU program/NOAO/AURA/NSF]\nThe Big Bang (video) http://svs.gsfc.nasa.gov/cgi-bin/details.cgi?aid=10128 [credit: NASA]\nThe Sun https://www.nasa.gov/sites/default/files/706436main_20121114-304-193blend_m6-orig_full.jpg [credit: NASA/SDO]\nAlpha Centauri http://www.eso.org/public/images/eso1241e/ [credit: ESO/Digitized Sky Survey 2, Acknowledgement: Davide De Martin]\nAndromeda https://en.wikipedia.org/wiki/Andromeda_Galaxy#/media/File:Andromeda_galaxy_2.jpg [credit: NASA/JPL-Caltech]\nFriedmann Universes https://commons.wikimedia.org/wiki/File:Friedmann_universes.svg\nFriedmann Equation http://burro.astr.cwru.edu/Academics/Astr328/Notes/Expansion/friedmann.html \nPenzias and Wilson stand at the 15 meter Holmdel Horn Antenna that brought their most notable discovery. https://en.wikipedia.org/wiki/Arno_Allan_Penzias#/media/File:Horn_Antenna-in_Holmdel,_New_Jersey.jpeg [credit: NASA]\nPlanck CMB http://www.esa.int/spaceinimages/Images/2013/03/Planck_CMB [credit: ESA and the Planck Collaboration]\nGalaxy Superclusters http://irfu.cea.fr/Projets/coast_documents/images_MareNostrum/SDvision-MN00097-hires-01-mymix-a0_075.jpg [credit: Marenostrum Numerical Cosmology Project]",
@@ -2799,6 +4333,12 @@ var videos = [{
     "duration": "00:13:23",
     "thumb": "http://i.ytimg.com/vi/9B7Ix2VQEGo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "HorrorOldSchool",
     "rating": 4.93412833617,
     "description": " ",
@@ -2815,6 +4355,12 @@ var videos = [{
     "duration": "00:05:17",
     "thumb": "http://i.ytimg.com/vi/FJAb5gmlQs0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Frame of Essence",
     "rating": 4.86660966225,
     "description": "Facebook: https://www.facebook.com/frameofessence\nTwitter: https://twitter.com/frameofessence\nYouTube: https://www.youtube.com/user/frameofessence\n\n\nVideo Links:\n\nBuilding the Bits and Qubits:\nhttp://www.youtube.com/watch?v=F8U1d2Hqark\n\nVideo on quantum security coming \"soon\"\n\n\nSources:\n\nQuantum Computing for Computer Scientists\nhttp://books.google.ca/books/about/Quantum_Computing_for_Computer_Scientist.html?id=eTT0FsHA5DAC\n\n\nImages:\n\nRichard Feynman\nhttps://commons.wikimedia.org/wiki/File:RichardFeynman-PaineMansionWoods1984_copyrightTamikoThiel_bw.jpg\nLicensed under the Creative Commons Attribution-Share Alike 3.0 Unported license\n\n\nClips:\n\nExplosion by Daniel Turuntsev\nhttps://www.youtube.com/watch?v=3ZlV9biq_vg\n\n\nSound effects:\n\nFrom the YouTube Audio Library:\nRecord Scratch\nKnife Sharpen\nBig Explosion Distant\n\n\nMusic:\n\nFrom the YouTube Audio Library:\nBlue Skies\nGet Outside\nTalkies\nGood Starts\n\nFrom Premium Beat:\nCutting Edge Technology\nSecond Time Around",
@@ -2831,6 +4377,12 @@ var videos = [{
     "duration": "00:15:49",
     "thumb": "http://i.ytimg.com/vi/ZoT82NDpcvQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.97660603081,
     "description": "Black holes. Lets talk about them.\n\nSupport us on Patreon so we can make more stuff: https://www.patreon.com/Kurzgesagt?ty=h\n\nGet the music of the video here: \n\nhttps://soundcloud.com/epicmountain/black-holes\n\nhttps://epicmountainmusic.bandcamp.com/track/black-holes\n\nhttp://epic-mountain.com\n\n\n\nWakelet: https://wakelet.com/wake/42ji9UMJzN?v=st\n\nOr follow us on social media or reddit: \n\nhttp://kurzgesagt.org\nhttps://www.reddit.com/r/kurzgesagt\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -2847,6 +4399,12 @@ var videos = [{
     "duration": "00:05:56",
     "thumb": "http://i.ytimg.com/vi/e-P5IFTqB98/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TrueGeoPolitik",
     "rating": 4.71681415929,
     "description": "",
@@ -2863,6 +4421,12 @@ var videos = [{
     "duration": "01:49:08",
     "thumb": "http://i.ytimg.com/vi/ojU31yHDqiM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "FightMediocrity",
     "rating": 4.91334651973,
     "description": "Get the book here: http://amzn.to/1QeLe5e\nGet any FREE audiobook of your choice here: http://audibletrial.com/fightmediocrity\n\nIf you want a suggestion for the free audiobook or for reading a book, here's FightMediocrity beginner's reading list: http://fmediocrity.com/reading-list/\n\nFollow on:\nFacebook - http://www.facebook.com/FightMediocrity\nTwitter - http://twitter.com/fghtmediocrity",
@@ -2879,6 +4443,12 @@ var videos = [{
     "duration": "00:09:55",
     "thumb": "http://i.ytimg.com/vi/uqXVAo7dVRU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Deep Astronomy",
     "rating": 4.88037899724,
     "description": "Get Astronomy tweets here http://twitter.com/DeepAstronomy\r\n\r\nProbably my biggest regret when I made the Hubble Deep Field in 3D video is saying the phrase \"these galaxies are racing away from us, in some cases faster than light\".\r\n\r\nI had originally thought I was being clever and the comment would spur discussion. instead there was no discussion, only name calling and I mightily regretted putting it in there.\r\n\r\nAnyway, this video was a long time coming, I had been meaning to make this for some time to illustrate what I was talking about.\r\n\r\nMusic used:\r\n\r\nhttp://www.archive.org/details/kpu107\r\n\r\nDon't forget to play with WolframAlpha, it's awesome!:\r\nhttp://www.wolframalpha.com/",
@@ -2895,6 +4465,12 @@ var videos = [{
     "duration": "00:05:38",
     "thumb": "http://i.ytimg.com/vi/myjaVI7_6Is/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.96372525482,
     "description": "What is something? On the most fundamental level thinkable, what are things? Why are things? And why do things behave the way they do?\n\nSupport us on Patreon so we can make more stuff (and get cool wallpapers): https://www.patreon.com/Kurzgesagt?ty=h\n\nGet the music of the video here: \n\nhttps://soundcloud.com/epicmountain/what-is-something\n\nhttps://epicmountainmusic.bandcamp.com/track/what-is-something\n\nhttp://www.epic-mountain.com\n\n\nOr follow us on social media or reddit: \n\nhttp://kurzgesagt.org\nhttps://www.reddit.com/r/kurzgesagt\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\n\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nTamago231, H.H. Lewis, Kirin Tantinon, David, Max Lesterhuis, Marek Belski, Gisle, Colin Millions, Gregory Wolfe II, Lenoir Preminger, Abel X, Matt Knights, Amjad Al Taleb, Ian Bruce, Kris Wolfgramm, \u9e92\u9e9f \u4e8e, Christopher Shaw, \u9756\u7f8a, Tomas Grolmus, Essena O\u2019Neill, Kyle Messner, Pedro Devoto, Mark Radford, Ann-Marie Denham, Davide Pluda, Rik Vermeer, Justin Ritchie, Nicole White, Whireds, Claus Vall\u00f8, Jason Talley, Andrew Wu, Christian Dechery, Michael Howell, Michal Hanus, Cavit, Amary Wenger, JDKBot, Jason Eads, FreedomEagleAmerica, Roberto Maddaloni, TiagoF11, Harsha CS, Abhimanyu Yadav, Tracy Tobkin, Mike Fuchs, Elizabeth Mart, Jacob Wenger, Jeff Udall, Ricardo Affonso, Mauro Boffardi, Audrin Navarro, Troy Ross, Keith Tims, Santiago Perez, James, Jack Devlin, Chris Peters, Kenny Martin, Frederick Pickering, Lena Savelyeva, Ian Seale, Charles Ju, Brett Haugen, David Ramsey, Benjamin Dittes, Michelle Schoen, Albert Harguindey Sanchez, Michael King, Alex Kyriacou Alla Khvatova Thomas Rowan, Siim Sillamaa, David Bennell, Janzen,Bryn Farnsworth, Adam Recvlohe, Manuel Arredondo, Fred McIntyre, Maldock Manrique, \u0414\u043c\u0438\u0442\u0440\u0438\u0439, Ishita Bisht, Jake Ludwig, Zach Seggie, Casey Sloan, Myndert Papenhuyzen, rheingold3, AncientCulture, Orion Mondragon, Jan, Michael Kuperman, Alexander Argyropoulos\n\nWhat is something?\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -2911,6 +4487,12 @@ var videos = [{
     "duration": "00:05:34",
     "thumb": "http://i.ytimg.com/vi/X9otDixAtFw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.95739517325,
     "description": "View full lesson: https://ed.ted.com/lessons/how-do-solar-panels-work-richard-komp\n\nThe Earth intercepts a lot of solar power: 173,000 terawatts. That\u2019s 10,000 times more power than the planet\u2019s population uses. So is it possible that one day the world could be completely reliant on solar energy? Richard Komp examines how solar panels convert solar energy to electrical energy. \n\nLesson by Richard Komp, animation by Globizco.",
@@ -2927,6 +4509,12 @@ var videos = [{
     "duration": "00:04:59",
     "thumb": "http://i.ytimg.com/vi/xKxrkht7CpY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.95691452397,
     "description": "View full lesson: http://ed.ted.com/lessons/how-do-we-know-what-color-dinosaurs-were-len-bloch\n\nThe microraptor was a four-winged carnivorous dinosaur with iridescent black feathers. But if our information about this dinosaur comes from fossils, how can we be certain about its color? Len Bloch shows how making sense of the evidence requires careful examination of the fossil and a good understanding of the physics of light and color.\n\nLesson by Len Bloch, animation by Paul Newell.",
@@ -2943,6 +4531,12 @@ var videos = [{
     "duration": "00:04:24",
     "thumb": "http://i.ytimg.com/vi/qYijAZWdnBk/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "It's Okay To Be Smart",
     "rating": 4.88209066138,
     "description": "All 12 days\u2026 in ONE video!\nPrefer the individual videos? Go here: http://bit.ly/OKTBS12daysPL \n\u2193 More info and sources below \u2193\n\nI *highly* recommend these books:\n\n\u201cUndeniable\u201d by Bill Nye http://amzn.to/1TK3wZs \n\u201cWhy Evolution Is True\u201d by Jerry Coyne http://amzn.to/1TK3zV3 \n\nWEBSITES/TEACHING RESOURCES:\n\n- Berkeley\u2019s \u201cUnderstanding Evolution\u201d http://evolution.berkeley.edu/evolibrary/home.php \n- The National Center for Science Education http://ncse.com/ \n\n\nDon\u2019t miss a single one of our 12 Days of Evolution! Follow along with this playlist: https://www.youtube.com/playlist?list=PLsmqeqKj7M-rZe1C9PUon8V-VQ1tZj5NF \n\nDarwin illustration credit: Nicku / Shutterstock \n\n\n\nHave an idea for an episode or an amazing science question you want answered? Leave a comment or check us out at the links below!\nFollow on Twitter: http://twitter.com/okaytobesmart \nhttp://twitter.com/jtotheizzoe\nFollow on Tumblr: http://www.itsokaytobesmart.com \nFollow on Instagram: http://instagram.com/jtotheizzoe \nFollow on Snapchat: YoDrJoe\n\n-----------------\nIt\u2019s Okay To Be Smart is written and hosted by Joe Hanson, Ph.D.\nFollow me on Twitter: @jtotheizzoe\nEmail me: itsokaytobesmart AT gmail DOT com\nFacebook: http://www.facebook.com/itsokaytobesmart\nFor more awesome science, check out: http://www.itsokaytobesmart.com\nProduced by PBS Digital Studios: http://www.youtube.com/user/pbsdigitalstudios \n\nJoe Hanson - Creator/Host/Writer\nJoe Nicolosi - Director\nAmanda Fox - Producer, Spotzen Inc.\nKate Eads - Producer\nAndrew Matthews - Editing/Motion Graphics/Animation\nKatie Graham - Camera\nJohn Knudsen - Gaffer\n\n\n\nMusic via APM\nStock images from Shutterstock, stock footage from Videoblocks (unless otherwise noted)",
@@ -2959,6 +4553,12 @@ var videos = [{
     "duration": "00:18:04",
     "thumb": "http://i.ytimg.com/vi/c_jyHp3bmEw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "BBC Radio 4",
     "rating": 4.97649034425,
     "description": "How is it that we learn to speak and think in language so easily? Philosophers have argued about whether or not we have innate ideas. Whether we are born knowing things, as Plato believed, or rather, as John Locke and other empiricists argued, the mind is a blank slate on which experience writes. Noam Chomsky, gave a twist to this debate in the 1960s.\n\nNarrated by Gillan Anderson. Scripted by Nigel Warburton.\n\nFrom the BBC Radio 4 series about life's big questions - A History of Ideas. \n\nThis project is from the BBC in partnership with The Open University, the animations were created by Cognitive.",
@@ -2975,6 +4575,12 @@ var videos = [{
     "duration": "00:01:48",
     "thumb": "http://i.ytimg.com/vi/7Cgpfw4z8cw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "EdwardCurrent",
     "rating": 4.94358135732,
     "description": "Award-winning* demonstration of gravity, featuring the \"Spacetime Stretcher,\"  built mostly out of materials from my garage and the hardware store. Please support me on Patreon! Thank you! http://www.patreon.com/edwardcurrent\n\nMore info:\n\n1. As a falling object's path goes increasingly in the space (down) direction, it goes a little bit less in the time direction. Gravity is effectively converting some of its travel through time into travel through space. How much time converts into how much space? It works out to be 186,000 miles of space for every second of time -- that's the speed of light! The equivalence between a little time and a lot of space has a parallel with Einstein's famous equation E = mc^2, where a little mass is equivalent to a lot of energy -- also with the speed of light c as the conversion factor, only squared. It's amazing how all these physics concepts fit together.\n\n2. An object moving up or down at the speed of light, such as a photon, follows a vertical path on our graph. If we could warp the Spacetime Stretcher as much as we wanted, we could make the time axis curve around and re-intersect with this vertical line. That would be a black hole: Even a photon moving straight up would get \"warped back\" to the place where it started.\n\n3. Spacetime warping is usually depicted as going into a higher dimension -- in this case, bending toward or away from the camera. But such a device would have been much harder to build. You can think of this model as a two-dimensional \"projection\" or \"shadow\" of three-dimensional curvature, i.e. the flattening of a flared-out surface that curls away from the plane of the graph.\n\n4. In addition to mechanically calculating trajectories of objects falling on the Earth, Mars, or Moon, the Spacetime Stretcher (at a zoomed-out calibration scale) can also calculate the length-contraction and time-dilation observed with a rocket traveling close to the speed of light.\n* http://fqxi.org/community/contest/video/winners/2014.1",
@@ -2991,6 +4597,12 @@ var videos = [{
     "duration": "00:04:13",
     "thumb": "http://i.ytimg.com/vi/jlTVIMOix3I/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The School of Life",
     "rating": 4.86695747001,
     "description": "Being unforgiving comes easily to most of us; it\u2019s the first basic response. Which doesn\u2019t mean it has to be the last. We can all master the art of being a touch more forgiving. Please help us to make films by subscribing here: http://tinyurl.com/o28mut7\nIf you like our films take a look at our shop (we ship worldwide): http://www.theschooloflife.com/shop/all/\nBrought to you by http://www.theschooloflife.com\n\nProduced in collaboration with Alex Morris\nhttp://pinvin.com/",
@@ -3007,6 +4619,12 @@ var videos = [{
     "duration": "00:03:19",
     "thumb": "http://i.ytimg.com/vi/dHX85pHsVLk/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.97345923185,
     "description": "View full lesson: http://ed.ted.com/lessons/how-statistics-can-be-misleading-mark-liddell\n\nStatistics are persuasive. So much so that people, organizations, and whole countries base some of their most important decisions on organized data. But any set of statistics might have something lurking inside it that can turn the results completely upside down. Mark Liddell investigates Simpson\u2019s paradox. \n\nLesson by Mark Liddell, animation by Tinmouse Animation Studio.",
@@ -3023,6 +4641,12 @@ var videos = [{
     "duration": "00:04:19",
     "thumb": "http://i.ytimg.com/vi/sxYrzzy3cq8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "samuraiguitarist",
     "rating": 4.96768528275,
     "description": "If you enjoyed this video, it would mean the world to me if you considered supporting my channel over at https://www.patreon.com/samuraiguitarist This content takes a lot of time and effort to produce. By supporting my page you make these videos possible!\n----------------------------------------\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad---------------------------------\u00ad-\u00ad-\u00ad-\u00ad-\u00ad-\u00ad-\u00ad-\u00ad-------------\nhttps://www.facebook.com/samuraiguit\nhttps://www.twitter.com/samuraiguit\nInstagram @samuraiguitarist\nSnapchat @samuraiguit\ninfo@samuraiguitarist.com\n----------------------------------------\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad---------------------------------\u00ad-\u00ad-\u00ad-\u00ad-\u00ad-\u00ad-\u00ad-\u00ad-------------\nGuitarist/Songwriter/Samurai\n\nBorn in the Manitoba prefecture of Canada, samuraiguitarist, Steve-san Onotera, honed his discipline under the study of the country's most powerful musical sensei.\n\nBred on rock, raised on the blues, trained in jazz, samuraiguitarist creates incredibly innovative videos that showcase his talents on the guitar.\n----------------------------------------\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad\u00ad---------------------------------\u00ad-\u00ad-\u00ad-\u00ad-\u00ad-\u00ad-\u00ad-\u00ad-------------\nMusic by www.erictaylormusic.com",
@@ -3039,6 +4663,12 @@ var videos = [{
     "duration": "00:06:33",
     "thumb": "http://i.ytimg.com/vi/HHKf92Ta-9E/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TEDx Talks",
     "rating": 4.89051219097,
     "description": "Never miss a talk! SUBSCRIBE to the TEDx channel: http://bit.ly/1FAg8hB\n\nIn the spirit of ideas worth spreading, TEDx is a program of local, self-organized events that bring people together to share a TED-like experience. At a TEDx event, TEDTalks video and live speakers combine to spark deep discussion and connection in a small group. These local, self-organized events are branded TEDx, where x = independently organized TED event. The TED Conference provides general guidance for the TEDx program, but individual TEDx events are self-organized.* (*Subject to certain rules and regulations)",
@@ -3055,6 +4685,12 @@ var videos = [{
     "duration": "00:14:37",
     "thumb": "http://i.ytimg.com/vi/esPRsT-lmw8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Veritasium",
     "rating": 4.96938753574,
     "description": "Why does time appear to speed up as we get older? Can we slow it down?\nThanks to the National Geographic Channel for sponsoring this video!\nThe new season of Brain Games starts Sunday, February 14th at 9/8c -  http://po.st/90S7Ow\n  \nBrain Games is an Emmy-nominated TV series that explores the inner workings of the human mind through experiments and interactive games. Did you know it's estimated that you have more than a dozen senses in addition to the standard five? One of those is a sense of time or chronoception. Tune in to the new season of Brain Games to learn about all of your senses, and more, starting Sunday, February 14 at 9/8c\n\nReferences:\n\nAgeing and duration judgement:\nhttp://bit.ly/1TRN0cr\n\nNerve conduction velocity slowing with age:\nhttp://bit.ly/23Wq6oE\n\nExperiments with rats suggest time perception is distributed across brain:\nhttp://bit.ly/1T6IjdO\n\nTime perception with repeated stimuli:\nhttp://bit.ly/1TRNbo5\n\nEnergy usage in brain with age:\nhttp://bit.ly/1nXliOU\n\nTime perception in moments of fear / danger:\nhttp://bit.ly/1RoK7Ps\nhttp://1.usa.gov/1TRNa3w\nhttp://bit.ly/1Q8tDvW\n\nAttention\u2019s relation to time perception and recollection of perceived time:\nhttp://bit.ly/20odeD8\nhttp://bit.ly/1TRNfEf",
@@ -3071,6 +4707,12 @@ var videos = [{
     "duration": "00:07:41",
     "thumb": "http://i.ytimg.com/vi/aIx2N-viNwY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The School of Life",
     "rating": 4.57982365842,
     "description": "We\u2019re still only at the dawn of learning how to use drugs properly \u2013 knowing what drugs we need and when we should take them. We look forward to a brighter future for drug use.  If you like our films, take a look at our shop (we ship worldwide):  https://goo.gl/AcvyK6   \n\nFURTHER READING\n\n\u201cIt\u2019s easy to have a pretty negative view of drugs: the news is always going on about police raids on drug dealers, kids tripping dangerously at raves, overdoses and rehab.\nIt goes without saying: things can go horrifically wrong around drugs. But our intense awareness of the negatives is in danger of creating a misleadingly narrow view of the subject. Drugs are \u2013 at best \u2013 serious, dignified, noble and important, and we need more of them in our lives....\u201d\nYou can read more on this and many other topics on our blog TheBookofLife.org: https://goo.gl/PQlio4 \n\nMORE SCHOOL OF LIFE\n\nOur website has classes, articles and products to help you think and grow: https://goo.gl/j6QPBm \n\nMore films on SELF in our playlist below: \nhttp://bit.ly/TSOLself \n\nDo you speak a different language to English?  Did you know you can submit Subtitles on all of our videos on YouTube?  For instructions how to do this click here: https://goo.gl/iVSgqb \n\n\nSOCIAL MEDIA\n\nFeel free to follow us at the links below:\n\nFacebook: https://www.facebook.com/theschooloflifelondon/  \n\nTwitter: https://twitter.com/TheSchoolOfLife   \n\nInstagram: https://www.instagram.com/theschooloflifelondon/ \n\n\nCREDITS\n\nProduced in collaboration with:\n\nNoelle Smith\nhttp://www.noellesmithdesign.com/",
@@ -3087,6 +4729,12 @@ var videos = [{
     "duration": "00:06:18",
     "thumb": "http://i.ytimg.com/vi/IeLGP2dsjME/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.96506392941,
     "description": "View full lesson: http://ed.ted.com/lessons/is-radiation-dangerous-matt-anticole\n\nWhen we hear the word radiation, it\u2019s tempting to picture huge explosions and frightening mutations. But that\u2019s not the full story \u2014 radiation also applies to rainbows and a doctor examining an X-ray. So what is it, really, and how much should we worry about its effects? Matt Anticole describes the different types of radiation. \n\nLesson by Matt Anticole, animation by Tinmouse Animation Studio.",
@@ -3103,6 +4751,12 @@ var videos = [{
     "duration": "00:05:21",
     "thumb": "http://i.ytimg.com/vi/zI2vRwFKnHQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.83705220061,
     "description": "View full lesson: http://ed.ted.com/lessons/is-there-a-center-of-the-universe-marjee-chmiel-and-trevor-owens\n\nIt's been a long road to the discovery that Earth is not the center of the Solar System, the Milky Way, or the universe; great thinkers from Aristotle to Bruno have grappled with it for millennia. But if we aren't at the center of the universe, what is? Marjee Chmiel and Trevor Owens discuss where we stand in the (very) big scheme of things.\n\nLesson by Marjee Chmiel and Trevor Owens, animation by Qa'ed Mai.",
@@ -3119,6 +4773,12 @@ var videos = [{
     "duration": "00:04:14",
     "thumb": "http://i.ytimg.com/vi/rIVkvrEiVm0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Vihart",
     "rating": 4.95526624902,
     "description": "Accuracy not guaranteed. Get Audacity and play! http://audacity.sourceforge.net/\n\nCorrection: it is the \"Basilar\" membrane, which is what I say, but somehow between recording the script and actually drawing the stuff I got confused and thought I just pronounced my Vs poorly. Always sad to have such a simple and glaring error in something I put hundreds of hours of work into, but a \"Vasilar\" membrane can be the kind that a Vi draws to explain Viola Vibrations, I guess! Making up new words is just so prolightfully awstastic.\n\nProps to my Bro for excellent and creative swing pushing, and to my Mamma for filming it.\n\nExtra special thanks to my generous donators, without whom I would not have been able to create this video. Because of your support, I have the equipment, time, and take-out Thai food necessary for doing stuff like this.\n\nMy personal website, which you might like: http://vihart.com",
@@ -3135,6 +4795,12 @@ var videos = [{
     "duration": "00:12:49",
     "thumb": "http://i.ytimg.com/vi/i_0DXxNeaQ0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CGP Grey",
     "rating": 4.96147607461,
     "description": "Discuss this video: http://reddit.com/r/cgpgrey\nWebsite: http://www.cgpgrey.com/\nBrought to you by: http://www.audible.com/grey\n\nWar Bears image by: Filip Dudek http://5ofnovember.deviantart.com/gal...\n\nSpecial Thanks:\n\nWenhao Nie, dedla , Thomas J Miller Jr MD, PervertedThomas, Daniel Slater, Saki Comandao, rictic , Ian, Robert Kunz, Christian Cooper, Michael Little, Ripta Pasay, Andres Villacres, Faust Fairbrook, Jason Lewandowski, Michael Mrozek, Jordan LeDoux, Chris Woodall, Nevin Spoljaric, Chang Wang, Kozo Ota, Richard Jenkins, Chris Chapin, ChoiceMechanicalDenver.com, \u0633\u0644\u064a\u0645\u0627\u0646 \u0627\u0644\u0639\u0642\u0644, Tony DiLascio, Tod Kurt, Phil Gardner, John Buchan, Ron Bowes, T\u00f3mas \u00c1rni J\u00f3nasson, Mikko, Derek Bonner, Derek Jackson, Sokhom Chhim, Orbit_Junkie, Jordan Melville, Martin , Steven Grimm, Alistair Forbes, Tom Maher, Jim , Eren Polat, Mark Elders, Duhilio Pati\u00f1o, Benjamin Morrison, Amandeep Hayer, Veronica Peshterianu, Paul Tomblin, Travis Wichert, chrysilis , Alex Morales, Ryan E Manning, Erik Parasiuk, Rhys Parry, Maarten van der Blij\nSam Kokin, Kevin Anderson, Gustavo Jimenez, Thomas Petersen, Kyle Bloom, David , Ryan Nielsen, Esteban Santana Santana, Dag Viggo Lok\u00f8en, Tristan Watts-Willis, John Rogers, Edward Adams, Leon , Alexander Kosenkov, ken mcfarlane, Brandon Callender, Peter Lomax, Emil , Tijmen van Dien, ShiroiYami , Alex Schuldberg, Ryan Constantin, Bear , Jacob Ostling, John Waltmans, Solon Carter, Joel Wunderle, Rescla , GhostDivision, Andrew Proue, David Palomares, Cas Eli\u00ebns, Freddi H\u00f8rlyck, Splendide , Linh , Osric Lord-Williams, Ryan , Maxime Zielony, Timothy Moran, Lachlan Holmes , John Lee, Tor Henrik Lehne, Ian N Riopel, AUFFRAY Clement, Ilan , John Bevan, Elizabeth Keathley, Owen Degen, Kevin , Pierre Perrott, Colin Millions, Muhammad Shifaz, Joe Pantry, Ernesto Jimenez, Keng, Glennon B. Nelson IV, Chris Harshman, Jose Reyes, Guillermo , Ahmed , Danny Lunianga Xavier, Jeremy Peng, Jennifer Richardson, Rustam Anvarov,\n\nMusic by: http://www.davidreesmusic.com",
@@ -3151,6 +4817,12 @@ var videos = [{
     "duration": "00:06:23",
     "thumb": "http://i.ytimg.com/vi/wOmjnioNulo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.95067182036,
     "description": "As you know, in fashion, one day you're in and the next day your skin is falling off and your lungs are melting. \n\nHosted by: Michael Aranda\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttp://hyperallergic.com/133571/fatal-victorian-fashion-and-the-allure-of-the-poison-garment/ \nhttp://www.macleans.ca/culture/arts/deadly-victorian-fashions/  \nArsenic Pigments\nhttp://www.fda.gov/Food/FoodborneIllnessContaminants/Metals/ucm280202.htm \nhttp://www.lilinks.com/mara/history.html\nhttp://www.webexhibits.org/pigments/indiv/overview/emerald.html \nhttp://nj.gov/health/eoh/rtkweb/documents/fs/0529.pdf \nhttps://thepragmaticcostumer.wordpress.com/2014/06/11/drop-dead-gorgeous-a-tldr-tale-of-arsenic-in-victorian-life/ \nhttps://janeaustensworld.wordpress.com/2010/03/05/emerald-green-or-paris-green-the-deadly-regency-paint/ \nhttp://journals.ed.ac.uk/resmedica/article/viewFile/182/799 \nhttp://pictorial.jezebel.com/the-arsenic-dress-how-poisonous-green-pigments-terrori-1738374597 \nhttp://www.pysanky.info/Chemical_Dyes/History.html\nhttps://books.google.com/books?id=FSwNAAAAYAAJ&pg=PA276\nhttps://books.google.com/books?id=CGQ9AQAAMAAJ&pg=PA57\nhttp://jama.jamanetwork.com/article.aspx?articleid=236188\nhttp://archinte.jamanetwork.com/article.aspx?articleid=570645\nhttps://books.google.com/books?id=nQcCAAAAYAAJ&pg=PA459\nhttp://www.ch.ic.ac.uk/motm/perkin.html \nhttp://www.atsdr.cdc.gov/toxfaqs/tf.asp?id=449&tid=79 \nhttps://books.google.com/books?id=DZE0AQAAMAAJ&pg=PA664\nhttps://books.google.com/books?id=izvOAAAAMAAJ&pg=PA679\nAsbestos Fabric\nhttp://www.asbestos.com/asbestos/history/ \nhttps://books.google.com/books?id=acQ_AQAAMAAJ&pg=RA5-PA52\nhttp://www.asbestos.net/exposure/occupations/manufacturing/furnace-men-smelter-men-and-pourers/#top\nhttp://www.ijera.com/papers/Vol2_issue5/DN25675680.pdf\nhttp://www.ncbi.nlm.nih.gov/pubmed/11210016\nhttps://books.google.com/books?id=ShpaAAAAYAAJ&pg=PA562\nhttps://books.google.com/books?id=re4pCgAAQBAJ&pg=PA124\nhttp://www.econscious.net/images/stories/pdf/bamboo%20article%20link.pdf\nhttp://www.nrdc.org/international/cleanbydesign/files/CBD_FiberFacts_ViscoseRayon.pdf \nMercury Hats\nhttps://www.cas.org/news/insights/science-connections/mad-hatter\nhttp://connecticuthistory.org/ending-the-danbury-shakes-a-story-of-workers-rights-and-corporate-responsibility/\nhttp://onlinelibrary.wiley.com/doi/10.1002/tox.10116/abstract\nhttp://medical-dictionary.thefreedictionary.com/Mad+Hatter+syndrome \nLead Makeup\nhttp://www.sciencedirect.com/science/article/pii/S0738081X01001961\nhttp://www.jcia.org/n/en/info/b/ \nhttp://www.ncbi.nlm.nih.gov/pubmed/?term=2484407\nhttp://www.sciencedirect.com/science/article/pii/S0305440310002682 \nhttp://www.nbcnews.com/id/22546056/ns/health/t/suffering-beauty-has-ancient-roots/#.VsSDrZMrK9t \nhttps://books.google.com/books?id=LpplCgAAQBAJ&pg=PT79\nhttps://books.google.com/books?id=e9fel0gM3j0C&pg=PA10\nhttps://books.google.com/books?id=FRE4AAAAMAAJ\nhttp://cosmeticsandskin.com/aba/glowing-complexion.php\nhttp://www.theatlantic.com/health/archive/2013/03/how-we-realized-putting-radium-in-everything-was-not-the-answer/273780/\nhttp://mentalfloss.com/article/12732/9-ways-people-used-radium-we-understood-risks\nhttp://weheartvintage.co/2014/02/14/radioactive-cosmetics-makeup-of-the-atomic-era/\nhttp://www.cancer.org/cancer/cancercauses/radiationexposureandcancer/index\nhttp://visualiseur.bnf.fr/CadresFenetre?O=NUMM-3104&I=523&M=tdm \nhttp://science.sciencemag.org/content/sci/49/1262/227.full.pdf\nhttp://pubs.acs.org/doi/abs/10.1021/ed003p757 \nhttps://books.google.com/books?id=PpTi_JAx7PgC&pg=PA288\nhttp://www.chemistry.pomona.edu/chemistry/periodic_table/Elements/Radium/radium.htm \nhttp://www.nytimes.com/1998/10/06/science/a-glow-in-the-dark-and-a-lesson-in-scientific-peril.html?pagewanted=all \nhttps://labalsadelanostromo.wordpress.com/2014/10/06/cosmetica-luminosa/\nhttp://www.wisegeek.com/what-are-atropine-eye-drops.htm\nhttp://www.chm.bris.ac.uk/webprojects2001/gerrard/atropine.html\nhttps://www.nlm.nih.gov/medlineplus/druginfo/natural/531.html\nhttp://mentalfloss.com/article/50259/fatal-attraction-7-terrifying-beauty-practices-history\nhttps://nei.nih.gov/health/glaucoma/glaucoma_facts \nCelluloid Combs and Other Accessories\nhttp://www.chemheritage.org/discover/online-resources/conflicts-in-chemistry/the-case-of-plastics/blog/dangerous-materials.aspx\nhttp://cdnc.ucr.edu/cgi-bin/cdnc?a=d&d=PRP19040430.2.17.6\nhttps://books.google.com/books?id=R7UOAQAAIAAJ&pg=PA211\nhttps://books.google.com/books?id=uZdlCgAAQBAJ&pg=PA195\nhttps://books.google.com/books?id=_YhMAQAAMAAJ&pg=PA661\nhttps://books.google.com/books?id=svM4AAAAMAAJ&pg=PA170",
@@ -3167,6 +4839,12 @@ var videos = [{
     "duration": "00:09:43",
     "thumb": "http://i.ytimg.com/vi/hhXeUQOuRaw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The School of Life",
     "rating": 4.85658067337,
     "description": "Economists and politicians always want there to be more \u2018demand\u2019 in the economy. But they ignore whether there might be better or worse kinds of demand.\nPlease subscribe here: http://tinyurl.com/o28mut7\nIf you like our films take a look at our shop (we ship worldwide): http://www.theschooloflife.com/shop/all/\n\nBrought to you by http://www.theschooloflife.com\n\nProduced in collaboration with Vale Productions\nhttp://www.valeproductions.co.uk",
@@ -3183,6 +4861,12 @@ var videos = [{
     "duration": "00:05:28",
     "thumb": "http://i.ytimg.com/vi/VvTzaNUDVms/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "nature video",
     "rating": 4.926910299,
     "description": "DNA origami is the art of folding DNA. The idea is to create tiny nanoscale machines that could work inside the human body. In the ten years since the technique was first reported the field has grown massively. Nature Video finds out how DNA origami works and what has been achieved so far.\n \nYou can read more here: http://www.nature.com/news/practical-dna-1.19560\n \nAnd even check out the original 2006 paper here: http://www.nature.com/nature/journal/v440/n7082/abs/nature04586.html\n \n18th March 2016",
@@ -3199,6 +4883,12 @@ var videos = [{
     "duration": "00:03:35",
     "thumb": "http://i.ytimg.com/vi/Trg2__Lgnc0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Vox",
     "rating": 4.964,
     "description": "Scientists are pretty sure black holes are real. Soon they'll know for sure.\n\n\nSubscribe to our channel! http://goo.gl/0bsAjO\n\nThe biggest problem with trying to detect a black hole is that even the supermassive ones are relatively tiny.\n\n\"The largest one in the sky [is] the black hole in the center of the Milky Way,\" Dimitrios Psaltis, an astrophysicist at the University of Arizona, writes me in an email. \"And taking a picture of it would be equivalent to taking a picture of a DVD on the surface of the moon.\"\n\nWhat's more, because of their strong gravity, black holes tend to be surrounded by other bright matter that makes it hard to see the object itself.\n\nThat's why, when hunting for black holes, astronomers don't usually try for direct observation. Instead, they look for evidence of the effects of a black hole's gravity and radiation.\n\nBut an ongoing effort is linking up several radio telescopes around the world in an effort to see a black hole up close for the first time. The historic image is due in 2017. \n\nRead more: http://www.vox.com/2016/2/23/11095624/what-does-a-black-hole-actually-look-like\n\n///\n\nVox.com is a news website that helps you cut through the noise and understand what's really driving the events in the headlines. Check out http://www.vox.com to get up to speed on everything from Kurdistan to the Kim Kardashian app. \n\nCheck out our full video catalog: http://goo.gl/IZONyE\nFollow Vox on Twitter: http://goo.gl/XFrZ5H\nOr on Facebook: http://goo.gl/U2g06o",
@@ -3215,6 +4905,12 @@ var videos = [{
     "duration": "00:04:35",
     "thumb": "http://i.ytimg.com/vi/v9gPAj7lXU0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.95236677583,
     "description": "What if you couldn\u2019t remember anything past 30 seconds? Let us introduce you to a man named Henry Molaison who was diagnosed with anterograde amnesia. He couldn\u2019t form new memories. \n\nHosted by: Hank Green\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Justin Ove, Fatima Iqbal, Linnea Boyev, Kathy & Tim Philip, Kevin Bealer, Justin Lentz, Chris Peters, and Philippe von Bergen.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttp://www.nytimes.com/2008/12/05/us/05hm.html\nhttp://www.theguardian.com/science/2013/may/05/henry-molaison-amnesiac-corkin-book-feature\nhttp://www.nature.com/ncomms/2014/140128/ncomms4122/full/ncomms4122.html\nhttp://www.npr.org/2013/06/06/187328826/the-patient-who-let-us-peek-inside-a-brain-in-present-tense\nhttp://www.ncbi.nlm.nih.gov/pubmed/25154857\nhttp://arstechnica.com/science/2015/03/stepping-into-the-digital-brain-library-the-google-earth-of-neuroscience/ \nhttp://www.nature.com/news/postmortem-of-famous-brain-explains-why-its-owner-couldn-t-learn-1.14607 \nhttp://www.nature.com/nrn/journal/v11/n7/fig_tab/nrn2850_F1.html \nhttp://neuroscience.uth.tmc.edu/s4/chapter07.html \n\nImages:\nhttps://en.wikipedia.org/wiki/Functional_magnetic_resonance_imaging#/media/File:Researcher-test.jpg",
@@ -3231,6 +4927,12 @@ var videos = [{
     "duration": "00:04:44",
     "thumb": "http://i.ytimg.com/vi/Pq0aQAG0A3o/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.80076628352,
     "description": "View full lesson: http://ed.ted.com/lessons/how-fast-are-you-moving-right-now-tucker-hiatt\n\n\"How fast are you moving?\" seems like an easy question, but it's actually quite complicated -- and perhaps best answered by another question: \"Relative to what?\" Even when you think you're standing still, the Earth is moving relative to the Sun, which is moving relative to the Milky Way, which is...you get the idea. Tucker Hiatt unravels the concepts of absolute and relative speed.\n\nLesson by Tucker Hiatt, animation by Zedem Media.",
@@ -3247,6 +4949,12 @@ var videos = [{
     "duration": "00:06:10",
     "thumb": "http://i.ytimg.com/vi/wIzvfki5ozU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.96233521657,
     "description": "View full lesson: http://ed.ted.com/lessons/how-do-we-separate-the-inseparable-iddo-magen\n\nYour cell phone is mainly made of plastics and metals. It\u2019s easy to appreciate the process by which those elements add up to something so useful. But there\u2019s another story we don\u2019t hear about -- how did we get our raw ingredients in the first place, from the chaotic tangle of materials that is nature? Iddo Magen uncovers the answer in a group of clever hacks known as separation techniques.\n\nLesson by Iddo Magen, animation by Augenblick Studios.",
@@ -3263,6 +4971,12 @@ var videos = [{
     "duration": "00:04:25",
     "thumb": "http://i.ytimg.com/vi/q8Ent5CXhfY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.95198268228,
     "description": "View full lesson: http://ed.ted.com/lessons/the-psychology-behind-irrational-decisions-sara-garofalo\n\nOften people make decisions that are not \u201crational\u201d from a purely economical point of view \u2014 meaning that they don\u2019t necessarily lead to the best result. Why is that? Are we just bad at dealing with numbers and odds? Or is there a psychological mechanism behind it? Sara Garofalo explains heuristics, problem-solving approaches based on previous experience and intuition rather than analysis.\n\nLesson by Sara Garofalo, animation by TOGETHER.",
@@ -3279,6 +4993,12 @@ var videos = [{
     "duration": "00:04:39",
     "thumb": "http://i.ytimg.com/vi/V2EMuoM5IX4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.95988905483,
     "description": "View full lesson: http://ed.ted.com/lessons/how-computer-memory-works-kanawat-senanan\n\nIn many ways, our memories make us who we are, helping us remember our past, learn and retain skills, and plan for the future. And for the computers that often act as extensions of ourselves, memory plays much the same role. Kanawat Senanan explains how computer memory works. \n\nLesson by Kanawat Senanan, animation by TED-Ed.",
@@ -3295,6 +5015,12 @@ var videos = [{
     "duration": "00:05:05",
     "thumb": "http://i.ytimg.com/vi/p3q5zWCw8J4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.84970135402,
     "description": "For info about divesting from nuclear weapons companies, go to http://responsibleinvest.org/\n\nThanks to the Future of Life Institute for helping support this video http://www.futureoflife.org (in particular, thanks to Max Tegmark for guest narrating and Meia Chita-Tegmark for her feedback)\n\nAnd thanks to everyone who supports MinutePhysics on Patreon! http://www.patreon.com/minutephysics\n\nLink to Patreon supporters here: http://www.minutephysics.com/supporters.html\n\nMusic by Nathaniel Schroeder, http://www.soundcloud.com/drschroeder\n\nREFERENCES\n\nClimate-model showing impacts of nuclear winter \u2013 http://climate.envsci.rutgers.edu/pdf/RobockNW2006JD008235.pdf\n\nCurrent status of global nuclear forces http://fas.org/issues/nuclear-weapons/status-world-nuclear-forces/\n\nFinancing the Nuclear Industry \u2013 http://www.dontbankonthebomb.com/\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nCreated by Henry Reich\n\nThis video is about the continued dangers of nuclear weapons and the nuclear arms race in the post-cold war world, particularly nuclear winter but also modernizations by the US and Russian governments, EMPs (electromagnetic pulses), fallout, explosions, terrorism, other accidents, etc.",
@@ -3311,6 +5037,12 @@ var videos = [{
     "duration": "00:03:15",
     "thumb": "http://i.ytimg.com/vi/qRnU0bqsyq0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Art of the Problem",
     "rating": 4.96842105263,
     "description": "Two essential ideas behind algorithms are explored in PART 2 of our series on Computer Science. Support this program: https://www.patreon.com/artoftheproblem\nor\nBitcoin: 1J29nKVys3anVaQNnyW8DBkD4vCzFxdB2r",
@@ -3327,6 +5059,12 @@ var videos = [{
     "duration": "00:06:31",
     "thumb": "http://i.ytimg.com/vi/AVScy7YsKM0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.96621078037,
     "description": "View full lesson: http://ed.ted.com/lessons/making-sense-of-irrational-numbers-ganesh-pai\n\nLike many heroes of Greek myths, the philosopher Hippasus was rumored to have been mortally punished by the gods. But what was his crime? Did he murder guests or disrupt a sacred ritual? No, Hippasus's transgression was mathematically proving the hitherto unprovable. Ganesh Pai describes the history and math behind irrational numbers. \n\nLesson by Ganesh Pai, animation by Anton Trofimov.",
@@ -3343,6 +5081,12 @@ var videos = [{
     "duration": "00:04:41",
     "thumb": "http://i.ytimg.com/vi/sbGjr_awePE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.91777777778,
     "description": "Today we conclude our unit on Philosophy of Religion and Hank gets a little help from Indiana Jones to explain religious pragmatism and Pascal\u2019s Wager, fideism, and Kierkegaard\u2019s leap to faith.\n\n--\n\n\u201cIndiana Jones\u201d \u00a9 Copyright Walt Disney Studios\nAll other images and video via VideoBlocks or Wikimedia Commons, licensed under Creative Commons BY 4.0: https://creativecommons.org/licenses/by/4.0/\n\n--\n\nProduced in collaboration with PBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nCrash Course Philosophy is sponsored by Squarespace.\nhttp://www.squarespace.com/crashcourse\n\n--\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashC...\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Patreon: http://www.patreon.com/crashcourse\n\nCC Kids: http://www.youtube.com/crashcoursekids",
@@ -3359,6 +5103,12 @@ var videos = [{
     "duration": "00:09:13",
     "thumb": "http://i.ytimg.com/vi/S93jMOqF-oE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Big History Project",
     "rating": 4.42857142857,
     "description": "About 200,000 years ago, man evolved to become the most important force for change on the Earth's surface. What makes us so different from other living things? How did we, together, make something entirely new?\n\n\nWebsite: https://www.bighistoryproject.com/portal\nFacebook: https://www.facebook.com/bighistoryproject\nTwitter: https://twitter.com/BigHistoryPro",
@@ -3375,6 +5125,12 @@ var videos = [{
     "duration": "00:02:43",
     "thumb": "http://i.ytimg.com/vi/ppIzSaP2jWI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.76938014603,
     "description": "Just how small are atoms? And what's inside them? The answers turn out to be astounding, even for those who think they know. This fast-paced animation uses spectacular metaphors (imagine a blueberry the size of a football stadium!) to give a visceral sense of the building blocks that make our world.\n\nLesson by Jonathan Bergmann, animation by Cognitive Media.",
@@ -3391,6 +5147,12 @@ var videos = [{
     "duration": "00:05:28",
     "thumb": "http://i.ytimg.com/vi/yQP4UJhNn0I/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.91261345853,
     "description": "View full lesson: http://ed.ted.com/lessons/who-am-i-a-philosophical-inquiry-amy-adkins\n\nThroughout the history of mankind, the subject of identity has sent poets to the blank page, philosophers to the agora and seekers to the oracles. These murky waters of abstract thinking are tricky to navigate, so it\u2019s probably fitting that to demonstrate the complexity, the Greek historian Plutarch used the story of a ship. Amy Adkins illuminates Plutarch\u2019s Ship of Theseus.\n\nLesson by Amy Adkins, animation by Stretch Films, Inc.",
@@ -3407,6 +5169,12 @@ var videos = [{
     "duration": "00:04:59",
     "thumb": "http://i.ytimg.com/vi/UHwVyplU3Pg/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.90669676448,
     "description": "View full lesson on ed.ted.com http://ed.ted.com/lessons/jane-hirshfield-the-art-of-the-metaphor\n\nHow do metaphors help us better understand the world? And, what makes a good metaphor? Explore these questions with writers like Langston Hughes and Carl Sandburg, who have mastered the art of bringing a scene or emotion to life.\n\nLesson by Jane Hirshfield, animation by Ben Pearce",
@@ -3423,6 +5191,12 @@ var videos = [{
     "duration": "00:05:39",
     "thumb": "http://i.ytimg.com/vi/A0edKgL9EgM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.95611260786,
     "description": "View full lesson: http://ed.ted.com/lessons/exploring-other-dimensions-alex-rosenthal-and-george-zaidan\n\nImagine a two-dimensional world -- you, your friends, everything is 2D. In his 1884 novella, Edwin Abbott invented this world and called it Flatland. Alex Rosenthal and George Zaidan take the premise of Flatland one dimension further, imploring us to consider how we would see dimensions different from our own and why the exploration just may be worth it. \n\nLesson by Alex Rosenthal and George Zaidan, animation by Cale Oglesby.",
@@ -3439,6 +5213,12 @@ var videos = [{
     "duration": "00:04:49",
     "thumb": "http://i.ytimg.com/vi/C6kn6nXMWF0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.89079545455,
     "description": "View full lesson on ed.ted.com http://ed.ted.com/lessons/what-s-invisible-more-than-you-think-john-lloyd\n\nGravity. The stars in day. Thoughts. The human genome. Time. Atoms. So much of what really matters in the world is impossible to see. A stunning animation of John Lloyd's classic TEDTalk from 2009, which will make you question what you actually know.\n\nLesson by John Lloyd, animation by Cognitive Media.",
@@ -3455,6 +5235,12 @@ var videos = [{
     "duration": "00:08:48",
     "thumb": "http://i.ytimg.com/vi/8EUy_82IChY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.96179183136,
     "description": "View full lesson: http://ed.ted.com/lessons/why-is-glass-transparent-mark-miodownik\n\nIf you look through your glasses, binoculars or a window, you see the world on the other side. How is it that something so solid can be so invisible? Mark Miodownik melts the scientific secret behind amorphous solids.\n\nLesson by Mark Miodownik, animation by Provincia Studio.",
@@ -3471,6 +5257,12 @@ var videos = [{
     "duration": "00:04:08",
     "thumb": "http://i.ytimg.com/vi/VwRLIt6jgdM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CGP Grey",
     "rating": 4.95747891261,
     "description": "Help support videos like this: http://www.cgpgrey.com/subbable\n**CGPGrey T-Shirts for sale!**: http://goo.gl/1Wlnd\nGrey's blog: http://www.cgpgrey.com/\n\nWatch the full series of Politics in the Animal Kingdom here: http://www.cgpgrey.com/politics-in-the-animal-kingdom/\n\nIf you would like to help me make more videos please join the discussion on:\n\nGoogle+: http://plus.google.com/115415241633901418932/posts\n\nTwitter: http://twitter.com/#!/cgpgrey\n\nFacebook: http://www.facebook.com/pages/Greys-Blog/193301110697381\n\nOr suggest ideas and vote on other peoples' ideas on my channel: http://www.youtube.com/user/CGPGrey",
@@ -3487,6 +5279,12 @@ var videos = [{
     "duration": "00:06:31",
     "thumb": "http://i.ytimg.com/vi/s7tWHJfhiyo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CGP Grey",
     "rating": 4.96569973873,
     "description": "Help support videos like this: http://www.cgpgrey.com/subbable\n**CGPGrey T-Shirts for sale!**: http://goo.gl/1Wlnd\nGrey's blog: http://www.cgpgrey.com/blog/\n\nWatch the full series of Politics in the Animal Kingdom here: http://www.cgpgrey.com/politics-in-the-animal-kingdom/\n\nBy http://cgpgrey.com/\n\nSpanish captions by Alberto van Oldenbareneveld: http://curiosaperspectiva.blogspot.com\n\nIf you would like to help me make more videos please join the discussion on:\n\nGoogle+: http://plus.google.com/115415241633901418932/posts\n\nTwitter: http://twitter.com/#!/cgpgrey\n\nFacebook: http://www.facebook.com/pages/Greys-Blog/193301110697381\n\nOr suggest ideas and vote on other peoples' ideas on my channel: http://www.youtube.com/user/CGPGrey",
@@ -3503,6 +5301,12 @@ var videos = [{
     "duration": "00:04:27",
     "thumb": "http://i.ytimg.com/vi/3Y3jE3B8HsE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.97266936885,
     "description": "View full lesson: http://ed.ted.com/lessons/how-transistors-work-gokul-j-krishnan\n\nModern computers are revolutionizing our lives, performing tasks unimaginable only decades ago. This was made possible by a long series of innovations, but there\u2019s one foundational invention that almost everything else relies upon: the transistor. Gokul J. Krishnan describes what a transistor is and how this small device enables all the amazing things computers can do. \n\nLesson by Gokul J. Krishna, animation by Augenblick Studios.",
@@ -3519,6 +5323,12 @@ var videos = [{
     "duration": "00:04:54",
     "thumb": "http://i.ytimg.com/vi/WhNyURBiJcU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The School of Life",
     "rating": 4.82785563686,
     "description": "Insomnia is in essence a revenge for all the thoughts we forgot to have in the day. If you like our films, take a look at our shop (we ship worldwide): http://www.theschooloflife.com/shop/most-popular/?utm_source=You%20Tube&utm_medium=YouTube%20video%20description%20-%20most%20popular&utm_campaign=YouTube%20video%20description%20-%20most%20popular\n\nWatch more films on SELF:\nhttp://bit.ly/TSOLself\n\nProduced in collaboration with Daniela Scherer\nhttp://www.danielasherer.com",
@@ -3535,6 +5345,12 @@ var videos = [{
     "duration": "00:04:06",
     "thumb": "http://i.ytimg.com/vi/N3zqpAleU5g/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The RSA",
     "rating": 4.93284365163,
     "description": "Ever wondered why kids say they\u2019re bored at school, or why they stop trying when the work gets harder? Educationalist Carol Dweck explains how the wrong kind of praise actually *harms* young people. \n\nThis short video is essential viewing for EVERYONE \u2013 from teachers and education workers to relatives and friends - and will totally revolutionise the way you interact with children. \n\nView more of our world-famous animations in our RSA Animate playlist: http://bit.ly/1FKMHGv\n\nFollow the RSA on Twitter: https://twitter.com/RSAEvents\nLike the RSA on Facebook: https://www.facebook.com/rsaeventsofficial/\nListen to RSA podcasts: https://soundcloud.com/the_rsa\nSee RSA Events behind the scenes: https://instagram.com/rsa_events/",
@@ -3551,6 +5367,12 @@ var videos = [{
     "duration": "00:10:00",
     "thumb": "http://i.ytimg.com/vi/Yl9TVbAal5s/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.93666381617,
     "description": "Now that we\u2019ve left behind the philosophy of religion, it\u2019s time to start exploring what other ways might exist to find meaning in the world. Today we explore essentialism and its response: existentialism. We\u2019ll also learn about Jean-Paul Sartre and his ideas about how to find meaning in a meaningless world.\n\nGet your own Crash Course Philosophy mug from DFTBA: http://store.dftba.com/products/crashcourse-philosophy-mug\n\nThe Latest from PBS Digital Studios: https://www.youtube.com/playlist?list=PL1mtdjDVOoOqJzeaJAV15Tq0tZ1vKj7ZV\n\n--\n\nTaylor Swift drawing by Joezart: http://joezart.deviantart.com/art/Taylor-Swift-569846131 Graduate and proud parents by Christopher Brown: https://www.flickr.com/photos/xopherbrown/5621125839 \nAll other images and video either public domain or via VideoBlocks, Unsplash, or Wikimedia Commons, licensed under Creative Commons BY 4.0: https://creativecommons.org/licenses/by/4.0/\n\n--\n\nProduced in collaboration with PBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nCrash Course Philosophy is sponsored by Squarespace.\nhttp://www.squarespace.com/crashcourse\n\n--\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashC...\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Patreon: http://www.patreon.com/crashcourse\n\nCC Kids: http://www.youtube.com/crashcoursekids",
@@ -3567,6 +5389,12 @@ var videos = [{
     "duration": "00:08:54",
     "thumb": "http://i.ytimg.com/vi/YaDvRdLMkHs/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "engineerguy",
     "rating": 4.97762747138,
     "description": "Bill describes the Alignment Optical Telescope used in the Lunar Module on the Apollo missions to the moon. This telescope took star sightings which were used to align the Module's guidance system. Bill shows how the telescope used an Archimedes spiral inscribed on its eyepiece to replace the heavy motors, worm gears, and rigid tracks used in a traditional sextant -- this shaved weight from the Lunar Module and allowed it to carry more fuel.\n\nYou can bundle watch Bill's videos using this playlist: \nhttps://www.youtube.com/playlist?list=PL0INsTTU1k2UO-2-AwomFmAs4nuZU9ht3\n\nIf you are interested in mechanical computers you'll likely enjoy his series on Albert Michelson's Harmonic Analyzer -- a 19th century machine that calculates Fourier transforms:\nhttps://www.youtube.com/playlist?list=PL0INsTTU1k2UYO9Mck-i5HNqGNW5AeEwq",
@@ -3583,6 +5411,12 @@ var videos = [{
     "duration": "00:04:26",
     "thumb": "http://i.ytimg.com/vi/hVCNS2jQQ6g/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "JackTech",
     "rating": 4.94467300326,
     "description": "Note: I made a few mistakes in this video which are addressed in part 1.5. Please make sure to watch it here: https://www.youtube.com/watch?v=t0V-D2YMhrs\n\nHave you ever wondered how the Game Boy works? How the games that defined the history of the handheld world were made?\nThis video series hopes to answer these questions and more concerning one of the most successful gaming platforms ever.\n\nNarration aided and recorded by the lovely Sarah - https://smstang.com/\n\nRoller Coaster Tycoon Gameplay - tgnGamesDE - https://www.youtube.com/channel/UC9aEJxrV5ZAkuFfY77q5alQ\n\nSonic TAS - Played by sgrunt\n\nGame Boy pictures - https://commons.wikimedia.org/wiki/User:Evan-Amos\n\nProductivity icon by Gregor \u010cre\u0161nar\n\nGame Boy vector art - cryoganix.deviantart.com",
@@ -3599,6 +5433,12 @@ var videos = [{
     "duration": "00:12:01",
     "thumb": "http://i.ytimg.com/vi/RZUDEaLa5Nw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.98757709636,
     "description": "How do we know what the air is like on planets we haven't visited? This video explains how to see air from 150 light years away.\n\nThanks to NASA\u2019s James Webb Space Telescope project at the Space Telescope Science Institute for supporting this video.\n\nLink to Patreon supporters here: www.minutephysics.com/supporters.html\n\nIf you want to learn more about how we detect transiting exoplanet atmospheres via emission or absorption spectroscopy, here's Sara Seagers website:\n\nhttp://seagerexoplanets.mit.edu/research.htm\n\nWe know the atmospheric composition of Jupiter, Europa, etc, but how do we know the atmospheres of places we can't go?\n\nMusic by Nathaniel Schroeder, http://www.soundcloud.com/drschroeder \n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute! Created by Henry Reich",
@@ -3615,6 +5455,12 @@ var videos = [{
     "duration": "00:02:43",
     "thumb": "http://i.ytimg.com/vi/UfJ-i4Y6DGU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "LEMMiNO",
     "rating": 4.96596601766,
     "description": "Twitter: http://lemmi.no/twitter\nFacebook: http://lemmi.no/facebook\n\n\n[Music]\nA l e x - I Wasn't Aloud To Watch Whose Line As A Kid But I Think It's Pretty Good Now\n\nLink:\nhttps://soundcloud.com/worsethanthis/i-wasnt-aloud-to-watch-whose-line-as-a-kid-but-i-think-its-pretty-good-now\n\n[Music #2]\nChris Zabriskie - What Does Anybody Know About Anything\n\nLink:\nhttps://soundcloud.com/chriszabriskie/what-does-anybody-know-about-anything\n\n[Music #3]\nA l e x - Falling Asleep On A Vietnamese Train\n\nLink:\nhttps://soundcloud.com/worsethanthis/falling-asleep-on-a-vietnamese-train\n\n[Music #4]\nA l e x - The Burn Marks On My EPiano Won't Go Away\n\nLink:\nhttps://soundcloud.com/worsethanthis/the-burn-marks-on-my-epiano-wont-go-away\n\n[Music #5]\nChris Zabriskie - Cylinder Four\n\nLink:\nhttps://soundcloud.com/chriszabriskie/cylinder-four\n\n[Music #6]\nChris Zabriskie - I Can't Imagine Where I'd Be Without It\n\nLink:\nhttps://soundcloud.com/chriszabriskie/i-cant-imagine-where-id-be-without-it\n\n[Music #7]\nA l e x - Sleep Next To Me\n\nLink:\nhttps://soundcloud.com/worsethanthis/sleep-next-to-me\n\n[Music #8]\nChris Zabriskie - There's A Special Place For Some People\n\nLink:\nhttps://soundcloud.com/chriszabriskie/theres-a-special-place-for-some-people\n\n[Music #9]\nAlicks - Next To You\n\nLink:\nhttps://soundcloud.com/citybynightrecords/alicks-next-to-you\n\n\n[References & Further Reading]\nhttps://docs.google.com/spreadsheets/d/1uUFmXkfYhKiq46Hol5o_YoWrrGn2WmoaZAMS8XugkX4/pub?gid=722207750",
@@ -3631,6 +5477,12 @@ var videos = [{
     "duration": "00:23:16",
     "thumb": "http://i.ytimg.com/vi/K4rCzA8fS84/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Tom Scott",
     "rating": 4.90177573575,
     "description": "http://tomscott.com - @tomscott - There are lots of interesting features in other languages, some of which English would really benefit from having. I'm going to talk about four of them: time-independence, clusivity, absolute direction, and evidentiality.\n\nAlso, I've learned from last week: no irritating piano music this time!\n\nUNESCO list of endangered languages: http://www.unesco.org/culture/languages-atlas/",
@@ -3647,6 +5499,12 @@ var videos = [{
     "duration": "00:04:01",
     "thumb": "http://i.ytimg.com/vi/QYlVJlmjLEc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.97523219814,
     "description": "Learn about the famous red hat wearing underwater explorer Jacques Cousteau!\n\nHosted by: Hank Green\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Justin Ove, Andreas Heydeck, Justin Lentz, Will and Sonja Marple, Benny, Chris Peters, Tim Curwick, Philippe von Bergen, Patrick, Fatima Iqbal, Lucy McGlasson, Mark Terrio-Cameron, Accalia Elementia, Kathy & Tim Philip, charles george, Kevin Bealer, Thomas J., and Patrick D. Ashmore.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttp://news.nationalgeographic.com/news/2010/06/100611-jacques-cousteau-100th-anniversary-birthday-legacy-google/ \nhttp://www.cousteau.org/\nhttp://www.umsl.edu/~hwec/WEArecipients/cousteau.html \nhttp://www.britannica.com/biography/Jacques-Cousteau \nhttp://www.biography.com/people/jacques-cousteau-9259496#famed-explorer \n\nImages: \nhttps://commons.wikimedia.org/wiki/File:%D0%9F%D0%BE%D0%B4%D0%B2%D0%BE%D0%B4%D0%BD%D0%B0%D1%8F_%D0%BB%D0%BE%D0%B4%D0%BA%D0%B0_%D0%96%D0%B0%D0%BA%D0%B0_%D0%98%D0%B2%D0%B0_%D0%9A%D1%83%D1%81%D1%82%D0%BE_IMG_4571.JPG\nhttps://commons.wikimedia.org/wiki/File:Flying-saucer.jpg\nhttps://commons.wikimedia.org/wiki/File:Cousteau1972.jpg\nhttps://commons.wikimedia.org/wiki/File:Pres._Kennedy_Awards_the_National_Geographic_Society%27s_Gold_Medal_to_Jacques_Cousteau.jpg\nhttps://commons.wikimedia.org/wiki/File:%22Calypso%22_-_Montreal,_1980.jpg\nhttps://commons.wikimedia.org/wiki/File:Aqualung_(PSF).png",
@@ -3663,6 +5521,12 @@ var videos = [{
     "duration": "00:04:33",
     "thumb": "http://i.ytimg.com/vi/9z08SD5iRuk/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.88702832894,
     "description": "Learn about some materials that seem like they should belong in science fiction, but actually exist today!\n\nHosted by: Michael Aranda\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Justin Ove, Coda Buchanan, Lucy McGlasson, Accalia Elementia, Mark Terrio-Cameron, Saul, Kathy & Tim Philip, Kevin Bealer, Christopher Collins, Thomas J., charles george, Andreas Heydeck, Patrick D. Ashmore, Justin Lentz, Will and Sonja Marple, Ed Shelley, Chris Peters, Tim Curwick, Philippe von Bergen, Fatima Iqbal.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nAerogels\nhttp://www.aerogel.org/?p=3\nhttp://energy.lbl.gov/ecs/aerogels/\nhttp://www.nasa.gov/topics/technology/features/aerogels.html\nhttp://www.britannica.com/science/gel \n\nInvisibility Cloaks\nhttp://science.sciencemag.org/content/349/6254/1310\nhttp://time.com/4042506/invisibility-cloak/\nhttp://bgr.com/2016/03/15/invisibility-cloak-harry-potter/\nhttp://www.nature.com/articles/srep21921\nhttp://www.cnet.com/news/invisibility-cloak-uses-lenses-to-bend-light/\nhttp://www.techtimes.com/articles/86479/20150922/invisibility-cloak-technology-invented-by-uc-berkeley-scientists-you-cant-wear-it.htm\n\nSuper Waterproofing\nhttp://phys.org/news/2015-12-superhydrophobic-coating-price.html\nhttp://onlinelibrary.wiley.com/doi/10.1002/adma.201304006/abstract\nhttp://www.businessinsider.com/a-new-super-waterproof-material-makes-water-drops-bounce-off-it-2013-10\nhttp://www.sciencedirect.com/science/article/pii/S0021979713002865 \nhttp://www.bbc.com/news/science-environment-25004942 \nhttp://www.nature.com/nature/journal/v503/n7476/full/nature12740.html \n\nBulk Diamonds/Aggregated Diamond Nanorods\nhttp://www.nature.com/nature/journal/v421/n6923/full/421599b.html\nhttp://www.esrf.eu/news/spotlight/spotlight25nanorods/index_html;jsessionid=CE744BDF023E441D1573798CD0C72B50\nhttp://physicsworld.com/cws/article/news/2005/aug/26/diamonds-are-not-forever\nhttp://www.iom3.org/materials-world-magazine/feature/2013/jun/04/material-month-aggregated-diamond-nanorods-carbon\n\nMetallic Glasses\nhttp://engineering.jhu.edu/materials/research-projects/metallic-glasses/#.Vuns_vkrKUk\nhttp://www.nature.com/nmat/journal/v14/n6/full/nmat4297.html \nhttp://www.zmescience.com/science/chemistry/metal-glass-about-howto-0423423/\nhttp://www.sciencedirect.com/science/article/pii/S0261306911006510 \nhttp://discovermagazine.com/2004/apr/glassy-metals\nhttp://physics.aps.org/story/v15/st20 \n\nMetallic Foams\nhttp://www.tms.org/pubs/journals/JOM/0012/Banhart-0012.html\nhttp://www.metalfoam.net/\nhttps://link.springer.com/article/10.1007%2FBF00554981#page-1\n\nTransparent Aluminum\nhttp://science.howstuffworks.com/transparent-aluminum-armor.htm\nhttp://www.tssbulletproof.com/optically-clear-aluminum-provides-bulletproof-protection/\nhttp://ceramics.org/wp-content/uploads/2013/02/march13_cover-story.pdf\n\nLight-transmitting Concrete\nhttp://illumin.usc.edu/printer/245/translucent-concrete-an-emerging-material/\nhttp://www.cement.org/for-concrete-books-learning/materials-applications/architectural-and-decorative-concrete/light-transmitting-concrete\n\nRegenerating Concrete\nhttp://www.theguardian.com/sustainable-business/2015/jun/29/the-self-healing-concrete-that-can-fix-its-own-cracks\nhttp://www.cnn.com/2015/05/14/tech/bioconcrete-delft-jonkers/\nhttps://www.researchgate.net/profile/Erik_Schlangen/publication/222648872_Application_of_bacteria_as_self-healing_agent_for_the_development_of_sustainable_concrete/links/0f3175399728a72306000000.pdf",
@@ -3679,6 +5543,12 @@ var videos = [{
     "duration": "00:08:36",
     "thumb": "http://i.ytimg.com/vi/az6oYcd-SfU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "ouLearn on YouTube",
     "rating": 4.85440613027,
     "description": "For more like this subscribe to the Open University channel\nhttps://www.youtube.com/channel/UCXsH4hSV_kEdAOsupMMm4Qw\n\nFree learning from The Open University\n\n\nDESCRIPTION\n\n\n(Part  of )\n\n\nPlaylist link -\n\n\nTranscript - \n\n\nStudy free at the Open University\n\n---\n\nStudy (Insert subject and or course) \n\n---\nFollow us on OUFreeLearning\nTwitter https://twitter.com/OUFreeLearning",
@@ -3695,6 +5565,12 @@ var videos = [{
     "duration": "00:10:59",
     "thumb": "http://i.ytimg.com/vi/YCN2aTlocOw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Big Think",
     "rating": 4.80132450331,
     "description": "Betrayal is part of giving trust, says JetBlue Chairman Joel Peterson. So the odds are you will be betrayed at some point in time. Still, recovery and healing are possible.  Peterson's book is \"The 10 Laws of Trust:  Building the Bonds That Make a Business Great\" (http://goo.gl/oIG94o).\n\nRead more at BigThink.com: http://bigthink.com/videos/joel-peterson-on-coping-with-betrayal\n\nFollow Big Think here:\nYouTube: http://goo.gl/CPTsV5\nFacebook: https://www.facebook.com/BigThinkdotcom\nTwitter: https://twitter.com/bigthink\n\nTranscript - So betrayal is a very tough thing and it\u2019s part of giving trust is the odds are you will be betrayed at some point in time. So getting good at dealing with betrayal is a really important thing. And I think it starts with realizing that you have joint ventured the betrayal. You\u2019ve had a part to do with it. It could be that you trusted when you shouldn\u2019t have trusted. You didn\u2019t think about whether the person had high character, was competent and had the authority and therefore shame on you. We don\u2019t like to take responsibility for that but I think if you step back and say how did I participate in this? I think that gives you insight and sort of the first ability to start approaching it in a way that allows you to heal. Because that\u2019s really what you want to do in a betrayal is you want to heal as fast as you can. And so I think it really helps to do that. \n\nSo any time you\u2019re betrayed you feel alone. You feel like why me? You have the poor me\u2019s and you feel like you\u2019ve been attacked and it\u2019s all unfair and everything. I think if you step back and say everybody\u2019s been betrayed, everybody knows what this feels like and people get over it. And therefore I\u2019m not alone in this and I can learn from other people and this too will pass. So sometimes when you\u2019re in the midst of it and you\u2019re dealing with it and it\u2019s acute it feels like it\u2019s all you can think about. You wake up in the middle of the night it\u2019s the first thing on your mind. When you start your day it stays with you throughout the day and you start to marinate in it. And I think it\u2019s really helpful to step back and say this has happened to other people before and therefore I will get through this.\n\nSo sometimes people betray us and it\u2019s not that serious. They didn\u2019t deliver a project on time or on budget or they didn\u2019t get the report done right or they didn\u2019t double check their spelling. There are all kinds of levels of betrayal. And some of them really are just fumbles, stumbles, poor judgment or whatever. Others are really very serious where somebody has cheated you or told a lie or spread gossip or something like that. So I think you have to sort of calibrate what is the nature of this betrayal. lIf it is one of the former I think you can step in and say we need to come to an understanding so this doesn\u2019t happen again. Many times it\u2019s really just a question of having clarity around things and the betrayal is overcome. If it is something more serious than that it may take a whole lot more work and that work may not be worth it. In many cases it is not worth it. Certain kinds of betrayal are just not worth fixing.\n\nSo if you\u2019ve been betrayed there are, sometimes there are elements, for example, if it\u2019s just bad information or you can fix it quickly. If it\u2019s early on in somebody\u2019s career fix it quickly. Don\u2019t let the betrayal fester. Don\u2019t allow it to go on. Deal with it immediately. So fix those kinds of things quickly. Because otherwise they get worse and you may bury them for a while only to see them raise their head in an uglier form down the road. So I think you want to address even the beginnings of something that feels like it might be a betrayal. Even one of these minor betrayals.\n\nSo this idea about being realistic about the potential for recovery really comes into assessing the nature of the betrayal. If it is a serious betrayal, an infidelity, something that is really attacking you at your core, many divorces happen over this kind of thing and it\u2019s really better off that people separate because there\u2019s no point in trying to make something work that just won\u2019t work. Within a company framework I always say that you need to get the wrong people off the bus. There are people in most companies that shouldn\u2019t be there and therefore you need to \u2013 it\u2019s kind of a betrayal of them to keep them on the bus and they\u2019re betraying the company by staying on the bus. So I think some things you just have to address and move on and just say this is a betrayal I\u2019m not going to try to fix.  Read Full Transcript Here:  http://goo.gl/I8Clcf.",
@@ -3711,6 +5587,12 @@ var videos = [{
     "duration": "00:05:14",
     "thumb": "http://i.ytimg.com/vi/sLB-6CyoQXE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.96479647965,
     "description": "Is what we see in the night sky a true representation of our universe? Find out about Gravitational Lensing in this episode and even more about it in the documentary that Matt made together with the Museum of Natural History:Distant Quasars: Shedding Light on Black Holes http://www.amnh.org/explore/science-bulletins/(watch)/astro/documentaries/distant-quasars-shedding-light-on-black-holes\n\nGet your own Space Time t\u00adshirt at http://bit.ly/1QlzoBi\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\nSupport us on Patreon! http://www.patreon.com/pbsspacetime\n\nHelp translate our videos! http://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nNiels Bohr, a Danish Physicist said \u201cEverything we call real is made of things that cannot be regarded .\u201d Is what we see perceived to be real or is it an illusion? \nIn the world of our mind\u2019s eye, light travels in a straight line. In reality, spacetime is deflected and magnified through the lens of gravity. Find out how this works and what it allows us to learn about our universe in this episode of Space Time.\n\nWritten and hosted by Matt O\u2019Dowd\n\nMade by Kornhaber Brown (www.kornhaberbrown.com)\n\nComments by:\n\nAyyElMao\nhttps://www.youtube.com/watch?v=-IfmgyXs7z8&lc=z133wleonvnhvjrms230gdtiiqjwhldko\n\nB\u0142a\u017cej Michalik\nhttps://www.youtube.com/watch?v=-IfmgyXs7z8&lc=z12dghjzrlupgxjll22fi30x5qblftcrg04\n\nFlynn Kruchell\nhttps://www.youtube.com/watch?v=-IfmgyXs7z8&lc=z13vjf5z5sfayjlii04cdbfh0o23ff1ofp00k\n\nMystyc Cheez\nhttps://www.youtube.com/watch?v=-IfmgyXs7z8&lc=z121idgyory2czaiv04cjvyrglnfux4zzgg",
@@ -3727,6 +5609,12 @@ var videos = [{
     "duration": "00:13:32",
     "thumb": "http://i.ytimg.com/vi/Dgv2WWpm7_s/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Vox",
     "rating": 4.95889908257,
     "description": "Sometimes flight recorders are the only way the victims' families will know what happened to the plane.\n\nSubscribe to our channel! http://goo.gl/0bsAjO\n\nImmediately following an airplane crash anywhere in US territory, the National Transportation Safety Board dispatches a team of investigators to survey the wreckage, gather information from the airline and from air traffic control, and retrieve the plane's so-called \"black boxes.\"\n\nThese flight recorders \u2014 one stores cockpit audio recordings, the other stores airplane instrument data \u2014 are sent to NTSB's lab in Washington, DC, for analysis. There, officials listen to what are sometimes the pilots' final, panicked moments of life. They interpret not only what the pilots were saying before the crash but also any snaps, bangs, and alarms captured by the cockpit area microphone.\n\nBy combining those audio clues with data from the plane's instruments and sensors, as well as evidence from the scene, investigators can usually determine the cause of the crash, even in cases with no surviving witnesses.\n\n///\n\nVox.com is a news website that helps you cut through the noise and understand what's really driving the events in the headlines. Check out http://www.vox.com to get up to speed on everything from Kurdistan to the Kim Kardashian app. \n\nCheck out our full video catalog: http://goo.gl/IZONyE\nFollow Vox on Twitter: http://goo.gl/XFrZ5H\nOr on Facebook: http://goo.gl/U2g06o",
@@ -3743,6 +5631,12 @@ var videos = [{
     "duration": "00:05:31",
     "thumb": "http://i.ytimg.com/vi/VGzpv96AQKg/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Stated Clearly",
     "rating": 4.96215139442,
     "description": "Help fund us on Patreon! https://www.patreon.com/statedclearly\n\nIn our first animation of this series we learned how point mutations can edit genetic information. Here we see how duplication events can dramatically lengthen the genetic code of an individual. As point mutations add up in the duplicated region across generations, entirely new genes with new functions can evolve.\n\nIn the video we see three examples of gene duplications resulting in new traits for the creatures who inherit them: the evolution of a  venom gene in snakes, the evolution of leaf digestion genes in monkeys, and the evolution of burrowing legs in hunting dogs.  \n\nLearn more on our website at http://statedclearly.com/\n\nSCIENCE ADVISORS:\nJianzhi \"George\" Zhang, PhD\nJoanna Masel, PhD\nKini R Manjunatha, PhD\nNicholas Casewell, PhD\n\nSPONSOR:\nThis video was sponsored in part by Gene-Tools LLC, a company producing molecules used to study cancer and gene function. If your lab studies genetics, cancer, or developmental biology, make sure to check them out at http://www.gene-tools.com/\n\nNOTES:\n======================\nHow do new genes evolve?\n======================\nRead about the many different ways in which entirely new genes come into existence: http://www.nature.com/scitable/topicpage/origins-of-new-genes-and-pseudogenes-835\n\n================================\nObserved gene duplications In Bacteria\n================================\nHere, gene duplication was directly observed from generation to generation. After duplication, a new function was seen to evolve.\nhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC4392837/\n\n======================================\nObserved or inferred gene duplications In mice\n======================================\nHere, genetically identical mice were allowed to breed for several generations and then gene number variations were compared in the final populations.\nhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC2920193/\n\nhttp://journals.plos.org/plosone/article?id=10.1371/journal.pone.0012839\n\nHere, gene number variations were compared among populations of wild mice.\nhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC4042557/\n\n===========================\nFactor X Snake venom evolution\n===========================\nFactor X is what it\u2019s called in the blood. \nTrocarin D is what it\u2019s called in the venom gland.\n\nhttp://onlinelibrary.wiley.com/doi/10.1111/j.1538-7836.2006.02266.x/abstract\n\n==========================\nSnake venom is modified saliva\n==========================\nThe venom gland is derived from what are called \u201cDental Glands\u201d which are found in reptiles and produce oral secretions like our saliva glands. In particular, the venom gland appears to be homologous to the Duvernoy's gland in non-venomous snakes. Little research has been done on the function of Duvernoy\u2019s glands in non-venomous snakes but in most species, its secretions appear to be used as lubrication to aid in swallowing. Enzymes are also produced that may aid in killing, paralyzing, and digesting prey but these functions appear to be limited in their power and are only found in certain species. \nhttp://people.whitman.edu/~jacksok/ZJLS.pdf\n\nhttp://www.public.wsu.edu/~kkardong/Web%20of%20KVK_06b/Publications/Evolution_venom_app82.pdf\n\n============================\nHow do blood clots form?\n============================\nRead an overview of how the blood clotting cascade functions and may have evolved:\nhttp://www.millerandlevine.com/km/evol/DI/clot/Clotting.html\n\nWatch a cool 3D animation showing how Factor X interacts with other molecules and structures in the blood to form clots!\nhttps://www.youtube.com/watch?v=cy3a__OOa2M",
@@ -3759,6 +5653,12 @@ var videos = [{
     "duration": "00:08:56",
     "thumb": "http://i.ytimg.com/vi/G4VINRUe_o4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Vox",
     "rating": 4.97485470288,
     "description": "From script to screen making a TV show is a fast and furious process. Here's how they get made.  We took a look inside one of the best shows on television, The Americans to see how they go from script to screen. You can check out the full feature here: http://www.vox.com/2016/4/14/11411564/how-tv-gets-made-americans-fx-production\n\nSubscribe to our channel! http://goo.gl/0bsAjO\n\nVox.com is a news website that helps you cut through the noise and understand what's really driving the events in the headlines. Check out http://www.vox.com to get up to speed on everything from Kurdistan to the Kim Kardashian app. \n\nCheck out our full video catalog: http://goo.gl/IZONyE\nFollow Vox on Twitter: http://goo.gl/XFrZ5H\nOr on Facebook: http://goo.gl/U2g06o",
@@ -3775,6 +5675,12 @@ var videos = [{
     "duration": "00:03:10",
     "thumb": "http://i.ytimg.com/vi/P8aW1Ae6gcI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.96849303211,
     "description": "You\u2019re on a flight, and the drone of the engines is getting on your nerves, so you pop on a pair of noise-canceling headphones, and sweet, blessed silence descends. But those headphones aren\u2019t just muffling the sound -- they\u2019re actually making it go away!\n\nHosted by: Michael Aranda\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Justin Ove, Andreas Heydeck, Justin Lentz, Will and Sonja Marple, Benny, Chris Peters, Tim Curwick, Philippe von Bergen, Patrick, Fatima Iqbal, Lucy McGlasson, Mark Terrio-Cameron, Accalia Elementia, Kathy & Tim Philip, charles george, Kevin Bealer, Thomas J., and Patrick D. Ashmore.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttp://electronics.howstuffworks.com/gadgets/audio-music/noise-canceling-headphone3.htm\nhttp://mentalfloss.com/article/49988/how-do-noise-canceling-headphones-work\nhttp://www.phys.uconn.edu/~gibson/Notes/Section5_2/Sec5_2.htm\nhttps://thetartan.org/2010/2/8/scitech/noisecanceling",
@@ -3791,6 +5697,12 @@ var videos = [{
     "duration": "00:02:11",
     "thumb": "http://i.ytimg.com/vi/HOdEvhEjO2I/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Thought Caf\u00e9",
     "rating": 4.97295266717,
     "description": "Can we travel at light speed? We teamed up with Popular Science to find out!\n\nLike this video? Tweet us!: http://twitter.com/thoughtcafe\n\nWelcome to Thought Caf\u00e9 +, an collaborative animated series with people and organizations we love. Subscribe so you never miss a video!\n\nTake a 360\u00b0 tour of our solar system: https://youtu.be/ZnOTprOTHc8\nOur video on pubic hair with AsapScience: https://youtu.be/46LU6AxB1go\n\nMore Thought Caf\u00e9 + videos: http://bit.ly/1KpGB0s\n\nSound Design by Allan Levy\n\nFollow us!\n\nhttps://thoughtcafe.ca\nhttp://twitter.com/thoughtcafe\nhttp://thought-cafe.tumblr.com\nhttp://facebook.com/thoughtbubbler\nhttp://instagram.com/thoughtcafe\n@thoughtcafe on Snapchat & Periscope",
@@ -3807,6 +5719,12 @@ var videos = [{
     "duration": "00:05:22",
     "thumb": "http://i.ytimg.com/vi/RTn77uCYU_8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.95116254379,
     "description": "To check out any of the lectures available from Great Courses Plus go to http://ow.ly/K9mK301cRdj and get ready to learn about everything from cooking to calculus. \n\nPrevious episode on Quantum Tunneling and the de Broglie Wavelength: https://www.youtube.com/watch?v=-IfmgyXs7z8\n\nGet your own Space Time t\u00adshirt at http://bit.ly/1QlzoBi\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\nSupport us on Patreon! http://www.patreon.com/pbsspacetime\n\nHelp translate our videos! http://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nPlanck's Length is the length below which the concept of length loses its meaning. What exactly does that mean and what are the incredible implications this fact has upon our reality? To find out check out this episode of Space Time where Matt digs into the early history of quantum mechanics. \n\nWritten and hosted by Matt O\u2019Dowd\n\nMade by Kornhaber Brown (www.kornhaberbrown.com)\n\nComments by:\n\nBrunoJMR\nhttps://www.youtube.com/watch?v=Dgv2WWpm7_s&lc=z12wsxth5oa1fvgzy04ccjpwjq3jxhebbc0\n\nPrasad Deshmukh\nhttps://www.youtube.com/watch?v=Dgv2WWpm7_s&lc=z130zlxzpsnwudcfu22jc3go0yejelhrq04\n\nGary Palmer\nhttps://www.youtube.com/watch?v=Dgv2WWpm7_s&lc=z125vb0ygumeyzv1b224vni5sxfler2uu\n\nEd Eggermont\nhttps://www.youtube.com/watch?v=Dgv2WWpm7_s&lc=z12kehkorrqxffvng22utliaqknid3bht04\n\nDylan T\nhttps://www.youtube.com/watch?v=Dgv2WWpm7_s&lc=z123yzaazwi3gl5ag04cgrqjlvexgxhrndo",
@@ -3823,6 +5741,12 @@ var videos = [{
     "duration": "00:15:16",
     "thumb": "http://i.ytimg.com/vi/tQSbms5MDvY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "AsapSCIENCE",
     "rating": 4.69668666032,
     "description": "Your eyes and brain are pretty amazing!\nWatch ART vs SCIENCE: https://youtu.be/6Z37JA-wmgQ\nSubscribe: http://bit.ly/asapsci\n\nWritten by Rachel Salt, Gregory Brown and Mitchell Moffit\n\nGET THE ASAPSCIENCE BOOK: http://asapscience.com/book/\n\nFOLLOW US!\nInstagram and Twitter: @whalewatchmeplz and @mitchellmoffit \nClickable: http://bit.ly/16F1jeC and http://bit.ly/15J7ube\n\nAsapINSTAGRAM: https://instagram.com/asapscience/\nFacebook: http://facebook.com/AsapSCIENCE\nTwitter: http://twitter.com/AsapSCIENCE\nTumblr: http://asapscience.tumblr.com\nVine: Search \"AsapSCIENCE\" on vine!\n\nSNAPCHAT 'whalewatchmeplz' and 'pixelmitch'\n\nCreated by Mitchell Moffit (twitter @mitchellmoffit) and Gregory Brown (twitter @whalewatchmeplz).\n\nSend us stuff!\n\nASAPSCIENCE INC.\nP.O. Box 93, Toronto P\nToronto, ON, M5S2S6\n\nFurther Reading:\n\nNumber of discernible colors for color-deficient observers estimated from the MacAdam limits https://www.osapublishing.org/josaa/abstract.cfm?uri=josaa-27-10-2106 \n\nAfterimage of Perceptually Filled-in Surface http://www.cns.atr.jp/~kmtn/pdf/ssyksnScience01.pdf \n\nThe primary visual cortex fills in color http://www.pnas.org/content/101/52/18251.full \n\nMicrosaccades: Small steps on a long way http://www.sciencedirect.com/science/article/pii/S0042698909003691 \n\nMolecular Genetics of Human Color Vision: The Genes Encoding Blue, Green, and Red Pigments http://www.blueconemonochromacy.org/wp-content/uploads/2011/03/Science-1986-Nathans-193-202.pdf \n\nComparing levels of crosstalk with red/cyan, blue/yellow, and green/magenta anaglyph 3D glasses http://cmst.curtin.edu.au/wp-content/uploads/sites/4/2016/05/2010-11.pdf \n\nSpooky Science: Discovering the Eerie Colors behind Afterimages http://www.scientificamerican.com/article/bring-science-home-afterimages/ \n\nPlants and colour: Flowers and pollination http://www.sciencedirect.com/science/article/pii/S0030399208002442 \n\nThe influence of pigmentation patterning on bumblebee foraging from flowers of Antirrhinum majus. http://www.ncbi.nlm.nih.gov/pubmed/23420080\n\nWhy Are So Many Bird Flowers Red? http://www.ncbi.nlm.nih.gov/pmc/articles/PMC521733/ \n\nMighty Mutualisms: The Nature of Plant-pollinator Interactions http://www.nature.com/scitable/knowledge/library/mighty-mutualisms-the-nature-of-plant-pollinator-13235427 \n\nThe number of known plants species in the world and its annual increase http://www.biotaxa.org/Phytotaxa/article/view/phytotaxa.261.3.1",
@@ -3839,6 +5763,12 @@ var videos = [{
     "duration": "00:03:39",
     "thumb": "http://i.ytimg.com/vi/FhZrU6g9seg/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.97312730937,
     "description": "Ever wonder how lightning works? Scientists are still figuring it out, but what we do know is fascinating. Learn about positive and negative lightning, red sprites, blue jets, and ball lightning in this episode of SciShow!\n\nHosted by: Michael Aranda\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Justin Ove, Andreas Heydeck, Justin Lentz, Will and Sonja Marple, Benny, Chris Peters, Tim Curwick, Philippe von Bergen, Patrick, Fatima Iqbal, Lucy McGlasson, Mark Terrio-Cameron, Accalia Elementia, Kathy & Tim Philip, charles george, Kevin Bealer, Thomas J., and Patrick D. Ashmore.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nBasics about lightning (types and positive/negative)\nhttp://hyperphysics.phy-astr.gsu.edu/hbase/electric/elefie.html \nhttp://www.colorado.edu/physics/phys1120/phys1120_fa09/LectureNotes/ChargesElectricFields.pdf \nhttp://www.nssl.noaa.gov/education/svrwx101/lightning/types/\nhttps://www.ec.gc.ca/foudre-lightning/default.asp?lang=En&n=9353715C-1\nhttp://hyperphysics.phy-astr.gsu.edu/hbase/electric/lightning.html\nhttp://hyperphysics.phy-astr.gsu.edu/hbase/electric/ligseq.html\nhttps://www.loc.gov/rr/scitech/mysteries/thunder.html\nhttp://www.srh.noaa.gov/srh/jetstream/lightning/positive.html\nhttp://news.discovery.com/earth/is-lightning-hotter-than-the-sun.htm\nhttp://www.srh.noaa.gov/jetstream/lightning/lightning_max.html \nhttps://www.unz.org/Pub/SaturdayRev-1972may13-00036 \nhttp://www.srh.noaa.gov/srh/jetstream/lightning/thunder.html \nhttp://science.howstuffworks.com/nature/natural-disasters/lightning2.htm \n\nRed Sprites and Blue Jets\nhttp://www.ee.psu.edu/directory/facultyinfo/pasko/Publications/PaskoPSST07.pdf \nhttp://www.popsci.com/what-red-sprite\nhttp://www.smithsonianmag.com/science-nature/scientists-capture-rare-photographs-of-red-lightning-544670/?no-ist\nhttps://www.sciencedaily.com/releases/2008/03/080328102738.htm\nhttp://elf.gi.alaska.edu/\n\nBall lightning\nhttps://www.newscientist.com/article/dn9293-physicists-create-great-balls-of-fire/\nhttp://www.ipp.mpg.de/ippcms/eng/presse/archiv/05_06_pi\nhttp://phys.org/news/2012-10-mystery-ball-lightning.html\nhttp://physics.aps.org/articles/v7/5\nhttp://phys.org/news/2014-01-instance-ball-lightning-captured-video.html\nhttp://news.discovery.com/earth/weather-extreme-events/ball-lightning-121012.htm\n\nImage sources:\nhttp://www.publicdomainpictures.net/view-image.php?image=94592&picture=desert-lightning\nhttps://commons.wikimedia.org/wiki/File:FoggDam-NT.jpg\nhttps://commons.wikimedia.org/wiki/Lightning#/media/File:Lightning_slow_motion.gif\nhttps://commons.wikimedia.org/wiki/File:The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg?fastcci_from=17827&c1=17827&d1=15&s=200&a=fqv\nhttps://commons.wikimedia.org/wiki/File:Anvil-to-ground_lightning.jpg\nhttps://commons.wikimedia.org/wiki/File:ISS-44_Red_Sprites,_northwest_Mexico.jpg\nhttps://commons.wikimedia.org/wiki/File:BigRed-Sprite.jpg\nhttps://www.youtube.com/watch?v=dY5F_gEexAY&feature=youtu.be\nhttps://commons.wikimedia.org/wiki/File:Ball_lightning_spectrum.svg",
@@ -3855,6 +5785,12 @@ var videos = [{
     "duration": "00:03:43",
     "thumb": "http://i.ytimg.com/vi/fzNk4w2k2h0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "It's Okay To Be Smart",
     "rating": 4.94886136636,
     "description": "Get your #ididascience shirt here! http://dftba.com/besmart \nTweet this \u21d2 http://bit.ly/OKTBScmb Share on FB \u21d2 http://bit.ly/OKTBScmbFB \n\u2193 More info and sources below \u2193\n\nVintage Project Echo footage from \u201cThe Big Bounce\u201d (1960): https://archive.org/details/BigBounc1960 \n\nListen to the original static signal captured by Penzias and Wilson at Bell Labs: https://media-bell-labs-com.s3.amazonaws.com/pages/20140518_1635/narrated_thermal_noise_02_Track_2.m4a \n\n----\n\nHave an idea for an episode or an amazing science question you want answered? Leave a comment or check us out at the links below!\nLike us on Facebook: http://www.facebook.com/itsokaytobesmart\nFollow on Twitter: http://twitter.com/okaytobesmart \nhttp://twitter.com/jtotheizzoe\nFollow on Tumblr: http://www.itsokaytobesmart.com \nFollow on Instagram: http://instagram.com/jtotheizzoe \nFollow on Snapchat: YoDrJoe\n\n-----------------\nIt\u2019s Okay To Be Smart is written and hosted by Joe Hanson, Ph.D.\nFollow me on Twitter: @jtotheizzoe\nProduced by PBS Digital Studios: http://www.youtube.com/user/pbsdigitalstudios \n\nMusic via APM\nStock images from SciencePhoto http://www.sciencephoto.com/  and Shutterstock http://www.shutterstock.com \nStock footage from Videoblocks (unless otherwise noted) http://www.videoblocks.com",
@@ -3871,6 +5807,12 @@ var videos = [{
     "duration": "00:04:12",
     "thumb": "http://i.ytimg.com/vi/ZvrHL7-c1Ys/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "3Blue1Brown",
     "rating": 4.8742085268,
     "description": "In math, exponents, logarithms, and roots all circle around the same idea, but the notation for each varies radically.  The triangle of power is an alternate notation, which I find to be absolutely beautiful.\n\n(This is the corrected version of the one I put out a month or so ago, in which my animation for all the inverse operations was incorrect)\n\nHere's a sketch from the math redditer Cosmologicon showing how this might be usual with practical space considerations: http://i.imgur.com/hAeJokq.jpg\n\nThis original comes from an answer to a math exchange post by Alex Jordan, which you can find here: http://math.stackexchange.com/questions/30046/alternative-notation-for-exponents-logs-and-roots\n\nI also briefly flashed a blog post with another interesting alternative for logarithm notation: http://www.solidangl.es/2015/04/a-radical-new-look-for-logarithms.html",
@@ -3887,6 +5829,12 @@ var videos = [{
     "duration": "00:07:42",
     "thumb": "http://i.ytimg.com/vi/sULa9Lc4pck/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.94136845119,
     "description": "Thanks to the Space Telescope Science Institute (STScI) and NASA\u2019s James Webb Space Telescope for supporting this video! In particular, thanks to Dan Coe of STScI for taking the time to chat with me about what we do and don\u2019t know about baby galaxies and how they're born.\n\nThanks to everyone who supports MinutePhysics on Patreon! http://www.patreon.com/minutephysics\n\nLink to Patreon supporters here: http://www.minutephysics.com/supporters.html\n\nMusic by Nathaniel Schroeder, http://www.soundcloud.com/drschroeder\n\nREFERENCES\n\nStar formation timescale: http://www.astronomy.ohio-state.edu/\\~pogge/Ast162/Unit2/starform.html\n(Protostars last ~10^5 years)\n\nJames Webb Space Telescope: http://jwst.nasa.gov\n\nGalaxy formation timescales: http://www.astronomy.ohio-state.edu/\\~pogge/Ast162/Unit4/interact.html\n\nHubble eXtreme Deep Field (aka some baby galaxies!) http://xdf.ucolick.org\n\nPopulation I vs Population II stars: http://hyperphysics.phy-astr.gsu.edu/hbase/starlog/pop12.html\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nCreated by Henry Reich",
@@ -3903,6 +5851,12 @@ var videos = [{
     "duration": "00:02:55",
     "thumb": "http://i.ytimg.com/vi/kif4ON6QOPE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The School of Life",
     "rating": 4.88070484581,
     "description": "The set of ideas we can call Romanticism is responsible for making our relationships extremely difficult. We shouldn\u2019t give up on love; we should just recognise that it\u2019s a skill, not an emotion.\r\n\r\nIf you like our films, take a look at our shop (we ship worldwide): http://www.theschooloflife.com/shop/most-popular/?utm_source=You%20Tube&utm_medium=YouTube%20video%20description%20-%20most%20popular&utm_campaign=YouTube%20video%20description%20-%20most%20popular\r\n\r\nWatch more films on RELATIONSHIPS:\r\nhttp://bit.ly/TSOrelationships\r\n\r\nProduced in collaboration with Zedem Media\r\nhttp://www.zedemanimations.com",
@@ -3919,6 +5873,12 @@ var videos = [{
     "duration": "00:05:28",
     "thumb": "http://i.ytimg.com/vi/jltM5qYn25w/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The School of Life",
     "rating": 4.78062015504,
     "description": "So much in our culture emphasises long-term love; it may be time to hear a word or two in praise of the short-term approach. If you like our films, take a look at our shop (we ship worldwide): http://www.theschooloflife.com/shop/most-popular/?utm_source=You%20Tube&utm_medium=YouTube%20video%20description%20-%20most%20popular&utm_campaign=YouTube%20video%20description%20-%20most%20popular\n\nWatch more films on RELATIONSHIPS:\nhttp://bit.ly/TSOLrelationships\n\nProduced in collaboration with Ana Tortos\nhttp://www.anatortos.com",
@@ -3935,6 +5895,12 @@ var videos = [{
     "duration": "00:06:55",
     "thumb": "http://i.ytimg.com/vi/GRwWt-cFKNY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "This Place",
     "rating": 4.96365013253,
     "description": "The iterated prisoner's dilemma is just like the regular game except you play it multiple times with an opponent and add up the scores. But it can change the strategy and has more real world applications as it resembles a relationship.\n\nTHE PRISONER'S DILEMMA https://www.youtube.com/watch?v=t9Lo2fgxWHw\n\nFOOT NOTES\nAdditional requirements for an iterated prisoner\u2019s dilemma game\n\nFor a one off prisoner\u2019s dilemma, they payoffs can just be like 5 greater than 3 greater than 1 greater than 0 (like in the video). But for an iterated prisoner\u2019s dilemma game to be an iterated prisoner\u2019s dilemma game, the total payout for both cooperating has to be bigger than the total payout for one person cooperating and one person defecting. Basically 2x3 greater than 5+0. \nIf it was like 8 points for defecting while the other cooperates, it would still follow the on off prisoners dilemma format, 8 greater than 3 greater than 1 greater than 0. But with an iterated prisoner\u2019s dilemma game the best strategy would be to go back and forth between cooperating and defecting (giving them on average 4 each, rather than 3 for both cooperating). Which can happen for sure, but it\u2019s a different sort of game.\nWith a one-off prisoner\u2019s dilemma this doesn\u2019t matter so much. Trade might change the relationship, but it should still appear as a prisoner\u2019s dilemma. The incentives that make it the prisoner\u2019s dilemma would be the same. Their best strategies would still be to always defect. \n\n\nTournament 1 vs tournament 2 (A set number of rounds vs not knowing when it ends)\n\nThere is a bit of a logical quirk when the players know how many rounds there are. A big part of game theory is getting into your opponents head, predicting what they will do. Also thinking about the whole game and reasoning backwards.\nSo when they know how many rounds there are, the last round against any given opponent, has no consequences. If you defect in the first round the opponent can reciprocate and you probably won\u2019t be better off or it. But an opponent can\u2019t reciprocate against any defecting in that last round. And since no matter what the other person is going to do, defecting gives a better payout. A player should defect in the last round... so should everyone really. They will only get more for doing that. We should expect them to do it.\nBut then if everyone is defecting in the last round, not in response to anything that happened before, then really the second to last round also has no consequences. Nobody is going to defect because you defected in the second to last round. What they\u2019re doing in that next round is already set, if we defect in the second to last round we\u2019re not giving up future gains we could have gotten while cooperating. So everyone should defect in the second to last round because there are no consequences and the payoff is higher. But then if everyone is defecting in these rounds, then the third to last round also has no consequences\u2026. Blah blah, defect the whole time. With this reasoning the correct strategy is to always defect. \nBut we already know that ALWAYS DEFECT isn\u2019t a great strategy here. Because defecting has consequences. \nBut reasoning backwards, in this context, only works if everyone is doing it. If everyone has thought that way. If everyone reasoned this way, then everyone is always defecting. Then always defecting is the best strategy against that.  \nBut the people who submitted for this tournament clearly didn\u2019t reason this way. \nMaybe because most of the time in the real world, we don\u2019t know how many rounds there are, so we always think our actions will have consequences. Also we rarely interact with one person in isolation. We can build a reputation for being un-cooperative. If we are dicks to people who we are about to never see again those who will may not want to cooperate with us as much. So those who submitted thought like this. \nMaybe because they didn\u2019t know about the idea. \nBut even still, in the context of that tournament it would still better to defect in the last round. I suspect TIT FOR TAT or FORGIVING TIT FOR TAT modified to defect in the last round would have won... in the tournaments at least. If you're done with a relationship and you kill them and take your stuff, the people watching you won'y want to cooperate with you.\nFor that tournament they actually changed the definition of what a \u201cnice\u201d strategy was to allow defecting in those last few rounds against an opponent. The weird space where the two ideas meet.\n\n\nCooperating with whom? \n\nCooperation and defection refer to between the two players. Not necessarily with outside forces like with the police.\n\nPatreon https://patreon.com/user?u=849925",
@@ -3951,6 +5917,12 @@ var videos = [{
     "duration": "00:09:59",
     "thumb": "http://i.ytimg.com/vi/BOvAbjfJ0x0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Art of the Problem",
     "rating": 4.94146341463,
     "description": "The Voltaic pile and the discovery of electromagnetism. These technologies lead us to electromagnetic communication systems...and a communications revolution. Featuring observations by Alessandro Volta & Hans Christian Oersted.\n\nReferences:\n\"On the Electricity excited by the mere Contact of conducting Substances of different Kinds\" (Alessandro Volta, 1800)\nhttp://www.chemteam.info/Chem-History/Volta-1800.html\n\nStock footage: \nPrelinger Archives: http://archive.org/details/Telephon1946",
@@ -3967,6 +5939,12 @@ var videos = [{
     "duration": "00:06:26",
     "thumb": "http://i.ytimg.com/vi/8jlMuBn6Zow/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Art of the Problem",
     "rating": 4.92592592593,
     "description": "History of Static Electricity - Electrostatic Telegraphs (case study)\nFeaturing: Benjamin Franklin, Alessandro Volta, Thales of Miletus",
@@ -3983,6 +5961,12 @@ var videos = [{
     "duration": "00:09:02",
     "thumb": "http://i.ytimg.com/vi/3QLnosS853Q/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Art of the Problem",
     "rating": 4.98333333333,
     "description": "History of the telegraph from the signal fire to 18th Century semaphore lines. We visit ideas of Polybius, Aeneas Tactius, Sushruta, Francis Bacon, Robert Hooke and others.\n\nReferences:\nCommunications: An International History of the Formative Years (Burns)\nUnderstanding Media (McLuhan)\nThe Mathematical Theory of Communication (Shannon)\nThe Histories (Polybius) \ntranslation link: http://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/home.html)",
@@ -3999,6 +5983,12 @@ var videos = [{
     "duration": "00:09:20",
     "thumb": "http://i.ytimg.com/vi/WrNDeYjcCJA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Art of the Problem",
     "rating": 4.94318181818,
     "description": "History of the Alphabet. This video introduces the Hieroglyphic, Cuneiform, Hieratic, Demotic & Phoenician writing systems. It presents information as a series of selections from a finite collection of symbols...\n\nReferences (book):\n- The Alphabetic Labyrinth (Drucker)\n- Letter Perfect (David Sacks)\n- Empire and Communications (Innis)\n- The Mathematical Theory of Communication (Shannon)\n\nImage References:\n- http://cuneiform.library.cornell.edu/ (Cuneiform Library at Cornell)\n- Egyptian photography thanks to Anne Mullier (Louvre, Department of Egyptian Antiquities) http://ritournelleblog.com/\n\nScript Advisors:\nAli McMillan / Cameron Murray \n\nExtra voice footage thanks to: \nFeroze Shahpurwal\u200ba",
@@ -4015,6 +6005,12 @@ var videos = [{
     "duration": "00:09:23",
     "thumb": "http://i.ytimg.com/vi/MM6BrZwkBRA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Vsauce2",
     "rating": 4.9438311815,
     "description": "In Egypt's sandy silence, all alone,\nStands a gigantic Leg, which far off throws\nThe only shadow that the Desert knows:\u2014\n\"I am great OZYMANDIAS,\" saith the stone,\n\"The King of Kings; this mighty City shows\n\"The wonders of my hand.\"\u2014 The City's gone,\u2014\nNought but the Leg remaining to disclose\nThe site of this forgotten Babylon.\n\nWe wonder,\u2014and some Hunter may express\nWonder like ours, when thro' the wilderness\nWhere London stood, holding the Wolf in chace,\nHe meets some fragment huge, and stops to guess\nWhat powerful but unrecorded race\nOnce dwelt in that annihilated place.\n\n-Horace Smith's Ozymandias\n\nCORRECTIONS\n\n7:33 - World Population figure  should be 0.27%\n8:08 - Digital Voice Recorder should be Sony PCM \n\n****** LINKS AND SOURCES *******\n\nBOOKS\n\nA Brief History Of Diaries by Alexandra Johnson\nhttp://goo.gl/gEaxcQ\n\nDocumenting Individual Identity by Caplan and Torpey\nhttp://goo.gl/1e68Wi\n\nLINKS\n\nHumai - Human Resurrection Through AI\nhttp://humaitech.com\n\nChristopher Columbus XX\nhttp://www.thepanamadigest.com/2010/03/christopher-columbus-in-panama-for-tourism-project/\nhttp://www.bbc.com/news/magazine-15283071\nhttp://articles.latimes.com/1991-10-09/local/me-191_1_christopher-columbus\nhttp://www.ejercito.mde.es/gl/unidades/Toledo/acinf/Noticias/2014/140318.html\n\nCylinder Seals In Mesopotamia\nhttp://goo.gl/0Ly7oH\nhttp://goo.gl/f3j1zx\nhttp://goo.gl/ztFP7I\nhttp://goo.gl/8Ewf88\nhttp://goo.gl/ylVr2D\n\nCylinder Seal of Ibni-Sharrum by Denis Pitzsalis\nhttps://goo.gl/hyBqIF\n\nSocial Group Size Predicts the Evolution Of Identity\nhttp://goo.gl/yzSdMq\n\nSeikilos Epitaph Performed by Marcus Harvey\nhttps://goo.gl/A7QQiT\n\nJean Anthelme Brillat-Savarin\nhttps://goo.gl/c3jRLG\n\nLiteracy - Our World In Data\nhttp://goo.gl/isb4A6\n\nProbate Records\nhttps://goo.gl/FDhT4I\n\nDiaries\nhttp://goo.gl/V09l6\n\nVenus Tan-Tan & Berekhat Ram\nhttp://goo.gl/u0rt7\n\nPaul Revere Probate Record\nhttp://goo.gl/97z89K\n\nAlexander Graham Bell\u2019s Ear Phonautograph\nhttp://goo.gl/jAHFHb\nhttp://goo.gl/xghDYu\n\nLuca Landucci\nhttps://goo.gl/hTnI0l\n\nOn The Execution Of Friar Girolamo Savonarola\nhttp://goo.gl/WHq8um\n\nMarcus Aurelius - The Meditations\nhttp://goo.gl/7aQs6\n\nAmerican Indian Oral Tradition Painting\nBuffalo Bill Center of the West / The Art Archive at Art Resource, NY\n\nThe Republic Of Letters\nhttp://goo.gl/jPidq\nhttp://goo.gl/M39odJ\n\nLibrary Of Congress\nhttps://goo.gl/xgRHHV\n\n*************************************\n\nVsauce2 Links\nTwitter: http://www.twitter.com/VsauceTwo\nFacebook: https://www.facebook.com/VsauceTwo\nWebsite: http://www.vsauce.com\n\nWritten, Produced, Edited and Hosted by Kevin Lieber\nInstagram: http://instagram.com/kevlieber\nTwitter: https://twitter.com/kevleeb\nWebsite: http://kevinlieber.com\n\nContributing Editor Matthew Tabor, Koala Fight Media\nhttp://koala.fm/\n\nVFX by Eric Langlay\nhttps://www.youtube.com/watch?v=QpbXVXPFAVI\n\nAdditional Animation by Lulu Jiang \nhttp://www.lulujiang.com/\n\nProduction Assistant Michael Watson\nhttps://twitter.com/MichaelDWatson1\n\nSound Design by Jay Pellizzi and Jared Tuttle\nhttp://hothead.tv/\nhttp://jaypellizzi.com/\n\nOutro Song: Block Out The Sun by Paul Russel\n\nSpecial Thanks To Ryan Bond, Noah Tesch, Kathleen Kuiper And The Folks At Encyclopedia Britannica\nhttp://www.britannica.com/\n\nSpecial Thanks To The Morgan Library & Museum\nhttp://www.themorgan.org/\n\nSpecial Thanks To Chris From Zanzibar Land For Creating The Vsauce Cylinder Seal\nhttps://www.etsy.com/shop/ZanzibarLand\nhttps://www.instagram.com/zanzibar_land/\n\nSpecial Thanks To Expert Mesopotamia Joshua J. Mark\nhttp://www.ancient.eu/user/JPryst/\n\nSpecial Thanks To You.",
@@ -4031,6 +6027,12 @@ var videos = [{
     "duration": "00:12:03",
     "thumb": "http://i.ytimg.com/vi/DY6VIllK00Q/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Wireless Philosophy",
     "rating": 4.91718946048,
     "description": "In this Wireless Philosophy video, Ian Olasov (CUNY) introduces Bayes' Theorem of conditional probability, and the related Base Rate Fallacy.\n\nSubscribe!\nhttp://bit.ly/1vz5fK9\n\nMore on Ian Olasov:\nhttp://bit.ly/247yqRm\n\n----\n\nWi-Phi @ YouTube:\nhttp://bit.ly/1PX0hLu\n\nWi-Phi @ Khan Academy:\nhttp://bit.ly/1nQJcF7\n\nTwitter:\nhttps://twitter.com/wirelessphi\n\nFacebook:\nhttp://on.fb.me/1XC2tx3\n\nInstagram:\n@wiphiofficial\n\n----\n\nHelp us caption & translate this video!\n\nhttp://amara.org/v/IQI1/",
@@ -4047,6 +6049,12 @@ var videos = [{
     "duration": "00:06:21",
     "thumb": "http://i.ytimg.com/vi/OqmJhPQYRc8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.81319167773,
     "description": "View full lesson: http://ed.ted.com/lessons/how-north-america-got-its-shape-peter-j-haproff\n\nNorth America didn\u2019t always have its familiar shape, nor its famed mountains, canyons, and plains: all of that was once contained in an unrecognizable mass, buried deep in Rodinia, a huge supercontinent that lay on the face of the Earth. Peter J. Haproff explains how it took millions of years and some incredible plate tectonics to forge the continent we know today.\n\nLesson by Peter J. Haproff, animation by Globizco.",
@@ -4063,6 +6071,12 @@ var videos = [{
     "duration": "00:04:58",
     "thumb": "http://i.ytimg.com/vi/jzqnUvE66HA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Artifexian",
     "rating": 4.91985940246,
     "description": "AEIOU - are not vowels! Despite what you may have learned in school. Everything you ever wanted to know about vowels and then some.\n\n\u2014\u2014\u2014\u2014\u2014\n\n\u25ba DISCUSS THIS EPISODE ON REDDIT: https://goo.gl/2RvTLr\n\n\u2014\u2014\u2014\u2014\u2014\n\nWATCH MORE:\n\n\n\u25ba Stars : https://goo.gl/DTefZk\n\u25ba Galaxies : https://goo.gl/y1d4zn\n\u25ba Planetary Systems : https://goo.gl/jQy3o2\n\u25ba Planets : https://goo.gl/KWhpYd\n\u25ba Orbits : https://goo.gl/hhqZ7z\n\u25ba Languages : https://goo.gl/KUng4y\n\n\u2014\u2014\u2014\u2014\u2014\n\nARTIFEXIAN ON THE INTERWEB:\n\n\u25ba Youtube: https://www.youtube.com/artifexian\n\u25ba Facebook: https://www.facebook.com/artifexian\n\u25ba Twitter: https://www.twitter.com/artifexian\n\u25ba Podcast: http://www.artifexian.com/\n\u25ba Reddit: https://www.reddit.com/r/artifexian/\n\n\u2014\u2014\u2014\u2014\u2014\n\nLINKS and MORE INFO:\n\n\u25ba Ling Space - Vowels and the IPA: https://goo.gl/NclYLl\n\u25ba Vowel Pronunciation Guide:  https://goo.gl/YGlVMq\n\u25ba Vowel Lecture 1: https://goo.gl/Vj62rS\n\u25ba Vowel Lecture 2: https://goo.gl/fJJ5WQ\n\u25ba Berkeley Vowel Lecture Slides: http://goo.gl/BYRzrR\n\u25ba How to Overtone Sing: https://goo.gl/wQNKCx \n\n\u2014\u2014\u2014\u2014\u2014\n\nCREDITS:\n\nMusic:\n\n\"Unwritten Return\" Kevin MacLeod (incompetech.com) \nLicensed under Creative Commons: By Attribution 3.0\nhttp://creativecommons.org/licenses/by/3.0/\n\n\u2014\u2014\u2014\u2014\u2014\n\nThank you all so much for watching\u2026Edgar out!",
@@ -4079,6 +6093,12 @@ var videos = [{
     "duration": "00:10:20",
     "thumb": "http://i.ytimg.com/vi/nhOhZ5HSd54/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "NASA.gov Video",
     "rating": 4.46666666667,
     "description": "The artist conception shows a newly formed star surrounded by a swirling protoplanetary disk of dust and gas. Debris coalesces to create rocky 'planetesimals' that collide and grow to eventually form planets. The results of this study show that small planets form around stars with a wide range of heavy element content suggesting that their existence might be widespread in the galaxy.   Credit: University of Copenhagen/Lars Buchhave",
@@ -4095,6 +6115,12 @@ var videos = [{
     "duration": "00:01:01",
     "thumb": "http://i.ytimg.com/vi/UNPj7e6XJCQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "djxatlanta",
     "rating": 4.94736842105,
     "description": "source paper: http://arxiv.org/abs/1010.1489\r\n\r\nWe use SPH simulations with an approximate radiative cooling prescription to model evolution of a massive and large (100 AU) very young protoplanetary disc. We also model dust growth and gas-grain dynamics with a second fluid approach. It is found that the disc fragments onto a large number of 10 Jupiter mass clumps that cool and contract slowly. Some of the clumps evolve onto eccentric orbits delivering them into the inner tens of AU, where they are disrupted by tidal forces from the star. Dust grows and sediments inside the clumps, displaying a very strong segregation, with the largest particles forming dense cores in the centers. The density of the dust cores may exceed that of the gas and is limited only by the numerical constraints, indicating that these cores should collapse into rocky planetary cores. One particular giant planet embryo migrates inward close enough to be disrupted at about 10 AU, leaving a self-bound solid core of about 7.5 Earth's mass on a low eccentricity orbit at a radius of 8 AU. These simulations support the recent suggestions that terrestrial and giant planets may be the remnants of tidally disrupted giant planet embryos.\r\n\r\ncredit: Seung-Hoon Cha, Sergei Nayakshin\r\n\r\nsource: http://www.astro.le.ac.uk/~shc14/",
@@ -4111,6 +6137,12 @@ var videos = [{
     "duration": "00:00:45",
     "thumb": "http://i.ytimg.com/vi/3YmeajE-TT8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.96583699366,
     "description": "GO HERE NOW: https://www.einsteinathome.org\nEinstein@Home wikipedia page: https://en.m.wikipedia.org/wiki/Einstein@Home\n\nThis video is about gravitational waves in the weak field limit as discovered by the LIGO collaboration, explained by parallels to electromagnetic radiation, sound waves, water waves, etc. I want to see Cat LIGO ASAP!\n\nThanks to everyone who supports MinutePhysics on Patreon! http://www.patreon.com/minutephysics\n\nLink to Patreon supporters here: http://www.minutephysics.com/supporters.html\n\nMusic by Nathaniel Schroeder, http://www.soundcloud.com/drschroeder\n\nREFERENCES\n\nLinearized Einstein Equations: http://web.phys.ntnu.no/\\~mika/week10.pdf\n\nGravitational Wave Detection: http://iopscience.iop.org/article/10.1088/0034-4885/72/7/076901/meta\n\nLIGO Mirror Test mass suspension/isolation: http://www.gwoptics.org/hardware\\_hacks/mirror\\_suspension/\n\nPower radiation from Gravitational waves of Earth-Sun system: https://en.wikipedia.org/wiki/Gravitational\\_wave#Power\\_radiated\\_by\\_orbiting\\_bodies\n\nPower radiation of electromagnetic waves from accelerating charge (Larmor formula): https://en.wikipedia.org/wiki/Larmor\\_formula\n\nStrength & Directionality of Radiation from a binary source (p 12): http://www.aei.mpg.de/\\~schutz/download/lectures/AzoresCosmology/Schutz.AzoresLecture2.pdf\n\nNewtonian limit of GR, Metric as gravitational potential: https://ned.ipac.caltech.edu/level5/March01/Carroll3/Carroll4.html\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nCreated by Henry Reich",
@@ -4127,6 +6159,12 @@ var videos = [{
     "duration": "00:03:21",
     "thumb": "http://i.ytimg.com/vi/YHS9g72npqA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "It's Okay To Be Smart",
     "rating": 4.67570009033,
     "description": "Join the #AnythingButPepper movement! \nTweet this video \u21d2 http://bit.ly/OKTBSsp Share on FB \u21d2 http://bit.ly/OKTBSspFB \n\u2193 More info and sources below \u2193\n\nGet yourself an awesome IOTBS shirt! http://dftba.com/besmart \n\n\u201cSalt: A World History\u201d by Mark Kurlansky http://amzn.to/29vj9m4 \n\n\u201cPepper: A History of the World\u2019s Most Influential Spice\u201d by Marjorie Shaffer http://amzn.to/29BORCW \n\n----------------\nHave an idea for an episode or an amazing science question you want answered? Leave a comment or check us out at the links below!\nLike us on Facebook: http://www.facebook.com/itsokaytobesmart\nFollow on Twitter: http://twitter.com/okaytobesmart \nhttp://twitter.com/jtotheizzoe\nFollow on Tumblr: http://www.itsokaytobesmart.com \nFollow on Instagram: http://instagram.com/jtotheizzoe \nFollow on Snapchat: YoDrJoe\n\n-----------------\nIt\u2019s Okay To Be Smart is written and hosted by Joe Hanson, Ph.D.\nFollow me on Twitter: @jtotheizzoe\nProduced by PBS Digital Studios: http://www.youtube.com/user/pbsdigitalstudios \n\nMusic via APM\nStock images from SciencePhoto http://www.sciencephoto.com/  and Shutterstock http://www.shutterstock.com \nStock footage from Videoblocks (unless otherwise noted) http://www.videoblocks.com",
@@ -4143,6 +6181,12 @@ var videos = [{
     "duration": "00:05:48",
     "thumb": "http://i.ytimg.com/vi/yzBIarGJjHk/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow Space",
     "rating": 4.97939737317,
     "description": "The software running Apollo\u2019s guidance computers was literally woven by hand by \"little old ladies.\" \n\nHosted by: Hank Green\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Kathy & Tim Philip, Kevin Bealer, Andreas Heydeck, Thomas J., Accalia Elementia, Will and Sonja Marple. James Harshaw, Justin Lentz, Chris Peters, Bader AlGhamdi, Benny, Tim Curwick, Philippe von Bergen, Patrick Merrithew, Fatima Iqbal, Mark Terrio-Cameron, Patrick D. Ashmore, and charles george.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttp://history.nasa.gov/computers/Ch2-5.html\n\nhttp://www.apolloartifacts.com/2008/01/rope-memory-mod.html\n\nhttp://www.computerhistory.org/revolution/topics#exhibition\n\nhttp://www.computerhistory.org/revolution/memory-storage/8/253\n\nhttp://drhart.ucoz.com/index/core_memory/0-123\n\nhttp://blog.nasm.si.edu/space/the-rope-mother-margaret-hamilton/\n\nhttps://books.google.com/books?id=KbIFcxOqKosC&pg=PA38&lpg=PA38&dq=transformer+function+core+rope+memory&source=bl&ots=VhQlylOn30&sig=VoYQPBc8iav5LApVQSa3CZzo88g&hl=en&sa=X&ved=0ahUKEwjGrYTY8bfMAhVC7GMKHc7jDFoQ6AEIRTAG#v=onepage&q=transformer%20function%20core%20rope%20memory&f=false\n\nhttp://freshspot.typepad.com/.shared/image.html?/photos/uncategorized/2008/01/05/rope_memory.jpg\nhttp://whatis.techtarget.com/reference/History-of-the-punch-card\n\nMemory size discussion:\nhttp://cosmoquest.org/forum/showthread.php?100795-how-much-memory-did-the-apollo-spacecrafts-have",
@@ -4159,6 +6203,12 @@ var videos = [{
     "duration": "00:04:07",
     "thumb": "http://i.ytimg.com/vi/f2ZCVnk-oRU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "JackTech",
     "rating": 4.95762439807,
     "description": "Have you ever wondered how the Game Boy works? How the games that defined the history of the handheld world were made?\nThis video series hopes to answer these questions and more concerning one of the most successful gaming platforms ever.\n\nNarration aided and recorded by the lovely Sarah - https://smstang.com/",
@@ -4175,6 +6225,12 @@ var videos = [{
     "duration": "00:11:21",
     "thumb": "http://i.ytimg.com/vi/ecTQVa42sJc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The 8-Bit Guy",
     "rating": 4.95204216074,
     "description": "Support this channel on Patreon\nhttps://www.patreon.com/8bitguy1\n\nThanks go out to my guest stars:\nLazy Game Reviews\nhttps://www.youtube.com/user/phreakindee\n\nModern Vintage Gamer\nhttps://www.youtube.com/user/jimako123\n\nClassic Gaming Quarterly\nhttps://www.youtube.com/user/CGQuarterly\n\nThe Obsolete Geek\nhttps://www.youtube.com/user/robivy64",
@@ -4191,6 +6247,12 @@ var videos = [{
     "duration": "00:15:08",
     "thumb": "http://i.ytimg.com/vi/EHRc-QMoUE4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.94664119707,
     "description": "Listen to \"The Paradox of Choice\" for free at http://www.Audible.com/minutephysics\n\nThis video is about the orbital mechanics of why it\u2019s so hard to crash into the sun \u2013 the energy it takes to get there is astoundingly high, compared with leaving the solar system.\n\nThanks to everyone who supports MinutePhysics on Patreon! http://www.patreon.com/minutephysics\n\nLink to Patreon supporters here: http://www.minutephysics.com/supporters.html\n\nMusic by Nathaniel Schroeder, http://www.soundcloud.com/drschroeder\n\nREFERENCES\n\nInternational Atomic Energy Association report on nuclear waste storage:\nhttp://www-pub.iaea.org/MTCD/publications/PDF/LTS-RW_web.pdf\n\nAnd Slate\u2019s article on actual potential solutions to nuclear waste: http://www.slate.com/articles/health_and_science/green_room/2009/11/atomic_priesthoods_thorn_landscapes_and_munchian_pictograms.html\n\nInfo about sun dive delta v from low earth orbit\nhttp://space.stackexchange.com/questions/3612/calculating-solar-system-escape-and-and-sun-dive-delta-v-from-lower-earth-orbit\n\nOberth effect\nhttps://en.m.wikipedia.org/wiki/Oberth_effect\nMore on rocket burns\nhttp://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20100033146.pdf\n\nSun dive probe\nhttp://news.nationalgeographic.com/news/2010/09/100909-science-space-sun-new-nasa-solar-probe-plus-dive-bomb/\nOther plans (jupiter assists) vs repeat Venus assist:\nhttp://solarprobe.gsfc.nasa.gov/spp_mission.htm\n\nSolar Probe Plus technical paper:\nhttp://issfd.org/ISSFD_2014/ISSFD24_Paper_S6-2_Guo.pdf\n\nMercury Messenger Trajectory: https://en.wikipedia.org/wiki/MESSENGER#/media/File:MESSENGER_trajectory.svg\n\nOnline calculator for orbital velocities, escape velocities, etc:\nhttp://keisan.casio.com/exec/system/1360310353\n\nEffective potential (possibly with interactive mathematica notebook?):\nhttp://physics.oregonstate.edu/portfolioswiki/doku.php?id=activities:main&file=cfeffpotential\nhttps://en.m.wikipedia.org/wiki/Effective_potential\nhttps://www.phy.duke.edu/~rgb/Class/phy51/phy51/node8.html\n\nEquations for elliptical orbit speeds, etc:\nhttps://en.m.wikipedia.org/wiki/Apsis\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nCreated by Henry Reich",
@@ -4207,6 +6269,12 @@ var videos = [{
     "duration": "00:03:13",
     "thumb": "http://i.ytimg.com/vi/LHvR1fRTW8g/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.971738846,
     "description": "Margaret Hamilton is a pioneer for women in STEM, and her team's software saved Apollo 11's moon landing!\nThis video was made in collaboration with & sponsored by http://www.emerson.com/ilovestem\n\nHosted by: Hank Green\n\nThumbnail photo taken by Daphne Weld Nichols\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Justin Ove, Andreas Heydeck, Justin Lentz, Will and Sonja Marple, Benny, Chris Peters, Tim Curwick, Philippe von Bergen, Patrick, Fatima Iqbal, Lucy McGlasson, Mark Terrio-Cameron, Accalia Elementia, Kathy & Tim Philip, charles george, Kevin Bealer, Thomas J., and Patrick D. Ashmore.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttp://authors.library.caltech.edu/5456/1/hrst.mit.edu/hrs/apollo/public/conference1/hamilton-intro.htm\nhttp://klabs.org/home_page/hamilton.htm\nhttp://www.doneyles.com/LM/Tales.html\nhttp://www.wired.com/2015/10/margaret-hamilton-nasa-apollo\nhttp://www.newenglandhistoricalsociety.com/margaret-hamilton-the-woman-who-put-the-man-on-the-moon/\nhttp://www.vox.com/2015/5/30/8689481/margaret-hamilton-apollo-software\nhttp://www.nasa.gov/50th/50th_magazine/scientists.html\nhttp://www.wired.com/insights/2014/08/software-woman-heart-lunar-triumph/\nhttp://mentalfloss.com/article/64941/meet-woman-behind-apollo-project\nhttp://dl.acm.org/citation.cfm?id=1313407\n\nImages:\nhttps://commons.wikimedia.org/wiki/File:Apollo_11_Lunar_Module_Eagle_in_landing_configuration_in_lunar_orbit_from_the_Command_and_Service_Module_Columbia.jpg\nhttps://commons.wikimedia.org/wiki/File:Aldrin_Looks_Back_at_Tranquility_Base_-_GPN-2000-001102.jpg\nhttps://commons.wikimedia.org/wiki/File:Margaret_Hamilton_1989.jpg\nhttps://commons.wikimedia.org/wiki/File:Margaret_Hamilton.gif\nhttps://commons.wikimedia.org/wiki/File:Northwestern_corner_of_square_in_Paoli.jpg\nhttps://commons.wikimedia.org/wiki/File:Earlham_Cupola.jpg\nhttps://commons.wikimedia.org/wiki/File:Agc_view.jpg\nhttps://commons.wikimedia.org/wiki/File:Margaret_Hamilton_in_action.jpg\nhttps://commons.wikimedia.org/wiki/File:Lm1_ground.jpg\nhttps://commons.wikimedia.org/wiki/File:Apollo_CSM_lunar_orbit.jpg\nhttps://commons.wikimedia.org/wiki/File:Apollo-8-mission-profile.png\nhttps://commons.wikimedia.org/wiki/File:Dsky.jpg\nhttps://commons.wikimedia.org/wiki/File:NASA-Apollo8-Dec24-Earthrise.jpg\nhttps://commons.wikimedia.org/wiki/File:Apollo_1024_bit_core_memory_module.jpg\nhttp://www.nasa.gov/multimedia/imagegallery/image_feature_25.html\nhttps://commons.wikimedia.org/wiki/File:Skylab_(SL-4).jpg",
@@ -4223,6 +6291,12 @@ var videos = [{
     "duration": "00:04:36",
     "thumb": "http://i.ytimg.com/vi/PPLDZMjgaf8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow Space",
     "rating": 4.84843239084,
     "description": "The Apollo 11 mission had many opportunities for things to go awry, and they almost did! Find out how a felt-tipped pen may have saved the lives of the first astronauts on the moon, and more!\n\nRe-uploaded in response to an error we made! A big thank-you to everyone who pointed it out.\n\nHosted by: Caitlin Hofmeister\n\nLearn more about Margaret Hamilton: http://www.youtube.com/watch?v=PPLDZMjgaf8\n\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Kathy & Tim Philip, Kevin Bealer, Andreas Heydeck, Thomas J., Accalia Elementia, Will and Sonja Marple. James Harshaw, Justin Lentz, Chris Peters, Bader AlGhamdi, Benny, Tim Curwick, Philippe von Bergen, Patrick Merrithew, Fatima Iqbal, Mark Terrio-Cameron, Patrick D. Ashmore, and charles george.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttp://www.space.com/11772-president-kennedy-historic-speech-moon-space.html\nhttps://www.nasa.gov/mission_pages/apollo/missions/apollo11.html\nhttps://www.cbo.gov/publication/18196\nhttp://history.nasa.gov/SP-4206/p405.htm\nhttp://history.nasa.gov/SP-4029/Apollo_18-19_Ground_Ignition_Weights.htm\nhttp://www.wolframalpha.com/input/?i=(Saturn+V+mass)%2F(mass+of+a+blue+whale)\nhttp://www.wired.com/2011/04/0412soviet-cosmonaut-yuri-gagarin-orbits/\nhttp://www.space.com/18422-apollo-saturn-v-moon-rocket-nasa-infographic.html\nhttps://airandspace.si.edu/explore-and-learn/topics/apollo/apollo-program/landing-missions/apollo11-landing-site.cfm\nhttp://www.hq.nasa.gov/alsj/a11/a11.landing.html\nhttp://www.parkes.atnf.csiro.au/news_events/apollo11/pasa/on_eagles_wings.pdf\nhttp://www.hq.nasa.gov/alsj/a11/a11.posteva.html\nhttp://history.nasa.gov/SP-4029/Apollo_00a_Cover.htm \nhttps://www.theguardian.com/science/2009/jul/02/apollo-11-moon-technology-engineering\nhttp://history.nasa.gov/SP-4029/Apollo_11i_Timeline.htm \nhttp://history.nasa.gov/conghand/propelnt.htm\nhttp://er.jsc.nasa.gov/seh/ricetalk.htm\nhttp://www.lpi.usra.edu/lunar/missions/apollo/apollo_11/landing_site/ \nhttp://www.nasa.gov/mission_pages/LRO/news/apollo-11.html \n\nImage Sources:\nhttps://commons.wikimedia.org/wiki/File:Apollo11-01.png\nhttps://commons.wikimedia.org/wiki/File:Neil_Armstrong_pose.jpg\nhttps://commons.wikimedia.org/wiki/File:Aldrin.jpg\nhttps://en.wikipedia.org/wiki/Michael_Collins_(astronaut)#/media/File:Michael_collins.jpg\nhttps://commons.wikimedia.org/wiki/File:Apollo_11_Launch2.jpg\nhttps://commons.wikimedia.org/wiki/File:SaturnV_S-IC.jpg\nhttps://commons.wikimedia.org/wiki/File:ALOTS_image_of_Apollo_11_S-IC_separation.jpg\nhttps://commons.wikimedia.org/wiki/File:Saturn_V_second_stage.jpg\nhttps://commons.wikimedia.org/wiki/File:SaturnV_S-IVB.jpg\nhttps://commons.wikimedia.org/wiki/File:Apollo11-07.png\nhttps://commons.wikimedia.org/wiki/File:FullMoon2010.jpg\nhttps://commons.wikimedia.org/wiki/File:Apollo_11_first_step.jpg\nhttps://commons.wikimedia.org/wiki/File:Aldrin_Apollo_11_original.jpg\nhttps://commons.wikimedia.org/wiki/File:Apollo_11_lunar_module.jpg\nhttps://commons.wikimedia.org/wiki/File:Splashdown_3.jpg",
@@ -4239,6 +6313,12 @@ var videos = [{
     "duration": "00:04:17",
     "thumb": "http://i.ytimg.com/vi/9jI8Uqip60w/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.91007811012,
     "description": "View full lesson: http://ed.ted.com/lessons/why-the-metric-system-matters-matt-anticole\n\nFor the majority of recorded human history, units like the weight of a grain or the length of a hand weren\u2019t exact and varied from place to place. Now, consistent measurements are such an integral part of our daily lives that it\u2019s hard to appreciate what a major accomplishment for humanity they\u2019ve been. Matt Anticole traces the wild history of the metric system.\n\nLesson by Matt Anticole, animation by Globizco.",
@@ -4255,6 +6335,12 @@ var videos = [{
     "duration": "00:05:08",
     "thumb": "http://i.ytimg.com/vi/7bUVjJWA6Vw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Veritasium",
     "rating": 4.95591272803,
     "description": "If you repeat something enough times, it comes to feel good and true.\nSupport Veritasium on Patreon: http://bit.ly/VePatreon\nScience with Hot Wheels! My vids for kids: http://bit.ly/VeHotWheels\nMore info on cognitive ease: http://bit.ly/29OMGas\n\nThis episode was inspired by the book Thinking Fast and Slow by Daniel Kahneman.\n\nThis video was edited by Daniel Joseph Files, with music from Kevin MacLeod at http://incompetech.com \"Marty Gots a Plan\" \"Sing Along With Jim\" and \"Full On\".\n\nVeritasium is supported on Patreon by:\nJason Buster, Saeed Alghamdi, Tony Fadell, Donal Botkin, Bryan Baker, & Imthetroublesolver 8)",
@@ -4271,6 +6357,12 @@ var videos = [{
     "duration": "00:08:26",
     "thumb": "http://i.ytimg.com/vi/cebFWOlx848/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED",
     "rating": 4.94303405573,
     "description": "We're on the edge of a new frontier in art and creativity \u2014 and it's not human. Blaise Ag\u00fcera y Arcas, principal scientist at Google, works with deep neural networks for machine perception and distributed learning. In this captivating demo, he shows how neural nets trained to recognize images can be run in reverse, to generate them. The results: spectacular, hallucinatory collages (and poems!) that defy categorization. \"Perception and creativity are very intimately connected,\" Ag\u00fcera y Arcas says. \"Any creature, any being that is able to do perceptual acts is also able to create.\"\n\nTEDTalks is a daily video podcast of the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and much more.\nFind closed captions and translated subtitles in many languages at http://www.ted.com/translate\n\nFollow TED news on Twitter: http://www.twitter.com/tednews\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: http://www.youtube.com/user/TEDtalksDirector",
@@ -4287,6 +6379,12 @@ var videos = [{
     "duration": "00:17:35",
     "thumb": "http://i.ytimg.com/vi/uSUOdu_5MPc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Learn Engineering",
     "rating": 4.86494688923,
     "description": "Help us to make future videos for you. Make LE's efforts sustainable. Please support us at Patreon.com ! \nhttps://www.patreon.com/LearnEngineering \n\nThis video gives a detailed animated illustration on the working of electrical Transformers. Here the basic working principle and construction of transformer, step-up transformer, step-down transformer, transformer winding and core construction are well illustrated.\n\nLike us  on FB : https://www.facebook.com/LearnEngineering",
@@ -4303,6 +6401,12 @@ var videos = [{
     "duration": "00:05:48",
     "thumb": "http://i.ytimg.com/vi/vh_aCAHThTQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Learn Engineering",
     "rating": 4.93922225084,
     "description": "Dear friends, Please support us at Patreon, so that we can continue our free educational service\nhttps://www.patreon.com/LearnEngineering\n\nThe invention of transistors revolutionized human civilization like no other technology. This video demonstrates working of a Bipolar Junction Transistor (BJT) with it's practical applications such as transistor as an amplifier and as a switch with help of animation.  Along with transistor working of diode is also explained in the video. The video covers following topics - structure of Silicon atom, doping, N type doping, P type doping, working of Diode, working of NPN transistor and dual stage amplification.\n\nLike us  on FB : https://www.facebook.com/LearnEngineering\n\nVoice-over artist : https://www.fiverr.com/mikepaine",
@@ -4319,6 +6423,12 @@ var videos = [{
     "duration": "00:06:53",
     "thumb": "http://i.ytimg.com/vi/7ukDKVHnac4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Stated Clearly",
     "rating": 4.80760480988,
     "description": "Support Stated Clearly on Patreon: https://www.patreon.com/statedclearly\n\nEvolution is often considered a complex and controversial topic but it's actually a very simple concept to understand. Watch this short animation to see how evolution works. Share it with your friends on Facebook who might be confused or may have been mislead about the evolutionary process.\n\nYou can learn more about genetics and evolution by visiting our website at http://www.statedclearly.com\n\nThis video is our first animation with illustrations from the talented Rosemary Mosco. If you don't already know her work, make sure to check out her website at http://BirdAndMoon.com You'll love her biology comics, posters and t-shirts.\n\nThis video features custom music by AD at Proof Avenue. Check his other work at http://ProofAvenue.com\n\nSources:\n\nThe definition of Evolution:\n\n\"Genetic change in a population of organisms; in general, evolution leads to progressive change from simple to complex.\" - Biology, Seventh Edition, Raven, Johnson, Losos, Singer (college textbook) pg G-6 glossary\n\n\"Descent with modification...change in the genetic composition of a population from generation to generation.\" - Biology Eighth Edition, Campbell, Reece (college textbook) pg G-14 glossary\n\n\"Biological evolution, simply put, is descent with modification. This definition encompasses small-scale evolution (changes in gene frequency in a population from one generation to the next) and large-scale evolution (the descent of different species from a common ancestor over many generations). Evolution helps us to understand the history of life.\" University of California Berkley http://evolution.berkeley.edu/evosite/evo101/IIntro.shtml\n\nDogs evolved from wolves: http://news.bbc.co.uk/2/hi/science/nature/2498669.stm\n\nThanks to Hedvig Francke for providing Closed Captions in Swedish.",
@@ -4335,6 +6445,12 @@ var videos = [{
     "duration": "00:08:53",
     "thumb": "http://i.ytimg.com/vi/GhHOjC4oxh8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.9741743896,
     "description": "Where are the limits of human technology? And can we somehow avoid them? This is where quantum computers become very interesting. \n\nCheck out THE NOVA PROJECT to learn more about dark energy: www.nova.org.au \n\nSupport us on Patreon so we can make more stuff: https://www.patreon.com/Kurzgesagt?ty=h\n\nGet the music of the video here: \n\nhttps://soundcloud.com/epicmountain/quantum-computers\n\nhttps://epicmountainmusic.bandcamp.com/track/quantum-computers\n\nhttp://epic-mountain.com\n\n\nWakelet: https://wakelet.com/wake/42ji9UMJzN?v=st\n\nOr follow us on social media or reddit: \n\nhttp://kurzgesagt.org\nhttps://www.reddit.com/r/kurzgesagt\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nTamago231, H.H. Lewis, Kirin Tantinon, David, Max Lesterhuis, Marek Belski, Gisle, Colin Millions, Gregory Wolfe II, Lenoir Preminger, Abel X, Matt Knights, Amjad Al Taleb, Ian Bruce, Kris Wolfgramm, \u9e92\u9e9f \u4e8e, Christopher Shaw, \u9756\u7f8a, Tomas Grolmus, Essena O\u2019Neill, Kyle Messner, Pedro Devoto, Mark Radford, Ann-Marie Denham, Davide Pluda, Rik Vermeer, Justin Ritchie, Nicole White, Whireds, Claus Vall\u00f8, Jason Talley, Andrew Wu, Christian Dechery, Michael Howell, Michal Hanus, Cavit, Amary Wenger, JDKBot, Jason Eads, FreedomEagleAmerica, Roberto Maddaloni, TiagoF11, Harsha CS, Abhimanyu Yadav, Tracy Tobkin, Mike Fuchs, Elizabeth Mart, Jacob Wenger, Jeff Udall, Ricardo Affonso, Mauro Boffardi, Audrin Navarro, Troy Ross, Keith Tims, Santiago Perez, James, Jack Devlin, Chris Peters, Kenny Martin, Frederick Pickering, Lena Savelyeva, Ian Seale, Charles Ju, Brett Haugen, David Ramsey, Benjamin Dittes, Michelle Schoen, Albert Harguindey Sanchez, Michael King, Alex Kyriacou Alla Khvatova Thomas Rowan, Siim Sillamaa, David Bennell, Janzen,Bryn Farnsworth, Adam Recvlohe, Manuel Arredondo, Fred McIntyre, Maldock Manrique, \u0414\u043c\u0438\u0442\u0440\u0438\u0439, Ishita Bisht, Jake Ludwig, Zach Seggie, Casey Sloan, Myndert Papenhuyzen, rheingold3, AncientCulture, Orion Mondragon, Jan, Michael Kuperman, Alexander Argyropoulos\nQuantum Computers Explained \u2013 Limits of Human Technology\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -4351,6 +6467,12 @@ var videos = [{
     "duration": "00:07:17",
     "thumb": "http://i.ytimg.com/vi/JhHMJCUmq28/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Brit Lab",
     "rating": 4.80552907531,
     "description": "Dara O Briain takes us on a whistle stop tour of the history of Physics and the physicists that defied convention and dared to dream of understanding the world better.\n\nTaken from Dara O Briain's Science Club\n\nSubscribe for more awesome science - http://www.youtube.com/subscription_center?add_user=HeadsqueezeTV\n\nhttp://www.youtube.com/user/HeadsqueezeTV",
@@ -4367,6 +6489,12 @@ var videos = [{
     "duration": "00:03:23",
     "thumb": "http://i.ytimg.com/vi/eGvoYuXvHOc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Frame of Essence",
     "rating": 4.97174392936,
     "description": "What is computation? ...and what is quantum computation?\n\nCORRECTIONS:\n\n8:01 The Pauli-X gate does NOT flip the direction of the qubit. It rotates it 180 degrees about the x-axis, where the x-axis is pointing out of the screen.\n\n9:41 This graph is wrong. The Shor curve should be below the Classical curve since it takes LESS time.\n\n\nSources:\nQuantum Computing for Computer Scientists\nhttp://books.google.ca/books/about/Quantum_Computing_for_Computer_Scientist.html?id=eTT0FsHA5DAC\n\nQuantum Computers: Fundamentals, Application and Implementation\nwww.tngtech.com/assets/btd/btd6/BenjaminFeldman_BTD6.pptx\n\nQuantum Computation Roadmap\nqist.lanl.gov/qcomp_map.shtml\n\nWATERLOO NEWS\nhttps://uwaterloo.ca/news/news/experiment-opens-door-multi-party-quantum-communication\n\nEngineer Guy\nhttp://www.engineerguy.com/\n\nNumberphile\nhttp://www.numberphile.com/\n\n\nImages:\n\nCat:\ncheezburger.com/6403122944\n\nDog:\nwww.quickmeme.com/meme/3qmjkj\n\nLoop Quantum Gravity:\ncommons.wikimedia.org/wiki/File:Loop_quantum_gravity.jpg\n\nBilliard Ball Tube Gate:\nhttp://commons.wikimedia.org/wiki/File:Toffoli_BilliardBall.gif\nRepublished under the terms of the Creative Commons Attribution-Share Alike 2.5 Generic license\nhttp://creativecommons.org/licenses/by-sa/2.5/deed.en\n\nWater Valve Gate:\nhttp://en.wikipedia.org/wiki/File:Hydristor2.jpg\nRepublished under the terms of the GNU Free Documentation License\nhttp://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License\n\nBoolean Algebra Book:\nhttp://books.google.ca/books/about/An_Investigation_of_the_Laws_of_Thought.html?id=SWgLVT0otY8C&redir_esc=y\n\n\nMusic downloaded from the YouTube Audio Library:\nPhase Three\nThe Messenger\nGood Starts\nCamaguey\nFirst Day\nWhere I am From",
@@ -4383,6 +6511,12 @@ var videos = [{
     "duration": "00:13:00",
     "thumb": "http://i.ytimg.com/vi/F8U1d2Hqark/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow Space",
     "rating": 4.97444610575,
     "description": "In an effort to find Dark Matter, what did we find? Let's zero in on the matter.\n\nHosted by: Hank Green\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Kathy & Tim Philip, Kevin Bealer, Andreas Heydeck, Thomas J., Accalia Elementia, Will and Sonja Marple. James Harshaw, Justin Lentz, Chris Peters, Bader AlGhamdi, Benny, Tim Curwick, Philippe von Bergen, Patrick Merrithew, Fatima Iqbal, Mark Terrio-Cameron, Patrick D. Ashmore, and charles george.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttp://newscenter.lbl.gov/2016/07/21/worlds-sensitive-dark-matter-detector-completes-search/\nhttps://twitter.com/luxdarkmatter/status/756145252931543040/photo/1?ref_src=twsrc%5Etfw\nhttp://luxdarkmatter.org/LUX_dark_matter/Talks_files/LUX_NewDarkMatterSearchResult_332LiveDays_IDM2016_160721.pdf\nhttp://indico.cern.ch/event/300768/contributions/1663052/attachments/566901/780884/Rosenberg-Patras_30jun14.pdf\nhttp://www.space.com/11642-dark-matter-dark-energy-4-percent-universe-panek.html\nhttp://www.cam.ac.uk/research/news/planck-captures-portrait-of-the-young-universe-revealing-earliest-light\nhttp://chandra.harvard.edu/press/06_releases/press_082106.html\nhttp://luxdarkmatter.org/LUX_dark_matter/Talks_files/LUX_NewDarkMatterSearchResult_332LiveDays_IDM2016_160721.pdf\nhttp://www.universetoday.com/41878/wimps/#\n   \nImages:\nhttps://en.wikipedia.org/wiki/Large_Underground_Xenon_experiment#/media/File:Large_Underground_Xenon_detector_inside_watertank.jpg\nhttps://en.wikipedia.org/wiki/LIGO#/media/File:LIGO_control.jpg\nhttps://en.wikipedia.org/wiki/Large_Underground_Xenon_experiment#/media/File:Large_Underground_Xenon_detector_diagram.png",
@@ -4399,6 +6533,12 @@ var videos = [{
     "duration": "00:03:46",
     "thumb": "http://i.ytimg.com/vi/15_aJXoC0LM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Vox",
     "rating": 4.91939095387,
     "description": "He was not a trained scientist, but he was insatiably curious.\n\n\n\nSubscribe to our channel! http://goo.gl/0bsAjO\n\nVox.com is a news website that helps you cut through the noise and understand what's really driving the events in the headlines. Check out http://www.vox.com to get up to speed on everything from Kurdistan to the Kim Kardashian app. \n\nCheck out our full video catalog: http://goo.gl/IZONyE\nFollow Vox on Twitter: http://goo.gl/XFrZ5H\nOr on Facebook: http://goo.gl/U2g06o",
@@ -4415,6 +6555,12 @@ var videos = [{
     "duration": "00:05:34",
     "thumb": "http://i.ytimg.com/vi/BN2-n04CCcI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "This Place",
     "rating": 4.9390199637,
     "description": "The semantics of the model I'm working from use common goods/common property/ common pool resources (resources used by multiple people) and common property regimes (the institutions or social arrangements between people, the property rights regarding common pool resources).  \n\nWe were taught that \"the commons\" is sort of an old term. It has issues because it blankets both common pool resources with no communication, no rules, no accountability, no punishment for those who break the rules, etc. (open access) and common pool resources with some cooperation or institution in place (common property regimes). \n\nWhen you get away from those aspects that allow people to trust one another and work together, the system looks like an open access system. The tragedy of the commons model describes what happens in that open access system. But not what happens when a common property regime is in place. But the term \"commons\" doesn't distinguish between the two. \n\nFurther watching\nSome Field Ecology \n\" Allan Savory: How to green the world's deserts and reverse climate change\"\nhttps://www.youtube.com/watch?v=vpTHi...\n\nPatreon https://patreon.com/user?u=849925",
@@ -4431,6 +6577,12 @@ var videos = [{
     "duration": "00:03:27",
     "thumb": "http://i.ytimg.com/vi/WYA1y405JW0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.93701043557,
     "description": "Designer babies, the end of diseases, genetically modified humans that never age. Outrageous things that used to be science fiction are suddenly becoming reality. The only thing we know for sure is that things will change irreversibly.\n\nSupport us on Patreon so we can make more videos (and get cool stuff in return): https://www.patreon.com/Kurzgesagt?ty=h\n\nKurzgesagt merch here:  http://bit.ly/1P1hQIH\n\nGet the music of the video here: \n\nsoundcloud: http://bit.ly/2aRxNZd\nbandcamp: http://bit.ly/2berrSW\nhttp://www.epic-mountain.com\n \nThanks to Volker Henn, James Gurney and (prefers anonymity) for help with this video! \n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nJeffrey Schneider, Konstantin Kaganovich, Tom Leiser, Archie Castillo, Russell Eishard, Ben Kershaw, Marius Stollen,  Henry Bowman, Ben Johns, Bogdan Radu, Sam Toland, Pierre Thalamy, Christopher Morgan, Rocks Arent People, Ross Devereux, Pascal Michaud, Derek DuBreuil, Sofia Quintero, Robert Swiniarski, Merkt K\u0131z\u0131l\u0131rmak, Michelle Rowley, Andy Dong, Saphir Patel, Harris Rotto, Thomas Huzij, Ryan James Burke, NTRX, Chaz Lewis, Amir Resali, The War on Stupid, John Pestana, Lucien Delbert, iaDRM, Jacob Edwards, Lauritz Klaus, Jason Hunt, Marcus : ), Taylor Lau, Rhett H Eisenberg, Mr.Z, Jeremy Dumet, Fatman13, Kasturi Raghavan,  Kousora, Rich Sekmistrz, Mozart Peter, Gaby Germanos, Andreas Hertle, Alena Vlachova, Zdravko \u0160a\u0161ek\n\nSOURCES AND FURTHER READING: \n\nThe best book we read about the topic:  GMO Sapiens \n\nhttps://goo.gl/NxFmk8\n\n(affiliate link, we get a cut if buy the book!)\n\n\n\u2013 Good Overview by Wired:\nhttp://bit.ly/1DuM4zq\n\n\u2013timeline of computer development:\nhttp://bit.ly/1VtiJ0N\n\n\u2013 Selective breeding: \nhttp://bit.ly/29GaPVS\n\n\u2013 DNA:\nhttp://bit.ly/1rQs8Yk\n\n\u2013 Radiation research:\nhttp://bit.ly/2ad6wT1\n\n\u2013 inserting DNA snippets into organisms:\nhttp://bit.ly/2apyqbj\n\n\u2013 First genetically modified animal:\nhttp://bit.ly/2abkfYO\n\n\u2013 First GM patent:\nhttp://bit.ly/2a5cCox\n\n\u2013 chemicals produced by GMOs:\nhttp://bit.ly/29UvTbh\nhttp://bit.ly/2abeHwU\nhttp://bit.ly/2a86sBy\n\n\u2013 Flavr Savr Tomato:\nhttp://bit.ly/29YPVwN\n\n\u2013 First Human Engineering:\nhttp://bit.ly/29ZTfsf\n\n\u2013 glowing fish:\nhttp://bit.ly/29UwuJU\n\n\u2013 CRISPR:\nhttp://go.nature.com/24Nhykm\n\n\u2013 HIV cut from cells and rats with CRISPR:\nhttp://go.nature.com/1RwR1xI\nhttp://ti.me/1TlADSi\n\n\u2013 first human CRISPR trials fighting cancer:\nhttp://go.nature.com/28PW40r\n\nfirst human CRISPR trial approved by Chinese for August 2016:\nhttp://go.nature.com/29RYNnK\n\n\u2013 genetic diseases:\nhttp://go.nature.com/2a8f7ny\n\n\u2013 pregnancies with Down Syndrome terminated:\nhttp://bit.ly/2acVyvg\n( 1999 European study)\n\n\u2013 CRISPR and aging:\nhttp://bit.ly/2a3NYAV\nhttp://bit.ly/SuomTy\nhttp://go.nature.com/29WpDj1\nhttp://ti.me/1R7Vus9\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -4447,6 +6599,12 @@ var videos = [{
     "duration": "00:16:04",
     "thumb": "http://i.ytimg.com/vi/jAhjPd4uNFY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The School of Life",
     "rating": 4.9548956963,
     "description": "We don\u2019t need our lovers to be perfect. We need them to warn us of their quirks in good time. We need them to give us an instruction manual to themselves.  If you like our films, take a look at our shop (we ship worldwide):  http://bit.ly/2b6gXVj  \n\nOur website has classes, articles and products to help you think and grow: http://bit.ly/2aEQZaY \n\nWatch more films on RELATIONSHIPS in our playlist: \nhttp://bit.ly/TSOLrelationships \n\n\nFURTHER READING\n\n\u201cMost machines of any degree of complexity are offered to us with an instruction manual, a guide to how an unfamiliar technology works, what we can expect from it, how to get the best out of it and how to interpret its signals \u2013 the assumption being that it will be so much easier and less enraging to deal with the machine when we have taken some time systematically and patiently to learn how it operates.\n\nYet one area where we tend not to have manuals to read is when it comes to other people and their functioning...\u201d\n\nYou can read more about this an other topics on our blog TheBookofLife.org: http://bit.ly/2aN4HaF \n\n\nSOCIAL MEDIA\n\nFeel free to follow us at the links below:\n\nFacebook: https://www.facebook.com/theschooloflifelondon/ \n\nTwitter: https://twitter.com/TheSchoolOfLife   \n\nInstagram: https://www.instagram.com/theschooloflifelondon/ \n\n\nCREDITS\nProduced in collaboration with Nick Hilditch\nhttp://nickhilditch.com/",
@@ -4463,6 +6621,12 @@ var videos = [{
     "duration": "00:03:32",
     "thumb": "http://i.ytimg.com/vi/VgGDwYYfayI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "THUNK",
     "rating": 4.8940397351,
     "description": "Maybe VR isn't a specific thing, but part of a continuum of physical/virtual experience called \"mixed reality.\" Regardless of how you think about it, the virtual already plays a significant role in your life, & game designers (as terrible a name as that is) are the ones building your future.\n\n-Links for the Curious-\n\nPaul Milgrim & Fumio Kishino's foundational 1994 paper on mixed reality  - http://etclab.mie.utoronto.ca/people/paul_dir/IEICE94/ieice.html\n\nAn article detailing Tencent's new credit rating app & its truly frightening potential - http://www.brownpoliticalreview.org/2016/03/the-socialist-network-why-chinas-proposed-credit-rating-system-is-anything-but-credible/\n\nJesse Schell's 2010 DICE talk, detailing his unique vision of the future as built by game designers - https://www.youtube.com/watch?v=nG_PbHVW5cQ\n\nYouTube channel \"Extra Credits,\" a great resource for beginning to learn about some of the aspects of game design that are being used to build our virtual future - https://www.youtube.com/user/ExtraCreditz",
@@ -4479,6 +6643,12 @@ var videos = [{
     "duration": "00:09:49",
     "thumb": "http://i.ytimg.com/vi/HkiGKdOHPTE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The School of Life",
     "rating": 4.94670846395,
     "description": "The dream of becoming an entrepreneur is extremely common. Putting the plan in action requires many things, most importantly: a really great idea. But where do really good ideas come from? Our unhappiest moments\u2026 Please subscribe here: http://tinyurl.com/o28mut7\nIf you like our films take a look at our shop (we ship worldwide): http://www.theschooloflife.com/shop/all/\nBrought to you by http://www.theschooloflife.com\n\nProduced in collaboration with Zedem Media\nhttp://www.zedemanimations.com/",
@@ -4495,6 +6665,12 @@ var videos = [{
     "duration": "00:03:25",
     "thumb": "http://i.ytimg.com/vi/lJjILQu2xM8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.93241452425,
     "description": "Try Audible: http://www.audible.com/spacetime\n\nCausality is meant to move in one direction: forward. But the Quantum Eraser experiment seems to reverse causality. How and why can this happen and what are the implications of this experiment on how we understand Quantum Mechanics and our greater universe?\n\nGet your own Space Time t\u00adshirt at http://bit.ly/1QlzoBi\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\nSupport us on Patreon! http://www.patreon.com/pbsspacetime\n\nHelp translate our videos! http://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nA Delayed Choice Quantum Eraser\nKim, Yu, Kulik, Shih & Scully, 2000, Physical Review Letters v.84 p.1\nhttp://arxiv.org/abs/quant-ph/9903047v1\n\nPrevious Episode on Can We Survive the Destruction of the Earth? ft. Neal Stephenson\n https://www.youtube.com/watch?v=UjmlwdUK4RE\n\nPrevious Episode on The Quantum Experiment that Broke Reality \nhttps://www.youtube.com/watch?v=p-MNSLsjjdo\n\nGamma Ray Bursts by In a Nutshell\nhttps://www.youtube.com/watch?v=RLykC1VN7NY\n\nEpisode written and hosted by Matt O\u2019Dowd\n\nMade by Kornhaber Brown (www.kornhaberbrown.com)\n\nComments answered by Matt \n\nMirceaKitsune\nhttps://www.youtube.com/watch?v=UjmlwdUK4RE&lc=z12vfjjhemf1sxi5104cir5g2kisylrwdqw0k\n\ntsjoencinema\nhttps://www.youtube.com/watch?v=UjmlwdUK4RE&lc=z13axr1zmzygftjf522mwjaq5tyruty1p\n\nWeapon Valhalla\nhttps://www.youtube.com/watch?v=UjmlwdUK4RE&lc=z133h3whrzi4sfqne23htd3hymjoylkyj04\n\nNarigone\nhttps://www.youtube.com/watch?v=UjmlwdUK4RE&lc=z12bftwgfk3wwp4ia04cc3ar2xiuvpvhnqw0k\n\nTimmacTR\nhttps://www.youtube.com/watch?v=UjmlwdUK4RE&lc=z12nhp5qypb2ytnhq04cj11xwnn2ihyieag\n\nkaleb tandberg\nhttps://www.youtube.com/watch?v=UjmlwdUK4RE&lc=z122tp3ycsv4u3kd023tyz4wfsyzzzdvn\n\n\nThe deathless face of the unborn mind\nhttps://www.youtube.com/watch?v=UjmlwdUK4RE&lc=z12ptr35szykzf4gu04cjp3z0lmchvwwzrw0k\n\nError 404: Hodor Not Found\nhttps://www.youtube.com/watch?v=UjmlwdUK4RE&lc=z12gefxxuufihh43t23pezs5ryalxjhbp04",
@@ -4511,6 +6687,12 @@ var videos = [{
     "duration": "00:14:40",
     "thumb": "http://i.ytimg.com/vi/8ORLN_KwAgs/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Veritasium",
     "rating": 4.95499818541,
     "description": "Mounting evidence suggests a lot of published research is false.\nCheck out Audible: http://bit.ly/AudibleVe\nSupport Veritasium on Patreon: http://bit.ly/VePatreon\n\nPatreon supporters:\nBryan Baker, Donal Botkin, Tony Fadell, Jason Buster, Saeed Alghamdi\n\nMore information on this topic: http://wke.lt/w/s/z0wmO\n\nThe Preregistration Challenge: https://cos.io/prereg/\n\nResources used in the making of this video:\n\nWhy Most Published Research Findings Are False:\nhttp://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124\n\nTrouble at the Lab:\nhttp://www.economist.com/news/briefing/21588057-scientists-think-science-self-correcting-alarming-degree-it-not-trouble\n\nScience isn't broken:\nhttp://fivethirtyeight.com/features/science-isnt-broken/#part1\n\nVisual effects by Gustavo Rosa",
@@ -4527,6 +6709,12 @@ var videos = [{
     "duration": "00:12:22",
     "thumb": "http://i.ytimg.com/vi/42QuXLucH3Q/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The School of Life",
     "rating": 4.93996074356,
     "description": "What holds us back from being more confident at work is often a sense that we are fundamentally different from those who succeed. We suffer \u2013 needlessly \u2013 from The Impostor Syndrome. If you like our films, take a look at our shop (we ship worldwide): http://bit.ly/2aWdzvA\r\n\r\nWatch more films on WORK & CAPITALISM in our playlist:\r\nhttp://bit.ly/TSOLcapitalism\r\n\r\nFURTHER READING\r\nYou can read more about this an other topics on our blog TheBookofLife.org: http://bit.ly/2aIPTPl\r\n\r\nSOCIAL MEDIA\r\nFeel free to follow us at the links below:\r\nFacebook: https://www.facebook.com/theschooloflifelondon/\r\nTwitter: https://twitter.com/TheSchoolOfLife \r\nInstagram: https://www.instagram.com/theschooloflifelondon/\r\n\r\nCREDITS\r\nProduced in collaboration with Zedem Media\r\nhttp://www.zedemanimations.com/",
@@ -4543,6 +6731,12 @@ var videos = [{
     "duration": "00:06:48",
     "thumb": "http://i.ytimg.com/vi/eqhUHyVpAwE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "FightMediocrity",
     "rating": 4.62054874489,
     "description": "Get any FREE audiobook of your choice here: http://audibletrial.com/fightmediocrity\n\nIf you want a suggestion for the free audiobook or for reading a book, here's FightMediocrity beginner's reading list: http://fmediocrity.com/reading-list/\n\nFollow on:\nFacebook - http://www.facebook.com/FightMediocrity\nTwitter - http://twitter.com/fghtmediocrity",
@@ -4559,6 +6753,12 @@ var videos = [{
     "duration": "00:03:09",
     "thumb": "http://i.ytimg.com/vi/JG1900XhKs0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Vox",
     "rating": 4.691920314,
     "description": "You may like playing The Sims, but Elon Musk says you are the Sim.\n\nCheck out the full cartoon by Alvin Chang: http://www.vox.com/technology/2016/6/23/12007694/elon-musk-simulation-cartoon\n\nElon Musk thinks we are living in a simulated reality. Nick Bostrom think those chances are more around 20 percent. The chances of human kind participating in a simulated reality is broken down into three options: 1) humans go extinct before we are able to run a simulation of this size. 2) Humans are uninterested in running ancestor simulations. 3) We are currently participating in the simulation. \n\nSubscribe to our channel! http://goo.gl/0bsAjO\n\nVox.com is a news website that helps you cut through the noise and understand what's really driving the events in the headlines. Check out http://www.vox.com to get up to speed on everything from Kurdistan to the Kim Kardashian app. \n\nCheck out our full video catalog: http://goo.gl/IZONyE\nFollow Vox on Twitter: http://goo.gl/XFrZ5H\nOr on Facebook: http://goo.gl/U2g06o",
@@ -4575,6 +6775,12 @@ var videos = [{
     "duration": "00:03:40",
     "thumb": "http://i.ytimg.com/vi/J0KHiiTtt4w/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "FightMediocrity",
     "rating": 4.60834914611,
     "description": "Get any FREE audiobook of your choice here: http://audibletrial.com/fightmediocrity\n\nIf you want a suggestion for the free audiobook or for reading a book, here's FightMediocrity beginner's reading list: http://fmediocrity.com/reading-list/\n\nFollow on:\nFacebook - http://www.facebook.com/FightMediocrity\nTwitter - http://twitter.com/fghtmediocrity",
@@ -4591,6 +6797,12 @@ var videos = [{
     "duration": "00:03:45",
     "thumb": "http://i.ytimg.com/vi/ZY7Ww5924-c/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.93426709194,
     "description": "Do we really have free will? Today Hank explores possible answers to that question, explaining theories like libertarian free will and it\u2019s counterpoint, hard determinism.\n\nGet your own Crash Course Philosophy mug from DFTBA: http://store.dftba.com/products/crashcourse-philosophy-mug\n\nThe Latest from PBS Digital Studios: https://www.youtube.com/playlist?list=PL1mtdjDVOoOqJzeaJAV15Tq0tZ1vKj7ZV\n\n--\n\nImages via ThinkStock\n\nProduced in collaboration with PBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nCrash Course Philosophy is sponsored by Squarespace.\nhttp://www.squarespace.com/crashcourse\n\n--\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashC...\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Patreon: http://www.patreon.com/crashcourse\n\nCC Kids: http://www.youtube.com/crashcoursekids",
@@ -4607,6 +6819,12 @@ var videos = [{
     "duration": "00:10:26",
     "thumb": "http://i.ytimg.com/vi/vCGtkDzELAI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.92697611187,
     "description": "View full lesson: http://ed.ted.com/lessons/what-is-the-biggest-single-celled-organism-murry-gans\n\nThe elephant is a creature of epic proportions \u2014 and yet, it owes its enormity to more than 1,000 trillion microscopic cells. And on the epically small end of things, there are likely millions of unicellular species, yet there are very few we can see with the naked eye. Why is that? Why don\u2019t we get unicellular elephants? Or blue whales? Or brown bears? Murry Gans explains. \n\nLesson by Murry Gans, animation by Zedem Media.",
@@ -4623,6 +6841,12 @@ var videos = [{
     "duration": "00:04:07",
     "thumb": "http://i.ytimg.com/vi/FK9xHry877U/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "AsapSCIENCE",
     "rating": 4.90093400704,
     "description": "How the hell does cellphone technology work?\nWatch: 'The Science of Emojis' https://youtu.be/MzNPSJXTKWA\nSubscribe! http://bit.ly/asapsci\n\nGET THE ASAPSCIENCE BOOK: http://asapscience.com/book/\n\nWritten by Annik Carson, Gregory Brown and Rachel Salt\n\nFOLLOW US!\nInstagram and Twitter: @whalewatchmeplz and @mitchellmoffit \nClickable: http://bit.ly/16F1jeC and http://bit.ly/15J7ube\n\nAsapINSTAGRAM: https://instagram.com/asapscience/\nFacebook: http://facebook.com/AsapSCIENCE\nTwitter: http://twitter.com/AsapSCIENCE\nTumblr: http://asapscience.tumblr.com\nVine: Search \"AsapSCIENCE\" on vine!\n\nSNAPCHAT 'whalewatchmeplz' and 'pixelmitch'\n\nCreated by Mitchell Moffit (twitter @mitchellmoffit) and Gregory Brown (twitter @whalewatchmeplz).\n\nSend us stuff!\n\nASAPSCIENCE INC.\nP.O. Box 93, Toronto P\nToronto, ON, M5S2S6\n\nReferences/Further Reading:\n\nhttp://www.telegraph.co.uk/technology/news/11340321/WhatsApp-overtakes-text-messages.html\n\nhttp://computer.howstuffworks.com/e-mail-messaging/sms.htm\n\nhttp://www.iarc.fr/en/media-centre/pr/2011/pdfs/pr208_E.pdf\n\nhttp://www.economist.com/news/business/21647317-messaging-services-are-rapidly-growing-beyond-online-chat-message-medium\n\nhttp://www.pewinternet.org/2015/08/19/mobile-messaging-and-social-media-2015-main-findings/\n\nHere is another, more recent resource I came across:\nhttp://biorxiv.org/content/biorxiv/early/2016/05/26/055699.full.pdf",
@@ -4639,6 +6863,12 @@ var videos = [{
     "duration": "00:03:44",
     "thumb": "http://i.ytimg.com/vi/7sKp9R5BOEk/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.94928631402,
     "description": "View full lesson: http://ed.ted.com/lessons/how-a-single-celled-organism-almost-wiped-out-life-on-earth-anusuya-willis\n\nThere\u2019s an organism that changed the world. It caused the first mass extinction in Earth\u2019s history \u2026 and also paved the way for complex life. How? Anusuya Willis explains how cyanobacteria, simple organisms that don\u2019t even have nuclei or any other organelles, wrote a pivotal chapter in the story of life on Earth. \n\nLesson by Anusuya Willis, animation by Augenblick Studios.",
@@ -4655,6 +6885,12 @@ var videos = [{
     "duration": "00:04:14",
     "thumb": "http://i.ytimg.com/vi/dO2xx-aeZ4w/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "MinuteEarth",
     "rating": 4.95159431425,
     "description": "How Alan Turing's Reaction-Diffusion Model Simulates Patterns in Nature\nThanks to http://www.audible.com/minuteearth for sponsoring this video.\nAsparagus Pee Survey Results: https://goo.gl/8x7abL\n\n___________________________________________\n\nIf you liked this video, we think you might also like this: \n\nReaction Diffusion Simulation (Gray-Scott model) \nhttps://pmneila.github.io/jsexp/grayscott/\n\n___________________________________________\n\nCredits (and Twitter handles):\nScript Writer: Rachel Becker (@RA_Becks)\nScript Editor: Emily Elert (@eelert)\nVideo Illustrator: Ever Salazar (@eversalazar)\nVideo Director: Emily Elert (@eelert)\nVideo Narrator: Emily Elert (@eelert)\nWith Contributions From: Henry Reich, Alex Reich, Kate Yoshida, Omkar Bhagat, Peter Reich, David Goldenberg \nMusic by: Nathaniel Schroeder: http://www.soundcloud.com/drschroeder\n\nAlso, special thanks to the following scientists: \nGreg Barsh: Investigator, HudsonAlpha Institute for Biotechnology (http://goo.gl/RMD8o9) \nJeremy Green: Professor of developmental biology, King\u2019s College London (https://goo.gl/Qcn8Ay)\nThomas Hiscock: Graduate student in systems biology, Harvard University (http://goo.gl/RbAWIy)\nShigeru Kondo: Professor, Osaka University (http://goo.gl/uQ2wYO)\nJames Sharpe: Coordinator of EMBL-CRG Systems Biology Unit and ICREA research professor (http://goo.gl/QCGul8)\nIan Stewart: Emeritus professor of mathematics, University of Warwick and author of The Mathematics of Life (http://goo.gl/rGR1R0)\nThomas Woolley: Postdoctoral scientist, St John's College Oxford (http://goo.gl/B4FZNn)\n\nImage Credits:\n- Mouse palate images provided courtesy of Jeremy Green, King\u2019s College London. \n- Digit patterns image provided courtesy of Luciano Marcon and Jelena Raspopovic.\n- Angelfish and zebrafish images provided courtesy of Shigeru Kondo.\n_________________________________________\n\nSubscribe to MinuteEarth on YouTube: http://goo.gl/EpIDGd\nSupport us on Patreon: https://goo.gl/ZVgLQZ\nFacebook: http://goo.gl/FpAvo6\nTwitter: http://goo.gl/Y1aWVC\nitunes:  https://goo.gl/sfwS6n\n\n___________________________________________\n\nHere are some handy keywords to get your googling started: \n\nReaction-diffusion system: A hypothetical system in which multiple chemical substances diffuse through a defined space at different rates and react with one another, thereby generating a pattern. \n\nTuring pattern: A periodic pattern that forms in a space where the initial distribution of \u2018activator\u2019 and \u2018inhibitor\u2019 is the same.\n\nMorphogenesis: The processes during development that give rise to the form or shape of the organism or a structure\n\nAlan Turing: Alan Turing was a British mathematician and the father of modern computer science. During World War II, he broke Germany\u2019s Enigma code used to encrypt communications.\n\n____________________\n\nReferences:\n\nEconomou, A. D., Ohazama, A., Porntaveetus, T., Sharpe, P. T., Kondo, S., Basson, M. A., \u2026 Green, J. B. A. (2012). Periodic stripe formation by a Turing-mechanism operating at growth zones in the mammalian palate. Nature Genetics, 44(3), 348\u2013351. http://doi.org/10.1038/ng.1090\n\nEconomou, A. D., & Green, J. B. (2014). Modelling from the experimental developmental biologists viewpoint. Seminars in Cell & Developmental Biology, 35, 58-65. doi:10.1016/j.semcdb.2014.07.006\n\nGreen, J. B., & Sharpe, J. (2015). Positional information and reaction-diffusion: Two big ideas in developmental biology combine.Development, 142(7), 1203-1211. doi:10.1242/dev.114991\n\nKimura, Y. T. (2016, May 24). The mathematics of patterns. Retrieved from http://www.theshapeofmath.com/princeton/dynsys \n\nKimura, Y. T. (2014). The Mathematics of Patterns: The modeling and analysis of reaction-diffusion equations (Thesis, Princeton University). Http://www.pacm.princeton.edu/documents/Kimura.pdf.\n\nKondo, S., & Asai, R. (1995). A reaction-diffusion wave on the skin of the marine angelfish Pomacanthus. Nature, 376(6543), 765-768. doi:10.1038/376765a0\n\nKondo, S., & Miura, T. (2010). Reaction-Diffusion Model as a Framework for Understanding Biological Pattern Formation. Science, 329(5999), 1616-1620. doi:10.1126/science.1179047 \n\nMarcon, L., & Sharpe, J. (2012). Turing patterns in development: What about the horse part? Current Opinion in Genetics & Development, 22(6), 578-584. doi:10.1016/j.gde.2012.11.013\n\nRaspopovic, J., Marcon, L., Russo, L., & Sharpe, J. (2014). Digit patterning is controlled by a Bmp-Sox9-Wnt Turing network modulated by morphogen gradients. Science, 345(6196), 566-570. doi:10.1126/science.1252960\n\nStewart, I. (2012). The mathematics of life. Philadelphia, PA: Basic Books. (https://goo.gl/IOagrs)\n\nTuring, A. M. (1952). The Chemical Basis of Morphogenesis. Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences, 237(641), 37-72. Retrieved from http://www.dna.caltech.edu/courses/cs191/paperscs191/turing.pdf",
@@ -4671,6 +6907,12 @@ var videos = [{
     "duration": "00:04:04",
     "thumb": "http://i.ytimg.com/vi/alH3yc6tX98/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "It's Okay To Be Smart",
     "rating": 4.97042654028,
     "description": "Get yourself an awesome I DID A SCIENCE shirt! http://dftba.com/besmart \nTweet this video \u21d2 http://bit.ly/OKTBSplant Share on FB \u21d2 http://bit.ly/OKTBSplantFB\n\u2193 More info and sources below \u2193\n\nLearn more/references:\n\n\u201cWhat a Plant Knows\u201d by Daniel Chamovitz http://amzn.to/2bfvdOg \n\n\u201cThe Secret Life of Plants\u201d by Peter Tompkins and Christopher Bird http://amzn.to/2bczCTf (this book is full of bad science mumbo jumbo, but it\u2019s where the Cleve Backster story comes from)\n\nGalil, J. \"An ancient technique for ripening sycomore fruit in east-mediterranean countries.\" Economic Botany 22.2 (1968): 178-190.\n\nKost, C., & Heil, M. (2008). The Defensive Role of Volatile Emission and Extrafloral Nectar Secretion for Lima Bean in Nature. Journal of Chemical Ecology, 34(1), 2\u201313. http://doi.org/10.1007/s10886-007-9404-0\n\nGerbode, Sharon J., et al. \"How the cucumber tendril coils and overwinds.\"Science 337.6098 (2012): 1087-1091.\n\nDarwin\u2019s writings on vines and climbing plants: http://darwin-online.org.uk/content/frameset?itemID=F836&viewtype=text&pageseq=1 \n\nDarwin\u2019s writings on plant movement: http://darwin-online.org.uk/EditorialIntroductions/Freeman_ThePowerofMovementinPlants.html \n\n----------------\nIt\u2019s Okay To Be Smart is written and hosted by Joe Hanson, Ph.D.\nHave an idea for an episode or an amazing science question you want answered? Leave a comment or check us out at the links below!\nFacebook: http://www.facebook.com/itsokaytobesmart\nTwitter: http://twitter.com/okaytobesmart \nhttp://twitter.com/jtotheizzoe\nTumblr: http://www.itsokaytobesmart.com \nInstagram: http://instagram.com/jtotheizzoe \nSnapchat: YoDrJoe\n\nProduced by PBS Digital Studios\nMusic via APM\nStock images from SciencePhoto http://www.sciencephoto.com/  and Shutterstock http://www.shutterstock.com",
@@ -4687,6 +6929,12 @@ var videos = [{
     "duration": "00:05:58",
     "thumb": "http://i.ytimg.com/vi/zm6zfHzvqX4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Vox",
     "rating": 4.57471264368,
     "description": "It\u2019s surprisingly hard to say when things truly end.\n\nSubscribe to our channel! http://goo.gl/0bsAjO\n\nIn the 19th century, the moment one stopped breathing was the final indication of death, and a mirror held to the mouth, unfogged, was the indication that the soul had exited the body. Currently the measurement of death is a much more complicated one that involves a more industrialized and less religious view of the body: when mechanical and electrical activity ceases (the brain stops signaling, the heart stops beating and breath stops), one is pronounced dead. \n\nBut as we increasingly peer into the body with more powerful tools, these markers of death might not really indicate a final end.\n\nCredits:\nWritten and Created by Nadja Oertelt\nDirected by Sophie Koko Gate\nSound Design + Music by Skillbard\n\n\nVox.com is a news website that helps you cut through the noise and understand what's really driving the events in the headlines. Check out http://www.vox.com to get up to speed on everything from Terrorism to Taxes to Taylor Swift. \n\nCheck out our full video catalog: http://goo.gl/IZONyE\nFollow Vox on Twitter: http://goo.gl/XFrZ5H\nOr on Facebook: http://goo.gl/U2g06o",
@@ -4703,6 +6951,12 @@ var videos = [{
     "duration": "00:02:11",
     "thumb": "http://i.ytimg.com/vi/Mx9A0BjhEdU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Art of the Problem",
     "rating": 4.94759825328,
     "description": "Introduction to Aristotle's contributions to logic are explored in PART 3 of our series on Computer Science. This video explains: deduction, abstraction, law of non contradiction & syllogisms. Please support this program: https://www.patreon.com/artoftheproblem\nor\nBitcoin: 1J29nKVys3anVaQNnyW8DBkD4vCzFxdB2r",
@@ -4719,6 +6973,12 @@ var videos = [{
     "duration": "00:08:14",
     "thumb": "http://i.ytimg.com/vi/xP0q3WOBRks/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.97013197499,
     "description": "Listen to \"Stuff Matters\" for free on Audible at http://www.audible.com/minutephysics\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nMusic by Nathaniel Schroeder http://www.soundcloud.com/drschroeder Created by Henry Reich",
@@ -4735,6 +6995,12 @@ var videos = [{
     "duration": "00:03:36",
     "thumb": "http://i.ytimg.com/vi/Lo8NmoDL9T8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Stated Clearly",
     "rating": 4.95422715628,
     "description": "You can now support us on Patreon! https://www.patreon.com/statedclearly\n\nAll living creatures today reproduce and evolve using a complex gene-enzyme cycle. If we look at a cell, for example, information encoded in its genes is used to produce functional proteins called enzymes. Some of those enzymes then turn around to make copies of the cell's genes, allowing the cell to reproduce. \n\nBecause the gene-enzyme system forms a closed loop, it presents us with a classic chicken or egg conundrum: Which came first, genes or the protein enzymes they code for? \n\nWhile the details are still not fully worked out, discoveries over the past few decades have lead researchers to a surprising possible solution: What really came first? Genes that act as enzymes!\n\nThe RNA World Hypothesis is the idea that before living cells, the genetic code, and the gene/protein cycle ever existed, chains of a chemical called RNA were forming naturally. Once formed, some of these chains were able to function as enzymes, and were even able to evolve by making copies of themselves with slight, accidental modifications.\n\nWhile there is little doubt that RNA played a crucial role in the early development of life, the complexity of RNA is casting doubt on the idea that RNA was the first truly replicating and evolving chemical system. For this reason, alternatives to the \u201cRNA first\u201d view are also being investigated. Most notable is a proto-RNA hypothesis being studied by the lab of Nicholas Hud, and several metabolism first hypotheses which got their start from the work of Robert Shapiro.\n\nAt this time, all serious investigations into the origin of life are being done under the overarching idea that life emerged from chemistry.\n\nSOURCES AND FURTHER READING\n\nRIBOZYMES\nThe first RNA enzymes were discovered in 1982, now known as ribozymes. Here\u2019s is a wonderful review of what we now know about ribozymes (well... as of 2002): \n\nScientific Paper: http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3770912/\n\nDiverse and highly functional ribozymes can be evolved in the lab. Selection experiments have shown there are many pathways that evolution can take to produce a ribozyme with a given function. This means the evolution of function is much simpler than previously thought! \n\nScientific Paper: http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3902939/\n\nNucleotide building ribozymes have been evolved in the lab from random starting chains (this is the experiment discussed in our animation):\n\nScientific Paper: http://www.sfu.ca/~punrau/pdfs/Lau_JACS_2004.pdf\n\nINITIAL RNA NUCLEOTIDE SYNTHESIS\nRNA nucleotides have been shown to form without enzymes under conditions that might have been plausible on the early Earth. That said, the reactions we\u2019ve discovered so far do not appear robust enough to claim that the problem is fully solved: \n\nScientific Paper: http://www.nature.com/nature/journal/v459/n7244/abs/nature08013.html\n\n\nNature News overview of the discovery with objections discussed: http://www.nature.com/news/2009/090513/full/news.2009.471.html\n\nRNA REPLICATION BEFORE EVOLUTION OF ENZYMES\n8 problems with RNA replication and likely solutions to them (note: number 8 now has two independent solutions demonstrated in the lab): \n\nScientific Paper: https://jsystchem.springeropen.com/articles/10.1186/1759-2208-3-2\n\nALTERNATIVES TO THE RNA WORLD HYPOTHESIS \nHere is an article reviewing the metabolism first hypothesis in contrast to the RNA first view:\n\nBlog post by professor Laurance Moran: http://sandwalk.blogspot.com/2009/05/metabolism-first-and-origin-of-life.html\n\nHere is an article reviewing research into a possible proto RNA World Hypothesis: \n\nMedia article by quanta magazine\nhttps://www.quantamagazine.org/20140205-chemists-pursue-possible-precursor-to-rna/\n\nLearn more about evolution and the origin of life at http://statedclearly.com and at http://centerforchemicalevolution.com",
@@ -4751,6 +7017,12 @@ var videos = [{
     "duration": "00:07:09",
     "thumb": "http://i.ytimg.com/vi/K1xnYFCZ9Yg/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.96491608013,
     "description": "Today we start our unit on language with a discussion of meaning and how we assign and understand meaning. We\u2019ll cover sense and reference, beetles in boxes, and language games.\n\nWe\u2019re also getting into the meaning-making game ourselves: bananas are now chom-choms. Pass it on.\n\nGet your own Crash Course Philosophy mug from DFTBA: http://store.dftba.com/products/crashcourse-philosophy-mug\n\nThe Latest from PBS Digital Studios: https://www.youtube.com/playlist?list=PL1mtdjDVOoOqJzeaJAV15Tq0tZ1vKj7ZV\n\n--\n\nImage Credits:\nChutes & Ladders by Ben Hussman https://www.flickr.com/photos/benhusmann/3120095949\nWizard School \u00a9 DFTBA Games\n\nAll other images and video via ThinkStock or VideoBlocks\neither public domain or via VideoBlocks, or Wikimedia Commons, licensed under Creative Commons BY 4.0: https://creativecommons.org/licenses/by/4.0/\n\n--\n\nProduced in collaboration with PBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\n--\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashC...\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Patreon: http://www.patreon.com/crashcourse\n\nCC Kids: http://www.youtube.com/crashcoursekids",
@@ -4767,6 +7039,12 @@ var videos = [{
     "duration": "00:09:32",
     "thumb": "http://i.ytimg.com/vi/zmwgmt7wcv8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.9347443921,
     "description": "View full lesson: http://ed.ted.com/lessons/one-of-the-most-difficult-words-to-translate-krystian-aparta\n\nAs simple as it seems, it\u2019s often impossible to accurately translate the word you without knowing a lot more about the situation where it\u2019s being said. Krystian Aparta describes the specific reasons why it can be difficult, citing examples from many different languages. \n\nLesson by Krystian Aparta, animation by Avi Ofer.",
@@ -4783,6 +7061,12 @@ var videos = [{
     "duration": "00:03:48",
     "thumb": "http://i.ytimg.com/vi/fNV7CsKI5m8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Real Engineering",
     "rating": 4.92419088347,
     "description": "Your free one month trial at The Great Courses Plus: http://ow.ly/4rN0303M45M\n\nThank you to my patreon supporters: Adam Flohr, darth patron, Zoltan Gramantik, Josh Levent, Henning Basma, Mark Govea\n\nPatreon:\nhttps://www.patreon.com/user?u=2825050&ty=h\nFacebook:\nhttp://facebook.com/realengineering1\nInstagram:\n https://www.instagram.com/real.engineering\n https://www.instagram.com/brianjamesmcmanus\nTwitter:\nhttps://twitter.com/Fiosracht\n\nMusic:\nOutro Music is The Catch by Maeson: https://soundcloud.com/maeson-1/tracks\nhttps://twitter.com/Maesonprod\nIntro Music:\n\"Infinite Perspective\" Kevin MacLeod (incompetech.com)\nLicensed under Creative Commons: By Attribution 3.0 License\n\nTransistor Zoom:\nhttp://www.nisenet.org/catalog/media/zoom_microchip_video",
@@ -4799,6 +7083,12 @@ var videos = [{
     "duration": "00:08:12",
     "thumb": "http://i.ytimg.com/vi/OwS9aTE2Go4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.9585764294,
     "description": "View full lesson: http://ed.ted.com/lessons/what-is-a-vector-david-huynh\n\nPhysicists, air traffic controllers, and video game creators all have at least one thing in common: vectors. But what exactly are they, and why do they matter? David Huynh explains how vectors are a prime example of the elegance, beauty, and fundamental usefulness of mathematics. \n\nLesson by David Huynh, animation by Anton Trofimov.",
@@ -4815,6 +7105,12 @@ var videos = [{
     "duration": "00:04:41",
     "thumb": "http://i.ytimg.com/vi/ml4NSzCQobk/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.96098206167,
     "description": "Whether they\u2019re dancing, hunting, or being a pain in the nose, these new arachnid species will knock all 8 of your socks off.\n\nHosted by: Michael Aranda\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Patrick Merrithew, Will and Sonja Marple, Thomas J., Kevin Bealer, Chris Peters, charles george, Kathy & Tim Philip, Tim Curwick, Bader AlGhamdi, Justin Lentz, Patrick D. Ashmore, Mark Terrio-Cameron, Benny, Fatima Iqbal, Accalia Elementia, Kyle Anderson, and Philippe von Bergen.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\n\nPeacock Spider \nhttp://peckhamia.com/peckhamia/PECKHAMIA_141.1.pdf\nhttps://www.flickr.com/photos/59431731@N05/sets/72157646213014552/\nhttps://www.youtube.com/user/Peacockspiderman\nhttps://www.facebook.com/PeacockSpider\n\nPeek-a-Boo Jumping Spider\nhttp://peckhamia.com/peckhamia/PECKHAMIA_133.1.pdf\nhttps://www.newscientist.com/article/dn28756-male-spiders-lure-aggressive-females-with-peek-a-boo-paddle-game/ \nhttp://www.livescience.com/53445-spider-paddle-arm-woos-mates.html \n\nMoroccan Flic-Flac Spider\nhttp://biotaxa.org/Zootaxa/article/view/zootaxa.3790.2.4/18610\nhttp://www.upi.com/Science_News/2014/05/06/Cartwheeling-spider-inspires-robot/8981399395704/ph2/\nhttp://www.nytimes.com/2014/05/06/science/a-desert-spider-with-astonishing-moves.html?_r=1\nhttps://www.youtube.com/watch?v=1B9xayZu8n4&ab_channel=Sandskink \n\nEyeless Huntsman Spider\nhttp://biotaxa.org/Zootaxa/article/view/zootaxa.3415.1.3\nhttps://www.sciencedaily.com/releases/2012/08/120809090431.htm\n\nProto-Spider\nhttp://rspb.royalsocietypublishing.org/content/283/1827/20160125\nhttp://www.bbc.com/news/science-environment-35918234\nhttps://www.sciencedaily.com/releases/2016/03/160331004236.htm\nhttp://www.nhm.org/site/activities-programs/citizen-science/spider-survey/spider-biology\n\nBehemoth Daddy Long Legs\nhttp://zookeys.pensoft.net/articles.php?id=6274\nhttp://www.livescience.com/53475-behemoth-daddy-longlegs-discovered.html\nhttps://entomologytoday.org/2016/01/26/large-new-species-of-harvestman-only-the-second-in-its-genus/\n\nBuckeye Dragon Mite\nhttp://www.tandfonline.com/doi/pdf/10.1080/00222933.2013.859318\nhttp://www.sciencedirect.com/science/article/pii/S1467803915000389\nhttps://entomologytoday.org/2015/06/03/in-a-desert-manners-maketh-mites-a-new-and-unusual-type-of-microbivory/\nhttps://entomologytoday.org/2014/02/20/new-species-of-bizarre-worm-like-mite-discovered-on-ohio-state-university-campus/\n\nKibale Nostril Tick\nhttp://www.ajtmh.org/content/early/2013/09/05/ajtmh.13-0081.full.pdf\nhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC3820337/\nhttp://www.theverge.com/2013/10/13/4833934/potential-new-tick-species-disease-transmission-method-discovered\nhttp://www.sciencemag.org/news/2013/10/invasion-nostril-ticks\nhttp://howtodoeverything.org/post/63772633433/how-to-protect-your-valuables-discover-a-new\n\nCharinus Whip Spiders\nhttp://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148277\nhttp://www.livescience.com/53754-new-whip-spider-species.html",
@@ -4831,6 +7127,12 @@ var videos = [{
     "duration": "00:09:15",
     "thumb": "http://i.ytimg.com/vi/RnsEf5URYf0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "THUNK",
     "rating": 4.98479087452,
     "description": "Problem-solving? Well I'm no Mark Watney, but if you're looking for answers, I *do* have a few tricks. #potato\n\n-Links for the Curious-\n\nAn article on how \"The Martian\" is a great example for teaching mathematical problem-solving - http://www.scottkim.com/blog/2015/12/7/mathematical-problem-solving-in-the-martian\n\nProductivity Loss in Brainstorming Groups: A Meta-Analytic Integration (or why group brainstorming is a bad idea) - http://www.tandfonline.com/doi/abs/10.1207/s15324834basp1201_1?journalCode=hbas20\n\nThink Different: The Merits of Unconscious Thought in Preference Development and Decision Making. - http://psycnet.apa.org/journals/psp/87/5/586/\n\nA review of the (diverse & poorly-understood) scientific literature on brainstorming - http://cpsb.com/resources/downloads/public/302-Brainstorm.pdf\n\nRubber duck debugging image courtesy of:\n\nBy Tom Morris - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=16745966",
@@ -4847,6 +7149,12 @@ var videos = [{
     "duration": "00:08:44",
     "thumb": "http://i.ytimg.com/vi/oskXOEqkPeo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Deep Astronomy",
     "rating": 4.95226371659,
     "description": "http://gplus.to/TonyDarnell\r\nhttp://twitter.com/DeepAstronomy \r\nhttp://facebook.com/SpaceFan\r\n\r\nI've recently discovered an animation that was rendered using the measured redshift of all 10,000 galaxies in the Hubble Ultra Deep Field image.\r\n\r\nI've written a short script that leads you through a quick history of both deep field images and this video ends with a fly-through of the Ultra Deep Field.\r\n\r\nEvery galaxy in the image is in its proper distance as viewed from the telescope line of sight.\r\n\r\nAs if this image wasn't amazing enough.\r\n\r\nAnimation Credit:\r\n\r\nHubble Cosmological Redshift Animation Courtesy:\r\nhttp://hubblesite.org/newscenter/archive/releases/2004/28/video/b/\r\n\r\nMike Gallis\r\n\r\nhttp://phys23p.sl.psu.edu/phys_anim/Phys_anim.htm\r\nhttp://www.youtube.com/watch?v=e6G2Z6iD-9M\r\n\r\nMusic Used in this video was purchased from stockmusic.net and belongs to the Spirit Legends Collection.\r\n\r\nThe tunes I used were:\r\n\r\nVoice Redo B\r\nVoice in the Dark\r\n\r\nLink to demos:\r\n\r\nhttp://www.stockmusic.net/index.cfm/page/main.collectionDetails/collectionId/67",
@@ -4863,6 +7171,12 @@ var videos = [{
     "duration": "00:04:17",
     "thumb": "http://i.ytimg.com/vi/oAVjF_7ensg/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.9059665677,
     "description": "View full lesson: http://ed.ted.com/lessons/how-to-understand-power-eric-liu\n\nEvery day, we move and operate within systems of power that other people have constructed. But we\u2019re often uncomfortable talking about power. Why? Eric Liu describes the six sources of power and explains how understanding them is key to being an effective citizen. \n\nLesson by Eric Liu, animation by KAPWA Studioworks.",
@@ -4879,6 +7193,12 @@ var videos = [{
     "duration": "00:07:02",
     "thumb": "http://i.ytimg.com/vi/c_Eutci7ack/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.89310271496,
     "description": "There's a problem with the Big Bang Theory.\n\nGet your own Space Time t-shirt at http://bit.ly/1QlzoBi\n\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\nSupport us on Patreon! http://www.patreon.com/pbsspacetime\n\nHelp translate our videos! http://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nNow that we have a primer on the aspects of the Big Bang Theory that we know definitely happened, let\u2019s look further into what we don\u2019t yet know, and how the theory could progress in the future. Since there is a discrepancy between general relativity and quantum mechanics, we continue to search for a grand unifying theory... one which may finally lead to a description of the actual moment of the Big Bang! On this week's Space Time, Matt describes what specifically needs fixing within the current theory, and the reasons why.\n\nFURTHER READING:\n\nElectroweak Era\nhttps://en.wikipedia.org/wiki/Electroweak_epoch\n_____________________\n\nCOMMENTS:\n\nElectroMechaCat \nhttps://www.youtube.com/watch?v=aPStj2ZuXug&lc=z13iinc5vyemsbk5l04cjrbalxjqd5pgzcw\n\nKalakashi\nhttps://www.youtube.com/watch?v=aPStj2ZuXug&lc=z13ov1c4ipqydv0cm235ydgjszy2jpzou04\n\nJames Beech\nhttps://www.youtube.com/watch?v=aPStj2ZuXug&lc=z12jgfjafmufg54fj23od1ibvny4jpl5404\n\n______________________\n\nWritten and hosted by Matt O\u2019Dowd \nMade by Kornhaber Brown (www.kornhaberbrown.com)",
@@ -4895,6 +7215,12 @@ var videos = [{
     "duration": "00:12:58",
     "thumb": "http://i.ytimg.com/vi/JDmKLXVFJzk/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.94955863808,
     "description": "Joni Mitchell was right, we are stardust.\n\nGet your own Space Time t-shirt at http://bit.ly/1QlzoBi\n\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\nSupport us on Patreon! http://www.patreon.com/pbsspacetime\n\nHelp translate our videos! http://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nStars are our stellar alchemists. They spend their entire lifespan creating and molding elements. In their final moments, a supernova spreads these elements out into the universe, providing the building blocks for new stars, planets, and even us!\n\n'The Recipe For Life\u2026' by It's Okay To Be Smart\nhttp://bit.ly/1UJbRkn\n\nColliding neutron stars produce heavy elements\nBerger, Fong & Chornock 2013 http://arxiv.org/abs/1306.3960\nhttps://www.cfa.harvard.edu/news/2013-19\n\nStellar Alchemist song by Kim Boekbinder \nhttp://kimboekbinder.bandcamp.com/\n_____________________\n\nCOMMENTS:\n\nAl Hartman\nhttps://www.youtube.com/watch?v=blSTT...\n\ndredawgz1\nhttps://www.youtube.com/watch?v=blSTT...\n\nAdrian Blue\nhttps://www.youtube.com/watch?v=blSTT...\n\nmukul gupta\nhttps://www.youtube.com/watch?v=blSTT...\n\n______________________\n\nWritten and hosted by Matt O\u2019Dowd \nMade by Kornhaber Brown (www.kornhaberbrown.com)",
@@ -4911,6 +7237,12 @@ var videos = [{
     "duration": "00:13:38",
     "thumb": "http://i.ytimg.com/vi/6yLGeviU8FM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.92903645254,
     "description": "So what is the difference between you and a rock? This seems like an easy, even stupid question. But even the smartest people on earth have no idea where to draw the line between living and dead things. Which leads to mind-blowing implications. What is life after all? And is death really a thing? Lets look into it together\n\nhttp://waitbutwhy.com/ has the follow up article up: http://bit.ly/1vJBzCU Have I mentionend yet that you should read it? Check them out, by far the best blog on the internet.\n\nYou can get the MUSIC of the video here:\n\nhttps://soundcloud.com/epicmountain/life-original-music-kurzgesagt-science-Videos\n\nhttp://epicmountainmusic.bandcamp.com/track/life\n\nhttp://epic-mountain.com\n\nVideos, explaining things. Like evolution, time, space, global energy or our existence in this strange universe. \nWe are a team of designers, journalists and musicians who want to make science look beautiful. Because it is beautiful. \n\nVisit us on our Website, Twitter, Facebook, Patreon or Behance to say hi!\n\nhttp://kurzgesagt.org\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\nhttp://www.patreon.com/Kurzgesagt\nhttp://www.behance.net/Kurzgesagt\n\nWhat Is Life? Is Death Even Real?\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nOpal Hartbower, Andrzej Rejman, Andrew Jagasothy, Russell Common, Stephen Bassett, Christopher Lang, Chris Kitching, Jeff Le, Francesca Monteiro, Duncan Cheong, Derek, Juan Manuel Corredor, Kyle Chapman, Lam Nguyen, Jan Berdel, Scott Zell, David Walsh, AgentK, Mehmet Sevil, Carly Tawse, Shaalee Dworski, Ben Nunan, J.J., Chris Linardos, Tony Morley J\u00f3natan Nilsson, Pholpat Durongbhan, Mosh Rahman, Patrick Eyrich, KokLiang Lim, trefmanic, Dean Herbert, Adam Smith, Ga\u00ebtan Duvaux, Caroline Andrewes, Alex Kaplan, Sebastian Laiseca, Chase Gotlieb, Matthew Gill, Alexander Heavens, Kevin Yapaola, Adam Primaeros, Jan Schmid, Alexander Gavin Zodda, Dario Pagnia, Sara Shah, Kimberly Powell, Eduardo Barbosa, Jeroen Koerts, Michal, Will B, maarten ligtenberg, Ghitea Andrei Paul, nga\u2074, Ryan, Larry Bunyard, Malthe Agger, Giovanna Cardoso, dante harper, B\u00fcnyamin Tetik, Joe Pond, Stephen Morse, J\u00f8rgen Smal\u00e5s, Dario W\u00fcnsch, Matthew Macomber, Daniel McCouid-Carr, Ziggy Freed, Brian David Henderson, Theo Alves Monteiro, David Davenport-Firth, Hamad, Michael Ren, Andrew Connor, Peter Schuller, Brandy Alexander, Alexander Kosenkov, Pascal B., Eric, Scott Laing, Gizem G\u00fcrkan, George Chearswat, Brandon Liu, oscar gautama, Tim, Bruno Ara\u00fajo, Carlos Bohorquez, Christian Lyster Bl\u00e6sbjerg, Daniel OCL, David Harbinson, Heemi Kutia, Rikard Nyberg, Florian Guitton, Jezariael Demos, Ajay Shekhar, Ryan Nai, Eugene Cham, Nick Yonge, David Garcia Quintas, Renaud Savignard, James, Ryan, somersault18:24, Pranab Shenoy, Terry Lipstein, Jan Lukas Lehmann, Javier de la Garza, Tim Carll, Peter \u017dnuderl, Rory Bennett, Sieglinde Geisel, Randy Knapp, Jeff Churchill, Jonathan Velazquez Gore, Daniel, Roman Zolotorevich, Clayton Fussell. Pol Lutgen, Daniel Gonzalez, Stephen Joseph DCruz, Seona Tea, Thomas Lee, Finn Edwards, Ernst van Wijk, David Taylor, Corbin Greene, Tempest, Balazs-Hegedus Jozsef, Alan Feyaerts, Fabricio Godoy, Charles Kuang, Maximilian Ritter, Jesse MacLean, Yousif, Jesse Powell, Wei Wong, Praveen Muthu, Jon Davis, Bahjat, Etienne La Count, Igor Benicio de Mesquita, Siddharth Bajaj, Greeny Liu, Processed Refund, Tibor Schiemann,\n\nWhat Is Life? Is Death Even Real?\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -4927,6 +7259,12 @@ var videos = [{
     "duration": "00:05:57",
     "thumb": "http://i.ytimg.com/vi/QOCaacO8wus/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.90161126278,
     "description": "Thanks to Google Making and Science for supporting this series, and to Sean Carroll for collaborating on it! His book can be found here: http://www.penguinrandomhouse.com/books/316646/the-big-picture-by-sean-carroll/\n\nPlaylist of the full video series: https://www.youtube.com/playlist?list=PLoaVOjvkzQtyZF-2VpJrxPz7bxK_p1Dd2\n\nLink to Patreon supporters here: http://www.minutephysics.com/supporters.html\n\nAMAZING Interactive Entropy explainer by Aatish Bhatia: http://aatishb.github.io/entropy/\n\nThis video is about why entropy gives rise to the arrow of time, and also how the initial low-entropy condition of the universe is responsible for the fact that we experience time right now, and how ultimately it will lead to the high-entropy heat death of the universe.\n\nREFERENCES & ADDITIONAL INFORMATION\n\nDavid Wallace on entropy of gravitating systems:\nhttp://arxiv.org/pdf/0907.0659v1.pdf\n\nSean Carroll: The Big Picture\n(more great articles about entropy, etc on his blog http://preposterousuniverse.com)\n\nJulian Barbour et al on entropic time simulation: https://www.sciencenews.org/article/arrow-time\n\n\n\nMusic by Nathaniel Schroeder, http://www.soundcloud.com/drschroeder\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nCreated by Henry Reich",
@@ -4943,6 +7281,12 @@ var videos = [{
     "duration": "00:03:25",
     "thumb": "http://i.ytimg.com/vi/yKbJ9leUNDE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.93210676341,
     "description": "View full lesson: http://ed.ted.com/lessons/could-human-civilization-spread-across-the-whole-galaxy-roey-tzezana\n\nCould human civilization eventually spread across the whole Milky Way galaxy? Could we move beyond our small, blue planet to establish colonies in the multitude of star systems out there? These questions are pretty daunting, but their (theoretical) answers were actually put forth decades ago. Roey Tzezana describes the conceptual von Neumann machine. \n\nLesson by Roey Tzezana, animation by Eoin Duffy.",
@@ -4959,6 +7303,12 @@ var videos = [{
     "duration": "00:04:34",
     "thumb": "http://i.ytimg.com/vi/Rpy9Qp7NAaw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "AsapSCIENCE",
     "rating": 4.94090651914,
     "description": "Turns out you have TWO brains!\nGet a FREE Audible Trial: http://audible.com/asap\nSubscribe for more: http://bit.ly/asapsci\n\nCreated by: Mitchell Moffit and Gregory Brown\nWritten by: Annik Carson, Greg Brown and Mitchell Moffit\nIllustrated: by: Max Simmons\nEdited by: Sel Ghebrehiwot\n\nGET THE ASAPSCIENCE BOOK: http://asapscience.com/book/\n\nFOLLOW US!\nInstagram and Twitter: @whalewatchmeplz and @mitchellmoffit \nClickable: http://bit.ly/16F1jeC and http://bit.ly/15J7ube\n\nAsapINSTAGRAM: https://instagram.com/asapscience/\nSnapchat: realasapscience\nFacebook: http://facebook.com/AsapSCIENCE\nTwitter: http://twitter.com/AsapSCIENCE\nTumblr: http://asapscience.tumblr.com\nVine: Search \"AsapSCIENCE\" on vine!\n\nSNAPCHAT US 'whalewatchmeplz' and 'pixelmitch'\n\nCreated by Mitchell Moffit (twitter @mitchellmoffit) and Gregory Brown (twitter @whalewatchmeplz).\n\nSend us stuff!\n\nASAPSCIENCE INC.\nP.O. Box 93, Toronto P\nToronto, ON, M5S2S6\n\nFurther reading --\n\nhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC4270213/\n\nhttp://www.ncbi.nlm.nih.gov/pubmed/25078296\n\nhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC4367209/\n\nhttp://www.brainstimjrnl.com/article/S1935-861X(13)00033-8/abstract\n\nhttp://www.pnas.org/content/108/38/16050\n\nhttp://www.ncbi.nlm.nih.gov/pubmed/18492026\n\nhttp://www.scientificamerican.com/article/mental-health-may-depend-on-creatures-in-the-gut/\n\nhttp://www.hopkinsmedicine.org/health/healthy_aging/healthy_body/the-brain-gut-connection\n\nhttp://neurosciencestuff.tumblr.com/post/38271759345/gut-instincts-the-secrets-of-your-second-brain\n\nhttp://www.theatlantic.com/health/archive/2014/09/when-yogurt-affects-the-brain/380542/\n\nhttp://www.nytimes.com/2015/06/28/magazine/can-the-bacteria-in-your-gut-explain-your-mood.html?_r=0\n\nhttp://www.theverge.com/2013/8/21/4595712/gut-feelings-the-future-of-psychiatry-may-be-inside-your-stomach",
@@ -4975,6 +7325,12 @@ var videos = [{
     "duration": "00:04:47",
     "thumb": "http://i.ytimg.com/vi/T3Ftj5E90tY/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.92834394904,
     "description": "Get Your Crash Course Physics Mug here: https://store.dftba.com/products/crashcourse-physics-mug\n\nWaves are cool. The more we learn about waves, the more we learn about a lot of things in physics. Everything from earthquakes to music! Ropes can tell us a lot about how traveling waves work so, in this episode of Crash Course Physics, Shini uses ropes (and animated ropes) to talk about how waves carry energy and how different kinds of waves transmit energy differently. \n\n--\n\nProduced in collaboration with PBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\n--\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashC...\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Patreon: http://www.patreon.com/crashcourse\n\nCC Kids: http://www.youtube.com/crashcoursekids",
@@ -4991,6 +7347,12 @@ var videos = [{
     "duration": "00:07:45",
     "thumb": "http://i.ytimg.com/vi/TfYCnOvNnFU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "This Place",
     "rating": 4.95782073814,
     "description": "Brains and nervous systems do a lot of things, but overall their purpose seems to be to allow cells to communicate and behave together.  But because gene's generally code for things that help reproduction, you can start to see harsh patterns in behaviour.\n\nPatreon https://patreon.com/user?u=849925",
@@ -5007,6 +7369,12 @@ var videos = [{
     "duration": "00:03:31",
     "thumb": "http://i.ytimg.com/vi/BKwh1kLGHyQ/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "exurb1a",
     "rating": 4.93698043002,
     "description": "Scrolling graphics, originally by PushyPixels: http://CookingWithUnity.com\n\nConsiderably nicer in high quality. Like your mum. \n\nIf, like me, you are also an admirer of the mantis shrimp, you will certainly enjoy: http://theoatmeal.com/comics/mantis_s...\n\nThe music is Hymne \u00e0 la Nuit - Rameau: https://youtu.be/sREkrQY07Oc\n\nAnd Mars - Holst: https://youtu.be/Jmk5frp6-3Q\nWrote a book \u25ba https://www.amazon.com/Bridge-Lucy-Dunne-Exurb1a-ebook/dp/B01F7IQEHC\nLike shit music? I make that too \u25ba https://soundcloud.com/exurbia-1\nHelp me to do this full-time \u25ba https://www.patreon.com/exurb1r?ty=h\nDiscuss \u25ba https://www.reddit.com/r/Exurb1a/\nTwitter \u25ba https://twitter.com/Exurb1a\nFacebook \u25ba https://www.facebook.com/exurb1a\n\nHAL9000 is actually a good mate of mine. Good with chicks. Fucking terrible with spaceships.",
@@ -5023,6 +7391,12 @@ var videos = [{
     "duration": "00:04:38",
     "thumb": "http://i.ytimg.com/vi/dLRLYPiaAoA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.93979857418,
     "description": "Why are there stocks at all?\n\nEveryday in the news we hear about the stock exchange, stocks and money moving around the globe. Still, a lot of people don't have an idea why we have stock markets at all, because the topic is usually very dry. We made a short video about the basics of the stock exchanges. With robots. Robots are kewl!\n\nShort videos, explaining things. For example Evolution, the Universe, the Stock Market or controversial topics like Fracking. Because we love science.\n\nWe would love to interact more with you, our viewers to figure out what topics you want to see. If you have a suggestion for future videos or feedback, drop us a line! :)\n\nWe're a bunch of Information designers from munich, visit us on facebook or behance to say hi!\n\nhttps://www.facebook.com/Kurzgesagt\n\nhttps://www.behance.net/kurzgesagt\n\nHow the Stock Exchange works\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -5039,6 +7413,12 @@ var videos = [{
     "duration": "00:03:34",
     "thumb": "http://i.ytimg.com/vi/F3QpgXBtDeo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.95348837209,
     "description": "An Infographic trip through the wonders of the solar system.\n\nThe solar system - well known from countless documentaries. 3D animation on black background. This infographic videos tries something different. Animated infographics and a focus on minimalistic design puts the information up front. We take the viewer on a trip through the solar system, visiting planets, asteroids and the sun.\n\nShort videos, explaining things. For example Evolution, the Universe, the Stock Market or controversial topics like Fracking. Because we love science.\n\nhttps://www.facebook.com/Kurzgesagt\n\nhttps://www.behance.net/kurzgesagt\n\nThe Solar System -- our home in space\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -5055,6 +7435,12 @@ var videos = [{
     "duration": "00:07:21",
     "thumb": "http://i.ytimg.com/vi/KsF_hdjWJjo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.93833055284,
     "description": "Nuclear war, cat gifs and reddit?  Wait, what?\n\nWho was the genius who came up with all of that? The internet is such a crucial tool in our daily lives today that we hardly remember that it hasn't been here forever. But yeah, it is actually not that old. We still have fuzzy memories about the time before the first thing in the morning was to check email and browse our favorite blogs and youtube channels. Well, let's explore how the internet came into existence and why. \n\nAnd another Kurzgesagt video that isn't depressing! Don't get used to it though. \n\nWe funny comments at the end of the video are real comments from real people, from old YGS Episodes from Jacksfilms: youtube.com/jacksfilms\n\nThe MUSIC is available here: http://bit.ly/1hvOiYO\n\nThanks to Max from Moby Digg for the cat ;)\n\nwww.Kurzgesagt.org\n\nIf you like the MUSIC of the video, you can get it here: http://bit.ly/1fCOlLI\n\nNext Video: May. Topic: Nuclear Energy \n\nVideos, explaining things. Like evolution, time, space, global energy or our existence in this strange universe. \nWe are a team of designers, journalists and musicians who want to make science look beautiful. Because it is beautiful. \n\nVisit us on our website, twitter, facebook or behance to say hi!\n\nhttp://kurzgesagt.org\n\nhttps://twitter.com/Kurz_Gesagt\n\nhttps://www.facebook.com/Kurzgesagt\n\nhttps://www.behance.net/kurzgesagt\n\nWho invented the Internet? And why?\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -5071,6 +7457,12 @@ var videos = [{
     "duration": "00:06:33",
     "thumb": "http://i.ytimg.com/vi/21eFwbb48sE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Vox",
     "rating": 4.90368790003,
     "description": "Modern cities are designed for cars. But the city of Barcelona is testing out an urban design trick that can give cities back to pedestrians.\n\nRead more: http://www.vox.com/2016/8/4/12342806/barcelona-superblocks\n\nThumbnail image from http://shutterstock.com\n\nSubscribe to our channel! http://goo.gl/0bsAjO\n\nVox.com is a news website that helps you cut through the noise and understand what's really driving the events in the headlines. Check out http://www.vox.com to get up to speed on everything from Kurdistan to the Kim Kardashian app. \n\nCheck out our full video catalog: http://goo.gl/IZONyE\nFollow Vox on Twitter: http://goo.gl/XFrZ5H\nOr on Facebook: http://goo.gl/U2g06o",
@@ -5087,6 +7479,12 @@ var videos = [{
     "duration": "00:05:31",
     "thumb": "http://i.ytimg.com/vi/ZORzsubQA_M/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.92856833254,
     "description": "This video is about the difference between complexity and entropy, and how complex things like life can arise from disorder. Thanks to Google Making and Science for supporting this series, and to Sean Carroll for collaborating on it! His book can be found here: http://www.penguinrandomhouse.com/books/316646/the-big-picture-by-sean-carroll/\n\nPlaylist of the full video series: https://www.youtube.com/playlist?list=PLoaVOjvkzQtyZF-2VpJrxPz7bxK_p1Dd2\n\nLink to Patreon supporters here: http://www.minutephysics.com/supporters.html\n\nThis video is about the difference between complexity and entropy, and how we can see complex things like life, planets, galaxies, humans, intelligence, consciousness, etc arising in our universe when the overall tendency of the second law of thermodynamics is towards increasing entropy and disorder. It turns out that gravitational collapse & other complex structures (such as tendrils that form when coffee and milk mix) arise naturally as part of the path towards increasing entropy.\n\nREFERENCES & ADDITIONAL INFORMATION\n\nSean's blog: http://www.preposterousuniverse.com/blog/2016/05/11/big-picture-part-four-complexity/\n\nAnother article by Sean about complexity and god: https://www.preposterousuniverse.com/writings/dtung/\n\nSean Carroll: The Big Picture\n(more great articles about entropy, etc on his blog http://preposterousuniverse.com)\n\nInteractive Entropy explainer by Aatish Bhatia: http://aatishb.github.io/entropy/\n\nThanks to Micheal Aranda (https://www.youtube.com/user/WhatImDoingRightNow) for help filming the 4k high resolution slow-motion coffee footage\n\nMusic for the series was especially composed by Nathaniel Schroeder, http://www.soundcloud.com/drschroeder\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nCreated by Henry Reich",
@@ -5103,6 +7501,12 @@ var videos = [{
     "duration": "00:03:35",
     "thumb": "http://i.ytimg.com/vi/MTFY0H4EZx4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.97083839611,
     "description": "This video is about how we don't just need energy to power our lives, we need *low entropy* energy! Thanks to Google Making and Science for supporting this series, and to Sean Carroll for collaborating on it! His book can be found here: http://www.penguinrandomhouse.com/books/316646/the-big-picture-by-sean-carroll/\n\nPlaylist of the full video series: https://www.youtube.com/playlist?list=PLoaVOjvkzQtyZF-2VpJrxPz7bxK_p1Dd2\n\nLink to Patreon supporters here: http://www.minutephysics.com/supporters.html\n\nThis video is about how we don't just need energy to power our lives, we need *low entropy* energy! This is also known as \"free energy\", and one way of thinking about entropy is as the lack of free energy. The sun provides us with useful, low entropy, energy in the form of photons of visible light, which are then absorbed and converted into plants, sugar, complex molecules, etc, before being radiated back into space as heat, which has much higher entropy.\n\nMusic for the series was especially composed by Nathaniel Schroeder, http://www.soundcloud.com/drschroeder\n\nREFERENCES & ADDITIONAL INFORMATION\n\nEntropy Balance of Radiation of the Earth system http://www.sciencedirect.com/science/article/pii/0038092X9290097T\n\nHeat balance of global warming/climate change: http://www.skepticalscience.com/4-Hiroshima-bombs-worth-of-heat-per-second.html\n\nMore on the Entropy Balance of the Earth System https://www.bnl.gov/envsci/pubs/pdf/2010/BNL-81482-2008-JA.pdf\n\nThe Entropy of a Photon Gas: https://en.wikipedia.org/wiki/Photon_gas\n\nSean's blog: http://www.preposterousuniverse.com/blog/2016/05/11/big-picture-part-four-complexity/\n\nAnother article by Sean about complexity and god: https://www.preposterousuniverse.com/writings/dtung/\n\nSean Carroll: The Big Picture\n(more great articles about entropy, etc on his blog http://preposterousuniverse.com)\n\nInteractive Entropy explainer by Aatish Bhatia: http://aatishb.github.io/entropy/\n\n\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nCreated by Henry Reich",
@@ -5119,6 +7523,12 @@ var videos = [{
     "duration": "00:03:15",
     "thumb": "http://i.ytimg.com/vi/sAMlGyaUz4M/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.96650747551,
     "description": "What if there is a way to destroy the universe so fundamentally that life as we know it will be impossible forever?\n\nSupport us on Patreon so we can make more videos (and get cool stuff in return): https://www.patreon.com/Kurzgesagt?ty=h\n\nKurzgesagt merch here:  http://bit.ly/1P1hQIH\n\nGet the music of the video here: \n\nsoundcloud: http://bit.ly/2dCWTw8\nband camp: http://bit.ly/2dCXE8u\nhttp://www.epic-mountain.com\n \nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nkurzgesagtismyinspiration , Diego Espinosa, Marcus Rudd, Nur Diana, Steven Magee, Shaun Thornhill, Edward Wright, Martin Olesen, Daniel Rinfret, Tim, Project e-NEU, Lomky, roland rauch, Sven Drapeau-Martin, Randy Juip, Rowdy, Oscar Roa, Jason Lopez, Samuel Bohler, Rani Ji, Donald Dahlin, Dane R. Dickey, Tushar Sharma, David Beitler, Kasturi Raghavan, Ken, Patrick Powers, Duncan Holland, Jack Burke, Louie Guan, Brandon Cassata, Abhijay Murugesan, Stephan D\u2019Aoust, Alexander Gonzalez, Vangar Shriek, Kirk McVean, Perry Piper, Abdulrahman Al-Khalifi, Miles Coe, Fabian L\u00f6schner, J\u00falius Retzer, Neil French, Josh Bautista, Sukhkaran Multani, Idea180, Boyd Nakamura, Royi Mindel, Rossi Davide, Alexander, Jean-Roger Caron-Ma, Brandon Meador, Ben Knight, Michael Niella, Grant Jacobson, Stuart Cass, Salva Carri\u00f3n, Byron Kim, Jordan Korn, Romain Esteban, Ivan \u0160andrk, Alexander Schelhase,Liz A, Rebecca Edelman, Joakim Andersson, Daniel Bade, Real Engineering, Alex, Scott Tonne, Jens Bilanz, Daniel Avar, Amr Alhalabi,\n\nFURTHER READING:\n\nhttps://cosmosmagazine.com/physics/vacuum-decay-ultimate-catastrophe\n\nhttps://en.wikipedia.org/wiki/False_vacuum\n\nhttps://physics.aps.org/articles/v8/108\n\nhttp://www.sns.ias.edu/pitp2/2011files/PhysRevD.21.3305.pdf\n\nhttp://www.ctc.cam.ac.uk/outreach/origins/quantum_cosmology_three.php\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
@@ -5135,6 +7545,12 @@ var videos = [{
     "duration": "00:05:59",
     "thumb": "http://i.ytimg.com/vi/ijFm6DxNVyI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CGP Grey",
     "rating": 4.93344013889,
     "description": "Che Greyvara T-Shirt: https://goo.gl/N23bFx\nGrey discusses the video: https://youtu.be/ILvD7zVN2jo\nBrought to you in part by: http://www.audible.com/grey\n\nSpecial Thanks: \n\nBruce Bueno de Mesquita & Alastair Smith\n\n&\n\nMark Govea, Thomas J Miller Jr MD, dedla , Robert Kunz, John Buchan, Ripta Pasay, Saki Comandao, Andres Villacres, Christian Cooper, Michael Little, PervertedThomas , Nevin Spoljaric, \u0633\u0644\u064a\u0645\u0627\u0646 \u0627\u0644\u0639\u0642\u0644, Tony DiLascio, Richard Jenkins, Chris Chapin, Faust Fairbrook, Jason Lewandowski, Michael Mrozek, Jordan LeDoux, Chris Woodall, rictic , Ian , Tod Kurt, Phil Gardner, Chang Wang, Kozo Ota, Jordan Melville, Martin , Steven Grimm, Joe Pantry, Colin Millions, Muhammad Shifaz, Chris Harshman, Jose Reyes, Guillermo , Ron Bowes, T\u00f3mas \u00c1rni J\u00f3nasson, Mikko , Derek Bonner, Derek Jackson, Orbit_Junkie , Timothy Basanov, David Michaels, Mark Elders, Donal Botkin, Veronica Peshterianu, Paul Tomblin, Travis Wichert, chrysilis , Ryan E Manning, Erik Parasiuk, Rhys Parry, Maarten van der Blij, Kevin Anderson, Ryan Nielsen, Esteban Santana Santana, Dag Viggo Lok\u00f8en, Tristan Watts-Willis, John Rogers, Edward Adams, Leon , ken mcfarlane, Brandon Callender, Timothy Moran, Peter Lomax, Emil , Tijmen van Dien, ShiroiYami , Alex Schuldberg, Ryan Constantin, Bear , Jacob Ostling, Solon Carter, Rescla , Hystiklopp , Andrew Proue, Tor Henrik Lehne, David Palomares, Cas Eli\u00ebns, Freddi H\u00f8rlyck, Ernesto Jimenez, Osric Lord-Williams, Maxime Zielony, Lachlan Holmes , John Lee, Ian N Riopel, AUFFRAY Clement, John Bevan, Robert Gr\u00fcnke (trainfart)\n\nMusic by: http://www.davidreesmusic.com",
@@ -5151,6 +7567,12 @@ var videos = [{
     "duration": "00:19:33",
     "thumb": "http://i.ytimg.com/vi/rStL7niR7gs/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Thought Caf\u00e9",
     "rating": 4.98878504673,
     "description": "We teamed up with Popular Science to find out more about the discovery of Proxima Centauri b.\n\nIs Interstellar Travel Possible?: https://youtu.be/RTn77uCYU_8\n\nSUBSCRIBE: http://bit.ly/1OhMPQC\n\nMore from us: http://bit.ly/1KpGB0s\n\nSound Design by Allan Levy\n\nHelp caption this video! http://bit.ly/2fLnUAE \n\nFollow us!\n\nhttp://thoughtcafe.ca\nhttp://twitter.com/thoughtcafe\nhttp://thought-cafe.tumblr.com\nhttp://facebook.com/thoughtbubbler\nhttp://instagram.com/thoughtcafe\nhttps://www.snapchat.com/add/thoughtcafe",
@@ -5167,6 +7589,12 @@ var videos = [{
     "duration": "00:03:53",
     "thumb": "http://i.ytimg.com/vi/A22tOPjBBns/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "AsapSCIENCE",
     "rating": 4.90649480353,
     "description": "This episode is sponsored by Bill Gates.\nCheck out Bill Gate's Blog on Innovation: http://b-gat.es/2eJrfMT\nSubscribe for more videos: http://bit.ly/asapsci\n\nCreated by: Mitchell Moffit and Gregory Brown\nWritten: by Rachel Salt and Mitchell Moffit\nIllustrated: by: Max Simmons\nEdited by: Sel Ghebrehiwot\n\nGET THE ASAPSCIENCE BOOK: http://asapscience.com/book/\n\nFOLLOW US!\nInstagram and Twitter: @whalewatchmeplz and @mitchellmoffit \nClickable: http://bit.ly/16F1jeC and http://bit.ly/15J7ube\n\nAsapINSTAGRAM: https://instagram.com/asapscience/\nSnapchat: realasapscience\nFacebook: http://facebook.com/AsapSCIENCE\nTwitter: http://twitter.com/AsapSCIENCE\nTumblr: http://asapscience.tumblr.com\nVine: Search \"AsapSCIENCE\" on vine!\n\nSNAPCHAT US 'whalewatchmeplz' and 'pixelmitch'\n\nCreated by Mitchell Moffit (twitter @mitchellmoffit) and Gregory Brown (twitter @whalewatchmeplz).\n\nSend us stuff!\n\nASAPSCIENCE INC.\nP.O. Box 93, Toronto P\nToronto, ON, M5S2S6",
@@ -5183,6 +7611,12 @@ var videos = [{
     "duration": "00:06:42",
     "thumb": "http://i.ytimg.com/vi/I16TJUp4SVA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.90517171389,
     "description": "View full lesson: http://ed.ted.com/lessons/plato-s-best-and-worst-ideas-wisecrack\n\nCheck out Wisecrack's YouTube channel here: https://goo.gl/A5vb5K\n\nFew individuals have influenced the world and many of today\u2019s thinkers like Plato. He created the first Western university and was teacher to Ancient Greece\u2019s greatest minds, including Aristotle. But even he wasn\u2019t perfect. Along with his great ideas, Plato had a few that haven\u2019t exactly stood the test of time. Wisecrack gives a brief rundown of a few of Plato\u2019s best and worst ideas. \n\nLesson by Wisecrack, animation by Aaron, Tom and Mathias Studios.",
@@ -5199,6 +7633,12 @@ var videos = [{
     "duration": "00:04:49",
     "thumb": "http://i.ytimg.com/vi/jLesc5lITvo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.95432725917,
     "description": "Thanks to http://www.audible.com/minutephysics for supporting this video, which is about how the way we describe the world can influence the way we perceive it. In particular, with regards to Bohmian mechanics, Schrodinger wave functions, Feynman path integrals, and Galilean moons attached to Jupiter by springs.\n\nThanks to everyone who supports MinutePhysics on Patreon!\nLink to Patreon supporters here: http://www.minutephysics.com/supporters.html\n\nREFERENCES:\n\nScans of Galileo\u2019s notes:\nhttp://www.dioi.org/galileo/scans.pdf\nScans of Galileo\u2019s publication: http://www.chlt.org/sandbox/lhl/GalileoSkel1610/page.41.a.php?size=240x320\n\nComparison of Galileo\u2019s observations with modern models: http://www.etwright.org/astro/sidnunj.html \n\nLatin version of Galileo\u2019s publication on wikimedia: https://la.wikisource.org/wiki/Sidereus\\_nuncius\n\nGalilean moons: https://en.wikipedia.org/wiki/Galilean\\_moons\n\nJupiter viewed from its north and south poles: http://www.damianpeach.com/barbados07/jupiter/juppol2007\\_05\\_25-27dp.jpg\n\nCentrifugal & Coriolis Forces: https://en.wikipedia.org/wiki/Centrifugal\\_force\nCoriolis Force: https://en.wikipedia.org/wiki/Coriolis\\_force\nFictitious Forces in rotating reference frames: http://www.mathpages.com/home/kmath633/kmath633.htm\n\nDilithium molecule:\nhttps://en.wikipedia.org/wiki/Dilithium\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nCreated by Henry Reich\nMusic by Nathaniel Schroeder",
@@ -5215,6 +7655,12 @@ var videos = [{
     "duration": "00:03:15",
     "thumb": "http://i.ytimg.com/vi/lHaX9asEXIo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "NPR",
     "rating": 4.90657950232,
     "description": "http://skunkbear.tumblr.com\n\nIt was just over two centuries ago that the global population was 1 billion \u2014 in 1804. But better medicine and improved agriculture resulted in higher life expectancy for children, dramatically increasing the world population, especially in the West.\n\nAs higher standards of living and better health care are reaching more parts of the world, the rates of fertility \u2014 and population growth \u2014 have started to slow down, though the population will continue to grow for the foreseeable future.\n\nU.N. forecasts suggest the world population could hit a peak of 10.1 billion by 2100 before beginning to decline. But exact numbers are hard to come by \u2014 just small variations in fertility rates could mean a population of 15 billion by the end of the century.\n\nProduced by Adam Cole\nCinematography by Maggie Starbard",
@@ -5231,6 +7677,12 @@ var videos = [{
     "duration": "00:02:34",
     "thumb": "http://i.ytimg.com/vi/VcSX4ytEfcE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "DominicWalliman",
     "rating": 4.98367670365,
     "description": "Everything we know about physics - and a few things we don't - in a simple map.\n\nIf you are interested in buying a print you can buy it as a poster here: http://www.redbubble.com/people/dominicwalliman/works/24105984-the-map-of-physics?asc=u&p=poster&rel=carousel\n\nOr on a load of other objects: http://www.redbubble.com/people/dominicwalliman/works/24105984-the-map-of-physics?asc=u\n\nAlso you can download a digital version here: https://www.flickr.com/photos/95869671@N08/30976775430/in/dateposted-public/\n\nI made the music, which you can find on my Soundcloud if you'd like to get lost in some cosmic jam. https://soundcloud.com/dominicwalliman\n\nErrata and clarifications.\n\nI endeavour to be as accurate as possible in my videos, but I am human and definitely don\u2019t know everything, so there are sometimes mistakes. Also, due to the nature of my videos, there are bound to be oversimplifications. Some of these are intentional because I don\u2019t have time to go into full detail, but sometimes they are unintentional and here is where I clear them up.\n\n1. \u201cIsaac Newton invented calculus.\u201d Actually there is controversy over who invented calculus first Isaac Newton or Gottfried Leibniz. Regardless of who it was I have used Leibniz\u2019s mathematical notation here and so he definitely deserves credit. I did\u2019t know about all this so thanks to those who pointed it out. https://en.wikipedia.org/wiki/Leibniz%E2%80%93Newton_calculus_controversy\n2. \u201cMaxwell derived the laws of electromagnetism.\u201d This is a simplification as Maxwell\u2019s work was built on the backs of other scientists like Hans Christian \u00d8rsted, Andr\u00e9-Marie Ampl\u00e8re and Michael Faraday who discovered induction and saw that electricity and magnetism were part of the same thing. But it was Maxwell who worked out all the maths and brought electricity and magnetism together into a unified theory. https://en.wikipedia.org/wiki/Electromagnetism#History_of_the_theory\n3. \u201cEntropy is a measure of order and disorder\u201d. This is also a simplification and this does a good job of explaining it better https://en.wikipedia.org/wiki/Entropy\n4. Einstein and Quantum physics: I made it sound like quantum physics was built by people other than Einstein, but this couldn\u2019t be further from the truth. Einstein got a Nobel prize for his work on the photoelectric effect which was a key result to show the particle-like nature of light. Funnily enough he never got a nobel prize for his work on Relativity!\n\nAlso, if you enjoyed this video, you will probably like my science books, available in all good books shops around the work and is printed in 16 languages. Links are below or just search for Professor Astro Cat. They are fun children's books aimed at the age range 7-12. But they are also a hit with adults who want good explanations of science. The books have won awards and the app won a Webby.\n\nFrontiers of Space: http://nobrow.net/shop/professor-astro-cats-frontiers-of-space/\nAtomic Adventure: http://nobrow.net/shop/professor-astro-cats-atomic-adventure/\nIntergalactic Activity Book: http://nobrow.net/shop/professor-astro-cats-intergalactic-activity-book/\nSolar System App: http://www.minilabstudios.com/apps/professor-astro-cats-solar-system/\n\nFind me on twitter, instagram, and my website:\nhttp://dominicwalliman.com\nhttps://twitter.com/DominicWalliman\nhttps://www.instagram.com/dominicwalliman\nhttps://www.facebook.com/dominicwalliman",
@@ -5247,6 +7699,12 @@ var videos = [{
     "duration": "00:08:20",
     "thumb": "http://i.ytimg.com/vi/ZihywtixUYo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.94064555607,
     "description": "There\u2019s one interpretation of the meaning of quantum mechanics that manages to skip a lot of the unphysical weirdness of the mainstream interpretations: it's de Broglie-Bohm pilot wave theory.\n\nHelp us continue making this show by contributing here: https://www.patreon.com/pbsspacetime \n\nGet your own Space Time t\u00adshirt at http://bit.ly/1QlzoBi\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\n\nHelp tranlate our videos! https://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nThere are some pretty out-there explanations for the processes at work behind the incredibly successful mathematics of quantum mechanics - things are both waves and particles at the same time, the act of observation defines reality, cats are alive and dead, or even: the universe is constantly splitting into infinite alternate realities. The weird results of quantum experiments seem to demand weird explanations of the nature of reality. In this episode, Matt discusses de Broglie-Bohm pilot wave theory, the one interpretation of quantum mechanics that remains comfortably, stodgily physical.\n\nLinks to Sources\n\nThe Quantum Experiment that Broke Reality\nhttps://www.youtube.com/watch?v=p-MNSLsjjdo&t=53s\n\nThe Many Worlds of the Quantum Multiverse\nhttps://www.youtube.com/watch?v=dzKWfw68M5U&t=690s\n\nIs This What Quantum Mechanics Looks Like? \nhttps://www.youtube.com/watch?v=WIyTZDHuarQ\n\nA Suggested Interpretation of the Quantum Theory in Terms of \"Hidden\" Variables. I:\nDavid Bohm, 1952, Phys. Rev. 85, 166 \nhttp://journals.aps.org/pr/abstract/10.1103/PhysRev.85.166\n\nBohms original paper is behind the journal paywall (sorry!), however many other readings on Bohmian mechanics are available here:\nhttp://www.bohmian-mechanics.net/readings_books.html\n\nPrevious Space Time Episode\nhttps://www.youtube.com/watch?v=u4RNGRyzt10 \n\nWritten and hosted by Matt O\u2019Dowd\nProduced by Rusty Ward\nMade by Kornhaber Brown (www.kornhaberbrown.com)\n\nComments Answered by Matt\n\nBurak Ba\u011fdatl\u0131\nhttps://www.youtube.com/watch?v=u4RNGRyzt10&lc=z13hvpcjrlndslnyb04cctjqrvb4hpkphe4\n\nSebasti\u00e1n L\u00f3pez\nhttps://www.youtube.com/watch?v=u4RNGRyzt10&lc=z124yxrjyw3ywvicm23wspagcxracphvg\n\nThe757packerfan\nhttps://www.youtube.com/watch?v=u4RNGRyzt10&lc=z13ujbnznvmfjnhag04cgtprtriafnj4t2k \n\nSpecial thanks to our Patreon Hypernova and Quasar Supporters:  \nJoel Brinton\nAntonio Park\nAlastair Taft\nClock Watcher\nJoe\nJohn Hofmann\n\nThanks to our Patreon Gamma Ray Burst Supporters: \nJade Bilkey\nKevin Warne\nJJ Bagnell\nJ Rejc\nBernardo Higuera\nMichael Fischer\nDylan Merida\nColette Weeks\nAmy Jie\nAnthony Caridi\nAvi Goldfinger\nCorey Smeaton\nJohn Pettit\nShannan Catalano\nFlorian Stinglmayr\nYubo Du\nBenoit Pag\u00e9-Guitard\nRonny Polonia\nNathan Leniz\nJessica Fraley\nKirk Mathews\nLoro Lukic\nCarl P. Corliss\nBrandon labonte\nDavid Crane\nGreg Weiss\nDavid Matteson\nMarc Lagarde\nEric Jackson\nWill and Sonja Marple",
@@ -5263,6 +7721,12 @@ var videos = [{
     "duration": "00:16:32",
     "thumb": "http://i.ytimg.com/vi/RlXdsyctD50/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.92852386238,
     "description": "View full lesson: http://ed.ted.com/lessons/what-s-the-fastest-way-to-alphabetize-your-bookshelf-chand-john\n\nYou work at the college library. You\u2019re in the middle of a quiet afternoon when suddenly, a shipment of 1,280 books arrives. The books are in a straight line, but they're all out of order, and the automatic sorting system is broken. How can you sort the books quickly? Chand John shows how, shedding light on how algorithms help librarians and search engines speedily sort information. \n\nLesson by Chand John, animation by Anton Trofimov.",
@@ -5279,6 +7743,12 @@ var videos = [{
     "duration": "00:04:39",
     "thumb": "http://i.ytimg.com/vi/WaNLJf8xzC4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "American Museum of Natural History",
     "rating": 4.90035937577,
     "description": "It took 200,000 years for our human population to reach 1 billion\u2014and only 200 years to reach 7 billion. But growth has begun slowing, as women have fewer babies on average. When will our global population peak? And how can we minimize our impact on Earth\u2019s resources, even as we approach 11 billion?\n\nDownload the video in HD: \nhttp://media.amnh.org/sciencebulletins/AMNH_HumanPopulation_DOWNLOAD.mp4\n\n\nRelated content:\n\nPopulation Connection\nhttp://worldpopulationhistory.org/map/1/mercator/1/0/25/\n\nUN World Population Prospects\nhttps://esa.un.org/unpd/wpp/\n\nReal-time population counter\nhttp://www.worldometers.info/world-population/\n\nNASA EarthData\nhttps://earthdata.nasa.gov\n\nNASA Socioeconomic Data and Applications Center \nhttp://sedac.ciesin.columbia.edu\n\nVideo credits:\n\nWriter/Producer\nAMNH/L. Moustakerski\n\nAnimator\nAMNH/S. Krasinski\n\nSound Design\nAMNH/J. Morfoot\n\nScientific Advisors\nAMNH/S. Macey\nAMNH/J. Zichello\nCenter for Biodiversity and Conservation\n\nImages\nPhyloPic\nDavid Hillis, Derrick Zwickl, and Robin Gutell, University of Texas\n\nWorld Population used courtesy of Population Connection, \u00a92015\n\nOther Population Data Sources\nPopulation Connection\nUnited Nations, \u201cWorld Population Prospects: 2015 Revision\u201d\nUS Census Bureau\n\nMaps and Event Sources\nEncyclopedia Britannica\nInner Asian & Uralic National Resource Center\nNASA\nNOAA\nNeedham, J. Science and Civilisation in China\nTimeMaps\nTrans-Atlantic Slave Trade Database",
@@ -5295,6 +7765,12 @@ var videos = [{
     "duration": "00:06:25",
     "thumb": "http://i.ytimg.com/vi/PUwmA3Q0_OE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.92338891393,
     "description": "What really happens when you approach  the event horizon of a black hole? What do you see when you actually cross it? Matt shows you an elegant tool for understanding this mysterious region of spacetime. This episode is supported by The Great Courses Plus. Go to http://ow.ly/WPIo306GotR for your one month free trial!\n\nHelp support Space Time on Patreon! https://www.patreon.com/pbsspacetime\nGet your own Space Time t\u00adshirt at http://bit.ly/1QlzoBi\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\n\nCUNY Physics (stay tuned for event April 7 event details):\nhttp://www.gc.cuny.edu/Page-Elements/Academics-Research-Centers-Initiatives/Doctoral-Programs/Physics\n\nHelp tranlate our videos! https://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nWritten and hosted by Matt O\u2019Dowd\nProduced by Rusty Ward\nGraphics by Grayson Blackmon\nMade by Kornhaber Brown (www.kornhaberbrown.com)\n\n\nComments Answered by Matt:\n\n\ndinosaurfromfuture\nhttps://www.youtube.com/watch?v=RlXdsyctD50&lc=z12cw3dapnftev0z104ce5pyzqaejbrwpg0\n\n\nvacuum diagram\nhttps://www.youtube.com/watch?v=RlXdsyctD50&lc=z13gwn3p1tndfdyuj23md5ipdy2xvb33y\n\n\nSpecial thanks to our Patreon Big Bang, Hypernova and Quasar Supporters:  \nAntonio Park\nJoel Brinton\nLuna IT Solutions\nClock Watcher\nJoe\nRatfeast\nVitaly Kovalenko\nJohn Hofmann\n\n\nThanks to our Patreon Gamma Ray Burst Supporters: \nJade Bilkey\nKevin Warne\nJJ Bagnell\nJ Rejc\nBernardo Higuera\nMichael Fischer\nDylan Merida\nColette Weeks\nAmy Jie\nAnthony Caridi\nAvi Goldfinger\nCorey Smeaton\nJohn Pettit\nShannan Catalano\nFlorian Stinglmayr\nYubo Du\nBenoit Pag\u00e9-Guitard\nRonny Polonia\nNathan Leniz\nJessica Fraley\nKirk Mathews\nLoro Lukic\nCarl P. Corliss\nBrandon labonte\nDavid Crane\nGreg Weiss\nDavid Matteson\nMarc Lagarde\nEric Jackson\nWill and Sonja Marple",
@@ -5311,6 +7787,12 @@ var videos = [{
     "duration": "00:19:59",
     "thumb": "http://i.ytimg.com/vi/mht-1c4wc0Q/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Infinite Series",
     "rating": 4.91523390644,
     "description": "There are different sizes of infinity. It turns out that some are larger than others. Mathematician Kelsey Houston-Edwards breaks down what these different sizes are and where they belong in The Hierarchy of Infinities. \n\nTweet at us! @pbsinfinite\nFacebook: facebook.com/pbsinfinite series\nEmail us! pbsinfiniteseries [at] gmail [dot] com\n\nWritten and Hosted by Kelsey Houston-Edwards\nProduced by Rusty Ward\nGraphics by Ray Lux\nMade by Kornhaber Brown (www.kornhaberbrown.com)\n\nSources:\n\nProof that the real numbers are a bigger infinity than the natural numbers:\nhttp://germain.its.maine.edu/~farlow/sec25.pdf\nhttp://www.people.vcu.edu/~rhammack/BookOfProof/Cardinality.pdf\n\nThanks James Barnes and Iian Smythe!",
@@ -5327,6 +7809,12 @@ var videos = [{
     "duration": "00:08:05",
     "thumb": "http://i.ytimg.com/vi/i7c2qz7sO0I/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.96237064911,
     "description": "At the beginning of the 20th century, many scientists thought that we had learned all there was to know about physics. The problem is, the better we get at measuring things and building models of our universe, the more we discover that there are plenty of mysteries left to solve...\n\nHosted by: Michael Aranda\n----------\nSources:\nhttps://books.google.com/books?id=KniUvcxFtOwC&lpg=PA281&ots=0pIY76wqr9&dq&pg=PA281#v=onepage&q&f=true \nhttps://books.google.com/books?id=HysXAAAAYAAJ&pg=PA159#v=onepage&q&f=false'\nhttp://snews.bnl.gov/popsci/neutrino.html\nhttps://www.wired.com/2016/08/icecube-hasnt-found-sterile-neutrinos/\nhttps://www.britannica.com/science/neutrino\nhttp://t2k-experiment.org/neutrinos/in-the-standard-model/ \nhttp://www.wolframalpha.com/input/?i=electron+mass%2Felectron+neutrino+mass \nhttp://nucla.physics.ucla.edu/sites/default/files/Kayser_UCLA1211.pdf \nhttp://rsta.royalsocietypublishing.org/content/370/1961/818\nhttp://snews.bnl.gov/popsci/neutrino.html\nhttps://arxiv.org/pdf/1501.00232v1.pdf\nhttp://ctp.berkeley.edu/neutrino/neutrino5.html\nhttp://t2k-experiment.org/neutrinos/in-the-standard-model/\nhttp://www.nobelprize.org/nobel_prizes/physics/laureates/2015/press.html \nhttp://particleadventure.org/antimatter.html \nhttps://arxiv.org/abs/1204.4186\nhttp://iopscience.iop.org/article/10.1088/1367-2630/14/9/095012/\nhttps://press.cern/backgrounders/matterantimatter-asymmetry \nhttps://www.slac.stanford.edu/pubs/beamline/26/1/26-1-sather.pdf\nhttps://arxiv.org/pdf/1501.00232v1.pdf \nhttps://www.newscientist.com/article/dn7452-biggest-simulation-of-universes-evolution-unveiled\nhttps://www.newscientist.com/article/dn25530-baby-model-cosmos-grows-up-to-look-like-the-real-thing/\nhttp://www.nature.com/nature/journal/v435/n7042/full/nature03597.html\nhttp://cosmology.berkeley.edu/Education/CosmologyEssays/The_Cosmic_Microwave_Background.html \nMax Tegmark, Our Mathematical Universe: My Quest for the Ultimate Nature of Reality (https://www.amazon.com/Our-Mathematical-Universe-Ultimate-Reality/dp/0307744256/)\nLisa Randall, Dark Matter and the Dinosaurs: The Astounding Interconnectedness of the Universe (pages 12-23) (https://www.amazon.com/Dark-Matter-Dinosaurs-Astounding-Interconnectedness/dp/0062328506/) \nDark Matter and the Dinosaurs pages 16-17, http://chandra.harvard.edu/press/06_releases/press_082106.html\nhttps://arxiv.org/abs/astro-ph/0001272\nhttp://iopscience.iop.org/article/10.1086/309512/\nhttp://xxx.lanl.gov/abs/astro-ph/0607207\nhttp://www.aanda.org/articles/aa/abs/2007/26/aa6017-06/aa6017-06.html \nhttp://www.universetoday.com/41878/wimps/# \nhttp://journals.aps.org/prd/abstract/10.1103/PhysRevD.81.057101\nhttps://arxiv.org/abs/0910.4480\nhttps://icecube.wisc.edu/science/data/ic79-solar-wimp\nDark Matter and the Dinosaurs; Endless Universe: Beyond the Big Bang, by Paul Steinhardt and Neil Turok (https://www.amazon.com/Endless-Universe-Beyond-Big-Bang/dp/0385509642) \nhttp://nucla.physics.ucla.edu/sites/default/files/Kayser_UCLA1211.pdf \nhttp://ptp.oxfordjournals.org/content/64/3/1103\nhttp://journals.aps.org/prl/pdf/10.1103/PhysRevLett.44.912\nhttp://journals.aps.org/prd/abstract/10.1103/PhysRevD.22.2227\nhttp://www.livescience.com/21715-big-bang-quark-gluon-plasma.html \nhttp://www.pbs.org/wgbh/nova/next/physics/theres-an-abundance-of-lithium-6-in-the-universe-and-scientists-dont-know-why/\nhttp://www.annualreviews.org/doi/pdf/10.1146/annurev-nucl-102010-130445\nhttps://arxiv.org/pdf/1203.3551.pdf\nhttp://phys.org/news/2015-03-loophole-theory-insight-lithium-problem.html\nhttp://pdg.lbl.gov/2014/reviews/rpp2014-rev-bbang-nucleosynthesis.pdf \nhttp://phys.org/news/2014-08-big-conditions-lithium-problem.html\nhttp://phys.org/news/2015-03-loophole-theory-insight-lithium-problem.html\nhttp://www.space.com/20330-cosmic-microwave-background-explained-infographic.html\nhttps://arxiv.org/abs/0802.3229\nhttp://journals.aps.org/prl/abstract/10.1103/PhysRevLett.95.071301\nhttp://iopscience.iop.org/article/10.1088/1475-7516/2012/10/059\nhttps://arxiv.org/pdf/astro-ph/0508047v1.pdf\nhttp://mnras.oxfordjournals.org/content/367/1/79\nhttp://www-personal.umich.edu/%7Ehuterer/PRESS/CMB_Huterer.pdf\nhttps://www.newscientist.com/article/dn18489-found-hawkings-initials-written-into-the-universe\nhttp://journals.aps.org/prd/abstract/10.1103/PhysRevD.87.043511\nhttps://arxiv.org/abs/1210.6008v1\nhttps://www.reddit.com/r/askscience/comments/1acd0i/has_the_copernican_principle_been_debunked/l\nhttp://backreaction.blogspot.com/2006/12/anomalous-alignments-in-cosmic.html\nhttp://www.astro.ucla.edu/~wright/CMB-DT.html\nhttp://coolcosmos.ipac.caltech.edu/image_galleries/IRAS/allsky.html\nhttp://curious.astro.cornell.edu/about-us/159-our-solar-system/the-sun/the-solar-system/236-are-the-planes-of-solar-systems-aligned-with-the-plane-of-the-galaxy-intermediate\nhttps://www.newscientist.com/article/dn23301-planck-shows-almost-perfect-cosmos-plus-axis-of-evil/\nhttp://arstechnica.com/science/2014/03/is-the-universe-lopsided\nOur Mathematical Universe, pages 59-62",
@@ -5343,6 +7831,12 @@ var videos = [{
     "duration": "00:10:07",
     "thumb": "http://i.ytimg.com/vi/5ABgp2QomQA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.96265560166,
     "description": "View full lesson: http://ed.ted.com/lessons/the-neuroscience-of-imagination-andrey-vyshedskiy\n\nImagine, for a second, a duck teaching a French class. A ping-pong match in orbit around a black hole. A dolphin balancing a pineapple. You probably haven\u2019t actually seen any of these things. But you could imagine them instantly. How does your brain produce an image of something you\u2019ve never seen? Andrey Vyshedskiy details the neuroscience of imagination. \n\nLesson by Andrey Vyshedskiy, animation by Tom\u00e1s Pichardo-Espaillat.",
@@ -5359,6 +7853,12 @@ var videos = [{
     "duration": "00:04:49",
     "thumb": "http://i.ytimg.com/vi/e7uXAlXdTe4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Numberphile",
     "rating": 4.90036231884,
     "description": "Professor Carlo S\u00e9quin explains super bottles - and a super duper bottle. More Klein Bottle videos: http://bit.ly/KleinBottles\nMore Carlo videos: http://bit.ly/carlo_videos\n\nCarlo S\u00e9quin is based at the University of California, Berkeley.\n\nNUMBERPHILE\nWebsite: http://www.numberphile.com/\nNumberphile on Facebook: http://www.facebook.com/numberphile\nNumberphile tweets: https://twitter.com/numberphile\nSubscribe: http://bit.ly/Numberphile_Sub\n\nNumberphile is supported by the Mathematical Sciences Research Institute (MSRI): http://bit.ly/MSRINumberphile\n\nVideos by Brady Haran\nEditing and animation in this video by Pete McPartlan\n\nSupport us on Patreon: http://www.patreon.com/numberphile\n\nBrady's videos subreddit: http://www.reddit.com/r/BradyHaran/\n\nBrady's latest videos across all channels: http://www.bradyharanblog.com/\n\nSign up for (occasional) emails: http://eepurl.com/YdjL9",
@@ -5375,6 +7875,12 @@ var videos = [{
     "duration": "00:16:41",
     "thumb": "http://i.ytimg.com/vi/8dHMpnfFdtc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.91843262695,
     "description": "In which John Green, Hank Green, and Emily Graslie teach you about, well, everything. Big History is the history of everything. We're going to start with the Big Bang, take you right through all of history (recorded and otherwise), and even talk a little bit about the future. It is going to be awesome. In the awe-inspiring sense of the word awesome. In this episode, we walk you through the start of everything: The Big Bang. We'll look at how the universe unfolded at its very beginning, and how everything in the universe that we know today came into being. So that's kind of a big deal, right?\n\nFor more information, visit www.bighistoryproject.com",
@@ -5391,6 +7897,12 @@ var videos = [{
     "duration": "00:14:25",
     "thumb": "http://i.ytimg.com/vi/tq6be-CZJ3w/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.98182957393,
     "description": "In freezing cold sand, a burning hot mine, or even inside solid rock \u2013 these extremophiles live anywhere that you wouldn\u2019t want to live. What are they? How can they live in such extreme places?\n\n\nHosted by: Michael Aranda\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Kevin Bealer, Justin Lentz, Mark Terrio-Cameron, Patrick Merrithew, Accalia Elementia, Fatima Iqbal, Benny, Kyle Anderson, Mike Frayn, Tim Curwick, Will and Sonja Marple, Philippe von Bergen, Chris Peters, Kathy Philip, Patrick D. Ashmore, Thomas J., charles george, and Bader AlGhamdi.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\n\nhttp://serc.carleton.edu/microbelife/extreme/endoliths/index.html\nhttp://www.pnas.org/content/112/8/2296.full.pdf\nhttp://discovermagazine.com/1997/may/lookingforlifein1124\nhttp://discoveringantarctica.org.uk/ecosystems-and-foodwebs/ecosystems/the-terrestrial-environment/ \nhttp://digital.csic.es/bitstream/10261/19643/1/lichenologist.pdf \nhttp://www.princeton.edu/pr/pwb/99/1213/microbe.shtml\nhttps://books.google.com/books?id=3UwEDAAAQBAJ&lpg=PA132&ots=GcyMPlPtoe&dq=endoliths%20south%20african%20gold%20mine&pg=PA132#v=onepage&q&f=false\nhttp://www.nature.com/news/2008/081009/full/news.2008.1160.html \nhttp://phys.org/news/2013-08-soil-beneath-ocean-harbor-bacteria.html\nhttp://news.bbc.co.uk/2/hi/science/nature/1569264.stm\nhttp://www.astrobio.net/topic/origins/extreme-life/glass-munchers-under-the-sea/\nhttp://www.spaceref.com/news/viewnews.html?id=665\nhttp://www.space.com/31772-fungi-survive-mars-conditions-space-station.html \n\nImage Sources:\n\nhttps://commons.wikimedia.org/wiki/File:Endolithic_Disk_Lichen_and_Common_Goldspeck_Lichen_(2972547824).jpg\nhttps://en.wikipedia.org/wiki/File:Cryptoendolith.jpg\nhttps://commons.wikimedia.org/wiki/File:Desulforudis_audaxviator.jpg\nhttps://commons.wikimedia.org/wiki/File:Sarcogyne_clavus.jpg",
@@ -5407,6 +7919,12 @@ var videos = [{
     "duration": "00:04:01",
     "thumb": "http://i.ytimg.com/vi/U9YoHJJLsbE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Sixty Symbols",
     "rating": 4.98077895802,
     "description": "Stars can forge elements using two important methods - the slow and rapid processes of adding neutrons to an atomic nucleus.\nFeaturing Professor Mike Merrifield.\nExtra footage: https://youtu.be/iYguNPf1Jp8\nPeriodic Videos: https://www.youtube.com/periodicvideos\nDeep Sky Videos: https://www.youtube.com/DeepSkyVideos\n\nVisit our website at http://www.sixtysymbols.com/\nWe're on Facebook at http://www.facebook.com/sixtysymbols\nAnd Twitter at http://twitter.com/sixtysymbols\nThis project features scientists from The University of Nottingham\nhttp://bit.ly/NottsPhysics\n\nPatreon: https://www.patreon.com/sixtysymbols\n\nSixty Symbols videos by Brady Haran\nhttp://www.bradyharanblog.com\n\nEmail list: http://eepurl.com/YdjL9",
@@ -5423,6 +7941,12 @@ var videos = [{
     "duration": "00:09:36",
     "thumb": "http://i.ytimg.com/vi/KlBG_A4Djp4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow Space",
     "rating": 4.95950427649,
     "description": "The planets in our solar system have a very specific order. But have you wondered why they have the order they do?\n\nHosted by: Hank Green\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters -- we couldn't make SciShow without them! Shout out to Bryce Daifuku, Kevin Bealer, Justin Lentz, Mark Terrio-Cameron, Patrick Merrithew, Accalia Elementia, Fatima Iqbal, Benny, Kyle Anderson, Mike Frayn, Tim Curwick, Will and Sonja Marple, Philippe von Bergen, Chris Peters, Kathy Philip, Patrick D. Ashmore, Thomas J., Charles George, Bader AlGhamdi.\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nPossible images:\nProtoplanetary disks: https://en.wikipedia.org/wiki/Protoplanetary_disk#/media/File:HL_Tau_protoplanetary_disk.jpg\nhttps://en.wikipedia.org/wiki/Protoplanetary_disk#/media/File:Boulevard_of_Broken_Rings.jpg\nhttps://en.wikipedia.org/wiki/Fomalhaut#/media/File:Fomalhaut_B_entire-Hubble_Telescope.jpg\nA young star: https://en.wikipedia.org/wiki/Protostar#/media/File:A_diamond_in_the_dust.jpg\nEarth water comparison: http://water.usgs.gov/edu/earthhowmuch.html\n\nSources:\nhttp://atropos.as.arizona.edu/aiz/teaching/nats102/mario/solar_system.html\nhttp://lasp.colorado.edu/education/outerplanets/solsys_planets.php#overview \nhttp://lasp.colorado.edu/~bagenal/1010/SESSIONS/11.Formation.html \nhttp://iopscience.iop.org/article/10.1088/0004-637X/806/2/203/pdf\nhttps://arxiv.org/pdf/1207.4284v1.pdf\nhttp://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html\nhttp://www.rsc.org/periodic-table",
@@ -5439,6 +7963,12 @@ var videos = [{
     "duration": "00:03:58",
     "thumb": "http://i.ytimg.com/vi/YuZ2BfrMwXo/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.9297999298,
     "description": "View full lesson: http://ed.ted.com/lessons/is-there-a-limit-to-technological-progress-clement-vidal\n\nMany generations have felt they\u2019ve reached the pinnacle of technological advancement. Yet, if you look back 100 years, the technologies we take for granted today would seem like impossible magic. So \u2014 will there be a point where we reach an actual limit of technological progress? And if so, are we anywhere near that limit now? Cl\u00e9ment Vidal consults Kardashev\u2019s scale to find out.\n\nLesson by Cl\u00e9ment Vidal, animation by CUB animation.",
@@ -5455,6 +7985,12 @@ var videos = [{
     "duration": "00:04:47",
     "thumb": "http://i.ytimg.com/vi/zVsHzS70krg/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Numberphile",
     "rating": 4.96905612946,
     "description": "Free trial at The Great Courses Plus: http://ow.ly/tKWt306Gg7a\nDr James Grime discusses \"e\" - the famed Euler's Number.\n\nA bit extra from this video: https://youtu.be/uawO3-tjP1c\nMore James Grime videos from Numberphile: http://bit.ly/grimevideos\n\nNUMBERPHILE\nWebsite: http://www.numberphile.com/\nNumberphile on Facebook: http://www.facebook.com/numberphile\nNumberphile tweets: https://twitter.com/numberphile\nSubscribe: http://bit.ly/Numberphile_Sub\n\nNumberphile is supported by the Mathematical Sciences Research Institute (MSRI): http://bit.ly/MSRINumberphile\n\nVideos by Brady Haran\n\nSupport us on Patreon: http://www.patreon.com/numberphile\n\nBrady's videos subreddit: http://www.reddit.com/r/BradyHaran/\n\nBrady's latest videos across all channels: http://www.bradyharanblog.com/\n\nSign up for (occasional) emails: http://eepurl.com/YdjL9",
@@ -5471,6 +8007,12 @@ var videos = [{
     "duration": "00:10:42",
     "thumb": "http://i.ytimg.com/vi/AuA2EAgAegE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Stated Clearly",
     "rating": 4.96085558507,
     "description": "Join us as we explore the fascinating transition from early cells to multi-celled animals. This transition, as well as several other major evolutionary transitions, dramatically increased the complexity of lifeforms on our planet. \n\nIf you enjoyed the show, please consider supporting us at patreon.com/statedclearly\n\nto see the animation on bees, go here: https://www.youtube.com/watch?v=J83qyLXAsN4\n\n------------SOURCES------------\n\nOVERVIEW OF MAJOR TRANSITIONS\n\nThis animation was based on a paper by Stuart West et al called Major Evolutionary Transitions in Individuality which can be accessed free here: http://www.pnas.org/content/112/33/10112.full.pdf\n\nDr West's paper defines major transitions in a slightly narrower way than earlier workers on the subject. For a broader definition see the book by John Maynard Smith and E\u00f6rs Szathm\u00e1ry on the topic: https://en.wikipedia.org/wiki/The_Major_Transitions_in_Evolution\n\nMITOCHONDRIA\n\nThe paper by Dr Margulis (Sagan) on the origin of mitochondria. Note that in it she presents several ideas cautiously as hypothesis. While some aspects of the paper are now known to be incorrect, she was spot on about the origin of mitochondria: http://web.gps.caltech.edu/classes/ge246/endosymbiotictheory_marguli.pdf\n\nVIROIDS\n\nThe free living genes discovered by Dr Diener were made of RNA. Here is a paper on them: http://www.sciencedirect.com/science/article/pii/0042682271903424\n\nHere is an excellent Wikipedia article on them I suggest looking over first. It includes a schematic of the species Diener found: https://en.wikipedia.org/wiki/Viroid \n\nEXPERIMENTS SHOWN IN THIS ANIMATION\n\nPhagotrophy by a flagellate selects for colonial prey: A possible origin of multicellularity: http://link.springer.com/article/10.1023/A:1006527528063\n\nExperimental evolution of multicellularity:\nhttp://www.pnas.org/content/109/5/1595\n\nAuto-/heterotrophic endosymbiosis evolves in a mature stage of ecosystem development in a microcosm composed of an alga, a bacterium and a ciliate [what a catchy title!]: https://www.ncbi.nlm.nih.gov/pubmed/19162125",
@@ -5487,6 +8029,12 @@ var videos = [{
     "duration": "00:09:04",
     "thumb": "http://i.ytimg.com/vi/VUfNEHl44hc/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "SciShow",
     "rating": 4.96929386403,
     "description": "Whether or not it's worth investing in, the math behind Bitcoin is an elegant solution to some complex problems.\n\nHosted by: Michael Aranda\n\nSpecial Thanks: Dalton Hubble\n\nLearn more about Cryptography: https://www.youtube.com/watch?v=-yFZGF8FHSg\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters\u2014we couldn't make SciShow without them! Shout out to Bella Nash, Kevin Bealer, Mark Terrio-Cameron, Patrick Merrithew, Charles Southerland, Fatima Iqbal, Benny, Kyle Anderson, Tim Curwick, Will and Sonja Marple, Philippe von Bergen, Bryce Daifuku, Chris Peters, Patrick D. Ashmore, Charles George, Bader AlGhamdi\n----------\nLike SciShow? Want to help support us, and also get things to put on your walls, cover your torso and hold your liquids? Check out our awesome products over at DFTBA Records: http://dftba.com/scishow\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttps://bitinfocharts.com/ \nhttps://chrispacia.wordpress.com/2013/09/02/bitcoin-mining-explained-like-youre-five-part-2-mechanics/\nhttps://www.youtube.com/watch?v=Lx9zgZCMqXE\nhttps://www.youtube.com/watch?v=nQZUi24TrdI\nhttps://bitcoin.org/en/how-it-works\nhttp://www.forbes.com/sites/investopedia/2013/08/01/how-bitcoin-works/#36bd8b2d25ee\nhttp://www.makeuseof.com/tag/how-does-bitcoin-work/\nhttps://blockchain.info/charts/total-bitcoins\nhttps://en.bitcoin.it/wiki/Controlled_supply\nhttps://www.bitcoinmining.com/\nhttp://bitamplify.com/mobile/?a=news \n\nImage Sources:\nhttps://commons.wikimedia.org/wiki/File:Cryptocurrency_Mining_Farm.jpg",
@@ -5503,6 +8051,12 @@ var videos = [{
     "duration": "00:09:26",
     "thumb": "http://i.ytimg.com/vi/kubGCSj5y3k/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Kurzgesagt \u2013 In a Nutshell",
     "rating": 4.92178964615,
     "description": "In a very short amount of time the human population exploded and is still growing very fast. Will this lead to the end of our civilization? \n\nCheck out https://ourworldindata.org by Max Roser! \n\n\nSupport us on Patreon so we can make more videos (and get cool stuff in return): https://www.patreon.com/Kurzgesagt?ty=h\n\nKurzgesagt merch here:  http://bit.ly/1P1hQIH\n\nGet the music of the video here: \n\nSoundcloud: http://bit.ly/2hKx3Zu\nBandcamp: http://bit.ly/2hfSqTf\nFacebook: https://www.facebook.com/epic-mountain-music\n \nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nStuart Alldritt, Tasia Pele, Stan Serebryakov, Mike Janzen, Jason Heddle, August, Daniel Smith, Jonathan Herman, Rahul Rachuri, Piotr Gorzelany, Lisa Allcott, \u0413\u043e\u0440\u0430\u043d \u0413\u0443\u043b\u0435\u0441\u043a\u0438, Eric Ziegast, Kean Drake, Friendly Stranger, NicoH, Adrian Rutkiewicz, Markus Klemm, Leandro Nascimento, Gary Chan, Shawhin Layeghi, Oscar Hernandez, Dale Prinsse, Vaclav Vyskocil, Sup3rW00t, Ryan Coonan, Tam Lerner, Dewi Cadat, Luis Aguirre, Andy McVey, Vexorum, Boris, Adam Wisniewski, Yannic Schreiber, Erik Lilly, Ellis, Dmitry Starostin, Akshay Joshi, Peter Tinti, kayle Clark, Mortimer Brewster, Marc Legault, Sumita Pal, Tarje Hellebust Jr., streetdragon95, Taratsamura, Sam Dickson, Bogdan Firicel, Saul Vera, Aaron Jacobs, Ben Arts, R B Dean, Kevin Beedon, Patrik P\u00e4rkinen, Duncan Graham, Johan Thomsen, Emily Tran, Adam Flanc, Adam Jermyn, Ali Uluyol\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2\n\nOverpopulation \u2013 The Human Explosion Explained",
@@ -5519,6 +8073,12 @@ var videos = [{
     "duration": "00:06:39",
     "thumb": "http://i.ytimg.com/vi/QsBT5EQt348/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Welch Labs",
     "rating": 4.98718633209,
     "description": "In this series, we'll explore the complex landscape of machine learning and artificial intelligence through one example from the field of computer vision: using a decision tree to count the number of fingers in an image. It's gonna be crazy. \n\nCode available soon.\nwelchlabs.com\n@welchlabs",
@@ -5535,6 +8095,12 @@ var videos = [{
     "duration": "00:06:21",
     "thumb": "http://i.ytimg.com/vi/i8D90DkCLhI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "The School of Life",
     "rating": 4.37090548142,
     "description": "If you were setting out to make a country rich, what kind of mindsets and ideas would be most likely to achieve your goals? We invent a country, Richland, and try to imagine the psychology of its inhabitants.   If you like our films, take a look at our shop (we ship worldwide):  https://goo.gl/LSHb5a   \n\nFURTHER READING\n\n\u201cMost of what we call \u2018politics\u2019 really revolves around the question of what you need to do to make a country richer.\nRather than ask this of any specific country, let\u2019s imagine designing a country from scratch. How could you make it as rich as possible?\n\nSuppose the brief was to design \u2018Richland\u2019: an ideal wealth-creating society. What would be the chief characteristics you\u2019d need to build into this society? What would a nation look like that was ideally suited to success in modern capitalism?...\u201d\n\nYou can read more on this and other topics on our blog TheBookofLife.org at this link: https://goo.gl/StpBHa  \n\nMORE SCHOOL OF LIFE\n\nOur website has classes, articles and products to help you think and grow: https://goo.gl/oeof2J    \n\nWatch more films on CAPITALISM in our playlist: \nhttp://bit.ly/TSOLcapitalism \n\nDo you speak a different language to English?  Did you know you can submit Subtitles on all of our videos on YouTube?  For instructions how to do this click here: https://goo.gl/RK1kdE   \n\n\nSOCIAL MEDIA\n\nFeel free to follow us at the links below:\n\nFacebook: https://www.facebook.com/theschooloflifelondon/  \n\nTwitter: https://twitter.com/TheSchoolOfLife   \n\nInstagram: https://www.instagram.com/theschooloflifelondon/ \n\n\nCREDITS\n\nProduced in collaboration with:\n\nVale Productions\nhttp://www.valeproductions.co.uk",
@@ -5551,6 +8117,12 @@ var videos = [{
     "duration": "00:09:07",
     "thumb": "http://i.ytimg.com/vi/Y9zThcMJzQU/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.90018813411,
     "description": "Ever wonder how Einstein proved E=mc\u00b2? This is how.\r\n\r\nPi day (3.14) is Albert Einstein's Birthday! To celebrate, we'll explain 4 of his most groundbreaking papers from 1905, when he was just 26 years old.\r\n\r\nminutephysics is now on Google+ - http://bit.ly/qzEwc6 \r\nAnd facebook - http://facebook.com/minutephysics\r\nAnd twitter - @minutephysics\r\n\r\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\r\n\r\nMusic by Nathaniel Schroeder\r\nNEW ALBUM!! -- http://juliansaporiti.bandcamp.com/album/lusitania\r\nyoutube: http://bit.ly/pakJLE\r\n\r\nThanks to Nima Doroud and Alex Yale for contributions and to Perimeter Institute for support. Created by Henry Reich",
@@ -5567,6 +8139,12 @@ var videos = [{
     "duration": "00:02:11",
     "thumb": "http://i.ytimg.com/vi/hW7DW9NIO9M/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.9663992735,
     "description": "What is mass and what does it have to do with the Higgs Boson?\nPart I: http://dft.ba/-higgsPart1\nAlso, explore a map of the big bang! http://www.bigbangregistry.com\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nMusic by Nathaniel Schroeder\n\nThanks to Nima Doroud for contributions and to Perimeter Institute for support.\nhttp://www.perimeterinstitute.ca Created by Henry Reich",
@@ -5583,6 +8161,12 @@ var videos = [{
     "duration": "00:02:50",
     "thumb": "http://i.ytimg.com/vi/ASRpIym_jFM/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Learn Engineering",
     "rating": 4.90157063131,
     "description": "Which is better: Manual or Automatic transmission?  This debate has been present for the last seven decades. Manual and automatic transmissions are completely different technologies, which use different configurations and principles. One is based on a simple gear pair, while the other is based on a planetary gear set. One uses a torque convertor, while the other uses a clutch pack. We will do a logical comparison of these technologies in this video.\n\nWe thank our patrons for making LE's educational service sustainable. Please support us at Patreon.com so that we will have the capability to release 2 videos/month.\nhttps://www.patreon.com/LearnEngineering\n\n\nLike us  on FB : https://www.facebook.com/LearnEngineering\n\nVoice-over artist : https://www.fiverr.com/mikepaine",
@@ -5599,6 +8183,12 @@ var videos = [{
     "duration": "00:07:47",
     "thumb": "http://i.ytimg.com/vi/auQgOtveQi0/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "DominicWalliman",
     "rating": 4.9937254902,
     "description": "Everything you need to know about gravitational waves. In February 2016 scientists announced the first detection of gravitational waves by humans on Earth. This was a huge, world changing, discovery. The gravitational waves were caused by a pair of colliding black holes 1.3 billion light years away 1.3 billion years ago. This video summaries all the of the mind blowing facts about the gravitational waves and describes LIGO, the incredibly sensitive telescope that detected them.\n\nIf you would like to buy a poster you can get one here http://www.redbubble.com/people/dominicwalliman/works/24649310-gravitational-wave-astronomy?asc=u&p=poster&rel=carousel\n\nErrata and clarifications.\n\nI endeavour to be as accurate as possible in my videos, but I am human and definitely don\u2019t know everything, so there are sometimes mistakes. Also, because my videos are summaries of some quite complex science, I make simplifications. Some of these are intentional because I don\u2019t have time to go into full detail, but sometimes they are unintentional and here is where I clear them up.\n\n1. I got the month of the original detection wrong! It was September 2015, not November 2015. Silly me, my apologies.\n2. \u201c1.3 billion years ago, 1.3 billion light years away\u201d This is incorrect and an oversight on my part. I completely forgot to take into account the expansion of the Universe. The resulting black hole is 1.3 billion light years from us today, but was closer to us when the collision happened, which means that it happened less than 1.3 billion years ago. I tried to work out exactly when but was stumped because I couldn\u2019t find the function for the acceleration of the expansion of the universe. The redshift of the signal from the black holes was about 10%, so I thought the collision was 10% closer in time than 1.3 billion years i.e. 1.18 billion years, but I think it might be a bit more complicated than that. \n3. LIGO schematic animation. I made a couple of silly errors here. The first circular mirror that the laser hits should be 90\u00ba to the way I oriented it: half the laser light is transmitted and half reflected, each one going up a different arm.\n4. LIGO schematic animation. When the laser bounced back and forth it should bounce between the two suspended mirrors and not go all the way back to the diagonal mirror.\n5. VIRGO is near Pisa, not at Trento as I drew on the map. I said the right thing but drew the wrong thing. My apologies.\n6. \u2018A second even more powerful collision.\u201d Wrong again! The second collision was less powerful and the signal was more buried in the noise.\n\nI\u2019m not happy with the number of flat out mistakes I made on this one! I will try better in the future. I blame it on the Christmas spirits.\n\nIf you would like to find out more about gravitational waves and the detection here are the original papers and some very informative links.\n\nMain LIGO scientific paper: http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.116.061102\nSupplementary LIGO paper: http://iopscience.iop.org/article/10.3847/2041-8205/818/2/L22\n\nArticles:\nhttp://physicsworld.com/cws/article/news/2016/feb/11/ligo-detects-first-ever-gravitational-waves-from-two-merging-black-holes\nhttp://www.nature.com/news/the-black-hole-collision-that-reshaped-physics-1.19612\nhttp://www.businessinsider.com/black-hole-collision-energy-50-times-universe-2016-2\nhttp://www.space.com/33176-gravitational-waves-from-second-black-hole-collision.html\nhttp://www.ligo.org/science/Publication-GW150914/index.php\nhttp://www.nature.com/news/gravitational-waves-6-cosmic-questions-they-can-tackle-1.19337\nhttp://www.nature.com/news/the-black-hole-collision-that-reshaped-physics-1.19612\nWhat they sound like:\nhttp://www.vox.com/2016/6/15/11948618/ligo-gravitational-waves-black-hole-sound\n\nAlso, if you enjoyed this video, you will probably like my science books, available in all good books shops around the work and is printed in 16 languages. Links are below or just search for Professor Astro Cat. They are fun children's books aimed at the age range 7-12. But they are also a hit with adults who want good explanations of science. The books have won awards and the app won a Webby.\n\nFrontiers of Space: http://nobrow.net/shop/professor-astro-cats-frontiers-of-space/\nAtomic Adventure: http://nobrow.net/shop/professor-astro-cats-atomic-adventure/\nIntergalactic Activity Book: http://nobrow.net/shop/professor-astro-cats-intergalactic-activity-book/\nSolar System App: http://www.minilabstudios.com/apps/professor-astro-cats-solar-system/\n\nFind me on twitter, instagram, and my website:\nhttp://dominicwalliman.com\nhttps://twitter.com/DominicWalliman\nhttps://www.instagram.com/dominicwalliman\nhttps://www.facebook.com/dominicwalliman",
@@ -5615,6 +8205,12 @@ var videos = [{
     "duration": "00:09:04",
     "thumb": "http://i.ytimg.com/vi/AFhOzhe9mg4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "nature video",
     "rating": 4.99292035398,
     "description": "Our understanding of Alzheimer\u2019s disease has come along way in the last century. In this animation, Nature Neuroscience takes us inside the brain to explore the cells, molecules and mechanisms involved in the onset and progression of this devastating condition - from the latest advances to the remaining gaps in our scientific knowledge.\n\nNature Neuroscience has full responsibility for all editorial content, including Nature Video content. This content is editorially independent of sponsors.",
@@ -5631,6 +8227,12 @@ var videos = [{
     "duration": "00:04:21",
     "thumb": "http://i.ytimg.com/vi/zTd0-A5yDZI/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Space Time",
     "rating": 4.95722980753,
     "description": "Find out how scientists are mapping the black holes throughout the Milky Way and beyond as well as the answer to the Escape the Kugelblitz Challenge Question. Were you able to save humanity?\n\nGet your own Space Time t\u00adshirt at http://bit.ly/1QlzoBi\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\n\nHelp translate our videos! https://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nQuasars, X-ray Binaries and Supermassive voids at the center of our galaxies \u2026 black holes take many forms. In this episode Matt tells us what these different types of black holes are and how scientists are using VLBI, Very Long Baseline Interferometry, to map the different black holes throughout the known universe.\n\nResolving Microlensing Events with Triggered VLBI\nKarami, Broderick, Rahvar, and Reid, 2016, The Astrophysical Journal, 833, 169\nhttp://phys.org/news/2016-12-black-holes-years-method.html\nhttps://arxiv.org/abs/1601.05801\n\nLast Episode - Have They Seen Us?\nhttps://www.youtube.com/watch?v=Ttwl_zH_DZ8\n\nThe Escape the Kugelblitz Challenge Question\nhttps://www.youtube.com/watch?v=v3hd3AI2CAA&t=5s\n\nWritten and hosted by Matt O\u2019Dowd\nProduced by Rusty Ward\nGraphics by Grayson Blackmon\nMade by Kornhaber Brown (www.kornhaberbrown.com)\n\nChallenge Winners:\nPete Benzi\nSrikanth Reddy\nDominique\nJeremy Elser\nMathieu P\u00fctz\nScott Seaver \n\nSpecial thanks to our Patreon Big Bang, Quasar and Hypernova Supporters:  \nHenry Van Styn\nAntonio Park \nDavid Nicklas\nGiorgio P.\n\nQuasar\nJoel Brinton\nLuna IT Solutions\nMahan Kaur\nJordan Young\nRatfeast\nVitaly Kovalenko\nJohn Hofmann\nJoe\n\nThanks to our Patreon Gamma Ray Burst Supporters: \nBernardo Higuera\nJade Bilkey\nKevin Warne\nJJ Bagnell\nJ Rejc\nMichael Fischer\nDylan Merida\nColette Weeks\nAmy Jie\nAnthony Caridi\nAvi Goldfinger\nCorey Smeaton\nJohn Pettit\nShannan Catalano\nFlorian Stinglmayr\nYubo Du\nBenoit Pag\u00e9-Guitard\nRonny Polonia\nNathan Leniz\nJessica Fraley\nKirk Mathews\nLoro Lukic\nCarl P. Corliss\nBrandon labonte\nDavid Crane\nGreg Weiss\nDavid Matteson\nMarc Lagarde\nEric Jackson\nWill and Sonja Marple",
@@ -5647,6 +8249,12 @@ var videos = [{
     "duration": "00:11:18",
     "thumb": "http://i.ytimg.com/vi/q_oHv6HCMX4/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.94277839753,
     "description": "View full lesson: http://ed.ted.com/lessons/would-you-sacrifice-one-person-to-save-five-eleanor-nelsen\n\nImagine you\u2019re watching a runaway trolley barreling down the tracks, straight towards five workers. You happen to be standing next to a switch that will divert the trolley onto a second track. Here\u2019s the problem: that track has a worker on it, too \u2014 but just one. What do you do? Do you sacrifice one person to save five? Eleanor Nelsen details the ethical dilemma that is the trolley problem.\n\nLesson by Eleanor Nelsen, animation by Eoin Duffy.",
@@ -5663,6 +8271,12 @@ var videos = [{
     "duration": "00:04:56",
     "thumb": "http://i.ytimg.com/vi/yg16u_bzjPE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.85334918748,
     "description": "View full lesson: http://ed.ted.com/lessons/calculating-the-odds-of-intelligent-alien-life\n\nCould there be intelligent life on other planets? This question has piqued imagination and curiosity for decades. Explore the answer with the Drake Equation -- a mathematical formula that calculates the possibility of undiscovered life.\n\nLesson by Jill Tarter; Animation by TED-Ed",
@@ -5679,6 +8293,12 @@ var videos = [{
     "duration": "00:07:28",
     "thumb": "http://i.ytimg.com/vi/6AnLznzIjSE/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.9698630137,
     "description": "You can directly support Crash Course at http://www.subbable.com/crashcourse Subscribe for as little as $0 to keep up with everything we're doing. Also, if you can afford to pay a little every month, it really helps us to continue producing great content.\n\nYou know what's amazing? That we can talk to people, they can make meaning out of it, and then talk back to us. In this episode of Crash Course Psychology, Hank talks to us and tries to make meaning out of how our brains do this thing called Language. Plus, monkeys!\n \n--\nTable of Contents \n\nPhonemes, Morphemes, Grammar 01:48:13\nReceptive and Productive Language 03:22:06\nBabbling 03:55:22\nHow We Acquire Language 05:50:22\n\n--\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Subbable: http://subbable.com/crashcourse",
@@ -5695,6 +8315,12 @@ var videos = [{
     "duration": "00:10:02",
     "thumb": "http://i.ytimg.com/vi/s9shPouRWCs/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "Looking Glass Universe",
     "rating": 4.92638940007,
     "description": "Research assignment: Teach me about spin.\n\nBelow there are suggested questions, recommended sources and my social media accounts:\n\nQUESTIONS:\nQuestions that require less research:\n1. This is our first real example of quantization, the phenomena that gives quantum mechanics it\u2019s name. Here\u2019s what it means. In the classical case of magnets going through a Stern Gerlach machine, the magnets can end up any where in the range. But in quantum mechanics, its can only be exactly up or down, these discrete values rather than a continuous range in between. This sort of quantization really bothered physicists. Can you understand why? And is there any classical physics phenomenon that also has sort of quantization?\n\n2. Do you think that eventually all quantities in physics can be explained in terms of deeper physics? Are there any examples of quantities that later on did get explained through a more encompassing theory?\n\n3. How can you use the Stern-Gerlach machine to measure spin in the \u2018forward-backward\u2019 direction? \n\n4. Why do half the particles go left, half right at 4:24? \n\n\n\nQuestions that (probably) require research:\n\n5. What are bosons and fermions? What\u2019s spin got to do with it? If you really want to get into it, read ch 4, volume 3 of The Feynman Lectures: http://www.feynmanlectures.caltech.edu/III_toc.html\n\n6. Electrons are so-called spin 1/2 particles. Are there any other spin types? What determines what spin a particle will have?\n\n7. How does spin relate to the Pauli exclusion principle?\n\n8. Explain how the Stern-Gerlach machine works\n\n9. Is light polarization a type of spin? What are arguments for and against this? What spin does a photon have (spin 1/2, spin 1 etc)?\n\n10. Why is it that charged particles moving causes magnetic fields- according to Einstein? (Look up relativity and electromagnetism)\n\n11. What\u2019s wrong with saying the electron is infinitely small? What experiments measure the electrons size? Are protons also infinitely small? \n\n12. Find other reasons we don\u2019t believe electrons are actually spinning. (An interesting one is about rotating a spin particle 360 degrees, and not getting back the exact same wavefunction.)\n\n13. a) What is the Bloch Sphere, and why can we use it to represent spin? How do you visualise the spin left state on it? how about spin forward? (http://comp.uark.edu/~jgeabana/blochapps/bloch.html , note that a 2-level system is any particle that only has two options when measured (eg only up or down). |0) and |1) are the generic labels we\u2019ll put on these options)\nb) Also, How do you write spin forward in terms of up and down (i.e. |forward)=a|up)+b|down))? You will probably need to look this up, so it\u2019s useful to know the spin \u201cup/down\u201dness is usually called spin in the z direction, spin \u201cleft/right\u201dness is spin in the x direction, and spin \u201cforward/backward\u201d is spin in the y direction. You can figure this out by looking at the Bloch sphere.\n\n14. Magnetic Resonance Imaginging (MRI) is an important clinical technic that completely relies on manipulating spin. Explain it! http://www.scholarpedia.org/article/Magnetic_resonance_imaging\n\n15. What happens to the electrons if you put them into the Stern-Gerlach machine and then slowly rotated from up and down to side and side, do some of the electrons switch places? (Thank you Majoofi)\n\n16. Why aren't there magnetic monopoles? (Thanks Culwin)\n\n17. What is isospin? Why is it that, even though it hasn't got the units of angular momentum, it still 'formally acts like spin?' according to Wiki? (Thanks Hythloday71)\n\nRECOMMENDED SOURCES ON SPIN\nThe Feynman lectures, Volume 3: http://www.feynmanlectures.caltech.edu/III_toc.html\n\nQuantum Physics of Atoms, Molecules, Solids, Nuclei, and Particle Physics- Eisberg and Resnick, the chapters of angular momentum and spin. This is a good one if you already know basic classical electromagnetism. Don't buy it, just visit your local university library and just read it there. \n\nSneaking a Look at God's Cards - Ghirardi. This is one of my favourite quantum books. It talks about the Stern-Gerlach experiment.\n\nWikipedia or Scholarpedia. These are always a good place to start- though sometimes they can throw you into the maths. Don't panic if you don't get all of it. Just try to glean the main idea, and that's more than enough to report here. Hopefully then others can help with any details that were confusing. \n\nThe Story of Spin.  Thank you Michael Sommers for the recommendation. I haven't read it, but it seems good! Hard to find though.\n\nhttps://www.goodreads.com/book/show/1349918.The_Story_of_Spin \n\nA Veritasium and Minute Physics video about electromagnetism! Thanks EnellGmz for reminding me about it. https://youtu.be/1TKSfAkWWN0\n\nSOCIAL MEDIA:\n\nTwitter:\n@Looking_glass_u\n\nFacebook\nwww.facebook.com/LookingGlassUniverse\n\nTumblr \nhttp://looking-glass-universe.tumblr.com/",
@@ -5711,6 +8337,12 @@ var videos = [{
     "duration": "00:10:17",
     "thumb": "http://i.ytimg.com/vi/cd2Ua9dKEl8/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "minutephysics",
     "rating": 4.96775341034,
     "description": "You've heard of E=mc\u00b2... but you probably haven't heard the whole story.\nhttp://translate.minutephysics.com\n\nMinutePhysics is on Google+ - http://bit.ly/qzEwc6 \nAnd facebook - http://facebook.com/minutephysics\nAnd twitter - @minutephysics\n\nMinute Physics provides an energetic and entertaining view of old and new problems in physics -- all in a minute!\n\nMusic by Nathaniel Schroeder - http://www.soundcloud.com/drschroeder\n\nThanks to Nima Doroud and Bruno LeFloch for contributions and to Perimeter Institute for support.\nhttp://www.perimeterinstitute.ca Created by Henry Reich",
@@ -5727,6 +8359,12 @@ var videos = [{
     "duration": "00:02:07",
     "thumb": "http://i.ytimg.com/vi/NnMIhxWRGNw/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "CrashCourse",
     "rating": 4.89814177564,
     "description": "You can directly support Crash Course at http://www.subbable.com/crashcourse Subscribe for as little as $0 to keep up with everything we're doing. Also, if you can afford to pay a little every month, it really helps us to continue producing great content.\n\nHow did we get here? Well, in terms of Atomic Chemistry, Hank takes us on a tour of the folks that were part of the long chain of other folks who helped us get to these deeper understandings of the world. From Leucippus to Heisenberg to you - yes, YOU - the story of Atomic Chemistry is all wibbly-wobbly... and amazing.\n\n--\nTable of Contents\n\nLeucippus, Democritus & Atomic Theory 0:09\nDischarge Tubes 1:52\nErnest Rutherford & The Nucleus 4:22\nChemistry = Math 7:22\nNiels Bohr Model 5:32\nHeisenburg & Quantum Theory 6:35\n--\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashCourse\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport CrashCourse on Subbable: http://subbable.com/crashcourse",
@@ -5743,6 +8381,12 @@ var videos = [{
     "duration": "00:09:42",
     "thumb": "http://i.ytimg.com/vi/thnDxFdkzZs/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "PBS Infinite Series",
     "rating": 4.94146341463,
     "description": "For more on black hole singularities check out the Space Time episode: The Phantom Singularity https://youtu.be/-q7EvLhOK08\n\nTweet at us! @pbsinfinite\nFacebook: facebook.com/pbsinfinite series\nEmail us! pbsinfiniteseries [at] gmail [dot] com\n\nPrevious Episode - Can a Chess Piece Explain Markov Chains?\nhttps://www.youtube.com/watch?v=63HHmjlh794&t=9s\n\nMathematician Kelsey Houston-Edwards explains exactly what singularities are and how they exist right under our noses. \n\nWritten and Hosted by Kelsey Houston-Edwards\nProduced by Rusty Ward\nGraphics by Ray Lux\nMade by Kornhaber Brown (www.kornhaberbrown.com)\n\nSources include:\n\nDoomsday on Friday, November 13, 2026\nhttp://science.sciencemag.org/content/132/3436/1291\nTerence Tao paper: \n\nNavier Stokes and Finite Time Blow Up\nhttps://arxiv.org/abs/1402.0290\n\nComments answered by Kelsey: \n\nMatthew Wilson\nhttps://www.youtube.com/watch?v=63HHmjlh794&lc=z120e3fquzj1dxfyu04chbrzfuqdez4hdps0k\n\nVeene Michael Eco\nhttps://www.youtube.com/watch?v=63HHmjlh794&lc=z132h1k4pqf3szaeh22dedwppxisgfy4j04\n\nIamGrimalkin\nhttps://www.youtube.com/watch?v=63HHmjlh794&lc=z13wffd4bzmyi3m1i224d1prwznwhjpli",
@@ -5759,6 +8403,12 @@ var videos = [{
     "duration": "00:10:23",
     "thumb": "http://i.ytimg.com/vi/0pIRibivolA/default.jpg"
 }, {
+    "tags": [],
+    "size": [],
+    "time": [],
+    "teaches": [],
+    "is": ["video"],
+    "discipline": [],
     "username": "TED-Ed",
     "rating": 4.92304846467,
     "description": "View full lesson: http://ed.ted.com/lessons/a-brief-history-of-numerical-systems-alessandra-king\n\n1, 2, 3, 4, 5, 6, 7, 8, 9... and 0. With just these ten symbols, we can write any rational number imaginable. But why these particular symbols? Why ten of them? And why do we arrange them the way we do? Alessandra King gives a brief history of numerical systems.\n\nLesson by Alessandra King, animation by Zedem Media.",
