@@ -23,19 +23,20 @@ const explore = Vue.extend({
   template: "#exploreTemplate",
   data: function() {
         return {
-            db: undefined,
-            crossSection: null,
-            displayed: "",
-            selected: [],
-            words: [],
-            list: [],
-            numberOfDisplayed: null,
-            display: undefined,
-            currentLayout: 'masonry',
-            sortOption: "original-order",
-            filterOption: "show all",
-            searchStr: null,
-            getSortData:  {
+            db: undefined,                      // search results to display - array of material objects
+            crossSection: null,                 // tags in lens group - array of tag objects
+            lens: null,                         // change display if group or not, holds name of group (right now taken from lens.js) - string name
+            selected: [],                       // tags selected for search - - array of tag objects
+            words: [],                          // suggested tags...not sure about ui, currently  - array of tag objects
+            list: [],                           // db when no lens, replace with db even though less items? - array of tag objects
+            numberOfDisplayed: null,            // number of materials currently displayed
+            display: undefined,                 // display option for materials in search result - string name of displaytype
+            currentLayout: 'masonry',           // incase want to change isotope display type...not used now
+            sortOption: "original-order",       // to sort search results by - string name
+            sortAscending: true,                //  whether sort whould be ascending or descending - boolean
+            filterOption: "show all",           // ?
+            searchStr: null,                    // current user entered search text - string
+            getSortData:  {                     // sort options for isotope...eventually include others...
                 rating: "rating",
                 viewcount: "viewcount",
                 author: "author",
@@ -43,8 +44,7 @@ const explore = Vue.extend({
                 length: "length",
                 likes: "likes"
             },
-            sortAscending: true,
-            getFilterData: {
+            getFilterData: {                    // isotop filter functions - filter here for crosssection/grou/lensp instead of with jquery?
                 "keywords": (el) => {
                   foundAll = true
                   for (var keyIndex = 0; keyIndex < this.selected.length; keyIndex++) {
@@ -73,30 +73,6 @@ const explore = Vue.extend({
         }
     },
     methods: {
-        // updateSuggestedKewords: function(){ // this solution is wayyyy to slow. try something here? http://codereview.stackexchange.com/questions/96096/find-common-elements-in-a-list-of-arrays
-        //   this.words = []
-        //   // build array of suggested
-        //   for (var contentIndex = 0; contentIndex < this.list.length; contentIndex++) { // each returned content
-        //     for (var key = 0; key < this.list[contentIndex]['keywords'].length; key++) { // each keyword
-        //       // console.log(this.list[contentIndex]['keywords'][key].toLowerCase())
-        //       found = false;
-        //       for (var word = 0; word < this.words.length; word++) { // each cumulative
-        //
-        //         if(this.words[word]['word'].toLowerCase() == this.list[contentIndex]['keywords'][key].toLowerCase()){
-        //           found = true;
-        //           this.words[word]['count'] +=1;
-        //           break
-        //         }
-        //       }
-        //       if(!found){
-        //         this.words.push({
-        //           'count': 0,
-        //           'word': this.list[contentIndex]['keywords'][key]
-        //         })
-        //       }
-        //     }
-        //   }
-        // },
         addToFrom: function(tag, to, from){ /// this is all stupid and needs to be re thoughts.
 
           if(tag.status.focus){ // clear all non pinned terms
@@ -205,32 +181,35 @@ const explore = Vue.extend({
         }
     },
     watch: {
-      crossSection: function(newVal, oldVal){
-        Cookies.set('lens', this.crossSection)
-        if(newVal !== oldVal){
-          $('.crossSectionNav').flickity('destroy');
-          $('.crossSectionSteps').flickity('destroy');
-          this.$nextTick(function(){
-          $('.crossSectionNav').flickity({
-            asNavFor: '.crossSectionSteps',
-            // wrapAround: true,
-            pageDots: true,
-            prevNextButtons: true,
-            accessibility: false, // to prevent jumping when focused
-          });
-          $('.crossSectionSteps').flickity({
-            wrapAround: true,
-            pageDots: true,
-            prevNextButtons: true,
-            accessibility: false, // to prevent jumping when focused
-            dragThreshold: 40
-          });
-        })
-        } else {
-          $('.crossSectionNav').flickity('destroy');
-          $('.crossSectionSteps').flickity('destroy');
-        }
+      crossSection: {
+        handler: function(newVal, oldVal) {
+          if(document.querySelector('.crossSectionNav')){ // can't destroy if it's not there...
+            console.log('in destroy...')
+            $('.crossSectionNav').flickity('destroy');
+            $('.crossSectionSteps').flickity('destroy');
+          }
+          console.log(this._data)
+          Cookies.set('lens', this.lens)
+          if(newVal !== oldVal){
+            this.$nextTick(function(){
+              $('.crossSectionNav').flickity({
+                asNavFor: '.crossSectionSteps',
+                // wrapAround: true,
+                pageDots: true,
+                prevNextButtons: true,
+                accessibility: false, // to prevent jumping when focused
+              })
 
+              $('.crossSectionSteps').flickity({
+                wrapAround: true,
+                pageDots: false,
+                prevNextButtons: true,
+                accessibility: false, // to prevent jumping when focused
+                dragThreshold: 40 // play around with this more?
+              });
+            });
+          };
+        }
       }
     },
     mounted: function(){
@@ -252,9 +231,9 @@ const explore = Vue.extend({
       // selected lens - delete after generalized to any group as a lens
 
       if(!Cookies.get('lens')){
-        this.crossSection = null;
+        this.lens = null;
       } else {
-        this.crossSection = Cookies.get('lens');
+        this.lens = Cookies.get('lens');
       }
 
       $('.dropdown-button').dropdown();

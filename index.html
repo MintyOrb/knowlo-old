@@ -86,9 +86,9 @@
 				<div class="flexCenter margin20">
 					<div class="btn blue dropdown-button" data-activates='lens' data-hover="true">lens</div>
   		    <ul id='lens' class='dropdown-content'>
-						<li><a @click="crossSection = bigHistory">Big History</a></li>
-						<li><a @click="crossSection = size">Size</a></li>
-						<li><a @click="crossSection = null">none</a></li>
+						<li><a @click="lens = bigHistory">Big History</a></li>
+						<li><a @click="lens = size">Size</a></li>
+						<li><a @click="lens = null">none</a></li>
   		    </ul>
 				</div>
 
@@ -104,7 +104,7 @@
 			</div>
 			<div>
 				<transition name="fade">
-				<div v-if="crossSection" >
+				<div v-if="lens" >
 					<div class=" crossSectionNav ">
 						<!-- flick navigation -->
 						<div v-for="step in crossSection.members" class="navItems">
@@ -148,7 +148,7 @@
 				</div>
 				</transition>
 				<transition name="fade">
-				<div v-if="!crossSection" >
+				<div v-if="!lens" >
 			    <isotope ref="contentBin" class="step" :list="list" :options='getContentOptions()' id="container">
 			        <div v-for="item in list" class='element-item'>
 			          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
