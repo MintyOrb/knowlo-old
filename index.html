@@ -83,12 +83,15 @@
 					<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
   				<br/>
 				</div>
-				<div >
-					<h4 class="thin" style="display:inline">Lens:</h4>
-					<span class="btn blue" @click="crossSection = bigHistory">Big History</span>
-					<span class="btn blue" @click="crossSection = size">Size</span>
-					<span class="btn blue" @click="crossSection = null">none</span>
+				<div class="flexCenter margin20">
+					<div class="btn blue dropdown-button" data-activates='lens' data-hover="true">lens</div>
+  		    <ul id='lens' class='dropdown-content'>
+						<li><a @click="crossSection = bigHistory">Big History</a></li>
+						<li><a @click="crossSection = size">Size</a></li>
+						<li><a @click="crossSection = null">none</a></li>
+  		    </ul>
 				</div>
+
 				<div class="flexCenter margin20">
 					<div class="btn blue dropdown-button" data-activates='sortOp' data-hover="true">sort order</div>
   		    <ul id='sortOp' class='dropdown-content'>
@@ -101,7 +104,7 @@
 			</div>
 			<div>
 				<transition name="fade">
-				<div v-if="crossSection">
+				<div v-if="crossSection" >
 					<div class=" crossSectionNav ">
 						<!-- flick navigation -->
 						<div v-for="step in crossSection.members" class="navItems">
@@ -143,9 +146,9 @@
 						</div>
 					</div>
 				</div>
-				</transistion>
+				</transition>
 				<transition name="fade">
-				<div v-if="!crossSection">
+				<div v-if="!crossSection" >
 			    <isotope ref="contentBin" class="step" :list="list" :options='getContentOptions()' id="container">
 			        <div v-for="item in list" class='element-item'>
 			          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
@@ -176,7 +179,7 @@
 			        </div>
 			      </isotope>
 					</div>
-					</transition>
+				</transition>
 					<div class="flexCenter" v-show="this.numberOfDisplayed === 0">
 						<p>
 							no results! Have someting you want to add?
@@ -233,7 +236,7 @@
 								<h2 class="center light-blue-text"><i class="material-icons large">explore</i></h2>
 								<h5 class="center">universal context</h5>
 
-								<p class="light">Understand the big picture by seeing how the media and ideas they teach relate to the time and size scales of the universe.</p>
+								<p class="light">Develop a holistic perspective and see the big picture by understanding big ideas across the time and size scales of the universe.</p>
 							</div>
 						</div>
 
@@ -255,7 +258,7 @@
 									<div class="collapsible-body">
 										<span>
 											<p>Right now? Not much more than a collection of interesting videos. However, the intention is for knowlo to become the best place to stand on the shoulder of giants.</p>
-											<!-- <p>It's about learning from each other and</p> -->
+											<p>In truth, we're all giants and can learn from one another. Knowlo is about getting the ideas and people together in the same platform.</p>
 											<!-- <p>It's a place where anyone can develop a <span class="bold">Universal Literacy</span> and track their progress along the way.</p> -->
 											<!-- <p>Thanks to the internet, the sum of human knowledge is at our fingertips. But, there is no guide and it's difficult to search for something if you don't know that it exists.</p> -->
 											<!-- <p>Knowlo wants to provide a map of human knowledge and provide the means for anyone to explore its depths.</p> -->
@@ -269,10 +272,10 @@
 									<div class="collapsible-header active"><i class="fa fa-book"></i>What is Universal Literacy?</div>
 									<div class="collapsible-body">
 										<span>
-											<p>Universal literacy is a curriculum of humanity's best ideas and deepest insights.</p>
+											<p>Universal literacy is a curriculum of the big ideas across the time and size scales of the universe.</p>
 											<p>It's about developing a basic understanding of our best explanations for what there is and how it works.</p>
-											<p>The major concepts, big ideas, probing questions, jargon, experiments, and evidence within every discipline are explicitly highlighted along with the best materials for learning about them.</p>
-											<p>It uses the time and size scales of the universe as a framework to organize it all.</p>
+											<!-- <p>The major concepts, big ideas, probing questions, jargon, experiments, and evidence within every discipline are explicitly highlighted along with the best materials for learning about them.</p> -->
+											<!-- <p>It uses the time and size scales of the universe as a framework to organize it all.</p> -->
 										</span>
 									</div>
 								</li>

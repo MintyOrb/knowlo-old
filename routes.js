@@ -206,6 +206,7 @@ const explore = Vue.extend({
     },
     watch: {
       crossSection: function(newVal, oldVal){
+        Cookies.set('lens', this.crossSection)
         if(newVal !== oldVal){
           $('.crossSectionNav').flickity('destroy');
           $('.crossSectionSteps').flickity('destroy');
@@ -234,20 +235,6 @@ const explore = Vue.extend({
     },
     mounted: function(){
 
-      this.list = videos;
-
-      this.db = db;
-      this.bigHistory = bigHistory;
-      this.size = disciplines;
-
-      // limit number of initally displayed keys
-      for(word in keywords){
-        if(keywords[word]['count'] > 20){
-          this.words.push(keywords[word])
-        }
-      }
-      // this.words = keywords;
-
       //alpha warning
       if(!Cookies.get('alpha-warning-seen')){
         Cookies.set('alpha-warning-seen', true, { expires: 7 });
@@ -262,8 +249,16 @@ const explore = Vue.extend({
       } else {
         this.display = Cookies.get('displayStyle');
       }
+      // selected lens - delete after generalized to any group as a lens
+
+      if(!Cookies.get('lens')){
+        this.crossSection = null;
+      } else {
+        this.crossSection = Cookies.get('lens');
+      }
 
       $('.dropdown-button').dropdown();
+
       $('.step').imagesLoaded() // layout when images loaded and on progress
         .always( ( instance ) => {
           console.log('all images loaded');
@@ -277,6 +272,19 @@ const explore = Vue.extend({
         });
     },
     created: function(){
+      this.list = videos;
+
+      this.db = db;
+      this.bigHistory = bigHistory;
+      this.size = disciplines;
+      // limit number of initally displayed keys
+      for(word in keywords){
+        if(keywords[word]['count'] > 20){
+          this.words.push(keywords[word])
+        }
+      }
+      // this.words = keywords;
+
         bus.$on('addTagSubTag', (tag) => {
           this.addToFrom(tag, this.selected)
         })
