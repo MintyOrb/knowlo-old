@@ -80,8 +80,14 @@
 		    <div class="center pad margin20">
   				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
   				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
-  				<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
+					<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
   				<br/>
+				</div>
+				<div >
+					<h4 class="thin" style="display:inline">Lens:</h4>
+					<span class="btn blue" @click="crossSection = bigHistory">Big History</span>
+					<span class="btn blue" @click="crossSection = size">Size</span>
+					<span class="btn blue" @click="crossSection = null">none</span>
 				</div>
 				<div class="flexCenter margin20">
 					<div class="btn blue dropdown-button" data-activates='sortOp' data-hover="true">sort order</div>
@@ -94,17 +100,54 @@
 
 			</div>
 			<div>
-				<div class=" crossSectionNav ">
-					<!-- flick navigation -->
-					<div v-for="step in crossSection.members" class="navItems">
-						<tag :tag="step"></tag>
+				<transition name="fade">
+				<div v-if="crossSection">
+					<div class=" crossSectionNav ">
+						<!-- flick navigation -->
+						<div v-for="step in crossSection.members" class="navItems">
+							<tag :tag="step"></tag>
+						</div>
+					</div>
+				<!-- results by cross section -->
+					<div class=" crossSectionSteps">
+						<div v-for="step in crossSection.members" class="stepContainer">
+							<isotope class="step" :list="db" :options='getContentOptions()'>
+								<div  v-for="item in db" v-if="item.time.includes(step.name) || item.discipline.includes(step.name)" class='testing'>
+				          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
+				              <router-link :to="'/c/'+item.videoid">
+				                <img :src="item.thumb">
+				              </router-link>
+				          </div>
+								 <router-link :to="'/c/'+item.videoid" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
+									<a>
+										<span class='truncate thin '>{{item.title}}</span>
+									</a>
+								 </router-link>
+				          <div  v-if="display == 'card'" class="card hoverable">
+				            <div class='card-image'>
+				                <router-link :to="'/c/'+item.videoid">
+				                  <img :src="item.thumb" class='card-image' alt="Not found">
+				               </router-link>
+				            </div>
+				            <div class='card-content'>
+				                <span class='title'>{{item.title}}</span>
+				                <p class="truncate">{{item.author}}</p>
+				            </div>
+				            <div class='card-action'>
+				              <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.viewcount,1)}}</span>
+				              <span class='right card-bottom'>{{item.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
+				            </div>
+					        </div>
+							 </isotope>
+							</div>
+						</div>
 					</div>
 				</div>
-				<!-- results by cross section -->
-				<div class=" crossSectionSteps">
-					<div v-for="step in crossSection.members" class="stepContainer">
-						<isotope class="step" :list="db" :options='getContentOptions()'>
-							<div  v-for="item in db" v-if="item.discipline.includes(step.name)" class='testing'>
+				</transistion>
+				<transition name="fade">
+				<div v-if="!crossSection">
+			    <isotope ref="contentBin" class="step" :list="list" :options='getContentOptions()' id="container">
+			        <div v-for="item in list" class='element-item'>
 			          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
 			              <router-link :to="'/c/'+item.videoid">
 			                <img :src="item.thumb">
@@ -129,41 +172,11 @@
 			              <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.viewcount,1)}}</span>
 			              <span class='right card-bottom'>{{item.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
 			            </div>
-
-				        </div>
-						 </isotope>
-						</div>
+								</div>
+			        </div>
+			      </isotope>
 					</div>
-				</div>
-		    <!-- <isotope ref="contentBin" :list="list" :options='getContentOptions()' id="container">
-		        <div v-for="item in list" class='element-item'>
-		          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-		              <router-link :to="'/c/'+item.videoid">
-		                <img :src="item.thumb">
-		              </router-link>
-		          </div>
-						 <router-link :to="'/c/'+item.videoid" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
-							<a>
-								<span class='truncate thin '>{{item.title}}</span>
-							</a>
-						 </router-link>
-		          <div  v-if="display == 'card'" class="card hoverable">
-		            <div class='card-image'>
-		                <router-link :to="'/c/'+item.videoid">
-		                  <img :src="item.thumb" class='card-image' alt="Not found">
-		               </router-link>
-		            </div>
-		            <div class='card-content'>
-		                <span class='title'>{{item.title}}</span>
-		                <p class="truncate">{{item.author}}</p>
-		            </div>
-		            <div class='card-action'>
-		              <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.viewcount,1)}}</span>
-		              <span class='right card-bottom'>{{item.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
-		            </div>
-							</div>
-		        </div>
-		      </isotope> -->
+					</transition>
 					<div class="flexCenter" v-show="this.numberOfDisplayed === 0">
 						<p>
 							no results! Have someting you want to add?
@@ -361,6 +374,7 @@
 <script src="part2.js"></script>
 <script src="keywords.js"></script>
 <script src="content.js"></script>
+<script src="lens.js"></script>
 
 <script>
 videos = videos.concat(videos2) // combine split json (split becuase it was too large as a single file for simplehttpserver)

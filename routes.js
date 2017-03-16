@@ -24,125 +24,7 @@ const explore = Vue.extend({
   data: function() {
         return {
             db: undefined,
-            crossSection: {
-                "count": 300,
-                "name": "Size_Scale",
-                "status": {
-                  "hover": false,
-                  "expanded":false
-                },
-                "group": true,
-                "members": [
-                  {
-                    "name":"Philosophy",
-                    "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fmath.PNG?alt=media&token=37b423f6-05c8-4ad6-927f-1e9da1f7f326",
-                    "status": {
-                      "hover": false,
-                      "expanded":false
-                      },
-                    "group": false
-                  },
-                    {
-                      "name":"Math",
-                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fmath.PNG?alt=media&token=37b423f6-05c8-4ad6-927f-1e9da1f7f326",
-                      "status": {
-                        "hover": false,
-                        "expanded":false
-                        },
-                      "group": false
-                    },
-                    {
-                      "name":"Physics",
-                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Ffun.PNG?alt=media&token=51c42c50-f7c7-4098-b919-e3fd636a4f61",
-                      "status": {
-                        "hover": false,
-                        "expanded":false
-                        },
-                      "group": false
-                    },
-                    {
-                      "name":"Chemistry",
-                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fmolecule.PNG?alt=media&token=0c10dc2b-02fc-41f6-9afa-3a69cd58468c",
-                      "status": {
-                        "hover": false,
-                        "expanded":false
-                        },
-                      "group": false
-                    },
-                    {
-                      "name":"Molecular Biology",
-                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fmacro.PNG?alt=media&token=9060d528-e8c3-42cb-b0b4-53e5088f543e",
-                      "status": {
-                        "hover": false,
-                        "expanded":false
-                        },
-                      "group": false
-                    },
-                    {
-                      "name":"Biology",
-                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fcell.PNG?alt=media&token=17b840eb-225e-476d-81ee-8130ccc0d770",
-                      "status": {
-                        "hover": false,
-                        "expanded":false
-                        },
-                      "group": false
-                    },
-                    {
-                      "name":"Psychology",
-                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Forganism.PNG?alt=media&token=707ae160-14ba-4be5-919e-d6de5a9dd0a1",
-                      "status": {
-                        "hover": false,
-                        "expanded":false
-                        },
-                      "group": false
-                    },
-                    {
-                      "name":"Sociology",
-                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fspecies.PNG?alt=media&token=13aac4ea-d42d-4bd7-990a-867b4237fac7",
-                      "status": {
-                        "hover": false,
-                        "expanded":false
-                        },
-                      "group": false
-                    },
-                    {
-                      "name":"Ecology",
-                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fbiocommunity.PNG?alt=media&token=5dc3baa1-13d6-4d94-b32a-03a8a9b87e48",
-                      "status": {
-                        "hover": false,
-                        "expanded":false
-                        },
-                      "group": false
-                    },
-                    {
-                      "name":"Geography",
-                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fplanet.PNG?alt=media&token=210f7873-753a-48be-a312-5337e13900c9",
-                      "status": {
-                        "hover": false,
-                        "expanded":false
-                        },
-                      "group": false
-                    },
-                    {
-                      "name":"Astronomy",
-                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fgalaxy.PNG?alt=media&token=81a9bfc2-3bf1-408f-bba0-3a7733f28552",
-                      "status": {
-                        "hover": false,
-                        "expanded":false
-                        },
-                      "group": false
-                    },
-                    {
-                      "name":"Cosmology",
-                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Funiverse.PNG?alt=media&token=5c1f9379-84f2-4ed0-aaa3-73d55872a510",
-                      "status": {
-                        "hover": false,
-                        "expanded":false
-                        },
-                      "group": false
-                    },
-                  ]
-            },
+            crossSection: null,
             displayed: "",
             selected: [],
             words: [],
@@ -322,11 +204,42 @@ const explore = Vue.extend({
           return num.toFixed(digits).replace(rx, "$1");
         }
     },
+    watch: {
+      crossSection: function(newVal, oldVal){
+        if(newVal !== oldVal){
+          $('.crossSectionNav').flickity('destroy');
+          $('.crossSectionSteps').flickity('destroy');
+          this.$nextTick(function(){
+          $('.crossSectionNav').flickity({
+            asNavFor: '.crossSectionSteps',
+            // wrapAround: true,
+            pageDots: true,
+            prevNextButtons: true,
+            accessibility: false, // to prevent jumping when focused
+          });
+          $('.crossSectionSteps').flickity({
+            wrapAround: true,
+            pageDots: true,
+            prevNextButtons: true,
+            accessibility: false, // to prevent jumping when focused
+            dragThreshold: 40
+          });
+        })
+        } else {
+          $('.crossSectionNav').flickity('destroy');
+          $('.crossSectionSteps').flickity('destroy');
+        }
+
+      }
+    },
     mounted: function(){
 
       this.list = videos;
 
       this.db = db;
+      this.bigHistory = bigHistory;
+      this.size = disciplines;
+
       // limit number of initally displayed keys
       for(word in keywords){
         if(keywords[word]['count'] > 20){
@@ -351,7 +264,7 @@ const explore = Vue.extend({
       }
 
       $('.dropdown-button').dropdown();
-      $('#container').imagesLoaded() // layout when images loaded and on progress
+      $('.step').imagesLoaded() // layout when images loaded and on progress
         .always( ( instance ) => {
           console.log('all images loaded');
           this.layout('from images loaded, finished.')
@@ -361,21 +274,6 @@ const explore = Vue.extend({
           console.log( 'image is ' + result + ' for ' + image.img.src );
           this.layout('from images loaded, progress made.')
 
-        });
-
-        $('.crossSectionNav').flickity({
-          asNavFor: '.crossSectionSteps',
-          // wrapAround: true,
-          pageDots: true,
-          prevNextButtons: true,
-          accessibility: false, // to prevent jumping when focused
-        });
-        $('.crossSectionSteps').flickity({
-          wrapAround: true,
-          pageDots: true,
-          prevNextButtons: true,
-          accessibility: false, // to prevent jumping when focused
-          dragThreshold: 40
         });
     },
     created: function(){
