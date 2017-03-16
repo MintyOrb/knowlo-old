@@ -23,12 +23,132 @@ const explore = Vue.extend({
   template: "#exploreTemplate",
   data: function() {
         return {
+            db: undefined,
+            crossSection: {
+                "count": 300,
+                "name": "Size_Scale",
+                "status": {
+                  "hover": false,
+                  "expanded":false
+                },
+                "group": true,
+                "members": [
+                  {
+                    "name":"Philosophy",
+                    "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fmath.PNG?alt=media&token=37b423f6-05c8-4ad6-927f-1e9da1f7f326",
+                    "status": {
+                      "hover": false,
+                      "expanded":false
+                      },
+                    "group": false
+                  },
+                    {
+                      "name":"Math",
+                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fmath.PNG?alt=media&token=37b423f6-05c8-4ad6-927f-1e9da1f7f326",
+                      "status": {
+                        "hover": false,
+                        "expanded":false
+                        },
+                      "group": false
+                    },
+                    {
+                      "name":"Physics",
+                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Ffun.PNG?alt=media&token=51c42c50-f7c7-4098-b919-e3fd636a4f61",
+                      "status": {
+                        "hover": false,
+                        "expanded":false
+                        },
+                      "group": false
+                    },
+                    {
+                      "name":"Chemistry",
+                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fmolecule.PNG?alt=media&token=0c10dc2b-02fc-41f6-9afa-3a69cd58468c",
+                      "status": {
+                        "hover": false,
+                        "expanded":false
+                        },
+                      "group": false
+                    },
+                    {
+                      "name":"Molecular Biology",
+                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fmacro.PNG?alt=media&token=9060d528-e8c3-42cb-b0b4-53e5088f543e",
+                      "status": {
+                        "hover": false,
+                        "expanded":false
+                        },
+                      "group": false
+                    },
+                    {
+                      "name":"Biology",
+                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fcell.PNG?alt=media&token=17b840eb-225e-476d-81ee-8130ccc0d770",
+                      "status": {
+                        "hover": false,
+                        "expanded":false
+                        },
+                      "group": false
+                    },
+                    {
+                      "name":"Psychology",
+                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Forganism.PNG?alt=media&token=707ae160-14ba-4be5-919e-d6de5a9dd0a1",
+                      "status": {
+                        "hover": false,
+                        "expanded":false
+                        },
+                      "group": false
+                    },
+                    {
+                      "name":"Sociology",
+                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fspecies.PNG?alt=media&token=13aac4ea-d42d-4bd7-990a-867b4237fac7",
+                      "status": {
+                        "hover": false,
+                        "expanded":false
+                        },
+                      "group": false
+                    },
+                    {
+                      "name":"Ecology",
+                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fbiocommunity.PNG?alt=media&token=5dc3baa1-13d6-4d94-b32a-03a8a9b87e48",
+                      "status": {
+                        "hover": false,
+                        "expanded":false
+                        },
+                      "group": false
+                    },
+                    {
+                      "name":"Geography",
+                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fplanet.PNG?alt=media&token=210f7873-753a-48be-a312-5337e13900c9",
+                      "status": {
+                        "hover": false,
+                        "expanded":false
+                        },
+                      "group": false
+                    },
+                    {
+                      "name":"Astronomy",
+                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fgalaxy.PNG?alt=media&token=81a9bfc2-3bf1-408f-bba0-3a7733f28552",
+                      "status": {
+                        "hover": false,
+                        "expanded":false
+                        },
+                      "group": false
+                    },
+                    {
+                      "name":"Cosmology",
+                      "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Funiverse.PNG?alt=media&token=5c1f9379-84f2-4ed0-aaa3-73d55872a510",
+                      "status": {
+                        "hover": false,
+                        "expanded":false
+                        },
+                      "group": false
+                    },
+                  ]
+            },
             displayed: "",
             selected: [],
             words: [],
             list: [],
             numberOfDisplayed: null,
-            display: 'card',
+            display: undefined,
             currentLayout: 'masonry',
             sortOption: "original-order",
             filterOption: "show all",
@@ -95,7 +215,18 @@ const explore = Vue.extend({
         //     }
         //   }
         // },
-        addToFrom: function(tag, to, from){
+        addToFrom: function(tag, to, from){ /// this is all stupid and needs to be re thoughts.
+
+          if(tag.status.focus){ // clear all non pinned terms
+            console.log('tag focused')
+            for (var tagIndex = to.length - 1 ; tagIndex >= 0; tagIndex --) {
+              console.log(to[tagIndex].status)
+              if(!to[tagIndex].status.pinned){
+                to.splice(to[tagIndex], 1)
+                console.log('not pinned')
+              }
+            }
+          }
 
           if(to){this.addTo(tag, to)};
           if(from) {this.removeFrom(tag, from)};
@@ -112,6 +243,7 @@ const explore = Vue.extend({
         },
         changeDisplay: function(disp){
           this.display = disp
+          Cookies.set('displayStyle', disp)
           // weird to wrap a timeout with next tick, but css lags and screws up the layout after transistion
           this.$nextTick(function(){
             window.setTimeout(()=>{
@@ -149,7 +281,13 @@ const explore = Vue.extend({
               this.sortAscending = !this.sortAscending;
             }
             this.$nextTick(()=>{
-              this.$refs.contentBin.sort(key);
+              var steps = $('.step'); // pretty serious antipattern here...make a registery when using cross section views instead?
+              for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
+                if(steps[stepIndex].tagName  !== undefined){
+                  steps[stepIndex]['__vue__'].sort(key)
+                }
+              }
+              // this.$refs.contentBin.sort(key);
               this.sortOption = key;
             })
         },
@@ -164,10 +302,13 @@ const explore = Vue.extend({
         },
         layout: function(mes) {
           console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
-          if(this.$refs.contentBin){
-            this.$refs.contentBin.layout('masonry');
-            this.$refs.key.layout('masonry');
-            this.$refs.selected.layout('masonry');
+          // this.$refs.key.layout('masonry');
+          this.$refs.selected.layout('masonry');
+          var steps = $('.step'); // pretty serious antipattern here...make a registery when using cross section views instead?
+          for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
+            if(steps[stepIndex].tagName  !== undefined){
+              steps[stepIndex]['__vue__'].layout('masonry')
+            }
           }
 
         },
@@ -181,17 +322,11 @@ const explore = Vue.extend({
           return num.toFixed(digits).replace(rx, "$1");
         }
     },
-    directives: {
-        imagesLoaded // can't get this to work.
-    },
     mounted: function(){
 
       this.list = videos;
 
-      window.setTimeout(()=>{ // temporary until a better way to layout after things have loaded ... vue-images-loaded?
-        this.layout()
-      }, 1000)
-
+      this.db = db;
       // limit number of initally displayed keys
       for(word in keywords){
         if(keywords[word]['count'] > 20){
@@ -208,7 +343,40 @@ const explore = Vue.extend({
       } else {
         Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
       }
+      // display Style
+      if(!Cookies.get('displayStyle')){
+        this.display = "card";
+      } else {
+        this.display = Cookies.get('displayStyle');
+      }
+
       $('.dropdown-button').dropdown();
+      $('#container').imagesLoaded() // layout when images loaded and on progress
+        .always( ( instance ) => {
+          console.log('all images loaded');
+          this.layout('from images loaded, finished.')
+        })
+        .progress( ( instance, image ) => { // this doesn't seem to be working?
+          var result = image.isLoaded ? 'loaded' : 'broken';
+          console.log( 'image is ' + result + ' for ' + image.img.src );
+          this.layout('from images loaded, progress made.')
+
+        });
+
+        $('.crossSectionNav').flickity({
+          asNavFor: '.crossSectionSteps',
+          // wrapAround: true,
+          pageDots: true,
+          prevNextButtons: true,
+          accessibility: false, // to prevent jumping when focused
+        });
+        $('.crossSectionSteps').flickity({
+          wrapAround: true,
+          pageDots: true,
+          prevNextButtons: true,
+          accessibility: false, // to prevent jumping when focused
+          dragThreshold: 40
+        });
     },
     created: function(){
         bus.$on('addTagSubTag', (tag) => {

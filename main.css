@@ -5,6 +5,14 @@
      ██    ██       ██    ██      ██
 ███████    ██       ██    ███████ ███████
 */
+/*hide scroll bars*/
+a {color:black}
+::-webkit-scrollbar {
+    display: none;
+}
+html {
+  -ms-overflow-style: none;
+}
 .bold {
 	font-weight: 700;
 }
@@ -113,7 +121,6 @@
 	margin-right: 15px;
 	margin-top: 10px;
 }
-/* position dots up a bit */
 .flickity-page-dots {
   bottom: -10px;
 }
@@ -132,7 +139,25 @@
 }
 /**{outline: 1px solid black;}*/
 
+.crossSectionNav {
+	width: 100%;
+  margin-bottom: 20px;
+}
+.navItems {
+	width: 130px;
+	display: relative;
 
+}
+.crossSectionSteps {
+	width: 100%;
+  margin-bottom: 50px;
+}
+.stepContainer {
+	width: 80vw;
+	height: 600px;
+  overflow: scroll;
+  margin-bottom: 30px
+}
 
 
 /* tag radial button based on this pen: http://codepen.io/suez/pen/vAais/*/

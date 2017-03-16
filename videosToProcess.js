@@ -1,532 +1,5 @@
 var videos = [{
-    "tags": [],
-    "size": ["atoms", "molecules"],
-    "time": ["New Chemical Elements"],
-    "teaches": ["chemical bonds","atomic structure","energy","covalent bonds","ionic bonds","periodic table", "hydrogen bonds", "electronegativity"],
-    "is": ["video","Cassiopeia Project"],
-    "discipline": ["chemistry"],
-    "username": "cassiopeiaproject",
-    "rating": 4.86246395111,
-    "description": "Find out more about Chemical Bonds!",
-    "viewcount": 96761,
-    "author": "cassiopeiaproject",
-    "url": "https://www.youtube.com/watch?v=hEFeLYWTKX0",
-    "title": "Chemical Bonds",
-    "dislikes": 12,
-    "bigthumb": "",
-    "videoid": "hEFeLYWTKX0",
-    "keywords": ["Chemistry", "chemical", "bond", "periodic", "table", "element", "atom", "molecule", "electron", "proton", "polar", "covalent", "orbital", "energy", "electronegat"],
-    "length": 438,
-    "likes": 337,
-    "duration": "00:07:18",
-    "thumb": "http://i.ytimg.com/vi/hEFeLYWTKX0/default.jpg"
-}, {
-    "tags": [],
-    "size": ["species"],
-    "time": ["Modern Revolution"],
-    "teaches": ["telescopes","Hubble Space Telescope","James Webb Space Telescope","light","infrared", "Giant Magellan Telescope (GMT)", "adaptive optics", "The Large Synoptic Survey Telescope (LSST)"],
-    "is": ["video", "PBS Space Time"],
-    "discipline": ["physics","cosmology"],
-    "username": "PBS Space Time",
-    "rating": 4.9619160964,
-    "description": "Super telescopes are coming! Thanks to The Great Courses Plus for sponsoring this episode of Space Time. Try a 30 day trial of The Great Course Plus at http://ow.ly/Fxt1306GoOa NASA\u2019s Hubble Space Telescope is now 27 years old, but a new generation of telescopes are on their way. Find out about the James Webb Space Telescope, the Giant Magellan Telescope and the Large Synoptic Survey Telescope. \n\nYou can further support us on Patreon at https://www.patreon.com/pbsspacetime\nGet your own Space Time t\u00adshirt at http://bit.ly/1QlzoBi\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\n\nHelp translate our videos! https://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nThe telescopes of tomorrow will see in infrared and ultraviolet. They will peer through space and scan across time. They will allow us to find new supernovae, spot potentially hazardous asteroids, better understand dark energy and peer into the earliest moments of space time.  \n\nPrevious Episode\nThe Geometry of Causality\nhttps://www.youtube.com/watch?v=1YFrISfN7jo\n\nWritten by Alexandra Yep and Matt O\u2019Dowd\nHosted by Matt O\u2019Dowd\nProduced by Rusty Ward\nGraphics by Grayson Blackmon\nMade by Kornhaber Brown (www.kornhaberbrown.com)\n\nResources:\nThe James Webb Space Telescope https://jwst.nasa.gov\nThe Giant Magellan Telescope https://www.gmto.org/\nThe Large Synoptic Survey Telescope https://www.lsst.org\n\nComments Answered by Matt:\n\nLouis Anthes\nhttps://www.youtube.com/watch?v=1YFrISfN7jo&lc=z12pcp34szazy1qqz04cgvpg0sjnivjq0to0k\n\nQED\nhttps://www.youtube.com/watch?v=1YFrISfN7jo&lc=z131xd1xbrihsrdm3231i5fr0sz1yb2ff\n\n\nSpecial thanks to our Patreon Big Bang, Quasar and Hypernova Supporters: \n\nBig Bang\nHenry Van Styn\nDavid Nicklas\n\nQuasar\nJelle Slaets\nTambe Barsbay\nLuna IT Solutions\n\nHypernova\nCoolAsCats\nChuck Zegar\nCraig Peterson\nJordan Young\nRatfeast\nJohn Hofmann\n\nThanks to our Patreon Gamma Ray Burst Supporters: \nMichael Peanut-Karmi\nBernardo Higuera\nErik Stein\nDaniel Lyons\nAvan & Kyan Griggs\nJade Bilkey\nKevin Warne\nJJ Bagnell\nJ Rejc\nMichael Fischer\nDylan Merida\nAmy Jie\nAnthony Caridi\nAvi Goldfinger\nCorey Smeaton\nJohn Pettit\nShannan Catalano\nFlorian Stinglmayr\nYubo Du\nBenoit Pag\u00e9-Guitard\nRonny Polonia\nNathan Leniz\nJessica Fraley\nKirk Mathews\nLoro Lukic\nCarl P. Corliss\nBrandon labonte\nDavid Crane\nGreg Weiss\nEric Jackson",
-    "viewcount": 261074,
-    "author": "PBS Space Time",
-    "url": "https://www.youtube.com/watch?v=CoQE5J346mU",
-    "title": "Telescopes of Tomorrow | Space Time",
-    "dislikes": 96,
-    "bigthumb": "https://i.ytimg.com/vi/CoQE5J346mU/sddefault.jpg",
-    "videoid": "CoQE5J346mU",
-    "keywords": ["Space", "time", "space time", "pbs", "physics", "astrophysics", "astronomy", "education", "science", "big bang", "comic microwave background", "radiation", "supernova", "telescopes", "telescope", "james webb telescope", "james webb", "giant magellan telescope", "lare synoptic survey telescope", "gmt", "lsst", "hubble", "hubble space telescope", "universe", "cosmos"],
-    "length": 781,
-    "likes": 9987,
-    "duration": "00:13:01",
-    "thumb": "http://i.ytimg.com/vi/CoQE5J346mU/default.jpg"
-}, {
-    "tags": ["Edward Jenner"],
-    "size": ["cells","organisms","species","biological community"],
-    "time": [],
-    "teaches": ["germ theory","vaccination","immune system","germs","disease"],
-    "is": ["video","history"],
-    "discipline": ["history","biology","molecular biology"],
-    "username": "NPR",
-    "rating": 4.93043478261,
-    "description": "For most of human history, we had a lot of bad ideas about how we were getting sick: angry gods, misaligned planets, stinky fumes. We also had plenty of bad ideas about how to prevent it, like bloodletting, large holes in the head and drinking arsenic.\n\nThings started changing only about 200 years ago. An English doctor named Edward Jenner decided to take a closer look at a promising folk remedy. (We'll leave the details for the video.) Eventually, he invented vaccination, our first safe and effective way to fight disease. About time!\n\nSo what did that do for us? Consider that in 1900, the average person lived only about 30 years. Today, most of us live to seventy. We were so successful in such a short time, the U.S. Surgeon General reportedly exclaimed in 1967 that we had closed the book on infectious disease.\n\nIf only! The history of humans and germs turns out to be way more complicated.\n\n\u2022 Visit http://npr.org/pandemic for more stories in this series\n\n------------------------------------------------------\n\nSubscribe to NPR on YouTube: https://www.youtube.com/npr\n\nFollow NPR elsewhere, too:\n\u2022 Twitter: https://twitter.com/npr\n\u2022 Facebook: https://www.facebook.com/NPR\n\u2022 Instagram: https://www.instagram.com/npr/\n\u2022 Tumblr: http://npr.tumblr.com/\n\u2022 Snapchat: https://www.snapchat.com/add/npr\n\nABOUT NPR\nNPR connects to audiences on the air, on demand, online, and in person. More than 26 million radio listeners tune in to NPR stations each week and more than 36 million unique visitors access NPR.org each month making NPR one of the most trusted sources of news and insights on life and the arts. NPR is also the leading publisher of podcasts, with 36 original shows and an average of 4 million listeners per week. NPR shares compelling stories, audio and photos with millions of social media users on Facebook, Twitter, Instagram, Pinterest, YouTube and Snapchat; NPR News and NPR One apps, online streaming, podcasts, iTunes radio and connected car dashboards help meet audiences where they are. NPR's live events bring to the stage two-way conversations between NPR hosts and the audience in collaboration with the public radio Member Station community. This robust access to public service journalism makes NPR an indispensable resource in the media landscape.",
-    "viewcount": 23632,
-    "author": "NPR",
-    "url": "https://www.youtube.com/watch?v=xOFH57Do2EM",
-    "title": "A Short History Of Humans And Germs: Humans Get A Clue | Goats & Soda | NPR",
-    "dislikes": 4,
-    "bigthumb": "https://i.ytimg.com/vi/xOFH57Do2EM/sddefault.jpg",
-    "videoid": "xOFH57Do2EM",
-    "keywords": ["npr", "pandemic", "epidemic", "germs", "history", "short history", "humans", "science", "history of science", "vaccination", "jenner", "ecohealth", "outbreak"],
-    "length": 217,
-    "likes": 226,
-    "duration": "00:03:37",
-    "thumb": "http://i.ytimg.com/vi/xOFH57Do2EM/default.jpg"
-}, {
-    "tags": [],
-    "size": ["cells","organisms","species","biological community"],
-    "time": ["Agriculture"],
-    "teaches": ["germ theory","immune system","germs","disease"],
-    "is": ["video","history"],
-    "discipline": ["history","biology","molecular biology"],
-    "username": "NPR",
-    "rating": 4.94920634921,
-    "description": "Humans get along pretty well with most microbes. Which is lucky, because there are a lot more of them in the world than there are of us. We couldn\u2019t even live without many of them. But a few hundred have evolved, and are still evolving, to exploit our bodies in ways that can make us really sick. These are the microbes we call germs. Think  plague, HIV, SARS, Ebola, Zika, measles.\n\nThis is a series is about where germs come from.  In this first of three episodes, we see what our early encounters with germs may have been like, and how germs initially got an upper hand.\n\n-----------------\n\nSubscribe to NPR on YouTube: https://www.youtube.com/npr\n\nFollow NPR elsewhere, too:\n\u2022 Twitter: https://twitter.com/npr\n\u2022 Facebook: https://www.facebook.com/NPR\n\u2022 Instagram: https://www.instagram.com/npr/\n\u2022 Tumblr: http://npr.tumblr.com/\n\u2022 Snapchat: https://www.snapchat.com/add/npr\n\nABOUT NPR\nNPR connects to audiences on the air, on demand, online, and in person. More than 26 million radio listeners tune in to NPR stations each week and more than 36 million unique visitors access NPR.org each month making NPR one of the most trusted sources of news and insights on life and the arts. NPR is also the leading publisher of podcasts, with 36 original shows and an average of 4 million listeners per week. NPR shares compelling stories, audio and photos with millions of social media users on Facebook, Twitter, Instagram, Pinterest, YouTube and Snapchat; NPR News and NPR One apps, online streaming, podcasts, iTunes radio and connected car dashboards help meet audiences where they are. NPR's live events bring to the stage two-way conversations between NPR hosts and the audience in collaboration with the public radio Member Station community. This robust access to public service journalism makes NPR an indispensable resource in the media landscape.",
-    "viewcount": 46376,
-    "author": "NPR",
-    "url": "https://www.youtube.com/watch?v=Utcn6LGYHSI",
-    "title": "A Short History Of Humans And Germs: Early Encounters | Goats & Soda | NPR",
-    "dislikes": 4,
-    "bigthumb": "https://i.ytimg.com/vi/Utcn6LGYHSI/sddefault.jpg",
-    "videoid": "Utcn6LGYHSI",
-    "keywords": ["npr", "science", "goatsandsoda", "microbes", "germs", "epidemic", "history", "outbreak", "contagion", "pandemic"],
-    "length": 161,
-    "likes": 311,
-    "duration": "00:02:41",
-    "thumb": "http://i.ytimg.com/vi/Utcn6LGYHSI/default.jpg"
-}, {
-    "tags": [],
-    "size": ["cells","organisms","species","biological community"],
-    "time": ["Agriculture"],
-    "teaches": ["germ theory","germs","disease"],
-    "is": ["video","history"],
-    "discipline": ["history","biology","molecular biology"],
-    "username": "NPR",
-    "rating": 5.0,
-    "description": "Ten thousand years ago, at the dawn of the agricultural revolution, many of our deadly human diseases didn't exist. What changed?\n\nFor the first time in history, humans were living in close contact with domesticated animals - milking them, taking care of them, living with them and eating them. All that touching and sharing gave animal germs plenty of chances to get inside of us.\n\nTake measles. Researchers think that up until about 5,000 years ago, it didn\u2019t exist. But its older cousin Rinderpest, a cattle disease, did. Now that humans were spending so much quality time with cows, little Rinderpest germs started jumping over into us. And a few of them had a lucky mutation that allowed Rinderpest to evolve from a cattle disease into measles, a deadly human virus.\n\nBut our ancestors had no idea what the problem was - or how to fix it. See how humans finally get a clue, in  Episode 3, coming Feb. 16.\n\nWatch Episode 1: A Short History of Humans and Germs: Early Encounters https://www.youtube.com/watch?v=Utcn6LGYHSI\nAnd see what new viruses are emerging in your backyard: http://n.pr/2lr8mRf\n\n\n------------------------------------------------------\n\nSubscribe to NPR on YouTube: https://www.youtube.com/npr\n\nFollow NPR elsewhere, too:\n\u2022 Twitter: https://twitter.com/npr\n\u2022 Facebook: https://www.facebook.com/NPR\n\u2022 Instagram: https://www.instagram.com/npr/\n\u2022 Tumblr: http://npr.tumblr.com/\n\u2022 Snapchat: https://www.snapchat.com/add/npr\n\nABOUT NPR\nNPR connects to audiences on the air, on demand, online, and in person. More than 26 million radio listeners tune in to NPR stations each week and more than 36 million unique visitors access NPR.org each month making NPR one of the most trusted sources of news and insights on life and the arts. NPR is also the leading publisher of podcasts, with 36 original shows and an average of 4 million listeners per week. NPR shares compelling stories, audio and photos with millions of social media users on Facebook, Twitter, Instagram, Pinterest, YouTube and Snapchat; NPR News and NPR One apps, online streaming, podcasts, iTunes radio and connected car dashboards help meet audiences where they are. NPR's live events bring to the stage two-way conversations between NPR hosts and the audience in collaboration with the public radio Member Station community. This robust access to public service journalism makes NPR an indispensable resource in the media landscape.",
-    "viewcount": 50210,
-    "author": "NPR",
-    "url": "https://www.youtube.com/watch?v=9bsqLmwAq-w",
-    "title": "A Short History Of Humans And Germs: The Golden Age Of Germs | Goats & Soda | NPR",
-    "dislikes": 0,
-    "bigthumb": "https://i.ytimg.com/vi/9bsqLmwAq-w/sddefault.jpg",
-    "videoid": "9bsqLmwAq-w",
-    "keywords": ["npr", "germs", "contagion", "disease", "history", "virus", "pandemic", "superspreader", "viruses", "a short history", "golden age", "age of discovery", "measles"],
-    "length": 176,
-    "likes": 293,
-    "duration": "00:02:56",
-    "thumb": "http://i.ytimg.com/vi/9bsqLmwAq-w/default.jpg"
-}, {
-    "tags": [],
-    "size": ['fundamental particles and forces'],
-    "time": ['big bang'],
-    "teaches": ["wave-particle duality","uncertainty principal","wave function"],
-    "is": ["video","simulation"],
-    "discipline": ['quantum mechancis','physics'],
-    "username": "udiprod",
-    "rating": 4.93954168698,
-    "description": "This video visually demonstrates some basic quantum physics concepts using the simple case of a free particle. \n\nAll the simulations here are based on real equations and laws. See more information here: http://www.zutopedia.com/quantum_physics.html\n\nThe mathematics involved was taken from this excellent book:\nhttps://www.amazon.com/exec/obidos/ASIN/0387989293/visualquantummec",
-    "viewcount": 138877,
-    "author": "udiprod",
-    "url": "https://www.youtube.com/watch?v=p7bzE1E5PMY",
-    "title": "Visualization of Quantum Physics (Quantum Mechanics)",
-    "dislikes": 62,
-    "bigthumb": "https://i.ytimg.com/vi/p7bzE1E5PMY/sddefault.jpg",
-    "videoid": "p7bzE1E5PMY",
-    "keywords": ["quantum physics", "animation", "quantum mechanics", "physics", "popular science"],
-    "length": 874,
-    "likes": 4040,
-    "duration": "00:14:34",
-    "thumb": "http://i.ytimg.com/vi/p7bzE1E5PMY/default.jpg"
-}, {
-    "tags": ["Charles Babbage","Difference Engine","Analytical Engine"],
-    "size": ["organisms","species"],
-    "time": ["Modern Revolution"],
-    "teaches": ["computing"],
-    "is": ["video","history"],
-    "discipline": ["computer science"],
-    "username": "CrashCourse",
-    "rating": 4.94163892627,
-    "description": "Hello, world! Welcome to Crash Course Computer Science! So today, we\u2019re going to take a look at computing\u2019s origins, because even though our digital computers are relatively new, the need for computation is not. Since the start of civilization itself, humans have had an increasing need for special devices to help manage laborious tasks, and as the scale of society continued to grow, these computational devices began to play a crucial role in amplifying our mental abilities. From the abacus and astrolabe to the difference engine and tabulating machine, we\u2019ve come a long way to satisfying this increasing need, and in the process completely transformed commerce, government, and daily life. \n\nProduced in collaboration with PBS Digital Studios: http://youtube.com/pbsdigitalstudios\n\nWant to know more about Carrie Anne?\nhttps://about.me/carrieannephilbin\n\nWant more Crash Course in person? We'll be at NerdCon: Nerdfighteria in Boston on February 25th and 26th! For more information, go to http://www.nerdconnerdfighteria.com/\n\nThe Latest from PBS Digital Studios: https://www.youtube.com/playlist?list...\n\nWant to find Crash Course elsewhere on the internet?\nFacebook - http://www.facebook.com/YouTubeCrashC...\nTwitter - http://www.twitter.com/TheCrashCourse\nTumblr - http://thecrashcourse.tumblr.com \nSupport Crash Course on Patreon: http://patreon.com/crashcourse\n\nCC Kids: http://www.youtube.com/crashcoursekids",
-    "viewcount": 286061,
-    "author": "CrashCourse",
-    "url": "https://www.youtube.com/watch?v=O5nskjZ_GoI",
-    "title": "Early Computing: Crash Course Computer Science #1",
-    "dislikes": 206,
-    "bigthumb": "https://i.ytimg.com/vi/O5nskjZ_GoI/sddefault.jpg",
-    "videoid": "O5nskjZ_GoI",
-    "keywords": ["John Green", "Hank Green", "vlogbrothers", "Crash Course", "crashcourse", "education", "computers", "computation", "computer science", "electronic age", "history", "Mesopotamia", "Astrolabe", "abacus", "Hollerith machine", "step reckoner", "tabulating machine", "Charles Babbage", "ada Lovelace", "Katherine Johnson", "international business machines", "ibm", "range tables", "difference engine", "analytical engine", "census", "Herman Hollerith", "punch cards"],
-    "length": 713,
-    "likes": 13913,
-    "duration": "00:11:53",
-    "thumb": "http://i.ytimg.com/vi/O5nskjZ_GoI/default.jpg"
-}, {
-    "tags": [],
-    "size": ["planetary bodies","solar systems"],
-    "time": ["Earth and the Solar System"],
-    "teaches": ['fomelhaut',"protoplanetary disc","protostar","core accretion","Nice Model","planet formation","solar sytem formation"],
-    "is": ["video","beginning","PBS Space Time"],
-    "discipline": ["Astronomy"],
-    "username": "PBS Space Time",
-    "rating": 4.92965587045,
-    "description": "Fomalhaut is a massive young star surrounded by a ring of dust debris that can tell us a great deal about the formation of our own solar system. Get your first two months of Curiosity Stream free by going to http://curiositystream.com/spacetime and using the promo code \u201cspacetime\u201d.\n\nYou can further support us on Patreon at https://www.patreon.com/pbsspacetime\nGet your own Space Time t\u00adshirt at http://bit.ly/1QlzoBi\nTweet at us! @pbsspacetime\nFacebook: facebook.com/pbsspacetime\nEmail us! pbsspacetime [at] gmail [dot] com\nComment on Reddit: http://www.reddit.com/r/pbsspacetime\n\nHelp translate our videos! https://www.youtube.com/timedtext_cs_panel?tab=2&c=UC7_gcs09iThXybpVgjHZ_7g\n\nFomalhaut is an awe-inspiring star that could unlock many mysteries concerning how our own solar system formed.\n\nPrevious Episode\nTelescopes of Tomorrow\nhttps://www.youtube.com/watch?v=CoQE5J346mU\n\nWritten by Alexandra Yep and Matt O\u2019Dowd\nHosted by Matt O\u2019Dowd\nProduced by Rusty Ward\nGraphics by Grayson Blackmon\nMade by Kornhaber Brown (www.kornhaberbrown.com)\n\nSources:\nA Planetary System as the Origin of Structure in Fomalhaut\u2019s Dust Belt\nKalas, Graham & Clampin (2005)\nhttps://arxiv.org/abs/astro-ph/0506574\n\nSTIS Coronographic Imaging OF Fomalhaut: Main Belt Structure and teh Orbit of Fomalhaut b\nKalas, Graham ,Fitzgerald & Clampin (2013)\nhttp://iopscience.iop.org/article/10.1088/0004-637X/775/1/56\n\nInfrared Non-detection of Fomalhaut b -- Implications for the Planet Interpretation\nJanson, Carson, Lafreniere, Spiegel, Bent & Wong (2012)\nhttps://arxiv.org/abs/1201.4388\n\nSpecial thanks to our Patreon Big Bang, Quasar and Hypernova Supporters: \n\nBig Bang\nHenry Van Styn\nDavid Nicklas\n\nQuasar\nTambe Barsbay\nLuna IT Solutions\n\nHypernova\nCoolAsCats (The Patron formerly known as Joe)\nChuck Zegar\nCraig Peterson\nJordan Young\nRatfeast\nJohn Hofmann\n\nThanks to our Patreon Gamma Ray Burst Supporters: \nMichal-Peanut Karmi\nBernardo Higuera\nErik Stein\nDaniel Lyons\nAvan & Kyan Griggs\nJade Bilkey\nKevin Warne\nJJ Bagnell\nJ Rejc\nMichael Fischer\nDylan Merida\nAmy Jie\nAnthony Caridi\nAvi Goldfinger\nCorey Smeaton\nJohn Pettit\nShannan Catalano\nFlorian Stinglmayr\nYubo Du\nBenoit Pag\u00e9-Guitard\nRonny Polonia\nNathan Leniz\nJessica Fraley\nKirk Mathews\nLoro Lukic\nCarl P. Corliss\nBrandon labonte\nDavid Crane\nGreg Weiss\nEric Jackson",
-    "viewcount": 256013,
-    "author": "PBS Space Time",
-    "url": "https://www.youtube.com/watch?v=TQZyaMRp7_0",
-    "title": "The Eye of Sauron Reveals a Forming Solar System! | Space Time",
-    "dislikes": 139,
-    "bigthumb": "https://i.ytimg.com/vi/TQZyaMRp7_0/sddefault.jpg",
-    "videoid": "TQZyaMRp7_0",
-    "keywords": ["stars", "star", "astrophysics", "physics", "astronomy", "space", "time", "space time", "education", "science", "planettessimal", "planet", "sun", "solar system", "jupiter", "hot jupiter", "star formation", "fomelhaut", "fomelhaut b", "dagon", "coronagraph", "alma", "discovery", "earth-like planets", "nasa"],
-    "length": 647,
-    "likes": 7765,
-    "duration": "00:10:47",
-    "thumb": "http://i.ytimg.com/vi/TQZyaMRp7_0/default.jpg"
-}, {
-    "tags": ["Artifical intelligence","robots"],
-    "size": ["species","organisms"],
-    "time": ["Modern Revolution"],
-    "teaches": ["rights","morality"],
-    "is": ["video"],
-    "discipline": ["Philosophy","Ethics"],
-    "username": "Kurzgesagt \u2013 In a Nutshell",
-    "rating": 4.89524416773,
-    "description": "What shall we do once machines become conscious? Do we need to grant them rights?\n\nCheck out Wisecrack and their video:  https://goo.gl/oaUbAF\n\n'The Philosophy of Westworld': https://goo.gl/8Tn2m5\n\nSupport us on Patreon so we can make more videos (and get cool stuff in return): https://www.patreon.com/Kurzgesagt?ty=h\n\nKurzgesagt merch here:  http://bit.ly/1P1hQIH\n\nGet the music of the video here: \n\nSoundcloud: http://bit.ly/2loQhFv\nBandcamp: http://bit.ly/2mlxs3q\nFacebook: https://www.facebook.com/epic-mountain-music\n\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nMarius Guran, BrightKnight, Torbj\u00f8rn Lundstr\u00f8m, Cameron Lilley, Dennis J Trammell, Valentino Gantz, Jonas Hejde, Oliver Emberton, Zsolt Kocsi, \u201a@B_Strohmayer, Sumesh Thakur, Josh Webb, Arron Creswell, Sultan Alkhulaifi, Carminatti, Everett Greenwood, Ahmed Abduljabar, Mel Osborne, Alex Rozumiy, Isabel Garcia, Darnell holder, Emma, Jorge Emilio Santaella Glez, Jan Jacobsen, Sven Kr\u00e4mer, Philipp Gagel, Kyle Myers, Phillip Blackwell, Matthias Opsomer, Eduardo Santos, Vasilios Bikoulis, punch, James Hornby, Briana Hunt, Moch Faisal Rasid, Alexandru Bitca, Ben Thayer, Adam Spangler, Franz Palomares, Thomas van Gulick, Ryan Nightingale, Kedar Deshpande, Joseph Markham, Pascal Schmidt, Devashish Shanker, Aschwin Berkhout, Aaron Taylor, Gon\u00e7alo Marques, Ronald Susanto, Joseph stachow, David Darking, Alexander Jo, Niels lagcher, jackattack22, Luke Simmons, Hunter Gatewood, Mary Duhig, Johann Pardanaud, Martin Machava, Henkou, Ben Thompson, Danny Shaw, JI DE YI, James Turner,Jodi Doherty, Simon Pyne, Kim Home, elliot ward, G, Daniel Moul, Alan Huang, Jonathan Ling\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2\n\nDo Robots Deserve Rights? What if machines become conscious?",
-    "viewcount": 2202564,
-    "author": "Kurzgesagt \u2013 In a Nutshell",
-    "url": "https://www.youtube.com/watch?v=DHyUYg8X31c",
-    "title": "Do Robots Deserve Rights? What if Machines Become Conscious?",
-    "dislikes": 2793,
-    "bigthumb": "https://i.ytimg.com/vi/DHyUYg8X31c/sddefault.jpg",
-    "videoid": "DHyUYg8X31c",
-    "keywords": ["robots", "ai", "singularity", "artificial intelligence", "morals", "laws", "westworld"],
-    "length": 395,
-    "likes": 103855,
-    "duration": "00:06:35",
-    "thumb": "http://i.ytimg.com/vi/DHyUYg8X31c/default.jpg"
-}, {
-    "tags": ["kamal","stick chart","compass","ocean","astrolabe","lodestone","calcite"],
-    "size": ["organims","species"],
-    "time": ["Collective Learning"],
-    "teaches": ["navigation","human migration","tools"],
-    "is": ["video","history"],
-    "discipline": ["Sociology","Anthropology"],
-    "username": "SciShow",
-    "rating": 4.96432062561,
-    "description": "People have been exploring the oceans since prehistoric times, way before they had GPS to help them figure out where they were. Here are 6 ingenious ways our ancestors navigated the oceans.\n\nHosted by: Hank Green\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters\u2014we couldn't make SciShow without them! Shout out to Kevin Bealer, Mark Terrio-Cameron, KatieMarie Magnone, Patrick Merrithew, Charles Southerland, Fatima Iqbal, Benny, Kyle Anderson, Tim Curwick, Scott Satovsky Jr, Will and Sonja Marple, Philippe von Bergen, Bella Nash, Bryce Daifuku, Chris Peters, Patrick D. Ashmore, Charles George, Bader AlGhamdi\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttp://ageofex.marinersmuseum.org/index.php?type=navigationtool&id=14\nhttp://www.surveyhistory.org/jacob's_staff1.htm\nhttp://www.vos.noaa.gov/MWL/aug_08/navigation_tools.shtml\nhttp://www.math.nus.edu.sg/aslaksen/gem-projects/hm/0203-1-10-instruments/cross_staff.htm\nhttp://www.smithsonianmag.com/smithsonian-institution/how-sticks-and-shell-charts-became-sophisticated-system-navigation-180954018/\nhttp://www.metmuseum.org/toah/works-of-art/1978.412.826/\nhttp://ageofex.marinersmuseum.org/index.php?type=navigationtool&id=10\nhttp://www.independent.co.uk/news/science/archaeology/not-just-the-stuff-of-legend-famed-viking-sunstone-did-exist-believe-scientists-8521522.html\nhttp://www.sciencemag.org/news/2011/11/viking-sunstone-revealed\nhttp://www.livescience.com/27696-viking-sunstone-shipwreck.html\nhttp://www.visiteskifjordur.is/icelandic-spar/iceland-spar-vikings-use-navigation/\nhttp://www.oceannavigator.com/January-February-2003/Arab-navigators-used-a-Kamal-to-find-latitude/\nhttp://exploration.marinersmuseum.org/object/kamal/\nhttp://www.nature.com/nature/journal/v459/n7248/full/459778a.html\nhttp://www.cultural-china.com/chinaWH/html/en/History206bye774.html\nhttp://afe.easia.columbia.edu/special/china_1000ce_mingvoyages.htm\nhttp://nationalgeographic.org/encyclopedia/compass/\nhttp://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/biref.html\nhttps://www.astrolabes.org/pages/mariner.htm\nhttp://exploration.marinersmuseum.org/object/astrolabe/\nhttp://ageofex.marinersmuseum.org/index.php?type=navigationtool&id=12\nhttp://www.sciencemag.org/news/2014/10/epic-pre-columbian-voyage-suggested-genes\nhttp://www.newworldencyclopedia.org/entry/Compass\nhttp://www.livescience.com/32732-how-does-a-compass-work.html\nhttp://galileo.rice.edu/sci/observations/longitude.html\nhttp://www.pbs.org/weta/roughscience/series1/challenges/latlong/page4.html\nhttps://www.timeanddate.com/astronomy/tell-time-by-stars.html\nhttp://www.pbs.org/wayfinders/polynesian6.html\nhttps://www.quora.com/Why-is-the-light-coming-from-the-sun-semi-polarized-Is-it-because-of-the-Faraday-rotation\nhttp://www.olympusmicro.com/primer/lightandcolor/birefringence.html\nhttps://books.google.com/books?id=5VAVDAAAQBAJ&pg=PA288&\nhttp://www.sciencedirect.com/science/article/pii/S0315086085710300\nhttp://www.tandfonline.com/doi/abs/10.1080/03085696008592173?journalCode=rimu20\nhttps://www.britannica.com/place/Marshall-Islands",
-    "viewcount": 216025,
-    "author": "SciShow",
-    "url": "https://www.youtube.com/watch?v=2Bv8dc19HQ0",
-    "title": "6 Creative Ways People Used to Navigate the Oceans",
-    "dislikes": 73,
-    "bigthumb": "https://i.ytimg.com/vi/2Bv8dc19HQ0/sddefault.jpg",
-    "videoid": "2Bv8dc19HQ0",
-    "keywords": ["SciShow", "science", "Hank", "Green", "education", "learn", "navigation", "ocean", "sunstone", "viking", "compass", "lodestone", "stick chart", "sailing", "sailor", "mariner", "boat", "ship", "pacific", "micronesia", "marshall islands", "kamal", "north star", "polaris", "direction", "magnet", "latitude", "astrolabe", "china", "navy", "ming dynasty", "history", "calcite", "light", "refraction", "explore", "iceland"],
-    "length": 628,
-    "likes": 8111,
-    "duration": "00:10:28",
-    "thumb": "http://i.ytimg.com/vi/2Bv8dc19HQ0/default.jpg"
-}, {
-    "tags": [],
-    "size": ["species"],
-    "time": ["Modern Revolution"],
-    "teaches": ["The Internet","arpanet","Domain Name System (DNS)","Packet Switching"],
-    "is": ["video","history","beginning"],
-    "discipline": ["Computer Science"],
-    "username": "SciShow",
-    "rating": 4.69104245388,
-    "description": "The Internet is older than you might think!\n\nHosted by: Olivia Gordon\n----------\nSupport SciShow by becoming a patron on Patreon: https://www.patreon.com/scishow\n----------\nDooblydoo thanks go to the following Patreon supporters\u2014we couldn't make SciShow without them! Shout out to Kevin Bealer, Mark Terrio-Cameron, KatieMarie Magnone, Patrick Merrithew, Charles Southerland, Fatima Iqbal, Benny, Kyle Anderson, Tim Curwick, Scott Satovsky Jr, Will and Sonja Marple, Philippe von Bergen, Bella Nash, Bryce Daifuku, Chris Peters, Patrick D. Ashmore, Charles George, Bader AlGhamdi\n----------\nLooking for SciShow elsewhere on the internet?\nFacebook: http://www.facebook.com/scishow\nTwitter: http://www.twitter.com/scishow\nTumblr: http://scishow.tumblr.com\nInstagram: http://instagram.com/thescishow\n----------\nSources:\nhttp://royal.pingdom.com/2008/04/11/map-of-all-google-data-center-locations/\nhttps://web.archive.org/web/20120129120350/http://www.tildefrugal.net/tech/arp.php \nhttp://www.gartner.com/newsroom/id/3165317 \nhttp://www.atomicheritage.org/history/computing-and-manhattan-project \nhttps://amazon.com/Pleasure-Finding-Things-Out-Richard/dp/0465023959/ \nhttps://www.dlsweb.rmit.edu.au/set/Courses/Content/CSIT/oua/cpt160/2014sp4/chapter/10/ErrorCorrectionRedundancy.html \nhttps://books.google.com/books?id=5Jaa1BVverIC&pg=PA700\nhttp://www.pcmag.com/article2/0,2817,2372163,00.asp \nhttp://www.livinginternet.com/i/ii_darpa.htm \nhttps://www.zakon.org/robert/internet/timeline/ \nhttp://www.packet.cc/files/toward-coop-net.html \nhttp://www.unr.edu/cse/prospective-students/what-is-networking\nhttp://firstmonday.org/ojs/index.php/fm/article/view/612/533 \nhttp://www.historyofcomputercommunications.info/Book/2/2.8-The%20RFQ%20and%20Bidding68.html \nhttps://www.sri.com/work/timeline-innovation/timeline.php?timeline=computing-digital#!&innovation=arpanet \nhttp://www.livinginternet.com/i/ii_arpanet.htm\nhttp://www.packet.cc/files/ev-packet-sw.html\nhttp://searchnetworking.techtarget.com/definition/routing-table\nhttps://www.computer.org/csdl/proceedings/afips/1972/5079/00/50790243.pdf\nhttp://www.cs.ucsb.edu/~almeroth/classes/F04.176A/homework1_good_papers/jay-akkad.html\nhttps://www.cs.rutgers.edu/~pxk/352/exam/study-guide-final.html\nhttps://www.computer.org/csdl/mags/it/2014/03/mit2014030066-abs.html\nhttps://books.google.com/books?id=6KPMBQAAQBAJ&pg=PA18\nhttp://www.historyofcomputercommunications.info/Book/2/2.3-Circuit%20Switching.html \nhttp://privateline.com/?page_id=303 \nhttp://mason.gmu.edu/~afinn/html/tele/tech%20chapters/T12.htm \nhttp://ethw.org/Electromechanical_Telephone-Switching\nhttps://www.nytimes.com/2016/02/18/technology/personaltech/free-tools-to-keep-those-creepy-online-ads-from-watching-you.html\nhttp://www.science.smith.edu/~jcardell/Courses/EGR328/Readings/KuroseRoss%20Ch1.pdf \nhttp://www.rand.org/content/dam/rand/pubs/research_memoranda/2006/RM3420.pdf \nhttp://www.rand.org/pubs/research_memoranda/RM3420.html \nhttp://www.historyofcomputercommunications.info/Book/2/2.2-TheSeminalExperiment-65.html\nhttp://www.livinginternet.com/i/iw_packet_inv.htm\nhttp://www.historyofcomputercommunications.info/Book/2/2.7-PlanningARPANET67-68.html \nhttp://www.livinginternet.com/i/ii_imp.htm\nhttp://www.livinginternet.com/i/ii_imp_walden.htm\nhttp://www.livinginternet.com/i/iw_dns_history.htm \nhttp://www.computerhistory.org/internethistory/1970s/\nhttp://nrg.cs.ucl.ac.uk/internet-history.html \nhttp://www.livinginternet.com/i/ii_arpanet_gateways.htm\nhttp://www.nethistory.info/History%20of%20the%20Internet/beginnings.html \nhttp://www.hostingadvice.com/blog/tcpip-make-internet-work/\nhttp://searchnetworking.techtarget.com/definition/TCP-IP \nhttp://www.ifa.hawaii.edu/users/gmm/intro_ip/sec1.html \nhttp://www.computerhistory.org/internethistory/1980s/\nhttp://www.columbia.edu/~hauben/CS/arpanet-encyc.txt \nhttp://www.livinginternet.com/i/ii_tcpip.htm \nhttps://www.cs.umd.edu/class/spring2002/cmsc434-0101/MUIseum/applications/firstemail.html\nhttp://www.tldp.org/LDP/nag/node189.html \nhttp://www.livinginternet.com/References/Ian%20Hardy%20Email%20Thesis.txt\nhttp://www.livinginternet.com/e/ew_addr.htm \nhttps://technet.microsoft.com/en-us/library/2005.01.howitworksdns.aspx \nhttp://www.internetsociety.org/internet/what-internet/history-internet/brief-history-internet\nhttp://www.webhostingsearch.com/articles/history-of-domains-names.php \nhttp://www-math.mit.edu/~steng/18.996/lecture2_mit.pdf\nhttp://www.academia.edu/1416892/Getting_Started_Computing_at_the_AI_Lab \nhttps://books.google.com/books?id=cla-CgAAQBAJ&pg=PA28\nImages:\nhttps://commons.wikimedia.org/w/index.php?title=File:ARPANET_Info_Brochure.pdf&page=21#filelinks\nhttps://commons.wikimedia.org/wiki/File:J._C._R._Licklider.jpg\nhttps://upload.wikimedia.org/wikipedia/commons/5/50/Telephone_operators%2C_1952.jpg",
-    "viewcount": 188383,
-    "author": "SciShow",
-    "url": "https://www.youtube.com/watch?v=1UStbvRnwmQ",
-    "title": "How the Internet Was Invented | The History of the Internet, Part 1",
-    "dislikes": 695,
-    "bigthumb": "https://i.ytimg.com/vi/1UStbvRnwmQ/sddefault.jpg",
-    "videoid": "1UStbvRnwmQ",
-    "keywords": ["SciShow", "science", "Hank", "Green", "education", "learn", "history", "internet", "part", "one", "computer", "network", "darpa", "arpa", "arpanet", "olivia", "gordon"],
-    "length": 697,
-    "likes": 8303,
-    "duration": "00:11:37",
-    "thumb": "http://i.ytimg.com/vi/1UStbvRnwmQ/default.jpg"
-}, {
-    "tags": [],
-    "size": ["The Universe","Observable Universe"],
-    "time": ["Big Bang"],
-    "teaches": ["Horizon Problem","Space","Cosmic Inflation","Speed of Light"],
-    "is": ["video"],
-    "discipline": ["Cosmology","Physics"],
-    "username": "New Scientist",
-    "rating": 4.87368421053,
-    "description": "In an expanding universe, bits of the far-flung cosmos could never have been in contact with each other. So why do they all look the same?\n\nRead the whole story at https://www.newscientist.com/round-up/cosmic-uncertainty/",
-    "viewcount": 8598,
-    "author": "New Scientist",
-    "url": "https://www.youtube.com/watch?v=axrbSOFIdnk",
-    "title": "The horizon problem - why does the universe look the same in all directions?",
-    "dislikes": 6,
-    "bigthumb": "https://i.ytimg.com/vi/axrbSOFIdnk/sddefault.jpg",
-    "videoid": "axrbSOFIdnk",
-    "keywords": ["science", "physics", "space", "cosmology", "horizon problem", "new scientist", "animation"],
-    "length": 151,
-    "likes": 184,
-    "duration": "00:02:31",
-    "thumb": "http://i.ytimg.com/vi/axrbSOFIdnk/default.jpg"
-}, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "TED-Ed",
-    "rating": 4.87229660144,
-    "description": "View full lesson: http://ed.ted.com/lessons/what-happened-to-trial-by-jury-suja-a-thomas\n\nIn the United States today, juries decide less than 4% of criminal cases and less than 1% of civil cases filed in court. At the same time, jury systems in other countries are growing. So what happened in the US? And could the disappearance of juries be a good thing? Suja A. Thomas explores both sides of this dilemma. \n\nLesson by Suja A. Thomas, animation by Globizco.",
-    "viewcount": 226483,
-    "author": "TED-Ed",
-    "url": "https://www.youtube.com/watch?v=qVoYFYxGJPg",
-    "title": "What happened to trial by jury? - Suja A. Thomas",
-    "dislikes": 186,
-    "bigthumb": "https://i.ytimg.com/vi/qVoYFYxGJPg/sddefault.jpg",
-    "videoid": "qVoYFYxGJPg",
-    "keywords": ["TED", "TED-Ed", "TED Ed", "TED Education", "Suja A. Thomas", "Globizco", "jury", "trial", "trial by jury", "legal system", "judge", "legislative branch", "constitution", "plea bargain", "Supreme Court", "summary judgment", "civil case", "criminal case", "arbitration", "bias"],
-    "length": 252,
-    "likes": 5640,
-    "duration": "00:04:12",
-    "thumb": "http://i.ytimg.com/vi/qVoYFYxGJPg/default.jpg"
-}, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "Vsauce",
-    "rating": 4.8933938139,
-    "description": "my twitter: @tweetsauce\nmy instagram: electricpants\n\nSources and links to learn more below!\n\nI\u2019m very grateful to mathematician Hugh Woodin, Professor of Philosophy and Mathematics at Harvard, for taking the time on multiple occasions to discuss this topic with me and help me wrap my (finite) head around it.\n\nI\u2019m also grateful to David Eisenbud, the Director of the Mathematical Sciences Research Institute (MSRI) and professor of mathematics at the University of California, Berkeley, for his help and for connecting me with Hugh Woodin.\n\nAnd of course, big thanks to Brady Haran who created the \u201cmile of pi\u201d seen in this video and connected me with all these mathematicians in the first place. His channel, Numberphile, is superb: https://www.youtube.com/user/numberphile\n\nBOOKS related to these topics that I used:\n\n\u201cThe Outer Limits of Reason\u201d by Noson S. Yanofsky: http://amzn.com/0262019353\n\u201cInfinity and The Mind\u201d by Rudy Rucker: http://amzn.com/0691121273\n\u201cRoads to Infinity\u201d by John C. Stilwell: http://amzn.com/1568814666\n\u201cMore Precisely: The Math You Need to Do Philosophy\u201d by Eric Steinhart: http://amzn.com/1551119099\n\u201cSatan, Cantor and Infinity: Mind-Boggling Puzzles\u201d by Raymond M. Smullyan: http://amzn.com/0486470369\n\nclassic book that helps introduce concept of axioms: \u201cIntroduction to the Foundations of Mathematics\u201d by Raymond L. Wilder: http://amzn.com/0486488209\n\nHugh Woodin speaking about infinity at the World Science Festival: https://youtu.be/KDCJZ81PwVM?t=29m45s\n\nNames of large (finite) numbers: https://en.wikipedia.org/wiki/Names_of_large_numbers\n\nGeoglyphs:\n\nThe biggest number: https://goo.gl/maps/7GWcpnzo7iG2\n\nFovant badges: https://en.wikipedia.org/wiki/Fovant_Badges\n\nBattalion Park: https://en.wikipedia.org/wiki/Battalion_Park\n\nA mile of pi [VIDEO]: https://www.youtube.com/watch?v=0r3cEKZiLmg\n\nWikipedia\u2019s great visualization of ordinals out to omega^omega: https://en.wikipedia.org/wiki/File:Omega-exp-omega-labeled.svg\n\nas seen on: https://en.wikipedia.org/wiki/Ordinal_number\n\nthis is also a good page about ordinals: http://math.wikia.com/wiki/Ordinal_Number\n\nalso: http://www.cut-the-knot.org/WhatIs/Infinity/Ordinals.shtml\n\nand: https://en.wikipedia.org/wiki/Order_type and https://en.wikipedia.org/wiki/Well-order\n\nAxioms: \nhttps://en.wikipedia.org/wiki/Axiom\nhttps://www.reddit.com/r/askscience/comments/30xokb/have_there_been_axioms_that_later_have_been/\nhttp://philosophy.stackexchange.com/questions/5922/what-is-the-difference-between-dogma-and-an-axiom\nhttp://www.cs.umd.edu/~gasarch/BLOGPAPERS/belaxioms1.pdf\nhttp://www.cs.umd.edu/~gasarch/BLOGPAPERS/belaxioms2.pdf\n\nTHE UNREASONABLE EFFECTIVENSS OF MATHEMATICS IN THE NATURAL SCIENCES\n[PDF]: http://www.maths.ed.ac.uk/~aar/papers/wigner.pdf\nhttps://en.wikipedia.org/wiki/The_Unreasonable_Effectiveness_of_Mathematics_in_the_Natural_Sciences\n\nLarge Cardinal game based on 2048: http://cantorontheshore.blogspot.it/2014/10/one-reinhardt-and-counting.html\n\nOther good resources:\n\nhttp://quibb.blogspot.com/2012/01/infinity-first-transfinite-cardinal.html\nhttp://plato.stanford.edu/entries/set-theory/\nhttp://cantorsattic.info/Cantor%27s_Attic\nhttp://cantorontheshore.blogspot.co.at/2014/09/artemis-fowl-and-large-cardinals_22.html\nhttp://isomorphism.es/post/10782081422/what-comes-after-infinity-transfinite-arithmetic-and-ord\nhttps://lukepalmer.wordpress.com/2007/06/14/the-lesser-of-infinitely-many-evils/\n\nMUSIC BY:\nhttp://www.youtube.com/JakeChudnow\nhttp://www.audionetwork.com",
-    "viewcount": 7916645,
-    "author": "Vsauce",
-    "url": "https://www.youtube.com/watch?v=SrU9YDoXE88",
-    "title": "How To Count Past Infinity",
-    "dislikes": 5805,
-    "bigthumb": "https://i.ytimg.com/vi/SrU9YDoXE88/sddefault.jpg",
-    "videoid": "SrU9YDoXE88",
-    "keywords": ["infinity", "math", "maths", "vsauce", "michael stevens", "aleph", "omega", "transfinite", "ordinals", "cardinals", "inaccessible", "large cardinals", "set theory", "biggest number", "largest number", "biggest infinity", "last number", "end of numberline", "types of number", "number", "axiom", "science", "theory", "cantor", "beyond", "bigger than infinity", "after infinity", "counting", "ordinal numbers", "learn", "stem", "college", "high school", "test prep", "exam", "hugh woodin", "woodin cardinal", "woodin", "vihart", "the fault in our stars"],
-    "length": 1426,
-    "likes": 212006,
-    "duration": "00:23:46",
-    "thumb": "http://i.ytimg.com/vi/SrU9YDoXE88/default.jpg"
-}, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "Vox",
-    "rating": 4.92920353982,
-    "description": "A tiny spacecraft has been traveling 9 years for this moment \u2014 the day we finally get a close look at Pluto. Here's what you need to know about NASA's New Horizon's mission.\n\nLearn more: http://www.vox.com/2015/7/9/8921713/pluto-mission-new-horizons-nasa-flyby\n\nSubscribe to our channel! http://goo.gl/0bsAjO\n\nVox.com is a news website that helps you cut through the noise and understand what's really driving the events in the headlines. Check out http://www.vox.com to get up to speed on everything from Kurdistan to the Kim Kardashian app. \n\nCheck out our full video catalog: http://goo.gl/IZONyE\nFollow Vox on Twitter: http://goo.gl/XFrZ5H\nOr on Facebook: http://goo.gl/U2g06o",
-    "viewcount": 431730,
-    "author": "Vox",
-    "url": "https://www.youtube.com/watch?v=Eo3EJYo2dX8",
-    "title": "NASA's incredible mission to Pluto, explained",
-    "dislikes": 88,
-    "bigthumb": "https://i.ytimg.com/vi/Eo3EJYo2dX8/sddefault.jpg",
-    "videoid": "Eo3EJYo2dX8",
-    "keywords": ["vox", "news", "current events", "world", "cnn", "vice", "fox", "msnbc", "breakdown", "eli5", "NASA (Spacecraft Manufacturer)", "Pluto (Astronomical Discovery)", "Astronomy (Field Of Study)", "space", "new horizons", "New Horizons (Space Mission)", "dwarf planet", "charon", "solar system", "Spacecraft (Industry)", "Space Exploration (Literature Subject)", "launch"],
-    "length": 227,
-    "likes": 4884,
-    "duration": "00:03:47",
-    "thumb": "http://i.ytimg.com/vi/Eo3EJYo2dX8/default.jpg"
-}, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "TED-Ed",
-    "rating": 4.96780933494,
-    "description": "Adam Savage walks through two spectacular examples of profound scientific discoveries that came from simple, creative methods anyone could have followed -- Eratosthenes' calculation of the Earth's circumference around 200 BC and Hippolyte Fizeau's measurement of the speed of light in 1849.",
-    "viewcount": 2203078,
-    "author": "TED-Ed",
-    "url": "https://www.youtube.com/watch?v=F8UFGu2M2gM",
-    "title": "How simple ideas lead to scientific discoveries",
-    "dislikes": 227,
-    "bigthumb": "https://i.ytimg.com/vi/F8UFGu2M2gM/sddefault.jpg",
-    "videoid": "F8UFGu2M2gM",
-    "keywords": ["Science and Technology", "Nature of Scientific Invention", "Adam Savage", "Inventions That Shaped History", "Science", "Technology", "Scientific Method", "Speed of Light", "Circumference of the Earth", "Inertia", "Physics", "Invention", "Scientific Discoveries", "Math", "TED", "TED-Ed", "TED Education", "TED-Ed Animation", "Jeremiah Dickey", "Celeste Lai", "Kari Mulholland", "Franz Palomares"],
-    "length": 452,
-    "likes": 28011,
-    "duration": "00:07:32",
-    "thumb": "http://i.ytimg.com/vi/F8UFGu2M2gM/default.jpg"
-}, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "Vox",
-    "rating": 4.94953596288,
-    "description": "The science buried under the pseudoscience.\n\n\nSubscribe to our channel! http://goo.gl/0bsAjO\n\nSources:\nMars photography by Tun\u00e7 Tezel: http://www.twanight.org/newtwan/galleries.asp?Sort=Photographer&Value=Tunc%20Tezel&page=1\nMars visualization from Nooch 86: https://www.youtube.com/watch?v=TK9ozJYELR8\nSolar system orbits via Michael Van Daniker, Andrew Lund, and the Astronomy Workshop of Douglas Hamilton at U. Maryland http://janus.astro.umd.edu/SolarSystems/\nPtolemaic system vsualizer via Nebraka Astronomy Applet Project: http://astro.unl.edu/naap/ssm/animations/ptolemaic.html\nRetrograde motion visualizer via MHeducation: http://highered.mheducation.com/olcweb/cgi/pluginpop.cgi?it=swf::800::600::/sites/dl/free/0072482621/78780/Retro_Nav.swf::Retrograde%20Motion\n\n\n\n\nVox.com is a news website that helps you cut through the noise and understand what's really driving the events in the headlines. Check out http://www.vox.com to get up to speed on everything from Kurdistan to the Kim Kardashian app. \n\nCheck out our full video catalog: http://goo.gl/IZONyE\nFollow Vox on Twitter: http://goo.gl/XFrZ5H\nOr on Facebook: http://goo.gl/U2g06o",
-    "viewcount": 400405,
-    "author": "Vox",
-    "url": "https://www.youtube.com/watch?v=FtV0PV9MF88",
-    "title": "Mercury retrograde, explained without astrology",
-    "dislikes": 174,
-    "bigthumb": "https://i.ytimg.com/vi/FtV0PV9MF88/sddefault.jpg",
-    "videoid": "FtV0PV9MF88",
-    "keywords": ["mercury retrograde", "astrology", "astronomy", "retrograde motion", "explained", "space", "solar system", "geocentric", "heliocentric", "ptolemy", "copernicus", "illusion", "optical illusion", "orbit", "Earth", "mercury", "mars retrograde", "horoscopes", "science", "vox", "mercury in retrograde", "flat earth"],
-    "length": 230,
-    "likes": 13618,
-    "duration": "00:03:50",
-    "thumb": "http://i.ytimg.com/vi/FtV0PV9MF88/default.jpg"
-}, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "Kurzgesagt \u2013 In a Nutshell",
-    "rating": 4.96466864746,
-    "description": "We are so used to some things that we stopped wondering about them. Like light. What is light? Some kind of wavy thing, right? Kind of. \n\nShort bonus video for the people waiting for new stuff. \n\nMusic by: \n\nhttps://soundcloud.com/epicmountain/light\nhttps://epicmountainmusic.bandcamp.com/track/light\nwww.epic-mountain.com\n\nOur Patreon: https://www.patreon.com/Kurzgesagt?ty=h\n\nVisit us on reddit/facebook/twitter. You know. Social media stuff.\n\nhttps://www.reddit.com/r/kurzgesagt\nhttp://kurzgesagt.org\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nPhiroze Dalal, T0T0S, Ryan OHoro, Kay Brinkmann, A La Mode, Marcelo Fernandes de Souza Filho, Vince, Thomas Shiels, Tom Wardrop, Shawn Marincas, Pontus Att\u00e5sen, Paul, Horacio Medina, Jim Yang, Arnav Guleria, Clemens, Robert McKone, Tahseen Mushtaque, Todd Binkley, Jochen, Vahur S, Matthew von der Ahe, Thomas Russell, Erick, Vivek Kotecha, Nils Caspar, Holger Fassel, Artur Szczypta, Jeff Fellows, Daniel Duffee, Konstantin Shabashov, Jackson R Hanna, Tim drake, Pascal de Reuck, Mike Galles, ByeongWook Lee, Guus Ketelings, Franko Papi\u0107, Thalia, Narat Suchartsunthorn, Lorenz Zahn, Brian Aparicio, J\u00f6rg Vogelsang, Rashed Ali, Darwin Ranzone, Tyler Thornton, Bernat Unanue, David Pfister, Ash Patel, Han Saini, Ute Moll, Vrm Vee Are Em, Ioanna Bischinioti, Jenny Zhou, Vince Babbra, Dan Cortes, Matt K\n\nWhat is light?\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
-    "viewcount": 2731775,
-    "author": "Kurzgesagt \u2013 In a Nutshell",
-    "url": "https://www.youtube.com/watch?v=IXxZRZxafEQ",
-    "title": "What Is Light?",
-    "dislikes": 547,
-    "bigthumb": "https://i.ytimg.com/vi/IXxZRZxafEQ/sddefault.jpg",
-    "videoid": "IXxZRZxafEQ",
-    "keywords": ["light", "physics", "photon", "wave", "visible light", "universe", "sun", "star", "speed of light", "particle", "energy", "funny", "earth", "magnet", "electromagnetism", "electron", "magnet field", "electric field", "science", "lights", "infographic", "kurzgesagt", "in a nutshell"],
-    "length": 279,
-    "likes": 61381,
-    "duration": "00:04:39",
-    "thumb": "http://i.ytimg.com/vi/IXxZRZxafEQ/default.jpg"
-}, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "Kurzgesagt \u2013 In a Nutshell",
-    "rating": 4.97089447726,
-    "description": "What is dark energy? What is dark matter? Well, if we knew exactly we would have a nobel prize \u2013 we know that they exist though. So what do we know about those strange things?\n\nCheck out THE NOVA PROJECT to learn more about dark energy: www.nova.org.au \n\nMusic by: www.epic-mountain.com\n\nVisit us on our Website, Twitter, Facebook, Patreon or Behance to say hi!\n\nhttp://kurzgesagt.org\nhttps://www.facebook.com/Kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\nhttp://www.patreon.com/Kurzgesagt\nhttp://www.behance.net/Kurzgesagt\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\nAjay Shekhar, Charles Kelsey, Daniel P, Enrico, Eduardo Rampelotto Gatto, Philip, Andrew Cochran, Mahmut Kaynar, Jon Moroney, Charles Kuang, Eugene Cham, Brandon Helvie, David Garcia Quintas, Renaud Savignard, Yuki Reid, James, Maximilian Ritter, Loren Barcus, Viktor Asklund, Georg Faber, Bruno Deschatelets, Pablo Zetina, Massimiliano Cacciotti, Pranab Shenoy, Ignacio Flores, Yousif, Tom Langford, Luca Friedrich, Roy Ston, Jesse Powell, Dave, Philipi Adolfo Willemann, Koen Driessen, Terry Lipstein, Mike Horner, Peter Dexter, William Iverson, Wouter ten Bosch, Samuel Morissette, Tim Carll, Tersol, Dennis van Ruijven, Eugene schula, Wilker, \u51a0\u744b \u9673, Mason Y, Wei Wong, Hata'ab, Artem Anchugov, Anton Sterenborg, Nikki Toss, Jan Berdel, Torin Rettig, Jon Davis, ryandelsol, Sieglinde Geisel, Pierre Lacasse, Danylo Bozhagora, Jens-Ejnar Stephansen, Erven, Philly Cashion, varinder singh bal, Jerome Dimaano, Clayton Fussell, Daniel Ahlstr\u00f6m, Dan Q, Andres Jacobsen, Mikkel Jespersen, Igor Benicio de Mesquita, Don Smith, Dave Hng, Weston, Samuel Pacheco, Bear, Nate Rice, Victor C., Yeonghoon Park, Stephen Morris, Paul Strauss, Martin Fink-Jensen, Josh Allen, Eric, Karl Snickars, Greeny Liu, Marc Dumont, Jennifer Hiller, Tibor Schiemann, Michael Koldsgaard, Gilberto, Christian Fernandez, dante harper, John, B\u00fcnyamin Tetik, Ernst, Matthew Sample, Elchus, Hugo, Stefan Ghizelea, David, Lightbow, Simon Thibodeau, Stephen Morse, Amdrew, Nicolas Huguet-Latour, Peter \u0160iru\u010dek, Evan Low, Mehmet Sevil, Markus Wolski, Philip Freeman, Chris Thompson, Jesse MacLean, Soares, Harry, Dario W\u00fcnsch, Matt Collins, Yannick, Geoffrey Lee, Daniel McCouid-Carr, Doc Matthews, Dan Treasure, Romi Kuntsman, Laurence Dixon, Aurelien Gouny, Russell McCallion, Patrick Noble, Ziggy Freed, M4tc4t, ThereIsNoYeti, Erika Marks, Samuel Matchain, BurmansHealthShop, Cory Wright, Per Markus Edvardsen, Thomas Wagteveld, Brian David Henderson, THEGURUDK, Magnus Erichsen, Theo Alves Monteiro, Brett Cowie, Valentin, Sergio Uribe, Alejandro Medrano Gil, Tony Montuori, Praveen, Jeff, Malthe Agger, Harrison Leake, Robert Varasciuc, Bahjat, Spencer Clark, Joshua Grose, Eugene Foss, Mike Mintz, Colin Palin, James Khoo, Daniel OCL, Ben Nunan, Jay Kidd, Denis Smajlovic, Sofian Madi, Steffen Weng, CoVis CoWorking, Hamad, Pongskorn, Chris Smith, Jan E, Vojt\u011bch S\u00e1zel, Lethargicpanda, Gabriel Tougas, David Torres ,Mark Scheurwater, Andrew Connor, Lars Vas Dias, Peter Ficinus, Zahan Malkani, Collin Banko, Jacob Schirm, Erik Brizzee, Robby Olivam, Vaelohs, Applied Science, Alex Thaler, Nathanael, S\u00e9bastien Blanchet, Howard Lince III, William Parker, Steven, Lance White, Allan Farrell, Eli Fisker, Osric Lord-Williams, Alexander Kosenkov, Ryan A. Schauer, A Patron, Colman Joeri, Oren Milman, Maggie Chok, Emil, Diego Nakama, Rainbow Bleh, Lennart Rosam, Andrej Gukov, Adam Kenningham-Brown, James Spellman, John Gietzen, Chris Anderson, Joe Uong, \u00deorsteinn S\u00e6var Hjartarson, Richard Harrison, Paul Nel, Nick Yonge, Benoit Pette, Levi, Gustavo, Alexander Brazie, Albert Z, Dany, charlie, Evgenia Yigitalieva, Casey Mazzarella, Dave Neu, Scott Laing, Zr4g0n, Dimitry Ivanov, Doug Wollison, JAMES RUDNET, Gizem G\u00fcrkan, Lotean Loris, Brian Butler, George Chearswat, somersault18:24, Alto Ono, Ben Shackman, Matthew Gill, Reinaldo Mizutani, Jackson Tan, Julius Hofman, Demian Rosenblatt, Muath, Lucas Lohr, Edgar Duarte Ortega, Marvin, Javier de la Garza, Avi Yashchin , Peter \u017dnuderl, Stephen Chen, Bruno Ara\u00fajo, Alipasha Sadri, Jeff Churchill, Fernando Henrique, Timothy Noble, Carlos Garc\u00eda Rojas, Matthew Willhite, Daniel, Roman Doboni, Jose Caetano, Kevin P, Seona Tea, Carlos Bohorquez, Steven Ratner, Alexander, JiaJunQiu, Rob PT, Kymate, Bruce low, Jos\u00e9, Morten Myrland, Alessandro Frau, Brad Wardell, Simon Younan, Thomas Lee, David Harbinson, Danilo Caires, Alexander Scheffer, Finn Edwards, Rikard Nyberg, Nicholas Holtz, Adriano Collalti, Josh Yates-Walker, Jason Berlin, Bret Brizzee, Dylan, Florian Guitton, Andreas Kollmann, Steven Byrd, Jezariael Demos, Eric Austin\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
-    "viewcount": 2796062,
-    "author": "Kurzgesagt \u2013 In a Nutshell",
-    "url": "https://www.youtube.com/watch?v=QAa2O_8wBUQ",
-    "title": "What is Dark Matter and Dark Energy?",
-    "dislikes": 478,
-    "bigthumb": "https://i.ytimg.com/vi/QAa2O_8wBUQ/sddefault.jpg",
-    "videoid": "QAa2O_8wBUQ",
-    "keywords": ["Dark Energy", "Dark Matter", "Energy (Industry)", "Condensed Matter Physics (Field Of Study)"],
-    "length": 381,
-    "likes": 65214,
-    "duration": "00:06:21",
-    "thumb": "http://i.ytimg.com/vi/QAa2O_8wBUQ/default.jpg"
-}, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "ouLearn on YouTube",
-    "rating": 4.94274094636,
-    "description": "TELL US WHAT YOU THINK and help us improve our Free Educational Resources\n\nhttps://www.surveymonkey.com/r/2015_YouTube_descr\n\nFor more like this subscribe to the Open University channel https://www.youtube.com/channel/UCXsH4hSV_kEdAOsupMMm4Qw\n\n\nFree learning from The Open University http://www.open.ac.uk/openlearn/history-the-arts/culture/english-language\n\n---\n\nA look at the history of the English language. (this is a combination of all 10 parts of the series into one video)\n\n(all parts - combined)\nPlaylist link - http://www.youtube.com/playlist?list=PLA03075BAD88B909E\n\n---\n\nStudy 'English Language' at the Open University: http://www3.open.ac.uk/study/undergraduate/languages/english-language/index.htm \n\nExplore qualifications in Languages with the OU\nhttp://www3.open.ac.uk/study/undergraduate/languages/index.htm\n\nExplore qualifications in Arts and Humanities with the OU http://www3.open.ac.uk/study/undergraduate/arts-and-humanities/index.htm\n\nStudy 'Worlds of English' with the OU http://www3.open.ac.uk/study/undergraduate/course/u214.htm\n\n---",
-    "viewcount": 1559830,
-    "author": "ouLearn on YouTube",
-    "url": "https://www.youtube.com/watch?v=H3r9bOkYW9s",
-    "title": "History of English (combined)",
-    "dislikes": 222,
-    "bigthumb": "https://i.ytimg.com/vi/H3r9bOkYW9s/sddefault.jpg",
-    "videoid": "H3r9bOkYW9s",
-    "keywords": ["History", "of", "English", "combined"],
-    "length": 681,
-    "likes": 15269,
-    "duration": "00:11:21",
-    "thumb": "http://i.ytimg.com/vi/H3r9bOkYW9s/default.jpg"
-}, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "Kurzgesagt \u2013 In a Nutshell",
-    "rating": 4.954164505,
-    "description": "The last star in the universe will be a red dwarf. Red dwarfs in general might be great places to look for aliens \u2013 or planets for humans to find a new home after our solar system has died.\n\nSupport us on Patreon so we can make more stuff (and get cool wallpapers): https://www.patreon.com/Kurzgesagt?ty=h\n\nGet the music of the video here: \n\nhttps://epicmountainmusic.bandcamp.com/track/red-dwarfs\n\nhttps://soundcloud.com/epicmountain/red-dwarfs\n\nhttp://epic-mountain.com\n\nOr follow us on social media or reddit: \n\nhttp://kurzgesagt.org\nhttps://www.reddit.com/r/kurzgesagt\nhttps://twitter.com/Kurz_Gesagt\nhttps://www.facebook.com/Kurzgesagt\n\nTHANKS A LOT TO OUR LOVELY PATRONS FOR SUPPORTING US:\n\n(This video has been uploaded on the road, Patrons will be added on Monday!!)\n\nThe Last Star in the Universe \u2013 Red Dwarfs Explained\n\nHelp us caption & translate this video!\n\nhttp://www.youtube.com/timedtext_cs_panel?c=UCsXVk37bltHxD1rDPwtNM8Q&tab=2",
-    "viewcount": 4361777,
-    "author": "Kurzgesagt \u2013 In a Nutshell",
-    "url": "https://www.youtube.com/watch?v=LS-VPyLaJFM",
-    "title": "The Last Star in the Universe \u2013 Red Dwarfs Explained",
-    "dislikes": 1067,
-    "bigthumb": "https://i.ytimg.com/vi/LS-VPyLaJFM/sddefault.jpg",
-    "videoid": "LS-VPyLaJFM",
-    "keywords": ["red dwarf", "universe", "heat death", "end of the universe", "death", "space", "sun", "star", "physics", "astronomy", "life cycle", "hydrogen", "helium", "humans", "earth", "aliens", "alien life", "exoplanet", "gas giant", "super earth", "white dwarf", "black dwarf", "life", "last star", "funny", "kurzgesagt", "in a nutshell", "future"],
-    "length": 350,
-    "likes": 92049,
-    "duration": "00:05:50",
-    "thumb": "http://i.ytimg.com/vi/LS-VPyLaJFM/default.jpg"
-}, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "cassiopeiaproject",
-    "rating": 4.66666650772,
-    "description": "Find out more about the Periodic Table!",
-    "viewcount": 123810,
-    "author": "cassiopeiaproject",
-    "url": "https://www.youtube.com/watch?v=5MMWpeJ5dn4",
-    "title": "Periodic Table",
-    "dislikes": 25,
-    "bigthumb": "",
-    "videoid": "5MMWpeJ5dn4",
-    "keywords": ["Chemistry", "Periodic", "Table", "atom", "electron", "element", "quantum", "number", "orbital", "energy"],
-    "length": 230,
-    "likes": 275,
-    "duration": "00:03:50",
-    "thumb": "http://i.ytimg.com/vi/5MMWpeJ5dn4/default.jpg"
-}, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "Fermilab",
-    "rating": 4.9588688946,
-    "description": "The Large Hadron Collider or LHC is the world\u2019s biggest particle accelerator, but it can only get particles moving very quickly.  To make measurements, scientists must employ particle detectors. There are four big detectors at the LHC: ALICE, ATLAS, CMS, and LHCb.  In this video, Fermilab\u2019s Dr. Don Lincoln introduces us to these detectors and gives us an idea of each one\u2019s capabilities.\n\nRelated videos:\nhttp://www.youtube.com/watch?v=debQ60QVtYQ\nhttp://www.youtube.com/watch?v=-d6sKfPfYTU",
-    "viewcount": 12438,
-    "author": "Fermilab",
-    "url": "https://www.youtube.com/watch?v=X3tvgyrb2X4",
-    "title": "The LHC Experiments",
-    "dislikes": 4,
-    "bigthumb": "https://i.ytimg.com/vi/X3tvgyrb2X4/sddefault.jpg",
-    "videoid": "X3tvgyrb2X4",
-    "keywords": ["physicist", "proof", "CMS", "metaphor", "scientist", "Large Hadron Collider", "Compact Muon Solenoid", "example", "Ian Krass", "A Large Ion Collider Experiment", "learn", "Don Lincoln", "educational", "ALICE", "CERN", "particle", "LHC", "LHCb", "particle detectors", "Physics", "discovery", "A Toroidal LHC ApparatuS", "explained", "ATLAS", "funny", "Fermilab", "physics", "science", "foam finger", "higgs", "boson", "accelerator", "detector", "camera", "huge", "collisions", "experiment", "collide", "amazing", "technology", "matter", "quark", "gluon", "plasma", "atoms", "subatomic", "big bang", "universe", "machines"],
-    "length": 415,
-    "likes": 385,
-    "duration": "00:06:55",
-    "thumb": "http://i.ytimg.com/vi/X3tvgyrb2X4/default.jpg"
-}, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "Fermilab",
-    "rating": 4.86897313213,
-    "description": "In this video, Fermilab's Dr. Don Lincoln describes the principle of supersymmetry in an easy-to-understand way.  A theory is supersymmetric if it treats forces and matter on an equal footing.  While supersymmetry is an unproven idea, it is popular with particle physics researchers as a possible next step in particle physics.",
-    "viewcount": 230465,
-    "author": "Fermilab",
-    "url": "https://www.youtube.com/watch?v=0CeLRrBAI60",
-    "title": "What is Supersymmetry?",
-    "dislikes": 89,
-    "bigthumb": "https://i.ytimg.com/vi/0CeLRrBAI60/sddefault.jpg",
-    "videoid": "0CeLRrBAI60",
-    "keywords": ["Fermilab", "Physics", "Supersymmetry", "SUSY", "supersymmetric", "standard model", "particles", "matter", "energy", "space", "time", "particle", "questions", "theories", "force", "mysteries", "misconception", "principle", "charity", "symmetry", "sphere", "math", "equation", "fermions", "bosons", "explained", "proof", "metaphor", "example", "scientist", "science", "physicist", "don lincoln", "universe", "cousin", "research", "ian krass", "simple", "graphics", "mathematics", "theory", "reason", "fun", "teaching", "learn", "educational", "funny", "higgs boson", "higgs", "dark matter", "weak gravity", "discovery", "explanation"],
-    "length": 344,
-    "likes": 2628,
-    "duration": "00:05:44",
-    "thumb": "http://i.ytimg.com/vi/0CeLRrBAI60/default.jpg"
-}, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -549,6 +22,7 @@ var videos = [{
     "duration": "00:02:05",
     "thumb": "http://i.ytimg.com/vi/qpXNRrtuo38/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -571,6 +45,7 @@ var videos = [{
     "duration": "00:04:25",
     "thumb": "http://i.ytimg.com/vi/fPnwBITSmgU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -593,6 +68,7 @@ var videos = [{
     "duration": "00:04:58",
     "thumb": "http://i.ytimg.com/vi/6hfOvs8pY1k/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -615,6 +91,7 @@ var videos = [{
     "duration": "00:07:22",
     "thumb": "http://i.ytimg.com/vi/JGXi_9A__Vc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -637,6 +114,7 @@ var videos = [{
     "duration": "00:05:55",
     "thumb": "http://i.ytimg.com/vi/wNDGgL73ihY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -659,6 +137,7 @@ var videos = [{
     "duration": "00:05:24",
     "thumb": "http://i.ytimg.com/vi/5NdMnlt2keE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -681,6 +160,7 @@ var videos = [{
     "duration": "00:03:47",
     "thumb": "http://i.ytimg.com/vi/8ROHpZ0A70I/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -703,6 +183,7 @@ var videos = [{
     "duration": "00:05:17",
     "thumb": "http://i.ytimg.com/vi/CtR5EkvLNfg/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -725,6 +206,7 @@ var videos = [{
     "duration": "00:04:46",
     "thumb": "http://i.ytimg.com/vi/i7930fj3T54/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -747,6 +229,7 @@ var videos = [{
     "duration": "00:05:30",
     "thumb": "http://i.ytimg.com/vi/Op3AYaJc0Xw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -769,6 +252,7 @@ var videos = [{
     "duration": "00:09:01",
     "thumb": "http://i.ytimg.com/vi/0fKBhvDjuy0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -791,6 +275,7 @@ var videos = [{
     "duration": "00:06:16",
     "thumb": "http://i.ytimg.com/vi/YIVAluSL9SU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -813,6 +298,7 @@ var videos = [{
     "duration": "00:17:31",
     "thumb": "http://i.ytimg.com/vi/uWfLwKH_Eko/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -835,6 +321,7 @@ var videos = [{
     "duration": "00:15:01",
     "thumb": "http://i.ytimg.com/vi/N8Votwxx8a0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -857,6 +344,7 @@ var videos = [{
     "duration": "00:05:20",
     "thumb": "http://i.ytimg.com/vi/pv6QHxkBFzY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -879,6 +367,7 @@ var videos = [{
     "duration": "00:06:12",
     "thumb": "http://i.ytimg.com/vi/1RpLOKqTcSk/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -901,6 +390,7 @@ var videos = [{
     "duration": "00:03:22",
     "thumb": "http://i.ytimg.com/vi/8NUxvJS-_0k/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -923,6 +413,7 @@ var videos = [{
     "duration": "00:03:25",
     "thumb": "http://i.ytimg.com/vi/wbh3SjzydnQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -945,6 +436,7 @@ var videos = [{
     "duration": "00:05:54",
     "thumb": "http://i.ytimg.com/vi/rO6S93FKIUM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -967,6 +459,7 @@ var videos = [{
     "duration": "00:05:23",
     "thumb": "http://i.ytimg.com/vi/xazQRcSCRaY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -989,6 +482,7 @@ var videos = [{
     "duration": "00:04:18",
     "thumb": "http://i.ytimg.com/vi/kq4u7Sv7GT4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1011,6 +505,7 @@ var videos = [{
     "duration": "00:02:24",
     "thumb": "http://i.ytimg.com/vi/JOL-nUt_vfo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1033,6 +528,7 @@ var videos = [{
     "duration": "00:06:23",
     "thumb": "http://i.ytimg.com/vi/QPKKQnijnsM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1055,6 +551,7 @@ var videos = [{
     "duration": "00:04:09",
     "thumb": "http://i.ytimg.com/vi/n2s1-RHuljo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1077,6 +574,7 @@ var videos = [{
     "duration": "00:03:07",
     "thumb": "http://i.ytimg.com/vi/rtR63-ecUNo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1099,6 +597,7 @@ var videos = [{
     "duration": "00:09:08",
     "thumb": "http://i.ytimg.com/vi/A9tKncAdlHQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1121,6 +620,7 @@ var videos = [{
     "duration": "00:01:28",
     "thumb": "http://i.ytimg.com/vi/pJxrTzfG2bo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1143,6 +643,7 @@ var videos = [{
     "duration": "00:05:37",
     "thumb": "http://i.ytimg.com/vi/NM-zWTU7X-k/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1165,6 +666,7 @@ var videos = [{
     "duration": "01:17:58",
     "thumb": "http://i.ytimg.com/vi/xdZMXWmlp9g/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1187,6 +689,7 @@ var videos = [{
     "duration": "00:06:26",
     "thumb": "http://i.ytimg.com/vi/hFAOXdXZ5TM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1209,6 +712,7 @@ var videos = [{
     "duration": "00:05:12",
     "thumb": "http://i.ytimg.com/vi/NMgcX8UNIGY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1231,6 +735,7 @@ var videos = [{
     "duration": "00:04:20",
     "thumb": "http://i.ytimg.com/vi/i1TVZIBj7UA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1253,6 +758,7 @@ var videos = [{
     "duration": "00:02:54",
     "thumb": "http://i.ytimg.com/vi/1Evwgu369Jw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1275,6 +781,7 @@ var videos = [{
     "duration": "00:15:24",
     "thumb": "http://i.ytimg.com/vi/uk7gKixqVNU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1297,6 +804,7 @@ var videos = [{
     "duration": "00:03:52",
     "thumb": "http://i.ytimg.com/vi/XNu5ppFZbHo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1319,6 +827,7 @@ var videos = [{
     "duration": "00:04:44",
     "thumb": "http://i.ytimg.com/vi/fHztd6k5ZXY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1341,6 +850,7 @@ var videos = [{
     "duration": "00:14:04",
     "thumb": "http://i.ytimg.com/vi/94BtOtGVqLw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1363,6 +873,7 @@ var videos = [{
     "duration": "00:05:01",
     "thumb": "http://i.ytimg.com/vi/-EJOO3xAjTk/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1385,6 +896,7 @@ var videos = [{
     "duration": "00:02:39",
     "thumb": "http://i.ytimg.com/vi/CXoNY_Qa9CM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1407,6 +919,7 @@ var videos = [{
     "duration": "00:02:44",
     "thumb": "http://i.ytimg.com/vi/uHeTQLNFTgU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1429,6 +942,7 @@ var videos = [{
     "duration": "00:00:42",
     "thumb": "http://i.ytimg.com/vi/peqCfW8hSzQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1451,6 +965,7 @@ var videos = [{
     "duration": "00:13:23",
     "thumb": "http://i.ytimg.com/vi/fHfhorJnAEI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1473,6 +988,7 @@ var videos = [{
     "duration": "00:03:34",
     "thumb": "http://i.ytimg.com/vi/NgD9yHSJ29I/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1495,6 +1011,7 @@ var videos = [{
     "duration": "00:03:33",
     "thumb": "http://i.ytimg.com/vi/mWVATekt4ZA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1517,6 +1034,7 @@ var videos = [{
     "duration": "00:04:44",
     "thumb": "http://i.ytimg.com/vi/qrKZBh8BL_U/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1539,6 +1057,7 @@ var videos = [{
     "duration": "00:05:42",
     "thumb": "http://i.ytimg.com/vi/9i7kAt97XYU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1561,6 +1080,7 @@ var videos = [{
     "duration": "00:01:17",
     "thumb": "http://i.ytimg.com/vi/GY6Pya_0OuU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1583,6 +1103,7 @@ var videos = [{
     "duration": "00:04:34",
     "thumb": "http://i.ytimg.com/vi/yS53AA_WaUk/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1605,6 +1126,7 @@ var videos = [{
     "duration": "00:02:29",
     "thumb": "http://i.ytimg.com/vi/GM9buhWJjlA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1627,6 +1149,7 @@ var videos = [{
     "duration": "00:12:23",
     "thumb": "http://i.ytimg.com/vi/ACUuFg9Y9dY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1649,6 +1172,7 @@ var videos = [{
     "duration": "00:09:16",
     "thumb": "http://i.ytimg.com/vi/ZuvK-od647c/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1671,6 +1195,7 @@ var videos = [{
     "duration": "00:02:37",
     "thumb": "http://i.ytimg.com/vi/kwfNGatxUJI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1693,6 +1218,7 @@ var videos = [{
     "duration": "00:23:35",
     "thumb": "http://i.ytimg.com/vi/Hj9oB4zpHww/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1715,6 +1241,7 @@ var videos = [{
     "duration": "00:06:42",
     "thumb": "http://i.ytimg.com/vi/LCRNI04tnN8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1737,6 +1264,7 @@ var videos = [{
     "duration": "00:03:19",
     "thumb": "http://i.ytimg.com/vi/iWSu6U0Ujs8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1759,6 +1287,7 @@ var videos = [{
     "duration": "00:04:58",
     "thumb": "http://i.ytimg.com/vi/_lNF3_30lUE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1781,6 +1310,7 @@ var videos = [{
     "duration": "00:07:55",
     "thumb": "http://i.ytimg.com/vi/0MDyXaTDX3E/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1803,6 +1333,7 @@ var videos = [{
     "duration": "00:06:47",
     "thumb": "http://i.ytimg.com/vi/lrk4oY7UxpQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1825,6 +1356,7 @@ var videos = [{
     "duration": "00:04:31",
     "thumb": "http://i.ytimg.com/vi/wvtRXjQXaI0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1847,6 +1379,7 @@ var videos = [{
     "duration": "00:04:12",
     "thumb": "http://i.ytimg.com/vi/lLFEqKl3sm4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1869,6 +1402,7 @@ var videos = [{
     "duration": "00:09:16",
     "thumb": "http://i.ytimg.com/vi/Rzxr9FeZf1g/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1891,6 +1425,7 @@ var videos = [{
     "duration": "00:03:27",
     "thumb": "http://i.ytimg.com/vi/5LMS0PIzGh8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1913,6 +1448,7 @@ var videos = [{
     "duration": "00:02:09",
     "thumb": "http://i.ytimg.com/vi/YAva4g3Pk6k/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1935,6 +1471,7 @@ var videos = [{
     "duration": "00:04:28",
     "thumb": "http://i.ytimg.com/vi/p7fXa2Occ_U/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1957,6 +1494,7 @@ var videos = [{
     "duration": "00:09:46",
     "thumb": "http://i.ytimg.com/vi/AQ5vty8f9Xc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -1979,6 +1517,7 @@ var videos = [{
     "duration": "00:05:42",
     "thumb": "http://i.ytimg.com/vi/SQggDnScsvI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2001,6 +1540,7 @@ var videos = [{
     "duration": "00:03:40",
     "thumb": "http://i.ytimg.com/vi/0bWvj0veDeY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2023,6 +1563,7 @@ var videos = [{
     "duration": "00:00:30",
     "thumb": "http://i.ytimg.com/vi/VQJfwCf3zvw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2045,6 +1586,7 @@ var videos = [{
     "duration": "00:04:01",
     "thumb": "http://i.ytimg.com/vi/6YOz9Pxnzho/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2067,6 +1609,7 @@ var videos = [{
     "duration": "00:03:55",
     "thumb": "http://i.ytimg.com/vi/FN3MFhYPWWo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2089,6 +1632,7 @@ var videos = [{
     "duration": "00:17:29",
     "thumb": "http://i.ytimg.com/vi/F2hc2FLOdhI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2111,6 +1655,7 @@ var videos = [{
     "duration": "00:12:01",
     "thumb": "http://i.ytimg.com/vi/mYhy7eaazIk/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2133,6 +1678,7 @@ var videos = [{
     "duration": "00:17:45",
     "thumb": "http://i.ytimg.com/vi/5Yj3nGv0kn8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2155,6 +1701,7 @@ var videos = [{
     "duration": "00:11:46",
     "thumb": "http://i.ytimg.com/vi/MJK-dMlATmM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2177,6 +1724,7 @@ var videos = [{
     "duration": "00:03:21",
     "thumb": "http://i.ytimg.com/vi/8dgoeYPoE-0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2199,6 +1747,7 @@ var videos = [{
     "duration": "00:10:36",
     "thumb": "http://i.ytimg.com/vi/qPix_X-9t7E/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2221,6 +1770,7 @@ var videos = [{
     "duration": "00:10:06",
     "thumb": "http://i.ytimg.com/vi/qFjw6Lc6J2g/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2243,6 +1793,7 @@ var videos = [{
     "duration": "00:06:10",
     "thumb": "http://i.ytimg.com/vi/fTTGALaRZoc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2265,6 +1816,7 @@ var videos = [{
     "duration": "00:04:37",
     "thumb": "http://i.ytimg.com/vi/2S6e11NBwiw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2287,6 +1839,7 @@ var videos = [{
     "duration": "00:04:03",
     "thumb": "http://i.ytimg.com/vi/gSpXMH9xJy0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2309,6 +1862,7 @@ var videos = [{
     "duration": "00:04:10",
     "thumb": "http://i.ytimg.com/vi/HEYbgyL5n1g/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2331,6 +1885,7 @@ var videos = [{
     "duration": "00:02:51",
     "thumb": "http://i.ytimg.com/vi/F5kqThVON18/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2353,6 +1908,7 @@ var videos = [{
     "duration": "00:04:44",
     "thumb": "http://i.ytimg.com/vi/cdUjjgANT7k/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2375,6 +1931,7 @@ var videos = [{
     "duration": "00:03:11",
     "thumb": "http://i.ytimg.com/vi/Gg0TXNXgz-w/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2397,6 +1954,7 @@ var videos = [{
     "duration": "00:10:17",
     "thumb": "http://i.ytimg.com/vi/TKM0P3XlMNA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2419,6 +1977,7 @@ var videos = [{
     "duration": "00:10:08",
     "thumb": "http://i.ytimg.com/vi/q8NtmDrb_qo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2441,6 +2000,7 @@ var videos = [{
     "duration": "00:16:09",
     "thumb": "http://i.ytimg.com/vi/w2itwFJCgFQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2463,6 +2023,7 @@ var videos = [{
     "duration": "00:10:02",
     "thumb": "http://i.ytimg.com/vi/QY9NTVh-Awo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2485,6 +2046,7 @@ var videos = [{
     "duration": "00:08:49",
     "thumb": "http://i.ytimg.com/vi/71pCilo8k4M/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2507,6 +2069,7 @@ var videos = [{
     "duration": "00:03:35",
     "thumb": "http://i.ytimg.com/vi/wDBb2_I-oC4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2529,6 +2092,7 @@ var videos = [{
     "duration": "00:10:18",
     "thumb": "http://i.ytimg.com/vi/P3GkZe3nRQ0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2551,6 +2115,7 @@ var videos = [{
     "duration": "00:11:39",
     "thumb": "http://i.ytimg.com/vi/hUhisi2FBuw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2573,6 +2138,7 @@ var videos = [{
     "duration": "00:04:24",
     "thumb": "http://i.ytimg.com/vi/J1yIApZtLos/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2595,6 +2161,7 @@ var videos = [{
     "duration": "00:03:10",
     "thumb": "http://i.ytimg.com/vi/UZ5UGnU7oOI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2617,6 +2184,7 @@ var videos = [{
     "duration": "00:03:44",
     "thumb": "http://i.ytimg.com/vi/l8_fZPHasdo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2639,6 +2207,7 @@ var videos = [{
     "duration": "00:11:10",
     "thumb": "http://i.ytimg.com/vi/m6dCxo7t_aE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2661,6 +2230,7 @@ var videos = [{
     "duration": "00:03:15",
     "thumb": "http://i.ytimg.com/vi/QC2x_RRnk8E/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2683,6 +2253,7 @@ var videos = [{
     "duration": "00:04:07",
     "thumb": "http://i.ytimg.com/vi/_6xlNyWPpB8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2705,6 +2276,7 @@ var videos = [{
     "duration": "00:07:13",
     "thumb": "http://i.ytimg.com/vi/UPA3bwVVzGI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2727,6 +2299,7 @@ var videos = [{
     "duration": "00:04:15",
     "thumb": "http://i.ytimg.com/vi/0YzvupOX8Is/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2749,6 +2322,7 @@ var videos = [{
     "duration": "00:04:41",
     "thumb": "http://i.ytimg.com/vi/nkydJXigkRE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2771,6 +2345,7 @@ var videos = [{
     "duration": "00:01:25",
     "thumb": "http://i.ytimg.com/vi/lAAmAbJvvJg/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2793,6 +2368,7 @@ var videos = [{
     "duration": "00:06:44",
     "thumb": "http://i.ytimg.com/vi/kpzEsgSBUqc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2815,28 +2391,7 @@ var videos = [{
     "duration": "00:08:00",
     "thumb": "http://i.ytimg.com/vi/elvOZm0d4H0/default.jpg"
 }, {
-    "tags": [],
-    "size": [],
-    "time": [],
-    "teaches": [],
-    "is": ["video"],
-    "discipline": [],
-    "username": "MinuteEarth",
-    "rating": 4.90554615529,
-    "description": "Thanks to http://www.harrys.com for supporting this video. Use the coupon code MINUTEEARTH for $5 off your order! http://www.harrys.com \nHelp fund MinuteEarth on Patreon: https://goo.gl/ZVgLQZ\n\nThanks to our Patreon patrons:\n- @AntoineCoeur\n- Nicholas Buckendorf\n- Nasser Hamed Alminji\n- Jeff Straathof\n- Mark\n- facebook.com/maarten.bremer\n- Emil Kampp\n- @TodayIFoundOut1\n\nThanks also to our Subbable supporters:\n- @Kubakun :-)\n- Ethi Raj\n- Damian Shaw\n- Ernesto Carvajal - https://www.facebook.com/erne.carvajal\n- Shelley Jones - https://twitter.com/ShelleytheJonas\n- Vanessa Benavent\n- BouwsT\n- Zoe Reidinger\n- @prosystrangers\n- Pigmy Wurm\n- John Harman (from Dayton, OH)! - http://www.youtube.com/watch?v=0fKBhvDjuy0#at=29\n- @WY_Tang\n___________________________________________\n\nMinuteEarth provides an energetic and entertaining view of trends in earth\u2019s environment \u2013 in just a few minutes!\n\nCreated by Henry Reich\n\nWith the MinuteEarth team: Alex Reich, Peter Reich, Emily Elert, Ever Salazar, Kate Yoshida, and Henry Reich. Music by Nathaniel Schroeder: http://www.soundcloud.com/drschroeder\n________________________\n\nPlease support us on Patreon: https://www.patreon.com/minuteearth\n\nAnd follow us on Vessel: https://www.vessel.com/shows/6891774506155638\n\nAnd YouTube: http://www.youtube.com/user/minuteearth?sub_confirmation=1\n\nAnd ...  iTunes: https://goo.gl/sfwS6n\n\nFacebook: http://facebook.com/minuteearth\n\nTwitter: http://twitter.com/MinuteEarth\n________________________\n\nWant to learn more about the topic in this week\u2019s video? Here are some key words/phrases to get your googling started:\n\n- keystone species \u2013 a species that plays a crucial role in the functioning of an ecosystem\n- flagship species \u2013 species used as an icon for an environmental cause\n- threatened species - species assessed by the IUCN as critically endangered, endangered, or vulnerable\n- triage - assigning degrees of urgency to a large number of patients to determine the order of treatment\n________________________\n\nReferences:\n\nIUCN 2014. The IUCN Red List of Threatened Species. Version 2014.3. http://www.iucnredlist.org/\n\nJoseph, L. N., Maloney R. F., & Possingham, H. P. (2009) Optimal allocation of resources among threatened species: a project prioritization protocol. Conservation Biology 23:328-338. http://www.uq.edu.au/spatialecology/docs/Publications/2009_Joseph_etal_OptimalAllocation.pdf\n\nSmall, E. (2011) The new Noah\u2019s Ark: beautiful and useful species only. Part 1. Biodiversity conservation issues and priorities. Biodiversity 12(4): 232 - 247. http://www.tandfonline.com/doi/abs/10.1080/14888386.2011.642663#\n\nSmith, R.J., Verissimo, D.; Isaac, N.J.B., & Jones, K.E. (2012) Identifying Cinderella species: uncovering mammals with conservation flagship appeal. Conservation Letters, 5 (3): 205 - 212. http://onlinelibrary.wiley.com/doi/10.1111/j.1755-263X.2012.00229.x/abstract\n\nSitas, N., Baillie, J.E.M., and Isaac, N.J.B. (2009) What are we saving? Developing a standardized approach for conservation action. Animal Conservation, 12(3): 231- 237. http://onlinelibrary.wiley.com/doi/10.1111/j.1469-1795.2009.00244.x/full\n\nUS Fish and Wildlife Service. (1999) South Florida Multi-Species Recovery Plan. Mangroves: 3-519 - 3-552. http://www.fws.gov/verobeach/msrppdfs/mangroves.pdf\n\nWarren, L. (June 2006) Panda, Inc. National Geographic Magazine. http://ngm.nationalgeographic.com/2006/07/panda/warren-text\n\nWorld Wildlife Fund. (2014) Annual Report. http://assets.worldwildlife.org/financial_reports/21/reports/original/2014_Annual_Report.pdf?1418325091&_ga=1.146888247.1239564205.1427657892\n________________________\n\nImage Credits:\n\nStinking Cedar (Torreya taxifolia) - Jerry A. Payne - http://bit.ly/1EyduHa\n\nPygmy hog-sucking Louse (Haematopinus oliveri) - Zoological Survey of India - http://bit.ly/1JdxxvD\n\nSturgeon - Wikimedia user Cacophony - http://bit.ly/1DOjpFA\n\nSaiga Anthelope - Wikimedia user Seilov - http://bit.ly/1E0O0Pq\n\nEchinocactus grusonii - Andr\u00e9 Karwath - http://bit.ly/1IucNBw\n\nCork Oak (Quercus suber) - Wikimedia user Joergsam - http://bit.ly/1ziQOLU\n\nHumphead wrasse (Cheilinus undulatus) - Patryk Krzyzak - http://bit.ly/1GLUf0g\n\nPaddlefish - U.S. Fish and Wildlife Service Headquarters - http://bit.ly/1GLUdFX\n\nSwietenia macrophylla - Flickr User jayeshpatil912 - http://bit.ly/1HWzhuB\n\nArakan forest turtle - Public Domain - http://bit.ly/1dzlAqh\n\nPurple Frog - Wikimedia User Karthickbala - http://bit.ly/1JF1Hv8\n\nCute Panda - Wikimedia User Sheilalau (Public Domain) - http://bit.ly/1c0JURt\n\nFrohawk Dodo - Frederick William Frohawk (Public Domain) - http://bit.ly/1bInEer",
-    "viewcount": 1228393,
-    "author": "MinuteEarth",
-    "url": "https://www.youtube.com/watch?v=VEMtc1w4z6c",
-    "title": "Should We Let Pandas Go Extinct?",
-    "dislikes": 628,
-    "bigthumb": "https://i.ytimg.com/vi/VEMtc1w4z6c/sddefault.jpg",
-    "videoid": "VEMtc1w4z6c",
-    "keywords": ["MinuteEarth", "Minute Earth", "MinutePhysics", "Minute Physics", "earth", "history", "science", "environment", "environmental science", "earth science", "conservation", "species", "triage", "policy", "biology", "endangered species", "pandas", "extinction", "threatened", "biodiversity", "wildlife", "rhinos", "otters", "mangroves", "economics", "ecosystems", "pygmy hog-sucking louse", "stinking cedar", "Giant Panda (Animal)", "World Wide Fund For Nature (Nonprofit Organization)"],
-    "length": 188,
-    "likes": 25967,
-    "duration": "00:03:08",
-    "thumb": "http://i.ytimg.com/vi/VEMtc1w4z6c/default.jpg"
-}, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2859,6 +2414,7 @@ var videos = [{
     "duration": "00:03:29",
     "thumb": "http://i.ytimg.com/vi/VVAKFJ8VVp4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2881,6 +2437,7 @@ var videos = [{
     "duration": "00:17:50",
     "thumb": "http://i.ytimg.com/vi/wZ2TF8-PGQ4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2903,6 +2460,7 @@ var videos = [{
     "duration": "00:04:17",
     "thumb": "http://i.ytimg.com/vi/I5ZR0jMlxX0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2925,6 +2483,7 @@ var videos = [{
     "duration": "00:04:39",
     "thumb": "http://i.ytimg.com/vi/iuZDylVFbhs/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2947,6 +2506,7 @@ var videos = [{
     "duration": "00:09:39",
     "thumb": "http://i.ytimg.com/vi/o0DYP-u1rNM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2969,6 +2529,7 @@ var videos = [{
     "duration": "00:09:15",
     "thumb": "http://i.ytimg.com/vi/mRzxTzKIsp8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -2991,6 +2552,7 @@ var videos = [{
     "duration": "00:06:22",
     "thumb": "http://i.ytimg.com/vi/sNhhvQGsMEc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3013,6 +2575,7 @@ var videos = [{
     "duration": "00:02:57",
     "thumb": "http://i.ytimg.com/vi/WZQI-dbQw_4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3035,6 +2598,7 @@ var videos = [{
     "duration": "00:04:20",
     "thumb": "http://i.ytimg.com/vi/9OVtk6G2TnQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3057,6 +2621,7 @@ var videos = [{
     "duration": "00:10:44",
     "thumb": "http://i.ytimg.com/vi/YX40hbAHx3s/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3079,6 +2644,7 @@ var videos = [{
     "duration": "00:05:11",
     "thumb": "http://i.ytimg.com/vi/X_xR5Kes4Rs/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3101,6 +2667,7 @@ var videos = [{
     "duration": "00:03:47",
     "thumb": "http://i.ytimg.com/vi/H6syI3xiBBg/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3123,6 +2690,7 @@ var videos = [{
     "duration": "00:04:23",
     "thumb": "http://i.ytimg.com/vi/mZt1Gn0R22Q/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3145,6 +2713,7 @@ var videos = [{
     "duration": "00:04:37",
     "thumb": "http://i.ytimg.com/vi/Y7IsyjFROHE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3167,6 +2736,7 @@ var videos = [{
     "duration": "00:04:27",
     "thumb": "http://i.ytimg.com/vi/wissIOikrqc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3189,6 +2759,7 @@ var videos = [{
     "duration": "00:07:11",
     "thumb": "http://i.ytimg.com/vi/fgQLyqWaCbA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3211,6 +2782,7 @@ var videos = [{
     "duration": "00:17:04",
     "thumb": "http://i.ytimg.com/vi/d6c6uIyieoo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3233,6 +2805,7 @@ var videos = [{
     "duration": "00:04:42",
     "thumb": "http://i.ytimg.com/vi/xYxyTZG7APQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3255,6 +2828,7 @@ var videos = [{
     "duration": "00:08:12",
     "thumb": "http://i.ytimg.com/vi/dAoGpflOmdw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3277,6 +2851,7 @@ var videos = [{
     "duration": "00:12:33",
     "thumb": "http://i.ytimg.com/vi/NblR01hHK6U/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3299,6 +2874,7 @@ var videos = [{
     "duration": "00:08:54",
     "thumb": "http://i.ytimg.com/vi/b7GMpjx2jDQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3321,6 +2897,7 @@ var videos = [{
     "duration": "00:04:29",
     "thumb": "http://i.ytimg.com/vi/8U_GEa4bM1M/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3343,6 +2920,7 @@ var videos = [{
     "duration": "00:04:43",
     "thumb": "http://i.ytimg.com/vi/gsV7SJDDCY4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3365,6 +2943,7 @@ var videos = [{
     "duration": "00:03:35",
     "thumb": "http://i.ytimg.com/vi/IaVKXx767rw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3387,6 +2966,7 @@ var videos = [{
     "duration": "00:05:11",
     "thumb": "http://i.ytimg.com/vi/ZW3aV7U-aik/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3409,6 +2989,7 @@ var videos = [{
     "duration": "00:11:26",
     "thumb": "http://i.ytimg.com/vi/sH4bi60alZU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3431,6 +3012,7 @@ var videos = [{
     "duration": "00:08:41",
     "thumb": "http://i.ytimg.com/vi/_ezhdhHNku0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3453,6 +3035,7 @@ var videos = [{
     "duration": "00:05:58",
     "thumb": "http://i.ytimg.com/vi/O0PawPSdk28/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3475,6 +3058,7 @@ var videos = [{
     "duration": "00:05:19",
     "thumb": "http://i.ytimg.com/vi/dofWYGka2g8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3497,6 +3081,7 @@ var videos = [{
     "duration": "00:19:08",
     "thumb": "http://i.ytimg.com/vi/xcwJt4bcnXs/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3519,6 +3104,7 @@ var videos = [{
     "duration": "00:03:48",
     "thumb": "http://i.ytimg.com/vi/Jq_Ca-HKh1g/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3541,6 +3127,7 @@ var videos = [{
     "duration": "00:07:40",
     "thumb": "http://i.ytimg.com/vi/Iuv6hY6zsd0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3563,6 +3150,7 @@ var videos = [{
     "duration": "00:08:30",
     "thumb": "http://i.ytimg.com/vi/7KYTJ8tBoZ8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3585,6 +3173,7 @@ var videos = [{
     "duration": "00:04:34",
     "thumb": "http://i.ytimg.com/vi/aOfWTscU8YM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3607,6 +3196,7 @@ var videos = [{
     "duration": "00:04:41",
     "thumb": "http://i.ytimg.com/vi/2aoIs-5zqoI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3629,6 +3219,7 @@ var videos = [{
     "duration": "00:13:00",
     "thumb": "http://i.ytimg.com/vi/BRRolKTlF6Q/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3651,6 +3242,7 @@ var videos = [{
     "duration": "00:11:24",
     "thumb": "http://i.ytimg.com/vi/SV7U4yAXL5I/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3673,6 +3265,7 @@ var videos = [{
     "duration": "00:14:25",
     "thumb": "http://i.ytimg.com/vi/vNaEBbFbvcY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3695,6 +3288,7 @@ var videos = [{
     "duration": "00:10:24",
     "thumb": "http://i.ytimg.com/vi/Xo232kyTsO0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3717,6 +3311,7 @@ var videos = [{
     "duration": "00:11:00",
     "thumb": "http://i.ytimg.com/vi/ge071m9bGeY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3739,6 +3334,7 @@ var videos = [{
     "duration": "00:10:49",
     "thumb": "http://i.ytimg.com/vi/XdddbYILel0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3761,6 +3357,7 @@ var videos = [{
     "duration": "00:11:10",
     "thumb": "http://i.ytimg.com/vi/Mj06h8BeeOA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3783,6 +3380,7 @@ var videos = [{
     "duration": "00:04:20",
     "thumb": "http://i.ytimg.com/vi/1Hqm0dYKUx4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3805,6 +3403,7 @@ var videos = [{
     "duration": "00:12:57",
     "thumb": "http://i.ytimg.com/vi/RrMvUL8HFlM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3827,6 +3426,7 @@ var videos = [{
     "duration": "00:12:46",
     "thumb": "http://i.ytimg.com/vi/msVuCEs8Ydo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3849,6 +3449,7 @@ var videos = [{
     "duration": "00:03:59",
     "thumb": "http://i.ytimg.com/vi/la2dPt8dLy8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3871,6 +3472,7 @@ var videos = [{
     "duration": "00:05:00",
     "thumb": "http://i.ytimg.com/vi/AhsIF-cmoQQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3893,6 +3495,7 @@ var videos = [{
     "duration": "00:09:59",
     "thumb": "http://i.ytimg.com/vi/EYPapE-3FRw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3915,6 +3518,7 @@ var videos = [{
     "duration": "00:10:36",
     "thumb": "http://i.ytimg.com/vi/an4rgJ3O21A/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3937,6 +3541,7 @@ var videos = [{
     "duration": "00:04:35",
     "thumb": "http://i.ytimg.com/vi/jf_4z4AKwJg/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3959,6 +3564,7 @@ var videos = [{
     "duration": "00:06:14",
     "thumb": "http://i.ytimg.com/vi/F_0yfvm0UoU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -3981,6 +3587,7 @@ var videos = [{
     "duration": "00:04:40",
     "thumb": "http://i.ytimg.com/vi/N9LC-3ZKiok/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4003,6 +3610,7 @@ var videos = [{
     "duration": "00:04:41",
     "thumb": "http://i.ytimg.com/vi/khIzr6610cQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4025,6 +3633,7 @@ var videos = [{
     "duration": "00:02:02",
     "thumb": "http://i.ytimg.com/vi/W9IoN8Tb1wg/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4047,6 +3656,7 @@ var videos = [{
     "duration": "00:07:30",
     "thumb": "http://i.ytimg.com/vi/NNijmxsKGbc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4069,6 +3679,7 @@ var videos = [{
     "duration": "00:02:54",
     "thumb": "http://i.ytimg.com/vi/vjaqM4yd_RA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4091,6 +3702,7 @@ var videos = [{
     "duration": "00:02:21",
     "thumb": "http://i.ytimg.com/vi/iSZ3BUru59A/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4113,6 +3725,7 @@ var videos = [{
     "duration": "00:03:10",
     "thumb": "http://i.ytimg.com/vi/6hE6KjLUkiw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4135,6 +3748,7 @@ var videos = [{
     "duration": "00:05:12",
     "thumb": "http://i.ytimg.com/vi/GyN2RhbhiEU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4157,6 +3771,7 @@ var videos = [{
     "duration": "00:04:10",
     "thumb": "http://i.ytimg.com/vi/XNP1x11Z2Ig/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4179,6 +3794,7 @@ var videos = [{
     "duration": "00:12:00",
     "thumb": "http://i.ytimg.com/vi/9W3RsaWuCuE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4201,6 +3817,7 @@ var videos = [{
     "duration": "00:05:10",
     "thumb": "http://i.ytimg.com/vi/DbbWx2COU0E/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4223,6 +3840,7 @@ var videos = [{
     "duration": "00:05:35",
     "thumb": "http://i.ytimg.com/vi/HneiEA1B8ks/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4245,6 +3863,7 @@ var videos = [{
     "duration": "00:06:51",
     "thumb": "http://i.ytimg.com/vi/WGL4HPuFKZA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4267,6 +3886,7 @@ var videos = [{
     "duration": "00:21:09",
     "thumb": "http://i.ytimg.com/vi/ffUnNaQTfZE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4289,6 +3909,7 @@ var videos = [{
     "duration": "00:18:52",
     "thumb": "http://i.ytimg.com/vi/3MRHcYtZjFY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4311,6 +3932,7 @@ var videos = [{
     "duration": "00:13:22",
     "thumb": "http://i.ytimg.com/vi/xx4562gesw0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4333,6 +3955,7 @@ var videos = [{
     "duration": "00:13:23",
     "thumb": "http://i.ytimg.com/vi/9B7Ix2VQEGo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4355,6 +3978,7 @@ var videos = [{
     "duration": "00:05:17",
     "thumb": "http://i.ytimg.com/vi/FJAb5gmlQs0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4377,6 +4001,7 @@ var videos = [{
     "duration": "00:15:49",
     "thumb": "http://i.ytimg.com/vi/ZoT82NDpcvQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4399,6 +4024,7 @@ var videos = [{
     "duration": "00:05:56",
     "thumb": "http://i.ytimg.com/vi/e-P5IFTqB98/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4421,6 +4047,7 @@ var videos = [{
     "duration": "01:49:08",
     "thumb": "http://i.ytimg.com/vi/ojU31yHDqiM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4443,6 +4070,7 @@ var videos = [{
     "duration": "00:09:55",
     "thumb": "http://i.ytimg.com/vi/uqXVAo7dVRU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4465,6 +4093,7 @@ var videos = [{
     "duration": "00:05:38",
     "thumb": "http://i.ytimg.com/vi/myjaVI7_6Is/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4487,6 +4116,7 @@ var videos = [{
     "duration": "00:05:34",
     "thumb": "http://i.ytimg.com/vi/X9otDixAtFw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4509,6 +4139,7 @@ var videos = [{
     "duration": "00:04:59",
     "thumb": "http://i.ytimg.com/vi/xKxrkht7CpY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4531,6 +4162,7 @@ var videos = [{
     "duration": "00:04:24",
     "thumb": "http://i.ytimg.com/vi/qYijAZWdnBk/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4553,6 +4185,7 @@ var videos = [{
     "duration": "00:18:04",
     "thumb": "http://i.ytimg.com/vi/c_jyHp3bmEw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4575,6 +4208,7 @@ var videos = [{
     "duration": "00:01:48",
     "thumb": "http://i.ytimg.com/vi/7Cgpfw4z8cw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4597,6 +4231,7 @@ var videos = [{
     "duration": "00:04:13",
     "thumb": "http://i.ytimg.com/vi/jlTVIMOix3I/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4619,6 +4254,7 @@ var videos = [{
     "duration": "00:03:19",
     "thumb": "http://i.ytimg.com/vi/dHX85pHsVLk/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4641,6 +4277,7 @@ var videos = [{
     "duration": "00:04:19",
     "thumb": "http://i.ytimg.com/vi/sxYrzzy3cq8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4663,6 +4300,7 @@ var videos = [{
     "duration": "00:06:33",
     "thumb": "http://i.ytimg.com/vi/HHKf92Ta-9E/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4685,6 +4323,7 @@ var videos = [{
     "duration": "00:14:37",
     "thumb": "http://i.ytimg.com/vi/esPRsT-lmw8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4707,6 +4346,7 @@ var videos = [{
     "duration": "00:07:41",
     "thumb": "http://i.ytimg.com/vi/aIx2N-viNwY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4729,6 +4369,7 @@ var videos = [{
     "duration": "00:06:18",
     "thumb": "http://i.ytimg.com/vi/IeLGP2dsjME/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4751,6 +4392,7 @@ var videos = [{
     "duration": "00:05:21",
     "thumb": "http://i.ytimg.com/vi/zI2vRwFKnHQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4773,6 +4415,7 @@ var videos = [{
     "duration": "00:04:14",
     "thumb": "http://i.ytimg.com/vi/rIVkvrEiVm0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4795,6 +4438,7 @@ var videos = [{
     "duration": "00:12:49",
     "thumb": "http://i.ytimg.com/vi/i_0DXxNeaQ0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4817,6 +4461,7 @@ var videos = [{
     "duration": "00:06:23",
     "thumb": "http://i.ytimg.com/vi/wOmjnioNulo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4839,6 +4484,7 @@ var videos = [{
     "duration": "00:09:43",
     "thumb": "http://i.ytimg.com/vi/hhXeUQOuRaw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4861,6 +4507,7 @@ var videos = [{
     "duration": "00:05:28",
     "thumb": "http://i.ytimg.com/vi/VvTzaNUDVms/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4883,6 +4530,7 @@ var videos = [{
     "duration": "00:03:35",
     "thumb": "http://i.ytimg.com/vi/Trg2__Lgnc0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4905,6 +4553,7 @@ var videos = [{
     "duration": "00:04:35",
     "thumb": "http://i.ytimg.com/vi/v9gPAj7lXU0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4927,6 +4576,7 @@ var videos = [{
     "duration": "00:04:44",
     "thumb": "http://i.ytimg.com/vi/Pq0aQAG0A3o/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4949,6 +4599,7 @@ var videos = [{
     "duration": "00:06:10",
     "thumb": "http://i.ytimg.com/vi/wIzvfki5ozU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4971,6 +4622,7 @@ var videos = [{
     "duration": "00:04:25",
     "thumb": "http://i.ytimg.com/vi/q8Ent5CXhfY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -4993,6 +4645,7 @@ var videos = [{
     "duration": "00:04:39",
     "thumb": "http://i.ytimg.com/vi/V2EMuoM5IX4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5015,6 +4668,7 @@ var videos = [{
     "duration": "00:05:05",
     "thumb": "http://i.ytimg.com/vi/p3q5zWCw8J4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5037,6 +4691,7 @@ var videos = [{
     "duration": "00:03:15",
     "thumb": "http://i.ytimg.com/vi/qRnU0bqsyq0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5059,6 +4714,7 @@ var videos = [{
     "duration": "00:06:31",
     "thumb": "http://i.ytimg.com/vi/AVScy7YsKM0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5081,6 +4737,7 @@ var videos = [{
     "duration": "00:04:41",
     "thumb": "http://i.ytimg.com/vi/sbGjr_awePE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5103,6 +4760,7 @@ var videos = [{
     "duration": "00:09:13",
     "thumb": "http://i.ytimg.com/vi/S93jMOqF-oE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5125,6 +4783,7 @@ var videos = [{
     "duration": "00:02:43",
     "thumb": "http://i.ytimg.com/vi/ppIzSaP2jWI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5147,6 +4806,7 @@ var videos = [{
     "duration": "00:05:28",
     "thumb": "http://i.ytimg.com/vi/yQP4UJhNn0I/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5169,6 +4829,7 @@ var videos = [{
     "duration": "00:04:59",
     "thumb": "http://i.ytimg.com/vi/UHwVyplU3Pg/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5191,6 +4852,7 @@ var videos = [{
     "duration": "00:05:39",
     "thumb": "http://i.ytimg.com/vi/A0edKgL9EgM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5213,6 +4875,7 @@ var videos = [{
     "duration": "00:04:49",
     "thumb": "http://i.ytimg.com/vi/C6kn6nXMWF0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5235,6 +4898,7 @@ var videos = [{
     "duration": "00:08:48",
     "thumb": "http://i.ytimg.com/vi/8EUy_82IChY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5257,6 +4921,7 @@ var videos = [{
     "duration": "00:04:08",
     "thumb": "http://i.ytimg.com/vi/VwRLIt6jgdM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5279,6 +4944,7 @@ var videos = [{
     "duration": "00:06:31",
     "thumb": "http://i.ytimg.com/vi/s7tWHJfhiyo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5301,6 +4967,7 @@ var videos = [{
     "duration": "00:04:27",
     "thumb": "http://i.ytimg.com/vi/3Y3jE3B8HsE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5323,6 +4990,7 @@ var videos = [{
     "duration": "00:04:54",
     "thumb": "http://i.ytimg.com/vi/WhNyURBiJcU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5345,6 +5013,7 @@ var videos = [{
     "duration": "00:04:06",
     "thumb": "http://i.ytimg.com/vi/N3zqpAleU5g/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5367,6 +5036,7 @@ var videos = [{
     "duration": "00:10:00",
     "thumb": "http://i.ytimg.com/vi/Yl9TVbAal5s/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5389,6 +5059,7 @@ var videos = [{
     "duration": "00:08:54",
     "thumb": "http://i.ytimg.com/vi/YaDvRdLMkHs/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5411,6 +5082,7 @@ var videos = [{
     "duration": "00:04:26",
     "thumb": "http://i.ytimg.com/vi/hVCNS2jQQ6g/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5433,6 +5105,7 @@ var videos = [{
     "duration": "00:12:01",
     "thumb": "http://i.ytimg.com/vi/RZUDEaLa5Nw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5455,6 +5128,7 @@ var videos = [{
     "duration": "00:02:43",
     "thumb": "http://i.ytimg.com/vi/UfJ-i4Y6DGU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5477,6 +5151,7 @@ var videos = [{
     "duration": "00:23:16",
     "thumb": "http://i.ytimg.com/vi/K4rCzA8fS84/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5499,6 +5174,7 @@ var videos = [{
     "duration": "00:04:01",
     "thumb": "http://i.ytimg.com/vi/QYlVJlmjLEc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5521,6 +5197,7 @@ var videos = [{
     "duration": "00:04:33",
     "thumb": "http://i.ytimg.com/vi/9z08SD5iRuk/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5543,6 +5220,7 @@ var videos = [{
     "duration": "00:08:36",
     "thumb": "http://i.ytimg.com/vi/az6oYcd-SfU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5565,6 +5243,7 @@ var videos = [{
     "duration": "00:10:59",
     "thumb": "http://i.ytimg.com/vi/YCN2aTlocOw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5587,6 +5266,7 @@ var videos = [{
     "duration": "00:05:14",
     "thumb": "http://i.ytimg.com/vi/sLB-6CyoQXE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5609,6 +5289,7 @@ var videos = [{
     "duration": "00:13:32",
     "thumb": "http://i.ytimg.com/vi/Dgv2WWpm7_s/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5631,6 +5312,7 @@ var videos = [{
     "duration": "00:05:31",
     "thumb": "http://i.ytimg.com/vi/VGzpv96AQKg/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5653,6 +5335,7 @@ var videos = [{
     "duration": "00:08:56",
     "thumb": "http://i.ytimg.com/vi/G4VINRUe_o4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5675,6 +5358,7 @@ var videos = [{
     "duration": "00:03:10",
     "thumb": "http://i.ytimg.com/vi/P8aW1Ae6gcI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5697,6 +5381,7 @@ var videos = [{
     "duration": "00:02:11",
     "thumb": "http://i.ytimg.com/vi/HOdEvhEjO2I/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5719,6 +5404,7 @@ var videos = [{
     "duration": "00:05:22",
     "thumb": "http://i.ytimg.com/vi/RTn77uCYU_8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5741,6 +5427,7 @@ var videos = [{
     "duration": "00:15:16",
     "thumb": "http://i.ytimg.com/vi/tQSbms5MDvY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5763,6 +5450,7 @@ var videos = [{
     "duration": "00:03:39",
     "thumb": "http://i.ytimg.com/vi/FhZrU6g9seg/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5785,6 +5473,7 @@ var videos = [{
     "duration": "00:03:43",
     "thumb": "http://i.ytimg.com/vi/fzNk4w2k2h0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5807,6 +5496,7 @@ var videos = [{
     "duration": "00:04:12",
     "thumb": "http://i.ytimg.com/vi/ZvrHL7-c1Ys/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5829,6 +5519,7 @@ var videos = [{
     "duration": "00:07:42",
     "thumb": "http://i.ytimg.com/vi/sULa9Lc4pck/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5851,6 +5542,7 @@ var videos = [{
     "duration": "00:02:55",
     "thumb": "http://i.ytimg.com/vi/kif4ON6QOPE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5873,6 +5565,7 @@ var videos = [{
     "duration": "00:05:28",
     "thumb": "http://i.ytimg.com/vi/jltM5qYn25w/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5895,6 +5588,7 @@ var videos = [{
     "duration": "00:06:55",
     "thumb": "http://i.ytimg.com/vi/GRwWt-cFKNY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5917,6 +5611,7 @@ var videos = [{
     "duration": "00:09:59",
     "thumb": "http://i.ytimg.com/vi/BOvAbjfJ0x0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5939,6 +5634,7 @@ var videos = [{
     "duration": "00:06:26",
     "thumb": "http://i.ytimg.com/vi/8jlMuBn6Zow/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5961,6 +5657,7 @@ var videos = [{
     "duration": "00:09:02",
     "thumb": "http://i.ytimg.com/vi/3QLnosS853Q/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -5983,6 +5680,7 @@ var videos = [{
     "duration": "00:09:20",
     "thumb": "http://i.ytimg.com/vi/WrNDeYjcCJA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6005,6 +5703,7 @@ var videos = [{
     "duration": "00:09:23",
     "thumb": "http://i.ytimg.com/vi/MM6BrZwkBRA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6027,6 +5726,7 @@ var videos = [{
     "duration": "00:12:03",
     "thumb": "http://i.ytimg.com/vi/DY6VIllK00Q/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6049,6 +5749,7 @@ var videos = [{
     "duration": "00:06:21",
     "thumb": "http://i.ytimg.com/vi/OqmJhPQYRc8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6071,6 +5772,7 @@ var videos = [{
     "duration": "00:04:58",
     "thumb": "http://i.ytimg.com/vi/jzqnUvE66HA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6093,6 +5795,7 @@ var videos = [{
     "duration": "00:10:20",
     "thumb": "http://i.ytimg.com/vi/nhOhZ5HSd54/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6115,6 +5818,7 @@ var videos = [{
     "duration": "00:01:01",
     "thumb": "http://i.ytimg.com/vi/UNPj7e6XJCQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6137,6 +5841,7 @@ var videos = [{
     "duration": "00:00:45",
     "thumb": "http://i.ytimg.com/vi/3YmeajE-TT8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6159,6 +5864,7 @@ var videos = [{
     "duration": "00:03:21",
     "thumb": "http://i.ytimg.com/vi/YHS9g72npqA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6181,6 +5887,7 @@ var videos = [{
     "duration": "00:05:48",
     "thumb": "http://i.ytimg.com/vi/yzBIarGJjHk/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6203,6 +5910,7 @@ var videos = [{
     "duration": "00:04:07",
     "thumb": "http://i.ytimg.com/vi/f2ZCVnk-oRU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6225,6 +5933,7 @@ var videos = [{
     "duration": "00:11:21",
     "thumb": "http://i.ytimg.com/vi/ecTQVa42sJc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6247,6 +5956,7 @@ var videos = [{
     "duration": "00:15:08",
     "thumb": "http://i.ytimg.com/vi/EHRc-QMoUE4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6269,6 +5979,7 @@ var videos = [{
     "duration": "00:03:13",
     "thumb": "http://i.ytimg.com/vi/LHvR1fRTW8g/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6291,6 +6002,7 @@ var videos = [{
     "duration": "00:04:36",
     "thumb": "http://i.ytimg.com/vi/PPLDZMjgaf8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6313,6 +6025,7 @@ var videos = [{
     "duration": "00:04:17",
     "thumb": "http://i.ytimg.com/vi/9jI8Uqip60w/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6335,6 +6048,7 @@ var videos = [{
     "duration": "00:05:08",
     "thumb": "http://i.ytimg.com/vi/7bUVjJWA6Vw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6357,6 +6071,7 @@ var videos = [{
     "duration": "00:08:26",
     "thumb": "http://i.ytimg.com/vi/cebFWOlx848/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6379,6 +6094,7 @@ var videos = [{
     "duration": "00:17:35",
     "thumb": "http://i.ytimg.com/vi/uSUOdu_5MPc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6401,6 +6117,7 @@ var videos = [{
     "duration": "00:05:48",
     "thumb": "http://i.ytimg.com/vi/vh_aCAHThTQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6423,6 +6140,7 @@ var videos = [{
     "duration": "00:06:53",
     "thumb": "http://i.ytimg.com/vi/7ukDKVHnac4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6445,6 +6163,7 @@ var videos = [{
     "duration": "00:08:53",
     "thumb": "http://i.ytimg.com/vi/GhHOjC4oxh8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6467,6 +6186,7 @@ var videos = [{
     "duration": "00:07:17",
     "thumb": "http://i.ytimg.com/vi/JhHMJCUmq28/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6489,6 +6209,7 @@ var videos = [{
     "duration": "00:03:23",
     "thumb": "http://i.ytimg.com/vi/eGvoYuXvHOc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6511,6 +6232,7 @@ var videos = [{
     "duration": "00:13:00",
     "thumb": "http://i.ytimg.com/vi/F8U1d2Hqark/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6533,6 +6255,7 @@ var videos = [{
     "duration": "00:03:46",
     "thumb": "http://i.ytimg.com/vi/15_aJXoC0LM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6555,6 +6278,7 @@ var videos = [{
     "duration": "00:05:34",
     "thumb": "http://i.ytimg.com/vi/BN2-n04CCcI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6577,6 +6301,7 @@ var videos = [{
     "duration": "00:03:27",
     "thumb": "http://i.ytimg.com/vi/WYA1y405JW0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6599,6 +6324,7 @@ var videos = [{
     "duration": "00:16:04",
     "thumb": "http://i.ytimg.com/vi/jAhjPd4uNFY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6621,6 +6347,7 @@ var videos = [{
     "duration": "00:03:32",
     "thumb": "http://i.ytimg.com/vi/VgGDwYYfayI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6643,6 +6370,7 @@ var videos = [{
     "duration": "00:09:49",
     "thumb": "http://i.ytimg.com/vi/HkiGKdOHPTE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6665,6 +6393,7 @@ var videos = [{
     "duration": "00:03:25",
     "thumb": "http://i.ytimg.com/vi/lJjILQu2xM8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6687,6 +6416,7 @@ var videos = [{
     "duration": "00:14:40",
     "thumb": "http://i.ytimg.com/vi/8ORLN_KwAgs/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6709,6 +6439,7 @@ var videos = [{
     "duration": "00:12:22",
     "thumb": "http://i.ytimg.com/vi/42QuXLucH3Q/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6731,6 +6462,7 @@ var videos = [{
     "duration": "00:06:48",
     "thumb": "http://i.ytimg.com/vi/eqhUHyVpAwE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6753,6 +6485,7 @@ var videos = [{
     "duration": "00:03:09",
     "thumb": "http://i.ytimg.com/vi/JG1900XhKs0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6775,6 +6508,7 @@ var videos = [{
     "duration": "00:03:40",
     "thumb": "http://i.ytimg.com/vi/J0KHiiTtt4w/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6797,6 +6531,7 @@ var videos = [{
     "duration": "00:03:45",
     "thumb": "http://i.ytimg.com/vi/ZY7Ww5924-c/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6819,6 +6554,7 @@ var videos = [{
     "duration": "00:10:26",
     "thumb": "http://i.ytimg.com/vi/vCGtkDzELAI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6841,6 +6577,7 @@ var videos = [{
     "duration": "00:04:07",
     "thumb": "http://i.ytimg.com/vi/FK9xHry877U/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6863,6 +6600,7 @@ var videos = [{
     "duration": "00:03:44",
     "thumb": "http://i.ytimg.com/vi/7sKp9R5BOEk/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6885,6 +6623,7 @@ var videos = [{
     "duration": "00:04:14",
     "thumb": "http://i.ytimg.com/vi/dO2xx-aeZ4w/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6907,6 +6646,7 @@ var videos = [{
     "duration": "00:04:04",
     "thumb": "http://i.ytimg.com/vi/alH3yc6tX98/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6929,6 +6669,7 @@ var videos = [{
     "duration": "00:05:58",
     "thumb": "http://i.ytimg.com/vi/zm6zfHzvqX4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6951,6 +6692,7 @@ var videos = [{
     "duration": "00:02:11",
     "thumb": "http://i.ytimg.com/vi/Mx9A0BjhEdU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6973,6 +6715,7 @@ var videos = [{
     "duration": "00:08:14",
     "thumb": "http://i.ytimg.com/vi/xP0q3WOBRks/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -6995,6 +6738,7 @@ var videos = [{
     "duration": "00:03:36",
     "thumb": "http://i.ytimg.com/vi/Lo8NmoDL9T8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7017,6 +6761,7 @@ var videos = [{
     "duration": "00:07:09",
     "thumb": "http://i.ytimg.com/vi/K1xnYFCZ9Yg/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7039,6 +6784,7 @@ var videos = [{
     "duration": "00:09:32",
     "thumb": "http://i.ytimg.com/vi/zmwgmt7wcv8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7061,6 +6807,7 @@ var videos = [{
     "duration": "00:03:48",
     "thumb": "http://i.ytimg.com/vi/fNV7CsKI5m8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7083,6 +6830,7 @@ var videos = [{
     "duration": "00:08:12",
     "thumb": "http://i.ytimg.com/vi/OwS9aTE2Go4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7105,6 +6853,7 @@ var videos = [{
     "duration": "00:04:41",
     "thumb": "http://i.ytimg.com/vi/ml4NSzCQobk/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7127,6 +6876,7 @@ var videos = [{
     "duration": "00:09:15",
     "thumb": "http://i.ytimg.com/vi/RnsEf5URYf0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7149,6 +6899,7 @@ var videos = [{
     "duration": "00:08:44",
     "thumb": "http://i.ytimg.com/vi/oskXOEqkPeo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7171,6 +6922,7 @@ var videos = [{
     "duration": "00:04:17",
     "thumb": "http://i.ytimg.com/vi/oAVjF_7ensg/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7193,6 +6945,7 @@ var videos = [{
     "duration": "00:07:02",
     "thumb": "http://i.ytimg.com/vi/c_Eutci7ack/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7215,6 +6968,7 @@ var videos = [{
     "duration": "00:12:58",
     "thumb": "http://i.ytimg.com/vi/JDmKLXVFJzk/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7237,6 +6991,7 @@ var videos = [{
     "duration": "00:13:38",
     "thumb": "http://i.ytimg.com/vi/6yLGeviU8FM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7259,6 +7014,7 @@ var videos = [{
     "duration": "00:05:57",
     "thumb": "http://i.ytimg.com/vi/QOCaacO8wus/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7281,6 +7037,7 @@ var videos = [{
     "duration": "00:03:25",
     "thumb": "http://i.ytimg.com/vi/yKbJ9leUNDE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7303,6 +7060,7 @@ var videos = [{
     "duration": "00:04:34",
     "thumb": "http://i.ytimg.com/vi/Rpy9Qp7NAaw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7325,6 +7083,7 @@ var videos = [{
     "duration": "00:04:47",
     "thumb": "http://i.ytimg.com/vi/T3Ftj5E90tY/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7347,6 +7106,7 @@ var videos = [{
     "duration": "00:07:45",
     "thumb": "http://i.ytimg.com/vi/TfYCnOvNnFU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7369,6 +7129,7 @@ var videos = [{
     "duration": "00:03:31",
     "thumb": "http://i.ytimg.com/vi/BKwh1kLGHyQ/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7391,6 +7152,7 @@ var videos = [{
     "duration": "00:04:38",
     "thumb": "http://i.ytimg.com/vi/dLRLYPiaAoA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7413,6 +7175,7 @@ var videos = [{
     "duration": "00:03:34",
     "thumb": "http://i.ytimg.com/vi/F3QpgXBtDeo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7435,6 +7198,7 @@ var videos = [{
     "duration": "00:07:21",
     "thumb": "http://i.ytimg.com/vi/KsF_hdjWJjo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7457,6 +7221,7 @@ var videos = [{
     "duration": "00:06:33",
     "thumb": "http://i.ytimg.com/vi/21eFwbb48sE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7479,6 +7244,7 @@ var videos = [{
     "duration": "00:05:31",
     "thumb": "http://i.ytimg.com/vi/ZORzsubQA_M/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7501,6 +7267,7 @@ var videos = [{
     "duration": "00:03:35",
     "thumb": "http://i.ytimg.com/vi/MTFY0H4EZx4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7523,6 +7290,7 @@ var videos = [{
     "duration": "00:03:15",
     "thumb": "http://i.ytimg.com/vi/sAMlGyaUz4M/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7545,6 +7313,7 @@ var videos = [{
     "duration": "00:05:59",
     "thumb": "http://i.ytimg.com/vi/ijFm6DxNVyI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7567,6 +7336,7 @@ var videos = [{
     "duration": "00:19:33",
     "thumb": "http://i.ytimg.com/vi/rStL7niR7gs/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7589,6 +7359,7 @@ var videos = [{
     "duration": "00:03:53",
     "thumb": "http://i.ytimg.com/vi/A22tOPjBBns/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7611,6 +7382,7 @@ var videos = [{
     "duration": "00:06:42",
     "thumb": "http://i.ytimg.com/vi/I16TJUp4SVA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7633,6 +7405,7 @@ var videos = [{
     "duration": "00:04:49",
     "thumb": "http://i.ytimg.com/vi/jLesc5lITvo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7655,6 +7428,7 @@ var videos = [{
     "duration": "00:03:15",
     "thumb": "http://i.ytimg.com/vi/lHaX9asEXIo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7677,6 +7451,7 @@ var videos = [{
     "duration": "00:02:34",
     "thumb": "http://i.ytimg.com/vi/VcSX4ytEfcE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7699,6 +7474,7 @@ var videos = [{
     "duration": "00:08:20",
     "thumb": "http://i.ytimg.com/vi/ZihywtixUYo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7721,6 +7497,7 @@ var videos = [{
     "duration": "00:16:32",
     "thumb": "http://i.ytimg.com/vi/RlXdsyctD50/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7743,6 +7520,7 @@ var videos = [{
     "duration": "00:04:39",
     "thumb": "http://i.ytimg.com/vi/WaNLJf8xzC4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7765,6 +7543,7 @@ var videos = [{
     "duration": "00:06:25",
     "thumb": "http://i.ytimg.com/vi/PUwmA3Q0_OE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7787,6 +7566,7 @@ var videos = [{
     "duration": "00:19:59",
     "thumb": "http://i.ytimg.com/vi/mht-1c4wc0Q/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7809,6 +7589,7 @@ var videos = [{
     "duration": "00:08:05",
     "thumb": "http://i.ytimg.com/vi/i7c2qz7sO0I/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7831,6 +7612,7 @@ var videos = [{
     "duration": "00:10:07",
     "thumb": "http://i.ytimg.com/vi/5ABgp2QomQA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7853,6 +7635,7 @@ var videos = [{
     "duration": "00:04:49",
     "thumb": "http://i.ytimg.com/vi/e7uXAlXdTe4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7875,6 +7658,7 @@ var videos = [{
     "duration": "00:16:41",
     "thumb": "http://i.ytimg.com/vi/8dHMpnfFdtc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7897,6 +7681,7 @@ var videos = [{
     "duration": "00:14:25",
     "thumb": "http://i.ytimg.com/vi/tq6be-CZJ3w/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7919,6 +7704,7 @@ var videos = [{
     "duration": "00:04:01",
     "thumb": "http://i.ytimg.com/vi/U9YoHJJLsbE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7941,6 +7727,7 @@ var videos = [{
     "duration": "00:09:36",
     "thumb": "http://i.ytimg.com/vi/KlBG_A4Djp4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7963,6 +7750,7 @@ var videos = [{
     "duration": "00:03:58",
     "thumb": "http://i.ytimg.com/vi/YuZ2BfrMwXo/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -7985,6 +7773,7 @@ var videos = [{
     "duration": "00:04:47",
     "thumb": "http://i.ytimg.com/vi/zVsHzS70krg/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8007,6 +7796,7 @@ var videos = [{
     "duration": "00:10:42",
     "thumb": "http://i.ytimg.com/vi/AuA2EAgAegE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8029,6 +7819,7 @@ var videos = [{
     "duration": "00:09:04",
     "thumb": "http://i.ytimg.com/vi/VUfNEHl44hc/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8051,6 +7842,7 @@ var videos = [{
     "duration": "00:09:26",
     "thumb": "http://i.ytimg.com/vi/kubGCSj5y3k/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8073,6 +7865,7 @@ var videos = [{
     "duration": "00:06:39",
     "thumb": "http://i.ytimg.com/vi/QsBT5EQt348/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8095,6 +7888,7 @@ var videos = [{
     "duration": "00:06:21",
     "thumb": "http://i.ytimg.com/vi/i8D90DkCLhI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8117,6 +7911,7 @@ var videos = [{
     "duration": "00:09:07",
     "thumb": "http://i.ytimg.com/vi/Y9zThcMJzQU/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8139,6 +7934,7 @@ var videos = [{
     "duration": "00:02:11",
     "thumb": "http://i.ytimg.com/vi/hW7DW9NIO9M/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8161,6 +7957,7 @@ var videos = [{
     "duration": "00:02:50",
     "thumb": "http://i.ytimg.com/vi/ASRpIym_jFM/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8183,6 +7980,7 @@ var videos = [{
     "duration": "00:07:47",
     "thumb": "http://i.ytimg.com/vi/auQgOtveQi0/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8205,6 +8003,7 @@ var videos = [{
     "duration": "00:09:04",
     "thumb": "http://i.ytimg.com/vi/AFhOzhe9mg4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8227,6 +8026,7 @@ var videos = [{
     "duration": "00:04:21",
     "thumb": "http://i.ytimg.com/vi/zTd0-A5yDZI/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8249,6 +8049,7 @@ var videos = [{
     "duration": "00:11:18",
     "thumb": "http://i.ytimg.com/vi/q_oHv6HCMX4/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8271,6 +8072,7 @@ var videos = [{
     "duration": "00:04:56",
     "thumb": "http://i.ytimg.com/vi/yg16u_bzjPE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8293,6 +8095,7 @@ var videos = [{
     "duration": "00:07:28",
     "thumb": "http://i.ytimg.com/vi/6AnLznzIjSE/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8315,6 +8118,7 @@ var videos = [{
     "duration": "00:10:02",
     "thumb": "http://i.ytimg.com/vi/s9shPouRWCs/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8337,6 +8141,7 @@ var videos = [{
     "duration": "00:10:17",
     "thumb": "http://i.ytimg.com/vi/cd2Ua9dKEl8/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8359,6 +8164,7 @@ var videos = [{
     "duration": "00:02:07",
     "thumb": "http://i.ytimg.com/vi/NnMIhxWRGNw/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8381,6 +8187,7 @@ var videos = [{
     "duration": "00:09:42",
     "thumb": "http://i.ytimg.com/vi/thnDxFdkzZs/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],
@@ -8403,6 +8210,7 @@ var videos = [{
     "duration": "00:10:23",
     "thumb": "http://i.ytimg.com/vi/0pIRibivolA/default.jpg"
 }, {
+    "dates": [],
     "tags": [],
     "size": [],
     "time": [],

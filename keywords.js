@@ -91,7 +91,7 @@ var keywords =
     "group": true,
     "members": [
         {
-          "name":"Math/Logic",
+          "name":"Philosophy",
           "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fmath.PNG?alt=media&token=37b423f6-05c8-4ad6-927f-1e9da1f7f326",
           "status": {
             "hover": false,
@@ -100,7 +100,16 @@ var keywords =
           "group": false
         },
         {
-          "name":"Physics (QM)",
+          "name":"Math",
+          "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fmath.PNG?alt=media&token=37b423f6-05c8-4ad6-927f-1e9da1f7f326",
+          "status": {
+            "hover": false,
+            "expanded":false
+            },
+          "group": false
+        },
+        {
+          "name":"Physics",
           "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Ffun.PNG?alt=media&token=51c42c50-f7c7-4098-b919-e3fd636a4f61",
           "status": {
             "hover": false,
