@@ -92,7 +92,7 @@ var keywords =
     "members": [
         {
           "name":"Philosophy",
-          "url": "https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/scales%2Fmath.PNG?alt=media&token=37b423f6-05c8-4ad6-927f-1e9da1f7f326",
+          "url": "",
           "status": {
             "hover": false,
             "expanded":false

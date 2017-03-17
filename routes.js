@@ -9,6 +9,11 @@ const landing = {
     template: "#landingTemplate",
     mounted: function(){
       $('.collapsible').collapsible();
+      $('.button-collapse').sideNav({
+          closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+          draggable: true // Choose whether you can drag to open on touch screens
+        }
+      );
     }
 }
 
@@ -25,7 +30,7 @@ const explore = Vue.extend({
         return {
             db: undefined,                      // search results to display - array of material objects
             crossSection: null,                 // object containing the name of the cross section and tags in lens group - object containing array of tag objects and string name
-            selected: [],                       // tags selected for search - - array of tag objects
+            tagQuery: [],                       // tags selected for search - - array of tag objects with flags for include/exclude/pin etc.
             words: [],                          // suggested tags...not sure about ui, currently  - array of tag objects
             list: [],                           // db when no lens, replace with db even though less items? - array of tag objects
             numberOfDisplayed: null,            // number of materials currently displayed
@@ -46,10 +51,10 @@ const explore = Vue.extend({
             getFilterData: {                    // isotop filter functions - filter here for crosssection/grou/lensp instead of with jquery?
                 "keywords": (el) => {
                   foundAll = true
-                  for (var keyIndex = 0; keyIndex < this.selected.length; keyIndex++) {
+                  for (var keyIndex = 0; keyIndex < this.tagQuery.length; keyIndex++) {
                     foundOne = false
                     el.keywords.some((element, i) =>{
-                      if (this.selected[keyIndex]['name'].toLowerCase().trim() === element.toLowerCase().trim()) {
+                      if (this.tagQuery[keyIndex]['name'].toLowerCase().trim() === element.toLowerCase().trim()) {
                           foundOne = true;
                       }
                     })
@@ -188,7 +193,7 @@ const explore = Vue.extend({
         shuffle: function(key) {
             this.$refs.contentBin.shuffle();
             this.$refs.key.shuffle();
-            this.$refs.selected.shuffle();
+            this.$refs.tagQuery.shuffle();
         },
         filter: function(key) {
             this.$refs.contentBin.filter(key);
@@ -196,13 +201,12 @@ const explore = Vue.extend({
         },
         layout: function(mes) {
           console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
-          // this.$refs.key.layout('masonry');
-          this.$refs.selected.layout('masonry');
+          this.$refs.tagQuery.layout('masonry');
 
            // pretty serious antipattern here...make a registery when using cross section views instead?
           var steps = $('.step'); // get isotope containers with jquery
           for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
-            if(steps[stepIndex].tagName  !== undefined){
+            if(steps[stepIndex].tagName !== undefined && steps[stepIndex]['__vue__'] != null){
               steps[stepIndex]['__vue__'].layout('masonry')
             }
           }
@@ -246,12 +250,12 @@ const explore = Vue.extend({
 
       $('.dropdown-button').dropdown();
 
-      $('.step').imagesLoaded() // layout when images loaded and on progress
+      $('.step').imagesLoaded() // layout when images loaded and on progress...... doesn't seem to be working - do I need to do a for each?
         .always( ( instance ) => {
           console.log('all images loaded');
           this.layout('from images loaded, finished.')
         })
-        .progress( ( instance, image ) => { // this doesn't seem to be working?
+        .progress( ( instance, image ) => { // this doesn't seem to be working either
           var result = image.isLoaded ? 'loaded' : 'broken';
           console.log( 'image is ' + result + ' for ' + image.img.src );
           this.layout('from images loaded, progress made.')
@@ -274,7 +278,7 @@ const explore = Vue.extend({
       // this.words = keywords;
 
         bus.$on('addTagSubTag', (tag) => {
-          this.addToFrom(tag, this.selected)
+          this.addToFrom(tag, this.tagQuery)
         })
     }
 });

@@ -1,6 +1,13 @@
 const routes = [
   {  path: '/', component: landing },
   {  name: "explore", path: '/e', component: explore },
+  {  path: "/home", component: home },
+  {  path: "/status", component: status },
+  {  path: "/about", component: about },
+  {  path: "/principals", component: principals },
+  {  path: "/profile", component: profile },
+  {  path: "/involved", component: involved },
+  {  path: "/legal", component: legal },
   {  name: "content", path: '/c/:id', component: content }
 ]
 
