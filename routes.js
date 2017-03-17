@@ -24,8 +24,7 @@ const explore = Vue.extend({
   data: function() {
         return {
             db: undefined,                      // search results to display - array of material objects
-            crossSection: null,                 // tags in lens group - array of tag objects
-            lens: null,                         // change display if group or not, holds name of group (right now taken from lens.js) - string name
+            crossSection: null,                 // object containing the name of the cross section and tags in lens group - object containing array of tag objects and string name
             selected: [],                       // tags selected for search - - array of tag objects
             words: [],                          // suggested tags...not sure about ui, currently  - array of tag objects
             list: [],                           // db when no lens, replace with db even though less items? - array of tag objects
@@ -33,8 +32,8 @@ const explore = Vue.extend({
             display: undefined,                 // display option for materials in search result - string name of displaytype
             currentLayout: 'masonry',           // incase want to change isotope display type...not used now
             sortOption: "original-order",       // to sort search results by - string name
-            sortAscending: true,                //  whether sort whould be ascending or descending - boolean
-            filterOption: "show all",           // ?
+            sortAscending: true,                // whether sort whould be ascending or descending - boolean
+            filterOption: "show all",
             searchStr: null,                    // current user entered search text - string
             getSortData:  {                     // sort options for isotope...eventually include others...
                 rating: "rating",
@@ -110,7 +109,44 @@ const explore = Vue.extend({
           })
 
         },
-        getContentOptions: function() { // need to rethink managing multiple iso instances
+        changeLens: function(lens){
+          if(lens === null){
+              Cookies.set('lens', null)
+          } else {
+              Cookies.set('lens', lens.name)
+          }
+
+          if(lens === null || this.crossSection===null || this.crossSection.name !== lens.name){
+            // if(document.querySelector('.crossSectionNav')){ // can't destroy if it's not there...
+              $('.crossSectionNav').flickity('destroy');
+              $('.crossSectionSteps').flickity('destroy');
+            // }
+            this.crossSection = lens
+            this.$nextTick(function(){
+              $('.crossSectionNav').flickity({
+                asNavFor: '.crossSectionSteps',
+                // wrapAround: true,
+                pageDots: true,
+                prevNextButtons: true,
+                accessibility: false, // to prevent jumping when focused
+              })
+
+              $('.crossSectionSteps').flickity({
+                wrapAround: true,
+                pageDots: false,
+                prevNextButtons: true,
+                accessibility: false, // to prevent jumping when focused
+                dragThreshold: 40 // play around with this more?
+              });
+
+              this.$nextTick(function(){
+                  this.layout();
+              })
+
+            });
+          };
+        },
+        getContentOptions: function() { // need to rethink managing multiple iso instances - single function that take parameter?
             return {
                 sortAscending: this.sortAscending,
                 itemSelector: ".element-item",
@@ -162,7 +198,9 @@ const explore = Vue.extend({
           console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
           // this.$refs.key.layout('masonry');
           this.$refs.selected.layout('masonry');
-          var steps = $('.step'); // pretty serious antipattern here...make a registery when using cross section views instead?
+
+           // pretty serious antipattern here...make a registery when using cross section views instead?
+          var steps = $('.step'); // get isotope containers with jquery
           for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
             if(steps[stepIndex].tagName  !== undefined){
               steps[stepIndex]['__vue__'].layout('masonry')
@@ -170,7 +208,7 @@ const explore = Vue.extend({
           }
 
         },
-        trimNumber: function(num, digits) { // from http://stackoverflow.com/a/9462382/2061741
+        trimNumber: function(num, digits) { // from http://stackoverflow.com/a/9462382/2061741 - displays number of views
           var si = [ { value: 1E18, symbol: "E" }, { value: 1E15, symbol: "P" }, { value: 1E12, symbol: "T" }, { value: 1E9,  symbol: "G" }, { value: 1E6,  symbol: "M" }, { value: 1E3,  symbol: "k" }], rx = /\.0+$|(\.[0-9]*[1-9])0+$/, i;
           for (i = 0; i < si.length; i++) {
             if (num >= si[i].value) {
@@ -179,38 +217,6 @@ const explore = Vue.extend({
           }
           return num.toFixed(digits).replace(rx, "$1");
         }
-    },
-    watch: {
-      crossSection: {
-        handler: function(newVal, oldVal) {
-          if(document.querySelector('.crossSectionNav')){ // can't destroy if it's not there...
-            console.log('in destroy...')
-            $('.crossSectionNav').flickity('destroy');
-            $('.crossSectionSteps').flickity('destroy');
-          }
-          console.log(this._data)
-          Cookies.set('lens', this.lens)
-          if(newVal !== oldVal){
-            this.$nextTick(function(){
-              $('.crossSectionNav').flickity({
-                asNavFor: '.crossSectionSteps',
-                // wrapAround: true,
-                pageDots: true,
-                prevNextButtons: true,
-                accessibility: false, // to prevent jumping when focused
-              })
-
-              $('.crossSectionSteps').flickity({
-                wrapAround: true,
-                pageDots: false,
-                prevNextButtons: true,
-                accessibility: false, // to prevent jumping when focused
-                dragThreshold: 40 // play around with this more?
-              });
-            });
-          };
-        }
-      }
     },
     mounted: function(){
 
@@ -229,11 +235,13 @@ const explore = Vue.extend({
         this.display = Cookies.get('displayStyle');
       }
       // selected lens - delete after generalized to any group as a lens
-
-      if(!Cookies.get('lens')){
-        this.lens = null;
+      console.log(Cookies.get('lens'))
+      if(Cookies.get('lens') == 'null'){ // temporary until cross sections are generalized.
+        this.changeLens(null)
+      } else if (Cookies.get('lens') == "Big_History"){
+        this.changeLens(this.bigHistory)
       } else {
-        this.lens = Cookies.get('lens');
+        this.changeLens(this.size)
       }
 
       $('.dropdown-button').dropdown();
@@ -256,6 +264,7 @@ const explore = Vue.extend({
       this.db = db;
       this.bigHistory = bigHistory;
       this.size = disciplines;
+
       // limit number of initally displayed keys
       for(word in keywords){
         if(keywords[word]['count'] > 20){

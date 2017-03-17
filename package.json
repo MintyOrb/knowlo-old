@@ -13,7 +13,7 @@
     "community"
   ],
   "author": "Knowlo",
-  "license": "ISC",
+  "license": "GNU GPLv3",
   "dependencies": {
     "babelnet": "0.0.1",
     "flickity": "^2.0.5",
