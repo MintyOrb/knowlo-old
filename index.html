@@ -20,35 +20,14 @@
 			<nav class='blue'>
 				<div class="nav-wrapper">
 					<router-link to="/" class="brand-logo center thin">knowlo</router-link>
-					<ul id="" class="right ">
+					<ul id="" class="left ">
 						<li><a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a></li>
 					</ul>
 				</div>
 			</nav>
 		</div>
 
-		<ul id="slide-out" class="side-nav">
-		 <li><div class="userView">
-			 <div class="background">
-				 <img src="thumbs\_6xlNyWPpB8_MEDIUM_sddefault.jpg">
-			 </div>
-			 <a href="#!user"><img class="circle" src="thumbs\-EJOO3xAjTk_MEDIUM_sddefault.jpg"></a>
-			 <a href="#!name"><span class="white-text name">John Doe</span></a>
-			 <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-		 </div></li>
-		 <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-		 <li><a href="#!">Second Link</a></li>
-		 <li><div class="divider"></div></li>
-		 <li><a class="subheader">Subheader</a></li>
-		 <li><a class="waves-effect" href="#">Explore</a></li>
-		 <li><a class="waves-effect" href="#">Home</a></li>
-		 <li><a class="waves-effect" href="#">Status | Stats</a></li>
-		 <li><a class="waves-effect" href="#">About</a></li>
-		 <li><a class="waves-effect" href="#">Principals</a></li>
-		 <li><a class="waves-effect" href="#">Profile</a></li>
-		 <li><a class="waves-effect" href="#">Get Involved</a></li>
-		 <li><a class="waves-effect" href="#">Legal</a></li>
-	 </ul>
+		<sidebar></sidebar>
 
 		<router-view></router-view>
 
@@ -221,6 +200,8 @@
 
 	<template id="landingTemplate">
 		<main>
+			<!-- <sidebar></sidebar> -->
+
 			<div class="section no-pad-bot" id="index-banner">
 				<div class="container">
 					<br>
@@ -384,6 +365,39 @@
 	</div>
 </template>
 
+<!--
+███████ ██ ██████  ███████ ██████   █████  ██████
+██      ██ ██   ██ ██      ██   ██ ██   ██ ██   ██
+███████ ██ ██   ██ █████   ██████  ███████ ██████
+     ██ ██ ██   ██ ██      ██   ██ ██   ██ ██   ██
+███████ ██ ██████  ███████ ██████  ██   ██ ██   ██
+-->
+<template id="side-nav-template">
+	<ul id="slide-out" class="side-nav">
+	 <!-- <li><div class="userView">
+		 <div class="background">
+			 <img src="thumbs\_6xlNyWPpB8_MEDIUM_sddefault.jpg">
+		 </div>
+		 <a href="#!user"><img class="circle" src="thumbs\-EJOO3xAjTk_MEDIUM_sddefault.jpg"></a>
+		 <a href="#!name"><span class="white-text name">John Doe</span></a>
+		 <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+	 </div></li> -->
+	 <!-- <li><div class="divider"></div></li> -->
+	 <li><a href="#" class="subheader" id="navName">Knowlo</a></li>
+		<li><div class="divider"></div></li>
+	 <li><router-link class="waves-effect" to="/home"><i class="fa fa-lg fa-home"></i>Home</router-link></li>
+	 <li><router-link class="waves-effect" to="/profile"><i class="fa fa-lg fa-user"></i>Profile</router-link></li>
+	 <li><router-link class="waves-effect" to="/e"><i class="fa fa-lg fa-compass"></i>Explore</router-link></li>
+	 <li><router-link class="waves-effect" to="/status"><i class="fa fa-lg fa-line-chart"></i>Status | Stats</router-link></li>
+	 <li><a class="subheader"></a></li>
+		<li><div class="divider"></div></li>
+	 <li><router-link class="waves-effect" to="/about"><i class="fa fa-lg fa-info"></i>About</router-link></li>
+	 <li><router-link class="waves-effect" to="/principals"><i class="fa fa-lg fa-lightbulb-o"></i>Principals</router-link></li>
+	 <li><router-link class="waves-effect" to="/involved"><i class="fa fa-lg fa-users"></i>Get Involved</router-link></li>
+	 <li><router-link class="waves-effect" to="/legal"><i class="fa fa-lg fa-gavel"></i>Legal</router-link></li>
+	 <li><a class="waves-effect" target="blank" href="http://github.com/bornytm/knowlo"><i class="fa fa-lg fa-github"></i>Code | Github</a></li>
+	</ul>
+</template>
 </body>
 
 <!--

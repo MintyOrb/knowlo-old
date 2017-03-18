@@ -1,4 +1,13 @@
-
+const sidebar = Vue.component('sidebar',{
+  template: "#side-nav-template",
+  mounted: function(){
+    $('.button-collapse').sideNav({
+        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        draggable: true // Choose whether you can drag to open on touch screens
+      }
+    );
+  }
+})
 const home = {
   template: `<div>hello world! home here.</div>`
 }

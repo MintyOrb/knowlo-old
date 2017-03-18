@@ -6,6 +6,13 @@
 ███████    ██       ██    ███████ ███████
 */
 /*hide scroll bars*/
+#navName {
+  color:#2196F3;
+  font-size: 38px;
+  font-weight: 200;
+  text-align: center;
+  margin:20px;
+}
 a {color:black}
 ::-webkit-scrollbar {
     display: none;
