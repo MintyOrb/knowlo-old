@@ -53,7 +53,6 @@ html {
     position: relative;
     overflow: hidden;
     border-radius: 50%;
-    /*margin: 10px;*/
 }
 .thumb img {
     display: inline;
@@ -129,7 +128,8 @@ html {
 	margin-top: 10px;
 }
 .flickity-page-dots {
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 /* dots are lines */
 .flickity-page-dots .dot {

@@ -37,9 +37,9 @@
 				</div>
 			</div>
 			<div class="footer-copyright">
-					<div class="container center">knowlo</div>
-					<a style="margin-left:20px; margin-top:5px; position:absolute;" href="https://github.com/bornytm/knowlo"><img style="width:25px" src="/github.png"></a>
-				</div>
+				<div class="container center">knowlo</div>
+				<a style="margin-left:20px; margin-top:5px; position:absolute;" href="https://github.com/bornytm/knowlo"><img style="width:25px" src="/github.png"></a>
+			</div>
 		</footer>
 	</div>
 
@@ -55,7 +55,7 @@
 		<div>
 		<div class='container'>
 		    <div class='row'>
-		     <div style="height:70px"></div>   <!---temporary filler? -->
+		     <div style="height:40px"></div>   <!---temporary filler? -->
 		      <div class="input-field col s10 offset-s1">
 		        <input type='text' id='search'  @keyup="filter('contains')" v-model="searchStr">
 		        <label for='search'>search</label>
@@ -385,10 +385,11 @@
 	 <!-- <li><div class="divider"></div></li> -->
 	 <li><a href="#" class="subheader" id="navName">Knowlo</a></li>
 		<li><div class="divider"></div></li>
-	 <li><router-link class="waves-effect" to="/home"><i class="fa fa-lg fa-home"></i>Home</router-link></li>
-	 <li><router-link class="waves-effect" to="/profile"><i class="fa fa-lg fa-user"></i>Profile</router-link></li>
+	 <!-- <li><router-link class="waves-effect" to="/home"><i class="fa fa-lg fa-home"></i>Home</router-link></li> -->
+	 <!-- <li><router-link class="waves-effect" to="/profile"><i class="fa fa-lg fa-user"></i>Profile</router-link></li> -->
 	 <li><router-link class="waves-effect" to="/e"><i class="fa fa-lg fa-compass"></i>Explore</router-link></li>
-	 <li><router-link class="waves-effect" to="/status"><i class="fa fa-lg fa-line-chart"></i>Status | Stats</router-link></li>
+	 <li><router-link class="waves-effect" to="/trending"><i class="material-icons">trending_up</i>Trending</router-link></li>
+	 <li><router-link class="waves-effect" to="/status"><i class="fa fa-lg fa-area-chart"></i>Status | Stats</router-link></li>
 	 <li><a class="subheader"></a></li>
 		<li><div class="divider"></div></li>
 	 <li><router-link class="waves-effect" to="/about"><i class="fa fa-lg fa-info"></i>About</router-link></li>
