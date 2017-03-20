@@ -1,8 +1,10 @@
 const sidebar = Vue.component('sidebar',{
   template: "#side-nav-template",
   created: function(){
+    console.log('created')
     this.$nextTick(function(){
-      $('.button-collapse').sideNav({
+      console.log('next tick')
+      $('.navbar-collapse').sideNav({
           closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
           draggable: true // Choose whether you can drag to open on touch screens
         }
@@ -23,9 +25,9 @@ const trending = {
   template: `<div>hello world! trending here.</div>`
 }
 
-const about = {
+const about = Vue.component('about',{
   template: `<div>hello world! about here.</div>`
-}
+})
 
 const principals = {
   template: `<div>hello world! principals here.</div>`

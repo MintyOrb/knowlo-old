@@ -5,7 +5,33 @@
      ██    ██       ██    ██      ██
 ███████    ██       ██    ███████ ███████
 */
-/*hide scroll bars*/
+/**{outline: 1px solid black;}*/
+.headroom {
+    will-change: transform;
+    transition: transform 200ms linear;
+}
+.headroom--pinned {
+    transform: translateY(0%);
+}
+.headroom--unpinned {
+    transform: translateY(-100%);
+}
+.navbar-fixed {
+  height: 90px;
+}
+.navbar-fixed nav{
+  height: 90px;
+}
+.nav-wrapper {
+  margin-top: 13px;
+}
+#nav-slide{
+  position: fixed;
+  width: 100vw;
+}
+#nav-slide ul {
+  margin-left: 13px;
+}
 #navName {
   color:#2196F3;
   font-size: 38px;
@@ -14,6 +40,7 @@
   margin:20px;
 }
 a {color:black}
+/*hide scroll bars*/
 ::-webkit-scrollbar {
     display: none;
 }
@@ -147,7 +174,6 @@ html {
 	align-content: center;
 	justify-content: center;
 }
-/**{outline: 1px solid black;}*/
 
 .crossSectionNav {
 	width: 100%;

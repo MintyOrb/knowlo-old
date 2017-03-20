@@ -18,5 +18,12 @@ const router = new VueRouter({
 })
 
 const app = new Vue({
-  router
+  router,
+  created: function(){
+    this.bigHistory = bigHistory;
+    console.log('createedddd')
+    // $("#navbar-slide").headroom();
+    // grab an element
+  
+  }
 }).$mount('#main')

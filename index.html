@@ -16,14 +16,14 @@
 
 	<div id="main">
 
-		<div class="navbar-fixed">
+		<div id="nav-slide" class="navbar-fixed">
 			<nav class='blue'>
 				<div class="nav-wrapper">
 					<!-- <tag :tag="bigHistory.members[0]"></tag> -->
 
 					<router-link to="/" class="brand-logo center thin">knowlo</router-link>
-					<ul id="" class="left ">
-						<li><a data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a></li>
+					<ul class="left ">
+						<li><a data-activates="slide-out" class="navbar-collapse show-on-large"><i class="material-icons">menu</i></a></li>
 					</ul>
 				</div>
 			</nav>
@@ -31,7 +31,7 @@
 
 		<sidebar></sidebar>
 
-		<router-view></router-view>
+		<router-view style="padding-top:90px"></router-view>
 
 		<footer class="page-footer blue">
 			<div class="container">
@@ -224,8 +224,6 @@
 
 	<template id="landingTemplate">
 		<main>
-			<!-- <sidebar></sidebar> -->
-
 			<div class="section no-pad-bot" id="index-banner">
 				<div class="container">
 					<br>
@@ -470,11 +468,20 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 <script src="dep\imagesloaded.pkgd.min.js"></script>
 <script src="dep\flickity.pkgd.min.js"></script>
 <script src="dep\js.cookie.js"></script>
+<script src="dep\headroom.min.js"></script>
 
 <script src="navSectionTemplates.js"></script>
 <script src="routes.js"></script>
 <script src="main.js"></script>
 
-
+<!-- headroom is not working when placed inside a vue components created function - classes are not applied. -->
+<script>
+	var elem = document.querySelector("#nav-slide");
+	var headroom = new Headroom(elem, {
+		"offset": 220,
+		"tolerance": 5,
+		})
+	headroom.init();
+</script>
 
 </html>
