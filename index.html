@@ -19,9 +19,11 @@
 		<div class="navbar-fixed">
 			<nav class='blue'>
 				<div class="nav-wrapper">
+					<!-- <tag :tag="bigHistory.members[0]"></tag> -->
+
 					<router-link to="/" class="brand-logo center thin">knowlo</router-link>
 					<ul id="" class="left ">
-						<li><a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a></li>
+						<li><a data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a></li>
 					</ul>
 				</div>
 			</nav>
@@ -53,6 +55,28 @@
 
 	<template id="exploreTemplate">
 		<div>
+			<!-- <div class="fixed-action-btn horizontal click-to-toggle">
+		    <a class="btn-floating btn-large red">
+		      <i class="large material-icons">mode_edit</i>
+		    </a>
+		    <ul>
+		      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+		      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+		      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+		      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+		    </ul>
+		  </div>
+			<div class="fixed-action-btn horizontal">
+		    <a class="btn-floating btn-large red">
+		      <i class="large material-icons">mode_edit</i>
+		    </a>
+		    <ul>
+		      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+		      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+		      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+		      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+		    </ul>
+		  </div> -->
 		<div class='container'>
 		    <div class='row'>
 		     <div style="height:40px"></div>   <!---temporary filler? -->
@@ -63,20 +87,20 @@
 		    </div>
 
 		    <div class='row'>
-		        <isotope style="min-height:80px" ref="tagQuery" :list="tagQuery" :options='getSelectedOptions()' >
-		          <div  v-for="word in tagQuery"  class='selected' v-bind:class="{ expanded: word.status.expanded }">
+		        <isotope style="min-height:80px" ref="tagQuery" :list="tagQuery" :options='getSelectedOptions()'>
+		          <div  v-for="word in tagQuery"  class='selected' v-bind:class="{ expanded: word.status.expanded }" key="word.name">
 		            <tag class="expandedFlex" :tag="word" v-on:add-me="addToFrom(word, words, tagQuery)" v-on:lay-me="layout"></tag>
 		          </div>
 		        </isotope>
 		    </div>
 
-		    <!-- <div class='row'>
-		        <isotope ref="key" :list="words" :options='getSuggestionOptions()'>
-		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.status.expanded }">
-								<tag class="expandedFlex" :tag="word"  v-on:add-me="addToFrom(word, selected, words)" v-on:lay-me="layout" ></tag>
+		    <div class='row'>
+		        <isotope ref="key" :list="words" :options='getSuggestionOptions()' class="step">
+		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.status.expanded }" key="word.name">
+								<tag class="expandedFlex" :tag="word"  v-on:add-me="addToFrom(word, tagQuery, words)" v-on:lay-me="layout" ></tag>
 		          </div>
 		        </isotope>
-		    </div> -->
+		    </div>
 
 		    <div class="center pad margin20">
   				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
@@ -116,7 +140,7 @@
 					<div class=" crossSectionSteps">
 						<div v-for="step in crossSection.members" class="stepContainer">
 							<isotope class="step" :list="db" :options='getContentOptions()'>
-								<div  v-for="item in db" v-if="item.time.includes(step.name) || item.discipline.includes(step.name)" class='testing'>
+								<div  v-for="item in db" v-if="item.time.includes(step.name) || item.discipline.includes(step.name)" class='testing' key="item.name">
 				          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
 				              <router-link :to="'/c/'+item.videoid">
 				                <img :src="item.thumb">
@@ -151,7 +175,7 @@
 				<transition name="fade">
 				<div v-if="!crossSection" >
 			    <isotope ref="contentBin" class="step" :list="list" :options='getContentOptions()' id="container">
-			        <div v-for="item in list" class='element-item'>
+			        <div v-for="item in list" class='element-item' key="item.name">
 			          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
 			              <router-link :to="'/c/'+item.videoid">
 			                <img :src="item.thumb">

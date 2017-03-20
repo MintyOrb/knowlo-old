@@ -122,10 +122,9 @@ const explore = Vue.extend({
           }
 
           if(lens === null || this.crossSection===null || this.crossSection.name !== lens.name){
-            // if(document.querySelector('.crossSectionNav')){ // can't destroy if it's not there...
-              $('.crossSectionNav').flickity('destroy');
-              $('.crossSectionSteps').flickity('destroy');
-            // }
+            $('.crossSectionNav').flickity('destroy');
+            $('.crossSectionSteps').flickity('destroy');
+
             this.crossSection = lens
             this.$nextTick(function(){
               $('.crossSectionNav').flickity({
@@ -239,7 +238,6 @@ const explore = Vue.extend({
         this.display = Cookies.get('displayStyle');
       }
       // selected lens - delete after generalized to any group as a lens
-      console.log(Cookies.get('lens'))
       if(Cookies.get('lens') == 'null'){ // temporary until cross sections are generalized.
         this.changeLens(null)
       } else if (Cookies.get('lens') == "Big_History"){
