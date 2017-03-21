@@ -1,6 +1,12 @@
 const routes = [
-  {  path: '/', component: landing },
-  {  name: "explore", path: '/e', component: explore },
+
+  {  path: '/land', component: landing },
+  {  name: "explore", path: '/', component: explore,
+      children: [
+        { path: '/c/:id', component: resourceComp, name: 'resourceSub' },
+      ]
+  },
+   {  name: "resource", path: '/c/:id', component: resourceComp },
   {  path: "/home", component: home },
   {  path: "/trending", component: trending },
   {  path: "/status", component: status },
@@ -9,7 +15,6 @@ const routes = [
   {  path: "/profile", component: profile },
   {  path: "/involved", component: involved },
   {  path: "/legal", component: legal },
-  {  name: "content", path: '/c/:id', component: content }
 ]
 
 const router = new VueRouter({
@@ -21,22 +26,13 @@ const app = new Vue({
   router,
   data: function() {
     return {
-        tagQuery: [],
+        tagQuery: [],   // list of tag objects to be queried
       }
   },
   created: function(){
 
-    // var searchFlick = $('.tagQuery').flickity({
-    //   wrapAround: false,
-    //   pageDots: false,
-    //   prevNextButtons: true,
-    //   accessibility: false, // to prevent jumping when focused
-    //   dragThreshold: 0 // play around with this more?
-    // });
-    // searchFlick.reloadCells()
-
     this.bigHistory = bigHistory.members//.slice(0,3);
-    this.tagQuery= disciplines.members
+    this.tagQuery= disciplines.members.slice(0,3);
 
     this.$nextTick(function(){
       $('.tagQuery-collapse').sideNav({
@@ -47,31 +43,5 @@ const app = new Vue({
         })
       });
 
-      // check height when adding new items to search. if larger than view hight, make menu wider.
-      $('.tagQuery-collapse').sideNav({menuWidth:300})
-
-  },
-  methods: {
-    layout: function(mes) {
-      console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
-      this.$refs.tagQuery.layout('masonry');
-
-       // pretty serious antipattern here...make a registery when using cross section views instead?
-      var steps = $('.step'); // get isotope containers with jquery
-      for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
-        if(steps[stepIndex].tagName !== undefined && steps[stepIndex]['__vue__'] != null){
-          steps[stepIndex]['__vue__'].layout('masonry')
-        }
-      }
-
-    },
-    getQueryOptions: function() {
-        return {
-            masonry:{columnWidth: 1},
-            sortAscending: this.sortAscending,
-            getSortData: this.getSortData,
-            getFilterData: this.getFilterData,
-        }
-    },
   }
 }).$mount('#main')

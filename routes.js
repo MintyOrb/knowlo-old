@@ -24,13 +24,14 @@ const landing = {
 ██       ██ ██  ██      ██      ██    ██ ██   ██ ██
 ███████ ██   ██ ██      ███████  ██████  ██   ██ ███████
 */
-const explore = Vue.extend({
+const explore = Vue.component('exploreComp',{
   template: "#exploreTemplate",
+  props: ['tagQuery'],
   data: function() {
         return {
             db: undefined,                      // search results to display - array of material objects
             crossSection: null,                 // object containing the name of the cross section and tags in lens group - object containing array of tag objects and string name
-            tagQuery: [],                       // tags selected for search - - array of tag objects with flags for include/exclude/pin etc.
+           //tagQuery: [],                       // tags selected for search - - array of tag objects with flags for include/exclude/pin etc.
             words: [],                          // suggested tags...not sure about ui, currently  - array of tag objects
             list: [],                           // db when no lens, replace with db even though less items? - array of tag objects
             numberOfDisplayed: null,            // number of materials currently displayed
@@ -195,7 +196,7 @@ const explore = Vue.extend({
             this.$refs.tagQuery.shuffle();
         },
         filter: function(key) {
-            this.$refs.contentBin.filter(key);
+            // this.$refs.contentBin.filter(key);
             this.numberOfDisplayed =   this.$refs.contentBin.getFilteredItemElements().length
         },
         layout: function(mes) {
@@ -223,21 +224,28 @@ const explore = Vue.extend({
     },
     mounted: function(){
 
-      //alpha warning
-      if(!Cookies.get('alpha-warning-seen')){
-        Cookies.set('alpha-warning-seen', true, { expires: 7 });
-        var $toastContent = $("<span>Hi! Knowlo is pre-alpha right now. There's not a lot to see and what there is will probably break.</span>");
-        Materialize.toast($toastContent, 10000);
+      // redirect to landing if first time to knowlo
+      if(Cookies.get('returning') == undefined){
+        Cookies.set('returning', true, { expires: 7 });
+        this.$router.push('/land');
       } else {
-        Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
+        //alpha warning - only show on explore page
+        if(!Cookies.get('alpha-warning-seen')){
+          Cookies.set('alpha-warning-seen', true, { expires: 7 });
+          var $toastContent = $("<span>Hi! Knowlo is pre-alpha right now. There's not a lot to see and what there is will probably break.</span>");
+          Materialize.toast($toastContent, 10000);
+        } else {
+          Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
+        }
       }
-      // display Style
+
+      // get previously selected display Style
       if(!Cookies.get('displayStyle')){
         this.display = "card";
       } else {
         this.display = Cookies.get('displayStyle');
       }
-      // selected lens - delete after generalized to any group as a lens
+      // get previously selected lens - (remove after generalized to any group as a lens)
       if(Cookies.get('lens') == 'null'){ // temporary until cross sections are generalized.
         this.changeLens(null)
       } else if (Cookies.get('lens') == "Big_History"){
@@ -278,6 +286,7 @@ const explore = Vue.extend({
         bus.$on('addTagSubTag', (tag) => {
           this.addToFrom(tag, this.tagQuery)
         })
+
     }
 });
 
@@ -390,18 +399,12 @@ var bus = new Vue() // this feels dumb, but can't see how else to tell explore w
 ██      ██    ██ ██  ██ ██    ██    ██      ██  ██ ██    ██        ██      ██   ██ ██    ██ ██
  ██████  ██████  ██   ████    ██    ███████ ██   ████    ██        ██      ██   ██  ██████  ███████
 */
-const content = Vue.extend({
-    template: `
-    <div class="container">
-      <h4 class="center thin">{{content.title}}</h4>
-      <div class="row video-container ">
-          <iframe :src="'http://youtube.com/embed/'+content.videoid">
-      </div>
-    </div>
-    `,
+const resourceComp = Vue.component('resourceComp',{
+    template: "#resourceTemplate",
     data: function() {
           return {
-              content: {},
+              resource: {},
+              resourceSection: ["Activity","Tags","Vote","Stats","Related"]
             }
           },
     methods: {
@@ -415,6 +418,42 @@ const content = Vue.extend({
       }
     },
     mounted: function(){
-      this.content = this.find(this.$route.params.id)
+      this.resource = this.find(this.$route.params.id)
+
+      $('#modal1').modal({
+          dismissible: true, // Modal can be dismissed by clicking outside of the modal
+          opacity: .5, // Opacity of modal background
+          inDuration: 300, // Transition in duration
+          outDuration: 200, // Transition out duration
+          startingTop: '4%', // Starting top style attribute
+          endingTop: '10%', // Ending top style attribute
+          ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+            console.log("Ready");
+            console.log(modal, trigger);
+          },
+          complete: () => {
+            $('.resourceNav').flickity('destroy');
+            $('.resourceSections').flickity('destroy');
+            this.$router.push('/')
+          }
+        })
+
+      $('#modal1').modal('open');
+
+      $('.resourceNav').flickity({
+        asNavFor: '.resourceSections',
+        // wrapAround: true,
+        pageDots: true,
+        prevNextButtons: true,
+        accessibility: false, // to prevent jumping when focused
+      })
+
+      $('.resourceSections').flickity({
+        wrapAround: true,
+        pageDots: false,
+        prevNextButtons: true,
+        accessibility: false, // to prevent jumping when focused
+        dragThreshold: 40 // play around with this more?
+      });
     }
 });

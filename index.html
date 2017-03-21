@@ -32,12 +32,12 @@
 
 		<sidebar></sidebar>
 
-		<router-view style="padding-top:90px"></router-view>
+		<router-view :tag-query="tagQuery" style="padding-top:90px"></router-view>
+
+		<!-- tags for query -->
 		<div id="query-slide" class="side-nav">
-			<div id="block">
-		</div>
 			<div class="right selectedTags">
-			<isotope class="tagQuery" ref="tagQuery" :list="tagQuery" :options='getQueryOptions()'>
+			<isotope class="tagQuery" ref="tagQuery" :list="tagQuery" :options='{}'>
 				<span  v-for="tag in tagQuery" key="tag.name">
 					<tag :tag="tag" ></tag>
 				</span>
@@ -67,6 +67,9 @@
 
 	<template id="exploreTemplate">
 		<div>
+			<!-- view for tag and resource page -->
+			<router-view></router-view>
+
 			<!-- <div class="fixed-action-btn horizontal click-to-toggle">
 		    <a class="btn-floating btn-large red">
 		      <i class="large material-icons">mode_edit</i>
@@ -89,6 +92,7 @@
 		      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
 		    </ul>
 		  </div> -->
+
 		<div class='container'>
 		    <div class='row'>
 		     <div style="height:40px"></div>   <!---temporary filler? -->
@@ -141,31 +145,32 @@
 			</div>
 			<div>
 				<transition name="fade">
+				<!-- results by cross section -->
 				<div v-if="crossSection" >
 					<div class=" crossSectionNav ">
-						<!-- flick navigation -->
+						<!-- flick navigation for isotope containers -->
 						<div v-for="step in crossSection.members" class="navItems">
 							<tag :tag="step"></tag>
 						</div>
 					</div>
-				<!-- results by cross section -->
+					<!-- isotope contianers -->
 					<div class=" crossSectionSteps">
 						<div v-for="step in crossSection.members" class="stepContainer">
 							<isotope class="step" :list="db" :options='getContentOptions()'>
-								<div  v-for="item in db" v-if="item.time.includes(step.name) || item.discipline.includes(step.name)" class='testing' key="item.name">
+								<div  v-for="item in db" v-if="item.time.includes(step.name) || item.discipline.includes(step.name)" key="item.name">
 				          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-				              <router-link :to="'/c/'+item.videoid">
+				              <router-link  :to="{ name: 'contentSub', params: { id: videoid }}">
 				                <img :src="item.thumb">
 				              </router-link>
 				          </div>
-								 <router-link :to="'/c/'+item.videoid" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
+								 <router-link :to="'/e/c/'+item.videoid" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
 									<a>
 										<span class='truncate thin '>{{item.title}}</span>
 									</a>
 								 </router-link>
 				          <div  v-if="display == 'card'" class="card hoverable">
 				            <div class='card-image'>
-				                <router-link :to="'/c/'+item.videoid">
+				                <router-link :to="'/e/c/'+item.videoid">
 				                  <img :src="item.thumb" class='card-image' alt="Not found">
 				               </router-link>
 				            </div>
@@ -178,22 +183,24 @@
 				              <span class='right card-bottom'>{{item.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
 				            </div>
 					        </div>
+								</div>
 							 </isotope>
-							</div>
 						</div>
 					</div>
 				</div>
 				</transition>
+
+				<!-- results all together -->
 				<transition name="fade">
 				<div v-if="!crossSection" >
 			    <isotope ref="contentBin" class="step" :list="list" :options='getContentOptions()' id="container">
 			        <div v-for="item in list" class='element-item' key="item.name">
 			          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-			              <router-link :to="'/c/'+item.videoid">
+			              <router-link :to="{ name: 'resource', params: { id: item.videoid }}">
 			                <img :src="item.thumb">
 			              </router-link>
 			          </div>
-							 <router-link :to="'/c/'+item.videoid" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
+							 <router-link  :to="{ name: 'resourceSub', params: { id: item.videoid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
 								<a>
 									<span class='truncate thin '>{{item.title}}</span>
 								</a>
@@ -227,6 +234,44 @@
 	</template>
 
 	<!--
+	██████  ███████ ███████  ██████  ██    ██ ██████   ██████ ███████
+	██   ██ ██      ██      ██    ██ ██    ██ ██   ██ ██      ██
+	██████  █████   ███████ ██    ██ ██    ██ ██████  ██      █████
+	██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██
+	██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████
+	-->
+
+
+<template id="resourceTemplate">
+	<div id="modal1" class="modal">
+
+		 <div class="video-container ">
+				 <iframe :src="'http://youtube.com/embed/'+resource.videoid"></iframe>
+		 </div>
+
+
+			 <div class="resourceNav">
+				 <!-- flick navigation for isotope containers -->
+				 <div v-for="step in resourceSection" class="navItems">
+					 <p>
+						{{step}}
+					 </p>
+				 </div>
+			 </div>
+			 <!-- isotope contianers -->
+			 <div class="resourceSections">
+				 <div v-for="step in resourceSection" class="stepContainer">
+						hello! {{step}} here
+				 </div>
+			 </div>
+
+
+
+ </div>
+
+</template>
+
+	<!--
 	██       █████  ███    ██ ██████  ██ ███    ██  ██████
 	██      ██   ██ ████   ██ ██   ██ ██ ████   ██ ██
 	██      ███████ ██ ██  ██ ██   ██ ██ ██ ██  ██ ██   ███
@@ -247,7 +292,7 @@
 						<h5 class="header col s12 light">We're all giants.</h5>
 					</div>
 					<div class="row center">
-						<router-link to="/e" class="btn-large waves-effect waves-light blue">explore</router-link>
+						<router-link to="/" class="btn-large waves-effect waves-light blue">explore</router-link>
 					</div>
 					<br>
 					<br>
@@ -347,12 +392,12 @@
 						</div>
 					</div>
 
-					<div id="hoverPad" v-if="$parent._uid == 61">
+					<div id="hoverPad" v-if="$parent._uid == 67">
 					</div>
 
 					<div class="icons">
 						<div class="rotater">
-							<div @click="pin(tag)" class="mbtn mbtn-icon flexCenter" :class="{showPin: tag.status.pinned, pinNav: tag.status.hover && $parent._uid == 61 }">
+							<div @click="pin(tag)" class="mbtn mbtn-icon flexCenter" :class="{showPin: tag.status.pinned, pinNav: tag.status.hover && $parent._uid == 67 }">
 								<i class="fa fa-thumb-tack" style="transform:rotate(-45deg)"></i>
 							</div>
 						</div>
@@ -367,27 +412,27 @@
 							</div>
 						</div>
 						<div class="rotater">
-							<div class="mbtn mbtn-icon flexCenter" :class="{showInfo: tag.status.info, infoNav: tag.status.hover && $parent._uid == 61 }">
+							<div class="mbtn mbtn-icon flexCenter" :class="{showInfo: tag.status.info, infoNav: tag.status.hover && $parent._uid == 67 }">
 								<i class="fa fa-info"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom('', 'exclude')" class="mbtn mbtn-icon flexCenter" :class="{showMinus: tag.status.exclude, excludeNav: tag.status.hover && $parent._uid == 61 }">
+							<div @click="addToFrom('', 'exclude')" class="mbtn mbtn-icon flexCenter" :class="{showMinus: tag.status.exclude, excludeNav: tag.status.hover && $parent._uid == 67 }">
 								<i class="fa fa-minus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom(tag, 'include')" class="mbtn mbtn-icon flexCenter" :class="{showPlus: tag.status.include, includeNav: tag.status.hover && $parent._uid == 61 }">
+							<div @click="addToFrom(tag, 'include')" class="mbtn mbtn-icon flexCenter" :class="{showPlus: tag.status.include, includeNav: tag.status.hover && $parent._uid == 67 }">
 								<i class="fa fa-plus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom(tag, 'focus')" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: tag.status.focus, focusNav: tag.status.hover && $parent._uid == 61 }">
+							<div @click="addToFrom(tag, 'focus')" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: tag.status.focus, focusNav: tag.status.hover && $parent._uid == 67 }">
 								<i class="fa fa-crosshairs"></i>
 							</div>
 						</div>
 						<div class="">
-							<div @click="addToFrom(tag, 'remove')" class="mbtn mbtn-icon flexCenter" :class="{removeNav: tag.status.hover && $parent._uid == 61 }">
+							<div @click="addToFrom(tag, 'remove')" class="mbtn mbtn-icon flexCenter" :class="{removeNav: tag.status.hover && $parent._uid == 67 }">
 								<i class="fa fa-times"></i>
 							</div>
 						</div>
@@ -431,7 +476,7 @@
 		<li><div class="divider"></div></li>
 	 <!-- <li><router-link class="waves-effect" to="/home"><i class="fa fa-lg fa-home"></i>Home</router-link></li> -->
 	 <!-- <li><router-link class="waves-effect" to="/profile"><i class="fa fa-lg fa-user"></i>Profile</router-link></li> -->
-	 <li><router-link class="waves-effect" to="/e"><i class="fa fa-lg fa-compass"></i>Explore</router-link></li>
+	 <li><router-link class="waves-effect" to="/"><i class="fa fa-lg fa-compass"></i>Explore</router-link></li>
 	 <li><router-link class="waves-effect" to="/trending"><i class="material-icons">trending_up</i>Trending</router-link></li>
 	 <li><router-link class="waves-effect" to="/status"><i class="fa fa-lg fa-area-chart"></i>Status | Stats</router-link></li>
 	 <li><a class="subheader"></a></li>
