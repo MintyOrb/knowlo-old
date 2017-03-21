@@ -5,7 +5,7 @@
      ██    ██       ██    ██      ██
 ███████    ██       ██    ███████ ███████
 */
-/**{outline: 1px solid black;}*/
+*{outline: 1px solid black;}
 .headroom {
     will-change: transform;
     transition: transform 200ms linear;
@@ -419,25 +419,12 @@ html {
   cursor: pointer;
 }
 .modal{
+  z-index: 1001;
   top: 0!important;
   width: 100vw;
   height: 100vh;
   max-height: none;
 }
-@media only screen and (min-width: 992px){}
-@media (max-width:20em) { /* smartphones, iPhone, portrait 480x320 phones */}
-@media (max-width:30.063em) { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
-@media (max-width:40.063em) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-    .modal {
-        top: 0!important;
-        max-height: 100%!important;
-        width: 100%!important;
-        height: 100%!important;
-        }
-    .filter {
-        margin: 0px;
-    }
+.drag-target{
+  z-index: 1005;
 }
-@media (min-width:60.063em) { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
-@media (min-width:64.063em) { /* big landscape tablets, laptops, and desktops */ }
-@media (min-width:80.063em) { /* hi-res laptops and desktops */ }

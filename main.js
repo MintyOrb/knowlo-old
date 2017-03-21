@@ -6,7 +6,7 @@ const routes = [
         { path: '/c/:id', component: resourceComp, name: 'resourceSub' },
       ]
   },
-   {  name: "resource", path: '/c/:id', component: resourceComp },
+  {  name: "resource", path: '/c/:id', component: resourceComp },
   {  path: "/home", component: home },
   {  path: "/trending", component: trending },
   {  path: "/status", component: status },
@@ -34,7 +34,7 @@ const app = new Vue({
     this.bigHistory = bigHistory.members//.slice(0,3);
     this.tagQuery= disciplines.members.slice(0,3);
 
-    this.$nextTick(function(){
+    this.$nextTick(function(){ // init tag sidebar
       $('.tagQuery-collapse').sideNav({
           menuWidth: 300, // Default is 300
           edge: 'right', // Choose the horizontal origin

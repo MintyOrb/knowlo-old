@@ -160,18 +160,18 @@
 							<isotope class="step" :list="db" :options='getContentOptions()'>
 								<div  v-for="item in db" v-if="item.time.includes(step.name) || item.discipline.includes(step.name)" key="item.name">
 				          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-				              <router-link  :to="{ name: 'contentSub', params: { id: videoid }}">
+				              <router-link  :to="{ name: 'resourceSub', params: { id: videoid }}">
 				                <img :src="item.thumb">
 				              </router-link>
 				          </div>
-								 <router-link :to="'/e/c/'+item.videoid" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
+								 <router-link :to="{ name: 'resourceSub', params: { id: videoid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
 									<a>
 										<span class='truncate thin '>{{item.title}}</span>
 									</a>
 								 </router-link>
 				          <div  v-if="display == 'card'" class="card hoverable">
 				            <div class='card-image'>
-				                <router-link :to="'/e/c/'+item.videoid">
+				                <router-link :to="{ name: 'resourceSub', params: { id: videoid }}">
 				                  <img :src="item.thumb" class='card-image' alt="Not found">
 				               </router-link>
 				            </div>
@@ -479,11 +479,11 @@
 	 <!-- <li><router-link class="waves-effect" to="/home"><i class="fa fa-lg fa-home"></i>Home</router-link></li> -->
 	 <!-- <li><router-link class="waves-effect" to="/profile"><i class="fa fa-lg fa-user"></i>Profile</router-link></li> -->
 	 <li><router-link class="waves-effect" to="/"><i class="fa fa-lg fa-compass"></i>Explore</router-link></li>
-	 <li><router-link class="waves-effect" to="/trending"><i class="material-icons">trending_up</i>Trending</router-link></li>
+	 <!-- <li><router-link class="waves-effect" to="/trending"><i class="material-icons">trending_up</i>Trending</router-link></li> -->
 	 <li><router-link class="waves-effect" to="/status"><i class="fa fa-lg fa-area-chart"></i>Status | Stats</router-link></li>
 	 <li><a class="subheader"></a></li>
 		<li><div class="divider"></div></li>
-	 <li><router-link class="waves-effect" to="/about"><i class="fa fa-lg fa-info"></i>About</router-link></li>
+	 <li><router-link class="waves-effect" to="/land"><i class="fa fa-lg fa-info"></i>About</router-link></li>
 	 <li><router-link class="waves-effect" to="/principals"><i class="fa fa-lg fa-lightbulb-o"></i>Principals</router-link></li>
 	 <li><router-link class="waves-effect" to="/involved"><i class="fa fa-lg fa-users"></i>Get Involved</router-link></li>
 	 <li><router-link class="waves-effect" to="/legal"><i class="fa fa-lg fa-gavel"></i>Legal</router-link></li>
