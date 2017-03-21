@@ -19,11 +19,12 @@
 		<div id="nav-slide" class="navbar-fixed">
 			<nav class='blue'>
 				<div class="nav-wrapper">
-					<!-- <tag :tag="bigHistory.members[0]"></tag> -->
-
 					<router-link to="/" class="brand-logo center thin">knowlo</router-link>
 					<ul class="left ">
 						<li><a data-activates="slide-out" class="navbar-collapse show-on-large"><i class="material-icons">menu</i></a></li>
+					</ul>
+					<ul class="right ">
+						<li><a data-activates="query-slide" class="tagQuery-collapse show-on-large"><i class="material-icons">menu</i></a></li>
 					</ul>
 				</div>
 			</nav>
@@ -32,6 +33,17 @@
 		<sidebar></sidebar>
 
 		<router-view style="padding-top:90px"></router-view>
+		<div id="query-slide" class="side-nav">
+			<div id="block">
+		</div>
+			<div class="right selectedTags">
+			<isotope class="tagQuery" ref="tagQuery" :list="tagQuery" :options='getQueryOptions()'>
+				<span  v-for="tag in tagQuery" key="tag.name">
+					<tag :tag="tag" ></tag>
+				</span>
+			</isotope>
+			</div>
+		</div>
 
 		<footer class="page-footer blue">
 			<div class="container">
@@ -323,50 +335,60 @@
    ██    ██   ██  ██████
 -->
 <template id="tagContainer">
-	<div>
+	<span>
 		<div class="tagWidth">
-			<div class="menu" @mouseOver="delayHover(tag, $parent._uid)" @mouseleave="tag.left=true;tag.status.hover=false" v-bind:class="{'active': tag.status.hover && $parent._uid == tag.parentID}">
+			<div class="menu" @mouseenter="delayHover(tag, tag.status.hover && $parent._uid)" @mouseleave="leave(tag)" v-bind:class="{'active': tag.status.hover}">
 				<div class="">
-					<div @click="addToFrom(tag, 'focus')" class="mbtn trigger">
+
+					<div @click="focus(tag)" class="mbtn trigger">
 						<span v-if="!tag.url" class="flexCenter border"> {{tag.name[0]}}</span>
 						<div v-else class="thumb card-image border">
 							<img :src="tag.url">
 						</div>
 					</div>
+
+					<div id="hoverPad" v-if="$parent._uid == 61">
+					</div>
+
 					<div class="icons">
 						<div class="rotater">
-							<div @click="addToFrom(tag, 'pinned')" class="mbtn mbtn-icon flexCenter" :class="{showPin: tag.status.pinned }">
+							<div @click="pin(tag)" class="mbtn mbtn-icon flexCenter" :class="{showPin: tag.status.pinned, pinNav: tag.status.hover && $parent._uid == 61 }">
 								<i class="fa fa-thumb-tack" style="transform:rotate(-45deg)"></i>
 							</div>
 						</div>
 						<div  v-if="!tag.status.expanded" class="rotater">
-							<div :class="{'nope':!tag.group}" class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)">
+							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)" :class="{'nope':!tag.group, expandNav: tag.status.hover && $parent._uid == 61}">
 								<i class="fa fa-expand"></i>
 							</div>
 						</div>
 						<div  v-if="tag.status.expanded" class="rotater">
-							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)" :class="{showCompress: tag.status.expanded }">
+							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)" :class="{showCompress: tag.status.expanded, expandNav: tag.status.hover && $parent._uid == 61}">
 								<i class="fa fa-compress"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div class="mbtn mbtn-icon flexCenter">
-								<i class="fa fa-info nope"></i>
+							<div class="mbtn mbtn-icon flexCenter" :class="{showInfo: tag.status.info, infoNav: tag.status.hover && $parent._uid == 61 }">
+								<i class="fa fa-info"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom('', 'exclude')" class="mbtn mbtn-icon flexCenter" :class="{showMinus: tag.status.exclude }">
-								<i class="fa fa-minus nope"></i>
+							<div @click="addToFrom('', 'exclude')" class="mbtn mbtn-icon flexCenter" :class="{showMinus: tag.status.exclude, excludeNav: tag.status.hover && $parent._uid == 61 }">
+								<i class="fa fa-minus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom(tag, 'include')" class="mbtn mbtn-icon flexCenter" :class="{showPlus: tag.status.include }">
+							<div @click="addToFrom(tag, 'include')" class="mbtn mbtn-icon flexCenter" :class="{showPlus: tag.status.include, includeNav: tag.status.hover && $parent._uid == 61 }">
 								<i class="fa fa-plus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom(tag, 'focus')" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: tag.status.focus }">
+							<div @click="addToFrom(tag, 'focus')" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: tag.status.focus, focusNav: tag.status.hover && $parent._uid == 61 }">
 								<i class="fa fa-crosshairs"></i>
+							</div>
+						</div>
+						<div class="">
+							<div @click="addToFrom(tag, 'remove')" class="mbtn mbtn-icon flexCenter" :class="{removeNav: tag.status.hover && $parent._uid == 61 }">
+								<i class="fa fa-times"></i>
 							</div>
 						</div>
 					</div>
@@ -384,7 +406,7 @@
 				</div>
 			</div>
 		</transition>
-	</div>
+	</span>
 </template>
 
 <!--
@@ -474,7 +496,7 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 <script src="routes.js"></script>
 <script src="main.js"></script>
 
-<!-- headroom is not working when placed inside a vue components created function - classes are not applied. -->
+<!-- can't get headroom to work when placed inside a vue components created function - classes are not applied. -->
 <script>
 	var elem = document.querySelector("#nav-slide");
 	var headroom = new Headroom(elem, {

@@ -301,6 +301,13 @@ Vue.component('tag',{
       addFromSub: function(tag){ // there must be a better way to add sub tag...
         bus.$emit('addTagSubTag', tag)
       },
+      focus: function(tag){
+        console.log(this.$parent)
+
+      },
+      pin: function(tag){
+
+      },
       addToFrom: function(tag, type){
         if(tag.status[type] == undefined){
           tag.status[type] = true; // need to add logic for combinations... ex: can't be both inclded and excluded. Track with string instead? status.type = "exclude"
@@ -367,6 +374,10 @@ Vue.component('tag',{
             }
           }, 300)
         },
+        leave: function(tag){
+          tag.left=true;
+          tag.status.hover=false;
+        }
     }
 });
 

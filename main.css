@@ -22,7 +22,10 @@
 .navbar-fixed nav{
   height: 90px;
 }
-.nav-wrapper {
+.nav-wrapper ul {
+  margin-bottom: 13px;
+}
+.nav-wrapper a {
   margin-top: 13px;
 }
 #nav-slide{
@@ -39,6 +42,54 @@
   text-align: center;
   margin:20px;
 }
+
+#query-slide{
+  background: rgba(128, 0, 128, 0);
+  box-shadow: none;
+  overflow-x: hidden;
+}
+.selectedTags{
+  background-color: rgb(255, 255, 255);
+  width: 95px;
+  height: 200%;
+}
+
+
+#hoverPad{
+  width: 214px;
+  height: 52px;
+  position: absolute;
+  left: -219px;
+  top: 4px;
+}
+.focusNav{
+  transform: translateY(-198px)!important;
+  color: white!important;
+}
+.includeNav {
+  transform: translate(208px, -123px) rotate(-210deg)!important;
+  color: white!important;
+}
+.excludeNav{
+  transform: translate(211px, 119px) rotate(-150deg)!important;
+  color: white!important;
+}
+.pinNav {
+  transform: translate(-125px,-74px) rotate(30deg)!important;
+  color: white!important;
+}
+.removeNav{
+  transform: translate(-78px, -60px)!important;
+  color: white!important;
+}
+.infoNav{
+  transform: translateY(115px) rotate(-90deg)!important;
+  color: white!important;
+}
+.expandNav{
+  transform: translateY(0em) rotate(-30deg)!important;
+}
+
 a {color:black}
 /*hide scroll bars*/
 ::-webkit-scrollbar {
@@ -291,6 +342,8 @@ html {
 	transform: translateY(-2.9em) rotate(-150deg)!important;
 	opacity: 1!important;
 }
+/*minus drop */
+/*translate(2.7em, -4.5em)  rotate(-150deg)*/
 .rotater:nth-child(5) {
 	  transform: rotate(210deg);
 }
@@ -301,6 +354,8 @@ html {
 	transform: translateY(-2.9em) rotate(-210deg)!important;
 	opacity: 1!important;
 }
+/*plus dropr*/
+/*translate(-2.7em, -4.5em) rotate(-300deg)*/
 .rotater:nth-child(6) {
 	  transform: rotate(270deg);
 }
@@ -325,8 +380,9 @@ html {
 	align-items: center;
 }
 .tagWidth {
-	width:100px;
+	width:95px;
 }
+
 
 
 
