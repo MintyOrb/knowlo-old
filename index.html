@@ -7,6 +7,7 @@
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 	<link rel="stylesheet" href="dep/flickity.min.css">
+	<link rel="stylesheet" href="dep/leaflet.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="main.css">
 	<title>knowlo</title>
@@ -207,7 +208,7 @@
 							 </router-link>
 			          <div  v-if="display == 'card'" class="card hoverable">
 			            <div class='card-image'>
-			                <router-link :to="'/c/'+item.videoid">
+			                <router-link :to="{ name: 'resourceSub', params: { id: item.videoid }}">
 			                  <img :src="item.thumb" class='card-image' alt="Not found">
 			               </router-link>
 			            </div>
@@ -243,32 +244,33 @@
 
 
 <template id="resourceTemplate">
-	<div id="modal1" class="modal">
+	<div :id="'resourceModal'+resource.id" class="modal">
 
-		 <div class="video-container ">
+		<span class="exit hide-on-med-and-down" ><i @click="exit(resource.id)" class="fa fa-3x fa-times"></i></span>
+
+		<!-- the resource -->
+		<div>
+			<!-- <div id="image-map"></div> -->
+			<div class="video-container ">
 				 <iframe :src="'http://youtube.com/embed/'+resource.videoid"></iframe>
+			</div>
+		</div>
+
+		<div class="resourceNav">
+		 <!-- flick navigation for isotope containers -->
+		 <div v-for="step in resourceSection" class="navItems">
+			 <p>
+				{{step}}
+			 </p>
 		 </div>
-
-
-			 <div class="resourceNav">
-				 <!-- flick navigation for isotope containers -->
-				 <div v-for="step in resourceSection" class="navItems">
-					 <p>
-						{{step}}
-					 </p>
-				 </div>
-			 </div>
-			 <!-- isotope contianers -->
-			 <div class="resourceSections">
-				 <div v-for="step in resourceSection" class="stepContainer">
-						hello! {{step}} here
-				 </div>
-			 </div>
-
-
+		</div>
+		<!-- isotope contianers -->
+		<div class="resourceSections">
+		 <div v-for="step in resourceSection" class="stepContainer">
+		 </div>
+	 </div>
 
  </div>
-
 </template>
 
 	<!--
@@ -536,6 +538,7 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 <script src="dep\flickity.pkgd.min.js"></script>
 <script src="dep\js.cookie.js"></script>
 <script src="dep\headroom.min.js"></script>
+<script src="dep\leaflet.js"></script>
 
 <script src="navSectionTemplates.js"></script>
 <script src="routes.js"></script>

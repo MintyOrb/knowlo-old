@@ -415,12 +415,16 @@ const resourceComp = Vue.component('resourceComp',{
               break
             }
           }
+      },
+      exit: (id) => {
+        console.log('exit here')
+        $('#resourceModal'+id).modal('close');
+
       }
     },
     mounted: function(){
       this.resource = this.find(this.$route.params.id)
-
-      $('#modal1').modal({
+      $('#resourceModal'+this.resource.id).modal({
           dismissible: true, // Modal can be dismissed by clicking outside of the modal
           opacity: .5, // Opacity of modal background
           inDuration: 300, // Transition in duration
@@ -438,7 +442,7 @@ const resourceComp = Vue.component('resourceComp',{
           }
         })
 
-      $('#modal1').modal('open');
+      $('#resourceModal'+this.resource.id).modal('open');
 
       $('.resourceNav').flickity({
         asNavFor: '.resourceSections',
@@ -455,5 +459,31 @@ const resourceComp = Vue.component('resourceComp',{
         accessibility: false, // to prevent jumping when focused
         dragThreshold: 40 // play around with this more?
       });
+
+      // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
+      var map = L.map('image-map', {
+        minZoom: 1,
+        maxZoom: 4,
+        center: [0, 0],
+        zoom: 1,
+        crs: L.CRS.Simple
+      });
+
+      // dimensions of the image
+      var w = 2000,
+          h = 1500,
+          url = 'http://kempe.net/images/newspaper-big.jpg';
+
+      // calculate the edges of the image, in coordinate space
+      var southWest = map.unproject([0, h], map.getMaxZoom()-1);
+      var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
+      var bounds = new L.LatLngBounds(southWest, northEast);
+
+      // add the image overlay,
+      // so that it covers the entire map
+      L.imageOverlay(url, bounds).addTo(map);
+
+      // tell leaflet that the map is exactly as big as the image
+      map.setMaxBounds(bounds);
     }
 });
