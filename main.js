@@ -29,7 +29,7 @@ const app = new Vue({
         tagQuery: [],   // list of tag objects to be queried
       }
   },
-  created: function(){
+  mounted: function(){
 
     this.bigHistory = bigHistory.members//.slice(0,3);
     this.tagQuery= disciplines.members.slice(0,3);
@@ -42,6 +42,48 @@ const app = new Vue({
           draggable: true // Choose whether you can drag to open on touch screens
         })
       });
+
+      $('#login-modal').modal(); // init login modal
+
+      // init headroom (hide/show navbar on scroll down/up)
+      var elem = document.querySelector("#nav-slide");
+    	var headroom = new Headroom(elem, {
+    		"offset": 220,
+    		"tolerance": 5,
+    		})
+    	headroom.init();
+
+      firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            console.log("user!")
+            console.log(user)
+            // User is signed in.
+            // var displayName = user.displayName;
+            // var email = user.email;
+            // var emailVerified = user.emailVerified;
+            // var photoURL = user.photoURL;
+            // var uid = user.uid;
+            // var providerData = user.providerData;
+            user.getToken().then(function(accessToken) {
+              console.log('got access token!')
+              console.lg(accessToken)
+            });
+          } else {
+            // User is signed out.
+            console.log("user is signed out")
+          }
+        }, function(error) {
+          console.log(error);
+        });
+      // GET /someUrl
+      // this.$http.post('/something',{id: '63cbd7c5-e2b6-4877-9d42-7d6f162a8b36'}).then(response => {
+      //   console.log('back',response)
+      //   // get body data
+      //   this.someData = response.body;
+      //
+      // }, response => {
+      //   // error callback
+      // });
 
   }
 }).$mount('#main')

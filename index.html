@@ -10,7 +10,11 @@
 	<link rel="stylesheet" href="dep/leaflet.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="main.css">
+
+	<script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
 	<title>knowlo</title>
+
 </head>
 
 <body>
@@ -25,13 +29,36 @@
 						<li><a data-activates="slide-out" class="navbar-collapse show-on-large"><i class="material-icons">menu</i></a></li>
 					</ul>
 					<ul class="right ">
-						<li><a data-activates="query-slide" class="tagQuery-collapse show-on-large"><i class="material-icons">menu</i></a></li>
+						<li>
+							<a data-target="login-modal" class="hide-on-med-and-down">Login | Sign Up</a>
+						</li>
+						<li><a data-activates="query-slide" class="tagQuery-collapse show-on-large "><i class="material-icons">menu</i></a></li>
 					</ul>
 				</div>
 			</nav>
 		</div>
 
 		<sidebar></sidebar>
+
+
+		<!--
+		███████ ██ ██████  ███████ ██████   █████  ███████ ███████     ██       ██████   ██████  ██ ███    ██     ██    ██ ██
+		██      ██ ██   ██ ██      ██   ██ ██   ██ ██      ██          ██      ██    ██ ██       ██ ████   ██     ██    ██ ██
+		█████   ██ ██████  █████   ██████  ███████ ███████ █████       ██      ██    ██ ██   ███ ██ ██ ██  ██     ██    ██ ██
+		██      ██ ██   ██ ██      ██   ██ ██   ██      ██ ██          ██      ██    ██ ██    ██ ██ ██  ██ ██     ██    ██ ██
+		██      ██ ██   ██ ███████ ██████  ██   ██ ███████ ███████     ███████  ██████   ██████  ██ ██   ████      ██████  ██
+		-->
+
+		<div id="login-modal" class="modal">
+			<div class="modal-content">
+	      <h4>Login | Sign Up</h4>
+				<div id="firebaseui-auth-container"></div>
+	    </div>
+			<div class="modal-footer">
+      <a class="modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
+    </div>
+		</div>
+
 
 		<router-view :tag-query="tagQuery" style="padding-top:90px"></router-view>
 
@@ -160,18 +187,18 @@
 							<isotope class="step" :list="db" :options='getContentOptions()'>
 								<div  v-for="item in db" v-if="item.time.includes(step.name) || item.discipline.includes(step.name)" key="item.name">
 				          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-				              <router-link  :to="{ name: 'resourceSub', params: { id: videoid }}">
+				              <router-link  :to="{ name: 'resourceSub', params: { id: item.videoid }}">
 				                <img :src="item.thumb">
 				              </router-link>
 				          </div>
-								 <router-link :to="{ name: 'resourceSub', params: { id: videoid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
+								 <router-link :to="{ name: 'resourceSub', params: { id: item.videoid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
 									<a>
 										<span class='truncate thin '>{{item.title}}</span>
 									</a>
 								 </router-link>
 				          <div  v-if="display == 'card'" class="card hoverable">
 				            <div class='card-image'>
-				                <router-link :to="{ name: 'resourceSub', params: { id: videoid }}">
+				                <router-link :to="{ name: 'resourceSub', params: { id: item.videoid }}">
 				                  <img :src="item.thumb" class='card-image' alt="Not found">
 				               </router-link>
 				            </div>
@@ -244,7 +271,7 @@
 
 
 <template id="resourceTemplate">
-	<div :id="'resourceModal'+resource.id" class="modal">
+	<div :id="'resourceModal'+resource.id" class="modal resource-modal">
 
 		<span class="exit hide-on-med-and-down" ><i @click="exit(resource.id)" class="fa fa-3x fa-times"></i></span>
 
@@ -476,6 +503,9 @@
 	 <!-- <li><div class="divider"></div></li> -->
 	 <li><a href="#" class="subheader" id="navName">Knowlo</a></li>
 		<li><div class="divider"></div></li>
+		<li><a data-target="login-modal" class="waves-effect"><i class="fa fa-lg fa-sign-in"></i>Login | Sign Up</a></li>
+		<li><div class="divider"></div></li>
+		<li><a class="subheader"></a></li>
 	 <!-- <li><router-link class="waves-effect" to="/home"><i class="fa fa-lg fa-home"></i>Home</router-link></li> -->
 	 <!-- <li><router-link class="waves-effect" to="/profile"><i class="fa fa-lg fa-user"></i>Profile</router-link></li> -->
 	 <li><router-link class="waves-effect" to="/"><i class="fa fa-lg fa-compass"></i>Explore</router-link></li>
@@ -490,6 +520,8 @@
 	 <li><a class="waves-effect" target="blank" href="http://github.com/bornytm/knowlo"><i class="fa fa-lg fa-github"></i>Code | Github</a></li>
 	</ul>
 </template>
+
+
 </body>
 
 <!--
@@ -511,7 +543,7 @@
 videos = videos.concat(videos2) // combine split json (split becuase it was too large as a single file for simplehttpserver)
 </script>
 
-
+<!-- firebase -->
 <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
 <script>
   // Initialize Firebase
@@ -524,6 +556,27 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
   };
   firebase.initializeApp(config);
 </script>
+
+<!-- firebase auth -->
+<script type="text/javascript">
+
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: '/#/profile',
+        signInOptions: [
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID
+        ],
+        // Terms of service url.
+        tosUrl: 'knowlo.io/#/legal'
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
 
 <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
 
@@ -539,19 +592,11 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 <script src="dep\js.cookie.js"></script>
 <script src="dep\headroom.min.js"></script>
 <script src="dep\leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/vue.resource/1.2.1/vue-resource.min.js"></script>
+
 
 <script src="navSectionTemplates.js"></script>
 <script src="routes.js"></script>
 <script src="main.js"></script>
-
-<!-- can't get headroom to work when placed inside a vue components created function - classes are not applied. -->
-<script>
-	var elem = document.querySelector("#nav-slide");
-	var headroom = new Headroom(elem, {
-		"offset": 220,
-		"tolerance": 5,
-		})
-	headroom.init();
-</script>
 
 </html>
