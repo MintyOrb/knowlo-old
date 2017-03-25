@@ -381,7 +381,7 @@ Vue.component('tag',{
             if(!item.left){
                 item.status.hover=true
             }
-          }, 300)
+          }, 150)
         },
         leave: function(tag){
           tag.left=true;
@@ -393,12 +393,14 @@ Vue.component('tag',{
 var bus = new Vue() // this feels dumb, but can't see how else to tell explore what sub tag was added
 
 /*
- ██████  ██████  ███    ██ ████████ ███████ ███    ██ ████████     ██████   █████   ██████  ███████
-██      ██    ██ ████   ██    ██    ██      ████   ██    ██        ██   ██ ██   ██ ██       ██
-██      ██    ██ ██ ██  ██    ██    █████   ██ ██  ██    ██        ██████  ███████ ██   ███ █████
-██      ██    ██ ██  ██ ██    ██    ██      ██  ██ ██    ██        ██      ██   ██ ██    ██ ██
- ██████  ██████  ██   ████    ██    ███████ ██   ████    ██        ██      ██   ██  ██████  ███████
+██████  ███████ ███████  ██████  ██    ██ ██████   ██████ ███████
+██   ██ ██      ██      ██    ██ ██    ██ ██   ██ ██      ██
+██████  █████   ███████ ██    ██ ██    ██ ██████  ██      █████
+██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██
+██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████
 */
+
+
 const resourceComp = Vue.component('resourceComp',{
     template: "#resourceTemplate",
     data: function() {
@@ -442,13 +444,15 @@ const resourceComp = Vue.component('resourceComp',{
           }
         })
 
-      $('#resourceModal'+this.resource.id).modal('open');
+      $('#resourceModal'+this.resource.videoid).modal('open');
 
       $('.resourceNav').flickity({
         asNavFor: '.resourceSections',
         // wrapAround: true,
         pageDots: true,
         prevNextButtons: true,
+        contain: true,
+        freeScroll: true,
         accessibility: false, // to prevent jumping when focused
       })
 
@@ -457,7 +461,7 @@ const resourceComp = Vue.component('resourceComp',{
         pageDots: false,
         prevNextButtons: true,
         accessibility: false, // to prevent jumping when focused
-        dragThreshold: 40 // play around with this more?
+        dragThreshold: 20 // play around with this more?
       });
 
       // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
@@ -486,4 +490,66 @@ const resourceComp = Vue.component('resourceComp',{
       // tell leaflet that the map is exactly as big as the image
       map.setMaxBounds(bounds);
     }
+});
+
+/*
+████████  █████   ██████       ██████  ██████  ███    ███ ██████
+   ██    ██   ██ ██           ██      ██    ██ ████  ████ ██   ██
+   ██    ███████ ██   ███     ██      ██    ██ ██ ████ ██ ██████
+   ██    ██   ██ ██    ██     ██      ██    ██ ██  ██  ██ ██
+   ██    ██   ██  ██████       ██████  ██████  ██      ██ ██
+*/
+
+
+const tagComp = Vue.component('tagComp',{
+    template: "#tagTemplate",
+    data: function() {
+      return {
+          tag: {},
+          tagSection: ["Activity","Tags","Vote","Stats","Related"]
+        }
+      },
+    mounted: function(){
+      // pass in tag or get by id?
+
+      this.tag = this.$route.params.id
+
+      $('#tagModal').modal({
+          dismissible: true, // Modal can be dismissed by clicking outside of the modal
+          opacity: .5, // Opacity of modal background
+          inDuration: 300, // Transition in duration
+          outDuration: 200, // Transition out duration
+          startingTop: '4%', // Starting top style attribute
+          endingTop: '10%', // Ending top style attribute
+          ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+            console.log("Ready");
+            console.log(modal, trigger);
+          },
+          complete: () => {
+            $('.tagNav').flickity('destroy');
+            $('.tagSections').flickity('destroy');
+            this.$router.push('/')
+          }
+        })
+
+      $('#tagModal'+this.tag).modal('open');
+
+      $('.tagNav').flickity({
+        asNavFor: '.tagSections',
+        // wrapAround: true,
+        pageDots: true,
+        prevNextButtons: true,
+        // contain: true,
+        // freeScroll: true,
+        accessibility: false, // to prevent jumping when focused
+      })
+
+      $('.tagSections').flickity({
+        wrapAround: true,
+        pageDots: false,
+        prevNextButtons: true,
+        accessibility: false, // to prevent jumping when focused
+        dragThreshold: 20 // play around with this more?
+      });
+  }
 });

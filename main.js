@@ -4,6 +4,7 @@ const routes = [
   {  name: "explore", path: '/', component: explore,
       children: [
         { path: '/c/:id', component: resourceComp, name: 'resourceSub' },
+        { path: '/t/:id', component: tagComp, name: 'tagSub' },
       ]
   },
   {  name: "resource", path: '/c/:id', component: resourceComp },
@@ -29,6 +30,12 @@ const app = new Vue({
         tagQuery: [],   // list of tag objects to be queried
       }
   },
+  methods: {
+    close: function(){
+      console.log('close here')
+      $('.tagQuery-collapse').sideNav('hide');
+    }
+  },
   mounted: function(){
 
     this.bigHistory = bigHistory.members//.slice(0,3);
@@ -49,7 +56,7 @@ const app = new Vue({
       var elem = document.querySelector("#nav-slide");
     	var headroom = new Headroom(elem, {
     		"offset": 220,
-    		"tolerance": 5,
+    		"tolerance": 25,
     		})
     	headroom.init();
 

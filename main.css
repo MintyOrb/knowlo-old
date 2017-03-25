@@ -5,7 +5,7 @@
      ██    ██       ██    ██      ██
 ███████    ██       ██    ███████ ███████
 */
-/**{outline: 1px solid black;}*/
+*{outline: 1px solid black;}
 .headroom {
     will-change: transform;
     transition: transform 200ms linear;
@@ -105,7 +105,7 @@ html {
 	color: #2196F3
 }
 .card {
-    width: 250px;
+    width: 200px;
     margin: 10px;
 		box-shadow: none;
 }
@@ -161,12 +161,73 @@ html {
     border-bottom: 1px solid black;
     box-shadow: 0 1px 0 0 black;
 }
+.resource-container {
+  height: 100vh;
+  width: 50vw;
+}
+.resourceMeta {
+  height: 100vh;
+  width: 50vw;
+}
+.tagMeta {
+  height: 100vh;
+  width: 100vw;
+}
+.resource-modal {
+  display: flex;
+}
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
     padding-top: 30px;
     height: 0;
     overflow: hidden;
+}
+
+#image-map {
+  width: 50vw;
+  height: 100vh;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.exit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  padding-right: 8px;
+  padding-top: 2px;
+  color: black;
+  background-color: white;
+  padding-left: 7px;
+  padding-bottom: 4px;
+}
+.exit:hover{
+  cursor: pointer;
+}
+.resource-modal{
+  z-index: 1001;
+  top: 0!important;
+  width: 100vw;
+  height: 100vh;
+  max-height: none;
+}
+@media (max-width:40.063em) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+  .resource-container {
+    height: auto;
+    width: 100vw;
+  }
+  .resourceMeta {
+    height: 100vh;
+    width: 100vw;
+  }
+  .resource-modal {
+    display: inherit;
+  }
+  #image-map {
+    width: 100vw;
+    height: 35vh;
+  }
 }
 .video-container iframe, .video-container object, .video-container embed {
     position: absolute;
@@ -209,8 +270,10 @@ html {
   display: flex;
   align-content: center;
   justify-content: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  bottom: 0px;
+}
+.crossSectionNav .flickity-page-dots {
+  bottom: 23px;
 }
 /* dots are lines */
 .flickity-page-dots .dot {
@@ -219,7 +282,17 @@ html {
   margin: 0px;
   border-radius: 0;
 }
-
+.flickity-viewport{
+  margin-bottom: 15px;
+}
+.resourceNav {
+  position: sticky;
+  top: 0;
+}
+.tagNav {
+  position: sticky;
+  top: 0;
+}
 .flexCenter{
 	display: flex;
 	align-content: center;
@@ -227,16 +300,18 @@ html {
 }
 
 .crossSectionNav {
-	width: 100%;
-  margin-bottom: 20px;
+  position: sticky;
+  overflow: hidden;
+  top: -90px;
+  background-color: white;
+  z-index: 1;
+  width: 100%;
+  padding-bottom: 20px;
 }
 .navItems {
 	width: 130px;
 	display: relative;
 
-}
-.is-selected .border {
-  border: 2px solid #2196F3;
 }
 .crossSectionSteps {
 	width: 100%;
@@ -397,34 +472,7 @@ html {
 	margin:20px
 }
 
-#image-map {
-  width: 100%;
-  height: 300px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-}
-.exit {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 10;
-  padding-right: 8px;
-  padding-top: 2px;
-  color: black;
-  background-color: white;
-  padding-left: 7px;
-  padding-bottom: 4px;
-}
-.exit:hover{
-  cursor: pointer;
-}
-.resource-modal{
-  z-index: 1001;
-  top: 0!important;
-  width: 100vw;
-  height: 100vh;
-  max-height: none;
-}
+
 .drag-target{
   z-index: 1005;
 }
