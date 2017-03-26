@@ -5,7 +5,7 @@
      ██    ██       ██    ██      ██
 ███████    ██       ██    ███████ ███████
 */
-*{outline: 1px solid black;}
+/**{outline: 1px solid black;}*/
 .headroom {
     will-change: transform;
     transition: transform 200ms linear;
@@ -320,10 +320,13 @@ html {
 .stepContainer {
 	width: 80vw;
 	height: 600px;
-  overflow: scroll;
+  overflow: hidden;
 }
 
-
+.table-of-contents-holder {
+  position: sticky;
+  top: 100px;
+}
 /* tag radial button based on this pen: http://codepen.io/suez/pen/vAais/*/
 .menu, .menu .btn .fa, .menu .btn.trigger {
   position: relative;

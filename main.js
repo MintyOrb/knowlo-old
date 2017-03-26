@@ -27,13 +27,21 @@ const app = new Vue({
   router,
   data: function() {
     return {
-        tagQuery: [],   // list of tag objects to be queried
+        user: {},       // id and info for user if logged in, undefined if not
+        tagQuery: [],   // array of tag objects to be queried
       }
   },
   methods: {
     close: function(){
       console.log('close here')
       $('.tagQuery-collapse').sideNav('hide');
+    },
+    signOut: function(){
+      firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      }, function(error) {
+      // An error happened.
+      });
     }
   },
   mounted: function(){
@@ -56,31 +64,25 @@ const app = new Vue({
       var elem = document.querySelector("#nav-slide");
     	var headroom = new Headroom(elem, {
     		"offset": 220,
-    		"tolerance": 25,
+    		"tolerance": 10,
     		})
     	headroom.init();
 
-      firebase.auth().onAuthStateChanged(function(user) {
+      firebase.auth().onAuthStateChanged((user) => {
           if (user) {
-            console.log("user!")
-            console.log(user)
-            // User is signed in.
-            // var displayName = user.displayName;
-            // var email = user.email;
-            // var emailVerified = user.emailVerified;
-            // var photoURL = user.photoURL;
-            // var uid = user.uid;
-            // var providerData = user.providerData;
+            this.user = user;
+            this.user.first = user.displayName.substr(0,user.displayName.indexOf(' ')); // get first name -  if there is no space at all, then the first line will return an empty string and the second line will return the entire string
+
             user.getToken().then(function(accessToken) {
-              console.log('got access token!')
-              console.lg(accessToken)
+              // do I need this?
             });
           } else {
-            // User is signed out.
+            this.user = undefined;
             console.log("user is signed out")
           }
         }, function(error) {
           console.log(error);
+          Materialize.toast('Something went wrong...are you online?', 4000)
         });
       // GET /someUrl
       // this.$http.post('/something',{id: '63cbd7c5-e2b6-4877-9d42-7d6f162a8b36'}).then(response => {

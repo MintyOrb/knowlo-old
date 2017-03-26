@@ -1,5 +1,15 @@
 const sidebar = Vue.component('sidebar',{
   template: "#side-nav-template",
+  props: ['user'],
+  methods:{
+    signOut: function(){ // since this is a child component, probably should be emitting an event and using the signout method on main instead...
+      firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      }, function(error) {
+      // An error happened.
+      });
+    }
+  },
   created: function(){
     this.$nextTick(function(){
       $('.navbar-collapse').sideNav({
@@ -28,7 +38,9 @@ const about = Vue.component('about',{
 })
 
 const principals = {
-  template: `<div>hello world! principals here.</div>`
+  template: "#principals",
+  mounted: function(){
+   $('.scrollspy').scrollSpy();  }
 }
 
 const profile = {

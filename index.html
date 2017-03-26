@@ -29,8 +29,13 @@
 						<li><a data-activates="slide-out" class="navbar-collapse show-on-large"><i class="material-icons">menu</i></a></li>
 					</ul>
 					<ul class="right ">
-						<li>
+						<li v-if="!user">
 							<a data-target="login-modal" class="hide-on-med-and-down">Login | Sign Up</a>
+							<a data-target="login-modal" class="show-on-med-and-down"><i class="material-icons fa fa-lg fa-sign-in"></i></a>
+						</li>
+						<li v-else>
+							<!-- user icon here? -->
+							{{user.first}}
 						</li>
 						<li><a data-activates="query-slide" class="tagQuery-collapse show-on-large "><i class="material-icons">menu</i></a></li>
 					</ul>
@@ -38,7 +43,7 @@
 			</nav>
 		</div>
 
-		<sidebar></sidebar>
+		<sidebar :user="user"></sidebar>
 
 
 		<!--
@@ -98,18 +103,24 @@
 			<!-- view for tag and resource page -->
 			<router-view></router-view>
 
-			<!-- <div class="fixed-action-btn horizontal click-to-toggle">
-		    <a class="btn-floating btn-large red">
-		      <i class="large material-icons">mode_edit</i>
+			<!-- sort FAB -->
+			<div class="margin20">
+				<a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">Hover me!</a>
+
+			</div>
+
+			<div class="fixed-action-btn horizontal click-to-toggle">
+		    <a class="btn-floating btn-large blue">
+		      <i class="fa fa-2x fa-sort material-icons"></i>
 		    </a>
 		    <ul>
-		      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-		      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-		      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-		      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+		      <li><a class="btn-floating blue tooltipped hoverable" data-position="top" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons">insert_chart</i></a></li>
+					<li><a class="btn-floating blue tooltipped hoverable" data-position="top" data-delay="50" data-tooltip="I am too" @click="sort('original-order')">original order</a></li>
+					<li><a class="btn-floating blue tooltipped hoverable" data-position="top" data-delay="50" data-tooltip="I am tooltip" @click="shuffle()"><i class="material-icons right">shuffle</i></a></li>
+					<!-- <li class="btn-floating blue tooltipped" v-for="(key, val) in getSortData"><a @click="sort(key)">{{key}}</a></li> -->
 		    </ul>
 		  </div>
-			<div class="fixed-action-btn horizontal">
+			<!-- <div class="fixed-action-btn horizontal">
 		    <a class="btn-floating btn-large red">
 		      <i class="large material-icons">mode_edit</i>
 		    </a>
@@ -330,20 +341,17 @@
 	<div :id="'tagModal'+tag" class="modal resource-modal">
 		<!-- flick navigation for isotope containers -->
 		<div class="tagMeta">
-		<div class="tagNav">
-			<div v-for="step in tagSection" class="navItems">
-				<p>
-					{{step}}
-				</p>
+			<div class="tagNav">
+				<div v-for="step in tagSection" class="navItems">
+					<p>
+						{{step}}
+					</p>
+				</div>
 			</div>
-		</div>
-
-
-		 <!-- isotope contianers -->
-		 <div class="tagSections">
-			<div v-for="step in tagSection" class="stepContainer">{{step}}</div>
-		</div>
-		</div>
+			<div class="tagSections">
+				<div v-for="step in tagSection" class="stepContainer">{{step}}</div>
+			</div>
+			</div>
 	</div>
 </template>
 
@@ -553,7 +561,8 @@
 	 <!-- <li><div class="divider"></div></li> -->
 	 <li><a href="#" class="subheader" id="navName">Knowlo</a></li>
 		<li><div class="divider"></div></li>
-		<li><a data-target="login-modal" class="waves-effect"><i class="fa fa-lg fa-sign-in"></i>Login | Sign Up</a></li>
+		<li v-if="!user"><a data-target="login-modal" class="waves-effect"><i class="fa fa-lg fa-sign-in"></i>Login | Sign Up</a></li>
+		<li v-else><a @click="signOut()" class="waves-effect"><i class="fa fa-lg fa-sign-out"></i>Log Out</a></li>
 		<li><div class="divider"></div></li>
 		<li><a class="subheader"></a></li>
 	 <!-- <li><router-link class="waves-effect" to="/home"><i class="fa fa-lg fa-home"></i>Home</router-link></li> -->
@@ -571,6 +580,71 @@
 	</ul>
 </template>
 
+<!--
+██████  ██████  ██ ███    ██  ██████ ██ ██████   █████  ██      ███████
+██   ██ ██   ██ ██ ████   ██ ██      ██ ██   ██ ██   ██ ██      ██
+██████  ██████  ██ ██ ██  ██ ██      ██ ██████  ███████ ██      ███████
+██      ██   ██ ██ ██  ██ ██ ██      ██ ██      ██   ██ ██           ██
+██      ██   ██ ██ ██   ████  ██████ ██ ██      ██   ██ ███████ ███████
+-->
+
+<template id="principals">
+	<div>
+		<div class="flexCenter margin20">
+			<i class="fa fa-5x fa-lightbulb-o"></i>
+		</div>
+		<h2 class="thin center">
+			Principles
+		</h2>
+		<div class="row">
+		    <div class="col s12 m9 l10">
+		      <div id="introduction" class="section scrollspy">
+		        <h4 class="thin">Introduction </h4>
+		      </div>
+
+		      <div id="transparency" class="section scrollspy">
+		        <h4 class="thin">Default to Transparency </h4>
+		      </div>
+
+					<div id="community" class="section scrollspy">
+		        <h4 class="thin">Community Driven </h4>
+		      </div>
+
+					<div id="ReciprocalSharing" class="section scrollspy">
+		        <h4 class="thin">Reciprocal Sharing </h4>
+		      </div>
+
+		      <div id="PrivatleyPublic" class="section scrollspy">
+		        <h4 class="thin">Privately Public </h4>
+						<p>
+							Privately Public is a way of sharing information about yourself without losing your anonymity.
+						</p>
+						<!-- Private, public, privatley public - graphic? -->
+		      </div>
+
+					<div id="cost" class="section scrollspy">
+		        <h4 class="thin">No Cost Barriers - Proportinal Subscription</h4>
+		      </div>
+
+					<div id="DigitalCommons" class="section scrollspy">
+		        <h4 class="thin">Digital Commons </h4>
+		      </div>
+
+		    </div>
+		    <div class="col hide-on-small-only m3 l2 table-of-contents-holder">
+		      <ul class="section table-of-contents">
+		        <li><a href="#introduction">Introduction</a></li>
+		        <li><a href="#transparency">Default to Transparency</a></li>
+						<li><a href="#community">Community Driven</a></li>
+						<li><a href="#ReciprocalSharing">Reciprocal Sharing</a></li>
+						<li><a href="#PrivatleyPublic">Privately Public</a></li>
+						<li><a href="#cost">Flexible Cost</a></li>
+						<li><a href="#DigitalCommons">Digital Commons</a></li>
+		      </ul>
+		    </div>
+		  </div>
+	</div>
+</template>
 
 </body>
 
@@ -615,7 +689,8 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
         signInSuccessUrl: '/#/profile',
         signInOptions: [
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+					firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+					firebase.auth.GithubAuthProvider.PROVIDER_ID,
           firebase.auth.EmailAuthProvider.PROVIDER_ID
         ],
         // Terms of service url.
@@ -631,7 +706,6 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
 
 <script src="dep\jquery.min.js"></script>
-<script src="dep\materialize.min.js"></script>
 <script src="dep\vue.js"></script>
 <script src="dep\vue-router.min.js"></script>
 <script src="dep\lodash.min.js"></script>
@@ -642,6 +716,7 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 <script src="dep\js.cookie.js"></script>
 <script src="dep\headroom.min.js"></script>
 <script src="dep\leaflet.js"></script>
+<script src="dep\materialize.min.js"></script>
 <script src="https://cdn.jsdelivr.net/vue.resource/1.2.1/vue-resource.min.js"></script>
 
 
