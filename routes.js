@@ -312,7 +312,6 @@ Vue.component('tag',{
       },
       focus: function(tag){
         console.log(this.$parent)
-
       },
       pin: function(tag){
 
@@ -410,41 +409,37 @@ const resourceComp = Vue.component('resourceComp',{
             }
           },
     methods: {
-      find: function(id){
+      findAndInit: function(id){
           for (var i = 0; i < videos.length; i++) {
             if(videos[i]['videoid'] == id){
-              return videos[i]
+              this.resource = videos[i]
               break
             }
           }
-      },
-      exit: (id) => {
-        console.log('exit here')
-        $('#resourceModal'+id).modal('close');
+          // wait for id of modal div be assigned
+          this.$nextTick(function(){
+            $('#resourceModal'+this.resource.videoid).modal({
+                // dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                opacity: .5, // Opacity of modal background
+                inDuration: 300, // Transition in duration
+                outDuration: 200, // Transition out duration
+                startingTop: '4%', // Starting top style attribute
+                endingTop: '10%', // Ending top style attribute
+                ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                  $('body, html').css("overflow","hidden")
+                },
+                complete: () => {
+                  $('.resourceNav').flickity('destroy');
+                  $('.resourceSections').flickity('destroy');
+                  $('body, html').css("overflow","auto")
+                }
+              }).modal('open');
+          })
 
       }
     },
     mounted: function(){
-      this.resource = this.find(this.$route.params.id)
-      $('#resourceModal'+this.resource.id).modal({
-          dismissible: true, // Modal can be dismissed by clicking outside of the modal
-          opacity: .5, // Opacity of modal background
-          inDuration: 300, // Transition in duration
-          outDuration: 200, // Transition out duration
-          startingTop: '4%', // Starting top style attribute
-          endingTop: '10%', // Ending top style attribute
-          ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-            console.log("Ready");
-            console.log(modal, trigger);
-          },
-          complete: () => {
-            $('.resourceNav').flickity('destroy');
-            $('.resourceSections').flickity('destroy');
-            this.$router.push('/')
-          }
-        })
-
-      $('#resourceModal'+this.resource.videoid).modal('open');
+      this.findAndInit(this.$route.params.id)
 
       $('.resourceNav').flickity({
         asNavFor: '.resourceSections',
@@ -452,7 +447,7 @@ const resourceComp = Vue.component('resourceComp',{
         pageDots: true,
         prevNextButtons: true,
         contain: true,
-        freeScroll: true,
+        // freeScroll: true,
         accessibility: false, // to prevent jumping when focused
       })
 
@@ -465,30 +460,50 @@ const resourceComp = Vue.component('resourceComp',{
       });
 
       // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
-      var map = L.map('image-map', {
-        minZoom: 1,
-        maxZoom: 4,
-        center: [0, 0],
-        zoom: 1,
-        crs: L.CRS.Simple
+      if(this.resource.displayType == "image"){
+        var map = L.map('image-map', {
+          minZoom: 1,
+          maxZoom: 4,
+          center: [0, 0],
+          zoom: 1,
+          crs: L.CRS.Simple
+        });
+
+        // dimensions of the image
+        var w = 2000,
+            h = 1500,
+            url = 'http://kempe.net/images/newspaper-big.jpg';
+
+        // calculate the edges of the image, in coordinate space
+        var southWest = map.unproject([0, h], map.getMaxZoom()-1);
+        var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
+        var bounds = new L.LatLngBounds(southWest, northEast);
+
+        // add the image overlay,
+        // so that it covers the entire map
+        L.imageOverlay(url, bounds).addTo(map);
+
+        // tell leaflet that the map is exactly as big as the image
+        map.setMaxBounds(bounds);
+      }
+
+      // listen for escape key (materalize closes modal on esc, but doesn't re-route)
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' || event.keyCode === 27) {
+          router.push("/")
+        }
       });
+    },
+    beforeRouteLeave: function (to, from, next){
+      if($('#resourceModal'+this.resource.videoid)){
+        $('#resourceModal'+this.resource.videoid).modal('close');
+      }
+      window.setTimeout(()=>{
+        next()
+      }, 375)
 
-      // dimensions of the image
-      var w = 2000,
-          h = 1500,
-          url = 'http://kempe.net/images/newspaper-big.jpg';
+      document.removeEventListener('keydown',function(){})
 
-      // calculate the edges of the image, in coordinate space
-      var southWest = map.unproject([0, h], map.getMaxZoom()-1);
-      var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
-      var bounds = new L.LatLngBounds(southWest, northEast);
-
-      // add the image overlay,
-      // so that it covers the entire map
-      L.imageOverlay(url, bounds).addTo(map);
-
-      // tell leaflet that the map is exactly as big as the image
-      map.setMaxBounds(bounds);
     }
 });
 
@@ -505,42 +520,48 @@ const tagComp = Vue.component('tagComp',{
     template: "#tagTemplate",
     data: function() {
       return {
-          tag: {},
-          tagSection: ["Activity","Tags","Vote","Stats","Related"]
-        }
-      },
-    mounted: function(){
-      // pass in tag or get by id?
-
-      this.tag = this.$route.params.id
-
-      $('#tagModal').modal({
-          dismissible: true, // Modal can be dismissed by clicking outside of the modal
-          opacity: .5, // Opacity of modal background
-          inDuration: 300, // Transition in duration
-          outDuration: 200, // Transition out duration
-          startingTop: '4%', // Starting top style attribute
-          endingTop: '10%', // Ending top style attribute
-          ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-            console.log("Ready");
-            console.log(modal, trigger);
-          },
-          complete: () => {
-            $('.tagNav').flickity('destroy');
-            $('.tagSections').flickity('destroy');
-            this.$router.push('/')
+        tag: {},
+        tagSection: ["Activity","Context","Vote","Stats","Related"]
+      }
+    },
+    methods:{
+      findTagAndInit: function(name){ // TODO: handle case when not found
+        for (var keyIndex = 0; keyIndex < keywords.length; keyIndex++) { // temporary function for finding tag
+          if(keywords[keyIndex].name.toLowerCase() == name.toLowerCase()){
+            this.tag = keywords[keyIndex];
+            break
           }
-        })
+        };
+        this.$nextTick(function(){
+            $('#tagModal'+this.tag.name).modal({
+              dismissible: true, // Modal can be dismissed by clicking outside of the modal
+              opacity: .5, // Opacity of modal background
+              inDuration: 300, // Transition in duration
+              outDuration: 200, // Transition out duration
+              startingTop: '4%', // Starting top style attribute
+              endingTop: '10%', // Ending top style attribute
+              ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                $('body, html').css("overflow","hidden")
+              },
+              complete: () => {
+                $('.tagNav').flickity('destroy');
+                $('.tagSections').flickity('destroy');
+                $('body, html').css("overflow","auto")
+              }
+            }).modal('open');
+          })
+      },
+      close: function(){
+        console.log("close here after esc")
+      }
+    },
+    mounted: function(){
 
-      $('#tagModal'+this.tag).modal('open');
-
+      this.findTagAndInit(this.$route.params.id);  // finds tag and opens modal
       $('.tagNav').flickity({
         asNavFor: '.tagSections',
-        // wrapAround: true,
         pageDots: true,
         prevNextButtons: true,
-        // contain: true,
-        // freeScroll: true,
         accessibility: false, // to prevent jumping when focused
       })
 
@@ -551,5 +572,24 @@ const tagComp = Vue.component('tagComp',{
         accessibility: false, // to prevent jumping when focused
         dragThreshold: 20 // play around with this more?
       });
+
+      // listen for escape key (materalize closes modal on esc, but doesn't re-route)
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' || event.keyCode === 27) {
+          router.push("/")
+        }
+      });
+
+  },
+  beforeRouteLeave: function (to, from, next){
+    if($('#tagModal'+this.tag.name)){
+      $('#tagModal'+this.tag.name).modal('close');
+    }
+    window.setTimeout(()=>{
+      next()
+    }, 375)
+
+    document.removeEventListener('keydown',function(){})
   }
 });
