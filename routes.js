@@ -311,7 +311,7 @@ Vue.component('tag',{
         bus.$emit('addTagSubTag', tag)
       },
       focus: function(tag){
-        console.log(this.$parent)
+        console.log(this.tag)
       },
       pin: function(tag){
 
@@ -373,8 +373,7 @@ Vue.component('tag',{
           }
           this.flickRegistry=[];
         },
-        delayHover: function(item, parentID){
-          item.parentID = parentID;
+        delayHover: function(item){
           item.left=false;
           window.setTimeout(()=>{
             if(!item.left){

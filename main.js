@@ -51,9 +51,10 @@ const app = new Vue({
 
     this.$nextTick(function(){ // init tag sidebar
       $('.tagQuery-collapse').sideNav({
+
           menuWidth: 300, // Default is 300
           edge: 'right', // Choose the horizontal origin
-          closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+          closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
           draggable: true // Choose whether you can drag to open on touch screens
         })
       });
@@ -64,8 +65,11 @@ const app = new Vue({
       var elem = document.querySelector("#nav-slide");
     	var headroom = new Headroom(elem, {
     		"offset": 220,
-    		"tolerance": 10,
-    		})
+    		"tolerance" : {
+        down : 0,
+        up : 10
+        },
+  		})
     	headroom.init();
 
       firebase.auth().onAuthStateChanged((user) => {

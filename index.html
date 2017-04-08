@@ -79,6 +79,7 @@
 			</div>
 		</div>
 
+		<!-- footer -->
 		<footer class="page-footer blue">
 			<div class="container">
 				<div class="row">
@@ -471,7 +472,7 @@
 <template id="tagContainer">
 	<span>
 		<div class="tagWidth">
-			<div class="menu" @mouseenter="delayHover(tag, tag.status.hover && $parent._uid)" @mouseleave="leave(tag)" v-bind:class="{'active': tag.status.hover}">
+			<div class="menu" @mouseenter="delayHover(tag)" @mouseleave="leave(tag)" v-bind:class="{'active': tag.status.hover}">
 				<div class="">
 
 					<div @click="focus(tag)" class="mbtn trigger">
@@ -482,12 +483,12 @@
 					</div>
 
 					<!-- need a better way to determine when in sidebar... -->
-					<div id="hoverPad" v-if="$parent._uid == 67">
+					<div id="hoverPad" v-if="$parent.$el._prevClass == 'tagQuery'">
 					</div>
 
 					<div class="icons">
 						<div class="rotater">
-							<div @click="pin(tag)" class="mbtn mbtn-icon flexCenter" :class="{showPin: tag.status.pinned, pinNav: tag.status.hover && $parent._uid == 67 }">
+							<div @click="pin(tag)" class="mbtn mbtn-icon flexCenter" :class="{showPin: tag.status.pinned, pinNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery' }">
 								<i class="fa fa-thumb-tack" style="transform:rotate(-45deg)"></i>
 							</div>
 						</div>
@@ -497,35 +498,35 @@
 							</div>
 						</div>
 						<div  v-if="tag.status.expanded" class="rotater">
-							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)" :class="{showCompress: tag.status.expanded, expandNav: tag.status.hover && $parent._uid == 61}">
+							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)" :class="{showCompress: tag.status.expanded, expandNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery'}">
 								<i class="fa fa-compress"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<router-link :to="'t/'+tag.name">
-								<div class="mbtn mbtn-icon flexCenter":class="{showInfo: tag.status.info, infoNav: tag.status.hover && $parent._uid == 67 }">
+							<router-link :to="{ name: 'tagSub', params: { id: tag.name }}">
+								<div class="mbtn mbtn-icon flexCenter":class="{showInfo: tag.status.info, infoNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery' }">
 									<i class="fa fa-info"></i>
 								</div>
 							</router-link>
 
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom('', 'exclude')" class="mbtn mbtn-icon flexCenter" :class="{showMinus: tag.status.exclude, excludeNav: tag.status.hover && $parent._uid == 67 }">
+							<div @click="addToFrom('', 'exclude')" class="mbtn mbtn-icon flexCenter" :class="{showMinus: tag.status.exclude, excludeNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery' }">
 								<i class="fa fa-minus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom(tag, 'include')" class="mbtn mbtn-icon flexCenter" :class="{showPlus: tag.status.include, includeNav: tag.status.hover && $parent._uid == 67 }">
+							<div @click="addToFrom(tag, 'include')" class="mbtn mbtn-icon flexCenter" :class="{showPlus: tag.status.include, includeNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery' }">
 								<i class="fa fa-plus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom(tag, 'focus')" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: tag.status.focus, focusNav: tag.status.hover && $parent._uid == 67 }">
+							<div @click="addToFrom(tag, 'focus')" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: tag.status.focus, focusNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery' }">
 								<i class="fa fa-crosshairs"></i>
 							</div>
 						</div>
 						<div class="">
-							<div @click="addToFrom(tag, 'remove')" class="mbtn mbtn-icon flexCenter" :class="{removeNav: tag.status.hover && $parent._uid == 67 }">
+							<div @click="addToFrom(tag, 'remove')" class="mbtn mbtn-icon flexCenter" :class="{removeNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery' }">
 								<i class="fa fa-times"></i>
 							</div>
 						</div>
