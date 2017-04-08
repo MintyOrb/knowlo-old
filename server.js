@@ -55,7 +55,7 @@ app.use(bodyParser.json())
 app.use(express.static('./'))
 
 app.listen('8000', function () {
-  console.log('Example app listening on port 8000')
+  console.log('listening on port 8000')
 })
 
 

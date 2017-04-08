@@ -475,7 +475,7 @@
 			<div class="menu" @mouseenter="delayHover(tag)" @mouseleave="leave(tag)" v-bind:class="{'active': tag.status.hover}">
 				<div class="">
 
-					<div @click="focus(tag)" class="mbtn trigger">
+					<div @click="focus(tag)" class="mbtn trigger" v-bind:class="{'scaleIcon': tag.status.hover}">
 						<span v-if="!tag.url" class="flexCenter border"> {{tag.name[0]}}</span>
 						<div v-else class="thumb card-image border">
 							<img :src="tag.url">
