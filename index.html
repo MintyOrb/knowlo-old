@@ -65,7 +65,6 @@
     </div>
 		</div>
 
-
 		<router-view :tag-query="tagQuery" style="padding-top:90px"></router-view>
 
 		<!-- tags for query -->
@@ -275,11 +274,11 @@
 	</template>
 
 	<!--
-	██████  ███████ ███████  ██████  ██    ██ ██████   ██████ ███████
-	██   ██ ██      ██      ██    ██ ██    ██ ██   ██ ██      ██
-	██████  █████   ███████ ██    ██ ██    ██ ██████  ██      █████
-	██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██
-	██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████
+	██████  ███████ ███████  ██████  ██    ██ ██████   ██████ ███████     ██████   █████   ██████  ███████
+	██   ██ ██      ██      ██    ██ ██    ██ ██   ██ ██      ██          ██   ██ ██   ██ ██       ██
+	██████  █████   ███████ ██    ██ ██    ██ ██████  ██      █████       ██████  ███████ ██   ███ █████
+	██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██          ██      ██   ██ ██    ██ ██
+	██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████     ██      ██   ██  ██████  ███████
 	-->
 
 
@@ -287,21 +286,20 @@
 	<div :id="'resourceModal'+resource.videoid" class="modal fullPage resource-modal"  >
 
 		<router-link to="/" class="exit hide-on-med-and-down" ><i class="fa fa-3x fa-times"></i></router-link>
-
 		<!-- the resource -->
 		<div class="resource-container">
 			<!-- image -->
-			<!-- <div id="image-map"></div> -->
+			<div v-if='resource.displayType=="image"' id="image-map"></div>
 
 			<!--  youtube/vimeo -->
-			<div class="video-container ">
+			<div v-if='resource.displayType=="embed"' class="video-container ">
 				 <iframe :src="'http://youtube.com/embed/'+resource.videoid"></iframe>
 			</div>
 
 			<!-- website -->
-			<!-- <div class="website-container">
+			<div v-if='resource.displayType=="webpage"' class="website-container">
 				<iframe :src="resource.siteURL"></iframe>
-			</div> -->
+			</div>
 
 			<!-- text -->
 			<!-- <div class="text-container">
@@ -320,8 +318,23 @@
 			</div>
 			<!-- isotope contianers -->
 			<div class="resourceSections">
-			 <div v-for="step in resourceSection" class="stepContainer">
-			 </div>
+
+				<div class="resourceStep">
+					Activity
+				</div>
+				<div class="resourceStep" >
+					<tag v-for="tag in terms" :tag="tag" key="tag.name"></tag>
+				</div>
+				<div class="resourceStep">
+					Vote
+				</div>
+				<div class="resourceStep">
+					Stats
+				</div>
+				<div class="resourceStep">
+					Related
+				</div>
+
 		 </div>
 		</div>
 
@@ -361,6 +374,18 @@
 	</div>
 </template>
 
+<!--
+ █████  ██████  ██████      ██████  ███████ ███████  ██████  ██    ██ ██████   ██████ ███████
+██   ██ ██   ██ ██   ██     ██   ██ ██      ██      ██    ██ ██    ██ ██   ██ ██      ██
+███████ ██   ██ ██   ██     ██████  █████   ███████ ██    ██ ██    ██ ██████  ██      █████
+██   ██ ██   ██ ██   ██     ██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██
+██   ██ ██████  ██████      ██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████
+-->
+<template id="addTemplate">
+	<div id="addModal" class="modal fullPage">
+		hello womp
+	</div>
+</template>
 	<!--
 	██       █████  ███    ██ ██████  ██ ███    ██  ██████
 	██      ██   ██ ████   ██ ██   ██ ██ ████   ██ ██
@@ -472,7 +497,7 @@
 <template id="tagContainer">
 	<span>
 		<div class="tagWidth">
-			<div class="menu" @mouseenter="delayHover(tag)" @mouseleave="leave(tag)" v-bind:class="{'active': tag.status.hover}">
+			<div class="menu" @mouseenter="delayHover(tag, $parent._uid)" @mouseleave="leave(tag)" v-bind:class="{'active': tag.status.hover}">
 				<div class="">
 
 					<div @click="focus(tag)" class="mbtn trigger" v-bind:class="{'scaleIcon': tag.status.hover}">
@@ -493,7 +518,7 @@
 							</div>
 						</div>
 						<div  v-if="!tag.status.expanded" class="rotater">
-							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)" :class="{'nope':!tag.group, expandNav: tag.status.hover && $parent._uid == 61}">
+							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)" :class="{'nope':!tag.group, expandNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery'}">
 								<i class="fa fa-expand"></i>
 							</div>
 						</div>
@@ -533,8 +558,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="flexCenter name">
-				{{tag.name}}
+			<div class="nameholder">
+				<div class="name">
+					{{tag.name}}
+				</div>
 			</div>
 		</div>
 
@@ -712,6 +739,7 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 
 <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
 
+
 <script src="dep\jquery.min.js"></script>
 <script src="dep\vue.js"></script>
 <script src="dep\vue-router.min.js"></script>
@@ -725,7 +753,6 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 <script src="dep\leaflet.js"></script>
 <script src="dep\materialize.min.js"></script>
 <script src="https://cdn.jsdelivr.net/vue.resource/1.2.1/vue-resource.min.js"></script>
-
 
 <script src="navSectionTemplates.js"></script>
 <script src="routes.js"></script>

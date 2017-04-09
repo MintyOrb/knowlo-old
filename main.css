@@ -281,6 +281,9 @@ html {
   bottom: 0px;
 }
 .crossSectionNav .flickity-page-dots {
+  margin-bottom: -23px;
+}
+.crossSectionNav .flickity-page-dots {
   bottom: 23px;
 }
 /* dots are lines */
@@ -291,7 +294,7 @@ html {
   border-radius: 0;
 }
 .flickity-viewport{
-  margin-bottom: 15px;
+  /*margin-bottom: 15px;*/
 }
 .resourceNav {
   position: sticky;
@@ -312,11 +315,10 @@ html {
 .crossSectionNav {
   position: sticky;
   overflow: hidden;
-  top: -90px;
+  top: -80px;
   background-color: white;
   z-index: 1;
   width: 100%;
-  padding-bottom: 20px;
 }
 .navItems {
 	width: 130px;
@@ -329,6 +331,11 @@ html {
 }
 .stepContainer {
 	width: 80vw;
+	height: 600px;
+  overflow: hidden;
+}
+.resourceStep {
+  width: 40vw;
 	height: 600px;
   overflow: hidden;
 }
@@ -464,14 +471,22 @@ html {
 .name {
     text-align: center;
 		font-weight: 300;
-    margin-top: -3px;
+    display: table-cell;
+   vertical-align: middle;
+   width: 95px;
+}
+.nameholder{
+  height: 43px;
+  display: table;
+  margin-top: -10px;
 }
 .expandedFlex {
 	display: flex;
 	align-items: center;
 }
 .tagWidth {
-	width:95px;
+  width: 95px;
+  margin-bottom: 10px;
 }
 /*increase hover target for info icon*/
 .fa-info {

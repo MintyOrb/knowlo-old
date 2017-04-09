@@ -227,7 +227,7 @@ const explore = Vue.component('exploreComp',{
       // redirect to landing if first time to knowlo
       if(Cookies.get('returning') == undefined){
         Cookies.set('returning', true, { expires: 7 });
-        this.$router.push('/land');
+        router.push('/land');
       } else {
         //alpha warning - only show on explore page
         if(!Cookies.get('alpha-warning-seen')){
@@ -303,7 +303,7 @@ Vue.component('tag',{
     props: ['tag'],
     data: () =>  {
       return {
-        flickRegistry: []
+        flickRegistry: [],
       }
     },
     methods: {
@@ -311,10 +311,10 @@ Vue.component('tag',{
         bus.$emit('addTagSubTag', tag)
       },
       focus: function(tag){
-        console.log(this.tag)
+        console.log(tag)
       },
       pin: function(tag){
-
+        this.tag.status.pinned = !this.tag.status.pinned;
       },
       addToFrom: function(tag, type){
         if(tag.status[type] == undefined){
@@ -373,7 +373,9 @@ Vue.component('tag',{
           }
           this.flickRegistry=[];
         },
-        delayHover: function(item){
+        delayHover: function(item, parentID){
+          console.log(parentID)
+          this.parentID = parentID;
           item.left=false;
           window.setTimeout(()=>{
             if(!item.left){
@@ -385,6 +387,14 @@ Vue.component('tag',{
           tag.left=true;
           tag.status.hover=false;
         }
+    },
+    created: function(){
+      if(this.tag.status == undefined){
+        this.tag.status = {
+          'hover': false,
+          'expanded':false
+        }
+      }
     }
 });
 
@@ -404,20 +414,20 @@ const resourceComp = Vue.component('resourceComp',{
     data: function() {
           return {
               resource: {},
+              terms: [],
               resourceSection: ["Activity","Tags","Vote","Stats","Related"]
             }
           },
     methods: {
-      findAndInit: function(id){
-          for (var i = 0; i < videos.length; i++) {
-            if(videos[i]['videoid'] == id){
-              this.resource = videos[i]
-              break
-            }
-          }
-          // wait for id of modal div be assigned
+      init: function(){
+          // for (var i = 0; i < videos.length; i++) {
+          //   if(videos[i]['videoid'] == id){
+          //     this.resource = videos[i]
+          //     break
+          //   }
+          // }
           this.$nextTick(function(){
-            $('#resourceModal'+this.resource.videoid).modal({
+            $('#resourceModal'+this.resource.id).modal({
                 // dismissible: true, // Modal can be dismissed by clicking outside of the modal
                 opacity: .5, // Opacity of modal background
                 inDuration: 300, // Transition in duration
@@ -425,20 +435,59 @@ const resourceComp = Vue.component('resourceComp',{
                 startingTop: '4%', // Starting top style attribute
                 endingTop: '10%', // Ending top style attribute
                 ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-                  $('body, html').css("overflow","hidden")
+                  $('body').css("overflow","hidden")
                 },
                 complete: () => {
                   $('.resourceNav').flickity('destroy');
                   $('.resourceSections').flickity('destroy');
-                  $('body, html').css("overflow","auto")
+                  $('body').css("overflow","auto")
                 }
               }).modal('open');
+
+              // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
+              if(this.resource.displayType == "image"){
+                var map = L.map('image-map', {
+                  minZoom: 1,
+                  maxZoom: 4,
+                  center: [0, 0],
+                  zoom: 1,
+                  crs: L.CRS.Simple
+                });
+
+                // dimensions of the image
+                var w = 2000,
+                    h = 1500,
+                    url = 'http://s3.amazonaws.com/submitted_images/'+this.resource.savedAs;
+                    console.log('http://s3.amazonaws.com/submitted_images/'+this.resource.savedAs)
+                // calculate the edges of the image, in coordinate space
+                var southWest = map.unproject([0, h], map.getMaxZoom()-1);
+                var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
+                var bounds = new L.LatLngBounds(southWest, northEast);
+
+                // add the image overlay,
+                // so that it covers the entire map
+                L.imageOverlay(url, bounds).addTo(map);
+
+                // tell leaflet that the map is exactly as big as the image
+                map.setMaxBounds(bounds);
+              }
           })
 
       }
     },
     mounted: function(){
-      this.findAndInit(this.$route.params.id)
+      this.$http.get('/resource/' + this.$route.params.id).then(response => {
+        console.log('back',response)
+        // get body data
+        this.resource = response.body.resource;
+        this.terms = response.body.terms;
+        this.init()
+      }, response => {
+        // error callback
+        // show materalize err
+        this.init()
+      });
+
 
       $('.resourceNav').flickity({
         asNavFor: '.resourceSections',
@@ -458,44 +507,16 @@ const resourceComp = Vue.component('resourceComp',{
         dragThreshold: 20 // play around with this more?
       });
 
-      // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
-      if(this.resource.displayType == "image"){
-        var map = L.map('image-map', {
-          minZoom: 1,
-          maxZoom: 4,
-          center: [0, 0],
-          zoom: 1,
-          crs: L.CRS.Simple
-        });
-
-        // dimensions of the image
-        var w = 2000,
-            h = 1500,
-            url = 'http://kempe.net/images/newspaper-big.jpg';
-
-        // calculate the edges of the image, in coordinate space
-        var southWest = map.unproject([0, h], map.getMaxZoom()-1);
-        var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
-        var bounds = new L.LatLngBounds(southWest, northEast);
-
-        // add the image overlay,
-        // so that it covers the entire map
-        L.imageOverlay(url, bounds).addTo(map);
-
-        // tell leaflet that the map is exactly as big as the image
-        map.setMaxBounds(bounds);
-      }
-
       // listen for escape key (materalize closes modal on esc, but doesn't re-route)
       document.addEventListener('keydown', event => {
         if (event.key === 'Escape' || event.keyCode === 27) {
-          router.push("/")
+          router.go(-1)
         }
       });
     },
     beforeRouteLeave: function (to, from, next){
-      if($('#resourceModal'+this.resource.videoid)){
-        $('#resourceModal'+this.resource.videoid).modal('close');
+      if($('#resourceModal'+this.resource.id)){
+        $('#resourceModal'+this.resource.id).modal('close');
       }
       window.setTimeout(()=>{
         next()
@@ -540,12 +561,12 @@ const tagComp = Vue.component('tagComp',{
               startingTop: '4%', // Starting top style attribute
               endingTop: '10%', // Ending top style attribute
               ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-                $('body, html').css("overflow","hidden")
+                $('body').css("overflow","hidden")
               },
               complete: () => {
                 $('.tagNav').flickity('destroy');
                 $('.tagSections').flickity('destroy');
-                $('body, html').css("overflow","auto")
+                $('body').css("overflow","auto")
               }
             }).modal('open');
           })
@@ -576,7 +597,7 @@ const tagComp = Vue.component('tagComp',{
 
       document.addEventListener('keydown', event => {
         if (event.key === 'Escape' || event.keyCode === 27) {
-          router.push("/")
+          router.go(-1)
         }
       });
 

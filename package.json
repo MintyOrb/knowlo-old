@@ -27,6 +27,7 @@
     "lodash": "^4.17.4",
     "materialize-css": "^0.97.8",
     "seraph": "^0.15.2",
+    "seraph-model": "^0.10.1",
     "vue": "^2.2.5",
     "vue-analytics": "^2.0.1",
     "vue-headroom": "^0.3.0",
