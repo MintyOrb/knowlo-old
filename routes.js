@@ -26,16 +26,16 @@ const landing = {
 */
 const explore = Vue.component('exploreComp',{
   template: "#exploreTemplate",
-  props: ['tagQuery'],
+  props: ['termQuery'],
   data: function() {
         return {
             db: undefined,                      // search results to display - array of material objects
-            crossSection: null,                 // object containing the name of the cross section and tags in lens group - object containing array of tag objects and string name
-           //tagQuery: [],                       // tags selected for search - - array of tag objects with flags for include/exclude/pin etc.
-            words: [],                          // suggested tags...not sure about ui, currently  - array of tag objects
-            list: [],                           // db when no lens, replace with db even though less items? - array of tag objects
+            crossSection: null,                 // object containing the name of the cross section and terms in lens group - object containing array of term objects and string name
+            termQuery: [],                      // terms selected for search - - array of term objects with flags for include/exclude/pin etc.
+            words: [],                          // suggested terms...not sure about ui, currently  - array of term objects
+            list: [],                           // db when no lens, replace with db even though less items? - array of term objects
             numberOfDisplayed: null,            // number of materials currently displayed
-            display: undefined,                 // display option for materials in search result - string name of displaytype
+            display: undefined,                 // display option for materials in search result - string name of displaytype (thumb, list, card)
             currentLayout: 'masonry',           // incase want to change isotope display type...not used now
             sortOption: "original-order",       // to sort search results by - string name
             sortAscending: true,                // whether sort whould be ascending or descending - boolean
@@ -52,10 +52,10 @@ const explore = Vue.component('exploreComp',{
             getFilterData: {                    // isotop filter functions - filter here for crosssection/grou/lensp instead of with jquery?
                 "keywords": (el) => {
                   foundAll = true
-                  for (var keyIndex = 0; keyIndex < this.tagQuery.length; keyIndex++) {
+                  for (var keyIndex = 0; keyIndex < this.termQuery.length; keyIndex++) {
                     foundOne = false
                     el.keywords.some((element, i) =>{
-                      if (this.tagQuery[keyIndex]['name'].toLowerCase().trim() === element.toLowerCase().trim()) {
+                      if (this.termQuery[keyIndex]['name'].toLowerCase().trim() === element.toLowerCase().trim()) {
                           foundOne = true;
                       }
                     })
@@ -78,21 +78,21 @@ const explore = Vue.component('exploreComp',{
         }
     },
     methods: {
-        addToFrom: function(tag, to, from){ /// this is all stupid and needs to be re thoughts.
+        addToFrom: function(term, to, from){ /// this is all stupid and needs to be re thought.
 
-          if(tag.status.focus){ // clear all non pinned terms
-            console.log('tag focused')
-            for (var tagIndex = to.length - 1 ; tagIndex >= 0; tagIndex --) {
-              console.log(to[tagIndex].status)
-              if(!to[tagIndex].status.pinned){
-                to.splice(to[tagIndex], 1)
+          if(term.status.focus){ // clear all non pinned terms
+            console.log('term focused')
+            for (var termIndex = to.length - 1 ; termIndex >= 0; termIndex --) {
+              console.log(to[termIndex].status)
+              if(!to[termIndex].status.pinned){
+                to.splice(to[termIndex], 1)
                 console.log('not pinned')
               }
             }
           }
 
-          if(to){this.addTo(tag, to)};
-          if(from) {this.removeFrom(tag, from)};
+          if(to){this.addTo(term, to)};
+          if(from) {this.removeFrom(term, from)};
 
           this.filter('keywords')
         },
@@ -137,6 +137,7 @@ const explore = Vue.component('exploreComp',{
               })
 
               $('.crossSectionSteps').flickity({
+                // asNavFor: '.crossSectionNav',
                 wrapAround: true,
                 pageDots: false,
                 prevNextButtons: true,
@@ -182,7 +183,7 @@ const explore = Vue.component('exploreComp',{
             this.$nextTick(()=>{
               var steps = $('.step'); // pretty serious antipattern here...make a registery when using cross section views instead?
               for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
-                if(steps[stepIndex].tagName  !== undefined){
+                if(steps[stepIndex].termName  !== undefined){
                   steps[stepIndex]['__vue__'].sort(key)
                 }
               }
@@ -193,7 +194,7 @@ const explore = Vue.component('exploreComp',{
         shuffle: function(key) {
             this.$refs.contentBin.shuffle();
             this.$refs.key.shuffle();
-            this.$refs.tagQuery.shuffle();
+            this.$refs.termQuery.shuffle();
         },
         filter: function(key) {
             // this.$refs.contentBin.filter(key);
@@ -201,12 +202,12 @@ const explore = Vue.component('exploreComp',{
         },
         layout: function(mes) {
           console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
-          this.$refs.tagQuery.layout('masonry');
+          this.$refs.termQuery.layout('masonry');
 
            // pretty serious antipattern here...make a registery when using cross section views instead?
           var steps = $('.step'); // get isotope containers with jquery
           for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
-            if(steps[stepIndex].tagName !== undefined && steps[stepIndex]['__vue__'] != null){
+            if(steps[stepIndex].termName !== undefined && steps[stepIndex]['__vue__'] != null){
               steps[stepIndex]['__vue__'].layout('masonry')
             }
           }
@@ -283,53 +284,64 @@ const explore = Vue.component('exploreComp',{
       }
       // this.words = keywords;
 
-        bus.$on('addTagSubTag', (tag) => {
-          this.addToFrom(tag, this.tagQuery)
+        bus.$on('addtermSubterm', (term) => {
+          this.addToFrom(term, this.termQuery)
         })
 
     }
 });
 
 /*
-████████  █████   ██████
-   ██    ██   ██ ██
-   ██    ███████ ██   ███
-   ██    ██   ██ ██    ██
-   ██    ██   ██  ██████
+████████ ███████ ██████  ███    ███
+   ██    ██      ██   ██ ████  ████
+   ██    █████   ██████  ██ ████ ██
+   ██    ██      ██   ██ ██  ██  ██
+   ██    ███████ ██   ██ ██      ██
 */
-Vue.component('tag',{
-    template: "#tagContainer",
-    name: "tag",
-    props: ['tag'],
+
+
+Vue.component('term',{
+    template: "#termContainer",
+    name: "term",
+    props:['term'],
     data: () =>  {
       return {
         flickRegistry: [],
+        inSidebar: false,
+        pinned: false,
+        hover: false,
+        include: false,
+        exclude: false,
+        focus: false,
+        expanded: false,
+        info: false
       }
     },
     methods: {
-      addFromSub: function(tag){ // there must be a better way to add sub tag...
-        bus.$emit('addTagSubTag', tag)
+      addFromSub: function(term){ // there must be a better way to add sub term...
+        bus.$emit('addtermSubterm', term)
       },
-      focus: function(tag){
-        console.log(tag)
+      focus: function(){
+        console.log(this.term)
+        // router.push("/t/"+term.name)
       },
-      pin: function(tag){
-        this.tag.status.pinned = !this.tag.status.pinned;
+      pin: function(){
+        this.pinned = !this.pinned;
       },
-      addToFrom: function(tag, type){
-        if(tag.status[type] == undefined){
-          tag.status[type] = true; // need to add logic for combinations... ex: can't be both inclded and excluded. Track with string instead? status.type = "exclude"
+      addToFrom: function(term, type){
+        if(term[type] == undefined){
+          term[type] = true; // need to add logic for combinations... ex: can't be both inclded and excluded. Track with string instead?.type = "exclude"
         } else {
-          tag.status[type] = !tag.status[type]
+          term[type] = !term[type]
         }
-        if(tag.status.expanded){
-            this.destroySingleFlickity(tag.name)
-            tag.status.expanded = false;
+        if(term.expanded){
+            this.destroySingleFlickity(term.name)
+            term.expanded = false;
         }
-        tag.status.hover = false;
+        this.hover = false;
         this.$emit('add-me')
       },
-      bigSmallTag: function(word){
+      bigSmallterm: function(word){
         if(word.group){
           if(word.status.expanded){
             this.destroySingleFlickity(word.name)
@@ -373,49 +385,42 @@ Vue.component('tag',{
           }
           this.flickRegistry=[];
         },
-        delayHover: function(item, parentID){
-          console.log(parentID)
-          this.parentID = parentID;
-          item.left=false;
+        delayHover: function(){
+          this.left=false;
           window.setTimeout(()=>{
-            if(!item.left){
-                item.status.hover=true
+            if(!this.left){
+                this.hover=true
             }
           }, 150)
         },
-        leave: function(tag){
-          tag.left=true;
-          tag.status.hover=false;
+        leave: function(){
+          this.left=true;
+          this.hover=false;
         }
     },
-    created: function(){
-      if(this.tag.status == undefined){
-        this.tag.status = {
-          'hover': false,
-          'expanded':false
-        }
+    mounted: function(){
+      if(this.$parent.$el && this.$parent.$el._prevClass == 'termQuery'){
+        this.inSidebar = true; // defaults to false
       }
     }
 });
 
-var bus = new Vue() // this feels dumb, but can't see how else to tell explore what sub tag was added
+var bus = new Vue() // this feels dumb, but can't see how else to tell explore what sub term was added
 
 /*
-██████  ███████ ███████  ██████  ██    ██ ██████   ██████ ███████
-██   ██ ██      ██      ██    ██ ██    ██ ██   ██ ██      ██
-██████  █████   ███████ ██    ██ ██    ██ ██████  ██      █████
-██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██
-██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████
+██████  ███████ ███████  ██████  ██    ██ ██████   ██████ ███████     ██████   █████   ██████  ███████
+██   ██ ██      ██      ██    ██ ██    ██ ██   ██ ██      ██          ██   ██ ██   ██ ██       ██
+██████  █████   ███████ ██    ██ ██    ██ ██████  ██      █████       ██████  ███████ ██   ███ █████
+██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██          ██      ██   ██ ██    ██ ██
+██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████     ██      ██   ██  ██████  ███████
 */
-
-
 const resourceComp = Vue.component('resourceComp',{
     template: "#resourceTemplate",
     data: function() {
           return {
-              resource: {},
+              resource: {id: 0, displayType: "none"}, // include defaults so init doesn't break if resource is not found
               terms: [],
-              resourceSection: ["Activity","Tags","Vote","Stats","Related"]
+              resourceSection: ["Activity","terms","Vote","Stats","Related"]
             }
           },
     methods: {
@@ -471,21 +476,40 @@ const resourceComp = Vue.component('resourceComp',{
                 // tell leaflet that the map is exactly as big as the image
                 map.setMaxBounds(bounds);
               }
+              $(() => {
+                ajaxAutoComplete({
+                  inputId:'autocomplete-input',
+                  ajaxUrl: '/term/autocomplete/',
+                  // data: {
+                  //   "Apple": null,
+                  //   "Microsoft": null,
+                  //   "Google": 'http://placehold.it/250x250'
+                  // },
+                  limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                  onAutocomplete: function(val) {
+                    // Callback function when value is autcompleted.
+                    console.log('completed')
+                  },
+                  minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+                });
+              })
           })
 
       }
     },
     mounted: function(){
-      this.$http.get('/resource/' + this.$route.params.id).then(response => {
-        console.log('back',response)
-        // get body data
-        this.resource = response.body.resource;
-        this.terms = response.body.terms;
+      // take language from user instead of hardcoding english...
+      this.$http.get('/resource/' + this.$route.params.id, {params: { languageCode: 'en'}}).then(response => {
+        if(response.body.resource){
+          this.resource = response.body.resource;
+          this.terms = response.body.terms;
+        } else {
+          Materialize.toast('Resource not found.', 4000)
+        }
         this.init()
       }, response => {
-        // error callback
-        // show materalize err
         this.init()
+        Materialize.toast('Something went wrong...are you online?', 4000)
       });
 
 
@@ -501,6 +525,7 @@ const resourceComp = Vue.component('resourceComp',{
 
       $('.resourceSections').flickity({
         wrapAround: true,
+        // asNavFor: '.resourceNav',
         pageDots: false,
         prevNextButtons: true,
         accessibility: false, // to prevent jumping when focused
@@ -515,7 +540,7 @@ const resourceComp = Vue.component('resourceComp',{
       });
     },
     beforeRouteLeave: function (to, from, next){
-      if($('#resourceModal'+this.resource.id)){
+      if(this.resource && $('#resourceModal'+this.resource.id)){
         $('#resourceModal'+this.resource.id).modal('close');
       }
       window.setTimeout(()=>{
@@ -528,32 +553,25 @@ const resourceComp = Vue.component('resourceComp',{
 });
 
 /*
-████████  █████   ██████       ██████  ██████  ███    ███ ██████
-   ██    ██   ██ ██           ██      ██    ██ ████  ████ ██   ██
-   ██    ███████ ██   ███     ██      ██    ██ ██ ████ ██ ██████
-   ██    ██   ██ ██    ██     ██      ██    ██ ██  ██  ██ ██
-   ██    ██   ██  ██████       ██████  ██████  ██      ██ ██
+████████ ███████ ██████  ███    ███     ██████   █████   ██████  ███████
+   ██    ██      ██   ██ ████  ████     ██   ██ ██   ██ ██       ██
+   ██    █████   ██████  ██ ████ ██     ██████  ███████ ██   ███ █████
+   ██    ██      ██   ██ ██  ██  ██     ██      ██   ██ ██    ██ ██
+   ██    ███████ ██   ██ ██      ██     ██      ██   ██  ██████  ███████
 */
-
-
-const tagComp = Vue.component('tagComp',{
-    template: "#tagTemplate",
+const termComp = Vue.component('termComp',{
+    template: "#termTemplate",
     data: function() {
       return {
-        tag: {},
-        tagSection: ["Activity","Context","Vote","Stats","Related"]
+        term: {name: 'default'},
+        termSection: ["Activity","Context","Vote","Stats","Related"]
       }
     },
     methods:{
-      findTagAndInit: function(name){ // TODO: handle case when not found
-        for (var keyIndex = 0; keyIndex < keywords.length; keyIndex++) { // temporary function for finding tag
-          if(keywords[keyIndex].name.toLowerCase() == name.toLowerCase()){
-            this.tag = keywords[keyIndex];
-            break
-          }
-        };
+       init: function(){
+
         this.$nextTick(function(){
-            $('#tagModal'+this.tag.name).modal({
+            $('#termModal'+this.term.id).modal({
               dismissible: true, // Modal can be dismissed by clicking outside of the modal
               opacity: .5, // Opacity of modal background
               inDuration: 300, // Transition in duration
@@ -564,8 +582,8 @@ const tagComp = Vue.component('tagComp',{
                 $('body').css("overflow","hidden")
               },
               complete: () => {
-                $('.tagNav').flickity('destroy');
-                $('.tagSections').flickity('destroy');
+                $('.termNav').flickity('destroy');
+                $('.termSections').flickity('destroy');
                 $('body').css("overflow","auto")
               }
             }).modal('open');
@@ -576,16 +594,30 @@ const tagComp = Vue.component('tagComp',{
       }
     },
     mounted: function(){
+      this.$http.get('/term/' + this.$route.params.id, {params: { languageCode: 'en'}}).then(response => {
+        console.log('back')
+        if(response.body.term){
+          response.body.term.name = response.body.translation.name
+          response.body.term.status = {};
+          this.term = response.body.term;
+        } else {
+          Materialize.toast('Resource not found.', 4000)
+        }
+        this.init()
+      }, response => {
+        this.init()
+        Materialize.toast('Something went wrong...are you online?', 4000)
+      });
 
-      this.findTagAndInit(this.$route.params.id);  // finds tag and opens modal
-      $('.tagNav').flickity({
-        asNavFor: '.tagSections',
+      $('.termNav').flickity({
+        asNavFor: '.termSections',
         pageDots: true,
         prevNextButtons: true,
         accessibility: false, // to prevent jumping when focused
       })
 
-      $('.tagSections').flickity({
+      $('.termSections').flickity({
+        // asNavFor: '.termNav',
         wrapAround: true,
         pageDots: false,
         prevNextButtons: true,
@@ -603,8 +635,8 @@ const tagComp = Vue.component('tagComp',{
 
   },
   beforeRouteLeave: function (to, from, next){
-    if($('#tagModal'+this.tag.name)){
-      $('#tagModal'+this.tag.name).modal('close');
+    if($('#termModal'+this.term.id)){
+      $('#termModal'+this.term.id).modal('close');
     }
     window.setTimeout(()=>{
       next()

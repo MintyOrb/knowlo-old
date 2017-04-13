@@ -52,7 +52,7 @@
   box-shadow: none;
   overflow-x: hidden;
 }
-.selectedTags{
+.selectedterms{
   background-color: rgb(255, 255, 255);
   width: 95px;
   min-height: 100%;
@@ -166,19 +166,19 @@ html {
     box-shadow: 0 1px 0 0 black;
 }
 .resource-container {
-  height: 100vh;
+  height: 100%;
   width: 50vw;
   z-index: 999;
 }
 .resourceMeta {
-  height: 100vh;
+  height: 100%;
   width: 50vw;
 }
-.tagTitle {
+.termTitle {
   background-color: #2196F3;
   margin-top: -20px;
 }
-.tagMeta {
+.termMeta {
   height: 100vh;
   width: 100vw;
 }
@@ -194,8 +194,6 @@ html {
 #image-map {
   width: 50vw;
   height: 100vh;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
 }
 .exit {
   position: absolute;
@@ -219,6 +217,8 @@ html {
   height: 100vh;
   max-height: none;
   display: block;
+  overflow: hidden;
+  /*overflow hidden because wehn resourceStep is 100vh it goes beyond the page*/
 }
 @media (max-width:40.063em) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
   .resource-container {
@@ -300,7 +300,7 @@ html {
   position: sticky;
   top: 0;
 }
-.tagNav {
+.termNav {
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -331,20 +331,20 @@ html {
 }
 .stepContainer {
 	width: 80vw;
-	height: 600px;
-  overflow: hidden;
+	height: 100vh;
+  overflow: scroll;
 }
 .resourceStep {
   width: 40vw;
-	height: 600px;
-  overflow: hidden;
+	height: 100vh;
+  overflow: scroll;
 }
 
 .table-of-contents-holder {
   position: sticky;
   top: 100px;
 }
-/* tag radial button based on this pen: http://codepen.io/suez/pen/vAais/*/
+/* term radial button based on this pen: http://codepen.io/suez/pen/vAais/*/
 .menu, .menu .btn .fa, .menu .btn.trigger {
   position: relative;
 }
@@ -484,7 +484,7 @@ html {
 	display: flex;
 	align-items: center;
 }
-.tagWidth {
+.termWidth {
   width: 95px;
   margin-bottom: 10px;
 }

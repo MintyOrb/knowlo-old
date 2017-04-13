@@ -38,7 +38,7 @@
 							<!-- user icon here? -->
 							{{user.first}}
 						</li>
-						<li><a data-activates="query-slide" class="tagQuery-collapse show-on-large "><i class="material-icons">menu</i></a></li>
+						<li><a data-activates="query-slide" class="termQuery-collapse show-on-large "><i class="material-icons">menu</i></a></li>
 					</ul>
 				</div>
 			</nav>
@@ -65,14 +65,14 @@
     </div>
 		</div>
 
-		<router-view :tag-query="tagQuery" style="padding-top:90px"></router-view>
+		<router-view :term-query="termQuery" style="padding-top:90px"></router-view>
 
-		<!-- tags for query -->
+		<!-- terms for query -->
 		<div id="query-slide" class="side-nav">
-			<div class="right selectedTags">
-				<isotope class="tagQuery" ref="tagQuery" :list="tagQuery" :options='{}'>
-					<span  v-for="tag in tagQuery" key="tag.name">
-						<tag :tag="tag" ></tag>
+			<div class="right selectedterms">
+				<isotope class="termQuery" ref="termQuery" :list="termQuery" :options='{}'>
+					<span  v-for="term in termQuery" key="term.name">
+						<term :term="term" ></term>
 					</span>
 				</isotope>
 			</div>
@@ -101,7 +101,7 @@
 
 	<template id="exploreTemplate">
 		<div>
-			<!-- view for tag and resource page -->
+			<!-- view for term and resource page -->
 			<router-view></router-view>
 
 			<!-- sort FAB -->
@@ -140,11 +140,11 @@
 		      </div>
 		    </div>
 
-				<!-- tag query  -->
+				<!-- term query  -->
 		    <div class='row'>
-		        <isotope style="min-height:80px" ref="tagQuery" :list="tagQuery" :options='getSelectedOptions()'>
-		          <div  v-for="word in tagQuery"  class='selected' v-bind:class="{ expanded: word.status.expanded }" key="word.name">
-		            <tag class="expandedFlex" :tag="word" v-on:add-me="addToFrom(word, words, tagQuery)" v-on:lay-me="layout"></tag>
+		        <isotope style="min-height:80px" ref="termQuery" :list="termQuery" :options='getSelectedOptions()'>
+		          <div  v-for="word in termQuery"  class='selected' v-bind:class="{ expanded: word.status.expanded }" key="word.name">
+		            <term class="expandedFlex" :term="word" v-on:add-me="addToFrom(word, words, termQuery)" v-on:lay-me="layout"></term>
 		          </div>
 		        </isotope>
 		    </div>
@@ -153,7 +153,7 @@
 		    <div class='row'>
 		        <isotope ref="key" :list="words" :options='getSuggestionOptions()' class="step">
 		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.status.expanded }" key="word.name">
-								<tag class="expandedFlex" :tag="word"  v-on:add-me="addToFrom(word, tagQuery, words)" v-on:lay-me="layout" ></tag>
+								<term class="expandedFlex" :term="word"  v-on:add-me="addToFrom(word, termQuery, words)" v-on:lay-me="layout" ></term>
 		          </div>
 		        </isotope>
 		    </div>
@@ -190,7 +190,7 @@
 					<div class=" crossSectionNav ">
 						<!-- flick navigation for isotope containers -->
 						<div v-for="step in crossSection.members" class="navItems">
-							<tag :tag="step"></tag>
+							<term :term="step"></term>
 						</div>
 					</div>
 					<!-- isotope contianers -->
@@ -323,7 +323,18 @@
 					Activity
 				</div>
 				<div class="resourceStep" >
-					<tag v-for="tag in terms" :tag="tag" key="tag.name"></tag>
+					<term v-for="term in terms" :term="term" key="term.name"></term>
+					<div class="row" style="margin-bottom:100px">
+				    <div class="col s12">
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <i class="material-icons prefix">search</i>
+				          <input type="text" id="autocomplete-input" class="autocomplete">
+				          <label for="autocomplete-input">Term name</label>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
 				</div>
 				<div class="resourceStep">
 					Vote
@@ -343,32 +354,33 @@
 </template>
 
 <!--
-████████  █████   ██████      ██████   █████   ██████  ███████
-   ██    ██   ██ ██           ██   ██ ██   ██ ██       ██
-   ██    ███████ ██   ███     ██████  ███████ ██   ███ █████
-   ██    ██   ██ ██    ██     ██      ██   ██ ██    ██ ██
-   ██    ██   ██  ██████      ██      ██   ██  ██████  ███████
+████████ ███████ ██████  ███    ███     ██████   █████   ██████  ███████
+   ██    ██      ██   ██ ████  ████     ██   ██ ██   ██ ██       ██
+   ██    █████   ██████  ██ ████ ██     ██████  ███████ ██   ███ █████
+   ██    ██      ██   ██ ██  ██  ██     ██      ██   ██ ██    ██ ██
+   ██    ███████ ██   ██ ██      ██     ██      ██   ██  ██████  ███████
 -->
 
-<template id="tagTemplate">
-	<div :id="'tagModal'+tag.name" class="modal fullPage">
-		<div class="tagTitle" >
-			<tag :tag="tag"></tag>
+
+<template id="termTemplate">
+	<div :id="'termModal'+term.id" class="modal fullPage">
+		<div class="termTitle" >
+			<term :term="term"></term>
 			<p>
-				some words
+				{{term.name}}
 			</p>
 		</div>
 		<!-- flick navigation for isotope containers -->
-		<div class="tagMeta">
-			<div class="tagNav">
-				<div v-for="step in tagSection" class="navItems">
+		<div class="termMeta">
+			<div class="termNav">
+				<div v-for="step in termSection" class="navItems">
 					<p>
 						{{step}}
 					</p>
 				</div>
 			</div>
-			<div class="tagSections">
-				<div v-for="step in tagSection" class="stepContainer">{{step}}</div>
+			<div class="termSections">
+				<div v-for="step in termSection" class="stepContainer">{{step}}</div>
 			</div>
 			</div>
 	</div>
@@ -494,64 +506,64 @@
    ██    ██   ██ ██    ██
    ██    ██   ██  ██████
 -->
-<template id="tagContainer">
+<template id="termContainer">
 	<span>
-		<div class="tagWidth">
-			<div class="menu" @mouseenter="delayHover(tag, $parent._uid)" @mouseleave="leave(tag)" v-bind:class="{'active': tag.status.hover}">
+		<div class="termWidth">
+			<div class="menu" @mouseenter="delayHover()" @mouseleave="leave()" v-bind:class="{'active': hover}">
 				<div class="">
 
-					<div @click="focus(tag)" class="mbtn trigger" v-bind:class="{'scaleIcon': tag.status.hover}">
-						<span v-if="!tag.url" class="flexCenter border"> {{tag.name[0]}}</span>
+					<div @click="focus()" class="mbtn trigger" v-bind:class="{'scaleIcon': hover}">
+						<span v-if="!term.url" class="flexCenter border"> {{term.name[0]}}</span>
 						<div v-else class="thumb card-image border">
-							<img :src="tag.url">
+							<img :src="term.url">
 						</div>
 					</div>
 
 					<!-- need a better way to determine when in sidebar... -->
-					<div id="hoverPad" v-if="$parent.$el._prevClass == 'tagQuery'">
+					<div id="hoverPad" v-if="inSidebar">
 					</div>
 
 					<div class="icons">
 						<div class="rotater">
-							<div @click="pin(tag)" class="mbtn mbtn-icon flexCenter" :class="{showPin: tag.status.pinned, pinNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery' }">
+							<div @click="pin(term)" class="mbtn mbtn-icon flexCenter" :class="{showPin: pinned, pinNav: hover && inSidebar }">
 								<i class="fa fa-thumb-tack" style="transform:rotate(-45deg)"></i>
 							</div>
 						</div>
-						<div  v-if="!tag.status.expanded" class="rotater">
-							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)" :class="{'nope':!tag.group, expandNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery'}">
+						<div  v-if="!expanded" class="rotater">
+							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallterm(term)" :class="{'nope':!term.group, expandNav: hover && inSidebar}">
 								<i class="fa fa-expand"></i>
 							</div>
 						</div>
-						<div  v-if="tag.status.expanded" class="rotater">
-							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallTag(tag)" :class="{showCompress: tag.status.expanded, expandNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery'}">
+						<div  v-if="expanded" class="rotater">
+							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallterm(term)" :class="{showCompress: expanded, expandNav: hover && inSidebar}">
 								<i class="fa fa-compress"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<router-link :to="{ name: 'tagSub', params: { id: tag.name }}">
-								<div class="mbtn mbtn-icon flexCenter":class="{showInfo: tag.status.info, infoNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery' }">
+							<router-link :to="{ name: 'termSub', params: { id: term.name }}">
+								<div class="mbtn mbtn-icon flexCenter":class="{showInfo: info, infoNav: hover && inSidebar }">
 									<i class="fa fa-info"></i>
 								</div>
 							</router-link>
 
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom('', 'exclude')" class="mbtn mbtn-icon flexCenter" :class="{showMinus: tag.status.exclude, excludeNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery' }">
+							<div @click="addToFrom('', 'exclude')" class="mbtn mbtn-icon flexCenter" :class="{showMinus: exclude, excludeNav: hover && inSidebar }">
 								<i class="fa fa-minus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom(tag, 'include')" class="mbtn mbtn-icon flexCenter" :class="{showPlus: tag.status.include, includeNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery' }">
+							<div @click="addToFrom(term, 'include')" class="mbtn mbtn-icon flexCenter" :class="{showPlus: include, includeNav: hover && inSidebar }">
 								<i class="fa fa-plus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom(tag, 'focus')" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: tag.status.focus, focusNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery' }">
+							<div @click="addToFrom(term, 'focus')" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: focus, focusNav: hover && inSidebar }">
 								<i class="fa fa-crosshairs"></i>
 							</div>
 						</div>
 						<div class="">
-							<div @click="addToFrom(tag, 'remove')" class="mbtn mbtn-icon flexCenter" :class="{removeNav: tag.status.hover && this.$parent.$el._prevClass == 'tagQuery' }">
+							<div @click="addToFrom(term, 'remove')" class="mbtn mbtn-icon flexCenter" :class="{removeNav: hover && inSidebar }">
 								<i class="fa fa-times"></i>
 							</div>
 						</div>
@@ -560,15 +572,15 @@
 			</div>
 			<div class="nameholder">
 				<div class="name">
-					{{tag.name}}
+					{{term.name}}
 				</div>
 			</div>
 		</div>
 
 	 <transition name="fade">
-			<div v-if="tag.status.expanded" :class="'flickContainer'+tag.name" class=" flickContainer ">
-				<div v-for="item in tag.members" class="flickItem">
-					<tag :tag="item" v-on:add-me="addFromSub(item)"></tag>
+			<div v-if="expanded" :class="'flickContainer'+term.name" class=" flickContainer ">
+				<div v-for="item in term.members" class="flickItem">
+					<term :term="item" v-on:add-me="addFromSub(item)"></term>
 				</div>
 			</div>
 		</transition>
@@ -768,6 +780,166 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
   ga('create', 'UA-50613674-3', 'auto');
   ga('send', 'pageview');
 
+</script>
+
+<script>
+// ajaxAutoComplete({inputId:'autocomplete-input',ajaxUrl:'/search/my-auto-complete-results'})
+
+function ajaxAutoComplete(options)
+{
+
+    var defaults = {
+        inputId:null,
+        ajaxUrl:false,
+        data: {},
+        minLength: 3
+    };
+
+    options = $.extend(defaults, options);
+    var $input = $("#" + options.inputId);
+
+
+    if (options.ajaxUrl){
+
+
+        var $autocomplete = $('<ul id="ac" class="autocomplete-content dropdown-content"'
+            + 'style="position:absolute"></ul>'),
+        $inputDiv = $input.closest('.input-field'),
+        request,
+        runningRequest = false,
+        timeout,
+        liSelected;
+
+        if ($inputDiv.length) {
+            $inputDiv.append($autocomplete); // Set ul in body
+        } else {
+            $input.after($autocomplete);
+        }
+
+        var highlight = function (string, match) {
+            var matchStart = string.toLowerCase().indexOf("" + match.toLowerCase() + ""),
+            matchEnd = matchStart + match.length - 1,
+            beforeMatch = string.slice(0, matchStart),
+            matchText = string.slice(matchStart, matchEnd + 1),
+            afterMatch = string.slice(matchEnd + 1);
+            string = "<span>" + beforeMatch + "<span class='highlight'>" +
+            matchText + "</span>" + afterMatch + "</span>";
+            return string;
+
+        };
+
+        $autocomplete.on('click', 'li', function () {
+            $input.val($(this).text().trim());
+            $autocomplete.empty();
+        });
+
+        $input.on('keyup', function (e) {
+
+            if (timeout) { // comment to remove timeout
+                clearTimeout(timeout);
+            }
+
+            if (runningRequest) {
+                request.abort();
+            }
+
+            if (e.which === 13) { // select element with enter key
+                liSelected[0].click();
+                return;
+            }
+
+            // scroll ul with arrow keys
+            if (e.which === 40) {   // down arrow
+                if (liSelected) {
+                    liSelected.removeClass('selected');
+                    next = liSelected.next();
+                    if (next.length > 0) {
+                        liSelected = next.addClass('selected');
+                    } else {
+                        liSelected = $autocomplete.find('li').eq(0).addClass('selected');
+                    }
+                } else {
+                    liSelected = $autocomplete.find('li').eq(0).addClass('selected');
+                }
+                return; // stop new AJAX call
+            } else if (e.which === 38) { // up arrow
+                if (liSelected) {
+                    liSelected.removeClass('selected');
+                    next = liSelected.prev();
+                    if (next.length > 0) {
+                        liSelected = next.addClass('selected');
+                    } else {
+                        liSelected = $autocomplete.find('li').last().addClass('selected');
+                    }
+                } else {
+                    liSelected = $autocomplete.find('li').last().addClass('selected');
+                }
+                return;
+            }
+
+            // escape these keys
+            if (e.which === 9 ||        // tab
+                e.which === 16 ||       // shift
+                e.which === 17 ||       // ctrl
+                e.which === 18 ||       // alt
+                e.which === 20 ||       // caps lock
+                e.which === 35 ||       // end
+                e.which === 36 ||       // home
+                e.which === 37 ||       // left arrow
+                e.which === 39) {       // right arrow
+                return;
+            } else if (e.which === 27) { // Esc. Close ul
+                $autocomplete.empty();
+                return;
+            }
+
+            var val = $input.val().toLowerCase();
+            $autocomplete.empty();
+
+            if (val.length > options.minLength) {
+
+                timeout = setTimeout(function () { // comment this line to remove timeout
+                    runningRequest = true;
+                    request = $.ajax({
+                        type: 'GET',
+                        url: options.ajaxUrl + val,
+                        success: function (data) {
+													console.log(data)
+													console.log('ehlllooo????')
+                            if (!$.isEmptyObject(data)) { // (or other) check for empty result
+                                var appendList = '';
+																for (var dataIndex = 0; dataIndex < data.length; dataIndex++) {
+
+                                        var li = '';
+                                        if (!!data[dataIndex].url) { // if image exists as in official docs
+                                            li += '<li><img src="' + data[dataIndex].url + '" class="left">';
+                                            li += "<span>" + highlight(data[dataIndex].name, val) + "</span></li>";
+                                        } else {
+                                            li += '<li><span>' + highlight(data[dataIndex].name, val) + '</span></li>';
+                                        }
+                                        appendList +='<li><span>' + highlight(data[dataIndex].name, val) + '</span></li>';
+                                }
+																appendList+='<li><span>' + " + create new" + '</span></li>'
+                                $autocomplete.append(appendList);
+                            }else{
+                                $autocomplete.append('<li><span>+ create new</span></li>');
+                            }
+                        },
+                        complete: function () {
+                            runningRequest = false;
+                        }
+                    });
+                }, 250);        // comment this line to remove timeout
+            }
+        });
+
+        $(document).click(function () { // close ul if clicked outside
+            if (!$(event.target).closest($autocomplete).length) {
+                $autocomplete.empty();
+            }
+        });
+    }
+}
 </script>
 
 </html>

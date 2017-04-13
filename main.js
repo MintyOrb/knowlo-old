@@ -4,7 +4,7 @@ const routes = [
   {  name: "explore", path: '/', component: explore,
       children: [
         { path: '/c/:id', component: resourceComp, name: 'resourceSub' },
-        { path: '/t/:id', component: tagComp, name: 'tagSub' },
+        { path: '/t/:id', component: termComp, name: 'termSub' },
         { path: '/add', component: add, name: 'exploreAdd' },
       ]
   },
@@ -29,13 +29,13 @@ const app = new Vue({
   data: function() {
     return {
         user: {},       // id and info for user if logged in, undefined if not
-        tagQuery: [],   // array of tag objects to be queried
+        termQuery: [],   // array of term objects to be queried
       }
   },
   methods: {
     close: function(){
       console.log('close here')
-      $('.tagQuery-collapse').sideNav('hide');
+      $('.termQuery-collapse').sideNav('hide');
     },
     signOut: function(){
       firebase.auth().signOut().then(function() {
@@ -48,10 +48,10 @@ const app = new Vue({
   mounted: function(){
 
     this.bigHistory = bigHistory.members//.slice(0,3);
-    this.tagQuery= disciplines.members.slice(0,3);
+    this.termQuery= disciplines.members.slice(0,3);
 
-    this.$nextTick(function(){ // init tag sidebar
-      $('.tagQuery-collapse').sideNav({
+    this.$nextTick(function(){ // init term sidebar
+      $('.termQuery-collapse').sideNav({
           menuWidth: 300, // Default is 300
           edge: 'right', // Choose the horizontal origin
           closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
@@ -88,15 +88,6 @@ const app = new Vue({
           console.log(error);
           Materialize.toast('Something went wrong...are you online?', 4000)
         });
-      // GET /someUrl
-      // this.$http.post('/something',{id: '63cbd7c5-e2b6-4877-9d42-7d6f162a8b36'}).then(response => {
-      //   console.log('back',response)
-      //   // get body data
-      //   this.someData = response.body;
-      //
-      // }, response => {
-      //   // error callback
-      // });
 
   }
 }).$mount('#main')

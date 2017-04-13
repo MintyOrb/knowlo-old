@@ -2,7 +2,19 @@ module.exports = function(app, db){
   var model = require('seraph-model');
 
   var Resource = model(db, 'resource');
+  Resource.schema = {
+  // name: { type: String, required: true },
+  // email: { type: String, match: emailRegex, required: true },
+  // age: { type: Number, min: 16, max: 85 },
+  // expiry: Date
+}
   var Term = model(db, "term");
+//   Term.schema = {
+//   name: { type: String, required: true },
+//   email: { type: String, match: emailRegex, required: true },
+//   age: { type: Number, min: 16, max: 85 },
+//   expiry: Date
+// }
   Resource.compose(Term, 'terms', 'TAGGED_WITH');
 
   // Resource.fields = ['name', 'brewery', 'style']; // props not on the list are stripped
@@ -16,22 +28,23 @@ module.exports = function(app, db){
     })
   })
 
+  // return resource core, meta, and tagged terms based on ID.
+  // language code passed in as "languageCode" by query, default to english
   app.get('/resource/:id', function(req, res){
-    console.log(req.params.id)
-    var cypher ="START resource=NODE({id}) MATCH (resource)-[TAGGED_WITH]-(:term)-[r:HAS_TRANSLATION]-(tr:translation) where r.languageCode ='en' with resource, collect(tr) as terms return resource, terms"
-    // Resource.read(req.params.id, function(err, model){
-    //   if(err){console.log(err)};
-    //   res.send(model)
-    // })
-    db.query(cypher, {id: parseInt(req.params.id)},function(err, result) {
-      if (err) console.log(err);
-      console.log(result)
+    var cypher ="START resource=NODE({id}) MATCH (resource:resource)-[TAGGED_WITH]->(:term)-[r:HAS_TRANSLATION]->(tr:translation) where r.languageCode = {languageCode} with resource, collect(distinct tr) as terms return resource, terms"
+
+    db.query(cypher, {id: parseInt(req.params.id), languageCode: req.query.languageCode || 'en'},function(err, result) {
+      if (err) {console.log(err); res.status(500).send()};
       if(result){
-          res.send(result[0])
+        console.log(result[0])
+        res.send(result[0])
       } else {
-        res.send() // resource not found
+        res.status(404).send() // resource not found
       }
     })
+  })
+  app.put('/resource/:id', function(req, res){
+
   })
   app.post('/resource', function(req, res) {
     console.log(req.body)
