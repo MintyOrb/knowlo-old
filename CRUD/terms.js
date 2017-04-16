@@ -176,8 +176,7 @@ module.exports = function(app, db){
   })
 
   app.get('/term/autocomplete/:text', function(req,res){
-    console.log('woah!')
-    console.log(req.params.text)
+
     var properties = {
       code: 'en',
       match: '(?i).*' + req.params.text + '.*'
@@ -191,9 +190,7 @@ module.exports = function(app, db){
 
     db.query(query, properties, function (err, matches) {
         if (err) {console.log("error in db query: " + err);}
-        console.log(matches)
-
-            res.send(matches);
+        res.send(matches);
     });
 
   })

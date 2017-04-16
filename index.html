@@ -782,12 +782,12 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 
 </script>
 
+
+<!-- ajax auto complete from http://stackoverflow.com/a/42757285/2061741 -->
 <script>
-// ajaxAutoComplete({inputId:'autocomplete-input',ajaxUrl:'/search/my-auto-complete-results'})
 
 function ajaxAutoComplete(options)
 {
-
     var defaults = {
         inputId:null,
         ajaxUrl:false,
@@ -798,10 +798,7 @@ function ajaxAutoComplete(options)
     options = $.extend(defaults, options);
     var $input = $("#" + options.inputId);
 
-
     if (options.ajaxUrl){
-
-
         var $autocomplete = $('<ul id="ac" class="autocomplete-content dropdown-content"'
             + 'style="position:absolute"></ul>'),
         $inputDiv = $input.closest('.input-field'),
@@ -904,8 +901,6 @@ function ajaxAutoComplete(options)
                         type: 'GET',
                         url: options.ajaxUrl + val,
                         success: function (data) {
-													console.log(data)
-													console.log('ehlllooo????')
                             if (!$.isEmptyObject(data)) { // (or other) check for empty result
                                 var appendList = '';
 																for (var dataIndex = 0; dataIndex < data.length; dataIndex++) {

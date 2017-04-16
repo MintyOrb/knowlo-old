@@ -338,6 +338,10 @@ html {
   width: 40vw;
 	height: 100vh;
   overflow: scroll;
+  display: flex !important;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content:center;
 }
 
 .table-of-contents-holder {
