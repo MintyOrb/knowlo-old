@@ -74,8 +74,7 @@ const app = new Vue({
         down : 0,
         up : 10
         },
-  		})
-    	headroom.init();
+  		}).init();
 
       firebase.auth().onAuthStateChanged((member) => {
           if (member) {
@@ -86,7 +85,6 @@ const app = new Vue({
               // do I need this?
             });
           } else {
-            // this.member = undefined;
             console.log("member is signed out")
           }
         }, function(error) {
