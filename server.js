@@ -13,6 +13,7 @@ app.use(express.static('./'))
 
 require('./CRUD/terms')(app, db);
 require('./CRUD/resources')(app, db);
+require('./CRUD/members')(app, db);
 
 app.listen('8000', function () {
   console.log('listening on port 8000')

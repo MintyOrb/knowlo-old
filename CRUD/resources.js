@@ -55,6 +55,7 @@ module.exports = function(app, db){
 
   app.get('/resource/:id/full', readFull);   // read full details of a single resource (tagged terms and translation by language code)
   app.put('/resource/:id/full', updateFull); // update full details of a single resource (tagged terms and translation by language code)
+  app.post('/resource/:id/full', createFull); // create full details of a single resource (tagged terms and translation by language code)
 
 
   function query(req, res){
@@ -168,4 +169,7 @@ module.exports = function(app, db){
         res.send(resource);
     });
   }
+  function createFull(req, res){
+  }
+
 }

@@ -5,17 +5,17 @@ module.exports = function(app, db){
   var Translation = model(db, 'translation');
   Term.compose(Translation, 'translations', 'HAS_TRANSLATION');
 
-  Term.fields = ['url', 'english', 'dateAdded', 'MID', 'languageAddedIn']; // props not on the list are stripped
-  Term.setUniqueKey('english', true); // using this feels hacky...the field was only meant to be added as a convinience when using the neo4j browser
+  Term.fields = ['url', 'origin', 'MID']; // props not on the list are stripped
+  Term.setUniqueKey('origin');
   Term.useTimestamps(); // tracks created and updated
 
   Translation.fields = ['name', 'definition', 'languageCode', 'dateAdded', "_rel"]; // props not on the list are stripped
   Translation.useTimestamps() // tracks created and updated
 
   app.get('/term', query);          // query terms based on user details and provided term IDs - /term/query instaed?
-  app.get('/term/:id', readCore);   // read details of a single term core
+  app.get('/term/:id', read);       // read details of a single term and translation
   app.put('/term/:id', updateCore); // update a single resrouces core node data
-  app.post('/term', createCore);    // create (or update, if present) a term core node.
+  app.post('/term', create);        // create (or update, if present) a term core and single translation node.
   app.delete('/term', deleteCore);  // delete term core node and relationships....and translations?
 
   app.get('/term/:teid/translation/', readTranslation);         // retrieve a translation of a term based on term id and provided langauge code. If language not found, attempt a translation. Also returns term core
@@ -23,18 +23,28 @@ module.exports = function(app, db){
   app.post('/term/:teid/translation/', createTranslation);      // create term translation based on language code and connect to term. Return resrouce core and new translation
   app.delete('/term/:teid/translation/:id', deleteTranslation); // delete term translation by id | delete node or just relatinship??
 
+  // app.get('/term/:teid/analogue/', readAnalogue);         // retrieve a analogue of a term based on term id and provided langauge code. If language not found, attempt a analogue. Also returns term core
+  // app.put('/term/:teid/analogue/:id', updateAnalogue);    // update single term analogue by ID | is /term/:teid superfluous? /termMeta/:id instead?
+  // app.post('/term/:teid/analogue/', createAnalogue);      // create term analogue based on language code and connect to term. Return resrouce core and new analogue
+  // app.delete('/term/:teid/analogue/:id', deleteAnalogue); // delete term analogue by id | delete node or just relatinship??
+  //
+  // app.get('/term/:teid/group/', readGroup);         // retrieve a group of a term based on term id and provided langauge code. If language not found, attempt a group. Also returns term core
+  // app.put('/term/:teid/group/:id', updateGroup);    // update single term group by ID | is /term/:teid superfluous? /termMeta/:id instead?
+  // app.post('/term/:teid/group/', createGroup);      // create term group based on language code and connect to term. Return resrouce core and new group
+  // app.delete('/term/:teid/group/:id', deleteGroup); // delete term group by id | delete node or just relatinship??
+
   function query(req, res){
   }
 
-  function readCore(req, res){
-    /**
-    * reads term core node and translation
-    * language code passed via member as "member.languageCode" on body, default to english
-    * @param {String} languageCode
-    * @param {String} id will try to match on translation name of language provided and retrieve term id
-    * @param {Number} id
-    * @return {Object} resource
-    */
+  function read(req, res){
+  /**
+  * reads term core node and translation
+  * language code passed via member as "member.languageCode" on body, default to english
+  * @param {String} languageCode
+  * @param {String} id will try to match on translation name of language provided and retrieve term id
+  * @param {Number} id
+  * @return {Object} resource
+  */
     if(isNaN(parseInt(req.params.id))){
       var id = req.params.id; // match term on name
       var cypher = "MATCH (term:term)-[r:HAS_TRANSLATION]->(translation:translation) "
@@ -58,15 +68,44 @@ module.exports = function(app, db){
   function updateCore(req, res){
   }
 
-  function createCore(req, res){
+  function create(req, res){
     /**
-    * creates a new term core - first looks for existing?
+    * creates a new term core - (or updates existing - match based on provided string across all languages?)
     * language code passed via member as "member.languageCode" on body, default to english
     * @param {String} languageCode
-    * @param {Number} id
-    * @return {Object} resource
+    * @param {String} term
+    * @return {Object}
     */
+    // check if exists...
+      // if so-> add coreid req.body -> update(req,res)
+    // else create
+    var cypher = "CREATE (term:term {term})-[r:HAS_TRANSLATION]->(translation:translation {translation}) "
+               + "SET r.languageCode = {translation.languageCode} "
+               + "RETURN term, translation"
 
+    db.query(cypher, {term: req.body.term, translation: req.body.translation },function(err, result) {
+      if (err) console.log(err);
+      console.log(result)
+      if(result){
+        res.send(result[0])
+      } else {
+        res.send() // resource not found...or not found in desired language? get translation and add to db...
+      }
+    })
+    // console.log('req.body ',req.body)
+    // req.body.translation._rel={languageCode: req.body.translation.languageCode}
+    // var term = {
+    //   url: req.body.term.url,
+    //   origin: req.body.term.origin,
+    //   translations: [req.body.translation]
+    // }
+    // console.log('term ',term)
+    // // res.send('yup')
+    //
+    // Term.save(term, function(err, saved) {
+    //   if (err) {console.log(err); res.status(500).send()};
+    //   res.send(saved)
+    // })
   }
 
   function deleteCore(req, res){
