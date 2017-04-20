@@ -82,7 +82,7 @@ const app = new Vue({
             this.member.first = member.displayName.substr(0,member.displayName.indexOf(' ')); // get first name -  if there is no space at all, then the first line will return an empty string and the second line will return the entire string
 
             member.getToken().then(function(accessToken) {
-              // do I need this?
+              // do I need this? does this change with each access?
             });
           } else {
             console.log("member is signed out")

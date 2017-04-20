@@ -541,3 +541,7 @@ html {
         margin: 0px;
     }
 }
+
+.hidden{
+  visibility: hidden;
+}

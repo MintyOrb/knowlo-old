@@ -143,14 +143,6 @@
 
 				<autocomplete></autocomplete>
 
-				<vue-typeahead
-						v-model="value"
-            display-key='value'
-            classes="form-control"
-            remote="/term/autocomplete"
-            v-on:selected="done">
-        </vue-typeahead>
-
 				<!-- term query  -->
 		    <div class='row'>
 		        <isotope style="min-height:80px" ref="termQuery" :list="termQuery" :options='getSelectedOptions()'>
@@ -647,12 +639,37 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">search</i>
-					<input type="text" id="autocomplete-input" class="autocomplete">
-					<label for="autocomplete-input">Term name</label>
+					<input type="text" id="autocomplete-input" class="autocomplete" v-model="input" @blur="hidden=true" @focus="hidden=false">
+					<label for="autocomplete-input" >Term name</label>
+					<ul id="ac" class="autocomplete-content dropdown-content"style="position:absolute" v-bind:class="{ hide: hidden }">
+						<li v-for="term in suggestions" @click='selected(term)'>
+							<img v-if="term.url" :src="term.url" class="left">
+							<span>{{term.name}}</span>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
+</template>
+
+<!--
+████████ ██    ██ ██████  ███████  █████  ██   ██ ███████  █████  ██████
+   ██     ██  ██  ██   ██ ██      ██   ██ ██   ██ ██      ██   ██ ██   ██
+   ██      ████   ██████  █████   ███████ ███████ █████   ███████ ██   ██
+   ██       ██    ██      ██      ██   ██ ██   ██ ██      ██   ██ ██   ██
+   ██       ██    ██      ███████ ██   ██ ██   ██ ███████ ██   ██ ██████
+-->
+
+<template id='typeahead2'>
+  <input ref="input" class="typeahead-suggestions"
+         :class="classes"
+         :id = "id"
+         v-bind:value="value"
+         v-on:input="updateValue($event.target.value)"
+         v-on:blur="formatValue"
+         :placeholder="placeholder"
+          >
 </template>
 <!--
 ███████ ██ ██████  ███████ ██████   █████  ██████
