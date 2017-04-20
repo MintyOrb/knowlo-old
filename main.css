@@ -217,7 +217,7 @@ html {
   height: 100vh;
   max-height: none;
   display: block;
-  overflow: hidden;
+  /*overflow: hidden;*/
   /*overflow hidden because wehn resourceStep is 100vh it goes beyond the page*/
 }
 @media (max-width:40.063em) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */

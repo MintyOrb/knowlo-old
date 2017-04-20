@@ -8,12 +8,11 @@ var db = require("seraph")({
   pass: 'admin'
 });
 
+app.use(bodyParser.json())
+app.use(express.static('./'))
+
 require('./CRUD/terms')(app, db);
 require('./CRUD/resources')(app, db);
-
-app.use(bodyParser.json())
-
-app.use(express.static('./'))
 
 app.listen('8000', function () {
   console.log('listening on port 8000')

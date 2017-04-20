@@ -28,11 +28,16 @@ const app = new Vue({
   router,
   data: function() {
     return {
-        user: {},       // id and info for user if logged in, undefined if not
-        termQuery: [],   // array of term objects to be queried
+        member: {id:undefined,languageCode:'en'},       // id and info for member if logged in, undefined if not
+        termQuery: [],                                          // array of term objects to be queried
+        value: ""
       }
   },
   methods: {
+    done: function(test){
+      console.log('done here ', test)
+
+    },
     close: function(){
       console.log('close here')
       $('.termQuery-collapse').sideNav('hide');
@@ -72,17 +77,17 @@ const app = new Vue({
   		})
     	headroom.init();
 
-      firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-            this.user = user;
-            this.user.first = user.displayName.substr(0,user.displayName.indexOf(' ')); // get first name -  if there is no space at all, then the first line will return an empty string and the second line will return the entire string
+      firebase.auth().onAuthStateChanged((member) => {
+          if (member) {
+            this.member = member;
+            this.member.first = member.displayName.substr(0,member.displayName.indexOf(' ')); // get first name -  if there is no space at all, then the first line will return an empty string and the second line will return the entire string
 
-            user.getToken().then(function(accessToken) {
+            member.getToken().then(function(accessToken) {
               // do I need this?
             });
           } else {
-            this.user = undefined;
-            console.log("user is signed out")
+            // this.member = undefined;
+            console.log("member is signed out")
           }
         }, function(error) {
           console.log(error);

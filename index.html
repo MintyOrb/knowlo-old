@@ -29,14 +29,14 @@
 						<li><a data-activates="slide-out" class="navbar-collapse show-on-large"><i class="material-icons">menu</i></a></li>
 					</ul>
 					<ul class="right ">
-						<li v-if="!user">
+						<li v-if="!member">
 							<a data-target="login-modal" class="hide-on-med-and-down">Login | Sign Up</a>
 						  <!-- show icon on medium and down? no materialize-css class for it -->
 							<!-- <a data-target="login-modal" class="show-on-med-and-down"><i class="material-icons fa fa-lg fa-sign-in"></i></a> -->
 						</li>
 						<li v-else v-cloak>
-							<!-- user icon here? -->
-							{{user.first}}
+							<!-- member icon here? -->
+							{{member.first}}
 						</li>
 						<li><a data-activates="query-slide" class="termQuery-collapse show-on-large "><i class="material-icons">menu</i></a></li>
 					</ul>
@@ -44,7 +44,8 @@
 			</nav>
 		</div>
 
-		<sidebar :user="user"></sidebar>
+
+		<sidebar :member="member"></sidebar>
 
 
 		<!--
@@ -65,7 +66,7 @@
     </div>
 		</div>
 
-		<router-view :term-query="termQuery" style="padding-top:90px"></router-view>
+		<router-view :term-query="termQuery" :member="member" style="padding-top:90px"></router-view>
 
 		<!-- terms for query -->
 		<div id="query-slide" class="side-nav">
@@ -102,7 +103,7 @@
 	<template id="exploreTemplate">
 		<div>
 			<!-- view for term and resource page -->
-			<router-view></router-view>
+			<router-view :member="member" ></router-view>
 
 			<!-- sort FAB -->
 			<!-- <div class="fixed-action-btn click-to-toggle">
@@ -139,6 +140,16 @@
 		        <label for='search'>search</label>
 		      </div>
 		    </div>
+
+				<autocomplete></autocomplete>
+
+				<vue-typeahead
+						v-model="value"
+            display-key='value'
+            classes="form-control"
+            remote="/term/autocomplete"
+            v-on:selected="done">
+        </vue-typeahead>
 
 				<!-- term query  -->
 		    <div class='row'>
@@ -196,7 +207,7 @@
 					<!-- isotope contianers -->
 					<div class=" crossSectionSteps">
 						<div v-for="step in crossSection.members" class="stepContainer">
-							<isotope class="step" :list="db" :options='getContentOptions()'>
+							<isotope :ref='"resourceBin" + step.name' class="step" :list="db" :options='getIsotopeOptions(step.name)'>
 								<div  v-for="item in db" v-if="item.time.includes(step.name) || item.discipline.includes(step.name)" key="item.name">
 				          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
 				              <router-link  :to="{ name: 'resourceSub', params: { id: item.videoid }}">
@@ -264,11 +275,13 @@
 			      </isotope>
 					</div>
 				</transition>
-					<div class="flexCenter" v-show="this.numberOfDisplayed === 0">
-						<p>
-							no results! Have someting you want to add?
-						</p>
-					</div>
+
+
+				<div class="flexCenter" v-show="this.numberOfDisplayed === 0">
+					<p>
+						no results! Have someting you want to add?
+					</p>
+				</div>
 		</div>
 		</div>
 	</template>
@@ -324,17 +337,7 @@
 				</div>
 				<div class="resourceStep" >
 					<term v-for="term in terms" :term="term" key="term.name"></term>
-					<div class="row" style="margin-bottom:100px">
-				    <div class="col s12">
-				      <div class="row">
-				        <div class="input-field col s12">
-				          <i class="material-icons prefix">search</i>
-				          <input type="text" id="autocomplete-input" class="autocomplete">
-				          <label for="autocomplete-input">Term name</label>
-				        </div>
-				      </div>
-				    </div>
-				  </div>
+					<autocomplete></autocomplete> <!-- make this add/search component instead? -->
 				</div>
 				<div class="resourceStep">
 					Vote
@@ -393,9 +396,60 @@
 ██   ██ ██   ██ ██   ██     ██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██
 ██   ██ ██████  ██████      ██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████
 -->
-<template id="addTemplate">
+<template id="addTemplate" :term-query="termQuery" :member="member">
 	<div id="addModal" class="modal fullPage">
-		hello womp
+		<h1>Identify</h1>
+		<!--  here the user provides the url of the resource , or, eventually the file to be uploaded or the text -->
+		<div class="row">
+    <form class="col s12">
+
+			<div class="row" v-if="">
+        <div class="input-field col s12">
+          <input v-model="resource.URL" id="url" type="url" class="validate">
+          <label for="url">URL</label>
+        </div>
+      </div>
+
+			<!-- <div class="row" v-else>
+        <div class="input-field col s12">
+          <textarea v-model="resource.translations.text" id="text" class="materialize-textarea"></textarea>
+          <label for="text">Text</label>
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input v-model="resource.translations.title" id="title" type="text" class="validate">
+          <label for="title">Title</label>
+        </div>
+      </div>
+			<div class="row">
+        <div class="input-field col s12">
+          <input v-model="resource.translations.subtitle" id="subtitle" type="text" class="validate">
+          <label for="subtitle">Brief description (subtitle)</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea v-model="resource.translations.description" id="description" class="materialize-textarea"></textarea>
+          <label for="description">Full description</label>
+        </div>
+      </div>
+
+			<div class="row">
+        <div class="input-field col s12">
+          <textarea v-model="resource.translations.value" id="value" class="materialize-textarea"></textarea>
+          <label for="value">Why is this resource valuable?</label>
+        </div>
+      </div>
+    </form>
+		<div class="btn" @click='saveTranslation'>
+			Next
+		</div>
+  </div>
+		<h1>Tag</h1>
+		<autocomplete></autocomplete>
 	</div>
 </template>
 	<!--
@@ -586,7 +640,20 @@
 		</transition>
 	</span>
 </template>
-
+<template id="autocomplete">
+	<!-- search with typeahead -->
+	<div class="row" style="margin-bottom:100px">
+		<div class="col s12">
+			<div class="row">
+				<div class="input-field col s12">
+					<i class="material-icons prefix">search</i>
+					<input type="text" id="autocomplete-input" class="autocomplete">
+					<label for="autocomplete-input">Term name</label>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
 <!--
 ███████ ██ ██████  ███████ ██████   █████  ██████
 ██      ██ ██   ██ ██      ██   ██ ██   ██ ██   ██
@@ -600,14 +667,14 @@
 		 <div class="background">
 			 <img src="thumbs\_6xlNyWPpB8_MEDIUM_sddefault.jpg">
 		 </div>
-		 <a href="#!user"><img class="circle" src="thumbs\-EJOO3xAjTk_MEDIUM_sddefault.jpg"></a>
+		 <a href="#!member"><img class="circle" src="thumbs\-EJOO3xAjTk_MEDIUM_sddefault.jpg"></a>
 		 <a href="#!name"><span class="white-text name">John Doe</span></a>
 		 <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
 	 </div></li> -->
 	 <!-- <li><div class="divider"></div></li> -->
 	 <li><a href="#" class="subheader" id="navName">Knowlo</a></li>
 		<li><div class="divider"></div></li>
-		<li v-if="!user"><a data-target="login-modal" class="waves-effect"><i class="fa fa-lg fa-sign-in"></i>Login | Sign Up</a></li>
+		<li v-if="!member"><a data-target="login-modal" class="waves-effect"><i class="fa fa-lg fa-sign-in"></i>Login | Sign Up</a></li>
 		<li v-else><a @click="signOut()" class="waves-effect"><i class="fa fa-lg fa-sign-out"></i>Log Out</a></li>
 		<li><div class="divider"></div></li>
 		<li><a class="subheader"></a></li>
@@ -767,7 +834,8 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 <script src="https://cdn.jsdelivr.net/vue.resource/1.2.1/vue-resource.min.js"></script>
 
 <script src="navSectionTemplates.js"></script>
-<script src="routes.js"></script>
+<script src="pages.js"></script>
+<script src="components.js"></script>
 <script src="main.js"></script>
 
 <!-- analytics -->
@@ -780,161 +848,6 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
   ga('create', 'UA-50613674-3', 'auto');
   ga('send', 'pageview');
 
-</script>
-
-
-<!-- ajax auto complete from http://stackoverflow.com/a/42757285/2061741 -->
-<script>
-
-function ajaxAutoComplete(options)
-{
-    var defaults = {
-        inputId:null,
-        ajaxUrl:false,
-        data: {},
-        minLength: 3
-    };
-
-    options = $.extend(defaults, options);
-    var $input = $("#" + options.inputId);
-
-    if (options.ajaxUrl){
-        var $autocomplete = $('<ul id="ac" class="autocomplete-content dropdown-content"'
-            + 'style="position:absolute"></ul>'),
-        $inputDiv = $input.closest('.input-field'),
-        request,
-        runningRequest = false,
-        timeout,
-        liSelected;
-
-        if ($inputDiv.length) {
-            $inputDiv.append($autocomplete); // Set ul in body
-        } else {
-            $input.after($autocomplete);
-        }
-
-        var highlight = function (string, match) {
-            var matchStart = string.toLowerCase().indexOf("" + match.toLowerCase() + ""),
-            matchEnd = matchStart + match.length - 1,
-            beforeMatch = string.slice(0, matchStart),
-            matchText = string.slice(matchStart, matchEnd + 1),
-            afterMatch = string.slice(matchEnd + 1);
-            string = "<span>" + beforeMatch + "<span class='highlight'>" +
-            matchText + "</span>" + afterMatch + "</span>";
-            return string;
-
-        };
-
-        $autocomplete.on('click', 'li', function () {
-            $input.val($(this).text().trim());
-            $autocomplete.empty();
-        });
-
-        $input.on('keyup', function (e) {
-
-            if (timeout) { // comment to remove timeout
-                clearTimeout(timeout);
-            }
-
-            if (runningRequest) {
-                request.abort();
-            }
-
-            if (e.which === 13) { // select element with enter key
-                liSelected[0].click();
-                return;
-            }
-
-            // scroll ul with arrow keys
-            if (e.which === 40) {   // down arrow
-                if (liSelected) {
-                    liSelected.removeClass('selected');
-                    next = liSelected.next();
-                    if (next.length > 0) {
-                        liSelected = next.addClass('selected');
-                    } else {
-                        liSelected = $autocomplete.find('li').eq(0).addClass('selected');
-                    }
-                } else {
-                    liSelected = $autocomplete.find('li').eq(0).addClass('selected');
-                }
-                return; // stop new AJAX call
-            } else if (e.which === 38) { // up arrow
-                if (liSelected) {
-                    liSelected.removeClass('selected');
-                    next = liSelected.prev();
-                    if (next.length > 0) {
-                        liSelected = next.addClass('selected');
-                    } else {
-                        liSelected = $autocomplete.find('li').last().addClass('selected');
-                    }
-                } else {
-                    liSelected = $autocomplete.find('li').last().addClass('selected');
-                }
-                return;
-            }
-
-            // escape these keys
-            if (e.which === 9 ||        // tab
-                e.which === 16 ||       // shift
-                e.which === 17 ||       // ctrl
-                e.which === 18 ||       // alt
-                e.which === 20 ||       // caps lock
-                e.which === 35 ||       // end
-                e.which === 36 ||       // home
-                e.which === 37 ||       // left arrow
-                e.which === 39) {       // right arrow
-                return;
-            } else if (e.which === 27) { // Esc. Close ul
-                $autocomplete.empty();
-                return;
-            }
-
-            var val = $input.val().toLowerCase();
-            $autocomplete.empty();
-
-            if (val.length > options.minLength) {
-
-                timeout = setTimeout(function () { // comment this line to remove timeout
-                    runningRequest = true;
-                    request = $.ajax({
-                        type: 'GET',
-                        url: options.ajaxUrl + val,
-                        success: function (data) {
-                            if (!$.isEmptyObject(data)) { // (or other) check for empty result
-                                var appendList = '';
-																for (var dataIndex = 0; dataIndex < data.length; dataIndex++) {
-
-                                        var li = '';
-                                        if (!!data[dataIndex].url) { // if image exists as in official docs
-                                            li += '<li><img src="' + data[dataIndex].url + '" class="left">';
-                                            li += "<span>" + highlight(data[dataIndex].name, val) + "</span></li>";
-                                        } else {
-                                            li += '<li><span>' + highlight(data[dataIndex].name, val) + '</span></li>';
-                                        }
-                                        appendList +='<li><span>' + highlight(data[dataIndex].name, val) + '</span></li>';
-                                }
-																appendList+='<li><span>' + " + create new" + '</span></li>'
-                                $autocomplete.append(appendList);
-                            }else{
-                                $autocomplete.append('<li><span>+ create new</span></li>');
-                            }
-                        },
-                        complete: function () {
-                            runningRequest = false;
-                        }
-                    });
-                }, 250);        // comment this line to remove timeout
-            }
-        });
-
-        $(document).click(function () { // close ul if clicked outside
-            if (!$(event.target).closest($autocomplete).length) {
-                $autocomplete.empty();
-            }
-        });
-    }
-}
 </script>
 
 </html>

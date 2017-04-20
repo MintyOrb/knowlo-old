@@ -15,10 +15,16 @@ module.exports = function(app, db){
   // Translation.exists(36225,function(err,model){
   //   console.log(model) //-> true
   // })
-
-  Translation.read(86831,function(err,model){
+  Translation.read(34968,function(err,model){
+    console.log('trans model')
     console.log(model) //-> true
   })
+
+  // Term.read({english:'Cosmology'},function(err,model){
+  //   console.log('termComp model')
+  //
+  //   console.log(model) //-> true
+  // })
 
   //
   // var t = require("../keywords")
@@ -145,6 +151,9 @@ module.exports = function(app, db){
   });
 
   app.put('/term/:id', function(req, res) {
+    // update core - icon url
+    //update relationships- translations? synonyms? groups?
+
     // var term = {
     //     url: req.body.url,
     //     translations: [
@@ -185,7 +194,7 @@ module.exports = function(app, db){
     var query = [
         "MATCH (core:term)-[r:HAS_TRANSLATION {languageCode:{code}}]-(langNode) ",
         "WHERE langNode.name =~ {match} ",
-        "RETURN langNode.name as name, core.url as url  LIMIT 8"
+        "RETURN langNode.name as name, core.url as url, ID(core) as id  LIMIT 8" // order by....?
     ].join('\n');
 
     db.query(query, properties, function (err, matches) {
