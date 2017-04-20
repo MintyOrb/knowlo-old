@@ -38,7 +38,7 @@ module.exports = function(app, db){
   // resource routes
   app.get('/resource', query);          // query resources based on user details and provided term IDs - /resource/query instaed?
   app.get('/resource/:id', readCore);   // read details of a single resource core
-  app.put('/resource/:id', updateCore); // update a single resrouces core node data
+  app.put('/resource/:id', updateCore); // update a single resource core node data
   app.post('/resource', createCore);    // create (or update, if present) a resource core node.
   app.delete('/resource', deleteCore);  // delete resource core node and relationships....and translations?
 

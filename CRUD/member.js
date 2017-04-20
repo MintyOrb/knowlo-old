@@ -6,7 +6,7 @@ module.exports = function(app, db){
   Member.fields = ['languageCode', 'name', 'fireBaseID'];
 
   // Member.setUniqueKey('name?', true);
-  Mmeber.useTimestamps();
+  Member.useTimestamps();
 
   // member routes
   app.get('/member/:id', readCore);   // read details of a single member core
@@ -19,3 +19,15 @@ module.exports = function(app, db){
   // app.post('/member/:rid/term/', batchSetTerms);     // batch set terms to member (with ids) - delete all tags relationships and create for  tags provided
   // app.put('/member/:rid/term/:id', setTerm);         // add a single term to a members by id
   // app.delete('/member/:rid/term/:id', deleteTerm);   // remove a single term relationship from a members | DELETE /term/:id to delete term node itself
+
+  function readCore(req, res){
+  }
+
+  function updateCore(req, res){
+  }
+
+  function createCore(req, res){
+  }
+
+  function deleteCore(req, res){
+  }

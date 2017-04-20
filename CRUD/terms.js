@@ -10,84 +10,31 @@ module.exports = function(app, db){
   Term.useTimestamps(); // tracks created and updated
 
   Translation.fields = ['name', 'definition', 'languageCode', 'dateAdded', "_rel"]; // props not on the list are stripped
-  // Translation.setUniqueKey('languageCode'); // i
   Translation.useTimestamps() // tracks created and updated
-  // Translation.exists(36225,function(err,model){
-  //   console.log(model) //-> true
-  // })
-  Translation.read(34968,function(err,model){
-    console.log('trans model')
-    console.log(model) //-> true
-  })
 
-  // Term.read({english:'Cosmology'},function(err,model){
-  //   console.log('termComp model')
-  //
-  //   console.log(model) //-> true
-  // })
+  app.get('/term', query);          // query terms based on user details and provided term IDs - /term/query instaed?
+  app.get('/term/:id', readCore);   // read details of a single term core
+  app.put('/term/:id', updateCore); // update a single resrouces core node data
+  app.post('/term', createCore);    // create (or update, if present) a term core node.
+  app.delete('/term', deleteCore);  // delete term core node and relationships....and translations?
 
-  //
-  // var t = require("../keywords")
-  // // console.log(t[0].members)
-  //
-  // //get ids for any existing trans vs get all trans?
-  // for (var termIndex = 0; termIndex < t[1].members.length; termIndex++) {
-  //   // t[1].members[termIndex]
-  //   var term = {
-  //       url: 'again',
-  //       id: 75515,
-  //       english: t[1].members[termIndex].name ,
-  //       cowboy: 'check',
-  //       translations:[
-  //          { name: t[1].members[termIndex].name,_rel: {languageCode: 'en'}}, // including ID adds to node rather than create new.
-  //          { name: 'womp', _rel: {languageCode: 'womp' }},
-  //       ]
-  //     };
-  //     var translations = [
-  //        { name: t[1].members[termIndex].name,  languageCode: 'en'},
-  //        { name: 'womp',  languageCode: 'womp' },
-  //     ]
-  //     // console.log(term)
-  //     // // ...for translation in req.body term.translations.push
-  //     //
-  //     // var cypher ='MERGE (t:term {url: {term.url}, engl})   '
-  //     //           //  +' FOREACH lang in {trans} MERGE (t)-[tr:HAS_TRANSLATION {languageCode: lang.languageCode}]->(tt:translation {lang}) '
-  //     //
-  //     //             +'RETURN t'
-  //     //
-  //     //             // MATCH (a:Superlabel {id: {_parentid}}), (b)
-  //     //             // WHERE b.id IN EXTRACT(tabobj IN {_tabarray} | tabobj.id)
-  //     //             // MERGE (a)-[r:INCLUDES]->(b {name: tabobj.name})
-  //     //
-  //     // db.query(cypher, {term: term, trans: translations},function(err, result) {
-  //     //   if (err) console.log(err);
-  //     //   console.log(result)
-  //       // if(result){
-  //       //   res.send(result[0])
-  //       // } else {
-  //       //   res.send() // resource not found
-  //       // }
-  //     // })
-  //     // var cypher = "MERGE (term:term {english:{name}, url:{url}})-[tr:HAS_TRANSLATION {languageCode:'en'}]-(translation:translation)"
-  //     // var cypher ="MATCH (term:term) WHERE term.name={id} return term"
-  //     // var cypher ="START term=NODE({id}) MATCH (term)-[r:HAS_TRANSLATION]->(translation:translation) WHERE r.languageCode={languageCode} return term, translation"
-  //
-  //     // Term.where({ english: 'Physics' }, { varName: "term" }, function(err, terms) {
-  //     //   console.log(terms[0])
-  //       Term.update(term, function(err, saved) {
-  //         if (err) console.log(err);
-  //         console.log(saved);
-  //         // res.send()// blah.
-  //       })
-  //     // })
-  //     break
-  //   }
+  app.get('/term/:teid/translation/', readTranslation);         // retrieve a translation of a term based on term id and provided langauge code. If language not found, attempt a translation. Also returns term core
+  app.put('/term/:teid/translation/:id', updateTranslation);    // update single term translation by ID | is /term/:teid superfluous? /termMeta/:id instead?
+  app.post('/term/:teid/translation/', createTranslation);      // create term translation based on language code and connect to term. Return resrouce core and new translation
+  app.delete('/term/:teid/translation/:id', deleteTranslation); // delete term translation by id | delete node or just relatinship??
 
+  function query(req, res){
+  }
 
-  // return term core and synonyms/groups based on ID.
-  // language code passed in as "languageCode" by query, default to english
-  // id takes the numerical ID or string name of the term
-  app.get('/term/:id', function(req, res){
+  function readCore(req, res){
+    /**
+    * reads term core node and translation
+    * language code passed via member as "member.languageCode" on body, default to english
+    * @param {String} languageCode
+    * @param {String} id will try to match on translation name of language provided and retrieve term id
+    * @param {Number} id
+    * @return {Object} resource
+    */
     if(isNaN(parseInt(req.params.id))){
       var id = req.params.id; // match term on name
       var cypher = "MATCH (term:term)-[r:HAS_TRANSLATION]->(translation:translation) "
@@ -106,49 +53,36 @@ module.exports = function(app, db){
         res.send() // resource not found...or not found in desired language? get translation and add to db...
       }
     })
-  })
+  }
 
-  // expects term data, array of translation (name, languagdeCode)
-  app.post('/term', function(req, res) {
-    // validate data
-      //if term already exists
-        // run put function?
-        // update term data, tags
-      // else
-        // add term node
-        // create relatinships to terms
-        var cypher ='MERGE (t:term {term}) '
-                   +'UWIND translations as lang MERGE (t)-[tr:HAS_TRANSLATION {languageCode: {lang.languagdeCode}} ]->(tt:translation {lang}) '
-                    // 'WHERE ID(tt) IN translations '
-                    // 'AND tr.languageCode = lang.languageCode '
-                    // 'WHERE ID(translation) IN translations '
-                    'RETURN term, COLLECT (tt) as translationss'
-                    // MERGE (p:Person{ first: { map }.name, last: { map }.last }
-                    // ON CREATE SET n = { map }
-                    // ON MATCH  SET n += { map }
-        db.query(cypher, {term: term, translations: translations},function(err, result) {
-          if (err) console.log(err);
-          console.log(result)
-          if(result){
-            res.send(result[0])
-          } else {
-            res.send() // resource not found
-          }
-        })
+  function updateCore(req, res){
+  }
 
-    // var term = {
-    //     url: req.body.url,
-    //     translations: [
-    //        { name: 'Columbus', languageCode:, _rel: { languageCode:  } },
-    //     ]
-    //   };
-    // // ...for translation in req.body term.translations.push
-    // Term.update(term, function(err, saved) {
-    //   if (err) console.log(err);
-    //   console.log(saved);
-    //   res.send()// blah.
-    // })
-  });
+  function createCore(req, res){
+    /**
+    * creates a new term core - first looks for existing?
+    * language code passed via member as "member.languageCode" on body, default to english
+    * @param {String} languageCode
+    * @param {Number} id
+    * @return {Object} resource
+    */
+
+  }
+
+  function deleteCore(req, res){
+  }
+
+  function readTranslation(req, res){
+  }
+
+  function updateTranslation(req, res){
+  }
+
+  function createTranslation(req, res){
+  }
+
+  function deleteTranslation(req, res){
+  }
 
   app.put('/term/:id', function(req, res) {
     // update core - icon url
