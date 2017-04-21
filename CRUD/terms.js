@@ -12,31 +12,38 @@ module.exports = function(app, db){
   Translation.fields = ['name', 'definition', 'languageCode', 'dateAdded', "_rel"]; // props not on the list are stripped
   Translation.useTimestamps() // tracks created and updated
 
-  app.get('/term', query);          // query terms based on user details and provided term IDs - /term/query instaed?
+  app.get('/api/term', query);          // query terms based on user details and provided term IDs - /term/query instaed?
   app.get('/term/:id', read);       // read details of a single term and translation
-  app.put('/term/:id', updateCore); // update a single resrouces core node data
-  app.post('/term', create);        // create (or update, if present) a term core and single translation node.
-  app.delete('/term', deleteCore);  // delete term core node and relationships....and translations?
+  app.put('/api/term/:id', updateCore); // update a single resrouces core node data
+  app.post('/api/term', create);        // create (or update, if present) a term core and single translation node.
+  app.delete('/api/term', deleteCore);  // delete term core node and relationships....and translations?
 
-  app.get('/term/:teid/translation/', readTranslation);         // retrieve a translation of a term based on term id and provided langauge code. If language not found, attempt a translation. Also returns term core
-  app.put('/term/:teid/translation/:id', updateTranslation);    // update single term translation by ID | is /term/:teid superfluous? /termMeta/:id instead?
-  app.post('/term/:teid/translation/', createTranslation);      // create term translation based on language code and connect to term. Return resrouce core and new translation
-  app.delete('/term/:teid/translation/:id', deleteTranslation); // delete term translation by id | delete node or just relatinship??
+  app.get('/api/term/:teid/translation/', readTranslation);         // retrieve a translation of a term based on term id and provided langauge code. If language not found, attempt a translation. Also returns term core
+  app.put('/api/term/:teid/translation/:id', updateTranslation);    // update single term translation by ID | is /term/:teid superfluous? /termMeta/:id instead?
+  app.post('/api/term/:teid/translation/', createTranslation);      // create term translation based on language code and connect to term. Return resrouce core and new translation
+  app.delete('/api/term/:teid/translation/:id', deleteTranslation); // delete term translation by id | delete node or just relatinship??
 
-  // app.get('/term/:teid/analogue/', readAnalogue);         // retrieve a analogue of a term based on term id and provided langauge code. If language not found, attempt a analogue. Also returns term core
-  // app.put('/term/:teid/analogue/:id', updateAnalogue);    // update single term analogue by ID | is /term/:teid superfluous? /termMeta/:id instead?
-  // app.post('/term/:teid/analogue/', createAnalogue);      // create term analogue based on language code and connect to term. Return resrouce core and new analogue
-  // app.delete('/term/:teid/analogue/:id', deleteAnalogue); // delete term analogue by id | delete node or just relatinship??
+  app.get('/api/term/:teid/alias/', readAlias);         // retrieve a alias of a term based on term id and provided langauge code. If language not found, attempt a alias. Also returns term core
+  app.put('/api/term/:teid/alias/:id', updateAlias);    // update single term alias by ID | is /term/:teid superfluous? /termMeta/:id instead?
+  app.post('/api/term/:teid/alias/', createAlias);      // create term alias based on language code and connect to term. Return resrouce core and new alias
+  app.delete('/api/term/:teid/alias/:id', deleteAlias); // delete term alias by id | delete node or just relatinship??
   //
-  // app.get('/term/:teid/group/', readGroup);         // retrieve a group of a term based on term id and provided langauge code. If language not found, attempt a group. Also returns term core
-  // app.put('/term/:teid/group/:id', updateGroup);    // update single term group by ID | is /term/:teid superfluous? /termMeta/:id instead?
-  // app.post('/term/:teid/group/', createGroup);      // create term group based on language code and connect to term. Return resrouce core and new group
-  // app.delete('/term/:teid/group/:id', deleteGroup); // delete term group by id | delete node or just relatinship??
+  app.get('/api/term/:teid/group/', readGroup);         // retrieve a group of a term based on term id and provided langauge code. If language not found, attempt a group. Also returns term core
+  app.put('/api/term/:teid/group/:id', updateGroup);    // update single term group by ID | is /term/:teid superfluous? /termMeta/:id instead?
+  app.post('/api/term/:teid/group/', createGroup);      // create term group based on language code and connect to term. Return resrouce core and new group
+  app.delete('/api/term/:teid/group/:id', deleteGroup); // delete term group by id | delete node or just relatinship??
+
+  /*
+  ████████ ███████ ██████  ███    ███
+     ██    ██      ██   ██ ████  ████
+     ██    █████   ██████  ██ ████ ██
+     ██    ██      ██   ██ ██  ██  ██
+     ██    ███████ ██   ██ ██      ██
+  */
 
   function query(req, res){
   }
 
-  function read(req, res){
   /**
   * reads term core node and translation
   * language code passed via member as "member.languageCode" on body, default to english
@@ -45,6 +52,8 @@ module.exports = function(app, db){
   * @param {Number} id
   * @return {Object} resource
   */
+  function read(req, res){
+
     if(isNaN(parseInt(req.params.id))){
       var id = req.params.id; // match term on name
       var cypher = "MATCH (term:term)-[r:HAS_TRANSLATION]->(translation:translation) "
@@ -68,22 +77,26 @@ module.exports = function(app, db){
   function updateCore(req, res){
   }
 
+  /**
+  * creates a new term core - (or updates existing - match based on provided string across all languages?)
+  * language code passed via member as "member.languageCode" on body, default to english
+  * @param {String} languageCode
+  * @param {String} term
+  * @return {Object}
+  */
   function create(req, res){
-    /**
-    * creates a new term core - (or updates existing - match based on provided string across all languages?)
-    * language code passed via member as "member.languageCode" on body, default to english
-    * @param {String} languageCode
-    * @param {String} term
-    * @return {Object}
-    */
     // check if exists...
       // if so-> add coreid req.body -> update(req,res)
     // else create
-    var cypher = "CREATE (term:term {term})-[r:HAS_TRANSLATION]->(translation:translation {translation}) "
+
+    // add create date to nodes add updated in update function...
+    console.log(res.locals)
+    var cypher = "MERGE (member:member {term}) MERGE (term:term {term}) MERGE (translation:translation {translaation}) "
+               + "MERGE (member)-[:ADDED]->(term)-[r:HAS_TRANSLATION]->(translation)<-[:ADDED]-(member) "
                + "SET r.languageCode = {translation.languageCode} "
                + "RETURN term, translation"
 
-    db.query(cypher, {term: req.body.term, translation: req.body.translation },function(err, result) {
+    db.query(cypher, {term: req.body.term, translation: req.body.translation, member: res.locals.user },function(err, result) {
       if (err) console.log(err);
       console.log(result)
       if(result){
@@ -92,25 +105,18 @@ module.exports = function(app, db){
         res.send() // resource not found...or not found in desired language? get translation and add to db...
       }
     })
-    // console.log('req.body ',req.body)
-    // req.body.translation._rel={languageCode: req.body.translation.languageCode}
-    // var term = {
-    //   url: req.body.term.url,
-    //   origin: req.body.term.origin,
-    //   translations: [req.body.translation]
-    // }
-    // console.log('term ',term)
-    // // res.send('yup')
-    //
-    // Term.save(term, function(err, saved) {
-    //   if (err) {console.log(err); res.status(500).send()};
-    //   res.send(saved)
-    // })
   }
 
   function deleteCore(req, res){
   }
 
+  /*
+  ████████ ██████   █████  ███    ██ ███████ ██       █████  ████████ ██  ██████  ███    ██
+     ██    ██   ██ ██   ██ ████   ██ ██      ██      ██   ██    ██    ██ ██    ██ ████   ██
+     ██    ██████  ███████ ██ ██  ██ ███████ ██      ███████    ██    ██ ██    ██ ██ ██  ██
+     ██    ██   ██ ██   ██ ██  ██ ██      ██ ██      ██   ██    ██    ██ ██    ██ ██  ██ ██
+     ██    ██   ██ ██   ██ ██   ████ ███████ ███████ ██   ██    ██    ██  ██████  ██   ████
+  */
   function readTranslation(req, res){
   }
 
@@ -123,39 +129,55 @@ module.exports = function(app, db){
   function deleteTranslation(req, res){
   }
 
-  app.put('/term/:id', function(req, res) {
-    // update core - icon url
-    //update relationships- translations? synonyms? groups?
+  /*
+   █████  ██      ██  █████  ███████
+  ██   ██ ██      ██ ██   ██ ██
+  ███████ ██      ██ ███████ ███████
+  ██   ██ ██      ██ ██   ██      ██
+  ██   ██ ███████ ██ ██   ██ ███████
+  */
 
-    // var term = {
-    //     url: req.body.url,
-    //     translations: [
-    //        { name: 'Columbus', languageCode:, _rel: { languageCode:  } },
-    //     ]
-    //   };
-    // // ...for translation in req.body term.translations.push
-    // Term.update(term, function(err, saved) {
-    //   if (err) console.log(err);
-    //   console.log(saved);
-    //   res.send()// blah.
-    // })
-  });
+  function readAlias(req, res){
+  }
 
-  // get most commonly tagged terms
-  // TODO: skip/limit - language - disregard/include synonyms? - Terms most tagged to other terms?
-  app.get('/term/most', function(req,res){
-    var cypher = "MATCH (term:term)<-[:TAGGED_WITH]-(resource:resource) "
-               + "RETURN term.english, COUNT(resource) AS score "
-               + "ORDER BY score DESC "
-    db.query(cypher, {id: id, languageCode: req.query.languageCode || 'en'},function(err, result) {
-      if (err) console.log(err);
-      if(result){
-        res.send(result[0])
-      } else {
-        res.send() // resource not found
-      }
-    })
-  })
+  function updateAlias(req, res){
+  }
+
+  function createAlias(req, res){
+  }
+
+  function deleteAlias(req, res){
+  }
+
+  /*
+   ██████  ██████   ██████  ██    ██ ██████
+  ██       ██   ██ ██    ██ ██    ██ ██   ██
+  ██   ███ ██████  ██    ██ ██    ██ ██████
+  ██    ██ ██   ██ ██    ██ ██    ██ ██
+   ██████  ██   ██  ██████   ██████  ██
+  */
+
+  function readGroup(req, res){
+  }
+
+  function updateGroup(req, res){
+  }
+
+  function createGroup(req, res){
+  }
+
+  function deleteGroup(req, res){
+  }
+
+
+  /*
+   █████  ██    ██ ████████  ██████   ██████  ██████  ███    ███ ██████  ██      ███████ ████████ ███████
+  ██   ██ ██    ██    ██    ██    ██ ██      ██    ██ ████  ████ ██   ██ ██      ██         ██    ██
+  ███████ ██    ██    ██    ██    ██ ██      ██    ██ ██ ████ ██ ██████  ██      █████      ██    █████
+  ██   ██ ██    ██    ██    ██    ██ ██      ██    ██ ██  ██  ██ ██      ██      ██         ██    ██
+  ██   ██  ██████     ██     ██████   ██████  ██████  ██      ██ ██      ███████ ███████    ██    ███████
+  */
+
 
   app.get('/term/autocomplete/:text', function(req,res){
 
@@ -175,5 +197,23 @@ module.exports = function(app, db){
         res.send(matches);
     });
 
+  })
+
+
+
+  // get most commonly tagged terms
+  // TODO: skip/limit - language - disregard/include synonyms? - Terms most tagged to other terms?
+  app.get('/term/most', function(req,res){
+    var cypher = "MATCH (term:term)<-[:TAGGED_WITH]-(resource:resource) "
+               + "RETURN term.english, COUNT(resource) AS score "
+               + "ORDER BY score DESC "
+    db.query(cypher, {id: id, languageCode: req.query.languageCode || 'en'},function(err, result) {
+      if (err) console.log(err);
+      if(result){
+        res.send(result[0])
+      } else {
+        res.send() // resource not found
+      }
+    })
   })
 }

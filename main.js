@@ -5,7 +5,8 @@ const routes = [
       children: [
         { path: '/c/:id', component: resourceComp, name: 'resourceSub' },
         { path: '/t/:id', component: termComp, name: 'termSub' },
-        { path: '/add', component: add, name: 'exploreAdd' },
+        { path: '/addResource', component: addResource, name: 'addResource' },
+        { path: '/addTerm/:translation', component: addTerm, name: 'addTerm' },
       ]
   },
   {  name: "resource", path: '/c/:id', component: resourceComp },
@@ -31,7 +32,6 @@ const app = new Vue({
         member: {uid:undefined},       // id and info for member if logged in, undefined if not
         termQuery: [],                 // array of term objects to be queried
         languageCode: 'en',            // default to english for now...auto detect later?
-        // value: ""
       }
   },
   methods: {
@@ -48,6 +48,11 @@ const app = new Vue({
 
     this.bigHistory = bigHistory.members//.slice(0,3);
     this.termQuery= disciplines.members.slice(0,3);
+
+    var lang = window.navigator.userLanguage || window.navigator.language;
+    console.log(lang)
+    lang = lang.substr(0,2); // get two letter language code
+
 
     this.$nextTick(function(){ // init term sidebar
       $('.termQuery-collapse').sideNav({
@@ -78,13 +83,6 @@ const app = new Vue({
             member.getToken().then((accessToken) => {
               console.log(accessToken)
               Vue.http.headers.common['Authorization'] = "Bearer " + accessToken;
-              this.$http.get('/api/hello').then(response => {
-                console.log('back')
-              console.log(response)
-              }, response => {
-
-                Materialize.toast('Something went wrong...are you online?', 4000)
-              });
             });
           } else {
             this.member = {uid:undefined}

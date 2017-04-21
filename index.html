@@ -103,7 +103,7 @@
 	<template id="exploreTemplate">
 		<div>
 			<!-- view for term and resource page -->
-			<router-view :member="member" ></router-view>
+			<router-view :member="member" :term-Query="termQuery"></router-view>
 
 			<!-- sort FAB -->
 			<!-- <div class="fixed-action-btn click-to-toggle">
@@ -381,8 +381,8 @@
 ██   ██ ██   ██ ██   ██     ██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██
 ██   ██ ██████  ██████      ██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████
 -->
-<template id="addTemplate" :term-query="termQuery" :member="member">
-	<div id="addModal" class="modal fullPage">
+<template id="addResource" :term-query="termQuery" :member="member">
+	<div id="addResourceModal" class="modal fullPage">
 		<h1>Identify</h1>
 		<!--  here the user provides the url of the resource , or, eventually the file to be uploaded or the text -->
 		<div class="row">
@@ -435,6 +435,30 @@
   </div>
 		<h1>Tag</h1>
 		<autocomplete></autocomplete>
+	</div>
+</template>
+
+<!--
+ █████  ██████  ██████      ████████ ███████ ██████  ███    ███
+██   ██ ██   ██ ██   ██        ██    ██      ██   ██ ████  ████
+███████ ██   ██ ██   ██        ██    █████   ██████  ██ ████ ██
+██   ██ ██   ██ ██   ██        ██    ██      ██   ██ ██  ██  ██
+██   ██ ██████  ██████         ██    ███████ ██   ██ ██      ██
+-->
+<template id="addTerm" :term-query="termQuery" :member="member" :term="term">
+	<div id="addTermModal" class="modal">
+		{{translation}}
+		<!-- <a class="btn" @click="toggleShow">set avatar</a>
+			<my-upload field="img"
+				:width="300"
+				:height="300"
+				url="/upload"
+				:params="params"
+				:headers="headers"
+		        lang-type="en"
+				:value.sync="show"
+				img-format="png"></my-upload>
+			<img :src="imgDataUrl"> -->
 	</div>
 </template>
 	<!--
@@ -539,12 +563,12 @@
 	</template>
 
 	<!--
-████████  █████   ██████
-   ██    ██   ██ ██
-   ██    ███████ ██   ███
-   ██    ██   ██ ██    ██
-   ██    ██   ██  ██████
--->
+	████████ ███████ ██████  ███    ███
+	   ██    ██      ██   ██ ████  ████
+	   ██    █████   ██████  ██ ████ ██
+	   ██    ██      ██   ██ ██  ██  ██
+	   ██    ███████ ██   ██ ██      ██
+	-->
 <template id="termContainer">
 	<span>
 		<div class="termWidth">

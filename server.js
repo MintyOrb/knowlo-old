@@ -16,7 +16,7 @@ admin.initializeApp({
   databaseURL: "https://knowlo-952cc.firebaseio.com/"
 });
 
-app.use('/', firebaseMiddleware.auth);
+app.use('/api', firebaseMiddleware.auth);
 app.use(bodyParser.json())
 app.use(express.static('./'))
 
