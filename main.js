@@ -28,9 +28,10 @@ const app = new Vue({
   router,
   data: function() {
     return {
-        member: {id:undefined,languageCode:'en'},       // id and info for member if logged in, undefined if not
-        termQuery: [],                                          // array of term objects to be queried
-        value: ""
+        member: {uid:undefined},       // id and info for member if logged in, undefined if not
+        termQuery: [],                 // array of term objects to be queried
+        languageCode: 'en',            // default to english for now...auto detect later?
+        // value: ""
       }
   },
   methods: {
@@ -41,13 +42,6 @@ const app = new Vue({
     close: function(){
       console.log('close here')
       $('.termQuery-collapse').sideNav('hide');
-    },
-    signOut: function(){
-      firebase.auth().signOut().then(function() {
-      // Sign-out successful.
-      }, function(error) {
-      // An error happened.
-      });
     }
   },
   mounted: function(){
@@ -81,11 +75,20 @@ const app = new Vue({
             this.member = member;
             this.member.first = member.displayName.substr(0,member.displayName.indexOf(' ')); // get first name -  if there is no space at all, then the first line will return an empty string and the second line will return the entire string
 
-            member.getToken().then(function(accessToken) {
-              // do I need this? does this change with each access?
+            member.getToken().then((accessToken) => {
+              console.log(accessToken)
+              Vue.http.headers.common['Authorization'] = "Bearer " + accessToken;
+              this.$http.get('/api/hello').then(response => {
+                console.log('back')
+              console.log(response)
+              }, response => {
+
+                Materialize.toast('Something went wrong...are you online?', 4000)
+              });
             });
           } else {
-            console.log("member is signed out")
+            this.member = {uid:undefined}
+            Vue.http.headers.common['Authorization'] = '';
           }
         }, function(error) {
           console.log(error);

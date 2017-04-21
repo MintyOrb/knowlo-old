@@ -6,6 +6,7 @@ const sidebar = Vue.component('sidebar',{
       firebase.auth().signOut().then(function() {
       // Sign-out successful.
       }, function(error) {
+        console.log('an error...')
       // An error happened.
       });
     }

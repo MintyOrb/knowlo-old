@@ -66,7 +66,8 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
-
+console.log(res.locals.user)
+res.send('heh')
   }
 
   function readCore(req, res){
