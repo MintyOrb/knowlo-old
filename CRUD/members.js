@@ -27,6 +27,18 @@ module.exports = function(app, db){
   }
 
   function createCore(req, res){
+    var cypher = "MERGE (member:member {member})"
+               + "RETURN member"
+
+    db.query(cypher, {member: res.locals.user },function(err, result) {
+      if (err) console.log(err);
+      console.log(result)
+      if(result){
+        res.send(result[0])
+      } else {
+        res.send()
+      }
+    })
   }
 
   function deleteCore(req, res){

@@ -29,7 +29,7 @@ const app = new Vue({
   router,
   data: function() {
     return {
-        member: {uid:undefined},       // id and info for member if logged in, undefined if not
+        member: {uid:undefined},       // id and info for member if logged in, uid undefined if not
         termQuery: [],                 // array of term objects to be queried
         languageCode: 'en',            // default to english for now...auto detect later?
       }
@@ -64,6 +64,10 @@ const app = new Vue({
       });
 
       $('#login-modal').modal(); // init login modal
+
+
+          $('.tooltipped').tooltip()
+
 
       // init headroom (hide/show navbar on scroll down/up)
       var elem = document.querySelector("#nav-slide");

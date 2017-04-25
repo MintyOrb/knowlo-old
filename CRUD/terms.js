@@ -75,6 +75,30 @@ module.exports = function(app, db){
   }
 
   function updateCore(req, res){
+    // pass in term ID ot be updated
+    // pass in updated term deets
+
+    // copy term to revision node BEFORE updating
+    // track time of modification
+
+    var cypher = "MATCH (member:member) WHERE member.id={memberid} "
+               + "MATCH (term:term) WHERE term.id={termid} "
+               + "OPTIONAL MATCH (term)-[r:HAS_REVISION]->(:edit) "
+               + "DELETE r "
+               + "CREATE (member)-[:EDITED]->(revision:edit)<-[:HAS_REVISION]-(term) "
+               + "SET revision = term "
+              //  + "SET term = {updatedTerm}" vs "MERGE (term {updatedTerm})"
+               + "RETURN term"
+    // match term by ID?
+    db.query(cypher, {term: req.body.term, member: res.locals.user },function(err, result) {
+      if (err) console.log(err);
+      console.log(result)
+      if(result){
+        res.send(result[0])
+      } else {
+        res.send()
+      }
+    })
   }
 
   /**
@@ -90,19 +114,19 @@ module.exports = function(app, db){
     // else create
 
     // add create date to nodes add updated in update function...
-    console.log(res.locals)
-    var cypher = "MERGE (member:member {term}) MERGE (term:term {term}) MERGE (translation:translation {translaation}) "
+    console.log(req.body)
+    var cypher = "MERGE (member:member {member}) MERGE (term:term {term}) MERGE (translation:translation {translation}) "
                + "MERGE (member)-[:ADDED]->(term)-[r:HAS_TRANSLATION]->(translation)<-[:ADDED]-(member) "
                + "SET r.languageCode = {translation.languageCode} "
                + "RETURN term, translation"
-
+// 'Parameter maps cannot be used in MERGE patterns (use a literal map instead, eg. "{id: {param}.id}")
     db.query(cypher, {term: req.body.term, translation: req.body.translation, member: res.locals.user },function(err, result) {
       if (err) console.log(err);
       console.log(result)
       if(result){
         res.send(result[0])
       } else {
-        res.send() // resource not found...or not found in desired language? get translation and add to db...
+        res.send()
       }
     })
   }

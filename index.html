@@ -134,7 +134,7 @@
 
 		<div class='container'>
 
-				<autocomplete></autocomplete>
+				<autocomplete :selected="{}"></autocomplete>
 
 				<!-- term query  -->
 		    <div class='row'>
@@ -322,7 +322,7 @@
 				</div>
 				<div class="resourceStep" >
 					<term v-for="term in terms" :term="term" key="term.name"></term>
-					<autocomplete></autocomplete>
+					<autocomplete :selected="{}"></autocomplete>
 				</div>
 				<div class="resourceStep">
 					Vote
@@ -367,10 +367,29 @@
 					</p>
 				</div>
 			</div>
+			<!-- isotope contianers -->
 			<div class="termSections">
-				<div v-for="step in termSection" class="stepContainer">{{step}}</div>
-			</div>
-			</div>
+
+				<div class="stepContainer">
+					Activity
+				</div>
+				<div class="stepContainer" >
+					<!-- <term v-for="term in terms" :term="term" key="term.name"></term> -->
+					<autocomplete :selected="{}"></autocomplete>
+					Context
+				</div>
+				<div class="stepContainer">
+					Vote
+				</div>
+				<div class="stepContainer">
+					Stats
+				</div>
+				<div class="stepContainer">
+					Related
+				</div>
+
+		 </div>
+		</div>
 	</div>
 </template>
 
@@ -434,7 +453,7 @@
 		</div>
   </div>
 		<h1>Tag</h1>
-		<autocomplete></autocomplete>
+		<autocomplete :selected="{}"></autocomplete>
 	</div>
 </template>
 
@@ -447,7 +466,34 @@
 -->
 <template id="addTerm" :term-query="termQuery" :member="member" :term="term">
 	<div id="addTermModal" class="modal">
-		{{translation}}
+
+		<div class="modal-content">
+			<h4>Add Term: {{translation}}</h4>
+			<div class="row">
+				<div class="input-field col s12">
+					<input v-model="term.URL" id="url" type="url" class="validate">
+					<label for="url">Icon URL</label>
+				</div>
+			</div>
+
+		<div class="row">
+			<div class="input-field col s12">
+				<input v-model="translation.definition" id="definition" type="text" class="validate">
+				<label for="definition">Definition</label>
+			</div>
+		</div>
+		<div class="row">
+			<h4>Add Synonyms</h4>
+			<autocomplete :selected="{}"></autocomplete>
+		</div>
+		<div class="row">
+			<h4>In Group</h4>
+			<autocomplete :selected="{}"></autocomplete>
+		</div>
+		<div class="row">
+			<h4>Contained by</h4>
+			<autocomplete :selected="{}"></autocomplete>
+		</div>
 		<!-- <a class="btn" @click="toggleShow">set avatar</a>
 			<my-upload field="img"
 				:width="300"
@@ -459,6 +505,7 @@
 				:value.sync="show"
 				img-format="png"></my-upload>
 			<img :src="imgDataUrl"> -->
+			</div>
 	</div>
 </template>
 	<!--
@@ -668,9 +715,9 @@
 					<input type="text" id="autocomplete-input" class="autocomplete" v-model="input" @blur="hide" @focus="hidden=false">
 					<label for="autocomplete-input" >Term name</label>
 					<ul id="ac" class="autocomplete-content dropdown-content"style="position:absolute" v-bind:class="{ hide: hidden }">
-						<li v-for="term in suggestions" @click='selected(term)'>
+						<li v-for="term in suggestions" @click='pick(term)'>
 							<img v-if="term.url" :src="term.url" class="left">
-							<span>{{term.name}}</span>
+							<span><i v-if="term.new" class='material-icons  left'>add</i>{{term.name}}<i v-if="term.new" class='material-icons right addDetail'>playlist_add</i></span>
 						</li>
 					</ul>
 				</div>
