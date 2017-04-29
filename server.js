@@ -20,6 +20,7 @@ app.use('/api', firebaseMiddleware.auth);
 app.use(bodyParser.json())
 app.use(express.static('./'))
 
+require('./initDB')(app, db);
 require('./CRUD/terms')(app, db);
 require('./CRUD/resources')(app, db);
 require('./CRUD/members')(app, db);

@@ -3,10 +3,10 @@ module.exports = function(app, db){
 
   // set up resource and resourceMeta models and schema
   var Resource = model(db, 'resource');
-  Resource.fields = ['thumb','URL','displayType','source','timeToView','insight','difficulty','created', 'updated', 'viewCount']; // props not on the list are stripped
+  Resource.fields = ['thumb','url','displayType','source','timeToView','insight','difficulty','created', 'updated', 'viewCount']; // props not on the list are stripped
   // Resource.schema = {
   //   'thumb': {type: String, required: true},
-  //   'URL': {type: String, required: true},
+  //   'url': {type: String, required: true},
   //   'displayType': {type: String, required: true},
   //   'source': {type: String, required: true},
   //   'timeToView': {type: String, required: true},
@@ -83,12 +83,12 @@ module.exports = function(app, db){
     */
     console.log('create resource here:')
     var cypher ="MATCH (resource:resource)-[r:HAS_TRANSLATION]->(tr:resourceTranslation) "
-               +"WHERE resource.URL={url} " // OR tr.text={text} ? don't want to match on empty strings....
+               +"WHERE resource.url={url} " // OR tr.text={text} ? don't want to match on empty strings....
                +"WITH resource, COLLECT(DISTINCT tr) as terms "
                +"RETURN resource, terms"
     console.log(req.body.resource)
-    // try to find existing resource based on URL and text
-    db.query(cypher, {url: req.body.resource.URL, text: req.body.resource.translations.text},function(err, resource) {
+    // try to find existing resource based on url and text
+    db.query(cypher, {url: req.body.resource.url, text: req.body.resource.translations.text},function(err, resource) {
       if (err) {console.log(err); res.status(500).send()};
       if(resource){
         console.log('FOUND RESOURCE')

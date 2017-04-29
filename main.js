@@ -45,7 +45,7 @@ const app = new Vue({
     }
   },
   mounted: function(){
-  
+
     this.bigHistory = bigHistory.members//.slice(0,3);
     this.termQuery= disciplines.members.slice(0,3);
 

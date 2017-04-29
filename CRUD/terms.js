@@ -5,8 +5,8 @@ module.exports = function(app, db){
   var Translation = model(db, 'translation');
   Term.compose(Translation, 'translations', 'HAS_TRANSLATION');
 
-  Term.fields = ['url', 'origin', 'MID']; // props not on the list are stripped
-  Term.setUniqueKey('origin');
+  Term.fields = ['url', 'english', 'MID']; // props not on the list are stripped
+  Term.setUniqueKey('english');
   Term.useTimestamps(); // tracks created and updated
 
   Translation.fields = ['name', 'definition', 'languageCode', 'dateAdded', "_rel"]; // props not on the list are stripped
