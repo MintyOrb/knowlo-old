@@ -109,20 +109,20 @@ module.exports = function(app, db){
   * @return {Object}
   */
   function create(req, res){
-    // check if exists...
-      // if so-> add coreid req.body -> update(req,res)
-    // else create
-
-    // add create date to nodes add updated in update function...
     console.log(req.body)
-    var cypher = "MERGE (member:member {member}) MERGE (term:term {term}) MERGE (translation:translation {translation}) "
-               + "MERGE (member)-[:ADDED]->(term)-[r:HAS_TRANSLATION]->(translation)<-[:ADDED]-(member) "
-               + "SET r.languageCode = {translation.languageCode} "
+
+    var cypher = "MATCH (member:member {uid:{mid}}) "
+               + "MERGE (term:term {english: {term}.english }) "
+                 + "ON CREATE SET term={term}, term.created=TIMESTAMP() "
+                 + "ON MATCH SET term={term}, term.updated=TIMESTAMP() "
+               + "MERGE (translation:translation {name: {translation}.name}) "
+                 + "ON CREATE SET translation={translation}, translation.created=TIMESTAMP() "
+                 + "ON MATCH SET translation={translation}, translation.updated=TIMESTAMP() "
+               + "MERGE (member)-[:ADDED]->(term)-[r:HAS_TRANSLATION {languageCode: {translation}.languageCode }]->(translation)<-[:ADDED]-(member) "
                + "RETURN term, translation"
-// 'Parameter maps cannot be used in MERGE patterns (use a literal map instead, eg. "{id: {param}.id}")
-    db.query(cypher, {term: req.body.term, translation: req.body.translation, member: res.locals.user },function(err, result) {
+
+    db.query(cypher, {term: req.body.term, translation: req.body.translation, mid: res.locals.user.uid },function(err, result) {
       if (err) console.log(err);
-      console.log(result)
       if(result){
         res.send(result[0])
       } else {

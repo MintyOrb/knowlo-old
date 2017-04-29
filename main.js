@@ -42,6 +42,18 @@ const app = new Vue({
     close: function(){
       console.log('close here')
       $('.termQuery-collapse').sideNav('hide');
+    },
+    touchMember: function(){
+      // ensure member is in DB (add if first time signing in)
+      this.$http.post('/api/member', {term: this.term, translation:this.translation}).then(response => {
+        if(response.body){
+          console.log(response.body)
+        } else {
+          Materialize.toast('Something went wrong...', 4000)
+        }
+      }, response => {
+         Materialize.toast('Something went wrong...are you online?', 4000)
+      });
     }
   },
   mounted: function(){
@@ -80,10 +92,11 @@ const app = new Vue({
           if (member) {
             this.member = member;
             this.member.first = member.displayName.substr(0,member.displayName.indexOf(' ')); // get first name -  if there is no space at all, then the first line will return an empty string and the second line will return the entire string
-
+            console.log(member)
             member.getToken().then((accessToken) => {
               console.log(accessToken)
               Vue.http.headers.common['Authorization'] = "Bearer " + accessToken;
+              this.touchMember();
             });
           } else {
             this.member = {uid:undefined}

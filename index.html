@@ -20,7 +20,13 @@
 <body>
 
 	<div id="main">
-
+		<!--
+███    ██  █████  ██    ██
+████   ██ ██   ██ ██    ██
+██ ██  ██ ███████ ██    ██
+██  ██ ██ ██   ██  ██  ██
+██   ████ ██   ██   ████
+-->
 		<div id="nav-slide" class="navbar-fixed">
 			<nav class='blue'>
 				<div class="nav-wrapper">
@@ -66,8 +72,6 @@
 	    </div>
 		</div>
 
-		<router-view :term-query="termQuery" :member="member" style="padding-top:90px"></router-view>
-
 		<!-- terms for query -->
 		<div id="query-slide" class="side-nav">
 			<div class="right selectedterms">
@@ -79,7 +83,22 @@
 			</div>
 		</div>
 
-		<!-- footer -->
+		<!--
+███    ███  █████  ██ ███    ██     ██    ██ ██ ███████ ██     ██
+████  ████ ██   ██ ██ ████   ██     ██    ██ ██ ██      ██     ██
+██ ████ ██ ███████ ██ ██ ██  ██     ██    ██ ██ █████   ██  █  ██
+██  ██  ██ ██   ██ ██ ██  ██ ██      ██  ██  ██ ██      ██ ███ ██
+██      ██ ██   ██ ██ ██   ████       ████   ██ ███████  ███ ███
+-->
+		<router-view :term-query="termQuery" :member="member" style="padding-top:90px"></router-view>
+
+		<!--
+		███████  ██████   ██████  ████████ ███████ ██████
+		██      ██    ██ ██    ██    ██    ██      ██   ██
+		█████   ██    ██ ██    ██    ██    █████   ██████
+		██      ██    ██ ██    ██    ██    ██      ██   ██
+		██       ██████   ██████     ██    ███████ ██   ██
+		-->
 		<footer class="page-footer blue">
 			<div class="container">
 				<div class="row">
@@ -492,8 +511,8 @@
 			<autocomplete :selected="{}" input-id="Group"></autocomplete>
 		</div>
 		<div class="row">
-			<h4>Contained by</h4>
-			<autocomplete :selected="{}" input-id="Contained"></autocomplete>
+			<h4>Contains</h4>
+			<autocomplete :selected="{}" input-id="Contains"></autocomplete>
 		</div>
 		<!-- <a class="btn" @click="toggleShow">set avatar</a>
 			<my-upload field="img"
@@ -718,7 +737,7 @@
 					<ul id="ac" class="autocomplete-content dropdown-content"style="position:absolute" v-bind:class="{ hide: hidden }">
 						<li v-for="term in suggestions" @click='pick(term)'>
 							<img v-if="term.url" :src="term.url" class="left">
-							<span><i v-if="term.new" class='material-icons  left'>add</i>{{term.name}}<router-link v-if="term.new" :to="'/addTerm/'+this.input"><i class='material-icons right addDetail'>playlist_add</i></router-link></span>
+							<span><i v-if="term.new" class='material-icons  left'>add</i>{{term.name}}<router-link v-if="term.new" :to="'/addTerm/'+input"><i class='material-icons right addDetail'>playlist_add</i></router-link></span>
 						</li>
 					</ul>
 				</div>
@@ -872,6 +891,13 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 
       // FirebaseUI config.
       var uiConfig = {
+				callbacks: {
+          signInSuccess: function(currentUser, credential, redirectUrl) {
+            // close login modal if open...
+						$('#login-modal').modal('close');
+            return true;
+          }
+        },
         signInSuccessUrl: '/#/profile',
         signInOptions: [
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -880,7 +906,8 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
           firebase.auth.EmailAuthProvider.PROVIDER_ID
         ],
         // Terms of service url.
-        tosUrl: 'knowlo.io/#/legal'
+        tosUrl: 'knowlo.io/#/legal',
+				signInFlow: 'popup'
       };
 
       // Initialize the FirebaseUI Widget using Firebase.

@@ -44,9 +44,10 @@ const principals = {
    $('.scrollspy').scrollSpy();  }
 }
 
-const profile = {
-  template: `<div>hello world! profile here.</div>`
-}
+const profile = Vue.component('profile',{
+  props: ['member'],
+  template: `<div>hello world! {{member.displayName}}'s profile here.</div>`
+})
 
 const involved = {
   template: `<div>hello world! involved here.</div>`
