@@ -45,7 +45,7 @@ const app = new Vue({
     }
   },
   mounted: function(){
-
+  
     this.bigHistory = bigHistory.members//.slice(0,3);
     this.termQuery= disciplines.members.slice(0,3);
 
@@ -64,9 +64,6 @@ const app = new Vue({
       });
 
       $('#login-modal').modal(); // init login modal
-
-
-          $('.tooltipped').tooltip()
 
 
       // init headroom (hide/show navbar on scroll down/up)

@@ -534,6 +534,7 @@ const explore = Vue.component('exploreComp',{
         }
     },
     mounted: function(){
+
       // redirect to landing if first time to knowlo
       if(Cookies.get('returning') == undefined){
         Cookies.set('returning', true, { expires: 7 });

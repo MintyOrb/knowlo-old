@@ -101,8 +101,9 @@
 	-->
 
 	<template id="exploreTemplate">
-		<div>
+		<div class='color-picker'>
 			<!-- view for term and resource page -->
+
 			<router-view :member="member" :term-Query="termQuery"></router-view>
 
 			<!-- sort FAB -->
@@ -134,7 +135,7 @@
 
 		<div class='container'>
 
-				<autocomplete :selected="{}"></autocomplete>
+				<autocomplete :selected="{}" input-id="mainSearch"></autocomplete>
 
 				<!-- term query  -->
 		    <div class='row'>
@@ -322,7 +323,7 @@
 				</div>
 				<div class="resourceStep" >
 					<term v-for="term in terms" :term="term" key="term.name"></term>
-					<autocomplete :selected="{}"></autocomplete>
+					<autocomplete :selected="{}" input-id="resourceTest"></autocomplete>
 				</div>
 				<div class="resourceStep">
 					Vote
@@ -375,7 +376,7 @@
 				</div>
 				<div class="stepContainer" >
 					<!-- <term v-for="term in terms" :term="term" key="term.name"></term> -->
-					<autocomplete :selected="{}"></autocomplete>
+					<autocomplete :selected="{}" input-id="termTest"></autocomplete>
 					Context
 				</div>
 				<div class="stepContainer">
@@ -484,15 +485,15 @@
 		</div>
 		<div class="row">
 			<h4>Add Synonyms</h4>
-			<autocomplete :selected="{}"></autocomplete>
+			<autocomplete :selected="{}" input-id="Synonyms"></autocomplete>
 		</div>
 		<div class="row">
 			<h4>In Group</h4>
-			<autocomplete :selected="{}"></autocomplete>
+			<autocomplete :selected="{}" input-id="Group"></autocomplete>
 		</div>
 		<div class="row">
 			<h4>Contained by</h4>
-			<autocomplete :selected="{}"></autocomplete>
+			<autocomplete :selected="{}" input-id="Contained"></autocomplete>
 		</div>
 		<!-- <a class="btn" @click="toggleShow">set avatar</a>
 			<my-upload field="img"
@@ -617,9 +618,9 @@
 	   ██    ███████ ██   ██ ██      ██
 	-->
 <template id="termContainer">
-	<span>
+	<span @mouseleave="leave()">
 		<div class="termWidth">
-			<div class="menu" @mouseenter="delayHover()" @mouseleave="leave()" v-bind:class="{'active': hover}">
+			<div class="menu" @mouseenter="delayHover()"  v-bind:class="{'active': hover}">
 				<div class="">
 
 					<div @click="focus()" class="mbtn trigger" v-bind:class="{'scaleIcon': hover}">
@@ -712,12 +713,12 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">search</i>
-					<input type="text" id="autocomplete-input" class="autocomplete" v-model="input" @blur="hide" @focus="hidden=false">
-					<label for="autocomplete-input" >Term name</label>
+					<input type="text" :id="inputId" class="autocomplete" v-model="input" @blur="hide" @focus="hidden=false">
+					<label :for="inputId" >Term name</label>
 					<ul id="ac" class="autocomplete-content dropdown-content"style="position:absolute" v-bind:class="{ hide: hidden }">
 						<li v-for="term in suggestions" @click='pick(term)'>
 							<img v-if="term.url" :src="term.url" class="left">
-							<span><i v-if="term.new" class='material-icons  left'>add</i>{{term.name}}<i v-if="term.new" class='material-icons right addDetail'>playlist_add</i></span>
+							<span><i v-if="term.new" class='material-icons  left'>add</i>{{term.name}}<router-link v-if="term.new" :to="'/addTerm/'+this.input"><i class='material-icons right addDetail'>playlist_add</i></router-link></span>
 						</li>
 					</ul>
 				</div>
@@ -889,7 +890,6 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
     </script>
 
 <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
-
 
 <script src="dep\jquery.min.js"></script>
 <script src="dep\vue.js"></script>
