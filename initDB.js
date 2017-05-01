@@ -11,7 +11,13 @@ module.exports = function(app, db){
   db.constraints.uniqueness.createIfNone('term', 'english', function(err, constraint) {
     console.log(constraint);
   });
+  db.constraints.uniqueness.createIfNone('term', 'uid', function(err, constraint) {
+    console.log(constraint);
+  });
   db.constraints.uniqueness.createIfNone('resource', 'url', function(err, constraint) {
+    console.log(constraint);
+  });
+  db.constraints.uniqueness.createIfNone('resource', 'uid', function(err, constraint) {
     console.log(constraint);
   });
 
@@ -20,7 +26,7 @@ module.exports = function(app, db){
   db.index.createIfNone('translation', 'name', function(err, index) {
     console.log(index);
   });
-  db.index.createIfNone('translation', 'id', function(err, index) {
+  db.index.createIfNone('translation', 'uid', function(err, index) {
     console.log(index);
   });
 

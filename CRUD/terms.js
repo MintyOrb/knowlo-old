@@ -1,9 +1,12 @@
 module.exports = function(app, db){
+  var shortid = require('shortid');
 
   // get term group hierarchy...
 
+  app.get('/term/autocomplete/:text', autocomplete);
+
   app.get('/api/term', query);          // query terms based on user details and provided term IDs - /term/query instaed?
-  app.get('/term/:id', read);           // read details of a single term and translation
+  app.get('/term/:id/:name?', read);    // read details of a single term and translation
   app.put('/api/term/:id', updateCore); // update a single resrouces core node data
   app.post('/api/term', create);        // create (or update, if present) a term core and single translation node.
   app.delete('/api/term', deleteCore);  // delete term core node and relationships....and translations?
@@ -44,14 +47,14 @@ module.exports = function(app, db){
   */
   function read(req, res){
 
-    if(isNaN(parseInt(req.params.id))){
-      var id = req.params.id; // match term on name
+    if(!req.params.id){
+      var id = req.params.name; // match term on name
       var cypher = "MATCH (term:term)-[r:HAS_TRANSLATION]->(translation:translation) "
                  + "WHERE LOWER(translation.name)=LOWER({id}) "
                  + "AND r.languageCode={languageCode} return term, translation"
     } else {
-      var id = parseInt(req.params.id); // match term on id
-      var cypher ="START term=NODE({id}) MATCH (term)-[r:HAS_TRANSLATION]->(translation:translation) WHERE r.languageCode={languageCode} return term, translation"
+      var id = req.params.id; // match term on id
+      var cypher ="MATCH (term {uid:{id}})-[r:HAS_TRANSLATION]->(translation:translation) WHERE r.languageCode={languageCode} return term, translation"
     }
     db.query(cypher, {id: id, languageCode: req.query.languageCode || 'en'},function(err, result) {
       if (err) console.log(err);
@@ -71,16 +74,16 @@ module.exports = function(app, db){
     // copy term to revision node BEFORE updating
     // track time of modification
 
-    var cypher = "MATCH (member:member) WHERE member.id={memberid} "
-               + "MATCH (term:term) WHERE term.id={termid} "
+    // NEED TO VALIDATE THIS
+    var cypher = "MATCH (member:member {uid: {memberID} }) "
+               + "MATCH (term:term {uid: {term}.uid }) "
                + "OPTIONAL MATCH (term)-[r:HAS_REVISION]->(:edit) "
                + "DELETE r "
-               + "CREATE (member)-[:EDITED]->(revision:edit)<-[:HAS_REVISION]-(term) "
-               + "SET revision = term "
-              //  + "SET term = {updatedTerm}" vs "MERGE (term {updatedTerm})"
+               + "CREATE (member)-[e:EDITED]->(revision:edit)<-[:HAS_REVISION]-(term) " // create or merge here?
+               + "SET revision = term, e.date=TIMESTAMP() "
+               + "MERGE (term {term}) "
                + "RETURN term"
-    // match term by ID?
-    db.query(cypher, {term: req.body.term, member: res.locals.user },function(err, result) {
+    db.query(cypher, {term: req.body.term, memberID: res.locals.user.uid },function(err, result) {
       if (err) console.log(err);
       console.log(result)
       if(result){
@@ -99,6 +102,8 @@ module.exports = function(app, db){
   * @return {Object}
   */
   function create(req, res){
+    req.body.term.uid=shortid.generate()
+    req.body.translation.uid=shortid.generate()
 
     var cypher = "MATCH (member:member {uid:{mid}}) "
                + "MERGE (term:term {english: {term}.english }) "
@@ -155,8 +160,8 @@ module.exports = function(app, db){
   function updateSynonym(req, res){
 
     // check for member authorization...
-    console.log(req.params)
-    var cypher = "MERGE (base:term {id:{term}})-[r:HAS_SYNONYM]->(syn:term {id:{syn}}) "
+    var cypher = "MATCH (base:term {uid:{term}}) , (syn:term {uid:{syn}}) "
+               + "MERGE (base)-[r:HAS_SYNONYM]->(syn)"
                + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
                + "RETURN base, syn"
 
@@ -171,10 +176,21 @@ module.exports = function(app, db){
     })
   }
 
-  // function createSynonym(req, res){
-  // }
-
   function deleteSynonym(req, res){
+    // check for member authorization...
+    var cypher = "MATCH (base:term {uid:{term}})-[r:HAS_SYNONYM]->(syn:term {uid:{syn}}) "
+               + "DELETE r"
+               + "RETURN base, syn"
+
+    db.query(cypher, {term: req.params.termID, syn: req.params.synID, member: res.locals.user.uid },function(err, result) {
+      if (err) console.log(err);
+      if(result){
+        console.log(result)
+        res.send(result[0])
+      } else {
+        res.send()
+      }
+    })
   }
 
   /*
@@ -207,7 +223,7 @@ module.exports = function(app, db){
   */
 
 
-  app.get('/term/autocomplete/:text', function(req,res){
+  function autocomplete(req,res){
 
     var properties = {
       code: 'en',
@@ -225,7 +241,7 @@ module.exports = function(app, db){
         res.send(matches);
     });
 
-  })
+  }
 
 
 

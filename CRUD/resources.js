@@ -1,4 +1,5 @@
 module.exports = function(app, db){
+  var shortid = require('shortid');
 
   // resource routes
   app.get('/resource', query);              // generic public query resources based on provided term IDs
@@ -102,13 +103,12 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
-    var cypher ="START resource=NODE({id}) "
-               +"MATCH (resource:resource)-[TAGGED_WITH]->(:term)-[r:HAS_TRANSLATION]->(tr:translation) "
+    var cypher ="MATCH (resource:resource {uid:{uid}})-[TAGGED_WITH]->(:term)-[r:HAS_TRANSLATION]->(tr:translation) "
                +"WHERE r.languageCode = {languageCode} "
                +"WITH resource, COLLECT(DISTINCT tr) as terms "
                +"RETURN resource, terms"
 
-    db.query(cypher, {id: parseInt(req.params.id), languageCode: req.query.languageCode || 'en'},function(err, resource) {
+    db.query(cypher, {id: req.params.uid, languageCode: req.query.languageCode || 'en'},function(err, resource) {
       if (err) {console.log(err); res.status(500).send()};
       if(resource){
         console.log(resource[0])

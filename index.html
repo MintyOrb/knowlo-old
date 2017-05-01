@@ -507,8 +507,8 @@
 			<h4>Add Synonyms</h4>
 			<autocomplete input-id="Synonyms" :add-to="syns"></autocomplete>
 			<isotope ref='syno' :list="syns" :options='{}'>
-				<div v-for="syn in syns"  :key="syn.name">
-					<term :term="syn" v-on:created="addSynonym(term.id,syn.id)" v-on:remove=""></term>
+				<div v-for="syn in syns"  :key="syn.translation.name">
+					<term :term="syn" v-on:created="addSynonym(term.uid,syn.term.uid)" v-on:remove=""></term>
 				</div>
 			</isotope>
 		</div>
@@ -516,7 +516,7 @@
 			<h4>In Group</h4>
 			<autocomplete input-id="Group" :add-to="groups"></autocomplete>
 			<isotope ref='group' :list="groups" :options='{}'>
-				<div v-for="group in groups" :key="group.name">
+				<div v-for="group in groups" :key="group.translation.name">
 					<term :term="group"></term>
 				</div>
 			</isotope>
@@ -525,7 +525,7 @@
 			<h4>Contains</h4>
 			<autocomplete input-id="Contains" :add-to="contains"></autocomplete>
 			<isotope ref='contain' :list="contains" :options='{}'>
-				<div v-for="contain in contains" :key="contain.name">
+				<div v-for="contain in contains" :key="contain.translation.name">
 					<term :term="contain"></term>
 				</div>
 			</isotope>
@@ -660,9 +660,9 @@
 				<div class="">
 
 					<div @click="focus()" class="mbtn trigger" v-bind:class="{'scaleIcon': hover}">
-						<span v-if="!term.url" class="flexCenter border"> {{term.name[0]}}</span>
+						<span v-if="!term.term.url" class="flexCenter border"> {{term.translation.name[0]}}</span>
 						<div v-else class="thumb card-image border">
-							<img :src="term.url">
+							<img :src="term.term.url">
 						</div>
 					</div>
 
@@ -687,7 +687,7 @@
 							</div>
 						</div>
 						<div class="rotater">
-							<router-link :to="{ name: 'termSub', params: { id: term.name }}">
+							<router-link :to="{ name: 'termSub', params: { id: term.term.name }}">
 								<div class="mbtn mbtn-icon flexCenter":class="{showInfo: info, infoNav: hover && inSidebar }">
 									<i class="fa fa-info"></i>
 								</div>
@@ -719,7 +719,7 @@
 			</div>
 			<div class="nameholder">
 				<div class="name">
-					{{term.name}}
+					{{term.translation.name}}
 				</div>
 			</div>
 		</div>
@@ -754,7 +754,7 @@
 					<ul id="ac" class="autocomplete-content dropdown-content"style="position:absolute" v-bind:class="{ hide: hidden }">
 						<li v-for="suggestion in suggestions" @click='pick(suggestion)'>
 							<img v-if="suggestion.term.url" :src="suggestion.term.url" class="left">
-							<span><i v-if="suggestion.new" class='material-icons  left'>add</i>{{suggestion.translation.name}}<span v-if="suggestion.new" @click="addWithDetail = true"><i class='material-icons right addDetail'>playlist_add</i></span></span>
+							<span><i v-if="suggestion.new" class='material-icons  left'>add</i>{{suggestion.translation.name}}<span v-if="$route.name !='addTerm' && suggestion.new" @click="addWithDetail = true"><i class='material-icons right addDetail'>playlist_add</i></span></span>
 						</li>
 					</ul>
 				</div>
