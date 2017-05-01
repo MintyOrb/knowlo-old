@@ -40,7 +40,7 @@
 						  <!-- show icon on medium and down? no materialize-css class for it -->
 							<!-- <a data-target="login-modal" class="show-on-med-and-down"><i class="material-icons fa fa-lg fa-sign-in"></i></a> -->
 						</li>
-						<li v-else v-cloak>
+						<li v-else v-cloak style="margin:12px">
 							<!-- member icon here? -->
 							{{member.first}}
 						</li>
@@ -154,12 +154,12 @@
 
 		<div class='container'>
 
-				<autocomplete :selected="{}" input-id="mainSearch"></autocomplete>
+				<autocomplete input-id="mainSearch" :add-to="termQuery"></autocomplete>
 
 				<!-- term query  -->
 		    <div class='row'>
 		        <isotope style="min-height:80px" ref="termQuery" :list="termQuery" :options='getSelectedOptions()'>
-		          <div  v-for="word in termQuery"  class='selected' v-bind:class="{ expanded: word.status.expanded }" key="word.name">
+		          <div  v-for="word in termQuery"  class='selected' v-bind:class="{ expanded: word.expanded }" key="word.name">
 		            <term class="expandedFlex" :term="word" v-on:add-me="addToFrom(word, words, termQuery)" v-on:lay-me="layout"></term>
 		          </div>
 		        </isotope>
@@ -168,7 +168,7 @@
 				<!--  suggested -->
 		    <div class='row'>
 		        <isotope ref="key" :list="words" :options='getSuggestionOptions()' class="step">
-		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.status.expanded }" key="word.name">
+		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }" key="word.name">
 								<term class="expandedFlex" :term="word"  v-on:add-me="addToFrom(word, termQuery, words)" v-on:lay-me="layout" ></term>
 		          </div>
 		        </isotope>
@@ -212,9 +212,10 @@
 					<!-- isotope contianers -->
 					<div class=" crossSectionSteps">
 						<div v-for="step in crossSection.members" class="stepContainer">
-							<isotope :ref='"resourceBin" + step.name' class="step" :list="db" :options='getIsotopeOptions(step.name)'>
+							<isotope :ref='"resourceBin" + step.name' class="step" :list="db" :options='{}'>
 								<div  v-for="item in db" v-if="item.time.includes(step.name) || item.discipline.includes(step.name)" key="item.name">
-				          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
+
+									<div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
 				              <router-link  :to="{ name: 'resourceSub', params: { id: item.videoid }}">
 				                <img :src="item.thumb">
 				              </router-link>
@@ -300,7 +301,7 @@
 	-->
 
 
-<template id="resourceTemplate" @keyup.esc="close">
+<template id="resourceTemplate">
 	<div :id="'resourceModal'+resource.videoid" class="modal fullPage resource-modal"  >
 
 		<router-link to="/" class="exit hide-on-med-and-down" ><i class="fa fa-3x fa-times"></i></router-link>
@@ -342,7 +343,7 @@
 				</div>
 				<div class="resourceStep" >
 					<term v-for="term in terms" :term="term" key="term.name"></term>
-					<autocomplete :selected="{}" input-id="resourceTest"></autocomplete>
+					<autocomplete input-id="resourceTest"></autocomplete>
 				</div>
 				<div class="resourceStep">
 					Vote
@@ -395,7 +396,7 @@
 				</div>
 				<div class="stepContainer" >
 					<!-- <term v-for="term in terms" :term="term" key="term.name"></term> -->
-					<autocomplete :selected="{}" input-id="termTest"></autocomplete>
+					<autocomplete input-id="termTest"></autocomplete>
 					Context
 				</div>
 				<div class="stepContainer">
@@ -473,7 +474,7 @@
 		</div>
   </div>
 		<h1>Tag</h1>
-		<autocomplete :selected="{}"></autocomplete>
+		<autocomplete></autocomplete>
 	</div>
 </template>
 
@@ -488,7 +489,7 @@
 	<div id="addTermModal" class="modal">
 
 		<div class="modal-content">
-			<h4>Add Term: {{translation}}</h4>
+			<h4>Add Term: {{translation.name}}</h4>
 			<div class="row">
 				<div class="input-field col s12">
 					<input v-model="term.URL" id="url" type="url" class="validate">
@@ -504,16 +505,32 @@
 		</div>
 		<div class="row">
 			<h4>Add Synonyms</h4>
-			<autocomplete :selected="{}" input-id="Synonyms"></autocomplete>
+			<autocomplete input-id="Synonyms" :add-to="syns"></autocomplete>
+			<isotope ref='syno' :list="syns" :options='{}'>
+				<div v-for="syn in syns"  :key="syn.name">
+					<term :term="syn" v-on:created="addSynonym(term.id,syn.id)" v-on:remove=""></term>
+				</div>
+			</isotope>
 		</div>
 		<div class="row">
 			<h4>In Group</h4>
-			<autocomplete :selected="{}" input-id="Group"></autocomplete>
+			<autocomplete input-id="Group" :add-to="groups"></autocomplete>
+			<isotope ref='group' :list="groups" :options='{}'>
+				<div v-for="group in groups" :key="group.name">
+					<term :term="group"></term>
+				</div>
+			</isotope>
 		</div>
 		<div class="row">
 			<h4>Contains</h4>
-			<autocomplete :selected="{}" input-id="Contains"></autocomplete>
+			<autocomplete input-id="Contains" :add-to="contains"></autocomplete>
+			<isotope ref='contain' :list="contains" :options='{}'>
+				<div v-for="contain in contains" :key="contain.name">
+					<term :term="contain"></term>
+				</div>
+			</isotope>
 		</div>
+		<!-- for icon crop/selection -->
 		<!-- <a class="btn" @click="toggleShow">set avatar</a>
 			<my-upload field="img"
 				:width="300"
@@ -727,17 +744,17 @@
 
 <template id="autocomplete">
 	<!-- search with typeahead -->
-	<div class="row" style="margin-bottom:100px">
+	<div class="row" >
 		<div class="col s12">
-			<div class="row">
+			<div class="">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">search</i>
 					<input type="text" :id="inputId" class="autocomplete" v-model="input" @blur="hide" @focus="hidden=false">
 					<label :for="inputId" >Term name</label>
 					<ul id="ac" class="autocomplete-content dropdown-content"style="position:absolute" v-bind:class="{ hide: hidden }">
-						<li v-for="term in suggestions" @click='pick(term)'>
-							<img v-if="term.url" :src="term.url" class="left">
-							<span><i v-if="term.new" class='material-icons  left'>add</i>{{term.name}}<router-link v-if="term.new" :to="'/addTerm/'+input"><i class='material-icons right addDetail'>playlist_add</i></router-link></span>
+						<li v-for="suggestion in suggestions" @click='pick(suggestion)'>
+							<img v-if="suggestion.term.url" :src="suggestion.term.url" class="left">
+							<span><i v-if="suggestion.new" class='material-icons  left'>add</i>{{suggestion.translation.name}}<span v-if="suggestion.new" @click="addWithDetail = true"><i class='material-icons right addDetail'>playlist_add</i></span></span>
 						</li>
 					</ul>
 				</div>
@@ -767,7 +784,7 @@
 	 <li><a href="#" class="subheader" id="navName">Knowlo</a></li>
 		<li><div class="divider"></div></li>
 		<li v-if="!member.uid"><a data-target="login-modal" class="waves-effect"><i class="fa fa-lg fa-sign-in"></i>Login | Sign Up</a></li>
-		<li v-else><a @click="signOut" class="waves-effect"><i class="fa fa-lg fa-sign-out"></i>Log Out</a></li>
+		<li ><a @click="signOut" class="waves-effect"><i class="fa fa-lg fa-sign-out"></i>Log Out</a></li>
 		<li><div class="divider"></div></li>
 		<li><a class="subheader"></a></li>
 	 <!-- <li><router-link class="waves-effect" to="/home"><i class="fa fa-lg fa-home"></i>Home</router-link></li> -->

@@ -1,39 +1,4 @@
 module.exports = function(app, db){
-  var model = require('seraph-model');
-
-  // set up resource and resourceMeta models and schema
-  var Resource = model(db, 'resource');
-  Resource.fields = ['thumb','url','displayType','source','timeToView','insight','difficulty','created', 'updated', 'viewCount']; // props not on the list are stripped
-  // Resource.schema = {
-  //   'thumb': {type: String, required: true},
-  //   'url': {type: String, required: true},
-  //   'displayType': {type: String, required: true},
-  //   'source': {type: String, required: true},
-  //   'timeToView': {type: String, required: true},
-  //   'insight': {type: String, required: true},
-  //   'difficulty': {type: String, required: true},
-  //   'created': Date,
-  //   'updated': Date,
-  //   'viewCount': {type: String, required: true};
-  // name: { type: String, required: true },
-  // email: { type: String, match: emailRegex, required: true },
-  // age: { type: Number, min: 16, max: 85 },
-  // expiry: Date
-// }
-  // Resource.setUniqueKey('UUID', true);
-  Resource.useTimestamps();
-
-  var ResourceTranslation = model(db, 'resourceTranslation');
-  ResourceTranslation.fields = ['text','title','subtitle','description','value','languageCode', '_rel']; // props not on the list are stripped
-  // ResourceTranslation.schema = {
-  // name: { type: String, required: true },
-  // email: { type: String, match: emailRegex, required: true },
-  // age: { type: Number, min: 16, max: 85 },
-  // expiry: Date
-  // }
-
-  Resource.compose(ResourceTranslation, 'translations', 'HAS_TRANSLATION');
-  ResourceTranslation.useTimestamps();
 
   // resource routes
   app.get('/resource', query);              // generic public query resources based on provided term IDs

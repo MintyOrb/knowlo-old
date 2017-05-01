@@ -178,11 +178,10 @@ const termComp = Vue.component('termComp',{
     if($('#termModal'+this.term.id)){
       $('#termModal'+this.term.id).modal('close');
     }
+    document.removeEventListener('keydown',function(){})
     window.setTimeout(()=>{
       next()
     }, 375)
-
-    document.removeEventListener('keydown',function(){})
   }
 });
 
@@ -461,14 +460,6 @@ const explore = Vue.component('exploreComp',{
                 getFilterData: this.getFilterData,
             }
         },
-        getIsotopeOptions: function(name) { // need to rethink managing multiple iso instances - single function that take parameter?
-            return {
-                sortAscending: this.sortAscending,
-                itemSelector: ".element-item",
-                getSortData: this.getSortData,
-                getFilterData: this.getFilterData,
-            }
-        },
         getSelectedOptions: function() {
             return {
                 masonry:{columnWidth: 1},
@@ -613,7 +604,7 @@ const landing = {
       $('.collapsible').collapsible();
       $('.button-collapse').sideNav({
           closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-          draggable: true // Choose whether you can drag to open on touch screens
+          draggable: true // Choose whether you can drag to FF on touch screens
         }
       );
     }

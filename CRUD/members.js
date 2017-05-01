@@ -1,12 +1,4 @@
 module.exports = function(app, db){
-  var model = require('seraph-model');
-
-  var Member = model(db, 'member');
-
-  // Member.fields = ['languageCode', 'name', 'fireBaseID'];
-
-  // Member.setUniqueKey('name?', true);
-  Member.useTimestamps();
 
   // member routes
   app.get('/member/:id', readCore);   // read details of a single member core

@@ -6,7 +6,7 @@ const routes = [
         { path: '/c/:id', component: resourceComp, name: 'resourceSub' },
         { path: '/t/:id', component: termComp, name: 'termSub' },
         { path: '/addResource', component: addResource, name: 'addResource' },
-        { path: '/addTerm/:translation', component: addTerm, name: 'addTerm' },
+        { path: '/addTerm/:translation/:termID?', component: addTerm, name: 'addTerm' },
       ]
   },
   {  name: "resource", path: '/c/:id', component: resourceComp },
@@ -46,9 +46,7 @@ const app = new Vue({
     touchMember: function(){
       // ensure member is in DB (add if first time signing in)
       this.$http.post('/api/member', {term: this.term, translation:this.translation}).then(response => {
-        if(response.body){
-          console.log(response.body)
-        } else {
+        if(!response.body){
           Materialize.toast('Something went wrong...', 4000)
         }
       }, response => {
@@ -89,6 +87,7 @@ const app = new Vue({
   		}).init();
 
       firebase.auth().onAuthStateChanged((member) => {
+          bus.$emit('login',member)
           if (member) {
             this.member = member;
             this.member.first = member.displayName.substr(0,member.displayName.indexOf(' ')); // get first name -  if there is no space at all, then the first line will return an empty string and the second line will return the entire string
