@@ -22,7 +22,7 @@ const routes = [
 
 const router = new VueRouter({
   // mode:"history", // will need to catch direct calls to routes if enabled
-  routes // short for routes: routes
+  routes
 })
 
 const app = new Vue({
@@ -31,16 +31,10 @@ const app = new Vue({
     return {
         member: {uid:undefined},       // id and info for member if logged in, uid undefined if not
         termQuery: [],                 // array of term objects to be queried
-        languageCode: 'en',            // default to english for now...auto detect later?
       }
   },
   methods: {
-    done: function(test){
-      console.log('done here ', test)
-
-    },
     close: function(){
-      console.log('close here')
       $('.termQuery-collapse').sideNav('hide');
     },
     touchMember: function(){

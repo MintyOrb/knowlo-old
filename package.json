@@ -16,6 +16,7 @@
   "author": "Knowlo",
   "license": "GPL-3.0",
   "dependencies": {
+    "async": "^2.4.0",
     "babelnet": "^0.0.1",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
