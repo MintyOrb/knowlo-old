@@ -3,13 +3,13 @@ const routes = [
   {  path: '/land', component: landing },
   {  name: "explore", path: '/', component: explore,
       children: [
-        { path: '/c/:id', component: resourceComp, name: 'resourceSub' },
-        { path: '/t/:id', component: termComp, name: 'termSub' },
+        { path: '/r/:uid', component: resourceComp, name: 'resourceSub' },
+        { path: '/t/:name/:uid?', component: termComp, name: 'termSub' },
         { path: '/addResource', component: addResource, name: 'addResource' },
         { path: '/addTerm/:translation/:termID?', component: addTerm, name: 'addTerm' },
       ]
   },
-  {  name: "resource", path: '/c/:id', component: resourceComp },
+  {  name: "resource", path: '/r/:uid', component: resourceComp },
   {  path: "/home", component: home },
   {  path: "/trending", component: trending },
   {  path: "/status", component: status },

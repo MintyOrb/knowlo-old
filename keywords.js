@@ -1,3 +1,4 @@
+// module.exports =
 var keywords =
 [{
     "count": 300,

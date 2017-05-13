@@ -230,10 +230,10 @@ html {
   z-index: 1001;
   top: 0!important;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   max-height: none;
   display: block;
-  /*overflow: hidden;*/
+  overflow: hidden;
   /*overflow hidden because wehn resourceStep is 100vh it goes beyond the page*/
 }
 @media (max-width:40.063em) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
@@ -242,7 +242,7 @@ html {
     width: 100vw;
   }
   .resourceMeta {
-    height: 100vh;
+    height: 100%;
     width: 100vw;
   }
   .resource-modal {
@@ -309,9 +309,6 @@ html {
   margin: 0px;
   border-radius: 0;
 }
-.flickity-viewport{
-  /*margin-bottom: 15px;*/
-}
 .resourceNav {
   position: sticky;
   top: 0;
@@ -339,7 +336,7 @@ html {
 .navItems {
 	width: 130px;
 	display: relative;
-
+  text-align: center;
 }
 .crossSectionSteps {
 	width: 100%;
@@ -350,9 +347,13 @@ html {
 	height: 100vh;
   overflow: scroll;
 }
+.resourceSections{
+  height: 100%;
+}
 .resourceStep {
   width: 40vw;
-	height: 100vh;
+	height: 100%;
+  position: relative;
   overflow: scroll;
   display: flex !important;
   flex-flow: row wrap;

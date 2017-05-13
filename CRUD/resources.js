@@ -4,26 +4,27 @@ module.exports = function(app, db){
   // resource routes
   app.get('/resource', query);              // generic public query resources based on provided term IDs
   app.get('/api/resource', query);          // query resources based on user details and provided term IDs
-  //?app.get('/resource/:id', readCore);   // read details of a single resource core
-  app.get('/api/resource/:id', readCore);   // read details of a single resource core
-  app.put('/api/resource/:id', updateCore); // update a single resource core node data
+  //?app.get('/resource/:uid', readCore);   // read details of a single resource core
+
+  app.get('/resource/:uid/full', readFull);   // read full details of a single resource (tagged terms and translation by language code)
+  app.put('/api/resource/:uid/full', updateFull); // update full details of a single resource (tagged terms and translation by language code)
+  app.post('/api/resource/:uid/full', createFull); // create full details of a single resource (tagged terms and translation by language code)
+
+  app.get('/api/resource/:uid', readCore);   // read details of a single resource core
+  app.put('/api/resource/:uid', updateCore); // update a single resource core node data
   app.post('/api/resource', createCore);    // create (or update, if present) a resource core node.
   app.delete('/api/resource', deleteCore);  // delete resource core node and relationships....and translations?
 
-  app.get('/api/resource/:rid/translation/', readTranslation);         // retrieve a translation of a resource based on resource id and provided langauge code. If language not found, attempt a translation. Also returns resource core
-  app.put('/api/resource/:rid/translation/:id', updateTranslation);    // update single resoruce translation by ID | is /resource/:rid superfluous? /resourceMeta/:id instead?
-  app.post('/api/resource/:rid/translation/', createTranslation);      // create resource translation based on language code and connect to resource. Return resrouce core and new translation
-  app.delete('/api/resource/:rid/translation/:id', deleteTranslation); // delete resource translation by id | delete node or just relatinship??
+  app.get('/resource/:ruid/translation/', readTranslation);         // retrieve a translation of a resource based on resource id and provided langauge code. If language not found, attempt a translation. Also returns resource core
+  app.put('/api/resource/:ruid/translation/:uid', updateTranslation);    // update single resoruce translation by ID | is /resource/:ruid superfluous? /resourceMeta/:uid instead?
+  app.post('/api/resource/:ruid/translation/', createTranslation);      // create resource translation based on language code and connect to resource. Return resrouce core and new translation
+  app.delete('/api/resource/:ruid/translation/:uid', deleteTranslation); // delete resource translation by id | delete node or just relatinship??
 
-  app.get('/api/resource/:rid/term/', readTerms);          // retrieve a resources tagged terms
-  app.put('/api/resource/:rid/term/', updateTerms);        // batch add terms to resource (with ids) - adds provided tags, doesn't remove relationships
-  app.post('/api/resource/:rid/term/', batchSetTerms);     // batch set terms to resource (with ids) - delete all tags relationships and create for  tags provided
-  app.put('/api/resource/:rid/term/:id', setTerm);         // add a single term to a resources by id
-  app.delete('/api/resource/:rid/term/:id', deleteTerm);   // remove a single term relationship from a resources | DELETE /term/:id to delete term node itself
-
-  app.get('/api/resource/:id/full', readFull);   // read full details of a single resource (tagged terms and translation by language code)
-  app.put('/api/resource/:id/full', updateFull); // update full details of a single resource (tagged terms and translation by language code)
-  app.post('/api/resource/:id/full', createFull); // create full details of a single resource (tagged terms and translation by language code)
+  app.get('/resource/:ruid/term/', readTerms);          // retrieve a resources tagged terms
+  app.put('/api/resource/:ruid/term/', updateTerms);        // batch add terms to resource (with ids) - adds provided tags, doesn't remove relationships
+  app.post('/api/resource/:ruid/term/', batchSetTerms);     // batch set terms to resource (with ids) - delete all tags relationships and create for  tags provided
+  app.put('/api/resource/:ruid/term/:uid', setTerm);         // add a single term to a resources by id
+  app.delete('/api/resource/:ruid/term/:uid', deleteTerm);   // remove a single term relationship from a resources | DELETE /term/:uid to delete term node itself
 
 
   function query(req, res){
@@ -103,15 +104,14 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
-    var cypher ="MATCH (resource:resource {uid:{uid}})-[TAGGED_WITH]->(:term)-[r:HAS_TRANSLATION]->(tr:translation) "
+    var cypher ="MATCH (resource:resource {uid:{uid}})-[TAGGED_WITH]->(t:term)-[r:HAS_TRANSLATION]->(tr:translation) "
                +"WHERE r.languageCode = {languageCode} "
-               +"WITH resource, COLLECT(DISTINCT tr) as terms "
-               +"RETURN resource, terms"
+               +"WITH resource, {term: t, translation: tr} as term "
+               +"RETURN resource, COLLECT(DISTINCT term) AS terms"
 
-    db.query(cypher, {id: req.params.uid, languageCode: req.query.languageCode || 'en'},function(err, resource) {
+    db.query(cypher, {uid: req.params.uid, languageCode: req.query.languageCode || 'en'},function(err, resource) {
       if (err) {console.log(err); res.status(500).send()};
       if(resource){
-        console.log(resource[0])
         res.send(resource[0])
       } else {
         res.status(404).send() // resource not found

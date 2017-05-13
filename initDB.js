@@ -9,15 +9,23 @@ module.exports = function(app, db){
     console.log(constraint);
   });
   db.constraints.uniqueness.createIfNone('term', 'english', function(err, constraint) {
+    if(err){console.log(err)};
     console.log(constraint);
   });
   db.constraints.uniqueness.createIfNone('term', 'uid', function(err, constraint) {
+    if(err){console.log(err)};
     console.log(constraint);
   });
   db.constraints.uniqueness.createIfNone('resource', 'url', function(err, constraint) {
+    if(err){console.log(err)};
     console.log(constraint);
   });
   db.constraints.uniqueness.createIfNone('resource', 'uid', function(err, constraint) {
+    if(err){console.log(err)};
+    console.log(constraint);
+  });
+  db.constraints.uniqueness.createIfNone('group', 'uid', function(err, constraint) {
+    if(err){console.log(err)};
     console.log(constraint);
   });
 

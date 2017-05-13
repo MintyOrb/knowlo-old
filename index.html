@@ -166,13 +166,13 @@
 		    </div>
 
 				<!--  suggested -->
-		    <div class='row'>
+		    <!-- <div class='row'>
 		        <isotope ref="key" :list="words" :options='getSuggestionOptions()' class="step">
 		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }" key="word.name">
 								<term class="expandedFlex" :term="word"  v-on:add-me="addToFrom(word, termQuery, words)" v-on:lay-me="layout" ></term>
 		          </div>
 		        </isotope>
-		    </div>
+		    </div> -->
 
 		    <div class="center pad margin20">
   				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
@@ -216,18 +216,18 @@
 								<div  v-for="item in db" v-if="item.time.includes(step.name) || item.discipline.includes(step.name)" key="item.name">
 
 									<div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-				              <router-link  :to="{ name: 'resourceSub', params: { id: item.videoid }}">
+				              <router-link  :to="{ name: 'resourceSub', params: { uid: item.videoid }}">
 				                <img :src="item.thumb">
 				              </router-link>
 				          </div>
-								 <router-link :to="{ name: 'resourceSub', params: { id: item.videoid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
+								 <router-link :to="{ name: 'resourceSub', params: { uid: item.videoid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
 									<a>
 										<span class='truncate thin '>{{item.title}}</span>
 									</a>
 								 </router-link>
 				          <div  v-if="display == 'card'" class="card hoverable">
 				            <div class='card-image'>
-				                <router-link :to="{ name: 'resourceSub', params: { id: item.videoid }}">
+				                <router-link :to="{ name: 'resourceSub', params: { uid: item.videoid }}">
 				                  <img :src="item.thumb" class='card-image' alt="Not found">
 				               </router-link>
 				            </div>
@@ -253,18 +253,18 @@
 			    <isotope ref="contentBin" class="step" :list="list" :options='getContentOptions()' id="container">
 			        <div v-for="item in list" class='element-item' key="item.name">
 			          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-			              <router-link :to="{ name: 'resource', params: { id: item.videoid }}">
+			              <router-link :to="{ name: 'resource', params: { uid: item.videoid }}">
 			                <img :src="item.thumb">
 			              </router-link>
 			          </div>
-							 <router-link  :to="{ name: 'resourceSub', params: { id: item.videoid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
+							 <router-link  :to="{ name: 'resourceSub', params: { uid: item.videoid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
 								<a>
 									<span class='truncate thin '>{{item.title}}</span>
 								</a>
 							 </router-link>
 			          <div  v-if="display == 'card'" class="card hoverable">
 			            <div class='card-image'>
-			                <router-link :to="{ name: 'resourceSub', params: { id: item.videoid }}">
+			                <router-link :to="{ name: 'resourceSub', params: { uid: item.videoid }}">
 			                  <img :src="item.thumb" class='card-image' alt="Not found">
 			               </router-link>
 			            </div>
@@ -302,7 +302,7 @@
 
 
 <template id="resourceTemplate">
-	<div :id="'resourceModal'+resource.videoid" class="modal fullPage resource-modal"  >
+	<div :id="'resourceModal'+resource.uid" class="modal fullPage resource-modal"  >
 
 		<router-link to="/" class="exit hide-on-med-and-down" ><i class="fa fa-3x fa-times"></i></router-link>
 		<!-- the resource -->
@@ -372,7 +372,7 @@
 
 
 <template id="termTemplate">
-	<div :id="'termModal'+term.id" class="modal fullPage">
+	<div id="termModal" class="modal fullPage">
 		<div class="termTitle" >
 			<term :term="term"></term>
 			<p>
@@ -687,7 +687,7 @@
 							</div>
 						</div>
 						<div class="rotater">
-							<router-link :to="{ name: 'termSub', params: { id: term.term.name }}">
+							<router-link :to="{ name: 'termSub', params: { uid: term.term.uid, name: term.translation.name }}">
 								<div class="mbtn mbtn-icon flexCenter":class="{showInfo: info, infoNav: hover && inSidebar }">
 									<i class="fa fa-info"></i>
 								</div>

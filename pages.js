@@ -135,11 +135,11 @@ const termComp = Vue.component('termComp',{
       }
     },
     mounted: function(){
-      this.$http.get('/term/' + this.$route.params.id, {params: { languageCode: 'en'}}).then(response => {
+      this.$http.get('/term/' + this.$route.params.name + '/' + this.$route.params.uid, {params: { languageCode: 'en'}}).then(response => {
         if(response.body.term){
           response.body.term.name = response.body.translation.name
           response.body.term.status = {};
-          this.term = response.body.term;
+          this.term = response.body;
         } else {
           Materialize.toast('Resource not found.', 4000)
         }
@@ -262,7 +262,8 @@ const resourceComp = Vue.component('resourceComp',{
     },
     mounted: function(){
       // take language from member instead of hardcoding english...
-      this.$http.get('/resource/' + this.$route.params.id, {params: { languageCode: 'en'}}).then(response => {
+      this.$http.get('/resource/' + this.$route.params.uid + '/full', {params: { languageCode: 'en'}}).then(response => {
+        console.log(response.body)
         if(response.body.resource){
           this.resource = response.body.resource;
           this.terms = response.body.terms;
@@ -575,19 +576,6 @@ const explore = Vue.component('exploreComp',{
       this.db = db;
       this.bigHistory = bigHistory;
       this.size = disciplines;
-
-      // limit number of initally displayed keys
-      for(word in keywords){
-        if(keywords[word]['count'] > 20){
-          this.words.push(keywords[word])
-        }
-      }
-      // this.words = keywords;
-
-        bus.$on('addtermSubterm', (term) => {
-          this.addToFrom(term, this.termQuery)
-        })
-
     }
 });
 
