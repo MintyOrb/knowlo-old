@@ -166,13 +166,14 @@
 		    </div>
 
 				<!--  suggested -->
-		    <!-- <div class='row'>
+		    <div class='row'>
 		        <isotope ref="key" :list="words" :options='getSuggestionOptions()' class="step">
-		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }" key="word.name">
-								<term class="expandedFlex" :term="word"  v-on:add-me="addToFrom(word, termQuery, words)" v-on:lay-me="layout" ></term>
+		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }" key="word">
+								{{word}}
+								<!-- <term  :term="word"  v-on:add-me="addToFrom(word, termQuery, words)" v-on:lay-me="layout" ></term> -->
 		          </div>
 		        </isotope>
-		    </div> -->
+		    </div>
 
 		    <div class="center pad margin20">
   				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
@@ -213,34 +214,33 @@
 					<div class=" crossSectionSteps">
 						<div v-for="step in crossSection.members" class="stepContainer">
 							<isotope :ref='"resourceBin" + step.name' class="step" :list="db" :options='{}'>
-								<div  v-for="item in db" v-if="item.time.includes(step.name) || item.discipline.includes(step.name)" key="item.name">
-
-									<div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-				              <router-link  :to="{ name: 'resourceSub', params: { uid: item.videoid }}">
-				                <img :src="item.thumb">
-				              </router-link>
-				          </div>
-								 <router-link :to="{ name: 'resourceSub', params: { uid: item.videoid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
-									<a>
-										<span class='truncate thin '>{{item.title}}</span>
-									</a>
-								 </router-link>
-				          <div  v-if="display == 'card'" class="card hoverable">
-				            <div class='card-image'>
-				                <router-link :to="{ name: 'resourceSub', params: { uid: item.videoid }}">
-				                  <img :src="item.thumb" class='card-image' alt="Not found">
-				               </router-link>
-				            </div>
-				            <div class='card-content'>
-				                <span class='title'>{{item.title}}</span>
-				                <p class="truncate">{{item.author}}</p>
-				            </div>
-				            <div class='card-action'>
-				              <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.viewcount,1)}}</span>
-				              <span class='right card-bottom'>{{item.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
-				            </div>
-					        </div>
-								</div>
+								<div v-for="item in list"  v-if="item.resource.time.includes(step.name) || item.resource.discipline.includes(step.name)" class='element-item' key="item.resource.name">
+									 <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
+												<router-link :to="{ name: 'resource', params: { uid: item.resource.uid }}">
+													<img :src="item.resource.thumb">
+												</router-link>
+									 </div>
+									 <router-link  :to="{ name: 'resourceSub', params: { uid: item.resource.uid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
+										<a>
+											<span class='truncate thin '>{{item.resource.title}}</span>
+										</a>
+									 </router-link>
+										<div  v-if="display == 'card'" class="card hoverable">
+											<div class='card-image'>
+													<router-link :to="{ name: 'resourceSub', params: { uid: item.resource.uid }}">
+														<img :src="item.resource.thumb" class='card-image' alt="Not found">
+												 </router-link>
+											</div>
+											<div class='card-content'>
+													<span class='title'>{{item.translation.title}}</span>
+													<p class="truncate">{{item.translation.author}}</p>
+											</div>
+											<div class='card-action'>
+												<!-- <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.resource.viewcount,1)}}</span> -->
+												<!-- <span class='right card-bottom'>{{item.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span> -->
+											</div>
+										</div>
+									</div>
 							 </isotope>
 						</div>
 					</div>
@@ -251,30 +251,30 @@
 				<transition name="fade">
 				<div v-if="!crossSection" >
 			    <isotope ref="contentBin" class="step" :list="list" :options='getContentOptions()' id="container">
-			        <div v-for="item in list" class='element-item' key="item.name">
+			        <div v-for="item in list" class='element-item' key="item.resource.name">
 			          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-			              <router-link :to="{ name: 'resource', params: { uid: item.videoid }}">
-			                <img :src="item.thumb">
+			              <router-link :to="{ name: 'resource', params: { uid: item.resource.uid }}">
+			                <img :src="item.resource.thumb">
 			              </router-link>
 			          </div>
-							 <router-link  :to="{ name: 'resourceSub', params: { uid: item.videoid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
+							 <router-link  :to="{ name: 'resourceSub', params: { uid: item.resource.uid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
 								<a>
-									<span class='truncate thin '>{{item.title}}</span>
+									<span class='truncate thin '>{{item.resource.title}}</span>
 								</a>
 							 </router-link>
 			          <div  v-if="display == 'card'" class="card hoverable">
 			            <div class='card-image'>
-			                <router-link :to="{ name: 'resourceSub', params: { uid: item.videoid }}">
-			                  <img :src="item.thumb" class='card-image' alt="Not found">
+			                <router-link :to="{ name: 'resourceSub', params: { uid: item.resource.uid }}">
+			                  <img :src="item.resource.thumb" class='card-image' alt="Not found">
 			               </router-link>
 			            </div>
 			            <div class='card-content'>
-			                <span class='title'>{{item.title}}</span>
-			                <p class="truncate">{{item.author}}</p>
+			                <span class='title'>{{item.translation.title}}</span>
+			                <p class="truncate">{{item.translation.author}}</p>
 			            </div>
 			            <div class='card-action'>
-			              <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.viewcount,1)}}</span>
-			              <span class='right card-bottom'>{{item.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
+			              <!-- <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.resource.viewcount,1)}}</span> -->
+			              <!-- <span class='right card-bottom'>{{item.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span> -->
 			            </div>
 								</div>
 			        </div>
@@ -316,8 +316,8 @@
 			</div>
 
 			<!-- website -->
-			<div v-if='resource.displayType=="webpage"' class="website-container">
-				<iframe :src="resource.siteURL"></iframe>
+			<div v-if='resource.displayType=="webpage"' class="web-container">
+				<iframe :src="resource.webURL" ></iframe>
 			</div>
 
 			<!-- text -->

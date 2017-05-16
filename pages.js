@@ -231,11 +231,12 @@ const resourceComp = Vue.component('resourceComp',{
 
               // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
               if(this.resource.displayType == "image"){
+                // TODO: make dry and sensible...
                 var map = L.map('image-map', {
                   minZoom: 1,
                   maxZoom: 4,
                   center: [0, 0],
-                  zoom: 1,
+                  zoom: 2,
                   crs: L.CRS.Simple
                 });
 
@@ -244,6 +245,19 @@ const resourceComp = Vue.component('resourceComp',{
                     h = 1500,
                     url = 'http://s3.amazonaws.com/submitted_images/'+this.resource.savedAs;
                     console.log('http://s3.amazonaws.com/submitted_images/'+this.resource.savedAs)
+                var img = new Image();
+                img.onload = function() {
+                  map.removeLayer(preLoad);
+                  var southWest = map.unproject([0, this.height], map.getMaxZoom()-1);
+                  var northEast = map.unproject([this.width, 0], map.getMaxZoom()-1);
+                  var bounds = new L.LatLngBounds(southWest, northEast);
+
+                  // add the image overlay,
+                  // so that it covers the entire map
+                  L.imageOverlay(url, bounds).addTo(map);
+                  map.setMaxBounds(bounds);
+                }
+                img.src=url;
                 // calculate the edges of the image, in coordinate space
                 var southWest = map.unproject([0, h], map.getMaxZoom()-1);
                 var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
@@ -251,7 +265,7 @@ const resourceComp = Vue.component('resourceComp',{
 
                 // add the image overlay,
                 // so that it covers the entire map
-                L.imageOverlay(url, bounds).addTo(map);
+                var preLoad = L.imageOverlay(url, bounds).addTo(map);
 
                 // tell leaflet that the map is exactly as big as the image
                 map.setMaxBounds(bounds);
@@ -505,10 +519,13 @@ const explore = Vue.component('exploreComp',{
         layout: function(mes) {
           console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
           this.$refs.termQuery.layout('masonry');
+          this.$refs.contentBin.layout('masonry');
 
            // pretty serious antipattern here...make a registery when using cross section views instead?
           var steps = $('.step'); // get isotope containers with jquery
           for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
+            console.log('in thingy')
+
             if(steps[stepIndex].termName !== undefined && steps[stepIndex]['__vue__'] != null){
               steps[stepIndex]['__vue__'].layout('masonry')
             }
@@ -523,10 +540,27 @@ const explore = Vue.component('exploreComp',{
             }
           }
           return num.toFixed(digits).replace(rx, "$1");
+        },
+        test(){
+
+          // for (var lindex = 0; lindex < this.list.length; lindex++) {
+          //   this.list[lindex];
+          // }
+          console.log('test')
+          this.$http.get('/term/most', {params: { languageCode: 'en' } }).then(response => {
+            console.log(response)
+            this.words=response.body;
+          }, response => {
+            console.log('test ',response)
+          });
+        },
+        getTerms(){
+
         }
+
     },
     mounted: function(){
-
+      // this.test()
       // redirect to landing if first time to knowlo
       if(Cookies.get('returning') == undefined){
         Cookies.set('returning', true, { expires: 7 });
@@ -571,11 +605,28 @@ const explore = Vue.component('exploreComp',{
         });
     },
     created: function(){
-      this.list = videos;
-
-      this.db = db;
       this.bigHistory = bigHistory;
       this.size = disciplines;
+    },
+    watch: {
+      termQuery: function(val){
+        var include = [];
+        var exclude = [];
+        for (var termIndex = 0; termIndex < val.length; termIndex++) {
+          include.push(val[termIndex]['term'].uid)
+          console.log(val[termIndex]['term'].uid)
+        }
+        this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
+          console.log(response)
+          this.list=response.body;
+          this.test()
+          window.setTimeout(() =>{
+            this.layout('heh')
+          }, 1000);
+        }, response => {
+          console.log('uh ',response)
+        });
+      },
     }
 });
 

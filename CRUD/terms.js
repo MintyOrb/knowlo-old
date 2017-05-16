@@ -3,6 +3,7 @@ module.exports = function(app, db){
 var shortid = require('shortid');
 
 app.get('/term/autocomplete/:text', autocomplete);
+app.get('/term/most', most);
 
 app.get('/api/term', query);           // query terms based on user details and provided term IDs - /term/query instaed?
 app.get('/term/:name/:uid?', read);    // read details of a single term and translation
@@ -34,6 +35,21 @@ app.delete('/api/term/:termID/group/:uid', deleteGroup); // delete term group by
 */
 
 function query(req, res){
+
+
+   var cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchTerms:term) "
+              + "WHERE searchTerms.UUID IN {searchTerms} "
+              + "WITH contentNode, COUNT(searchTerms) as count "
+              + "WHERE count = {searchTermsCount} "
+              + "MATCH (groupNode:termGroup)<-[:IN_GROUP]-(matched:term)<-[:TAGGED_WITH]-contentNode, "
+                  + "matched-[:HAS_LANGUAGE {languageCode: {language} }]->(termMeta:termMeta) "
+              + "WHERE groupNode.name IN {groups} AND NOT matched.UUID IN {ignoreTerms} "
+              + "RETURN DISTINCT count(DISTINCT contentNode) AS connections, termMeta.name AS name, matched.UUID AS UUID "
+              + "ORDER BY connections DESC ";
+              // + "ORDER BY {orderby} {updown}"
+              // + "SKIP {skip} "
+              + "LIMIT {limit}";
+
 }
 
 /**
@@ -244,17 +260,16 @@ function autocomplete(req,res){
 
 // get most commonly tagged terms
 // TODO: skip/limit - language - disregard/include synonyms? - Terms most tagged to other terms?
-app.get('/term/most', function(req,res){
+function most(req,res){
+    console.log('in most')
   var cypher = "MATCH (term:term)<-[:TAGGED_WITH]-(resource:resource) "
              + "RETURN term.english, COUNT(resource) AS score "
-             + "ORDER BY score DESC "
-  db.query(cypher, {id: id, languageCode: req.query.languageCode || 'en'},function(err, result) {
+             + "ORDER BY score DESC skip 30 limit 10"
+  db.query(cypher, {languageCode: req.query.languageCode || 'en'},function(err, result) {
     if (err) console.log(err);
-    if(result){
-      res.send(result[0])
-    } else {
-      res.send() // resource not found
-    }
-  })
-})
+    console.log(result)
+
+      res.send(result) // resource not found
+    })
+  }
 }

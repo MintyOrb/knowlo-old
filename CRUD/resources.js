@@ -31,10 +31,41 @@ module.exports = function(app, db){
     /**
     * searches for resources based on provide term IDs
     * language code passed in as "languageCode" by query, default to english
-    * @param {Array} terms
+    * @param {Array} query // terms with status (include/exclude)
+    * @param {Array} excludedTerms //uid
     * @param {String} languageCode
     * @return {Object} resource
     */
+    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(termNode:term) " // -:HAS_SYNONYM-()?
+           + "WHERE "
+               + "termNode.uid IN {includedTerms} "
+               + "AND NOT termNode.uid IN {excludedTerms} "
+           + "WITH re, count(*) AS connected "
+           + "MATCH (rlangNode:translation)<-[rlang:HAS_TRANSLATION]-(re)-[:TAGGED_WITH]->(termNode:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
+           + "WHERE "
+               + "connected = {numberOfIncluded} "
+               + "AND tlang.languageCode IN [ {language} , 'en' ] "
+               + "AND rlang.languageCode IN [ {language} , 'en' ] "
+           + "RETURN DISTINCT  collect( {term: termNode.uid, url: termNode.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, re as resource, rlangNode as translation "
+           // + "ORDER BY {orderby} {updown}"
+           // + "SKIP {skip} "
+           + "LIMIT {limit}";
+         if (typeof req.query.include === "undefined") {
+             req.query.include = 0;
+         }
+        db.query(cypher, {
+            includedTerms: req.query.include || [],
+            excludedTerms: req.query.exclude || [],
+            numberOfIncluded: req.query.include.length,
+            orderby: req.orderby,
+            updown: req.updown,
+            skip:0,
+            limit: 20,
+            language: 'en'
+        }, function(err, result) {
+      if (err) {console.log(err);res.status(500).send()};
+          res.send(result)
+      })
   }
 
   function readCore(req, res){

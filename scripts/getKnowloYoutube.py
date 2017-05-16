@@ -3,17 +3,19 @@ import json
 
 videoData = []
 
-for line in open('failedVideos.txt'):
+for line in open('know2.txt'):
 
     videoObj = {}
 
     try:
         video = pafy.new(line.strip().encode("utf-8"))
-    except ValueError:
-        print "error here - ", line
+    except (ValueError, IOError) as e:
+        print "error: ", e
+        print "error line - ", line
         with open('dump.json', 'w') as outfile:
             json.dump(videoData, outfile)
         print "dumped combined video object."
+
     else:
 
         videoObj['url']            = line.strip()
@@ -38,5 +40,5 @@ for line in open('failedVideos.txt'):
         print len(videoData), " - ", video.title.encode("utf-8")
 
 
-with open('videos4.json', 'w') as outfile:
+with open('know2deets2.json', 'w') as outfile:
     json.dump(videoData, outfile)

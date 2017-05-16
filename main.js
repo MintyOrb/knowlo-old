@@ -51,7 +51,7 @@ const app = new Vue({
   mounted: function(){
 
     this.bigHistory = bigHistory.members//.slice(0,3);
-    this.termQuery= disciplines.members.slice(0,3);
+    // this.termQuery= disciplines.members.slice(0,3);
 
     var lang = window.navigator.userLanguage || window.navigator.language;
     console.log(lang)
