@@ -160,7 +160,7 @@
 		    <div class='row'>
 		        <isotope style="min-height:80px" ref="termQuery" :list="termQuery" :options='getSelectedOptions()'>
 		          <div  v-for="word in termQuery"  class='selected' v-bind:class="{ expanded: word.expanded }" key="word.name">
-		            <term class="expandedFlex" :term="word" v-on:add-me="addToFrom(word, words, termQuery)" v-on:lay-me="layout"></term>
+		            <term :term="word" v-on:add-me="addToFrom(word, words, termQuery)" v-on:lay-me="layout('termqeury')"></term>
 		          </div>
 		        </isotope>
 		    </div>
@@ -169,7 +169,9 @@
 		    <div class='row'>
 		        <isotope ref="key" :list="words" :options='getSuggestionOptions()' class="step">
 		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }" key="word">
-								{{word}}
+								<term :term="word" v-on:lay-me="layout('selected')"></term>
+
+								<!-- {{word}} -->
 								<!-- <term  :term="word"  v-on:add-me="addToFrom(word, termQuery, words)" v-on:lay-me="layout" ></term> -->
 		          </div>
 		        </isotope>

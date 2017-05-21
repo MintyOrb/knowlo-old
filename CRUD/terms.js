@@ -5,6 +5,7 @@ var shortid = require('shortid');
 app.get('/term/autocomplete/:text', autocomplete);
 app.get('/term/most', most);
 
+app.get('/term', query);           // query terms based on provided term IDs
 app.get('/api/term', query);           // query terms based on user details and provided term IDs - /term/query instaed?
 app.get('/term/:name/:uid?', read);    // read details of a single term and translation
 app.put('/api/term/:uid', updateCore); // update a single resrouces core node data
@@ -33,25 +34,31 @@ app.delete('/api/term/:termID/group/:uid', deleteGroup); // delete term group by
    ██    ██      ██   ██ ██  ██  ██
    ██    ███████ ██   ██ ██      ██
 */
-
 function query(req, res){
 
+  req.query.exclude = req.query.exclude.concat(req.query.include) // don't return query terms
 
    var cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchTerms:term) "
-              + "WHERE searchTerms.UUID IN {searchTerms} "
+              + "WHERE searchTerms.uid IN {searchTerms} "
               + "WITH contentNode, COUNT(searchTerms) as count "
               + "WHERE count = {searchTermsCount} "
-              + "MATCH (groupNode:termGroup)<-[:IN_GROUP]-(matched:term)<-[:TAGGED_WITH]-contentNode, "
-                  + "matched-[:HAS_LANGUAGE {languageCode: {language} }]->(termMeta:termMeta) "
-              + "WHERE groupNode.name IN {groups} AND NOT matched.UUID IN {ignoreTerms} "
-              + "RETURN DISTINCT count(DISTINCT contentNode) AS connections, termMeta.name AS name, matched.UUID AS UUID "
-              + "ORDER BY connections DESC ";
+              + "MATCH (term:term)<-[:TAGGED_WITH]-(contentNode), "
+                  + "(term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(translation:translation) "
+              + "WHERE NOT term.uid IN {ignoreTerms} "
+              + "RETURN DISTINCT count(DISTINCT contentNode) AS connections, translation, term "
+              + "ORDER BY connections DESC "
               // + "ORDER BY {orderby} {updown}"
               // + "SKIP {skip} "
-              + "LIMIT {limit}";
-
+              + "LIMIT 10";
+    var len = 0;
+    if(req.query.include !== 'undefined'){
+      len = req.query.include.length;
+    }
+    db.query(cypher, {searchTerms: req.query.include, ignoreTerms: req.query.exclude, searchTermsCount: len, lang: 'en' },function(err, result) {
+      if (err) console.log(err);
+      res.send(result)
+    })
 }
-
 /**
 * reads term core node and translation
 * language code passed via member as "member.languageCode" on body, default to english
@@ -261,14 +268,11 @@ function autocomplete(req,res){
 // get most commonly tagged terms
 // TODO: skip/limit - language - disregard/include synonyms? - Terms most tagged to other terms?
 function most(req,res){
-    console.log('in most')
   var cypher = "MATCH (term:term)<-[:TAGGED_WITH]-(resource:resource) "
              + "RETURN term.english, COUNT(resource) AS score "
              + "ORDER BY score DESC skip 30 limit 10"
   db.query(cypher, {languageCode: req.query.languageCode || 'en'},function(err, result) {
     if (err) console.log(err);
-    console.log(result)
-
       res.send(result) // resource not found
     })
   }

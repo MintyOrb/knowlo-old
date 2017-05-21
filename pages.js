@@ -524,7 +524,7 @@ const explore = Vue.component('exploreComp',{
            // pretty serious antipattern here...make a registery when using cross section views instead?
           var steps = $('.step'); // get isotope containers with jquery
           for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
-            console.log('in thingy')
+            console.log('in anti pattern')
 
             if(steps[stepIndex].termName !== undefined && steps[stepIndex]['__vue__'] != null){
               steps[stepIndex]['__vue__'].layout('masonry')
@@ -542,39 +542,35 @@ const explore = Vue.component('exploreComp',{
           return num.toFixed(digits).replace(rx, "$1");
         },
         test(){
-
-          // for (var lindex = 0; lindex < this.list.length; lindex++) {
-          //   this.list[lindex];
-          // }
-          console.log('test')
-          this.$http.get('/term/most', {params: { languageCode: 'en' } }).then(response => {
+        },
+        getTerms(){
+          var include = [];
+          var exclude = [];
+          for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
+            include.push(this.termQuery[termIndex]['term'].uid)
+            console.log(this.termQuery[termIndex]['term'].uid)
+          }
+          this.$http.get('/term/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
             console.log(response)
             this.words=response.body;
           }, response => {
             console.log('test ',response)
           });
-        },
-        getTerms(){
-
         }
 
     },
     mounted: function(){
       // this.test()
-      // redirect to landing if first time to knowlo
-      if(Cookies.get('returning') == undefined){
-        Cookies.set('returning', true, { expires: 7 });
-        router.push('/land');
+
+      //alpha warning
+      if(!Cookies.get('alpha-warning-seen')){
+        Cookies.set('alpha-warning-seen', true, { expires: 7 });
+        var $toastContent = $("<span>Hi! Knowlo is pre-alpha right now. There's not a lot to see and what there is will probably break.</span>");
+        Materialize.toast($toastContent, 10000);
       } else {
-        //alpha warning - only show on explore page
-        if(!Cookies.get('alpha-warning-seen')){
-          Cookies.set('alpha-warning-seen', true, { expires: 7 });
-          var $toastContent = $("<span>Hi! Knowlo is pre-alpha right now. There's not a lot to see and what there is will probably break.</span>");
-          Materialize.toast($toastContent, 10000);
-        } else {
-          Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
-        }
+        Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
       }
+
 
       // get previously selected display Style
       if(!Cookies.get('displayStyle')){
@@ -614,17 +610,16 @@ const explore = Vue.component('exploreComp',{
         var exclude = [];
         for (var termIndex = 0; termIndex < val.length; termIndex++) {
           include.push(val[termIndex]['term'].uid)
-          console.log(val[termIndex]['term'].uid)
+          //TODO:get excluded terms...
         }
         this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
-          console.log(response)
-          this.list=response.body;
-          this.test()
+        this.list=response.body;
+          this.getTerms();
           window.setTimeout(() =>{
-            this.layout('heh')
+            this.layout('post term query')
           }, 1000);
         }, response => {
-          console.log('uh ',response)
+          console.log('error getting resources... ', response)
         });
       },
     }
