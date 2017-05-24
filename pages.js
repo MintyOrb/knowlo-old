@@ -105,12 +105,30 @@ const termComp = Vue.component('termComp',{
     data: function() {
       return {
         term: {name: 'default'},
-        termSection: ["Activity","Context","Vote","Stats","Related"]
+        synonyms: [],
+        groups: [],
+        termSection: ["Activity","Synonyms","Groups","Stats","Related"] //stats? vote? member's relation? definition?
       }
     },
     methods:{
        init: function(){
-
+         this.$http.get('/term/' + this.$route.params.name + '/' + this.$route.params.uid, {params: { languageCode: 'en'}}).then(response => {
+           if(response.body.term){
+             response.body.term.name = response.body.translation.name
+             response.body.term.status = {};
+             this.term = response.body;
+             this.fetchSynonyms();
+             this.fetchGroups();
+           } else {
+             Materialize.toast('Resource not found.', 4000)
+           }
+           this.openModal()
+         }, response => {
+           this.openModal()
+           Materialize.toast('Something went wrong...are you online?', 4000)
+         });
+      },
+      openModal: function(){
         this.$nextTick(function(){
             $('#termModal'+this.term.id).modal({
               dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -130,24 +148,85 @@ const termComp = Vue.component('termComp',{
             }).modal('open');
           })
       },
+      fetchSynonyms: function() {
+        this.$http.get('/term/' + this.$route.params.uid + '/synonym/', {params: { languageCode: 'en'}}).then(response => {
+          if(response.body.length > 0){
+            this.synonyms = response.body;
+          } else {
+            Materialize.toast('Synonyms not found.', 4000)
+          }
+        }, response => {
+          this.openModal()
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      addSynonym: function(synonym){
+        this.$http.put('/api/term/'+ this.term.term.uid +'/synonym/'+ synonym.term.uid).then(response => {
+          if(response.body){
+            Materialize.toast('Added!', 4000)
+            this.synonyms.push(synonym)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      removeSynonym: function(synUID){
+        this.$http.delete('/api/term/'+ this.term.term.uid +'/synonym/'+ synUID).then(response => {
+          if(response.body){
+            Materialize.toast('Removed!', 4000)
+            this.synonyms.splice(this.synonyms.findIndex( (term) => term.term.uid === synUID) ,1)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      fetchGroups: function(){console.log('in fetch group')
+        this.$http.get('/term/' + this.$route.params.uid + '/group/', {params: { languageCode: 'en'}}).then(response => {
+          console.log('back: ',response.body)
+          if(response.body.length > 0){
+            this.groups = response.body;
+          } else {
+            Materialize.toast('Groups not found.', 4000)
+          }
+        }, response => {
+          this.openModal()
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      addGroup: function(group){
+        this.$http.put('/api/term/'+ this.term.term.uid +'/group/'+ group.term.uid).then(response => {
+          if(response.body){
+            Materialize.toast('Added!', 4000)
+            this.groups.push(group)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      removeGroup: function(groupUID){
+        this.$http.delete('/api/term/'+ this.term.term.uid +'/group/'+ groupUID).then(response => {
+          if(response.body){
+            Materialize.toast('Removed!', 4000)
+            this.groups.splice(this.groups.findIndex( (term) => term.term.uid === groupUID) ,1)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
       close: function(){
         console.log("close here after esc")
       }
     },
     mounted: function(){
-      this.$http.get('/term/' + this.$route.params.name + '/' + this.$route.params.uid, {params: { languageCode: 'en'}}).then(response => {
-        if(response.body.term){
-          response.body.term.name = response.body.translation.name
-          response.body.term.status = {};
-          this.term = response.body;
-        } else {
-          Materialize.toast('Resource not found.', 4000)
-        }
-        this.init()
-      }, response => {
-        this.init()
-        Materialize.toast('Something went wrong...are you online?', 4000)
-      });
+      this.init();
 
       $('.termNav').flickity({
         asNavFor: '.termSections',
@@ -165,6 +244,8 @@ const termComp = Vue.component('termComp',{
         dragThreshold: 20 // play around with this more?
       });
 
+      // TODO: set flickity tab in URL
+      $('.termSections').flickity('selectCell', 1, true, true ) //  value, isWrapped, isInstant
       // listen for escape key (materalize closes modal on esc, but doesn't re-route)
 
       document.addEventListener('keydown', event => {
@@ -518,6 +599,7 @@ const explore = Vue.component('exploreComp',{
         },
         layout: function(mes) {
           console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
+          // use parameter to chhose which isotope instance to layout? - pass in name vs pass in container?
           this.$refs.termQuery.layout('masonry');
           this.$refs.contentBin.layout('masonry');
 
@@ -617,7 +699,7 @@ const explore = Vue.component('exploreComp',{
           this.getTerms();
           window.setTimeout(() =>{
             this.layout('post term query')
-          }, 1000);
+          }, 500);
         }, response => {
           console.log('error getting resources... ', response)
         });

@@ -397,12 +397,22 @@
 					Activity
 				</div>
 				<div class="stepContainer" >
-					<!-- <term v-for="term in terms" :term="term" key="term.name"></term> -->
-					<autocomplete input-id="termTest"></autocomplete>
-					Context
+					Synonyms
+					<isotope ref='syno' :list="synonyms" :options='{}'>
+						<div v-for="term in synonyms" :key="term.translation.name">
+							<term :term="term" :key="term.translation.name" v-on:remove="removeSynonym"></term>
+						</div>
+					</isotope>
+					<autocomplete input-id="syn" v-on:select="addSynonym"></autocomplete>
 				</div>
 				<div class="stepContainer">
-					Vote
+					Groups
+					<isotope ref='group' :list="groups" :options='{}'>
+						<div v-for="term in groups" :key="term.translation.name">
+							<term :term="term" :key="term.translation.name" v-on:remove="removeGroup"></term>
+						</div>
+					</isotope>
+					<autocomplete input-id="group" :add-to="groups" v-on:select="addGroup"></autocomplete>
 				</div>
 				<div class="stepContainer">
 					Stats
@@ -507,7 +517,7 @@
 		</div>
 		<div class="row">
 			<h4>Add Synonyms</h4>
-			<autocomplete input-id="Synonyms" :add-to="syns"></autocomplete>
+			<autocomplete input-id="synonyms" :add-to="syns"></autocomplete>
 			<isotope ref='syno' :list="syns" :options='{}'>
 				<div v-for="syn in syns"  :key="syn.translation.name">
 					<term :term="syn" v-on:created="addSynonym(term.uid,syn.term.uid)" v-on:remove=""></term>
@@ -707,12 +717,12 @@
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom(term, 'focus')" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: focus, focusNav: hover && inSidebar }">
+							<div @click="remove" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: focus, focusNav: hover && inSidebar }">
 								<i class="fa fa-crosshairs"></i>
 							</div>
 						</div>
 						<div class="">
-							<div @click="addToFrom(term, 'remove')" class="mbtn mbtn-icon flexCenter" :class="{removeNav: hover && inSidebar }">
+							<div @click="remove" class="mbtn mbtn-icon flexCenter" :class="{removeNav: hover && inSidebar }">
 								<i class="fa fa-times"></i>
 							</div>
 						</div>

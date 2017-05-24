@@ -5,27 +5,27 @@ var shortid = require('shortid');
 app.get('/term/autocomplete/:text', autocomplete);
 app.get('/term/most', most);
 
+app.get('/api/term/:termID/translation/', readTranslation);          // retrieve a translation of a term based on term id and provided langauge code. If language not found, attempt a translation. Also returns term core
+app.put('/api/term/:termID/translation/:uid', updateTranslation);    // update single term translation by ID | is /term/:termID superfluous? /termMeta/:uid instead?
+app.post('/api/term/:termID/translation/', createTranslation);       // create term translation based on language code and connect to term. Return resrouce core and new translation
+app.delete('/api/term/:termID/translation/:uid', deleteTranslation); // delete term translation by id | delete node or just relatinship??
+
+app.get('/term/:synID/synonym/', readSynonym);                // retrieve synonyms of a term based on term id and provided langauge code. If language not found, attempt translation? Also returns term core
+app.put('/api/term/:termID/synonym/:synID', updateSynonym);    // add term synonym by ID | is /term/:termID superfluous? /termMeta/:uid instead?
+// ? don't need? app.post('/api/term/:termID/synonym/', createSynonym);      // create term synonym based on language code and connect to term. Return resrouce core and new synonym
+app.delete('/api/term/:termID/synonym/:synID', deleteSynonym); // delete term synonym by id | delete node or just relatinship??
+
+app.get('/term/:groupID/group/', readGroup);                 // retrieve a terms groups of a term based on term id and provided langauge code. If language not found, attempt a group. Also returns term core
+app.put('/api/term/:termID/group/:groupID', updateGroup);    // update single term group by ID | is /term/:termID superfluous? /termMeta/:uid instead?
+// ? app.post('/api/term/:termID/group/', createGroup);     // create term group based on language code and connect to term. Return resrouce core and new group
+app.delete('/api/term/:termID/group/:groupID', deleteGroup); // delete term group by id | delete node or just relatinship??
+
 app.get('/term', query);           // query terms based on provided term IDs
 app.get('/api/term', query);           // query terms based on user details and provided term IDs - /term/query instaed?
 app.get('/term/:name/:uid?', read);    // read details of a single term and translation
 app.put('/api/term/:uid', updateCore); // update a single resrouces core node data
 app.post('/api/term', create);         // create (or update, if present) a term core and single translation node.
 app.delete('/api/term', deleteCore);   // delete term core node and relationships....and translations?
-
-app.get('/api/term/:termID/translation/', readTranslation);          // retrieve a translation of a term based on term id and provided langauge code. If language not found, attempt a translation. Also returns term core
-app.put('/api/term/:termID/translation/:uid', updateTranslation);    // update single term translation by ID | is /term/:termID superfluous? /termMeta/:uid instead?
-app.post('/api/term/:termID/translation/', createTranslation);       // create term translation based on language code and connect to term. Return resrouce core and new translation
-app.delete('/api/term/:termID/translation/:uid', deleteTranslation); // delete term translation by id | delete node or just relatinship??
-
-app.get('/api/term/:termID/synonym/', readSynonym);            // retrieve synonyms of a term based on term id and provided langauge code. If language not found, attempt translation? Also returns term core
-app.put('/api/term/:termID/synonym/:synID', updateSynonym);    // add term synonym by ID | is /term/:termID superfluous? /termMeta/:uid instead?
-// ? don't need? app.post('/api/term/:termID/synonym/', createSynonym);      // create term synonym based on language code and connect to term. Return resrouce core and new synonym
-app.delete('/api/term/:termID/synonym/:synID', deleteSynonym); // delete term synonym by id | delete node or just relatinship??
-
-app.get('/api/term/:termID/group/', readGroup);          // retrieve a terms groups of a term based on term id and provided langauge code. If language not found, attempt a group. Also returns term core
-app.put('/api/term/:termID/group/:uid', updateGroup);    // update single term group by ID | is /term/:termID superfluous? /termMeta/:uid instead?
-// ? app.post('/api/term/:termID/group/', createGroup);     // create term group based on language code and connect to term. Return resrouce core and new group
-app.delete('/api/term/:termID/group/:uid', deleteGroup); // delete term group by id | delete node or just relatinship??
 
 /*
 ████████ ███████ ██████  ███    ███
@@ -122,8 +122,8 @@ function updateCore(req, res){
 * @return {Object}
 */
 function create(req, res){
-  req.body.term.uid=shortid.generate()
-  req.body.translation.uid=shortid.generate()
+  var newTermID = req.body.term.uid=shortid.generate()
+  var newTransID = req.body.translation.uid=shortid.generate()
 
   var cypher = "MATCH (member:member {uid:{mid}}) "
              + "MERGE (term:term {english: {term}.english }) "
@@ -175,20 +175,31 @@ function deleteTranslation(req, res){
 ███████    ██    ██   ████  ██████  ██   ████    ██    ██      ██
 */
 function readSynonym(req, res){
+  var cypher = "MATCH (term:term {uid: {term} })-[:HAS_SYNONYM]-(syn:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
+             + "WHERE "
+                 + "lang.languageCode IN [ {language} , 'en' ] "
+                  + "RETURN DISTINCT syn as term, translation "
+
+  db.query(cypher, {term: req.params.synID, language: req.query.languageCode },function(err, result) {
+    if (err) console.log(err);
+    if(result){
+      res.send(result)
+    } else {
+      res.send()
+    }
+  })
 }
 
 function updateSynonym(req, res){
-
   // TODO:check for member authorization...
   var cypher = "MATCH (base:term {uid:{term}}) , (syn:term {uid:{syn}}) "
-             + "MERGE (base)-[r:HAS_SYNONYM]->(syn)"
+             + "MERGE (base)-[r:HAS_SYNONYM]->(syn) "
              + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
              + "RETURN base, syn"
 
   db.query(cypher, {term: req.params.termID, syn: req.params.synID, member: res.locals.user.uid },function(err, result) {
     if (err) console.log(err);
     if(result){
-      console.log(result)
       res.send(result[0])
     } else {
       res.send()
@@ -199,13 +210,12 @@ function updateSynonym(req, res){
 function deleteSynonym(req, res){
   // TODO:check for member authorization...
   var cypher = "MATCH (base:term {uid:{term}})-[r:HAS_SYNONYM]->(syn:term {uid:{syn}}) "
-             + "DELETE r"
-             + "RETURN base, syn"
+             + "DELETE r "
+             + "RETURN base, syn "
 
   db.query(cypher, {term: req.params.termID, syn: req.params.synID, member: res.locals.user.uid },function(err, result) {
     if (err) console.log(err);
     if(result){
-      console.log(result)
       res.send(result[0])
     } else {
       res.send()
@@ -222,15 +232,55 @@ function deleteSynonym(req, res){
 */
 
 function readGroup(req, res){
+  var cypher = "MATCH (term:term {uid: {term} })-[:IN_GROUP]->(group:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
+             + "WHERE "
+                 + "lang.languageCode IN [ {language} , 'en' ] "
+                  + "RETURN DISTINCT group as term, translation "
+
+  db.query(cypher, {term: req.params.groupID, language: req.query.languageCode },function(err, result) {
+    if (err) console.log(err);
+    if(result){
+      res.send(result)
+    } else {
+      res.send()
+    }
+  })
 }
 
 function updateGroup(req, res){
+  // TODO:check for member authorization...
+  var cypher = "MATCH (base:term {uid:{term}}) , (group:term {uid:{group}}) "
+             + "MERGE (base)-[r:IN_GROUP]->(group) "
+             + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
+             + "RETURN base, group"
+
+  db.query(cypher, {term: req.params.termID, group: req.params.groupID, member: res.locals.user.uid },function(err, result) {
+    if (err) console.log(err);
+    if(result){
+      res.send(result[0])
+    } else {
+      res.send()
+    }
+  })
 }
 
 function createGroup(req, res){
 }
 
 function deleteGroup(req, res){
+  // TODO:check for member authorization...
+  var cypher = "MATCH (base:term {uid:{term}})-[r:IN_GROUP]->(group:term {uid:{group}}) "
+             + "DELETE r "
+             + "RETURN base, group"
+
+  db.query(cypher, {term: req.params.termID, group: req.params.groupID, member: res.locals.user.uid },function(err, result) {
+    if (err) console.log(err);
+    if(result){
+      res.send(result[0])
+    } else {
+      res.send()
+    }
+  })
 }
 
 

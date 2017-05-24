@@ -24,6 +24,9 @@ Vue.component('term',{
       }
     },
     methods: {
+      remove: function(){
+        this.$emit('remove', this.term.term.uid)
+      },
       addFromSub: function(term){ // there must be a better way to add sub term...
         bus.$emit('addtermSubterm', term)
       },
@@ -111,7 +114,7 @@ var bus = new Vue() // this feels dumb, but can't see how else to tell explore w
 //<!-- ajax auto complete adapted from  http://stackoverflow.com/a/42757285/2061741 -->
 Vue.component('autocomplete',{
     template: "#autocomplete",
-    props:['ajaxUrl','inputId','addTo'],
+    props:['ajaxUrl','inputId','addTo'], //TODO get rid of addTO. Handle with events.
     name: "autocomplete",
     data: () =>  {
       return {
@@ -142,14 +145,14 @@ Vue.component('autocomplete',{
             this.quickAdd();
           }
         } else {
-          item.status = {}; // having to item.status here feels dumb. (otherwise term.status.expanded can't be read)
-          this.addTo.push(item)
+          item.status = {}; // having to add item.status here feels dumb. (otherwise term.status.expanded can't be read)
+          this.$emit('select', item)
         }
       },
       quickAdd: function(){
         this.$http.post('/api/term', {term: this.term, translation: this.translation}).then(response => {
           if(response.body.term){
-            this.addTo.push(response.body)
+            this.$emit('select', response.body)
             Materialize.toast("'" + response.body.translation.name+ "'" + ' added!', 3000)
           } else {
             Materialize.toast('Something went wrong...term not added.', 4000)
@@ -310,6 +313,7 @@ const addTerm = Vue.component('addTerm',{
       createTerm: function(){
         this.$http.post('/api/term', {term: this.term, translation:this.translation}).then(response => {
           if(response.body){
+            console.log(response.body)
             this.term.uid = response.body.term.uid
             router.replace('/addTerm/'+response.body.translation.name+"/"+response.body.term.uid)
           } else {
@@ -322,6 +326,7 @@ const addTerm = Vue.component('addTerm',{
       addSynonym: function(termID, synID){
         this.$http.put('/api/term/'+ termID +'/synonym/'+ synID).then(response => {
           if(response.body){
+            console.log(response.body)
           } else {
             Materialize.toast('Something went wrong...', 4000)
           }
