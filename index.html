@@ -154,7 +154,7 @@
 
 		<div class='container'>
 
-				<autocomplete input-id="mainSearch" :add-to="termQuery"></autocomplete>
+				<autocomplete input-id="mainSearch" v-on:select="addToQuery"></autocomplete>
 
 				<!-- term query  -->
 		    <div class='row'>
@@ -344,8 +344,8 @@
 					Activity
 				</div>
 				<div class="resourceStep" >
-					<term v-for="term in terms" :term="term" key="term.name"></term>
-					<autocomplete input-id="resourceTest"></autocomplete>
+					<term v-for="term in terms" :term="term" key="term.name" v-on:remove="removeTerm"></term>
+					<autocomplete input-id="resourceTest" v-on:select="addTerm"></autocomplete>
 				</div>
 				<div class="resourceStep">
 					Vote
@@ -412,7 +412,7 @@
 							<term :term="term" :key="term.translation.name" v-on:remove="removeGroup"></term>
 						</div>
 					</isotope>
-					<autocomplete input-id="group" :add-to="groups" v-on:select="addGroup"></autocomplete>
+					<autocomplete input-id="group" v-on:select="addGroup"></autocomplete>
 				</div>
 				<div class="stepContainer">
 					Stats
@@ -517,7 +517,7 @@
 		</div>
 		<div class="row">
 			<h4>Add Synonyms</h4>
-			<autocomplete input-id="synonyms" :add-to="syns"></autocomplete>
+			<autocomplete input-id="synonyms"autocomplete>
 			<isotope ref='syno' :list="syns" :options='{}'>
 				<div v-for="syn in syns"  :key="syn.translation.name">
 					<term :term="syn" v-on:created="addSynonym(term.uid,syn.term.uid)" v-on:remove=""></term>
@@ -526,7 +526,7 @@
 		</div>
 		<div class="row">
 			<h4>In Group</h4>
-			<autocomplete input-id="Group" :add-to="groups"></autocomplete>
+			<autocomplete input-id="Group"autocomplete>
 			<isotope ref='group' :list="groups" :options='{}'>
 				<div v-for="group in groups" :key="group.translation.name">
 					<term :term="group"></term>
@@ -535,7 +535,7 @@
 		</div>
 		<div class="row">
 			<h4>Contains</h4>
-			<autocomplete input-id="Contains" :add-to="contains"></autocomplete>
+			<autocomplete input-id="Contains"autocomplete>
 			<isotope ref='contain' :list="contains" :options='{}'>
 				<div v-for="contain in contains" :key="contain.translation.name">
 					<term :term="contain"></term>

@@ -114,7 +114,7 @@ var bus = new Vue() // this feels dumb, but can't see how else to tell explore w
 //<!-- ajax auto complete adapted from  http://stackoverflow.com/a/42757285/2061741 -->
 Vue.component('autocomplete',{
     template: "#autocomplete",
-    props:['ajaxUrl','inputId','addTo'], //TODO get rid of addTO. Handle with events.
+    props:['ajaxUrl','inputId'],
     name: "autocomplete",
     data: () =>  {
       return {

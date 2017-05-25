@@ -184,9 +184,8 @@ const termComp = Vue.component('termComp',{
            Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
-      fetchGroups: function(){console.log('in fetch group')
+      fetchGroups: function(){
         this.$http.get('/term/' + this.$route.params.uid + '/group/', {params: { languageCode: 'en'}}).then(response => {
-          console.log('back: ',response.body)
           if(response.body.length > 0){
             this.groups = response.body;
           } else {
@@ -279,21 +278,15 @@ const resourceComp = Vue.component('resourceComp',{
     template: "#resourceTemplate",
     data: function() {
           return {
-              resource: {id: 0, displayType: "none"}, // include defaults so init doesn't break if resource is not found
+              resource: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if resource is not found
               terms: [],
               resourceSection: ["Activity","terms","Vote","Stats","Related"]
             }
           },
     methods: {
       init: function(){
-          // for (var i = 0; i < videos.length; i++) {
-          //   if(videos[i]['videoid'] == id){
-          //     this.resource = videos[i]
-          //     break
-          //   }
-          // }
           this.$nextTick(function(){
-            $('#resourceModal'+this.resource.id).modal({
+            $('#resourceModal'+this.resource.uid).modal({
                 // dismissible: true, // Modal can be dismissed by clicking outside of the modal
                 opacity: .5, // Opacity of modal background
                 inDuration: 300, // Transition in duration
@@ -353,6 +346,31 @@ const resourceComp = Vue.component('resourceComp',{
               }
           })
 
+      },
+      addTerm: function(term){
+        this.$http.put('/api/resource/'+ this.resource.uid +'/term/'+ term.term.uid).then(response => {
+          if(response.body){
+            Materialize.toast('term added', 4000)
+            this.terms.push(term)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      removeTerm: function(termUID){
+        console.log(termUID)
+        this.$http.delete('/api/resource/'+ this.resource.uid +'/term/'+ termUID).then(response => {
+          if(response.body){
+            Materialize.toast('term removed.', 4000)
+            this.terms.splice(this.terms.findIndex( (term) => term.term.uid === termUID) ,1)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
       }
     },
     mounted: function(){
@@ -499,6 +517,9 @@ const explore = Vue.component('exploreComp',{
           for( i=theArray.length-1; i>=0; i--) {
               if( theArray[i].name == item.name) theArray.splice(i,1);
           }
+        },
+        addToQuery: function(item){
+          this.termQuery.push(item);
         },
         changeDisplay: function(disp){
           this.display = disp

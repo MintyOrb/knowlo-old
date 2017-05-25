@@ -232,15 +232,24 @@ function deleteSynonym(req, res){
 */
 
 function readGroup(req, res){
-  var cypher = "MATCH (term:term {uid: {term} })-[:IN_GROUP]->(group:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
+  // match directly connected groups as well as groups of synonyms.
+  var cypher = "MATCH (term:term {uid: {term} }) "
+             + "OPTIONAL MATCH (term)-[:IN_GROUP]-(group:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
              + "WHERE "
                  + "lang.languageCode IN [ {language} , 'en' ] "
-                  + "RETURN DISTINCT group as term, translation "
+             + "OPTIONAL MATCH (term)-[:HAS_SYNONYM]-(s:term)-[:IN_GROUP]-(g2:term)-[lang2:HAS_TRANSLATION]->(t2:translation) "
+             + "WHERE "
+                 + "lang2.languageCode IN [ {language} , 'en' ] "
+                + "RETURN DISTINCT  collect({term: group, translation: translation}) as firstDegree, collect({term: g2, translation: t2}) as secondDegree "
 
   db.query(cypher, {term: req.params.groupID, language: req.query.languageCode },function(err, result) {
-    if (err) console.log(err);
+    if (err) console.log(err);console.log(result[0])
     if(result){
-      res.send(result)
+      // filter out nulls and combine first and second degree groups
+      var combined = result[0]['firstDegree'].concat(result[0]['secondDegree']).filter(function (el) {
+        return el['term'] !== null;
+      });
+      res.send(combined)
     } else {
       res.send()
     }
@@ -269,7 +278,7 @@ function createGroup(req, res){
 
 function deleteGroup(req, res){
   // TODO:check for member authorization...
-  var cypher = "MATCH (base:term {uid:{term}})-[r:IN_GROUP]->(group:term {uid:{group}}) "
+  var cypher = "MATCH (base:term {uid:{term}})-[r:IN_GROUP]-(group:term {uid:{group}}) "
              + "DELETE r "
              + "RETURN base, group"
 
