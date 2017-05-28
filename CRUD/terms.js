@@ -127,7 +127,7 @@ function create(req, res){
 
   var cypher = "MATCH (member:member {uid:{mid}}) "
              + "MERGE (term:term {english: {term}.english }) "
-               + "ON CREATE SET term={term}, term.created=TIMESTAMP() "
+               + "ON CREATE SET term={term}, term.created=TIMESTAMP(), term.lower=LOWER({term}.english) "
                + "ON MATCH SET term={term}, term.updated=TIMESTAMP() "
              + "MERGE (translation:translation {name: {translation}.name}) "
                + "ON CREATE SET translation={translation}, translation.created=TIMESTAMP() "
@@ -234,16 +234,18 @@ function deleteSynonym(req, res){
 function readGroup(req, res){
   // match directly connected groups as well as groups of synonyms.
   var cypher = "MATCH (term:term {uid: {term} }) "
-             + "OPTIONAL MATCH (term)-[:IN_GROUP]-(group:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
+             + "OPTIONAL MATCH (term)-[:IN_GROUP]->(group:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
              + "WHERE "
                  + "lang.languageCode IN [ {language} , 'en' ] "
-             + "OPTIONAL MATCH (term)-[:HAS_SYNONYM]-(s:term)-[:IN_GROUP]-(g2:term)-[lang2:HAS_TRANSLATION]->(t2:translation) "
+             + "OPTIONAL MATCH (term)-[:HAS_SYNONYM]-(s:term)-[:IN_GROUP]->(g2:term)-[lang2:HAS_TRANSLATION]->(t2:translation) "
              + "WHERE "
                  + "lang2.languageCode IN [ {language} , 'en' ] "
-                + "RETURN DISTINCT  collect({term: group, translation: translation}) as firstDegree, collect({term: g2, translation: t2}) as secondDegree "
-
+                + "RETURN DISTINCT collect(DISTINCT{term:  group, translation: translation}) as firstDegree, collect(DISTINCT{term:  g2, translation: t2}) as secondDegree "
+                // TODO: limit skip orderby...
+                // TODO: make sure first and second degree are unique
+                // TODO: return contains (not just within)
   db.query(cypher, {term: req.params.groupID, language: req.query.languageCode },function(err, result) {
-    if (err) console.log(err);console.log(result[0])
+    if (err) console.log(err);
     if(result){
       // filter out nulls and combine first and second degree groups
       var combined = result[0]['firstDegree'].concat(result[0]['secondDegree']).filter(function (el) {

@@ -40,6 +40,10 @@ module.exports = function(app, db){
            + "WHERE "
                + "termNode.uid IN {includedTerms} "
                + "AND NOT termNode.uid IN {excludedTerms} "
+          //  + " MATCH (re2:resource)-[:TAGGED_WITH]->(syn:term)-[:HAS_SYNONYM]-(termNode) "
+          //  + "WHERE "
+          //      + "termNode.uid IN {includedTerms} "
+          //      + "AND NOT termNode.uid IN {excludedTerms} "
            + "WITH re, count(*) AS connected "
            + "MATCH (rlangNode:translation)<-[rlang:HAS_TRANSLATION]-(re)-[:TAGGED_WITH]->(termNode:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
            + "WHERE "
@@ -60,7 +64,7 @@ module.exports = function(app, db){
             orderby: req.orderby,
             updown: req.updown,
             skip:0,
-            limit: 20,
+            limit: 50, // TODO: change for mobile
             language: 'en'
         }, function(err, result) {
       if (err) {console.log(err);res.status(500).send()};

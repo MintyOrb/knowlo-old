@@ -376,7 +376,6 @@ const resourceComp = Vue.component('resourceComp',{
     mounted: function(){
       // take language from member instead of hardcoding english...
       this.$http.get('/resource/' + this.$route.params.uid + '/full', {params: { languageCode: 'en'}}).then(response => {
-        console.log(response.body)
         if(response.body.resource){
           this.resource = response.body.resource;
           this.terms = response.body.terms;

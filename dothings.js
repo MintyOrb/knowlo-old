@@ -6,8 +6,54 @@ module.exports = function(app, db) {
 
     // the functions to run (uncomment)
     // addVideosToDB()
+    // fixWeirdTerms();
+    putTermsInSets();
 
+    function putTermsInSets(){
 
+    }
+
+    function fixWeirdTerms(){
+      require('./modify.js')
+      var del =0
+      async.eachSeries(modterm['data'], function(term, callback) {
+        console.log(term.row[1])
+        // i r rr s
+        if(term.action ==="i"){
+          del++
+          console.log(term.row[0])
+          var name = term.row[0].substr(0, term.row[0].indexOf('(')).trim();
+          var second = term.row[0].substr(term.row[0].indexOf('(')+1,term.row[0].length).trim();
+          second =second.substr(0,second.length-1)
+          console.log(name)
+          console.log(second)
+          // callback();
+          var cypher ="MATCH (r:resrouce)-[tw:TAGGED_WITH]-(t1:term {uid:{uid}}) " //"-[r1:IN_GROUP]-(tr1:term) "
+                    +"MATCH (t2:term) where t2.lower =lower({name}) "
+                    // +"set tr1.name={name} ,t1.english={name}, t2.lower=lower({name}) "
+                      //  +"CREATE (r)-[:TAGGED_WITH]->(t2) "
+                      //  +"detach DELETE tw, t1, r1, tr1 "
+                       +"return t2";
+
+          // var cypher ="MATCH (t1:term {uid:{uid}})-[r1:HAS_TRANSLATION]-(tr1:translation) "
+          // // +"MATCH (t2:term) where t2.lower =lower({name}) "
+          // +"MATCH (G:term) where G.lower=lower({second}) "
+          // +"CREATE (t1)-[:IN_GROUP]->(G) "
+          // +"set tr1.name={name} ,t1.english={name} "
+          // +"return tr1 "
+
+          // +"CREATE (r)-[:TAGGED_WITH]->(t2) "
+          db.query(cypher, {uid:term.row[1] ,name:name,second:second},function(err, resource) {
+            if (err) {console.log(err);}
+              console.log(resource)
+              callback()
+            })
+          } else {
+              callback()
+          }
+
+      })
+    }
 
     function addVideosToDB() {
         require('./knowloyoutubecombined')
