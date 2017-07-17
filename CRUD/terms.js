@@ -49,7 +49,7 @@ function query(req, res){
               + "ORDER BY connections DESC "
               // + "ORDER BY {orderby} {updown}"
               // + "SKIP {skip} "
-              + "LIMIT 10";
+              + "LIMIT 20";
     var len = 0;
     if(req.query.include !== 'undefined'){
       len = req.query.include.length;
@@ -75,7 +75,7 @@ function read(req, res){
                + "AND r.languageCode={languageCode} return term, translation"
   } else {
     var uid = req.params.uid; // match term on id
-    var cypher ="MATCH (term {uid:{uid}})-[r:HAS_TRANSLATION]->(translation:translation) WHERE r.languageCode={languageCode} return term, translation"
+    var cypher ="MATCH (set:synSet {uid:{uid}})<-[:IN_SET]-(term:term)-[r:HAS_TRANSLATION]->(translation:translation) WHERE r.languageCode={languageCode} return term, translation"
   }
   db.query(cypher, {uid: uid, languageCode: req.query.languageCode || 'en'},function(err, result) {
     if (err) console.log(err);
@@ -126,8 +126,8 @@ function create(req, res){
   var newTransID = req.body.translation.uid=shortid.generate()
 
   var cypher = "MATCH (member:member {uid:{mid}}) "
-             + "MERGE (term:term {english: {term}.english }) "
-               + "ON CREATE SET term={term}, term.created=TIMESTAMP(), term.lower=LOWER({term}.english) "
+             + "MERGE (term:term {lower: {term}.lower }) "
+               + "ON CREATE SET term={term}, term.created=TIMESTAMP() "
                + "ON MATCH SET term={term}, term.updated=TIMESTAMP() "
              + "MERGE (translation:translation {name: {translation}.name}) "
                + "ON CREATE SET translation={translation}, translation.created=TIMESTAMP() "
@@ -312,9 +312,10 @@ function autocomplete(req,res){
   };
 
   var query = [
-      "MATCH (core:term)-[r:HAS_TRANSLATION {languageCode:{code}}]->(langNode) ",
+      "MATCH (set:synSet)<-[:IN_SET]-(core:term)-[r:HAS_TRANSLATION {languageCode:{code}}]->(langNode) ",
       "WHERE langNode.name =~ {match} ",
-      "RETURN DISTINCT core as term, langNode as translation  LIMIT 8" // order by....?
+      // "with langNode, collect(set) as term "
+      "RETURN DISTINCT set as term, langNode as translation  LIMIT 8" // order by....?
   ].join('\n');
 
   db.query(query, properties, function (err, matches) {

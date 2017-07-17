@@ -36,21 +36,22 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
-    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(termNode:term) " // -:HAS_SYNONYM-()?
+    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(synSet:synSet) " // -:HAS_SYNONYM-()?
            + "WHERE "
-               + "termNode.uid IN {includedTerms} "
-               + "AND NOT termNode.uid IN {excludedTerms} "
-          //  + " MATCH (re2:resource)-[:TAGGED_WITH]->(syn:term)-[:HAS_SYNONYM]-(termNode) "
+               + "synSet.uid IN {includedTerms} "
+               + "AND NOT synSet.uid IN {excludedTerms} "
+          //  + " MATCH (re2:resource)-[:TAGGED_WITH]->(syn:term)-[:HAS_SYNONYM]-(synSet) "
           //  + "WHERE "
-          //      + "termNode.uid IN {includedTerms} "
-          //      + "AND NOT termNode.uid IN {excludedTerms} "
+          //      + "synSet.uid IN {includedTerms} "
+          //      + "AND NOT synSet.uid IN {excludedTerms} "
            + "WITH re, count(*) AS connected "
-           + "MATCH (rlangNode:translation)<-[rlang:HAS_TRANSLATION]-(re)-[:TAGGED_WITH]->(termNode:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
+           + "MATCH (rlangNode:translation)<-[rlang:HAS_TRANSLATION]-(re)-[:TAGGED_WITH]->(synSet:synSet)<-[topSynR:IN_SET]-(topSyn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
            + "WHERE "
+              //  + "topSynR.order=1 "
                + "connected = {numberOfIncluded} "
                + "AND tlang.languageCode IN [ {language} , 'en' ] "
                + "AND rlang.languageCode IN [ {language} , 'en' ] "
-           + "RETURN DISTINCT  collect( {term: termNode.uid, url: termNode.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, re as resource, rlangNode as translation "
+           + "RETURN DISTINCT  collect( {term: synSet.uid, url: synSet.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, re as resource, rlangNode as translation "
            // + "ORDER BY {orderby} {updown}"
            // + "SKIP {skip} "
            + "LIMIT {limit}";
@@ -170,7 +171,7 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
-    var cypher ="MATCH (resource:resource {uid:{uid}})-[TAGGED_WITH]->(t:term)-[r:HAS_TRANSLATION]->(tr:translation) "
+    var cypher ="MATCH (resource:resource {uid:{uid}})-[TAGGED_WITH]->(set:synSet)<-[:IN_SET]-(t:term)-[r:HAS_TRANSLATION]->(tr:translation) "
                +"WHERE r.languageCode = {languageCode} "
                +"WITH resource, {term: t, translation: tr} as term "
                +"RETURN resource, COLLECT(DISTINCT term) AS terms"

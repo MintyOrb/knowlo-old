@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var BabelNet = require('babelnet');
 var admin = require('firebase-admin')
 var serviceAccount = require("./knowlo-952cc-firebase-adminsdk-xglpa-f461a5d2be.json");
 var firebaseMiddleware = require('express-firebase-middleware');

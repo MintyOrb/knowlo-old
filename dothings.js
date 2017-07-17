@@ -7,52 +7,161 @@ module.exports = function(app, db) {
     // the functions to run (uncomment)
     // addVideosToDB()
     // fixWeirdTerms();
-    putTermsInSets();
+    // putTermsInSets();
 
     function putTermsInSets(){
+      // create synstes in db based on quering existing terms
 
-    }
+      var wordNet = require( 'wordnet-magic' );
+      const util = require('util')
+      var wn = wordNet("./wordnet.db", false);
+      var db = require("seraph")({
+        server: "http://localhost:7474",
+        user: 'neo4j',
+        pass: 'admin'
+      });
+      var shortid = require('shortid');
+      var async = require('async')
+      require('./terms')
 
-    function fixWeirdTerms(){
-      require('./modify.js')
-      var del =0
-      async.eachSeries(modterm['data'], function(term, callback) {
-        console.log(term.row[1])
-        // i r rr s
-        if(term.action ==="i"){
-          del++
-          console.log(term.row[0])
-          var name = term.row[0].substr(0, term.row[0].indexOf('(')).trim();
-          var second = term.row[0].substr(term.row[0].indexOf('(')+1,term.row[0].length).trim();
-          second =second.substr(0,second.length-1)
-          console.log(name)
-          console.log(second)
-          // callback();
-          var cypher ="MATCH (r:resrouce)-[tw:TAGGED_WITH]-(t1:term {uid:{uid}}) " //"-[r1:IN_GROUP]-(tr1:term) "
-                    +"MATCH (t2:term) where t2.lower =lower({name}) "
-                    // +"set tr1.name={name} ,t1.english={name}, t2.lower=lower({name}) "
-                      //  +"CREATE (r)-[:TAGGED_WITH]->(t2) "
-                      //  +"detach DELETE tw, t1, r1, tr1 "
-                       +"return t2";
+      async.eachSeries(terms['data'], function(term, callback) {
+        var set = new wn.Word(term['row'][0]['lower']);
 
-          // var cypher ="MATCH (t1:term {uid:{uid}})-[r1:HAS_TRANSLATION]-(tr1:translation) "
-          // // +"MATCH (t2:term) where t2.lower =lower({name}) "
-          // +"MATCH (G:term) where G.lower=lower({second}) "
-          // +"CREATE (t1)-[:IN_GROUP]->(G) "
-          // +"set tr1.name={name} ,t1.english={name} "
-          // +"return tr1 "
+        // look for set based on term
+        set.getSynsets( function( err, synset ) {
+          if(err){console.log(err)};
 
-          // +"CREATE (r)-[:TAGGED_WITH]->(t2) "
-          db.query(cypher, {uid:term.row[1] ,name:name,second:second},function(err, resource) {
-            if (err) {console.log(err);}
-              console.log(resource)
-              callback()
-            })
-          } else {
+        	if(synset.length>0){ // if set found
+            // look for existing set, add if not found
+            findOrAddSet(synset[0], function(setUID){
+              console.log('set should exist with all terms')
+              // console.log('termid: ',termUID)
+              console.log('setid: ',setUID)
+              console.log('termid: ',term['row'][0]['uid'])
+
+              // now set exists and has all syns in it
+              // add term's tagged resources to set
+                var cypher = "MATCH (set:termSet {uid: {setID} }) MATCH (term:term {uid: {termID} })<-[:TAGGED_WITH]-(resource:resource) "
+                           + "MERGE (set)<-[:TAGGED_WITH]-(resource) "
+                           + "return set"
+                db.query(cypher, {setID: setUID, termID: term['row'][0]['uid'] },function(err, result) {
+                  if (err) console.log(err);
+                  console.log("back from merge term resources - set  ")
+                  // console.log(result)
+                  callback()
+                })
+            });
+
+          }else{ // will have to find and add to a set manually...
+              console.log('will have to find and add to a set manually... ', term)
               callback()
           }
 
-      })
+        });
+
+      }, function(err) {
+          // if any of the file processing produced an error, err would equal that error
+          if( err ) {
+            // One of the iterations produced an error.
+            // All processing will now stop.
+            console.log('A term failed to process');
+          } else {
+            console.log('All terms have been processed successfully');
+          }
+      });
+
+      // return uid if found, false otherwise
+      function findOrAddSet(set, callback) {
+        console.log(set['synsetid'])
+        var cypher = "MATCH (set:termSet {synsetid:{setID}}) return set.uid as uid"
+        db.query(cypher, {setID: set['synsetid'] },function(err, result) {
+      		if (err) console.log(err);
+          console.log(result)
+      		if(result.length>0){
+            console.log('truth - found set: ',result[0].uid)
+            callback(result[0].uid)
+      		} else {
+            console.log('resut falsy')
+            createSet(set, function(uid){
+              console.log('uid: ',uid)
+              addTermsToSet(set['words'],uid,callback)
+            })
+      		}
+      	})
+      }
+
+      function createSet(set, callback){
+        var props = {
+          synsetid: set.synsetid,
+          pos: set.pos,
+          lexdomain: set.lexdomain,
+          uid: shortid.generate(),
+          english: set['words'][0]['lemma']
+        }
+        var def = set.definition;
+        console.log('in createSet')
+
+        // should these be rel or prop values? putting on both for now...
+        // may need to go back and delete words and def from set...
+        var cypher = "CREATE (set:termSet {set}) "
+                   + "CREATE (set)-[pr:HAS_PROPERTY {type:'definition', order:'1'}]->(p:prop {type:'definition', order:'1'})-[tr:HAS_TRANSLATION {languageCode: 'en'}]->(t:translation { text: {def} , languageCode: 'en' })"
+                   + " return set.uid as uid"
+        db.query(cypher, {set: props, def: def },function(err, id) {
+      		if (err) console.log(err);
+          console.log('created set: ',id[0].uid)
+          callback(id[0].uid)
+      	})
+      }
+      function addTermsToSet(terms,setID, callback){ // locate or add term, add to set
+        console.log('terms:')
+        console.log(terms)
+        async.eachSeries(terms, function(termFromNet, callback) {
+          console.log("net term: ",termFromNet)
+          var term ={
+            uid: shortid.generate(),
+            english: termFromNet.lemma,
+            lower: termFromNet.lemma.toLowerCase()
+          }
+
+        	var translation = {
+            uid: shortid.generate(),
+            name: termFromNet.lemma,
+            languageCode: 'en'
+          }
+
+        	var cypher = "MATCH (set:termSet {uid: {setid} }) "
+                       + "MERGE (term:term {lower: {term}.lower }) "
+        							 + "ON CREATE SET term={term}, term.created=TIMESTAMP(), term.lower=LOWER({term}.english) "
+        							//  + "ON MATCH SET term.updated=TIMESTAMP() "
+        						 + "MERGE (translation:translation {name: {translation}.name}) "
+        							 + "ON CREATE SET translation={translation}, translation.created=TIMESTAMP() "
+        							//  + "ON MATCH SET translation={translation}, translation.updated=TIMESTAMP() "
+                      +"MERGE (term)-[r:HAS_TRANSLATION {languageCode: {translation}.languageCode }]->(translation) "
+        						 + "MERGE (set)<-[:IN_SET]-(term) "
+        						 + "RETURN distinct term.uid as term, set.uid as set"
+
+        	db.query(cypher, {term: term, translation: translation, setid: setID },function(err, result) {
+        		if (err) console.log(err);
+            console.log('back from merge/add term to set')
+            console.log(result)
+            callback()
+        	})
+
+        }, function(err) {
+            // if any of the file processing produced an error, err would equal that error
+            if( err ) {
+              // One of the iterations produced an error.
+              // All processing will now stop.
+              console.log('A term failed to process....but not really');
+              console.log(err);
+              // callback(result[0].term,result[0].set)
+            } else {
+              console.log('All terms have been processed successfully ',setID);
+              callback(setID)
+            }
+        });
+
+      }
     }
 
     function addVideosToDB() {
