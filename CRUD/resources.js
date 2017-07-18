@@ -20,11 +20,11 @@ module.exports = function(app, db){
   app.post('/api/resource/:ruid/translation/', createTranslation);      // create resource translation based on language code and connect to resource. Return resrouce core and new translation
   app.delete('/api/resource/:ruid/translation/:uid', deleteTranslation); // delete resource translation by id | delete node or just relatinship??
 
-  app.get('/resource/:rUID/term/', readTerms);               // retrieve a resources tagged terms
-  app.put('/api/resource/:rUID/term/', updateTerms);         // batch add terms to resource (with ids) - adds provided tags, doesn't remove relationships
-  app.post('/api/resource/:rUID/term/', batchSetTerms);      // batch set terms to resource (with ids) - delete all tags relationships and create for  tags provided
-  app.put('/api/resource/:rUID/term/:tUID', updateTerm);         // add a single term to a resources by id
-  app.delete('/api/resource/:rUID/term/:tUID', deleteTerm);   // remove a single term relationship from a resources | DELETE /term/:uid to delete term node itself
+  app.get('/resource/:rUID/set/', readSets);               // retrieve a resources tagged sets
+  app.put('/api/resource/:rUID/set/', updateSets);         // batch add sets to resource (with ids) - adds provided tags, doesn't remove relationships
+  app.post('/api/resource/:rUID/set/', batchSetSets);      // batch set sets to resource (with ids) - delete all tags relationships and create for  tags provided
+  app.put('/api/resource/:rUID/set/:sUID', updateSet);         // add a single set to a resources by id
+  app.delete('/api/resource/:rUID/set/:sUID', deleteSet);   // remove a single set relationship from a resources | DELETE /term/:uid to delete term node itself
 
 
   function query(req, res){
@@ -32,18 +32,18 @@ module.exports = function(app, db){
     * searches for resources based on provide term IDs
     * language code passed in as "languageCode" by query, default to english
     * @param {Array} query // terms with status (include/exclude)
-    * @param {Array} excludedTerms //uid
+    * @param {Array} excludedSets //uid
     * @param {String} languageCode
     * @return {Object} resource
     */
     var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(synSet:synSet) " // -:HAS_SYNONYM-()?
            + "WHERE "
-               + "synSet.uid IN {includedTerms} "
-               + "AND NOT synSet.uid IN {excludedTerms} "
+               + "synSet.uid IN {includedSets} "
+               + "AND NOT synSet.uid IN {excludedSets} "
           //  + " MATCH (re2:resource)-[:TAGGED_WITH]->(syn:term)-[:HAS_SYNONYM]-(synSet) "
           //  + "WHERE "
-          //      + "synSet.uid IN {includedTerms} "
-          //      + "AND NOT synSet.uid IN {excludedTerms} "
+          //      + "synSet.uid IN {includedSets} "
+          //      + "AND NOT synSet.uid IN {excludedSets} "
            + "WITH re, count(*) AS connected "
            + "MATCH (rlangNode:translation)<-[rlang:HAS_TRANSLATION]-(re)-[:TAGGED_WITH]->(synSet:synSet)<-[topSynR:IN_SET]-(topSyn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
            + "WHERE "
@@ -59,8 +59,8 @@ module.exports = function(app, db){
              req.query.include = 0;
          }
         db.query(cypher, {
-            includedTerms: req.query.include || [],
-            excludedTerms: req.query.exclude || [],
+            includedSets: req.query.include || [],
+            excludedSets: req.query.exclude || [],
             numberOfIncluded: req.query.include.length,
             orderby: req.orderby,
             updown: req.updown,
@@ -121,22 +121,22 @@ module.exports = function(app, db){
   }
   function deleteTranslation(req,res){
   }
-  function readTerms(req,res){
+  function readSets(req,res){
   }
-  function updateTerms(req,res){
+  function updateSets(req,res){
   }
-  function batchSetTerms(req,res){
+  function batchSetSets(req,res){
   }
-  function updateTerm(req,res){
+  function updateSet(req,res){
     console.log('in update')
     // TODO:check for member authorization...
     console.log(req.params)
-    var cypher = "MATCH (resource:resource {uid:{resource}}) , (term:term {uid:{term}}) "
-               + "MERGE (resource)-[r:TAGGED_WITH]->(term) "
+    var cypher = "MATCH (resource:resource {uid:{resource}}) , (set:synSet {uid:{set}}) "
+               + "MERGE (resource)-[r:TAGGED_WITH]->(set) "
                + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
-               + "RETURN resource, term"
+               + "RETURN resource, set"
 
-    db.query(cypher, {resource: req.params.rUID, term: req.params.tUID, member: res.locals.user.uid },function(err, result) {
+    db.query(cypher, {resource: req.params.rUID, set: req.params.sUID, member: res.locals.user.uid },function(err, result) {
       if (err) console.log(err);
       if(result){
         res.send(result[0])
@@ -145,15 +145,15 @@ module.exports = function(app, db){
       }
     })
   }
-  function deleteTerm(req,res){
+  function deleteSet(req,res){
     console.log('in delete')
     console.log(req.params)
     // TODO:check for member authorization...
-    var cypher = "MATCH (resource:resource {uid:{resource}})-[r:TAGGED_WITH]->(term:term {uid:{term}}) "
+    var cypher = "MATCH (resource:resource {uid:{resource}})-[r:TAGGED_WITH]->(set:synSet {uid:{set}}) "
                + "DELETE r "
-               + "RETURN resource, term "
+               + "RETURN resource, set "
 
-    db.query(cypher, {resource: req.params.rUID, term: req.params.tUID, member: res.locals.user.uid },function(err, result) {
+    db.query(cypher, {resource: req.params.rUID, set: req.params.sUID, member: res.locals.user.uid },function(err, result) {
       if (err) console.log(err);
       if(result){
         res.send(result[0])
@@ -171,10 +171,10 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
-    var cypher ="MATCH (resource:resource {uid:{uid}})-[TAGGED_WITH]->(set:synSet)<-[:IN_SET]-(t:term)-[r:HAS_TRANSLATION]->(tr:translation) "
-               +"WHERE r.languageCode = {languageCode} "
-               +"WITH resource, {term: t, translation: tr} as term "
-               +"RETURN resource, COLLECT(DISTINCT term) AS terms"
+    var cypher ="MATCH (resource:resource {uid:{uid}})-[TAGGED_WITH]->(set:synSet)<-[setR:IN_SET]-(t:term)-[r:HAS_TRANSLATION]->(tr:translation) "
+               +"WHERE r.languageCode = {languageCode} AND setR.order=1 "
+               +"WITH resource, COLLECT(DISTINCT {setID: set.uid, term: t, translation: tr}) as terms "
+               +"RETURN resource, terms"
 
     db.query(cypher, {uid: req.params.uid, languageCode: req.query.languageCode || 'en'},function(err, resource) {
       if (err) {console.log(err); res.status(500).send()};

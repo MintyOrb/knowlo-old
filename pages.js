@@ -112,11 +112,13 @@ const termComp = Vue.component('termComp',{
     },
     methods:{
        init: function(){
-         this.$http.get('/term/' + this.$route.params.name + '/' + this.$route.params.uid, {params: { languageCode: 'en'}}).then(response => {
+         this.$http.get('/set/' + this.$route.params.name + '/' + this.$route.params.uid, {params: { languageCode: 'en'}}).then(response => {
            if(response.body.term){
              response.body.term.name = response.body.translation.name
              response.body.term.status = {};
              this.term = response.body;
+             this.$route.params.name
+             this.term.setID = this.$route.params.uid;//TODO: re-write all this being synSet centric
              this.fetchSynonyms();
              this.fetchGroups();
            } else {
@@ -173,7 +175,7 @@ const termComp = Vue.component('termComp',{
         });
       },
       removeSynonym: function(synUID){
-        this.$http.delete('/api/term/'+ this.term.term.uid +'/synonym/'+ synUID).then(response => {
+        this.$http.delete('/api/term/'+ this.term.setID +'/synonym/'+ synUID).then(response => {
           if(response.body){
             Materialize.toast('Removed!', 4000)
             this.synonyms.splice(this.synonyms.findIndex( (term) => term.term.uid === synUID) ,1)
@@ -347,11 +349,11 @@ const resourceComp = Vue.component('resourceComp',{
           })
 
       },
-      addTerm: function(term){
-        this.$http.put('/api/resource/'+ this.resource.uid +'/term/'+ term.term.uid).then(response => {
+      addTerm: function(set){
+        this.$http.put('/api/resource/'+ this.resource.uid +'/set/'+ set.term.uid).then(response => {
           if(response.body){
             Materialize.toast('term added', 4000)
-            this.terms.push(term)
+            this.terms.push(set)
           } else {
             Materialize.toast('Something went wrong...', 4000)
           }
@@ -359,12 +361,14 @@ const resourceComp = Vue.component('resourceComp',{
            Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
-      removeTerm: function(termUID){
-        console.log(termUID)
-        this.$http.delete('/api/resource/'+ this.resource.uid +'/term/'+ termUID).then(response => {
+      removeTerm: function(setUID){
+        console.log(setUID)
+        this.$http.delete('/api/resource/'+ this.resource.uid +'/set/'+ setUID).then(response => {
+          console.log('back')
+          console.log(response)
           if(response.body){
             Materialize.toast('term removed.', 4000)
-            this.terms.splice(this.terms.findIndex( (term) => term.term.uid === termUID) ,1)
+            this.terms.splice(this.terms.findIndex( (set) => set.setID === setUID) ,1)
           } else {
             Materialize.toast('Something went wrong...', 4000)
           }

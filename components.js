@@ -25,7 +25,8 @@ Vue.component('term',{
     },
     methods: {
       remove: function(){
-        this.$emit('remove', this.term.term.uid)
+        console.log('remove selected')
+        this.$emit('remove', this.term.setID)
       },
       addFromSub: function(term){ // there must be a better way to add sub term...
         bus.$emit('addtermSubterm', term)

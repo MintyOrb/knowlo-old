@@ -400,7 +400,7 @@
 					Synonyms
 					<isotope ref='syno' :list="synonyms" :options='{}'>
 						<div v-for="term in synonyms" :key="term.translation.name">
-							<term :term="term" :key="term.translation.name" v-on:remove="removeSynonym"></term>
+							<term :term="term" :key="term.translation.name" v-on:remove="removeSynonym(term.term.uid)"></term>
 						</div>
 					</isotope>
 					<autocomplete input-id="syn" v-on:select="addSynonym"></autocomplete>
@@ -699,7 +699,7 @@
 							</div>
 						</div>
 						<div class="rotater">
-							<router-link :to="{ name: 'termSub', params: { uid: term.term.uid, name: term.translation.name }}">
+							<router-link :to="{ name: 'termSub', params: { uid: term.setID, name: term.translation.name }}">
 								<div class="mbtn mbtn-icon flexCenter":class="{showInfo: info, infoNav: hover && inSidebar }">
 									<i class="fa fa-info"></i>
 								</div>
@@ -707,17 +707,17 @@
 
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom('', 'exclude')" class="mbtn mbtn-icon flexCenter" :class="{showMinus: exclude, excludeNav: hover && inSidebar }">
+							<div @click="remove" class="mbtn mbtn-icon flexCenter" :class="{showMinus: exclude, excludeNav: hover && inSidebar }">
 								<i class="fa fa-minus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="addToFrom(term, 'include')" class="mbtn mbtn-icon flexCenter" :class="{showPlus: include, includeNav: hover && inSidebar }">
+							<div @click="" class="mbtn mbtn-icon flexCenter" :class="{showPlus: include, includeNav: hover && inSidebar }">
 								<i class="fa fa-plus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="remove" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: focus, focusNav: hover && inSidebar }">
+							<div @click="focus" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: focus, focusNav: hover && inSidebar }">
 								<i class="fa fa-crosshairs"></i>
 							</div>
 						</div>
