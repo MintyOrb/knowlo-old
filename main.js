@@ -102,3 +102,5 @@ const app = new Vue({
 
   }
 }).$mount('#main')
+
+var bus = new Vue()

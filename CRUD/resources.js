@@ -36,14 +36,9 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
-    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(synSet:synSet) " // -:HAS_SYNONYM-()?
-           + "WHERE "
-               + "synSet.uid IN {includedSets} "
-               + "AND NOT synSet.uid IN {excludedSets} "
-          //  + " MATCH (re2:resource)-[:TAGGED_WITH]->(syn:term)-[:HAS_SYNONYM]-(synSet) "
-          //  + "WHERE "
-          //      + "synSet.uid IN {includedSets} "
-          //      + "AND NOT synSet.uid IN {excludedSets} "
+    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(synSet:synSet) "
+           + "WHERE synSet.uid IN {includedSets} "
+              //  + "NOT synSet.uid IN {excludedSets} "
            + "WITH re, count(*) AS connected "
            + "MATCH (rlangNode:translation)<-[rlang:HAS_TRANSLATION]-(re)-[:TAGGED_WITH]->(synSet:synSet)<-[topSynR:IN_SET]-(topSyn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
            + "WHERE "
@@ -56,8 +51,12 @@ module.exports = function(app, db){
            // + "SKIP {skip} "
            + "LIMIT {limit}";
          if (typeof req.query.include === "undefined") {
-             req.query.include = 0;
+             req.query.include = [];
          }
+         if (typeof req.query.exclude === "undefined") {
+             req.query.exclude = [];
+         }
+         console.log(req.query)
         db.query(cypher, {
             includedSets: req.query.include || [],
             excludedSets: req.query.exclude || [],
@@ -69,6 +68,7 @@ module.exports = function(app, db){
             language: 'en'
         }, function(err, result) {
       if (err) {console.log(err);res.status(500).send()};
+          console.log(result.length)
           res.send(result)
       })
   }
@@ -128,9 +128,7 @@ module.exports = function(app, db){
   function batchSetSets(req,res){
   }
   function updateSet(req,res){
-    console.log('in update')
     // TODO:check for member authorization...
-    console.log(req.params)
     var cypher = "MATCH (resource:resource {uid:{resource}}) , (set:synSet {uid:{set}}) "
                + "MERGE (resource)-[r:TAGGED_WITH]->(set) "
                + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "

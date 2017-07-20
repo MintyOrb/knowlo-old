@@ -8,6 +8,53 @@ module.exports = function(app, db) {
     // addVideosToDB()
     // fixWeirdTerms();
     // putTermsInSets();
+    // addID();
+    // fixDateFormat();
+
+    function fixDateFormat(){
+      require('./tempData/dateformat')
+
+      async.eachSeries(dateformat['data'], function(node, callback) {
+        var cypher = "MATCH (s) WHERE s.uid = {uid} SET s.dateAdded={date} "
+        console.log(node['row'][0])
+
+        // callback()
+        db.query(cypher, {date: Date.parse(node['row'][1]), uid: node['row'][0] },function(err, result) {
+          if (err) console.log(err);
+          callback()
+        })
+      }, function(err) {
+          if( err ) {
+            console.log('A term failed to process');
+          } else {
+            console.log('All terms have been processed successfully');
+          }
+      });
+    }
+
+    function addID(){
+
+      require('./nouid')
+      console.log(nouid['data'][0]['meta'][0]['id'])
+      async.eachSeries(nouid['data'], function(term, callback) {
+        var uid=shortid.generate();
+        var cypher = "MATCH (s) WHERE ID(s) = {tid} SET s.uid={id} "
+        console.log(term['meta'][0]['id'])
+
+        // callback()
+        db.query(cypher, {id: uid, tid: term['meta'][0]['id'] },function(err, result) {
+          if (err) console.log(err);
+          callback()
+        })
+      }, function(err) {
+          if( err ) {
+            console.log('A term failed to process');
+          } else {
+            console.log('All terms have been processed successfully');
+          }
+      });
+
+    }
 
     function putTermsInSets(){
       // create synstes in db based on quering existing terms
@@ -15,13 +62,6 @@ module.exports = function(app, db) {
       var wordNet = require( 'wordnet-magic' );
       const util = require('util')
       var wn = wordNet("./wordnet.db", false);
-      var db = require("seraph")({
-        server: "http://localhost:7474",
-        user: 'neo4j',
-        pass: 'admin'
-      });
-      var shortid = require('shortid');
-      var async = require('async')
       require('./terms')
 
       async.eachSeries(terms['data'], function(term, callback) {
@@ -47,7 +87,6 @@ module.exports = function(app, db) {
                 db.query(cypher, {setID: setUID, termID: term['row'][0]['uid'] },function(err, result) {
                   if (err) console.log(err);
                   console.log("back from merge term resources - set  ")
-                  // console.log(result)
                   callback()
                 })
             });
@@ -60,10 +99,7 @@ module.exports = function(app, db) {
         });
 
       }, function(err) {
-          // if any of the file processing produced an error, err would equal that error
           if( err ) {
-            // One of the iterations produced an error.
-            // All processing will now stop.
             console.log('A term failed to process');
           } else {
             console.log('All terms have been processed successfully');
@@ -148,10 +184,7 @@ module.exports = function(app, db) {
         	})
 
         }, function(err) {
-            // if any of the file processing produced an error, err would equal that error
             if( err ) {
-              // One of the iterations produced an error.
-              // All processing will now stop.
               console.log('A term failed to process....but not really');
               console.log(err);
               // callback(result[0].term,result[0].set)
@@ -306,10 +339,7 @@ module.exports = function(app, db) {
                             })
                         }
                     }, function(err) {
-                        // if any of the file processing produced an error, err would equal that error
                         if (err) {
-                            // One of the iterations produced an error.
-                            // All processing will now stop.
                             console.log('A term failed to process');
                         } else {
                             console.log('All terms have been processed successfully');
@@ -326,10 +356,7 @@ module.exports = function(app, db) {
                 vidcallback() //each video series callback
             }); //end waterfall
         }, function(err) {
-            // if any of the file processing produced an error, err would equal that error
             if (err) {
-                // One of the iterations produced an error.
-                // All processing will now stop.
                 console.log('A video failed to process');
             } else {
                 console.log('All videos have been processed successfully');

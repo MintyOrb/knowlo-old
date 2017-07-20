@@ -160,19 +160,31 @@
 		    <div class='row'>
 		        <isotope style="min-height:80px" ref="termQuery" :list="termQuery" :options='getSelectedOptions()'>
 		          <div  v-for="word in termQuery"  class='selected' v-bind:class="{ expanded: word.expanded }" key="word.name">
-		            <term :term="word" v-on:add-me="addToFrom(word, words, termQuery)" v-on:lay-me="layout('termqeury')"></term>
+		            <term :term="word"
+									v-on:lay-me="layout('termquery')"
+									v-on:include="word.status.include=!word.status.include; word.status.exclude=!word.status.exclude;"
+									v-on:exclude="removeFrom(word, termQuery)"
+									v-on:focus="focus"
+								>
+								</term>
 		          </div>
 		        </isotope>
 		    </div>
 
 				<!--  suggested -->
 		    <div class='row'>
-		        <isotope ref="key" :list="words" :options='getSuggestionOptions()' class="step">
-		          <div v-for="word in words"  class='suggestion' v-bind:class="{ expanded: word.expanded }" key="word">
-								<term :term="word" v-on:lay-me="layout('selected')"></term>
+		        <isotope ref="key" :list="suggestions" :options='getSuggestionOptions()' class="step">
+		          <div v-for="word in suggestions"  class='suggestion' v-bind:class="{ expanded: word.expanded }" key="word">
+								<term :term="word"
+									v-on:lay-me="layout('selected')"
+									v-on:include="includeSearch"
+									v-on:exclude="includeSearch"
+									v-on:focus="focus"
+								>
+								</term>
 
 								<!-- {{word}} -->
-								<!-- <term  :term="word"  v-on:add-me="addToFrom(word, termQuery, words)" v-on:lay-me="layout" ></term> -->
+								<!-- <term  :term="word"  v-on:add-me="addToFrom(word, termQuery, suggestions)" v-on:lay-me="layout" ></term> -->
 		          </div>
 		        </isotope>
 		    </div>
@@ -216,7 +228,7 @@
 					<div class=" crossSectionSteps">
 						<div v-for="step in crossSection.members" class="stepContainer">
 							<isotope :ref='"resourceBin" + step.name' class="step" :list="db" :options='{}'>
-								<div v-for="item in list"  v-if="item.resource.time.includes(step.name) || item.resource.discipline.includes(step.name)" class='element-item' key="item.resource.name">
+								<div v-for="item in resources"  v-if="item.resource.time.includes(step.name) || item.resource.discipline.includes(step.name)" class='element-item' key="item.resource.name">
 									 <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
 												<router-link :to="{ name: 'resource', params: { uid: item.resource.uid }}">
 													<img :src="item.resource.thumb">
@@ -252,8 +264,8 @@
 				<!-- results all together -->
 				<transition name="fade">
 				<div v-if="!crossSection" >
-			    <isotope ref="contentBin" class="step" :list="list" :options='getContentOptions()' id="container">
-			        <div v-for="item in list" class='element-item' key="item.resource.name">
+			    <isotope ref="contentBin" class="step" :list="resources" :options='getContentOptions()' id="container">
+			        <div v-for="item in resources" class='element-item' key="item.resource.name">
 			          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
 			              <router-link :to="{ name: 'resource', params: { uid: item.resource.uid }}">
 			                <img :src="item.resource.thumb">
@@ -668,10 +680,10 @@
 <template id="termContainer">
 	<span @mouseleave="leave()">
 		<div class="termWidth">
-			<div class="menu" @mouseenter="delayHover()"  v-bind:class="{'active': hover}">
+			<div class="menu" @mouseenter="delayHover()"  v-bind:class="{'active': hovering}">
 				<div class="">
 
-					<div @click="focus()" class="mbtn trigger" v-bind:class="{'scaleIcon': hover}">
+					<div class="mbtn trigger" v-bind:class="{'scaleIcon': hovering}">
 						<span v-if="!term.term.url" class="flexCenter border"> {{term.translation.name[0]}}</span>
 						<div v-else class="thumb card-image border">
 							<img :src="term.term.url">
@@ -684,45 +696,44 @@
 
 					<div class="icons">
 						<div class="rotater">
-							<div @click="pin(term)" class="mbtn mbtn-icon flexCenter" :class="{showPin: pinned, pinNav: hover && inSidebar }">
+							<div @click="pin" class="mbtn mbtn-icon flexCenter" :class="{showPin: status.pinnedIcon, pinNav: hovering&& inSidebar }">
 								<i class="fa fa-thumb-tack" style="transform:rotate(-45deg)"></i>
 							</div>
 						</div>
-						<div  v-if="!expanded" class="rotater">
-							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallterm(term)" :class="{'nope':!term.group, expandNav: hover && inSidebar}">
+						<div  v-if="true" class="rotater">
+							<div class="mbtn mbtn-icon flexCenter" :class="{'nope':!term.group, expandNav: hovering&& inSidebar}">
 								<i class="fa fa-expand"></i>
 							</div>
 						</div>
-						<div  v-if="expanded" class="rotater">
-							<div class="mbtn mbtn-icon flexCenter" @click="bigSmallterm(term)" :class="{showCompress: expanded, expandNav: hover && inSidebar}">
+						<div  v-if="false" class="rotater">
+							<div class="mbtn mbtn-icon flexCenter" :class="{showCompress: true, expandNav: hovering&& inSidebar}">
 								<i class="fa fa-compress"></i>
 							</div>
 						</div>
 						<div class="rotater">
 							<router-link :to="{ name: 'termSub', params: { uid: term.setID, name: term.translation.name }}">
-								<div class="mbtn mbtn-icon flexCenter":class="{showInfo: info, infoNav: hover && inSidebar }">
+								<div class="mbtn mbtn-icon flexCenter":class="{showInfo: status.infoIcon, infoNav: hovering&& inSidebar }">
 									<i class="fa fa-info"></i>
 								</div>
 							</router-link>
-
 						</div>
 						<div class="rotater">
-							<div @click="remove" class="mbtn mbtn-icon flexCenter" :class="{showMinus: exclude, excludeNav: hover && inSidebar }">
+							<div @click="exclude" class="mbtn mbtn-icon flexCenter" :class="{showMinus: status.excludeIcon, excludeNav: hovering&& inSidebar }">
 								<i class="fa fa-minus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="" class="mbtn mbtn-icon flexCenter" :class="{showPlus: include, includeNav: hover && inSidebar }">
+							<div @click="include" class="mbtn mbtn-icon flexCenter" :class="{showPlus: status.includeIcon, includeNav: hovering&& inSidebar }">
 								<i class="fa fa-plus"></i>
 							</div>
 						</div>
 						<div class="rotater">
-							<div @click="focus" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: focus, focusNav: hover && inSidebar }">
+							<div @click="focus" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: status.focusIcon, focusNav: hovering&& inSidebar }">
 								<i class="fa fa-crosshairs"></i>
 							</div>
 						</div>
 						<div class="">
-							<div @click="remove" class="mbtn mbtn-icon flexCenter" :class="{removeNav: hover && inSidebar }">
+							<div @click="remove" class="mbtn mbtn-icon flexCenter" :class="{removeNav: hovering&& inSidebar }">
 								<i class="fa fa-times"></i>
 							</div>
 						</div>
@@ -736,13 +747,6 @@
 			</div>
 		</div>
 
-	 <transition name="fade">
-			<div v-if="expanded" :class="'flickContainer'+term.name" class=" flickContainer ">
-				<div v-for="item in term.members" class="flickItem">
-					<term :term="item" v-on:add-me="addFromSub(item)"></term>
-				</div>
-			</div>
-		</transition>
 	</span>
 </template>
 
@@ -891,11 +895,11 @@
 -->
 
 <!-- <script src="videos.js"></script> -->
-<script src="part1.js"></script>
-<script src="part2.js"></script>
-<script src="keywords.js"></script>
-<script src="content.js"></script>
-<script src="lens.js"></script>
+<script src="tempData/part1.js"></script>
+<script src="tempData/part2.js"></script>
+<script src="tempData/keywords.js"></script>
+<script src="tempData/content.js"></script>
+<script src="tempData/lens.js"></script>
 
 <script>
 videos = videos.concat(videos2) // combine split json (split becuase it was too large as a single file for simplehttpserver)

@@ -14,42 +14,41 @@ Vue.component('term',{
       return {
         flickRegistry: [],
         inSidebar: false,
-        pinned: false,
-        hover: false,
-        include: false,
-        exclude: false,
-        focus: false,
-        expanded: false,
-        info: false
+        hovering: false,
+        status: {
+          pinnedIcon: false,
+          includeIcon: false,
+          excludeIcon: false,
+          focusIcon: false,
+          infoIcon: false,
+        }
       }
     },
     methods: {
       remove: function(){
-        console.log('remove selected')
-        this.$emit('remove', this.term.setID)
+        this.status.removeIcon = !this.status.removeIcon;
+        this.term.status = this.status;
+        this.$emit('remove', this.term)
       },
-      addFromSub: function(term){ // there must be a better way to add sub term...
-        bus.$emit('addtermSubterm', term)
+      include: function(){
+        this.status.includeIcon = !this.status.includeIcon;
+        this.term.status = this.status;
+        this.$emit('include', this.term)
+      },
+      exclude: function(){
+        this.status.excludeIcon = !this.status.excludeIcon;
+        this.term.status = this.status;
+        this.$emit('exclude', this.term)
       },
       focus: function(){
-        console.log(this.term)
-        // router.push("/t/"+term.name)
+        this.status.focusIcon = !this.status.focusIcon;
+        this.term.status = this.status;
+        this.$emit('focus', this.term)
       },
       pin: function(){
-        this.pinned = !this.pinned;
-      },
-      addToFrom: function(term, type){
-        if(term[type] == undefined){
-          term[type] = true; // need to add logic for combinations... ex: can't be both inclded and excluded. Track with string instead?.type = "exclude"
-        } else {
-          term[type] = !term[type]
-        }
-        if(term.expanded){
-            this.destroySingleFlickity(term.name)
-            term.expanded = false;
-        }
-        this.hover = false;
-        this.$emit('add-me')
+        this.status.pinnedIcon = !this.status.pinnedIcon;
+        this.term.status = this.status;
+        this.$emit('pin', this.term)
       },
       createFlickity: function(id){
         this.flickRegistry.push(id);// register flick
@@ -86,24 +85,25 @@ Vue.component('term',{
           this.left=false;
           window.setTimeout(()=>{
             if(!this.left){
-                this.hover=true
+                this.hovering=true
             }
           }, 150)
         },
         leave: function(){
           this.left=true;
-          this.hover=false;
+          this.hovering=false;
         }
     },
     mounted: function(){
       this.$emit('created')
+      if(this.term.status){
+        this.status=this.term.status;
+      }
       if(this.$parent.$el && this.$parent.$el._prevClass == 'termQuery'){ // stupid way to change css. cake component param/option instead
         this.inSidebar = true; // defaults to false
       }
     }
 });
-
-var bus = new Vue() // this feels dumb, but can't see how else to tell explore what sub term was added
 
 /*
         █████  ██    ██ ████████  ██████   ██████  ██████  ███    ███ ██████  ██      ███████ ████████ ███████
@@ -146,7 +146,7 @@ Vue.component('autocomplete',{
             this.quickAdd();
           }
         } else {
-          item.status = {}; // having to add item.status here feels dumb. (otherwise term.status.expanded can't be read)
+          item.status = {includeIcon: true}; // having to add item.status here feels dumb.
           this.$emit('select', item)
         }
       },

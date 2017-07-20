@@ -448,9 +448,9 @@ const explore = Vue.component('exploreComp',{
         return {
             db: undefined,                      // search results to display - array of material objects
             crossSection: null,                 // object containing the name of the cross section and terms in lens group - object containing array of term objects and string name
-            // termQuery: [],                      // terms selected for search - - array of term objects with flags for include/exclude/pin etc.
-            words: [],                          // suggested terms...not sure about ui, currently  - array of term objects
-            list: [],                           // db when no lens, replace with db even though less items? - array of term objects
+            // termQuery: [],                   // terms selected for search - - array of term objects with flags for include/exclude/pin etc.
+            suggestions: [],                    // suggested terms...not sure about ui, currently  - array of term objects
+            resources: [],                      // db when no lens, replace with db even though less items? - array of term objects
             numberOfDisplayed: null,            // number of materials currently displayed
             display: undefined,                 // display option for materials in search result - string name of displaytype (thumb, list, card)
             currentLayout: 'masonry',           // incase want to change isotope display type...not used now
@@ -495,18 +495,25 @@ const explore = Vue.component('exploreComp',{
         }
     },
     methods: {
+        includeSearch: function(set){
+          this.termQuery.push(set);
+          this.removeFrom(set, this.suggestions)
+        },
+        focus: function(set){
+          console.log(set)
+        },
         addToFrom: function(term, to, from){ /// this is all stupid and needs to be re thought.
-
-          if(term.status.focus){ // clear all non pinned terms
-            console.log('term focused')
-            for (var termIndex = to.length - 1 ; termIndex >= 0; termIndex --) {
-              console.log(to[termIndex].status)
-              if(!to[termIndex].status.pinned){
-                to.splice(to[termIndex], 1)
-                console.log('not pinned')
-              }
-            }
-          }
+          console.log(term)
+          // if(term.focusIcon){ // clear all non pinned terms
+          //   console.log('term focused')
+          //   for (var termIndex = to.length - 1 ; termIndex >= 0; termIndex --) {
+          //     console.log(to[termIndex].status)
+          //     if(!to[termIndex].status.pinned){
+          //       to.splice(to[termIndex], 1)
+          //       console.log('not pinned')
+          //     }
+          //   }
+          // }
 
           if(to){this.addTo(term, to)};
           if(from) {this.removeFrom(term, from)};
@@ -518,11 +525,11 @@ const explore = Vue.component('exploreComp',{
         },
         removeFrom: function(item, theArray){ // removal looks funny...open issue: https://github.com/David-Desmaisons/Vue.Isotope/issues/24
           for( i=theArray.length-1; i>=0; i--) {
-              if( theArray[i].name == item.name) theArray.splice(i,1);
+              if( theArray[i].setID == item.setID) theArray.splice(i,1);
           }
         },
         addToQuery: function(item){
-          this.termQuery.push(item);
+            this.termQuery.push(item);
         },
         changeDisplay: function(disp){
           this.display = disp
@@ -647,20 +654,15 @@ const explore = Vue.component('exploreComp',{
           }
           return num.toFixed(digits).replace(rx, "$1");
         },
-        test(){
-        },
         getTerms(){
           var include = [];
           var exclude = [];
           for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
             include.push(this.termQuery[termIndex]['term'].uid)
-            console.log(this.termQuery[termIndex]['term'].uid)
           }
           this.$http.get('/term/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
-            console.log(response)
-            this.words=response.body;
+            this.suggestions=response.body;
           }, response => {
-            console.log('test ',response)
           });
         }
 
@@ -714,12 +716,17 @@ const explore = Vue.component('exploreComp',{
       termQuery: function(val){
         var include = [];
         var exclude = [];
+        console.log(val[0])
         for (var termIndex = 0; termIndex < val.length; termIndex++) {
-          include.push(val[termIndex]['term'].uid)
-          //TODO:get excluded terms...
+          console.log(val[termIndex]['status'].includeIcon)
+          if(val[termIndex]['status'].includeIcon){
+            include.push(val[termIndex]['setID'])
+          } else {
+            exclude.push(val[termIndex]['setID'])
+          }
         }
         this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
-        this.list=response.body;
+          this.resources=response.body;
           this.getTerms();
           window.setTimeout(() =>{
             this.layout('post term query')

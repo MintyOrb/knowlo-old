@@ -38,23 +38,26 @@ function query(req, res){
 
   req.query.exclude = req.query.exclude.concat(req.query.include) // don't return query terms
 
-   var cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchTerms:term) "
-              + "WHERE searchTerms.uid IN {searchTerms} "
-              + "WITH contentNode, COUNT(searchTerms) as count "
+   var cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchSets:synSet) "
+              + "WHERE searchSets.uid IN {searchSets} "
+              + "WITH contentNode, COUNT(searchSets) as count "
               + "WHERE count = {searchTermsCount} "
-              + "MATCH (term:term)<-[:TAGGED_WITH]-(contentNode), "
-                  + "(term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(translation:translation) "
-              + "WHERE NOT term.uid IN {ignoreTerms} "
-              + "RETURN DISTINCT count(DISTINCT contentNode) AS connections, translation, term "
+              + "MATCH (set:synSet)<-[:TAGGED_WITH]-(contentNode), "
+                  + "(set)-[setR:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(translation:translation) "
+              + "WHERE setR.order=1 AND NOT set.uid IN {ignoreTerms} "
+              + "RETURN DISTINCT count(DISTINCT contentNode) AS connections, translation, set as term, set.uid AS setID "
               + "ORDER BY connections DESC "
               // + "ORDER BY {orderby} {updown}"
               // + "SKIP {skip} "
               + "LIMIT 20";
     var len = 0;
-    if(req.query.include !== 'undefined'){
+
+    if(req.query.include && req.query.include !== 'undefined'){
       len = req.query.include.length;
+    } else { // maybe just don't send a get you know won't return anything...
+      req.query.include =[];
     }
-    db.query(cypher, {searchTerms: req.query.include, ignoreTerms: req.query.exclude, searchTermsCount: len, lang: 'en' },function(err, result) {
+    db.query(cypher, {searchSets: req.query.include, ignoreTerms: req.query.exclude, searchTermsCount: len, lang: 'en' },function(err, result) {
       if (err) console.log(err);
       res.send(result)
     })
@@ -343,7 +346,7 @@ function autocomplete(req,res){
       "MATCH (set:synSet)<-[:IN_SET]-(core:term)-[r:HAS_TRANSLATION {languageCode:{code}}]->(langNode) ",
       "WHERE langNode.name =~ {match} ",
       // "with langNode, collect(set) as term "
-      "RETURN DISTINCT set as term, langNode as translation  LIMIT 8" // order by....?
+      "RETURN DISTINCT set.uid AS setID, set AS term, langNode AS translation  LIMIT 8" // order by....?
   ].join('\n');
 
   db.query(query, properties, function (err, matches) {
