@@ -11,25 +11,27 @@ const addResource = Vue.component('addResource',{
     props: ['member'],
     data: function() {
       return {
-        resource:{ // these aren't all strings...
+        resource:{ // these aren't all strings...\
+          core: {
+          'displayType':"",
+          'uid':"",
+          'viewCount':"0",
+          'viewTime':"",
+          'dateAdded':"",
           'thumb': "",
-          'URL': "",
-          'displayType': "",
-          'source': "",
-          'timeToView': "",
-          'insight': "",
-          'difficulty': "",
-          'created': "",
-          'updated': "",
-          'viewCount': "",
-          translations: {
-            'text':"",// if resource is plain text
-            'title': "",
-            'subtitle': "",
-            'description': "",
-            'value': "",
+          'URL': "", //just return english if not in language specified?
+          },
+          detail: {
+            'title':"",
+            'subtitle':"",
+            'text':"",
+            'description':"",
+            'source':"",
+            'URL':"", //
+            'thumb':"",
             'languageCode': this.member.languageCode,
-            '_rel':  {languageCode: this.member.languageCode}
+            'source': "",
+            'uid':""
           }
         },
       }
@@ -44,7 +46,7 @@ const addResource = Vue.component('addResource',{
       },
       saveTranslation(){
         console.log(this.resource)
-        this.$http.post('/resource', {resource:this.resource, member: this.member}).then(response => {
+        this.$http.post('/resource', {resource:this.resource}).then(response => {
           if(response.body){
             console.log(response.body)
           } else {

@@ -12,7 +12,7 @@ module.exports = function(app, db){
 
   app.get('/resource/:uid', readCore);       // read details of a single resource core
   app.put('/api/resource/:uid', updateCore); // update a single resource core node data
-  app.post('/api/resource', createCore);     // create (or update, if present) a resource core node.
+  app.post('/resource', createCore);     // create (or update, if present) a resource core node.
   app.delete('/api/resource', deleteCore);   // delete resource core node and relationships....and translations?
 
   app.get('/resource/:ruid/translation/', readTranslation);         // retrieve a translation of a resource based on resource id and provided langauge code. If language not found, attempt a translation. Also returns resource core
@@ -78,36 +78,22 @@ module.exports = function(app, db){
   function updateCore(req,res){
   }
   function createCore(req, res){
-    /**
-    * creates or updates resource core node
-    * language code passed via member as "member.languageCode" on body, default to english
-    * @param {Object} resource
-    * @return {Object} resource
-    */
-    console.log('create resource here:')
-    var cypher ="MATCH (resource:resource)-[r:HAS_TRANSLATION]->(tr:resourceTranslation) "
-               +"WHERE resource.url={url} " // OR tr.text={text} ? don't want to match on empty strings....
-               +"WITH resource, COLLECT(DISTINCT tr) as terms "
-               +"RETURN resource, terms"
-    console.log(req.body.resource)
-    // try to find existing resource based on url and text
-    db.query(cypher, {url: req.body.resource.url, text: req.body.resource.translations.text},function(err, resource) {
+    req.body.resource.core. uid = shortid.generate();
+    // added vs added by....
+     var cypher = "CREATE (resource:resource:tester {core}) "
+                + "WITH resource, {detail} AS detail, keys({detail}) AS keys "
+                + "FOREACH (index IN range(0, size(keys)-1) | "
+                  + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index] })-[tr:HAS_TRANSLATION]->(langNode:tester:translation {value: detail[keys[index]] } ) ) "
+                + "RETURN resource"
+
+    db.query(cypher, {
+        url: req.body.resource.url,
+        core: req.body.resource.core,
+        detail: req.body.resource.detail
+      },function(err, resource) {
       if (err) {console.log(err); res.status(500).send()};
-      if(resource){
-        console.log('FOUND RESOURCE')
-        console.log(resource[0])
-        req.body.resource.id=resource[0].resource.id // put returned id on the sent create object
-        update(req,res) // translations are duplicated unless accompanied by id
-      } else {
-        // generate thumb, save, add to obj
-        console.log('NONE FOUND - SAVING AS NEW')
-        Resource.save(req.body.resource, function(err, resource) {
-            if (err) {console.log(err); res.status(500).send()};
-            console.log('saved resource')
-            // connect to member....
-            res.send(resource);
-        });
-      }
+      res.send()
+
     })
   }
 
