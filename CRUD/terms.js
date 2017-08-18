@@ -16,8 +16,8 @@ app.put('/api/set/:setID/synonym/:setID', updateSynonym);    // add set synonym 
 // ? don't need? app.post('/api/set/:setID/synonym/', createSynonym);      // create set synonym based on language code and connect to set. Return resrouce core and new synonym
 app.delete('/api/set/:setID/synonym/:setID', deleteSynonym); // delete term synonym by id | delete node or just relatinship??
 // groups
-app.get('/term/:groupID/group/', readGroup);                 // retrieve a terms groups of a term based on term id and provided langauge code. If language not found, attempt a group. Also returns term core
-app.put('/term/:termID/group/:groupID', updateGroup);    // update single term group by ID | is /term/:termID superfluous? /termMeta/:uid instead?
+app.get('/set/:groupID/group/', readGroup);                 // retrieve a terms groups of a term based on term id and provided langauge code. If language not found, attempt a group. Also returns term core
+app.put('/set/:setID/group/:groupID', updateGroup);    // update single term group by ID | is /term/:termID superfluous? /termMeta/:uid instead?
 // ? app.post('/api/term/:termID/group/', createGroup);     // create term group based on language code and connect to term. Return resrouce core and new group
 app.delete('/api/term/:termID/group/:groupID', deleteGroup); // delete term group by id | delete node or just relatinship??
 // within
@@ -269,6 +269,7 @@ function deleteSynonym(req, res){
 */
 
 function readGroup(req, res){
+  console.log('rading group')
   // match directly connected groups as well as groups of synonyms.
   var cypher = "MATCH (group:group {uid: {groupID} })<-[:IN_GROUP]-(sets:synSet) "
              + "RETURN sets"
@@ -291,12 +292,12 @@ function readGroup(req, res){
 
 function updateGroup(req, res){
   // TODO:check for member authorization...
-  var cypher = "MATCH (base:term {uid:{term}}) , (group:term {uid:{group}}) "
+  var cypher = "MATCH (base:term {uid:{set}}) , (group:term {uid:{group}}) "
              + "MERGE (base)-[r:IN_GROUP]->(group) "
              + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
              + "RETURN base, group"
 
-  db.query(cypher, {term: req.params.termID, group: req.params.groupID, member: res.locals.user.uid },function(err, result) {
+  db.query(cypher, {set: req.params.setID, group: req.params.groupID, member: res.locals.user.uid },function(err, result) {
     if (err) console.log(err);
     if(result){
       res.send(result[0])

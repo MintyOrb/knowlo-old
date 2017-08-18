@@ -192,7 +192,7 @@ const termComp = Vue.component('termComp',{
         });
       },
       fetchGroups: function(){
-        this.$http.get('/term/' + this.$route.params.uid + '/group/', {params: { languageCode: 'en'}}).then(response => {
+        this.$http.get('/set/' + this.$route.params.uid + '/group/', {params: { languageCode: 'en'}}).then(response => {
           if(response.body.length > 0){
             this.groups = response.body;
           } else {
