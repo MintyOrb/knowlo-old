@@ -11,19 +11,23 @@ app.put('/api/term/:termID/translation/:uid', updateTranslation);    // update s
 app.post('/api/term/:termID/translation/', createTranslation);       // create term translation based on language code and connect to term. Return resrouce core and new translation
 app.delete('/api/term/:termID/translation/:uid', deleteTranslation); // delete term translation by id | delete node or just relatinship??
 // synonym
-app.get('/set/:synID/synonym/', readSynonym);                // retrieve synonyms of a set based on set id and provided langauge code. If language not found, attempt translation? Also returns set core
-app.put('/api/set/:setID/synonym/:setID', updateSynonym);    // add set synonym by ID | is /set/:setID - copy any other sets and resource relationships
+app.get('/set/:setID/synonym/', readSynonym);                // retrieve synonyms of a set based on set id and provided langauge code. If language not found, attempt translation? Also returns set core
+app.put('/api/set/:setID/synonym/:otherID', updateSynonym);    // add set synonym by ID | is /set/:setID - copy any other sets and resource relationships
 // ? don't need? app.post('/api/set/:setID/synonym/', createSynonym);      // create set synonym based on language code and connect to set. Return resrouce core and new synonym
 app.delete('/api/set/:setID/synonym/:setID', deleteSynonym); // delete term synonym by id | delete node or just relatinship??
 // groups
-app.get('/set/:groupID/group/', readGroup);                 // retrieve a terms groups of a term based on term id and provided langauge code. If language not found, attempt a group. Also returns term core
-app.put('/set/:setID/group/:groupID', updateGroup);    // update single term group by ID | is /term/:termID superfluous? /termMeta/:uid instead?
+app.get('/set/:setID/group/', readGroup);                 // retrieve a terms groups of a term based on term id and provided langauge code. If language not found, attempt a group. Also returns term core
+app.put('/api/set/:setID/group/:groupID', updateGroup);    // update single term group by ID | is /term/:termID superfluous? /termMeta/:uid instead?
 // ? app.post('/api/term/:termID/group/', createGroup);     // create term group based on language code and connect to term. Return resrouce core and new group
-app.delete('/api/term/:termID/group/:groupID', deleteGroup); // delete term group by id | delete node or just relatinship??
+app.delete('/api/set/:setID/group/:groupID', deleteGroup); // delete term group by id | delete node or just relatinship??
 // within
 app.get('/set/:setID/within/', within);
+app.put('/api/set/:setID/within/:otherID', updateWithin);
+app.delete('/api/set/:setID/within/:otherID', deleteWithin);
 // contains
 app.get('/set/:setID/contains/', contains);
+app.put('/api/set/:setID/contains/:otherID', updateContains);
+app.delete('/api/set/:setID/contains/:otherID', deleteContains);
 
 // core
 app.get('/term', query);           // query terms based on provided term IDs
@@ -147,7 +151,8 @@ function create(req, res){
              + "MERGE (translation:translation {name: {translation}.name}) "
                + "ON CREATE SET translation={translation}, translation.created=TIMESTAMP(), translation.uid={transID} "
                + "ON MATCH SET translation={translation}, translation.updated=TIMESTAMP() "
-             + "MERGE (term)-[:IN_SET]->(set)<-[:ADDED {date:TIMESTAMP()} ]-(member)-[:ADDED {date:TIMESTAMP()} ]->(term)-[r:HAS_TRANSLATION {languageCode: {translation}.languageCode }]->(translation)<-[:ADDED {date:TIMESTAMP()} ]-(member) "
+             + "MERGE (term)-[in:IN_SET]->(set)<-[:ADDED {date:TIMESTAMP()} ]-(member)-[:ADDED {date:TIMESTAMP()} ]->(term)-[r:HAS_TRANSLATION {languageCode: {translation}.languageCode }]->(translation)<-[:ADDED {date:TIMESTAMP()} ]-(member) "
+             + "ON CREATE SET in.order = 1 "
              + "RETURN set, term, translation"
 
   db.query(cypher, {
@@ -201,10 +206,10 @@ function readSynonym(req, res){
   var cypher = "MATCH (set:synSet {uid: {set} })<-[r:IN_SET]-(syn:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
              + "WHERE "
                  + "lang.languageCode IN [ {language} , 'en' ] "
-                  + "RETURN DISTINCT syn as term, translation , r "
+                  + "RETURN DISTINCT set.uid as setID, syn as term, translation , r "
                   + "ORDER BY  r.order"
 
-  db.query(cypher, {set: req.params.synID, language: req.query.languageCode },function(err, result) {
+  db.query(cypher, {set: req.params.setID, language: req.query.languageCode },function(err, result) {
     if (err) console.log(err);
     if(result){
       res.send(result)
@@ -217,24 +222,21 @@ function readSynonym(req, res){
 function updateSynonym(req, res){
   // TODO:check for member authorization...
 
-  // TODO:
-  // copy tagged resources
-  // copy other terms from set being merged
-  // - put this in separte merge sets function?
+  var cypher = "MATCH (set:synSet {uid:{setID}}), (other:synSet {uid:{otherID}}) "
+             + "MERGE (set)<-[r:IN_SET]-(other) "
+             + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
+             + "RETURN set.uid, other.uid"
 
-  // var cypher = "MATCH (set:synSet {uid:{set}}) , (term:term {uid:{syn}}) "
-  //            + "MERGE (set)<-[r:IN_SET]-(term) "
-  //            + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
-  //            + "RETURN set, syn"
-  //
-  // db.query(cypher, {set: req.params.setID, term: req.params.termID, member: res.locals.user.uid },function(err, result) {
-  //   if (err) console.log(err);
-  //   if(result){
-  //     res.send(result[0])
-  //   } else {
-  //     res.send()
-  //   }
-  // })
+  db.query(cypher, {setID: req.params.setID, otherID: req.params.otherID, member: res.locals.user.uid },function(err, result) {
+    if (err) console.log(err);
+
+    console.log(result)
+    if(result){
+      res.send(result[0])
+    } else {
+      res.send()
+    }
+  })
 }
 
 function deleteSynonym(req, res){
@@ -242,7 +244,6 @@ function deleteSynonym(req, res){
 
   // delete vs remove...
   // for remove- will need to create (or re-create) synset node?
-  console.log('in del')
   console.log(req.params)
   var cypher = "MATCH (syn:term {uid:{term}})-[r:IN_SET]->(set:synSet {uid:{set}}) "
              + "DELETE r "
@@ -251,7 +252,7 @@ function deleteSynonym(req, res){
   db.query(cypher, {term: req.params.termID, set: req.params.setID, member: res.locals.user.uid },function(err, result) {
     if (err) console.log(err);
     if(result){
-      console.log('in syn')
+
       console.log(result)
       res.send(result[0])
     } else {
@@ -269,21 +270,16 @@ function deleteSynonym(req, res){
 */
 
 function readGroup(req, res){
-  console.log('rading group')
-  // match directly connected groups as well as groups of synonyms.
-  var cypher = "MATCH (group:group {uid: {groupID} })<-[:IN_GROUP]-(sets:synSet) "
-             + "RETURN sets"
-                // TODO: limit skip orderby...
-                // TODO: make sure first and second degree are unique
-                // TODO: return contains (not just within)
-  db.query(cypher, {group: req.params.groupID, language: req.query.languageCode },function(err, result) {
+  console.log(req.params)
+  var cypher = "MATCH (trans:translation)<-[tr:HAS_TRANSLATION]-(term:term)-[r:IN_SET]->(groups:group)<-[:IN_GROUP]-(set:synSet {uid: {set} }) "
+          + "WHERE "
+              + "r.order=1 and tr.languageCode IN [ {language} , 'en' ] "
+               + "RETURN DISTINCT groups.uid as setID, trans as translation, term"
+              //  + "RETURN groups, translation,set.uid as setID"
+  db.query(cypher, {set: req.params.setID, language: req.query.languageCode },function(err, result) {
     if (err) console.log(err);
     if(result){
-      // filter out nulls and combine first and second degree groups
-      var combined = result[0]['firstDegree'].concat(result[0]['secondDegree']).filter(function (el) {
-        return el['term'] !== null;
-      });
-      res.send(combined)
+      res.send(result)
     } else {
       res.send()
     }
@@ -292,10 +288,11 @@ function readGroup(req, res){
 
 function updateGroup(req, res){
   // TODO:check for member authorization...
-  var cypher = "MATCH (base:term {uid:{set}}) , (group:term {uid:{group}}) "
-             + "MERGE (base)-[r:IN_GROUP]->(group) "
-             + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
-             + "RETURN base, group"
+  console.log(req.params)
+  var cypher = "MATCH (base:synSet {uid:{set}}), (g:synSet {uid:{group}}) "
+             + "MERGE (base)-[r:IN_GROUP]->(g) "
+             + "SET g:group, r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
+             + "RETURN base.uid"
 
   db.query(cypher, {set: req.params.setID, group: req.params.groupID, member: res.locals.user.uid },function(err, result) {
     if (err) console.log(err);
@@ -312,11 +309,11 @@ function createGroup(req, res){
 
 function deleteGroup(req, res){
   // TODO:check for member authorization...
-  var cypher = "MATCH (base:term {uid:{term}})-[r:IN_GROUP]-(group:term {uid:{group}}) "
+  var cypher = "MATCH (set:synSet {uid:{set}})-[r:IN_GROUP]->(group:group {uid:{group}}) "
              + "DELETE r "
-             + "RETURN base, group"
+             + "RETURN set, group"
 
-  db.query(cypher, {term: req.params.termID, group: req.params.groupID, member: res.locals.user.uid },function(err, result) {
+  db.query(cypher, {set: req.params.setID, group: req.params.groupID, member: res.locals.user.uid },function(err, result) {
     if (err) console.log(err);
     if(result){
       res.send(result[0])
@@ -334,13 +331,14 @@ function deleteGroup(req, res){
 */
 
 function within(req, res){
-  var cypher = "MATCH (set:synSet {uid: {set} })<-[r:IN_SET]-(syn:synSet)<-[IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
+  console.log('getting within')
+  var cypher = "MATCH (set:synSet {uid: {set} })-[IN_SET]->(syn:synSet)<-[r:IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
              + "WHERE "
-                 + "lang.languageCode IN [ {language} , 'en' ] "
-                  + "RETURN DISTINCT syn as term, translation , r "
+                 + "lang.languageCode IN [ {language} , 'en' ] AND r.order=1  "
+                  + "RETURN DISTINCT syn.uid as setID, syn as term, translation , r "
                   + "ORDER BY  r.order"
 
-  db.query(cypher, {set: req.params.synID, language: req.query.languageCode },function(err, result) {
+  db.query(cypher, {set: req.params.setID, language: req.query.languageCode },function(err, result) {
     if (err) console.log(err);
     if(result){
       res.send(result)
@@ -351,12 +349,12 @@ function within(req, res){
 }
 function updateWithin(req, res){
   // TODO:check for member authorization...
-  var cypher = "MATCH (base:synSet {uid:{coreID}}) , (other:synSet {uid:{otherID}}) "
+  var cypher = "MATCH (base:synSet {uid:{baseID}}) , (other:synSet {uid:{otherID}}) "
              + "MERGE (base)-[r:IN_SET]->(other) "
              + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
-             + "RETURN base, group"
+             + "RETURN base, other"
 
-  db.query(cypher, {core: req.params.setID, other: req.params.otherID, member: res.locals.user.uid },function(err, result) {
+  db.query(cypher, {baseID: req.params.setID, otherID: req.params.otherID, member: res.locals.user.uid },function(err, result) {
     if (err) console.log(err);
     if(result){
       res.send(result[0])
@@ -367,11 +365,11 @@ function updateWithin(req, res){
 }
 function deleteWithin(req, res){
   // TODO:check for member authorization...
-  var cypher = "MATCH (base:synSet {uid:{setID}})-[r:IN_SET]->(other:synSet {uid:{other}}) "
+  var cypher = "MATCH (base:synSet {uid:{setID}})-[r:IN_SET]->(other:synSet {uid:{otherID}}) "
              + "DELETE r "
-             + "RETURN base, group"
+             + "RETURN base, other"
 
-  db.query(cypher, {base: req.params.baseID, other: req.params.otherID, member: res.locals.user.uid },function(err, result) {
+  db.query(cypher, {setID: req.params.setID, otherID: req.params.otherID, member: res.locals.user.uid },function(err, result) {
     if (err) console.log(err);
     if(result){
       res.send(result[0])
@@ -390,13 +388,13 @@ function deleteWithin(req, res){
 
 
 function contains(req, res){
-  var cypher = "MATCH (set:synSet {uid: {set} })-[r:IN_GROUP]->(syn:synSet)<-[IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
+  var cypher = "MATCH (set:synSet {uid: {set} })<-[:IN_SET]-(syn:synSet)<-[r:IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
              + "WHERE "
-                 + "lang.languageCode IN [ {language} , 'en' ] "
-                  + "RETURN DISTINCT syn as term, translation , r "
+                 + "r.order=1 and lang.languageCode IN [ {language} , 'en' ] "
+                  + "RETURN DISTINCT syn as term, syn.uid as setID, translation , r "
                   + "ORDER BY  r.order"
 
-  db.query(cypher, {set: req.params.synID, language: req.query.languageCode },function(err, result) {
+  db.query(cypher, {set: req.params.setID, language: req.query.languageCode },function(err, result) {
     if (err) console.log(err);
     if(result){
       res.send(result)
@@ -408,12 +406,13 @@ function contains(req, res){
 function updateContains(req, res){
   // TODO:check for member authorization...
   var cypher = "MATCH (base:synSet {uid:{baseID}}) , (other:synSet {uid:{otherID}}) "
-             + "MERGE (base)-[r:IN_GROUP]->(other) "
+             + "MERGE (base)-[r:IN_SET]->(other) "
              + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
-             + "RETURN base, other"
+             + "RETURN base as term, base.uid as setID, other"
 
-  db.query(cypher, {base: req.params.baseID, other: req.params.otherID, member: res.locals.user.uid },function(err, result) {
+  db.query(cypher, {baseID: req.params.setID, otherID: req.params.otherID, member: res.locals.user.uid },function(err, result) {
     if (err) console.log(err);
+
     if(result){
       res.send(result[0])
     } else {
@@ -422,14 +421,17 @@ function updateContains(req, res){
   })
 }
 function deleteContains(req, res){
-  // TODO:check for member authorization...
-  var cypher = "MATCH (base:synSet {uid:{setID}})-[r:IN_SET]->(other:synSet {uid:{other}}) "
+  // TODO:check for member authorization..
+  console.log(req.params)
+  console.log('in delete contains')
+  var cypher = "MATCH (base:synSet {uid:{setID}})<-[r:IN_SET]-(other:synSet {uid:{otherID}}) "
              + "DELETE r "
              + "RETURN base, other"
 
-  db.query(cypher, {base: req.params.baseID, other: req.params.otherID, member: res.locals.user.uid },function(err, result) {
+  db.query(cypher, {setID: req.params.setID, otherID: req.params.otherID, member: res.locals.user.uid },function(err, result) {
     if (err) console.log(err);
     if(result){
+      console.log(result)
       res.send(result[0])
     } else {
       res.send()

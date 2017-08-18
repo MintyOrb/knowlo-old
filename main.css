@@ -5,7 +5,7 @@
      ██    ██       ██    ██      ██
 ███████    ██       ██    ███████ ███████
 */
-*{outline: 1px solid black;}
+/**{outline: 1px   solid black;}*/
 .addDetail{
   padding: 5px;
   margin-top: -5px;

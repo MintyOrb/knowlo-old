@@ -417,6 +417,7 @@
 					<p>definition</p>
 					<p>questions?</p>
 					<p>insights?</p>
+					translatins?
 				</div>
 				<div class="stepContainer">
 					<isotope ref='syno' :list="synonyms" :options='{}'>
@@ -425,7 +426,8 @@
 								:term="term"
 								:display="'thumb'"
 								:key="term.translation.name"
-								v-on:remove="removeSynonym(term.term.uid)"></term>
+								v-on:exclude="removeSynonym(term.term.uid)">
+							</term>
 						</div>
 					</isotope>
 					<autocomplete input-id="syn" v-on:select="addSynonym"></autocomplete>
@@ -433,14 +435,38 @@
 				<div class="stepContainer">
 					<isotope ref='group' :list="groups" :options='{}'>
 						<div v-for="term in groups" :key="term.translation.name">
-							<term :term="term" :key="term.translation.name" v-on:remove="removeGroup"></term>
+							<term :term="term"
+								:display="'thumb'"
+								:key="term.translation.name"
+								v-on:exclude="removeGroup(term.setID)">
+							</term>
 						</div>
 					</isotope>
 					<autocomplete input-id="group" v-on:select="addGroup"></autocomplete>
 				</div>
 				<div class="stepContainer">
+						<isotope ref='withn' :list="within" :options='{}'>
+							<div v-for="term in within" :key="term.translation.name">
+								<term :term="term"
+									:display="'thumb'"
+									:key="term.translation.name"
+									v-on:exclude="removeWithin(term.setID)">
+								</term>
+							</div>
+						</isotope>
+						<autocomplete input-id="within" v-on:select="addWithin"></autocomplete>
 				</div>
 				<div class="stepContainer">
+						<isotope ref='contains' :list="contains" :options='{}'>
+							<div v-for="term in contains" :key="term.translation.name">
+								<term :term="term"
+									:display="'thumb'"
+									:key="term.translation.name"
+									v-on:exclude="removeContains(term.setID)">
+								</term>
+							</div>
+						</isotope>
+						<autocomplete input-id="contains" v-on:select="addContains"></autocomplete>
 				</div>
 
 		 </div>

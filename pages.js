@@ -126,6 +126,8 @@ const termComp = Vue.component('termComp',{
              this.term.setID = this.$route.params.uid;//TODO: re-write all this being synSet centric
              this.fetchSynonyms();
              this.fetchGroups();
+             this.fetchWithin();
+             this.fetchContains();
            } else {
              Materialize.toast('Resource not found.', 4000)
            }
@@ -155,6 +157,9 @@ const termComp = Vue.component('termComp',{
             }).modal('open');
           })
       },
+      close: function(){
+        console.log("close here after esc")
+      },
       fetchSynonyms: function() {
         this.$http.get('/set/' + this.$route.params.uid + '/synonym/', {params: { languageCode: 'en'}}).then(response => {
           if(response.body.length > 0){
@@ -168,7 +173,9 @@ const termComp = Vue.component('termComp',{
         });
       },
       addSynonym: function(synonym){
-        this.$http.put('/api/set/'+ this.term.term.uid +'/synonym/'+ synonym.term.uid).then(response => {
+        console.log('trying ti add..')
+        console.log(synonym)
+        this.$http.put('/api/set/'+ this.term.setID +'/synonym/'+ synonym.setID).then(response => {
           if(response.body){
             Materialize.toast('Added!', 4000)
             this.synonyms.push(synonym)
@@ -192,7 +199,9 @@ const termComp = Vue.component('termComp',{
         });
       },
       fetchGroups: function(){
-        this.$http.get('/set/' + this.$route.params.uid + '/group/', {params: { languageCode: 'en'}}).then(response => {
+        console.log('in gropugs get')
+        this.$http.get('/set/' + this.term.setID + '/group/', {params: { languageCode: 'en'}}).then(response => {
+          console.log('back :', response.body)
           if(response.body.length > 0){
             this.groups = response.body;
           } else {
@@ -204,7 +213,12 @@ const termComp = Vue.component('termComp',{
         });
       },
       addGroup: function(group){
-        this.$http.put('/api/term/'+ this.term.term.uid +'/group/'+ group.term.uid).then(response => {
+        console.log('add here')
+        console.log(group)
+        console.log(this.term)
+        this.$http.put('/api/set/'+ this.term.setID +'/group/'+ group.term.uid).then(response => {
+          console.log('add here1')
+          console.log(this.term.term.uid +'/group/'+ group.term.uid)
           if(response.body){
             Materialize.toast('Added!', 4000)
             this.groups.push(group)
@@ -215,11 +229,12 @@ const termComp = Vue.component('termComp',{
            Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
-      removeGroup: function(groupUID){
-        this.$http.delete('/api/term/'+ this.term.term.uid +'/group/'+ groupUID).then(response => {
+      removeGroup: function(uid){
+        console.log('remove group')
+        this.$http.delete('/api/set/'+ this.term.setID +'/group/'+ uid).then(response => {
           if(response.body){
             Materialize.toast('Removed!', 4000)
-            this.groups.splice(this.groups.findIndex( (term) => term.term.uid === groupUID) ,1)
+            this.groups.splice(this.groups.findIndex( (term) => term.term.uid === uid) ,1)
           } else {
             Materialize.toast('Something went wrong...', 4000)
           }
@@ -227,9 +242,93 @@ const termComp = Vue.component('termComp',{
            Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
-      close: function(){
-        console.log("close here after esc")
-      }
+      fetchWithin: function(){
+        console.log('in within get')
+        this.$http.get('/set/' + this.term.setID + '/within/', {params: { languageCode: 'en'}}).then(response => {
+          console.log('back :', response.body)
+          if(response.body.length > 0){
+            this.within = response.body;
+          } else {
+            Materialize.toast('Within not found.', 4000)
+          }
+        }, response => {
+          this.openModal()
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      addWithin: function(within){
+        console.log('add within')
+        console.log(within)
+        console.log(this.term)
+        this.$http.put('/api/set/'+ this.term.setID +'/within/'+ within.term.uid).then(response => {
+          console.log('add here1')
+          console.log(response)
+          if(response.body){
+            Materialize.toast('Added!', 4000)
+            this.within.push(within)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      removeWithin: function(uid){
+        console.log('remove group')
+        this.$http.delete('/api/set/'+ this.term.setID +'/within/'+ uid).then(response => {
+          if(response.body){
+            Materialize.toast('Removed!', 4000)
+            this.within.splice(this.within.findIndex( (term) => term.term.uid === uid) ,1)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      fetchContains: function(){
+        console.log('in contains get')
+        this.$http.get('/set/' + this.term.setID + '/contains/', {params: { languageCode: 'en'}}).then(response => {
+          console.log('back :', response.body)
+          if(response.body.length > 0){
+            this.contains = response.body;
+          } else {
+            Materialize.toast('Within not found.', 4000)
+          }
+        }, response => {
+          this.openModal()
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      addContains: function(contains){
+        console.log('add here')
+        console.log(this.term)
+        this.$http.put('/api/set/'+ this.term.setID +'/contains/'+ contains.term.uid).then(response => {
+          console.log('add here1')
+          console.log(this.term.term.uid +'/contains/'+ contains.term.uid)
+          if(response.body){
+            Materialize.toast('Added!', 4000)
+            this.contains.push(contains)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      removeContains: function(uid){
+        console.log('remove contains')
+        this.$http.delete('/api/set/'+ this.term.setID +'/contains/'+ uid).then(response => {
+          if(response.body){
+            Materialize.toast('Removed!', 4000)
+            this.contains.splice(this.contains.findIndex( (term) => term.term.uid === uid) ,1)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
     },
     mounted: function(){
       this.init();
