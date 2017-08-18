@@ -163,6 +163,7 @@
 		        <isotope style="min-height:80px" ref="termQuery" :list="termQuery" :options='getSelectedOptions()'>
 		          <div  v-for="word in termQuery"  class='selected' v-bind:class="{ expanded: word.expanded }" key="word.name">
 		            <term :term="word"
+									:display="'thumb'"
 									v-on:lay-me="layout('termquery')"
 									v-on:include="word.status.include=!word.status.include; word.status.exclude=!word.status.exclude;"
 									v-on:exclude="removeFrom(word, termQuery)"
@@ -178,6 +179,7 @@
 		        <isotope ref="key" :list="suggestions" :options='getSuggestionOptions()' class="step">
 		          <div v-for="word in suggestions"  class='suggestion' v-bind:class="{ expanded: word.expanded }" key="word">
 								<term :term="word"
+									:display="'thumb'"
 									v-on:lay-me="layout('selected')"
 									v-on:include="includeSearch"
 									v-on:exclude="includeSearch"
@@ -390,7 +392,7 @@
 <template id="termTemplate">
 	<div id="termModal" class="modal fullPage">
 		<div class="termTitle" >
-			<term :term="term"></term>
+			<term :term="term" :display="'thumb'"></term>
 			<p>
 				{{term.name}}
 			</p>
@@ -408,19 +410,27 @@
 			<div class="termSections">
 
 				<div class="stepContainer">
-					Activity
+					<p>synonyms</p>
+					<p>groups</p>
+					<p>within</p>
+					<p>contains</p>
+					<p>definition</p>
+					<p>questions?</p>
+					<p>insights?</p>
 				</div>
-				<div class="stepContainer" >
-					Synonyms
+				<div class="stepContainer">
 					<isotope ref='syno' :list="synonyms" :options='{}'>
 						<div v-for="term in synonyms" :key="term.translation.name">
-							<term :term="term" :key="term.translation.name" v-on:remove="removeSynonym(term.term.uid)"></term>
+							<term
+								:term="term"
+								:display="'thumb'"
+								:key="term.translation.name"
+								v-on:remove="removeSynonym(term.term.uid)"></term>
 						</div>
 					</isotope>
 					<autocomplete input-id="syn" v-on:select="addSynonym"></autocomplete>
 				</div>
 				<div class="stepContainer">
-					Groups
 					<isotope ref='group' :list="groups" :options='{}'>
 						<div v-for="term in groups" :key="term.translation.name">
 							<term :term="term" :key="term.translation.name" v-on:remove="removeGroup"></term>
@@ -429,10 +439,8 @@
 					<autocomplete input-id="group" v-on:select="addGroup"></autocomplete>
 				</div>
 				<div class="stepContainer">
-					Stats
 				</div>
 				<div class="stepContainer">
-					Related
 				</div>
 
 		 </div>
@@ -681,76 +689,88 @@
 	   ██    ███████ ██   ██ ██      ██
 	-->
 <template id="termContainer">
-	<span @mouseleave="leave()">
-		<div class="termWidth">
-			<div class="menu" @mouseenter="delayHover()"  v-bind:class="{'active': hovering}">
-				<div class="">
+	<div class='containerr'>
 
-					<div class="mbtn trigger" v-bind:class="{'scaleIcon': hovering}">
-						<span v-if="!term.term.url" class="flexCenter border"> {{term.translation.name[0]}}</span>
-						<div v-else class="thumb card-image border">
-							<img :src="term.term.url">
-						</div>
-					</div>
+	<div v-if="display == 'thumb' ">
+		<span @mouseleave="leave()">
+			<div class="termWidth">
+				<div class="menu" @mouseenter="delayHover()"  v-bind:class="{'active': hovering}">
+					<div class="">
 
-					<!-- need a better way to determine when in sidebar... -->
-					<div id="hoverPad" v-if="inSidebar">
-					</div>
-
-					<div class="icons">
-						<div class="rotater">
-							<div @click="pin" class="mbtn mbtn-icon flexCenter" :class="{showPin: status.pinnedIcon, pinNav: hovering&& inSidebar }">
-								<i class="fa fa-thumb-tack" style="transform:rotate(-45deg)"></i>
+						<div class="mbtn trigger" v-bind:class="{'scaleIcon': hovering}">
+							<span v-if="!term.term.url" class="flexCenter border"> {{term.translation.name[0]}}</span>
+							<div v-else class="thumb card-image border">
+								<img :src="term.term.url">
 							</div>
 						</div>
-						<div  v-if="true" class="rotater">
-							<div class="mbtn mbtn-icon flexCenter" :class="{'nope':!term.group, expandNav: hovering&& inSidebar}">
-								<i class="fa fa-expand"></i>
-							</div>
+
+						<!-- need a better way to determine when in sidebar... -->
+						<div id="hoverPad" v-if="inSidebar">
 						</div>
-						<div  v-if="false" class="rotater">
-							<div class="mbtn mbtn-icon flexCenter" :class="{showCompress: true, expandNav: hovering&& inSidebar}">
-								<i class="fa fa-compress"></i>
-							</div>
-						</div>
-						<div class="rotater">
-							<router-link :to="{ name: 'termSub', params: { uid: term.setID, name: term.translation.name }}">
-								<div class="mbtn mbtn-icon flexCenter":class="{showInfo: status.infoIcon, infoNav: hovering&& inSidebar }">
-									<i class="fa fa-info"></i>
+
+						<div class="icons">
+							<div class="rotater">
+								<div @click="pin" class="mbtn mbtn-icon flexCenter" :class="{showPin: status.pinnedIcon, pinNav: hovering&& inSidebar }">
+									<i class="fa fa-thumb-tack" style="transform:rotate(-45deg)"></i>
 								</div>
-							</router-link>
-						</div>
-						<div class="rotater">
-							<div @click="exclude" class="mbtn mbtn-icon flexCenter" :class="{showMinus: status.excludeIcon, excludeNav: hovering&& inSidebar }">
-								<i class="fa fa-minus"></i>
 							</div>
-						</div>
-						<div class="rotater">
-							<div @click="include" class="mbtn mbtn-icon flexCenter" :class="{showPlus: status.includeIcon, includeNav: hovering&& inSidebar }">
-								<i class="fa fa-plus"></i>
+							<div  v-if="true" class="rotater">
+								<div class="mbtn mbtn-icon flexCenter" :class="{'nope':!term.group, expandNav: hovering&& inSidebar}">
+									<i class="fa fa-expand"></i>
+								</div>
 							</div>
-						</div>
-						<div class="rotater">
-							<div @click="focus" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: status.focusIcon, focusNav: hovering&& inSidebar }">
-								<i class="fa fa-crosshairs"></i>
+							<div  v-if="false" class="rotater">
+								<div class="mbtn mbtn-icon flexCenter" :class="{showCompress: true, expandNav: hovering&& inSidebar}">
+									<i class="fa fa-compress"></i>
+								</div>
 							</div>
-						</div>
-						<div class="">
-							<div @click="remove" class="mbtn mbtn-icon flexCenter" :class="{removeNav: hovering&& inSidebar }">
-								<i class="fa fa-times"></i>
+							<div class="rotater">
+								<router-link :to="{ name: 'termSub', params: { uid: term.setID, name: term.translation.name }}">
+									<div class="mbtn mbtn-icon flexCenter":class="{showInfo: status.infoIcon, infoNav: hovering&& inSidebar }">
+										<i class="fa fa-info"></i>
+									</div>
+								</router-link>
+							</div>
+							<div class="rotater">
+								<div @click="exclude" class="mbtn mbtn-icon flexCenter" :class="{showMinus: status.excludeIcon, excludeNav: hovering&& inSidebar }">
+									<i class="fa fa-minus"></i>
+								</div>
+							</div>
+							<div class="rotater">
+								<div @click="include" class="mbtn mbtn-icon flexCenter" :class="{showPlus: status.includeIcon, includeNav: hovering&& inSidebar }">
+									<i class="fa fa-plus"></i>
+								</div>
+							</div>
+							<div class="rotater">
+								<div @click="focus" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: status.focusIcon, focusNav: hovering&& inSidebar }">
+									<i class="fa fa-crosshairs"></i>
+								</div>
+							</div>
+							<div class="">
+								<div @click="remove" class="mbtn mbtn-icon flexCenter" :class="{removeNav: hovering&& inSidebar }">
+									<i class="fa fa-times"></i>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="nameholder">
-				<div class="name">
-					{{term.translation.name}}
+				<div class="nameholder">
+					<div class="name">
+						{{term.translation.name}}
+					</div>
 				</div>
 			</div>
-		</div>
 
-	</span>
+		</span>
+	</div>
+	<div class='list hoverable waves-effect waves-light' v-if="display == 'list'">
+		<div>{{term.translation.name}}</div>
+		<p>
+			{{term.term.order}}
+		</p>
+	</div>
+
+	</div>
 </template>
 
 <!--

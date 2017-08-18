@@ -5,7 +5,7 @@
      ██    ██       ██    ██      ██
 ███████    ██       ██    ███████ ███████
 */
-/**{outline: 1px solid black;}*/
+*{outline: 1px solid black;}
 .addDetail{
   padding: 5px;
   margin-top: -5px;
@@ -158,14 +158,13 @@ html {
 }
 .list {
     padding: 2% 8% 2% 8%;
-    width: 100vw;
+    width: 100%;
     min-height: 40px;
     font-size: 20px;
-    display: flex !important;
-    flex-flow: row wrap;
-    justify-content: space-between;
 }
-
+.item {
+  display: inline-block;
+}
 /* label focus color */
 
 .input-field input[type=text]:focus+label {
@@ -341,18 +340,27 @@ html {
 }
 .navItems {
 	width: 130px;
-	display: relative;
   text-align: center;
+  /*font-size: 12px;*/
+  font-weight: 300;
+  transition: font-weight .5s;
+}
+.is-nav-selected{
+  font-weight: 600;
 }
 .crossSectionSteps {
 	width: 100%;
   margin-bottom: 50px;
 }
 .stepContainer {
-	width: 80vw;
+	width: 25vw;
 	height: 100vh;
   overflow: scroll;
 }
+@media (max-width:40.063em) {
+.stepContainer{  width: 80vw;}
+}
+
 .resourceSections{
   height: 100%;
 }

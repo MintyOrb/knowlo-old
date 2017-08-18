@@ -5,21 +5,27 @@ var shortid = require('shortid');
 app.get('/term/autocomplete/:text', autocomplete);
 app.get('/term/most', most);
 
+// translation
 app.get('/api/term/:termID/translation/', readTranslation);          // retrieve a translation of a term based on term id and provided langauge code. If language not found, attempt a translation. Also returns term core
 app.put('/api/term/:termID/translation/:uid', updateTranslation);    // update single term translation by ID | is /term/:termID superfluous? /termMeta/:uid instead?
 app.post('/api/term/:termID/translation/', createTranslation);       // create term translation based on language code and connect to term. Return resrouce core and new translation
 app.delete('/api/term/:termID/translation/:uid', deleteTranslation); // delete term translation by id | delete node or just relatinship??
-
-app.get('/term/:synID/synonym/', readSynonym);                // retrieve synonyms of a term based on term id and provided langauge code. If language not found, attempt translation? Also returns term core
-app.put('/api/term/:setID/synonym/:termID', updateSynonym);    // add term synonym by ID | is /term/:termID - copy any other terms and resource relationships
-// ? don't need? app.post('/api/term/:termID/synonym/', createSynonym);      // create term synonym based on language code and connect to term. Return resrouce core and new synonym
-app.delete('/api/term/:setID/synonym/:termID', deleteSynonym); // delete term synonym by id | delete node or just relatinship??
-
+// synonym
+app.get('/set/:synID/synonym/', readSynonym);                // retrieve synonyms of a set based on set id and provided langauge code. If language not found, attempt translation? Also returns set core
+app.put('/api/set/:setID/synonym/:setID', updateSynonym);    // add set synonym by ID | is /set/:setID - copy any other sets and resource relationships
+// ? don't need? app.post('/api/set/:setID/synonym/', createSynonym);      // create set synonym based on language code and connect to set. Return resrouce core and new synonym
+app.delete('/api/set/:setID/synonym/:setID', deleteSynonym); // delete term synonym by id | delete node or just relatinship??
+// groups
 app.get('/term/:groupID/group/', readGroup);                 // retrieve a terms groups of a term based on term id and provided langauge code. If language not found, attempt a group. Also returns term core
-app.put('/api/term/:termID/group/:groupID', updateGroup);    // update single term group by ID | is /term/:termID superfluous? /termMeta/:uid instead?
+app.put('/term/:termID/group/:groupID', updateGroup);    // update single term group by ID | is /term/:termID superfluous? /termMeta/:uid instead?
 // ? app.post('/api/term/:termID/group/', createGroup);     // create term group based on language code and connect to term. Return resrouce core and new group
 app.delete('/api/term/:termID/group/:groupID', deleteGroup); // delete term group by id | delete node or just relatinship??
+// within
+app.get('/set/:setID/within/', within);
+// contains
+app.get('/set/:setID/contains/', contains);
 
+// core
 app.get('/term', query);           // query terms based on provided term IDs
 app.get('/api/term', query);           // query terms based on user details and provided term IDs - /term/query instaed?
 app.get('/set/:name/:uid?', read);    // read details of a single term and translation
@@ -324,8 +330,117 @@ function deleteGroup(req, res){
     }
   })
 }
+/*
+██     ██ ██ ████████ ██   ██ ██ ███    ██
+██     ██ ██    ██    ██   ██ ██ ████   ██
+██  █  ██ ██    ██    ███████ ██ ██ ██  ██
+██ ███ ██ ██    ██    ██   ██ ██ ██  ██ ██
+ ███ ███  ██    ██    ██   ██ ██ ██   ████
+*/
+
+function within(req, res){
+  var cypher = "MATCH (set:synSet {uid: {set} })<-[r:IN_GROUP]-(syn:synSet)<-[IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
+             + "WHERE "
+                 + "lang.languageCode IN [ {language} , 'en' ] "
+                  + "RETURN DISTINCT syn as term, translation , r "
+                  + "ORDER BY  r.order"
+
+  db.query(cypher, {set: req.params.synID, language: req.query.languageCode },function(err, result) {
+    if (err) console.log(err);
+    if(result){
+      res.send(result)
+    } else {
+      res.send()
+    }
+  })
+}
+function updateWithin(req, res){
+  // TODO:check for member authorization...
+  var cypher = "MATCH (base:synSet {uid:{coreID}}) , (other:synSet {uid:{otherID}}) "
+             + "MERGE (base)-[r:IN_SET]->(other) "
+             + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
+             + "RETURN base, group"
+
+  db.query(cypher, {core: req.params.setID, other: req.params.otherID, member: res.locals.user.uid },function(err, result) {
+    if (err) console.log(err);
+    if(result){
+      res.send(result[0])
+    } else {
+      res.send()
+    }
+  })
+}
+function deleteWithin(req, res){
+  // TODO:check for member authorization...
+  var cypher = "MATCH (base:synSet {uid:{setID}})-[r:IN_SET]->(other:synSet {uid:{other}}) "
+             + "DELETE r "
+             + "RETURN base, group"
+
+  db.query(cypher, {base: req.params.baseID, other: req.params.otherID, member: res.locals.user.uid },function(err, result) {
+    if (err) console.log(err);
+    if(result){
+      res.send(result[0])
+    } else {
+      res.send()
+    }
+  })
+}
+/*
+ ██████  ██████  ███    ██ ████████  █████  ██ ███    ██ ███████
+██      ██    ██ ████   ██    ██    ██   ██ ██ ████   ██ ██
+██      ██    ██ ██ ██  ██    ██    ███████ ██ ██ ██  ██ ███████
+██      ██    ██ ██  ██ ██    ██    ██   ██ ██ ██  ██ ██      ██
+ ██████  ██████  ██   ████    ██    ██   ██ ██ ██   ████ ███████
+*/
 
 
+function contains(req, res){
+  var cypher = "MATCH (set:synSet {uid: {set} })-[r:IN_GROUP]->(syn:synSet)<-[IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
+             + "WHERE "
+                 + "lang.languageCode IN [ {language} , 'en' ] "
+                  + "RETURN DISTINCT syn as term, translation , r "
+                  + "ORDER BY  r.order"
+
+  db.query(cypher, {set: req.params.synID, language: req.query.languageCode },function(err, result) {
+    if (err) console.log(err);
+    if(result){
+      res.send(result)
+    } else {
+      res.send()
+    }
+  })
+}
+function updateContains(req, res){
+  // TODO:check for member authorization...
+  var cypher = "MATCH (base:synSet {uid:{baseID}}) , (other:synSet {uid:{otherID}}) "
+             + "MERGE (base)-[r:IN_GROUP]->(other) "
+             + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
+             + "RETURN base, other"
+
+  db.query(cypher, {base: req.params.baseID, other: req.params.otherID, member: res.locals.user.uid },function(err, result) {
+    if (err) console.log(err);
+    if(result){
+      res.send(result[0])
+    } else {
+      res.send()
+    }
+  })
+}
+function deleteContains(req, res){
+  // TODO:check for member authorization...
+  var cypher = "MATCH (base:synSet {uid:{setID}})-[r:IN_SET]->(other:synSet {uid:{other}}) "
+             + "DELETE r "
+             + "RETURN base, other"
+
+  db.query(cypher, {base: req.params.baseID, other: req.params.otherID, member: res.locals.user.uid },function(err, result) {
+    if (err) console.log(err);
+    if(result){
+      res.send(result[0])
+    } else {
+      res.send()
+    }
+  })
+}
 /*
  █████  ██    ██ ████████  ██████   ██████  ██████  ███    ███ ██████  ██      ███████ ████████ ███████
 ██   ██ ██    ██    ██    ██    ██ ██      ██    ██ ████  ████ ██   ██ ██      ██         ██    ██

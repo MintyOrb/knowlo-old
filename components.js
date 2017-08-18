@@ -9,7 +9,7 @@
 Vue.component('term',{
     template: "#termContainer",
     name: "term",
-    props:['term'],
+    props:['term', 'display'],
     data: () =>  {
       return {
         flickRegistry: [],

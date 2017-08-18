@@ -107,9 +107,12 @@ const termComp = Vue.component('termComp',{
     data: function() {
       return {
         term: {name: 'default'},
+        definitions: [],
         synonyms: [],
         groups: [],
-        termSection: ["Activity","Synonyms","Groups","Stats","Related"] //stats? vote? member's relation? definition?
+        within: [],
+        contains: [],
+        termSection: ["Definition","Synonyms","Groups","Within","Contains"] //stats? vote? member's relation? definition?
       }
     },
     methods:{
@@ -153,7 +156,7 @@ const termComp = Vue.component('termComp',{
           })
       },
       fetchSynonyms: function() {
-        this.$http.get('/term/' + this.$route.params.uid + '/synonym/', {params: { languageCode: 'en'}}).then(response => {
+        this.$http.get('/set/' + this.$route.params.uid + '/synonym/', {params: { languageCode: 'en'}}).then(response => {
           if(response.body.length > 0){
             this.synonyms = response.body;
           } else {
@@ -165,7 +168,7 @@ const termComp = Vue.component('termComp',{
         });
       },
       addSynonym: function(synonym){
-        this.$http.put('/api/term/'+ this.term.term.uid +'/synonym/'+ synonym.term.uid).then(response => {
+        this.$http.put('/api/set/'+ this.term.term.uid +'/synonym/'+ synonym.term.uid).then(response => {
           if(response.body){
             Materialize.toast('Added!', 4000)
             this.synonyms.push(synonym)
@@ -177,7 +180,7 @@ const termComp = Vue.component('termComp',{
         });
       },
       removeSynonym: function(synUID){
-        this.$http.delete('/api/term/'+ this.term.setID +'/synonym/'+ synUID).then(response => {
+        this.$http.delete('/api/set/'+ this.term.setID +'/synonym/'+ synUID).then(response => {
           if(response.body){
             Materialize.toast('Removed!', 4000)
             this.synonyms.splice(this.synonyms.findIndex( (term) => term.term.uid === synUID) ,1)
