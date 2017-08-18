@@ -270,18 +270,12 @@ function deleteSynonym(req, res){
 
 function readGroup(req, res){
   // match directly connected groups as well as groups of synonyms.
-  var cypher = "MATCH (term:term {uid: {term} }) "
-             + "OPTIONAL MATCH (term)-[:IN_GROUP]->(group:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
-             + "WHERE "
-                 + "lang.languageCode IN [ {language} , 'en' ] "
-             + "OPTIONAL MATCH (term)-[:HAS_SYNONYM]-(s:term)-[:IN_GROUP]->(g2:term)-[lang2:HAS_TRANSLATION]->(t2:translation) "
-             + "WHERE "
-                 + "lang2.languageCode IN [ {language} , 'en' ] "
-                + "RETURN DISTINCT collect(DISTINCT{term:  group, translation: translation}) as firstDegree, collect(DISTINCT{term:  g2, translation: t2}) as secondDegree "
+  var cypher = "MATCH (group:group {uid: {groupID} })<-[:IN_GROUP]-(sets:synSet) "
+             + "RETURN sets"
                 // TODO: limit skip orderby...
                 // TODO: make sure first and second degree are unique
                 // TODO: return contains (not just within)
-  db.query(cypher, {term: req.params.groupID, language: req.query.languageCode },function(err, result) {
+  db.query(cypher, {group: req.params.groupID, language: req.query.languageCode },function(err, result) {
     if (err) console.log(err);
     if(result){
       // filter out nulls and combine first and second degree groups
@@ -339,7 +333,7 @@ function deleteGroup(req, res){
 */
 
 function within(req, res){
-  var cypher = "MATCH (set:synSet {uid: {set} })<-[r:IN_GROUP]-(syn:synSet)<-[IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
+  var cypher = "MATCH (set:synSet {uid: {set} })<-[r:IN_SET]-(syn:synSet)<-[IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
              + "WHERE "
                  + "lang.languageCode IN [ {language} , 'en' ] "
                   + "RETURN DISTINCT syn as term, translation , r "
