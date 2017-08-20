@@ -25,6 +25,18 @@ Vue.component('term',{
       }
     },
     methods: {
+      temp:function(uid,val){
+        console.log(uid,val)
+        this.$http.put('/temp/'+uid+'/'+ val).then(response => {
+          if(response.body){
+            Materialize.toast('changed order', 4000)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
       remove: function(){
         this.status.removeIcon = !this.status.removeIcon;
         this.term.status = this.status;

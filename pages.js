@@ -108,26 +108,29 @@ const termComp = Vue.component('termComp',{
       return {
         term: {name: 'default'},
         definitions: [],
+        translations:[],
         synonyms: [],
         groups: [],
         within: [],
         contains: [],
-        termSection: ["Definition","Synonyms","Groups","Within","Contains"] //stats? vote? member's relation? definition?
+        termSection: ["Translations","Definition","Synonyms","Groups","Within","Contains"] //stats? vote? member's relation? definition?
       }
     },
     methods:{
        init: function(){
          this.$http.get('/set/' + this.$route.params.name + '/' + this.$route.params.uid, {params: { languageCode: 'en'}}).then(response => {
            if(response.body.term){
+
              response.body.term.name = response.body.translation.name
              response.body.term.status = {};
              this.term = response.body;
              this.$route.params.name
-             this.term.setID = this.$route.params.uid;//TODO: re-write all this being synSet centric
+             this.term.setID = this.$route.params.uid;
              this.fetchSynonyms();
              this.fetchGroups();
              this.fetchWithin();
              this.fetchContains();
+             this.fetchTranslations();
            } else {
              Materialize.toast('Resource not found.', 4000)
            }
@@ -159,6 +162,18 @@ const termComp = Vue.component('termComp',{
       },
       close: function(){
         console.log("close here after esc")
+      },
+      fetchTranslations: function() {
+        this.$http.get('/set/' + this.$route.params.uid + '/translation/', {params: { languageCode: 'en'}}).then(response => {
+          if(response.body.length > 0){
+            this.translations = response.body;
+          } else {
+            Materialize.toast('Synonyms not found.', 4000)
+          }
+        }, response => {
+          this.openModal()
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        });
       },
       fetchSynonyms: function() {
         this.$http.get('/set/' + this.$route.params.uid + '/synonym/', {params: { languageCode: 'en'}}).then(response => {

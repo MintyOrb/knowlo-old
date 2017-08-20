@@ -360,7 +360,9 @@ html {
 @media (max-width:40.063em) {
 .stepContainer{  width: 80vw;}
 }
-
+.item{
+  width: 100%
+}
 .resourceSections{
   height: 100%;
 }

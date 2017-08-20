@@ -6,9 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+<link rel="stylesheet" href="offline\materialize.min.css">
 	<link rel="stylesheet" href="dep/flickity.min.css">
 	<link rel="stylesheet" href="dep/leaflet.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link rel="stylesheet" href="offline/font-awesome.min.css" />
 	<link rel="stylesheet" href="main.css">
 
 	<script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
@@ -420,11 +422,19 @@
 					translatins?
 				</div>
 				<div class="stepContainer">
+					<div v-for="term in translations" :key="term.translation.name">
+						<term :term="term"
+						:display="'list'"
+						:key="term.translation.name">
+						</term>
+					</div>
+				</div>
+				<div class="stepContainer">
 					<isotope ref='syno' :list="synonyms" :options='{}'>
 						<div v-for="term in synonyms" :key="term.translation.name">
 							<term
 								:term="term"
-								:display="'thumb'"
+								:display="'list'"
 								:key="term.translation.name"
 								v-on:exclude="removeSynonym(term.term.uid)">
 							</term>
@@ -436,7 +446,7 @@
 					<isotope ref='group' :list="groups" :options='{}'>
 						<div v-for="term in groups" :key="term.translation.name">
 							<term :term="term"
-								:display="'thumb'"
+								:display="'list'"
 								:key="term.translation.name"
 								v-on:exclude="removeGroup(term.setID)">
 							</term>
@@ -791,9 +801,9 @@
 	</div>
 	<div class='list hoverable waves-effect waves-light' v-if="display == 'list'">
 		<div>{{term.translation.name}}</div>
-		<p>
-			{{term.term.order}}
-		</p>
+		<input type='text' v-model='term.term.order' v-on:blur="temp(term.term.uid,term.term.order)">
+			<!-- {{term.term.order}} -->
+
 	</div>
 
 	</div>

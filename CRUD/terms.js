@@ -6,10 +6,10 @@ app.get('/term/autocomplete/:text', autocomplete);
 app.get('/term/most', most);
 
 // translation
-app.get('/api/term/:termID/translation/', readTranslation);          // retrieve a translation of a term based on term id and provided langauge code. If language not found, attempt a translation. Also returns term core
-app.put('/api/term/:termID/translation/:uid', updateTranslation);    // update single term translation by ID | is /term/:termID superfluous? /termMeta/:uid instead?
-app.post('/api/term/:termID/translation/', createTranslation);       // create term translation based on language code and connect to term. Return resrouce core and new translation
-app.delete('/api/term/:termID/translation/:uid', deleteTranslation); // delete term translation by id | delete node or just relatinship??
+app.get('/set/:setID/translation/', readTranslation);          // retrieve a translation of a set based on term id and provided langauge code. If language not found, attempt a translation. Also returns term core
+app.put('/api/set/:setID/translation/:uid', updateTranslation);    // update single set translation by ID | is /set/:setID superfluous? /setMeta/:uid instead?
+app.post('/api/set/:setID/translation/', createTranslation);       // create set translation based on language code and connect to set. Return resrouce core and new translation
+app.delete('/api/set/:setID/translation/:uid', deleteTranslation); // delete set translation by id | delete node or just relatinship??
 // synonym
 app.get('/set/:setID/synonym/', readSynonym);                // retrieve synonyms of a set based on set id and provided langauge code. If language not found, attempt translation? Also returns set core
 app.put('/api/set/:setID/synonym/:otherID', updateSynonym);    // add set synonym by ID | is /set/:setID - copy any other sets and resource relationships
@@ -31,12 +31,20 @@ app.delete('/api/set/:setID/contains/:otherID', deleteContains);
 
 // core
 app.get('/term', query);           // query terms based on provided term IDs
-app.get('/api/term', query);           // query terms based on user details and provided term IDs - /term/query instaed?
 app.get('/set/:name/:uid?', read);    // read details of a single term and translation
+app.get('/api/set', query);           // query terms based on user details and provided term IDs - /term/query instaed?
 app.put('/api/term/:uid', updateCore); // update a single resrouces core node data
 app.post('/api/term', create);         // create (or update, if present) a term core and single translation node.
 app.delete('/api/term', deleteCore);   // delete term core node and relationships....and translations?
 
+app.put('/temp/:uid/:order', temp);
+function temp(req, res){
+  var cypher = "MATCH (n:term {uid: {uid}})-[r]-(s:synSet) set n.order={order},r.order={order}  return n "
+   db.query(cypher, { order: req.params.order, uid: req.params.uid },function(err, result) {
+     if (err) console.log(err);
+     res.send(result)
+   })
+}
 /*
 ████████ ███████ ██████  ███    ███
    ██    ██      ██   ██ ████  ████
@@ -88,7 +96,9 @@ function read(req, res){
                + "AND r.languageCode={languageCode} return term, translation"
   } else {
     var uid = req.params.uid; // match term on id
-    var cypher ="MATCH (set:synSet {uid:{uid}})<-[:IN_SET]-(term:term)-[r:HAS_TRANSLATION]->(translation:translation) WHERE r.languageCode={languageCode} return term, translation, set.UID as setID"
+    var cypher ="MATCH (set:synSet {uid:{uid}})<-[s:IN_SET]-(term:term)-[r:HAS_TRANSLATION]->(translation:translation) "
+               +"WHERE r.languageCode={languageCode} return term, translation, set.UID as setID "
+               +"ORDER BY s.order"
   }
   db.query(cypher, {uid: uid, languageCode: req.query.languageCode || 'en'},function(err, result) {
     if (err) console.log(err);
@@ -184,6 +194,12 @@ function deleteCore(req, res){
    ██    ██   ██ ██   ██ ██   ████ ███████ ███████ ██   ██    ██    ██  ██████  ██   ████
 */
 function readTranslation(req, res){
+  var cypher = "MATCH (n:synSet {uid: {uid}})-[:IN_SET]-(term:term)-[r:HAS_TRANSLATION]-(translation:translation) return term, translation, n.uid as setID "
+   db.query(cypher, {uid: req.params.setID },function(err, result) {
+     if (err) console.log(err);
+     console.log(result)
+     res.send(result)
+   })
 }
 
 function updateTranslation(req, res){
@@ -223,8 +239,13 @@ function updateSynonym(req, res){
   // TODO:check for member authorization...
 
   var cypher = "MATCH (set:synSet {uid:{setID}}), (other:synSet {uid:{otherID}}) "
-             + "MERGE (set)<-[r:IN_SET]-(other) "
-             + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
+             + "WITH set, other "
+             + "MATCH (other)<-[r:TAGGED_WITH]-(connected) "
+             + "MERGE (set)<-[r]-(connected) "
+             + "SET nr=r, nr.connectedBy = {member}, nr.dateConnected = TIMESTAMP() WITH set, other, nr, connected"
+             + "MATCH (other)<-[r:IN_SET]-(connected) with connected, nr, other, set "
+             + "MERGE (set)<-[r]-(connected) "
+             + "SET nr=r, nr.connectedBy = {member}, nr.dateConnected = TIMESTAMP() "
              + "RETURN set.uid, other.uid"
 
   db.query(cypher, {setID: req.params.setID, otherID: req.params.otherID, member: res.locals.user.uid },function(err, result) {
@@ -406,7 +427,7 @@ function contains(req, res){
 function updateContains(req, res){
   // TODO:check for member authorization...
   var cypher = "MATCH (base:synSet {uid:{baseID}}) , (other:synSet {uid:{otherID}}) "
-             + "MERGE (base)-[r:IN_SET]->(other) "
+             + "MERGE (base)<-[r:IN_SET]-(other) "
              + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
              + "RETURN base as term, base.uid as setID, other"
 
