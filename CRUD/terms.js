@@ -197,7 +197,6 @@ function readTranslation(req, res){
   var cypher = "MATCH (n:synSet {uid: {uid}})-[:IN_SET]-(term:term)-[r:HAS_TRANSLATION]-(translation:translation) return term, translation, n.uid as setID "
    db.query(cypher, {uid: req.params.setID },function(err, result) {
      if (err) console.log(err);
-     console.log(result)
      res.send(result)
    })
 }
@@ -260,6 +259,14 @@ function updateSynonym(req, res){
   })
 }
 
+function mergeSets(req,res){
+  var cypher = "MATCH (main:synSet {uid: {uid}}), (sub:synSet {uid: {uid}})"
+            + "-[:IN_SET]-(term:term)-[r:HAS_TRANSLATION]-(translation:translation) return term, translation, n.uid as setID "
+   db.query(cypher, {uid: req.params.setID },function(err, result) {
+     if (err) console.log(err);
+     res.send(result)
+   })
+}
 function deleteSynonym(req, res){
   // TODO:check for member authorization...
 

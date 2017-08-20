@@ -362,7 +362,13 @@
 					Activity
 				</div>
 				<div class="resourceStep" >
-					<term v-for="term in terms" :term="term" key="term.name" v-on:remove="removeTerm"></term>
+					<term
+						v-for="term in terms"
+						:term="term"
+						key="term.name"
+						display="thumb"
+						v-on:remove="removeTerm">
+					</term>
 					<autocomplete input-id="resourceTest" v-on:select="addTerm"></autocomplete>
 				</div>
 				<div class="resourceStep">
@@ -421,16 +427,9 @@
 					<p>insights?</p>
 					translatins?
 				</div>
+
 				<div class="stepContainer">
-					<div v-for="term in translations" :key="term.translation.name">
-						<term :term="term"
-						:display="'list'"
-						:key="term.translation.name">
-						</term>
-					</div>
-				</div>
-				<div class="stepContainer">
-					<isotope ref='syno' :list="synonyms" :options='{}'>
+					<!-- <isotope ref='syno' :list="synonyms" :options='{}'> -->
 						<div v-for="term in synonyms" :key="term.translation.name">
 							<term
 								:term="term"
@@ -439,7 +438,7 @@
 								v-on:exclude="removeSynonym(term.term.uid)">
 							</term>
 						</div>
-					</isotope>
+					<!-- </isotope> -->
 					<autocomplete input-id="syn" v-on:select="addSynonym"></autocomplete>
 				</div>
 				<div class="stepContainer">
@@ -478,7 +477,16 @@
 						</isotope>
 						<autocomplete input-id="contains" v-on:select="addContains"></autocomplete>
 				</div>
-
+				<div class="stepContainer">
+					<isotope ref='trans' :list="translations" :options='{}'>
+						<div v-for="term in translations" :key="term.translation.name">
+							<term :term="term"
+							:display="'thumb'"
+							:key="term.translation.name">
+							</term>
+						</div>
+					</isotope>
+				</div>
 		 </div>
 		</div>
 	</div>
@@ -801,9 +809,8 @@
 	</div>
 	<div class='list hoverable waves-effect waves-light' v-if="display == 'list'">
 		<div>{{term.translation.name}}</div>
+		<!-- <span> ({{term.translation.languageCode}})</span> -->
 		<input type='text' v-model='term.term.order' v-on:blur="temp(term.term.uid,term.term.order)">
-			<!-- {{term.term.order}} -->
-
 	</div>
 
 	</div>

@@ -155,6 +155,7 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
+
     var cypher ="MATCH (resource:resource {uid:{uid}})-[TAGGED_WITH]->(set:synSet)<-[setR:IN_SET]-(t:term)-[r:HAS_TRANSLATION]->(tr:translation) "
                +"WHERE r.languageCode = {languageCode} AND setR.order=1 "
                +"WITH resource, COLLECT(DISTINCT {setID: set.uid, term: t, translation: tr}) as terms "
@@ -171,20 +172,6 @@ module.exports = function(app, db){
   }
 
   function updateFull(req, res){
-    /**
-    * updates resource core node and set of terms based on provided resource ID - translations?
-    * @param {Object} resource
-    * @return {Object} resource
-    */
-    console.log('update here')
-    console.log(req.body.resource)
-    Resource.update(req.body.resource, function(err, resource) {
-        if (err) {console.log(err); res.status(500).send()};
-        console.log('updated resource')
-        console.log(resource)
-        // connect to member
-        res.send(resource);
-    });
   }
   function createFull(req, res){
   }

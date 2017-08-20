@@ -113,7 +113,7 @@ const termComp = Vue.component('termComp',{
         groups: [],
         within: [],
         contains: [],
-        termSection: ["Translations","Definition","Synonyms","Groups","Within","Contains"] //stats? vote? member's relation? definition?
+        termSection: ["Definition","Synonyms","Groups","Within","Contains","Translations"] //stats? vote? member's relation? definition?
       }
     },
     methods:{
@@ -499,6 +499,7 @@ const resourceComp = Vue.component('resourceComp',{
     mounted: function(){
       // take language from member instead of hardcoding english...
       this.$http.get('/resource/' + this.$route.params.uid + '/full', {params: { languageCode: 'en'}}).then(response => {
+        console.log('hiiiiii' ,response.body)
         if(response.body.resource){
           this.resource = response.body.resource;
           this.terms = response.body.terms;

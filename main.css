@@ -161,6 +161,7 @@ html {
     width: 100%;
     min-height: 40px;
     font-size: 20px;
+    display: inline-block;s
 }
 .item {
   display: inline-block;
@@ -361,7 +362,7 @@ html {
 .stepContainer{  width: 80vw;}
 }
 .item{
-  width: 100%
+  /*width: 100%*/
 }
 .resourceSections{
   height: 100%;
