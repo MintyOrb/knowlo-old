@@ -83,7 +83,8 @@ module.exports = function(app, db){
      var cypher = "CREATE (resource:resource:tester {core}) "
                 + "WITH resource, {detail} AS detail, keys({detail}) AS keys "
                 + "FOREACH (index IN range(0, size(keys)-1) | "
-                  + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index] })-[tr:HAS_TRANSLATION]->(langNode:tester:translation {value: detail[keys[index]] } ) ) "
+                  + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index] })-[tr:HAS_TRANSLATION]->(langNode:tester:translation {value: detail[keys[index]] } ) "
+                + ") "
                 + "RETURN resource"
 
     db.query(cypher, {

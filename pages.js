@@ -74,11 +74,11 @@ const addResource = Vue.component('addResource',{
       }).modal('open');
 
       // listen for escape key (materalize closes modal on esc, but doesn't re-route)
-      document.addEventListener('keydown', event => {
-        if (event.key === 'Escape' || event.keyCode === 27) {
-          router.go(-1) || router.push('/')
-        }
-      });
+      // document.addEventListener('keydown', event => {
+      //   if (event.key === 'Escape' || event.keyCode === 27) {
+      //     router.go(-1) || router.push('/')
+      //   }
+      // });
 
   },
   beforeRouteLeave: function (to, from, next){
@@ -140,6 +140,9 @@ const termComp = Vue.component('termComp',{
            Materialize.toast('Something went wrong...are you online?', 4000)
          });
       },
+      addDefinition: function (){
+
+      },
       openModal: function(){
         this.$nextTick(function(){
             $('#termModal'+this.term.id).modal({
@@ -188,9 +191,7 @@ const termComp = Vue.component('termComp',{
         });
       },
       addSynonym: function(synonym){
-        console.log('trying ti add..')
-        console.log(synonym)
-        this.$http.put('/api/set/'+ this.term.setID +'/synonym/'+ synonym.setID).then(response => {
+        this.$http.put('/set/'+ this.term.setID +'/synonym/'+ synonym.setID).then(response => {
           if(response.body){
             Materialize.toast('Added!', 4000)
             this.synonyms.push(synonym)
@@ -214,9 +215,7 @@ const termComp = Vue.component('termComp',{
         });
       },
       fetchGroups: function(){
-        console.log('in gropugs get')
         this.$http.get('/set/' + this.term.setID + '/group/', {params: { languageCode: 'en'}}).then(response => {
-          console.log('back :', response.body)
           if(response.body.length > 0){
             this.groups = response.body;
           } else {
@@ -228,12 +227,7 @@ const termComp = Vue.component('termComp',{
         });
       },
       addGroup: function(group){
-        console.log('add here')
-        console.log(group)
-        console.log(this.term)
         this.$http.put('/api/set/'+ this.term.setID +'/group/'+ group.term.uid).then(response => {
-          console.log('add here1')
-          console.log(this.term.term.uid +'/group/'+ group.term.uid)
           if(response.body){
             Materialize.toast('Added!', 4000)
             this.groups.push(group)
@@ -245,7 +239,6 @@ const termComp = Vue.component('termComp',{
         });
       },
       removeGroup: function(uid){
-        console.log('remove group')
         this.$http.delete('/api/set/'+ this.term.setID +'/group/'+ uid).then(response => {
           if(response.body){
             Materialize.toast('Removed!', 4000)
@@ -258,9 +251,7 @@ const termComp = Vue.component('termComp',{
         });
       },
       fetchWithin: function(){
-        console.log('in within get')
         this.$http.get('/set/' + this.term.setID + '/within/', {params: { languageCode: 'en'}}).then(response => {
-          console.log('back :', response.body)
           if(response.body.length > 0){
             this.within = response.body;
           } else {
@@ -272,12 +263,7 @@ const termComp = Vue.component('termComp',{
         });
       },
       addWithin: function(within){
-        console.log('add within')
-        console.log(within)
-        console.log(this.term)
         this.$http.put('/api/set/'+ this.term.setID +'/within/'+ within.term.uid).then(response => {
-          console.log('add here1')
-          console.log(response)
           if(response.body){
             Materialize.toast('Added!', 4000)
             this.within.push(within)
@@ -289,7 +275,6 @@ const termComp = Vue.component('termComp',{
         });
       },
       removeWithin: function(uid){
-        console.log('remove group')
         this.$http.delete('/api/set/'+ this.term.setID +'/within/'+ uid).then(response => {
           if(response.body){
             Materialize.toast('Removed!', 4000)
@@ -302,9 +287,7 @@ const termComp = Vue.component('termComp',{
         });
       },
       fetchContains: function(){
-        console.log('in contains get')
         this.$http.get('/set/' + this.term.setID + '/contains/', {params: { languageCode: 'en'}}).then(response => {
-          console.log('back :', response.body)
           if(response.body.length > 0){
             this.contains = response.body;
           } else {
@@ -316,11 +299,7 @@ const termComp = Vue.component('termComp',{
         });
       },
       addContains: function(contains){
-        console.log('add here')
-        console.log(this.term)
         this.$http.put('/api/set/'+ this.term.setID +'/contains/'+ contains.term.uid).then(response => {
-          console.log('add here1')
-          console.log(this.term.term.uid +'/contains/'+ contains.term.uid)
           if(response.body){
             Materialize.toast('Added!', 4000)
             this.contains.push(contains)
@@ -332,7 +311,6 @@ const termComp = Vue.component('termComp',{
         });
       },
       removeContains: function(uid){
-        console.log('remove contains')
         this.$http.delete('/api/set/'+ this.term.setID +'/contains/'+ uid).then(response => {
           if(response.body){
             Materialize.toast('Removed!', 4000)
@@ -499,7 +477,6 @@ const resourceComp = Vue.component('resourceComp',{
     mounted: function(){
       // take language from member instead of hardcoding english...
       this.$http.get('/resource/' + this.$route.params.uid + '/full', {params: { languageCode: 'en'}}).then(response => {
-        console.log('hiiiiii' ,response.body)
         if(response.body.resource){
           this.resource = response.body.resource;
           this.terms = response.body.terms;

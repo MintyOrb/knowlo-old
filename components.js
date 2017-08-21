@@ -25,9 +25,19 @@ Vue.component('term',{
       }
     },
     methods: {
-      temp:function(uid,val){
-        console.log(uid,val)
-        this.$http.put('/temp/'+uid+'/'+ val).then(response => {
+      name:function(uid,val){
+        this.$http.put('/god/name/'+uid+'/'+ val).then(response => {
+          if(response.body){
+            Materialize.toast('changed name', 4000)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      order:function(uid,val){
+        this.$http.put('/god/order/'+uid+'/'+ val).then(response => {
           if(response.body){
             Materialize.toast('changed order', 4000)
           } else {
@@ -127,7 +137,7 @@ Vue.component('term',{
 //<!-- ajax auto complete adapted from  http://stackoverflow.com/a/42757285/2061741 -->
 Vue.component('autocomplete',{
     template: "#autocomplete",
-    props:['ajaxUrl','inputId'],
+    props:['ajaxUrl','inputId','exclude'],
     name: "autocomplete",
     data: () =>  {
       return {
@@ -187,14 +197,12 @@ Vue.component('autocomplete',{
       }
     },
     mounted:function(){
-
       var options = {
           inputId: this.inputId || 'autocomplete-input',
           ajaxUrl: this.ajaxUrl || '/term/autocomplete/',
-          data: {},
+          data: {exclude: this.exclude},
           minLength: 1
       };
-
       var $input = $("#" + options.inputId);
 
       if (options.ajaxUrl) {
@@ -270,7 +278,7 @@ Vue.component('autocomplete',{
                       runningRequest = true;
                       request = $.ajax({
                           type: 'GET',
-                          url: options.ajaxUrl + val,
+                          url: options.ajaxUrl + val +'/'+ this.exclude,
                           success: (data) => {
                               this.suggestions = data;
                               // hide "create new" if a match is found

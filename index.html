@@ -158,7 +158,7 @@
 
 		<div class='container'>
 
-				<autocomplete input-id="mainSearch" v-on:select="addToQuery"></autocomplete>
+				<autocomplete exclude="" input-id="mainSearch" v-on:select="addToQuery"></autocomplete>
 
 				<!-- term query  -->
 		    <div class='row'>
@@ -369,7 +369,7 @@
 						display="thumb"
 						v-on:remove="removeTerm">
 					</term>
-					<autocomplete input-id="resourceTest" v-on:select="addTerm"></autocomplete>
+					<autocomplete exclude="" input-id="resourceTest" v-on:select="addTerm"></autocomplete>
 				</div>
 				<div class="resourceStep">
 					Vote
@@ -426,6 +426,9 @@
 					<p>questions?</p>
 					<p>insights?</p>
 					translatins?
+					<div @click="addDefinition">
+						add resource
+				 </div>
 				</div>
 
 				<div class="stepContainer">
@@ -433,13 +436,13 @@
 						<div v-for="term in synonyms" :key="term.translation.name">
 							<term
 								:term="term"
-								:display="'list'"
+								:display="'godMode'"
 								:key="term.translation.name"
 								v-on:exclude="removeSynonym(term.term.uid)">
 							</term>
 						</div>
 					<!-- </isotope> -->
-					<autocomplete input-id="syn" v-on:select="addSynonym"></autocomplete>
+					<autocomplete :exclude="$route.params.uid" input-id="syn" v-on:select="addSynonym" ></autocomplete>
 				</div>
 				<div class="stepContainer">
 					<isotope ref='group' :list="groups" :options='{}'>
@@ -451,7 +454,7 @@
 							</term>
 						</div>
 					</isotope>
-					<autocomplete input-id="group" v-on:select="addGroup"></autocomplete>
+					<autocomplete exclude="" input-id="group" v-on:select="addGroup"></autocomplete>
 				</div>
 				<div class="stepContainer">
 						<isotope ref='withn' :list="within" :options='{}'>
@@ -463,7 +466,7 @@
 								</term>
 							</div>
 						</isotope>
-						<autocomplete input-id="within" v-on:select="addWithin"></autocomplete>
+						<autocomplete exclude="" input-id="within" v-on:select="addWithin"></autocomplete>
 				</div>
 				<div class="stepContainer">
 						<isotope ref='contains' :list="contains" :options='{}'>
@@ -475,7 +478,7 @@
 								</term>
 							</div>
 						</isotope>
-						<autocomplete input-id="contains" v-on:select="addContains"></autocomplete>
+						<autocomplete exclude="" input-id="contains" v-on:select="addContains"></autocomplete>
 				</div>
 				<div class="stepContainer">
 					<isotope ref='trans' :list="translations" :options='{}'>
@@ -553,7 +556,7 @@
 		</div>
   </div>
 		<h1>Tag</h1>
-		<autocomplete input-id="tagNewResources" v-on:select=""></autocomplete>
+		<autocomplete exclude="" input-id="tagNewResources" v-on:select=""></autocomplete>
 	</div>
 </template>
 
@@ -584,7 +587,7 @@
 		</div>
 		<div class="row">
 			<h4>Add Synonyms</h4>
-			<autocomplete input-id="synonyms"></autocomplete>
+			<autocomplete exclude="" input-id="synonyms"></autocomplete>
 			<isotope ref='syno' :list="syns" :options='{}'>
 				<div v-for="syn in syns"  :key="syn.translation.name">
 					<term :term="syn" v-on:created="addSynonym(term.uid,syn.term.uid)" v-on:remove=""></term>
@@ -593,7 +596,7 @@
 		</div>
 		<div class="row">
 			<h4>In Group</h4>
-			<autocomplete input-id="Group"autocomplete>
+			<autocomplete exclude="" input-id="Group"autocomplete>
 			<isotope ref='group' :list="groups" :options='{}'>
 				<div v-for="group in groups" :key="group.translation.name">
 					<term :term="group"></term>
@@ -602,7 +605,7 @@
 		</div>
 		<div class="row">
 			<h4>Contains</h4>
-			<autocomplete input-id="Contains"autocomplete>
+			<autocomplete exclude="" input-id="Contains"autocomplete>
 			<isotope ref='contain' :list="contains" :options='{}'>
 				<div v-for="contain in contains" :key="contain.translation.name">
 					<term :term="contain"></term>
@@ -807,10 +810,18 @@
 
 		</span>
 	</div>
+
 	<div class='list hoverable waves-effect waves-light' v-if="display == 'list'">
 		<div>{{term.translation.name}}</div>
 		<!-- <span> ({{term.translation.languageCode}})</span> -->
-		<input type='text' v-model='term.term.order' v-on:blur="temp(term.term.uid,term.term.order)">
+	</div>
+
+	<div class='list hoverable waves-effect waves-light' v-if="display == 'godMode'">
+		<input type="text" />
+		<input type="text" v-model='term.translation.name' v-on:blur="name(term.translation.uid,term.translation.name)" />
+		<!-- <span> ({{term.translation.languageCode}})</span> -->
+		<input type='text' v-model='term.term.order' v-on:blur="order(term.term.uid,term.term.order)" />
+		<i  @click="exclude" class="fa fa-minus"></i>
 	</div>
 
 	</div>
