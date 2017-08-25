@@ -53,17 +53,24 @@ const addResource = Vue.component('addResource',{
         // parse youtube/vimeo/other....set display type?....settime to view
 
       },
-      saveTranslation(){
-        console.log(this.resource)
-        this.$http.post('/resource', {resource:this.resource}).then(response => {
-          if(response.body){
-            console.log(response.body)
-          } else {
-            Materialize.toast('Something went wrong...', 4000)
-          }
-        }, response => {
-           Materialize.toast('Something went wrong...are you online?', 4000)
-        });
+      saveProp(){
+        // create resource if no ID
+        console.log(this.resource.core.uid)
+        console.log(this.resource.detail)
+        if(this.resource.core.uid.length){ // update
+
+        } else { // create
+          // this.$http.post('/resource', {resource:this.resource}).then(response => {
+          //   if(response.body){
+          //     console.log(response.body)
+          //     // add relevant terms based on response?
+          //   } else {
+          //     Materialize.toast('Something went wrong...', 4000)
+          //   }
+          // }, response => {
+          //    Materialize.toast('Something went wrong...are you online?', 4000)
+          // });
+        }
       }
     },
     mounted: function(){

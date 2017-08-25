@@ -372,7 +372,6 @@ function deleteGroup(req, res){
 */
 
 function within(req, res){
-  console.log('getting within')
   var cypher = "MATCH (set:synSet {uid: {set} })-[IN_SET]->(syn:synSet)<-[r:IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
              + "WHERE lang.languageCode IN [ {language} , 'en' ] AND r.order=1  "
              + "RETURN DISTINCT syn.uid as setID, syn as term, translation , r "
@@ -468,7 +467,6 @@ function deleteContains(req, res){
   db.query(cypher, {setID: req.params.setID, otherID: req.params.otherID, member: res.locals.user.uid },function(err, result) {
     if (err) console.log(err);
     if(result){
-      console.log(result)
       res.send(result[0])
     } else {
       res.send()
@@ -533,14 +531,12 @@ function most(req,res){
 888                      888
 */
   function getProps(req,res){
-    console.log('in get prop')
     var cypher = "MATCH (s:synSet {uid: {setID} })-[sr:HAS_PROPERTY]->(p:prop)-[tr:HAS_TRANSLATION]->(t:translation) "
                + "WHERE tr.languageCode = {languageCode} "
                + "RETURN sr.type AS type, p AS property, t AS translation "
                + "ORDER BY sr.order "
     db.query(cypher, {setID: req.params.setID, languageCode: req.query.languageCode || 'en'},function(err, result) {
       if (err) console.log(err);
-      console.log(result)
       res.send(result)
     })
   }

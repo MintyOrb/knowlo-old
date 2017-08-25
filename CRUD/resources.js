@@ -56,7 +56,6 @@ module.exports = function(app, db){
          if (typeof req.query.exclude === "undefined") {
              req.query.exclude = [];
          }
-         console.log(req.query)
         db.query(cypher, {
             includedSets: req.query.include || [],
             excludedSets: req.query.exclude || [],
@@ -68,7 +67,6 @@ module.exports = function(app, db){
             language: 'en'
         }, function(err, result) {
       if (err) {console.log(err);res.status(500).send()};
-          console.log(result.length)
           res.send(result)
       })
   }
@@ -144,8 +142,6 @@ module.exports = function(app, db){
     })
   }
   function deleteSet(req,res){
-    console.log('in delete')
-    console.log(req.params)
     // TODO:check for member authorization...
     var cypher = "MATCH (resource:resource {uid:{resource}})-[r:TAGGED_WITH]->(set:synSet {uid:{set}}) "
                + "DELETE r "

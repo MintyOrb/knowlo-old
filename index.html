@@ -6,11 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-<link rel="stylesheet" href="offline\materialize.min.css">
 	<link rel="stylesheet" href="dep/flickity.min.css">
 	<link rel="stylesheet" href="dep/leaflet.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <link rel="stylesheet" href="offline/font-awesome.min.css" />
 	<link rel="stylesheet" href="main.css">
 
 	<script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
@@ -522,50 +520,46 @@
 
 						<div class="row" v-if="">
 							<div class="input-field col s12">
-								<input v-model="resource.URL" id="url" type="url" class="validate">
+								<input v-on:blur="saveProp" v-model="resource.URL" id="url" type="url" class="validate">
 								<label for="url">URL</label>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="input-field col s12">
-								<input v-model="resource.detail.title" id="title" type="text" class="validate">
+								<input v-on:blur="saveProp" v-model="resource.detail.title" id="title" type="text" class="validate">
 								<label for="title">Title</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
-								<input v-model="resource.detail.subtitle" id="subtitle" type="text" class="validate">
+								<input v-on:blur="saveProp" v-model="resource.detail.subtitle" id="subtitle" type="text" class="validate">
 								<label for="subtitle">Subtitle</label>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="input-field col s12">
-								<textarea v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
+								<textarea v-on:blur="saveProp" v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
 								<label for="value">Text</label>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="input-field col s12">
-								<textarea v-model="resource.detail.source" id="source" class="materialize-textarea"></textarea>
+								<textarea v-on:blur="saveProp" v-model="resource.detail.source" id="source" class="materialize-textarea"></textarea>
 								<label for="source">Source</label>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="input-field col s12">
-								<textarea v-model="resource.detail.description" id="description" class="materialize-textarea"></textarea>
+								<textarea v-on:blur="saveProp" v-model="resource.detail.description" id="description" class="materialize-textarea"></textarea>
 								<label for="description">Description</label>
 							</div>
 						</div>
 
 					</form>
-					<div class="btn" @click='saveTranslation'>
-						Next
-					</div>
-				</div>
 
 			</div>
 			<div class="addContainer">
