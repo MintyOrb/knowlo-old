@@ -503,61 +503,92 @@
 ██   ██ ██████  ██████      ██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████
 -->
 <template id="addResource" :term-query="termQuery" :member="member">
-	<div id="addResourceModal" class="modal">
-		<h1>Identify</h1>
-		<!--  here the user provides the url of the resource , or, eventually the file to be uploaded or the text -->
-		<div class="row">
-    <form class="col s12">
+	<div id="addResourceModal" class="modal modal-fixed-footer">
 
-			<div class="row" v-if="">
-        <div class="input-field col s12">
-          <input v-model="resource.URL" id="url" type="url" class="validate">
-          <label for="url">URL</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <input v-model="resource.detail.title" id="title" type="text" class="validate">
-          <label for="title">Title</label>
-        </div>
-      </div>
-			<div class="row">
-        <div class="input-field col s12">
-          <input v-model="resource.detail.subtitle" id="subtitle" type="text" class="validate">
-          <label for="subtitle">Subtitle</label>
-        </div>
-      </div>
-
-			<div class="row">
-				<div class="input-field col s12">
-					<textarea v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
-					<label for="value">Text</label>
-				</div>
+	<div class="addMeta modal-content">
+		<div class="addNav">
+			<div class="navItems">
+				<h4>Identify</h4>
 			</div>
-
-			<div class="row">
-				<div class="input-field col s12">
-					<textarea v-model="resource.detail.source" id="source" class="materialize-textarea"></textarea>
-					<label for="source">Source</label>
-				</div>
+			<div class="navItems">
+				<h4>Tag</h4>
 			</div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea v-model="resource.detail.description" id="description" class="materialize-textarea"></textarea>
-          <label for="description">Description</label>
-        </div>
-      </div>
-
-    </form>
-		<div class="btn" @click='saveTranslation'>
-			Next
 		</div>
-  </div>
-		<h1>Tag</h1>
-		<autocomplete exclude="" input-id="tagNewResources" v-on:select=""></autocomplete>
+		<!-- isotope contianers -->
+		<div class="addSections">
+			<div class="addContainer">
+				<div class="row">
+					<form>
+
+						<div class="row" v-if="">
+							<div class="input-field col s12">
+								<input v-model="resource.URL" id="url" type="url" class="validate">
+								<label for="url">URL</label>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="input-field col s12">
+								<input v-model="resource.detail.title" id="title" type="text" class="validate">
+								<label for="title">Title</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input v-model="resource.detail.subtitle" id="subtitle" type="text" class="validate">
+								<label for="subtitle">Subtitle</label>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="input-field col s12">
+								<textarea v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
+								<label for="value">Text</label>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="input-field col s12">
+								<textarea v-model="resource.detail.source" id="source" class="materialize-textarea"></textarea>
+								<label for="source">Source</label>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="input-field col s12">
+								<textarea v-model="resource.detail.description" id="description" class="materialize-textarea"></textarea>
+								<label for="description">Description</label>
+							</div>
+						</div>
+
+					</form>
+					<div class="btn" @click='saveTranslation'>
+						Next
+					</div>
+				</div>
+
+			</div>
+			<div class="addContainer">
+				<autocomplete exclude="" input-id="tagNewResources" v-on:select="addTag"></autocomplete>
+				<isotope ref='tagged' :list="tags" :options='{}'>
+					<div v-for="term in tags" :key="term.translation.name">
+						<term :term="term"
+						:display="'thumb'"
+						:key="term.translation.name"
+						v-on:exclude="removeTag(term.setID)">
+						</term>
+					</div>
+				</isotope>
+			</div>
+			<!--  here the user provides the url of the resource , or, eventually the file to be uploaded or the text -->
+
+		</div>
 	</div>
+	<div class="modal-footer">
+		<a class="modal-action modal-close waves-effect waves-blue btn-flat ">cancel</a>
+		<a class="modal-action modal-close waves-effect waves-blue btn-flat disabled">save</a>
+	</div>
+</div>
 </template>
 
 <!--
@@ -817,7 +848,7 @@
 	</div>
 
 	<div class='list hoverable waves-effect waves-light' v-if="display == 'godMode'">
-		<input type="text" />
+		<span>{{term.term.uid}}</span>
 		<input type="text" v-model='term.translation.name' v-on:blur="name(term.translation.uid,term.translation.name)" />
 		<!-- <span> ({{term.translation.languageCode}})</span> -->
 		<input type='text' v-model='term.term.order' v-on:blur="order(term.term.uid,term.term.order)" />

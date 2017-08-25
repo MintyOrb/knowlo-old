@@ -173,7 +173,7 @@ Vue.component('autocomplete',{
         }
       },
       quickAdd: function(){
-        this.$http.post('/api/term', {term: this.term, translation: this.translation}).then(response => {
+        this.$http.post('/api/set', {term: this.term, translation: this.translation}).then(response => {
           if(response.body.term){
             this.$emit('select', response.body)
             Materialize.toast("'" + response.body.translation.name+ "'" + ' added!', 3000)

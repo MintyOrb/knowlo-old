@@ -11,7 +11,9 @@ const addResource = Vue.component('addResource',{
     props: ['member'],
     data: function() {
       return {
-        resource:{ // these aren't all strings...\
+        flickRegistry: [],
+        tags: [],
+        resource:{ // these aren't all strings...
           core: {
           'displayType':"",
           'uid':"",
@@ -31,12 +33,19 @@ const addResource = Vue.component('addResource',{
             'thumb':"",
             'languageCode': this.member.languageCode,
             'source': "",
-            'uid':""
           }
         },
       }
     },
     methods:{
+      addTag: function(term){
+        console.log(term)
+        this.tags.push(term)
+      },
+      removeTag: function(uid) {
+        console.log(uid)
+        this.tags.splice(this.tags.findIndex( (term) => term.term.uid === uid) ,1)
+      },
       close: function(){
         console.log("close here after esc")
       },
@@ -69,9 +78,27 @@ const addResource = Vue.component('addResource',{
           $('body').css("overflow","hidden")
         },
         complete: () => {
+          $('.addNav').flickity('destroy');
+          $('.addSections').flickity('destroy');
           $('body').css("overflow","auto")
         }
       }).modal('open');
+
+      $('.addNav').flickity({
+        asNavFor: '.addSections',
+        pageDots: true,
+        prevNextButtons: true,
+        accessibility: false, // to prevent jumping when focused
+      })
+
+      $('.addSections').flickity({
+        // asNavFor: '.termNav',
+        wrapAround: true,
+        pageDots: false,
+        prevNextButtons: true,
+        accessibility: false, // to prevent jumping when focused
+        dragThreshold: 20 // play around with this more?
+      });
 
       // listen for escape key (materalize closes modal on esc, but doesn't re-route)
       // document.addEventListener('keydown', event => {
@@ -131,6 +158,7 @@ const termComp = Vue.component('termComp',{
              this.fetchWithin();
              this.fetchContains();
              this.fetchTranslations();
+             this.fetchProps();
            } else {
              Materialize.toast('Resource not found.', 4000)
            }
@@ -165,6 +193,19 @@ const termComp = Vue.component('termComp',{
       },
       close: function(){
         console.log("close here after esc")
+      },
+      fetchProps: function(){
+        this.$http.get('/set/' + this.$route.params.uid + '/props/', {params: { languageCode: 'en'}}).then(response => {
+          if(response.body.length > 0){
+            // this.props = response.body;
+            console.log(response.body)
+          } else {
+            Materialize.toast('Properties not found.', 4000)
+          }
+        }, response => {
+          this.openModal()
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        });
       },
       fetchTranslations: function() {
         this.$http.get('/set/' + this.$route.params.uid + '/translation/', {params: { languageCode: 'en'}}).then(response => {
@@ -291,7 +332,7 @@ const termComp = Vue.component('termComp',{
           if(response.body.length > 0){
             this.contains = response.body;
           } else {
-            Materialize.toast('Within not found.', 4000)
+            Materialize.toast('Contains no terms.', 4000)
           }
         }, response => {
           this.openModal()
@@ -598,6 +639,9 @@ const explore = Vue.component('exploreComp',{
         },
         focus: function(set){
           console.log(set)
+          // set.focus = true;
+          // set.include = true;
+          this.termQuery = [set];
         },
         addToFrom: function(term, to, from){ /// this is all stupid and needs to be re thought.
           console.log(term)
@@ -757,7 +801,7 @@ const explore = Vue.component('exploreComp',{
           for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
             include.push(this.termQuery[termIndex]['term'].uid)
           }
-          this.$http.get('/term/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
+          this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
             this.suggestions=response.body;
           }, response => {
           });

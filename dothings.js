@@ -34,9 +34,9 @@ module.exports = function(app, db) {
 
     function addID(){
 
-      require('./nouid')
-      console.log(nouid['data'][0]['meta'][0]['id'])
-      async.eachSeries(nouid['data'], function(term, callback) {
+      require('./tempData/noUIDs')
+      console.log(noUIDs['data'][0]['meta'][0]['id'])
+      async.eachSeries(noUIDs['data'], function(term, callback) {
         var uid=shortid.generate();
         var cypher = "MATCH (s) WHERE ID(s) = {tid} SET s.uid={id} "
         console.log(term['meta'][0]['id'])

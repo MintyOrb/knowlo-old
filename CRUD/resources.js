@@ -79,18 +79,31 @@ module.exports = function(app, db){
   }
   function createCore(req, res){
     req.body.resource.core. uid = shortid.generate();
-    // added vs added by....
+    // TODO: added vs added by member rel....
+
+    // remove blank props
+    for (thing in req.body.resource.detail) {
+      if(req.body.resource.detail[thing].length == 0){
+        delete req.body.resource.detail[thing]
+      }
+    }
+    var detailIDs = [];
+    for (var i = 0; i < Object.keys(req.body.resource.detail).length; i++) {
+      detailIDs.push(shortid.generate());
+    }
+
      var cypher = "CREATE (resource:resource:tester {core}) "
-                + "WITH resource, {detail} AS detail, keys({detail}) AS keys "
+                + "WITH resource, {detail} AS detail, {detailIDs} as dIDs, keys({detail}) AS keys "
                 + "FOREACH (index IN range(0, size(keys)-1) | "
-                  + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index] })-[tr:HAS_TRANSLATION]->(langNode:tester:translation {value: detail[keys[index]] } ) "
+                  + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index], uid: dIDs[index] })-[tr:HAS_TRANSLATION]->(langNode:tester:translation {value: detail[keys[index]] } ) "
                 + ") "
                 + "RETURN resource"
 
     db.query(cypher, {
         url: req.body.resource.url,
         core: req.body.resource.core,
-        detail: req.body.resource.detail
+        detail: req.body.resource.detail,
+        detailIDs: detailIDs
       },function(err, resource) {
       if (err) {console.log(err); res.status(500).send()};
       res.send()
