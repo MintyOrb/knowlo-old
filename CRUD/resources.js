@@ -46,9 +46,9 @@ module.exports = function(app, db){
                + "AND connected = {numberOfIncluded} "
                + "AND tlang.languageCode IN [ {language} , 'en' ] "
            + "WITH synSet, tlangNode, tlang, re "
-           + " MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
+           + "MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
            + "WHERE p.order=1 AND plang.languageCode IN [ {language} , 'en' ] "
-           + "RETURN  "
+           + "RETURN "
              + "collect(DISTINCT {term: synSet.uid, url: synSet.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, "
              + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
              + "re AS resource "
@@ -69,12 +69,18 @@ module.exports = function(app, db){
             orderby: req.orderby,
             updown: req.updown,
             skip:0,
-            limit: 50, // TODO: change for mobile
+            limit: 50, // TODO: change for mobile...
             language: 'en'
         }, function(err, result) {
       if (err) {console.log(err);res.status(500).send()};
-      console.log(result)
-          res.send(result)
+        // massage result for front end...there's probably an alternative to iterating through all resources. Different shcemea? Different query?
+        for(rindex in result){
+          for(pindex in result[rindex].properties){
+            result[rindex].resource[result[rindex].properties[pindex].type] = result[rindex].properties[pindex].value;
+          }
+          delete result[rindex].properties // no need to send redundant data
+        }
+        res.send(result)
       })
   }
 

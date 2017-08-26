@@ -126,6 +126,27 @@ Vue.component('term',{
       }
     }
 });
+/*
+
+888d888 .d88b.  .d8888b   .d88b.  888  888 888d888 .d8888b .d88b.
+888P"  d8P  Y8b 88K      d88""88b 888  888 888P"  d88P"   d8P  Y8b
+888    88888888 "Y8888b. 888  888 888  888 888    888     88888888
+888    Y8b.          X88 Y88..88P Y88b 888 888    Y88b.   Y8b.
+888     "Y8888   88888P'  "Y88P"   "Y88888 888     "Y8888P "Y8888
+*/
+Vue.component('resource',{
+  template: "#resource",
+  props:['re','display'],
+  name: "resource",
+  data: () =>  {
+    return {}
+  },
+  methods:{
+  },
+  mounted: function(){
+    console.log('resource here.')
+  }
+})
 
 /*
         █████  ██    ██ ████████  ██████   ██████  ██████  ███    ███ ██████  ██      ███████ ████████ ███████
@@ -136,170 +157,170 @@ Vue.component('term',{
 */
 //<!-- ajax auto complete adapted from  http://stackoverflow.com/a/42757285/2061741 -->
 Vue.component('autocomplete',{
-    template: "#autocomplete",
-    props:['ajaxUrl','inputId','exclude'],
-    name: "autocomplete",
-    data: () =>  {
-      return {
-        addWithDetail: false,
-        suggestions:[],
-        input:"",
-        hidden:false,
-        term: {
-          url: "",
-          english: ""
-        },
-        translation: {
-          name: "",
-          definition: "",
-          languageCode: 'en' // don't hard code this you idiot
+  template: "#autocomplete",
+  props:['ajaxUrl','inputId','exclude'],
+  name: "autocomplete",
+  data: () =>  {
+    return {
+      addWithDetail: false,
+      suggestions:[],
+      input:"",
+      hidden:false,
+      term: {
+        url: "",
+        english: ""
+      },
+      translation: {
+        name: "",
+        definition: "",
+        languageCode: 'en' // don't hard code this you idiot
+      }
+    }
+  },
+  methods:{
+    pick: function(item){
+      this.input = '';
+      this.suggestions=[]
+      if(item.translation.name.indexOf("Create new term:") > -1){ // if term needs to be created
+        this.term.english = this.translation.name = item.translation.name.substr(17).trim()
+        if(this.addWithDetail){
+          router.push('/addTerm/'+this.translation.name)
+        } else {
+          this.quickAdd();
         }
+      } else {
+        item.status = {includeIcon: true}; // having to add item.status here feels dumb.
+        this.$emit('select', item)
       }
     },
-    methods:{
-      pick: function(item){
-        this.input = '';
-        this.suggestions=[]
-        if(item.translation.name.indexOf("Create new term:") > -1){ // if term needs to be created
-          this.term.english = this.translation.name = item.translation.name.substr(17).trim()
-          if(this.addWithDetail){
-            router.push('/addTerm/'+this.translation.name)
-          } else {
-            this.quickAdd();
-          }
+    quickAdd: function(){
+      this.$http.post('/api/set', {term: this.term, translation: this.translation}).then(response => {
+        if(response.body.term){
+          this.$emit('select', response.body)
+          Materialize.toast("'" + response.body.translation.name+ "'" + ' added!', 3000)
         } else {
-          item.status = {includeIcon: true}; // having to add item.status here feels dumb.
-          this.$emit('select', item)
+          Materialize.toast('Something went wrong...term not added.', 4000)
         }
-      },
-      quickAdd: function(){
-        this.$http.post('/api/set', {term: this.term, translation: this.translation}).then(response => {
-          if(response.body.term){
-            this.$emit('select', response.body)
-            Materialize.toast("'" + response.body.translation.name+ "'" + ' added!', 3000)
+      }, response => {
+          if(response.status = 401){
+            Materialize.toast('You must be logged in to add a term!', 4000)
+            $('#login-modal').modal('open')
           } else {
-            Materialize.toast('Something went wrong...term not added.', 4000)
+            Materialize.toast('Something went wrong...are you online?', 4000)
           }
-        }, response => {
-            if(response.status = 401){
-              Materialize.toast('You must be logged in to add a term!', 4000)
-              $('#login-modal').modal('open')
-            } else {
-              Materialize.toast('Something went wrong...are you online?', 4000)
+      });
+
+    },
+    hide(){ // need to time out because otherwise the li is hidden before selected() fires on click
+      window.setTimeout(()=>{
+          this.hidden=true
+      }, 250)
+    }
+  },
+  mounted:function(){
+    var options = {
+        inputId: this.inputId || 'autocomplete-input',
+        ajaxUrl: this.ajaxUrl || '/term/autocomplete/',
+        data: {exclude: this.exclude},
+        minLength: 1
+    };
+    var $input = $("#" + options.inputId);
+
+    if (options.ajaxUrl) {
+        var $autocomplete = $('#ac'),
+            request,
+            runningRequest = false,
+            timeout,
+            liSelected;
+
+        $input.on('keyup', (e) => {
+
+            if (timeout) { // comment to remove timeout
+                clearTimeout(timeout);
+            }
+
+            if (runningRequest) {
+                request.abort();
+            }
+
+            if (e.which === 13 && this.input.length > 0 && liSelected[0]) { // select element with enter key
+                liSelected[0].click();
+                return;
+            }
+
+            // scroll ul with arrow keys
+            if (e.which === 40) { // down arrow
+                if (liSelected) {
+                    liSelected.removeClass('selected');
+                    next = liSelected.next();
+                    if (next.length > 0) {
+                        liSelected = next.addClass('selected');
+                    } else {
+                        liSelected = $autocomplete.find('li').eq(0).addClass('selected');
+                    }
+                } else {
+                    liSelected = $autocomplete.find('li').eq(0).addClass('selected');
+                }
+                return; // stop new AJAX call
+            } else if (e.which === 38) { // up arrow
+                if (liSelected) {
+                    liSelected.removeClass('selected');
+                    next = liSelected.prev();
+                    if (next.length > 0) {
+                        liSelected = next.addClass('selected');
+                    } else {
+                        liSelected = $autocomplete.find('li').last().addClass('selected');
+                    }
+                } else {
+                    liSelected = $autocomplete.find('li').last().addClass('selected');
+                }
+                return;
+            }
+
+            // escape these keys
+            if (e.which === 9 || // tab
+                e.which === 16 || // shift
+                e.which === 17 || // ctrl
+                e.which === 18 || // alt
+                e.which === 20 || // caps lock
+                e.which === 35 || // end
+                e.which === 36 || // home
+                e.which === 37 || // left arrow
+                e.which === 39) { // right arrow
+                return;
+            } else if (e.which === 27) { // Esc. Close ul
+                return;
+            }
+
+            var val = $input.val().toLowerCase();
+            if (val.length > options.minLength) {
+
+                timeout = setTimeout(() => { // comment this line to remove timeout
+                    runningRequest = true;
+                    request = $.ajax({
+                        type: 'GET',
+                        url: options.ajaxUrl + val +'/'+ this.exclude,
+                        success: (data) => {
+                            this.suggestions = data;
+                            // hide "create new" if a match is found
+                            if (Object.values(this.suggestions).findIndex(item => this.input.toLowerCase().trim() == item.translation.name.toLowerCase().trim())) {
+                                this.suggestions.push({
+                                    term:{},
+                                    translation :{
+                                      name: "Create new term: " + this.input
+                                    },
+                                    new: true
+                                })
+                            }
+                        },
+                        complete: function() {
+                            runningRequest = false;
+                        }
+                    });
+                }, 250); // comment this line to remove timeout
             }
         });
-
-      },
-      hide(){ // need to time out because otherwise the li is hidden before selected() fires on click
-        window.setTimeout(()=>{
-            this.hidden=true
-        }, 250)
-      }
-    },
-    mounted:function(){
-      var options = {
-          inputId: this.inputId || 'autocomplete-input',
-          ajaxUrl: this.ajaxUrl || '/term/autocomplete/',
-          data: {exclude: this.exclude},
-          minLength: 1
-      };
-      var $input = $("#" + options.inputId);
-
-      if (options.ajaxUrl) {
-          var $autocomplete = $('#ac'),
-              request,
-              runningRequest = false,
-              timeout,
-              liSelected;
-
-          $input.on('keyup', (e) => {
-
-              if (timeout) { // comment to remove timeout
-                  clearTimeout(timeout);
-              }
-
-              if (runningRequest) {
-                  request.abort();
-              }
-
-              if (e.which === 13 && this.input.length > 0 && liSelected[0]) { // select element with enter key
-                  liSelected[0].click();
-                  return;
-              }
-
-              // scroll ul with arrow keys
-              if (e.which === 40) { // down arrow
-                  if (liSelected) {
-                      liSelected.removeClass('selected');
-                      next = liSelected.next();
-                      if (next.length > 0) {
-                          liSelected = next.addClass('selected');
-                      } else {
-                          liSelected = $autocomplete.find('li').eq(0).addClass('selected');
-                      }
-                  } else {
-                      liSelected = $autocomplete.find('li').eq(0).addClass('selected');
-                  }
-                  return; // stop new AJAX call
-              } else if (e.which === 38) { // up arrow
-                  if (liSelected) {
-                      liSelected.removeClass('selected');
-                      next = liSelected.prev();
-                      if (next.length > 0) {
-                          liSelected = next.addClass('selected');
-                      } else {
-                          liSelected = $autocomplete.find('li').last().addClass('selected');
-                      }
-                  } else {
-                      liSelected = $autocomplete.find('li').last().addClass('selected');
-                  }
-                  return;
-              }
-
-              // escape these keys
-              if (e.which === 9 || // tab
-                  e.which === 16 || // shift
-                  e.which === 17 || // ctrl
-                  e.which === 18 || // alt
-                  e.which === 20 || // caps lock
-                  e.which === 35 || // end
-                  e.which === 36 || // home
-                  e.which === 37 || // left arrow
-                  e.which === 39) { // right arrow
-                  return;
-              } else if (e.which === 27) { // Esc. Close ul
-                  return;
-              }
-
-              var val = $input.val().toLowerCase();
-              if (val.length > options.minLength) {
-
-                  timeout = setTimeout(() => { // comment this line to remove timeout
-                      runningRequest = true;
-                      request = $.ajax({
-                          type: 'GET',
-                          url: options.ajaxUrl + val +'/'+ this.exclude,
-                          success: (data) => {
-                              this.suggestions = data;
-                              // hide "create new" if a match is found
-                              if (Object.values(this.suggestions).findIndex(item => this.input.toLowerCase().trim() == item.translation.name.toLowerCase().trim())) {
-                                  this.suggestions.push({
-                                      term:{},
-                                      translation :{
-                                        name: "Create new term: " + this.input
-                                      },
-                                      new: true
-                                  })
-                              }
-                          },
-                          complete: function() {
-                              runningRequest = false;
-                          }
-                      });
-                  }, 250); // comment this line to remove timeout
-              }
-          });
-      }
+    }
   }
 })
 

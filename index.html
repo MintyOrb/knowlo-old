@@ -232,33 +232,9 @@
 					<div class=" crossSectionSteps">
 						<div v-for="step in crossSection.members" class="stepContainer">
 							<isotope :ref='"resourceBin" + step.name' class="step" :list="db" :options='{}'>
-								<div v-for="item in resources"  v-if="item.resource.time.includes(step.name) || item.resource.discipline.includes(step.name)" class='element-item' key="item.resource.name">
-									 <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-												<router-link :to="{ name: 'resource', params: { uid: item.resource.uid }}">
-													<img :src="item.resource.thumb">
-												</router-link>
-									 </div>
-									 <router-link  :to="{ name: 'resourceSub', params: { uid: item.resource.uid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
-										<a>
-											<span class='truncate thin '>{{item.resource.title}}</span>
-										</a>
-									 </router-link>
-										<div  v-if="display == 'card'" class="card hoverable">
-											<div class='card-image'>
-													<router-link :to="{ name: 'resourceSub', params: { uid: item.resource.uid }}">
-														<img :src="item.resource.thumb" class='card-image' alt="Not found">
-												 </router-link>
-											</div>
-											<div class='card-content'>
-													<span class='title'>{{item.translation.title}}</span>
-													<p class="truncate">{{item.translation.author}}</p>
-											</div>
-											<div class='card-action'>
-												<!-- <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.resource.viewcount,1)}}</span> -->
-												<!-- <span class='right card-bottom'>{{item.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span> -->
-											</div>
-										</div>
-									</div>
+								<div v-for="re in resources"  v-if="item.resource.time.includes(step.name) || item.resource.discipline.includes(step.name)" class='element-item' key="item.resource.name">
+									HI!<resource :re="re" :display="display"></resource>
+								</div>
 							 </isotope>
 						</div>
 					</div>
@@ -269,32 +245,8 @@
 				<transition name="fade">
 				<div v-if="!crossSection" >
 			    <isotope ref="contentBin" class="step" :list="resources" :options='getContentOptions()' id="container">
-			        <div v-for="item in resources" class='element-item' key="item.resource.name">
-			          <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-			              <router-link :to="{ name: 'resource', params: { uid: item.resource.uid }}">
-			                <img :src="item.resource.thumb">
-			              </router-link>
-			          </div>
-							 <router-link  :to="{ name: 'resourceSub', params: { uid: item.resource.uid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
-								<a>
-									<span class='truncate thin '>{{item.resource.title}}</span>
-								</a>
-							 </router-link>
-			          <div  v-if="display == 'card'" class="card hoverable">
-			            <div class='card-image'>
-			                <router-link :to="{ name: 'resourceSub', params: { uid: item.resource.uid }}">
-			                  <img :src="item.resource.thumb" class='card-image' alt="Not found">
-			               </router-link>
-			            </div>
-			            <div class='card-content'>
-			                <span class='title'>{{item.translation.title}}</span>
-			                <p class="truncate">{{item.translation.author}}</p>
-			            </div>
-			            <div class='card-action'>
-			              <!-- <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.resource.viewcount,1)}}</span> -->
-			              <!-- <span class='right card-bottom'>{{item.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span> -->
-			            </div>
-								</div>
+			        <div v-for="re in resources" class='element-item' key="re.resource.name">
+			          	<resource :re="re" :display="display"></resource>
 			        </div>
 			      </isotope>
 					</div>
@@ -853,6 +805,46 @@
 	</div>
 </template>
 
+<!--
+
+888d888 .d88b.  .d8888b   .d88b.  888  888 888d888 .d8888b .d88b.
+888P"  d8P  Y8b 88K      d88""88b 888  888 888P"  d88P"   d8P  Y8b
+888    88888888 "Y8888b. 888  888 888  888 888    888     88888888
+888    Y8b.          X88 Y88..88P Y88b 888 888    Y88b.   Y8b.
+888     "Y8888   88888P'  "Y88P"   "Y88888 888     "Y8888P "Y8888
+-->
+<template id='resource'>
+	<div>
+		<div>
+			{{re.resource.text}}
+		</div>
+		<!-- <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
+	 			<router-link :to="{ name: 'resource', params: { uid: item.resource.uid }}">
+	 				<img :src="item.resource.thumb">
+	 			</router-link>
+	  </div>
+	  <router-link  :to="{ name: 'resourceSub', params: { uid: item.resource.uid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
+	 	<a>
+	 		<span class='truncate thin '>{{item.resource.title}}</span>
+	 	</a>
+	  </router-link>
+	 	<div  v-if="display == 'card'" class="card hoverable">
+	 		<div class='card-image'>
+	 				<router-link :to="{ name: 'resourceSub', params: { uid: item.resource.uid }}">
+	 					<img :src="item.resource.thumb" class='card-image' alt="Not found">
+	 			 </router-link>
+	 		</div>
+	 		<div class='card-content'>
+	 				<span class='title'>{{item.translation.title}}</span>
+	 				<p class="truncate">{{item.translation.author}}</p>
+	 		</div> -->
+	 		<div class='card-action'>
+	 			<!-- <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.resource.viewcount,1)}}</span> -->
+	 			<!-- <span class='right card-bottom'>{{item.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span> -->
+	 		</div>
+	 	</div>
+	</div>
+</template>
 <!--
  █████  ██    ██ ████████  ██████   ██████  ██████  ███    ███ ██████  ██      ███████ ████████ ███████
 ██   ██ ██    ██    ██    ██    ██ ██      ██    ██ ████  ████ ██   ██ ██      ██         ██    ██
