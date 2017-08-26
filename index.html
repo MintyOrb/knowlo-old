@@ -515,52 +515,53 @@
 		<!-- isotope contianers -->
 		<div class="addSections">
 			<div class="addContainer">
-				<div class="row">
 					<form>
 
 						<div class="row" v-if="">
 							<div class="input-field col s12">
-								<input v-on:blur="saveProp" v-model="resource.URL" id="url" type="url" class="validate">
+								<input v-model="resource.URL" id="url" type="url" class="validate">
 								<label for="url">URL</label>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="input-field col s12">
-								<input v-on:blur="saveProp" v-model="resource.detail.title" id="title" type="text" class="validate">
+								<input v-model="resource.detail.title" id="title" type="text" class="validate">
 								<label for="title">Title</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
-								<input v-on:blur="saveProp" v-model="resource.detail.subtitle" id="subtitle" type="text" class="validate">
+								<input v-model="resource.detail.subtitle" id="subtitle" type="text" class="validate">
 								<label for="subtitle">Subtitle</label>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="input-field col s12">
-								<textarea v-on:blur="saveProp" v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
+								<textarea v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
 								<label for="value">Text</label>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="input-field col s12">
-								<textarea v-on:blur="saveProp" v-model="resource.detail.source" id="source" class="materialize-textarea"></textarea>
+								<textarea v-model="resource.detail.source" id="source" class="materialize-textarea"></textarea>
 								<label for="source">Source</label>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="input-field col s12">
-								<textarea v-on:blur="saveProp" v-model="resource.detail.description" id="description" class="materialize-textarea"></textarea>
+								<textarea v-model="resource.detail.description" id="description" class="materialize-textarea"></textarea>
 								<label for="description">Description</label>
 							</div>
 						</div>
 
 					</form>
-
+					<div class='btn blue' @click="upsertResource()">
+						addddddddd
+					</div>
 			</div>
 			<div class="addContainer">
 				<autocomplete exclude="" input-id="tagNewResources" v-on:select="addTag"></autocomplete>

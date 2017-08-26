@@ -38,18 +38,24 @@ module.exports = function(app, db){
     */
     var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(synSet:synSet) "
            + "WHERE synSet.uid IN {includedSets} "
-              //  + "NOT synSet.uid IN {excludedSets} "
+              //  + "NOT synSet.uid IN {excludedSets} " // this doesn't work...
            + "WITH re, count(*) AS connected "
-           + "MATCH (rlangNode:translation)<-[rlang:HAS_TRANSLATION]-(re)-[:TAGGED_WITH]->(synSet:synSet)<-[topSynR:IN_SET]-(topSyn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
+           + "MATCH (re)-[:TAGGED_WITH]->(synSet:synSet)<-[synR:IN_SET]-(syn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
            + "WHERE "
-              //  + "topSynR.order=1 "
-               + "connected = {numberOfIncluded} "
+               + "synR.order=1 "
+               + "AND connected = {numberOfIncluded} "
                + "AND tlang.languageCode IN [ {language} , 'en' ] "
-               + "AND rlang.languageCode IN [ {language} , 'en' ] "
-           + "RETURN DISTINCT  collect( {term: synSet.uid, url: synSet.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, re as resource, rlangNode as translation "
+           + "WITH synSet, tlangNode, tlang, re "
+           + " MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
+           + "WHERE p.order=1 AND plang.languageCode IN [ {language} , 'en' ] "
+           + "RETURN  "
+             + "collect(DISTINCT {term: synSet.uid, url: synSet.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, "
+             + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
+             + "re AS resource "
+            //  + "prop AS properties "
            // + "ORDER BY {orderby} {updown}"
            // + "SKIP {skip} "
-           + "LIMIT {limit}";
+          //  + "LIMIT {limit}";
          if (typeof req.query.include === "undefined") {
              req.query.include = [];
          }
@@ -67,6 +73,7 @@ module.exports = function(app, db){
             language: 'en'
         }, function(err, result) {
       if (err) {console.log(err);res.status(500).send()};
+      console.log(result)
           res.send(result)
       })
   }
@@ -93,10 +100,10 @@ module.exports = function(app, db){
      var cypher = "CREATE (resource:resource:tester {core}) "
                 + "WITH resource, {detail} AS detail, {detailIDs} as dIDs, keys({detail}) AS keys "
                 + "FOREACH (index IN range(0, size(keys)-1) | "
-                  + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index], uid: dIDs[index] })-[tr:HAS_TRANSLATION]->(langNode:tester:translation {value: detail[keys[index]] } ) "
+                  + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index], uid: dIDs[index] })-[tr:HAS_TRANSLATION {languageCode: 'en'}]->(langNode:tester:translation {value: detail[keys[index]] } ) "
                 + ") "
                 + "RETURN resource"
-
+    //TODO add languagecode for real.
     db.query(cypher, {
         url: req.body.resource.url,
         core: req.body.resource.core,
@@ -104,7 +111,8 @@ module.exports = function(app, db){
         detailIDs: detailIDs
       },function(err, resource) {
       if (err) {console.log(err); res.status(500).send()};
-      res.send()
+      console.log(resource);
+      res.send(resource[0])
 
     })
   }

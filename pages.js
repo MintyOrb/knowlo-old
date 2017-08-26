@@ -39,12 +39,31 @@ const addResource = Vue.component('addResource',{
     },
     methods:{
       addTag: function(term){
-        console.log(term)
-        this.tags.push(term)
+        if(this.resource.core.uid.length > 0){
+          this.$http.put('/api/resource/'+this.resource.core.uid+'/set/'+term.setID).then(response => {
+            if(response.body){
+              this.tags.push(term)
+            } else {
+              Materialize.toast('Something went wrong...', 4000)
+            }
+          }, response => {
+             Materialize.toast('Something went wrong...are you online and logged in?', 4000)
+          });
+        } else {
+          Materialize.toast('Add a resource before taggging!', 4000)
+        }
+
       },
       removeTag: function(uid) {
-        console.log(uid)
-        this.tags.splice(this.tags.findIndex( (term) => term.term.uid === uid) ,1)
+        this.$http.delete('/api/resource/'+this.resource.core.uid+'/set/'+uid).then(response => {
+          if(response.body){
+            this.tags.splice(this.tags.findIndex( (term) => term.term.uid === uid) ,1)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online and logged in?', 4000)
+        });
       },
       close: function(){
         console.log("close here after esc")
@@ -53,24 +72,22 @@ const addResource = Vue.component('addResource',{
         // parse youtube/vimeo/other....set display type?....settime to view
 
       },
-      saveProp(){
+      upsertResource(){
         // create resource if no ID
-        console.log(this.resource.core.uid)
-        console.log(this.resource.detail)
-        if(this.resource.core.uid.length){ // update
+        //TODO: update by prop
 
-        } else { // create
-          // this.$http.post('/resource', {resource:this.resource}).then(response => {
-          //   if(response.body){
-          //     console.log(response.body)
-          //     // add relevant terms based on response?
-          //   } else {
-          //     Materialize.toast('Something went wrong...', 4000)
-          //   }
-          // }, response => {
-          //    Materialize.toast('Something went wrong...are you online?', 4000)
-          // });
-        }
+        this.$http.post('/resource', {resource:this.resource}).then(response => {
+          if(response.body){
+            this.resource.core = response.body;
+            console.log(response.body)
+            //TODO: add relevant terms based on response?
+
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
       }
     },
     mounted: function(){
@@ -875,6 +892,7 @@ const explore = Vue.component('exploreComp',{
         }
         this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
           this.resources=response.body;
+          console.log(response.body)
           this.getTerms();
           window.setTimeout(() =>{
             this.layout('post term query')
