@@ -149,7 +149,7 @@ html {
     border-radius: 50%;
 }
 .thumb img {
-    display: inline;
+    display: block;
     margin: 0 auto;
     height: 100%;
 }

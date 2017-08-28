@@ -510,7 +510,8 @@ const resourceComp = Vue.component('resourceComp',{
 
       },
       addTerm: function(set){
-        this.$http.put('/api/resource/'+ this.resource.uid +'/set/'+ set.term.uid).then(response => {
+        console.log(set)
+        this.$http.put('/api/resource/'+ this.resource.uid +'/set/'+ set.setID).then(response => {
           if(response.body){
             Materialize.toast('term added', 4000)
             this.terms.push(set)

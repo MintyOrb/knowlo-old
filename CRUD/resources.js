@@ -55,7 +55,7 @@ module.exports = function(app, db){
             //  + "prop AS properties "
            // + "ORDER BY {orderby} {updown}"
            // + "SKIP {skip} "
-          //  + "LIMIT {limit}";
+           + "LIMIT {limit}";
          if (typeof req.query.include === "undefined") {
              req.query.include = [];
          }
@@ -69,7 +69,7 @@ module.exports = function(app, db){
             orderby: req.orderby,
             updown: req.updown,
             skip:0,
-            limit: 50, // TODO: change for mobile...
+            limit: 25, // TODO: change for mobile...
             language: 'en'
         }, function(err, result) {
       if (err) {console.log(err);res.status(500).send()};

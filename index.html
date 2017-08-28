@@ -317,7 +317,7 @@
 						:term="term"
 						key="term.name"
 						display="thumb"
-						v-on:remove="removeTerm">
+						v-on:exclude="removeTerm(term.setID)">
 					</term>
 					<autocomplete exclude="" input-id="resourceTest" v-on:select="addTerm"></autocomplete>
 				</div>
@@ -815,44 +815,37 @@
 -->
 <template id='resource'>
 	<div>
-		<!-- <div>
-			{{re.resource.uid}}
-			{{display}}
-		</div> -->
-		<div v-if="re.resource.title">
+		<div class="card" v-bind:class="{
+		'list': display=='list'}">
+		<div v-if="re.resource.title && display =='card' || display =='list'"
+			v-bind:class="{
+			'truncate thin': display=='list'}"
+			>
 			{{re.resource.title}}
 		</div>
-		<div v-if="re.resource.mThumb" >
-			<img :src="re.resource.mThumb" style="width:200px;" />
+		<div v-if="re.resource.mThumb" class=" waves-effect waves-block waves-light z-depth-1 hoverable"
+			v-bind:class="{
+			'thumb': display == 'thumb' || display =='list',
+		 	'card-image': display == 'card'}">
+			<router-link :to="{ name: 'resource', params: { uid: re.resource.uid }}">
+				<img :src="re.resource.mThumb" />
+			</router-link>
 		</div>
 		<div v-if="re.resource.viewTime">
 			{{re.resource.viewTime}}
 		</div>
-		<!-- <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-	 			<router-link :to="{ name: 'resource', params: { uid: re.resource.uid }}">
-	 				<img :src="re.resource.thumb">
-	 			</router-link>
-	  </div>
-	  <router-link  :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
-	 	<a>
-	 		<span class='truncate thin '>{{re.resource.title}}</span>
-	 	</a>
-	  </router-link>
-	 	<div  v-if="display == 'card'" class="card hoverable">
-	 		<div class='card-image'>
-	 				<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
-	 					<img :src="re.resource.thumb" class='card-image' alt="Not found">
-	 			 </router-link>
-	 		</div> -->
-	 		<div class='card-content'>
+		</div>
+
+
+	 		<!-- <div class='card-content'> -->
 	 				<!-- <span class='title'>{{re.translation.title}}</span> -->
 	 				<!-- <p class="truncate">{{re.translation.author}}</p> -->
-	 		</div>
-	 		<div class='card-action'>
+	 		<!-- </div>
+	 		<div class='card-action'> -->
 	 			<!-- <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(re.resource.viewcount,1)}}</span> -->
 	 			<!-- <span class='right card-bottom'>{{re.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span> -->
-	 		</div>
-	 	</div>
+	 		<!-- </div>
+	 	</div> -->
 	</div>
 </template>
 <!--
