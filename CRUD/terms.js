@@ -12,7 +12,7 @@ app.post('/api/set/:setID/translation/', createTranslation);       // create set
 app.delete('/api/set/:setID/translation/:uid', deleteTranslation); // delete set translation by id | delete node or just relatinship??
 // synonym
 app.get('/set/:setID/synonym/', readSynonym);                // retrieve synonyms of a set based on set id and provided langauge code. If language not found, attempt translation? Also returns set core
-app.put('/set/:setID/synonym/:otherID', updateSynonym);    // add set synonym by ID | is /set/:setID - copy any other sets and resource relationships
+app.put('/api/set/:setID/synonym/:otherID', updateSynonym);    // add set synonym by ID | is /set/:setID - copy any other sets and resource relationships
 // ? don't need? app.post('/api/set/:setID/synonym/', createSynonym);      // create set synonym based on language code and connect to set. Return resrouce core and new synonym
 app.delete('/api/set/:setID/synonym/:termID', deleteSynonym); // delete term synonym by id | delete node or just relatinship??
 // groups

@@ -124,9 +124,9 @@
 			<!-- view for term and resource page -->
 
 			<router-view :member="member" :term-Query="termQuery"></router-view>
-			<router-link :to="{ name: 'addResource'}">
+			<!-- <router-link :to="{ name: 'addResource'}">
 				add resource
-		 </router-link>
+		 </router-link> -->
 			<!-- sort FAB -->
 			<!-- <div class="fixed-action-btn click-to-toggle">
 		    <a class="btn-floating btn-large blue">
@@ -160,11 +160,10 @@
 
 				<!-- term query  -->
 		    <div class='row'>
-		        <isotope style="min-height:80px" ref="termQuery" :list="termQuery" :options='getSelectedOptions()'>
-		          <div  v-for="word in termQuery"  class='selected' v-bind:class="{ expanded: word.expanded }" key="word.name">
+		        <isotope style="min-height:80px" ref="termQuery" :list="termQuery" :options='{}' class='step'>
+		          <div  v-for="word in termQuery"  class='selected' key="word.name">
 		            <term :term="word"
 									:display="'thumb'"
-									v-on:lay-me="layout('termquery')"
 									v-on:include="word.status.include=!word.status.include; word.status.exclude=!word.status.exclude;"
 									v-on:exclude="removeFrom(word, termQuery)"
 									v-on:focus="focus"
@@ -176,19 +175,16 @@
 
 				<!--  suggested -->
 		    <div class='row'>
-		        <isotope ref="key" :list="suggestions" :options='getSuggestionOptions()' class="step">
-		          <div v-for="word in suggestions"  class='suggestion' v-bind:class="{ expanded: word.expanded }" key="word">
+		        <isotope ref="key" :list="suggestions" :options='{}' class="step">
+		          <div v-for="word in suggestions"  class='suggestion' key="word">
 								<term :term="word"
 									:display="'thumb'"
-									v-on:lay-me="layout('selected')"
 									v-on:include="includeSearch"
 									v-on:exclude="includeSearch"
 									v-on:focus="focus"
 								>
 								</term>
 
-								<!-- {{word}} -->
-								<!-- <term  :term="word"  v-on:add-me="addToFrom(word, termQuery, suggestions)" v-on:lay-me="layout" ></term> -->
 		          </div>
 		        </isotope>
 		    </div>
@@ -233,7 +229,7 @@
 						<div v-for="step in crossSection.members" class="stepContainer">
 							<isotope :ref='"resourceBin" + step.name' class="step" :list="db" :options='{}'>
 								<div v-for="re in resources"  v-if="item.resource.time.includes(step.name) || item.resource.discipline.includes(step.name)" class='element-item' key="item.resource.name">
-									HI!<resource :re="re" :display="display"></resource>
+									<resource :re="re" :display="display"></resource>
 								</div>
 							 </isotope>
 						</div>
@@ -244,14 +240,13 @@
 				<!-- results all together -->
 				<transition name="fade">
 				<div v-if="!crossSection" >
-			    <isotope ref="contentBin" class="step" :list="resources" :options='getContentOptions()' id="container">
+			    <isotope ref="contentBin" class="step" :list="resources" :options='getContentOptions()' id="container" >
 			        <div v-for="re in resources" class='element-item' key="re.resource.name">
 			          	<resource :re="re" :display="display"></resource>
 			        </div>
 			      </isotope>
 					</div>
 				</transition>
-
 
 				<div class="flexCenter" v-show="this.numberOfDisplayed === 0">
 					<p>
@@ -273,7 +268,6 @@
 
 <template id="resourceTemplate">
 	<div :id="'resourceModal'+resource.uid" class="modal fullPage resource-modal"  >
-
 		<router-link to="/" class="exit hide-on-med-and-down" ><i class="fa fa-3x fa-times"></i></router-link>
 		<!-- the resource -->
 		<div class="resource-container">
@@ -824,7 +818,7 @@
 				v-bind:class="{
 				'thumb waves-effect waves-block waves-light z-depth-1 hoverable': display == 'thumb' || display =='list',
 			 	'card-image': display == 'card'}">
-				<router-link :to="{ name: 'resource', params: { uid: re.resource.uid }}">
+				<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
 					<img :src="re.resource.mThumb" />
 				</router-link>
 			</div>
@@ -833,7 +827,9 @@
 				'truncate thin': display=='list',
 				'card-content': display=='card'}"
 				>
-				<span :class="{'title': display=='card'}">{{re.resource.title}}</span>
+				<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
+					<span :class="{'title': display=='card'}">{{re.resource.title}}</span>
+				</router-link>
 				<div v-if="re.resource.subtitle">
 					{{re.resource.subtitle}}
 				</div>

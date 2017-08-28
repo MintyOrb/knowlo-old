@@ -254,7 +254,7 @@ const termComp = Vue.component('termComp',{
         });
       },
       addSynonym: function(synonym){
-        this.$http.put('/set/'+ this.term.setID +'/synonym/'+ synonym.setID).then(response => {
+        this.$http.put('/api/set/'+ this.term.setID +'/synonym/'+ synonym.setID).then(response => {
           if(response.body){
             Materialize.toast('Added!', 4000)
             this.synonyms.push(synonym)
@@ -510,7 +510,6 @@ const resourceComp = Vue.component('resourceComp',{
 
       },
       addTerm: function(set){
-        console.log(set)
         this.$http.put('/api/resource/'+ this.resource.uid +'/set/'+ set.setID).then(response => {
           if(response.body){
             Materialize.toast('term added', 4000)
@@ -523,10 +522,7 @@ const resourceComp = Vue.component('resourceComp',{
         });
       },
       removeTerm: function(setUID){
-        console.log(setUID)
         this.$http.delete('/api/resource/'+ this.resource.uid +'/set/'+ setUID).then(response => {
-          console.log('back')
-          console.log(response)
           if(response.body){
             Materialize.toast('term removed.', 4000)
             this.terms.splice(this.terms.findIndex( (set) => set.setID === setUID) ,1)
@@ -539,7 +535,7 @@ const resourceComp = Vue.component('resourceComp',{
       }
     },
     mounted: function(){
-      // take language from member instead of hardcoding english...
+      // TODO take language from member instead of hardcoding english...
       this.$http.get('/resource/' + this.$route.params.uid + '/full', {params: { languageCode: 'en'}}).then(response => {
         if(response.body.resource){
           this.resource = response.body.resource;
@@ -668,17 +664,6 @@ const explore = Vue.component('exploreComp',{
         },
         addToFrom: function(term, to, from){ /// this is all stupid and needs to be re thought.
           console.log(term)
-          // if(term.focusIcon){ // clear all non pinned terms
-          //   console.log('term focused')
-          //   for (var termIndex = to.length - 1 ; termIndex >= 0; termIndex --) {
-          //     console.log(to[termIndex].status)
-          //     if(!to[termIndex].status.pinned){
-          //       to.splice(to[termIndex], 1)
-          //       console.log('not pinned')
-          //     }
-          //   }
-          // }
-
           if(to){this.addTo(term, to)};
           if(from) {this.removeFrom(term, from)};
 
@@ -751,22 +736,6 @@ const explore = Vue.component('exploreComp',{
                 getFilterData: this.getFilterData,
             }
         },
-        getSelectedOptions: function() {
-            return {
-                masonry:{columnWidth: 1},
-                sortAscending: this.sortAscending,
-                getSortData: this.getSortData,
-                getFilterData: this.getFilterData,
-            }
-        },
-        getSuggestionOptions: function() {
-            return {
-                masonry:{columnWidth: 1},
-                sortAscending: this.sortAscending,
-                getSortData: this.getSortData,
-                getFilterData: this.getFilterData,
-            }
-        },
         sort: function(key) {
             if(key == this.sortOption){ // switch ascending/descending if sort option already selected
               this.sortAscending = !this.sortAscending;
@@ -783,7 +752,7 @@ const explore = Vue.component('exploreComp',{
             })
         },
         shuffle: function(key) {
-            // this.$refs.contentBin.shuffle();
+            this.$refs.contentBin.shuffle();
             this.$refs.key.shuffle();
             this.$refs.termQuery.shuffle();
         },
@@ -794,14 +763,12 @@ const explore = Vue.component('exploreComp',{
         },
         layout: function(mes) {
           console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
-          // use parameter to chhose which isotope instance to layout? - pass in name vs pass in container?
           this.$refs.termQuery.layout('masonry');
           this.$refs.contentBin.layout('masonry');
 
            // pretty serious antipattern here...make a registery when using cross section views instead?
           var steps = $('.step'); // get isotope containers with jquery
           for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
-            console.log('in anti pattern')
 
             if(steps[stepIndex].termName !== undefined && steps[stepIndex]['__vue__'] != null){
               steps[stepIndex]['__vue__'].layout('masonry')
@@ -852,15 +819,15 @@ const explore = Vue.component('exploreComp',{
 
       $('.dropdown-button').dropdown();
 
-      $('.step').imagesLoaded() // layout when images loaded and on progress...... doesn't seem to be working - do I need to do a for each?
+      $('.element-item').imagesLoaded() // layout when images loaded and on progress...... doesn't seem to be working
         .always( ( instance ) => {
           console.log('all images loaded');
-          this.layout('from images loaded, finished.')
-        })
-        .progress( ( instance, image ) => { // this doesn't seem to be working either
-          var result = image.isLoaded ? 'loaded' : 'broken';
-          console.log( 'image is ' + result + ' for ' + image.img.src );
-          this.layout('from images loaded, progress made.')
+          this.$nextTick(function(){
+            window.setTimeout(()=>{
+              this.layout('from images loaded, finished.')
+            }, 375)
+          })
+
         });
     },
     created: function(){
@@ -871,9 +838,7 @@ const explore = Vue.component('exploreComp',{
       termQuery: function(val){
         var include = [];
         var exclude = [];
-        console.log(val[0])
         for (var termIndex = 0; termIndex < val.length; termIndex++) {
-          console.log(val[termIndex]['status'].includeIcon)
           if(val[termIndex]['status'].includeIcon){
             include.push(val[termIndex]['setID'])
           } else {
@@ -882,10 +847,10 @@ const explore = Vue.component('exploreComp',{
         }
         this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
           this.resources=response.body;
-          console.log(response.body)
+          this.numberOfDisplayed = response.body.length;
           this.getTerms();
           window.setTimeout(() =>{
-            this.layout('post term query')
+            this.layout()
           }, 500);
         }, response => {
           console.log('error getting resources... ', response)
