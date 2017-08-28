@@ -20,19 +20,17 @@ const addResource = Vue.component('addResource',{
           'viewCount':"0",
           'viewTime':"",
           'dateAdded':"",
-          'thumb': "",
+          // 'thumb': "", set on server
           'URL': "", //just return english if not in language specified?
+          'source':"",
           },
           detail: {
             'title':"",
             'subtitle':"",
             'text':"",
             'description':"",
-            'source':"",
-            'URL':"", //
-            'thumb':"",
+            'URL':"",
             'languageCode': this.member.languageCode,
-            'source': "",
           }
         },
       }

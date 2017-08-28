@@ -5,22 +5,192 @@ module.exports = function(app, db) {
 
 
     // the functions to run (uncomment)
-    // addVideosToDB()
-    // fixWeirdTerms();
+    // addVideosToDB();
     // putTermsInSets();
     // addID();
     // fixDateFormat();
+    // updateResourceSchema();
+    // add gathered link resources -- do reddit separate?
+
+
+
+    /*
+                       888          888            8888888b.                                                             .d8888b.           888
+                       888          888            888   Y88b                                                           d88P  Y88b          888
+                       888          888            888    888                                                           Y88b.               888
+888  888 88888b.   .d88888  8888b.  888888 .d88b.  888   d88P .d88b.  .d8888b   .d88b.  888  888 888d888 .d8888b .d88b.  "Y888b.    .d8888b 88888b.   .d88b.  88888b.d88b.   8888b.
+888  888 888 "88b d88" 888     "88b 888   d8P  Y8b 8888888P" d8P  Y8b 88K      d88""88b 888  888 888P"  d88P"   d8P  Y8b    "Y88b. d88P"    888 "88b d8P  Y8b 888 "888 "88b     "88b
+888  888 888  888 888  888 .d888888 888   88888888 888 T88b  88888888 "Y8888b. 888  888 888  888 888    888     88888888      "888 888      888  888 88888888 888  888  888 .d888888
+Y88b 888 888 d88P Y88b 888 888  888 Y88b. Y8b.     888  T88b Y8b.          X88 Y88..88P Y88b 888 888    Y88b.   Y8b.    Y88b  d88P Y88b.    888  888 Y8b.     888  888  888 888  888
+ "Y88888 88888P"   "Y88888 "Y888888  "Y888 "Y8888  888   T88b "Y8888   88888P'  "Y88P"   "Y88888 888     "Y8888P "Y8888  "Y8888P"   "Y8888P 888  888  "Y8888  888  888  888 "Y888888
+         888
+         888
+         888
+*/
+
+
+    function updateResourceSchema(){
+      require('./tempData/updateResources1')
+      var YouTube = require('youtube-node');
+      var youTube = new YouTube();
+      const url = require('url');
+
+      youTube.setKey('AIzaSyB1OOSpTREs85WUMvIgJvLTZKye4BVsoFU'); //key provided by package
+
+      async.eachSeries(updateResources1['data'], function(node, callback) {
+        var details = {}
+        var core = node['row'][0]
+        var notProcessed = []
+        var count =0
+
+        if(node['row'][0].webURL && node['row'][0].savedAs && node['row'][0].displayType != 'embed'){ // if image with source URL
+          console.log("image and source")
+          core.source = node['row'][0].savedAs
+          core.url = 'http://s3.amazonaws.com/submitted_images/' + node['row'][0].savedAs
+          core.mThumb = 'http://s3.amazonaws.com/submitted_images/' + node['row'][0].savedAs
+          doQuery(core, details, function(err, result){
+            console.log('done with image and source')
+            console.log(err)
+            console.log(result)
+
+            callback();
+          })
+        } else if(!node['row'][0].webURL && node['row'][0].savedAs && node['row'][0].displayType == 'image'){ //if image without source
+          console.log("image without source")
+          core.url = 'http://s3.amazonaws.com/submitted_images/' + node['row'][0].savedAs;
+          core.mThumb = 'http://s3.amazonaws.com/submitted_images/' + node['row'][0].savedAs;
+          doQuery(core, details, function(err, result){
+            console.log('done with image without source')
+            console.log(err)
+            console.log(result)
+
+            callback();
+          })
+        } else if(node['row'][0].videoid || node['row'][0].webURL && node['row'][0].webURL.indexOf('youtube.com') > -1){
+          console.log(node['row'][0].uid)
+          processYoutube(node['row'][0].videoid || url.parse(node['row'][0].webURL, true).query.v, core, youTube, function(d, c,err){
+            console.log('after process yt')
+            console.log(err)
+            console.log(c)
+            console.log(d)
+            detail = d;// empty before yt processing
+            core = c;// passed in and then out
+
+            doQuery(core, detail, function(err, result){
+              console.log(err)
+              console.log('out')
+              callback();
+            })
+
+          })
+        } else {
+          console.log('none of the above?')
+          console.log(node['row'][0].uid)
+          notProcessed.push(node['row'][0].uid);
+          console.log(notProcessed)
+          count+=1
+          console.log(count)
+          callback()
+        }
+
+
+      }, function(err) {
+          if( err ) {
+            console.log('A resource failed to process');
+          } else {
+            console.log('All resources have been processed successfully');
+          }
+      });
+    }
+    function processYoutube(id, core, youTube, callback) {
+      console.log('in process yt')
+      youTube.getById(id, function(error, result) {
+        if (error) {
+          console.log(error);
+        }
+        else {
+          // console.log(result)
+          // console.log(result.items[0].snippet.title)
+          // console.log(result.items[0].snippet.thumbnails.standard.url)
+          var deets = {
+            title:result.items[0].snippet.title,
+            description:result.items[0].snippet.description,
+            subtitle: result.items[0].snippet.channelTitle
+          }
+          if(core.duration){
+            core.viewTime = core.duration;
+          } else {
+            core.viewTime = result.items[0].contentDetails.duration; // will need to convert these....
+            core.duration = result.items[0].contentDetails.duration;
+          }
+          core.sThumb = result.items[0].snippet.thumbnails.default.url;
+          core.mThumb = result.items[0].snippet.thumbnails.medium.url;
+          core.lThumb = result.items[0].snippet.thumbnails.high.url;
+          if(core.xlThumb = result.items[0].snippet.thumbnails.standard){
+            core.xlThumb = result.items[0].snippet.thumbnails.standard.url;
+          }
+            // viewTime:
+          if(!core.url){
+            core.url=core.webURL
+          }
+            // console.log(core)
+            // console.log(deets)
+          // console.log(JSON.stringify(result, null, 2));
+          callback(deets, core)
+        }
+      });
+    }
+    function doQuery(cor, det, callback){
+
+      var detailIDs = [];
+      for (var i = 0; i < Object.keys(det).length; i++) {
+        detailIDs.push(shortid.generate());
+      }
+      console.log('in do query')
+      // callback('hi')
+
+      var cypher = "MERGE (resource:resource {uid:{core}.uid}) "
+                 + "ON MATCH SET resource={core} "
+                 + "WITH resource, {detail} AS detail, {detailIDs} as dIDs, keys({detail}) AS keys "
+                 + "FOREACH (index IN range(0, size(keys)-1) | "
+                   + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index], uid: dIDs[index] })-[tr:HAS_TRANSLATION {languageCode: 'en'}]->(langNode:tester:translation {value: detail[keys[index]] } ) "
+                 + ") "
+                 + "RETURN resource"
+      //
+      db.query(cypher, {core: cor, detail: det, detailIDs: detailIDs },function(err, result) {
+        if (err) console.log(err);
+        console.log('baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaack')
+        console.log(err)
+        console.log(result)
+        callback(result)
+      })
+    }
+
+
+    /*
+ .d888 d8b          8888888b.           888            8888888888                                      888
+d88P"  Y8P          888  "Y88b          888            888                                             888
+888                 888    888          888            888                                             888
+888888 888 888  888 888    888  8888b.  888888 .d88b.  8888888  .d88b.  888d888 88888b.d88b.   8888b.  888888
+888    888 `Y8bd8P' 888    888     "88b 888   d8P  Y8b 888     d88""88b 888P"   888 "888 "88b     "88b 888
+888    888   X88K   888    888 .d888888 888   88888888 888     888  888 888     888  888  888 .d888888 888
+888    888 .d8""8b. 888  .d88P 888  888 Y88b. Y8b.     888     Y88..88P 888     888  888  888 888  888 Y88b.
+888    888 888  888 8888888P"  "Y888888  "Y888 "Y8888  888      "Y88P"  888     888  888  888 "Y888888  "Y888
+*/
+
 
     function fixDateFormat(){
-      require('./tempData/dateformat')
+      require('./tempData/fixDate2')
 
-      async.eachSeries(dateformat['data'], function(node, callback) {
-        var cypher = "MATCH (s) WHERE s.uid = {uid} SET s.dateAdded={date} "
-        console.log(node['row'][0])
-
+      async.eachSeries(fixDate2['data'], function(node, callback) {
+        var cypher = "MATCH (s) WHERE s.uid = {uid} SET s.dateAdded={date} RETURN s.dateAdded "
+        console.log(node['row'][0].uid)
+        console.log(Date.parse(node['row'][0].dateAdded))
+        var date = Date.parse(node['row'][0].dateAdded);
         // callback()
-        db.query(cypher, {date: Date.parse(node['row'][1]), uid: node['row'][0] },function(err, result) {
+        db.query(cypher, {date: date, uid: node['row'][0].uid },function(err, result) {
           if (err) console.log(err);
+          console.log(result)
           callback()
         })
       }, function(err) {
@@ -31,6 +201,17 @@ module.exports = function(app, db) {
           }
       });
     }
+    /*
+              888      888 8888888 8888888b.
+              888      888   888   888  "Y88b
+              888      888   888   888    888
+ 8888b.   .d88888  .d88888   888   888    888
+    "88b d88" 888 d88" 888   888   888    888
+.d888888 888  888 888  888   888   888    888
+888  888 Y88b 888 Y88b 888   888   888  .d88P
+"Y888888  "Y88888  "Y88888 8888888 8888888P"
+*/
+
 
     function addID(){
 
@@ -55,6 +236,20 @@ module.exports = function(app, db) {
       });
 
     }
+    /*
+                  888  88888888888                                      8888888           .d8888b.           888
+                  888      888                                            888            d88P  Y88b          888
+                  888      888                                            888            Y88b.               888
+88888b.  888  888 888888   888   .d88b.  888d888 88888b.d88b.  .d8888b    888   88888b.   "Y888b.    .d88b.  888888 .d8888b
+888 "88b 888  888 888      888  d8P  Y8b 888P"   888 "888 "88b 88K        888   888 "88b     "Y88b. d8P  Y8b 888    88K
+888  888 888  888 888      888  88888888 888     888  888  888 "Y8888b.   888   888  888       "888 88888888 888    "Y8888b.
+888 d88P Y88b 888 Y88b.    888  Y8b.     888     888  888  888      X88   888   888  888 Y88b  d88P Y8b.     Y88b.       X88
+88888P"   "Y88888  "Y888   888   "Y8888  888     888  888  888  88888P' 8888888 888  888  "Y8888P"   "Y8888   "Y888  88888P'
+888
+888
+888
+*/
+
 
     function putTermsInSets(){
       // create synstes in db based on quering existing terms
@@ -196,14 +391,25 @@ module.exports = function(app, db) {
 
       }
     }
+    /*
+              888      888 888     888 d8b      888                        88888888888       8888888b.  888888b.
+              888      888 888     888 Y8P      888                            888           888  "Y88b 888  "88b
+              888      888 888     888          888                            888           888    888 888  .88P
+ 8888b.   .d88888  .d88888 Y88b   d88P 888  .d88888  .d88b.   .d88b.  .d8888b  888   .d88b.  888    888 8888888K.
+    "88b d88" 888 d88" 888  Y88b d88P  888 d88" 888 d8P  Y8b d88""88b 88K      888  d88""88b 888    888 888  "Y88b
+.d888888 888  888 888  888   Y88o88P   888 888  888 88888888 888  888 "Y8888b. 888  888  888 888    888 888    888
+888  888 Y88b 888 Y88b 888    Y888P    888 Y88b 888 Y8b.     Y88..88P      X88 888  Y88..88P 888  .d88P 888   d88P
+"Y888888  "Y88888  "Y88888     Y8P     888  "Y88888  "Y8888   "Y88P"   88888P' 888   "Y88P"  8888888P"  8888888P"
+*/
+
 
     function addVideosToDB() {
-        require('./knowloyoutubecombined')
-        async.eachSeries(cvideos, function(video, vidcallback) { // for each new video
+        require('./scripts/know3results')
+        async.eachSeries(know3, function(video, vidcallback) { // for each new video
 
             async.waterfall([
                 function(w1callback) { // add resource
-
+                    console.log(Date.now())
                     // generate id
                     // set url
                     // set embed type....(and the other stuff)
@@ -298,15 +504,19 @@ module.exports = function(app, db) {
                                         languageCode: 'en'
                                     }
 
+                                    // tag all
+                                    // var cypher = "MERGE (term:term {lower: {term}.lower }) " +
+                                    //     "ON CREATE SET term={term}, term.created=TIMESTAMP() " +
+                                    //     // "ON MATCH term.updated=TIMESTAMP() " +
+                                    //     "MERGE (translation:translation {lower: {translation}.lower}) " +
+                                    //     "ON CREATE SET translation={translation}, translation.created=TIMESTAMP() " +
+                                    //     // "ON MATCH  translation.updated=TIMESTAMP() " +
+                                    //     "MERGE (term)-[r:HAS_TRANSLATION {languageCode: {translation}.languageCode }]->(translation) " +
+                                    //     "RETURN term, translation"
 
-                                    var cypher = "MERGE (term:term {lower: {term}.lower }) " +
-                                        "ON CREATE SET term={term}, term.created=TIMESTAMP() " +
-                                        // "ON MATCH term.updated=TIMESTAMP() " +
-                                        "MERGE (translation:translation {lower: {translation}.lower}) " +
-                                        "ON CREATE SET translation={translation}, translation.created=TIMESTAMP() " +
-                                        // "ON MATCH  translation.updated=TIMESTAMP() " +
-                                        "MERGE (term)-[r:HAS_TRANSLATION {languageCode: {translation}.languageCode }]->(translation) " +
-                                        "RETURN term, translation"
+                                    // tag if term exists
+                                    var cypher = "MATCH (term:term {lower: {term}.lower }) "
+                                               + "RETURN term "
 
                                     db.query(cypher, {
                                         term: term,
@@ -319,19 +529,27 @@ module.exports = function(app, db) {
                                 },
                                 function(term, w4callback) { // tag to resource
                                     // termID, videoid
+                                    console.log(term)
+                                    if(term.length > 0){
+                                      // var termID = term[0]['term']['uid'];
+                                      var termID = term[0]['uid'];
+                                      console.log(termID)
 
-                                    var termID = term[0]['term']['uid'];
-                                    // tag video with term
-                                    var cypher = "MATCH (n:term {uid: {term}}) , (p:resource {uid: {resource}}) " +
-                                        "CREATE (n)<-[:TAGGED_WITH]-(p)"
-                                    db.query(cypher, {
-                                        term: termID,
-                                        resource: videoID
-                                    }, function(err, result) {
-                                        if (err) console.log(err);
+                                      // tag video with term
+                                      var cypher = "MATCH (n:term {uid: {term}})-[:IN_SET]->(set:synSet) , (p:resource {uid: {resource}}) " +
+                                          "MERGE (set)<-[:TAGGED_WITH]-(p)"
+                                      db.query(cypher, {
+                                          term: termID,
+                                          resource: videoID
+                                      }, function(err, result) {
+                                          if (err) console.log(err);
 
-                                        w4callback(null, result)
-                                    })
+                                          w4callback(null, result)
+                                      })
+                                  } else {
+                                      w4callback(null, {})
+                                  }
+
                                 }
                             ], function(err, result) {
                                 console.log("tagged term!")

@@ -3,7 +3,7 @@ import json
 
 videoData = []
 
-for line in open('know2.txt'):
+for line in open('know3.txt'):
 
     videoObj = {}
 
@@ -12,7 +12,7 @@ for line in open('know2.txt'):
     except (ValueError, IOError) as e:
         print "error: ", e
         print "error line - ", line
-        with open('dump.json', 'w') as outfile:
+        with open('know3dump.json', 'w') as outfile:
             json.dump(videoData, outfile)
         print "dumped combined video object."
 
@@ -40,5 +40,5 @@ for line in open('know2.txt'):
         print len(videoData), " - ", video.title.encode("utf-8")
 
 
-with open('know2deets2.json', 'w') as outfile:
+with open('know3results.json', 'w') as outfile:
     json.dump(videoData, outfile)

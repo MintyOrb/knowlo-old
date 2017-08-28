@@ -815,32 +815,42 @@
 -->
 <template id='resource'>
 	<div>
-		<div>
-			{{re.resource.text}}
+		<!-- <div>
+			{{re.resource.uid}}
+			{{display}}
+		</div> -->
+		<div v-if="re.resource.title">
+			{{re.resource.title}}
+		</div>
+		<div v-if="re.resource.mThumb" >
+			<img :src="re.resource.mThumb" style="width:200px;" />
+		</div>
+		<div v-if="re.resource.viewTime">
+			{{re.resource.viewTime}}
 		</div>
 		<!-- <div v-if="display == 'thumb'" class="thumb margin20 card-image waves-effect waves-block waves-light z-depth-1 hoverable">
-	 			<router-link :to="{ name: 'resource', params: { uid: item.resource.uid }}">
-	 				<img :src="item.resource.thumb">
+	 			<router-link :to="{ name: 'resource', params: { uid: re.resource.uid }}">
+	 				<img :src="re.resource.thumb">
 	 			</router-link>
 	  </div>
-	  <router-link  :to="{ name: 'resourceSub', params: { uid: item.resource.uid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
+	  <router-link  :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}" v-if="display == 'list'" class="list hoverable waves-effect waves-light" >
 	 	<a>
-	 		<span class='truncate thin '>{{item.resource.title}}</span>
+	 		<span class='truncate thin '>{{re.resource.title}}</span>
 	 	</a>
 	  </router-link>
 	 	<div  v-if="display == 'card'" class="card hoverable">
 	 		<div class='card-image'>
-	 				<router-link :to="{ name: 'resourceSub', params: { uid: item.resource.uid }}">
-	 					<img :src="item.resource.thumb" class='card-image' alt="Not found">
+	 				<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
+	 					<img :src="re.resource.thumb" class='card-image' alt="Not found">
 	 			 </router-link>
-	 		</div>
-	 		<div class='card-content'>
-	 				<span class='title'>{{item.translation.title}}</span>
-	 				<p class="truncate">{{item.translation.author}}</p>
 	 		</div> -->
+	 		<div class='card-content'>
+	 				<!-- <span class='title'>{{re.translation.title}}</span> -->
+	 				<!-- <p class="truncate">{{re.translation.author}}</p> -->
+	 		</div>
 	 		<div class='card-action'>
-	 			<!-- <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(item.resource.viewcount,1)}}</span> -->
-	 			<!-- <span class='right card-bottom'>{{item.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span> -->
+	 			<!-- <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(re.resource.viewcount,1)}}</span> -->
+	 			<!-- <span class='right card-bottom'>{{re.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span> -->
 	 		</div>
 	 	</div>
 	</div>

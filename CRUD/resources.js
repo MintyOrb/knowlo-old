@@ -46,7 +46,7 @@ module.exports = function(app, db){
                + "AND connected = {numberOfIncluded} "
                + "AND tlang.languageCode IN [ {language} , 'en' ] "
            + "WITH synSet, tlangNode, tlang, re "
-           + "MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
+           + "OPTIONAL MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
            + "WHERE p.order=1 AND plang.languageCode IN [ {language} , 'en' ] "
            + "RETURN "
              + "collect(DISTINCT {term: synSet.uid, url: synSet.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, "
@@ -103,7 +103,7 @@ module.exports = function(app, db){
       detailIDs.push(shortid.generate());
     }
 
-     var cypher = "CREATE (resource:resource:tester {core}) "
+     var cypher = "CREATE (resource:resource:tester {core}) SET resource.dateAdded = TIMESTAMP() "
                 + "WITH resource, {detail} AS detail, {detailIDs} as dIDs, keys({detail}) AS keys "
                 + "FOREACH (index IN range(0, size(keys)-1) | "
                   + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index], uid: dIDs[index] })-[tr:HAS_TRANSLATION {languageCode: 'en'}]->(langNode:tester:translation {value: detail[keys[index]] } ) "
