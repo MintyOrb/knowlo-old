@@ -3,7 +3,7 @@ module.exports = function(app, db){
 
   // resource routes
   app.get('/resource', query);              // generic public query resources based on provided term IDs
-  app.get('/api/resource', query);          // query resources based on user details and provided term IDs
+  // app.get('/api/resource', query);          // query resources based on user details and provided term IDs
   //?app.get('/resource/:uid', readCore);   // read details of a single resource core
 
   app.get('/resource/:uid/full', readFull);   // read full details of a single resource (tagged terms and translation by language code)
@@ -52,9 +52,8 @@ module.exports = function(app, db){
              + "collect(DISTINCT {term: synSet.uid, url: synSet.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, "
              + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
              + "re AS resource "
-            //  + "prop AS properties "
            // + "ORDER BY {orderby} {updown}"
-           // + "SKIP {skip} "
+           + "SKIP {skip} "
            + "LIMIT {limit}";
          if (typeof req.query.include === "undefined") {
              req.query.include = [];

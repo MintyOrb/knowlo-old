@@ -10,8 +10,51 @@ module.exports = function(app, db) {
     // addID();
     // fixDateFormat();
     // updateResourceSchema();
+    // addOldMeta();
     // add gathered link resources -- do reddit separate?
 
+    /*
+                  888      888               888      888                             888
+                  888      888               888      888                             888
+                  888      888               888      888                             888
+     8888b.   .d88888  .d88888       .d88b.  888  .d88888      88888b.d88b.   .d88b.  888888  8888b.
+        "88b d88" 888 d88" 888      d88""88b 888 d88" 888      888 "888 "88b d8P  Y8b 888        "88b
+    .d888888 888  888 888  888      888  888 888 888  888      888  888  888 88888888 888    .d888888
+    888  888 Y88b 888 Y88b 888      Y88..88P 888 Y88b 888      888  888  888 Y8b.     Y88b.  888  888
+    "Y888888  "Y88888  "Y88888       "Y88P"  888  "Y88888      888  888  888  "Y8888   "Y888 "Y888888
+    */
+    function addOldMeta() {
+      require('./tempData/oldResources')
+
+      async.eachSeries(oldResources['data'], function(node, callback) {
+        console.log(node['row'][1])
+        var details = node['row'][0]
+        var detailIDs = [];
+        for (var i = 0; i < Object.keys(details).length; i++) {
+          detailIDs.push(shortid.generate());
+        }
+
+        var cypher = "MATCH (resource:resource {uid:{uid}}) "
+                   + "WITH resource, {detail} AS detail, {detailIDs} as dIDs, keys({detail}) AS keys "
+                   + "FOREACH (index IN range(0, size(keys)-1) | "
+                     + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index], uid: dIDs[index] })-[tr:HAS_TRANSLATION {languageCode: 'en'}]->(langNode:tester:translation {value: detail[keys[index]] } ) "
+                   + ") "
+                   + "RETURN resource"
+        //
+        db.query(cypher, {uid: node['row'][1], detail: details, detailIDs: detailIDs },function(err, result) {
+          if (err) console.log(err);
+
+          console.log(result)
+          callback()
+        })
+        }, function(err) {
+            if( err ) {
+              console.log('A resource failed to process');
+            } else {
+              console.log('All resources have been processed successfully');
+            }
+        });
+      }
 
 
     /*

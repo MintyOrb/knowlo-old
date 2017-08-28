@@ -815,37 +815,39 @@
 -->
 <template id='resource'>
 	<div>
-		<div class="card" v-bind:class="{
-		'list': display=='list'}">
-		<div v-if="re.resource.title && display =='card' || display =='list'"
-			v-bind:class="{
-			'truncate thin': display=='list'}"
-			>
-			{{re.resource.title}}
-		</div>
-		<div v-if="re.resource.mThumb" class=" waves-effect waves-block waves-light z-depth-1 hoverable"
-			v-bind:class="{
-			'thumb': display == 'thumb' || display =='list',
-		 	'card-image': display == 'card'}">
-			<router-link :to="{ name: 'resource', params: { uid: re.resource.uid }}">
-				<img :src="re.resource.mThumb" />
-			</router-link>
-		</div>
-		<div v-if="re.resource.viewTime">
-			{{re.resource.viewTime}}
-		</div>
+		<div
+		:class="{
+		'list waves-effect waves-block waves-light z-depth-1 hoverable': display=='list',
+		'card waves-effect waves-block waves-light z-depth-1 hoverable': display=='card'}">
+
+			<div v-if="re.resource.mThumb"
+				v-bind:class="{
+				'thumb waves-effect waves-block waves-light z-depth-1 hoverable': display == 'thumb' || display =='list',
+			 	'card-image': display == 'card'}">
+				<router-link :to="{ name: 'resource', params: { uid: re.resource.uid }}">
+					<img :src="re.resource.mThumb" />
+				</router-link>
+			</div>
+			<div v-if="re.resource.title && display =='card' || display =='list'"
+				v-bind:class="{
+				'truncate thin': display=='list',
+				'card-content': display=='card'}"
+				>
+				<span :class="{'title': display=='card'}">{{re.resource.title}}</span>
+				<div v-if="re.resource.subtitle">
+					{{re.resource.subtitle}}
+				</div>
+			</div>
+			<div v-if="display =='card' " class='card-action'>
+	 			<span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(re.resource.viewcount,1) || 0}}</span>
+	 			<span v-if="re.resource.rating" class='right card-bottom'>{{re.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
+	 		</div>
+	 	</div>
 		</div>
 
 
-	 		<!-- <div class='card-content'> -->
-	 				<!-- <span class='title'>{{re.translation.title}}</span> -->
-	 				<!-- <p class="truncate">{{re.translation.author}}</p> -->
-	 		<!-- </div>
-	 		<div class='card-action'> -->
-	 			<!-- <span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(re.resource.viewcount,1)}}</span> -->
-	 			<!-- <span class='right card-bottom'>{{re.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span> -->
-	 		<!-- </div>
-	 	</div> -->
+
+
 	</div>
 </template>
 <!--
@@ -867,7 +869,7 @@
 					<label :for="inputId" >Term name</label>
 					<ul id="ac" class="autocomplete-content dropdown-content"style="position:absolute" v-bind:class="{ hide: hidden }">
 						<li v-for="suggestion in suggestions" @click='pick(suggestion)'>
-							<img v-if="suggestion.term.url" :src="suggestion.term.url" class="left">
+							<img v-if="suggestion.url" :src="suggestion.url" class="left">
 							<span><i v-if="suggestion.new" class='material-icons  left'>add</i>{{suggestion.translation.name}}<span v-if="$route.name !='addTerm' && suggestion.new" @click="addWithDetail = true"><i class='material-icons right addDetail'>playlist_add</i></span></span>
 						</li>
 					</ul>

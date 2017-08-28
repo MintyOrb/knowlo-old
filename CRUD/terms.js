@@ -494,7 +494,7 @@ function autocomplete(req,res){
       "MATCH (set:synSet)<-[:IN_SET]-(core:term)-[r:HAS_TRANSLATION {languageCode:{code}}]->(langNode) ",
       "WHERE langNode.name =~ {match} AND NOT set.uid IN [{exclude}] ",
       // "with langNode, collect(set) as term "
-      "RETURN DISTINCT set.uid AS setID, set AS term, langNode AS translation  LIMIT 8" // order by....?
+      "RETURN DISTINCT set.uid AS setID, core.url AS url, set AS term, langNode AS translation  LIMIT 8" // order by....?
   ].join('\n');
 
   db.query(query, properties, function (err, matches) {

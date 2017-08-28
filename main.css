@@ -147,6 +147,7 @@ html {
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+    margin:20px;
 }
 .thumb img {
     display: block;
@@ -160,7 +161,7 @@ html {
 }
 .list {
     padding: 2% 8% 2% 8%;
-    width: 100%;
+    width: 100vw;
     min-height: 40px;
     font-size: 20px;
     display: inline-block;s
