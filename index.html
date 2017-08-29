@@ -167,6 +167,7 @@
 									v-on:include="word.status.include=!word.status.include; word.status.exclude=!word.status.exclude;"
 									v-on:exclude="removeFrom(word, termQuery)"
 									v-on:focus="focus"
+									v-on:lens="fetchContains"
 								>
 								</term>
 		          </div>
@@ -182,6 +183,7 @@
 									v-on:include="includeSearch"
 									v-on:exclude="includeSearch"
 									v-on:focus="focus"
+									v-on:lens="fetchContains"
 								>
 								</term>
 
@@ -220,16 +222,19 @@
 				<div v-if="crossSection" >
 					<div class=" crossSectionNav ">
 						<!-- flick navigation for isotope containers -->
-						<div v-for="step in crossSection.members" class="navItems">
-							<term :term="step"></term>
+						<div v-for="step in crossSection" class="navItems">
+							<term :term="step"
+								:display="'thumb'"
+								>
+							</term>
 						</div>
 					</div>
 					<!-- isotope contianers -->
 					<div class=" crossSectionSteps">
-						<div v-for="step in crossSection.members" class="stepContainer">
-							<isotope :ref='"resourceBin" + step.name' class="step" :list="db" :options='{}'>
-								<div v-for="re in resources"  v-if="item.resource.time.includes(step.name) || item.resource.discipline.includes(step.name)" class='element-item' key="item.resource.name">
-									<resource :re="re" :display="display"></resource>
+						<div v-for="step in crossSection" class="stepContainer">
+							<isotope :ref='"resourceBin" + step.setID' class="step" :list="resources" :options='{}'>
+								<div v-for="re in resources" v-if="re.termIDs.includes(step.setID)" class='element-item'  key="re.uid">
+										<resource :re="re" :display="display"></resource>
 								</div>
 							 </isotope>
 						</div>
@@ -240,7 +245,7 @@
 				<!-- results all together -->
 				<transition name="fade">
 				<div v-if="!crossSection" >
-			    <isotope ref="contentBin" class="step" :list="resources" :options='getContentOptions()' id="container" >
+			    <isotope ref="resourceBin" class="step" :list="resources" :options='getContentOptions()' id="container" >
 			        <div v-for="re in resources" class='element-item' key="re.resource.name">
 			          	<resource :re="re" :display="display"></resource>
 			        </div>
@@ -733,9 +738,14 @@
 									<i class="fa fa-thumb-tack" style="transform:rotate(-45deg)"></i>
 								</div>
 							</div>
-							<div  v-if="true" class="rotater">
+							<!-- <div  v-if="true" class="rotater">
 								<div class="mbtn mbtn-icon flexCenter" :class="{'nope':!term.group, expandNav: hovering&& inSidebar}">
 									<i class="fa fa-expand"></i>
+								</div>
+							</div> -->
+							<div  v-if="true" class="rotater">
+								<div @click="lens" class="mbtn mbtn-icon flexCenter" :class="{'showCompress': status.lensIcon, expandNav: hovering&& inSidebar}">
+									<i class="fa fa-ellipsis-v fa-rotate-90"></i>
 								</div>
 							</div>
 							<div  v-if="false" class="rotater">

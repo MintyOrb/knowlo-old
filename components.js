@@ -12,7 +12,6 @@ Vue.component('term',{
     props:['term', 'display'],
     data: () =>  {
       return {
-        flickRegistry: [],
         inSidebar: false,
         hovering: false,
         status: {
@@ -21,6 +20,7 @@ Vue.component('term',{
           excludeIcon: false,
           focusIcon: false,
           infoIcon: false,
+          lensIcon: false,
         }
       }
     },
@@ -72,49 +72,23 @@ Vue.component('term',{
         this.term.status = this.status;
         this.$emit('pin', this.term)
       },
-      createFlickity: function(id){
-        this.flickRegistry.push(id);// register flick
-
-        setTimeout(()=>{ // allow time for size change
-          $('.flickContainer' + id).flickity({
-            wrapAround: true,
-            pageDots: true,
-            prevNextButtons: true,
-            accessibility: false, // to prevent jumping when focused
-          });
-          this.$emit('lay-me')
-          }, 10);
-
-        },
-        destroySingleFlickity: function(id){
-          window.setTimeout(()=>{
-            $('.flickContainer' + id).flickity('destroy');
-            for(index in this.flickRegistry){
-              if(this.flickRegistry[index] == id){
-                this.flickRegistry.splice(index,1)
-                break
-              }
-            }
-          },1000)
-        },
-        destroyAllFlickity: function(){
-          for(var index in this.flickRegistry){
-            this.destroySingleFlickity(this.flickRegistry[index]);
+      lens: function(){
+        this.status.lensIcon = !this.status.lensIcon;
+        this.term.status = this.status;
+        this.$emit('lens', this.term)
+      },
+      delayHover: function(){
+        this.left=false;
+        window.setTimeout(()=>{
+          if(!this.left){
+              this.hovering=true
           }
-          this.flickRegistry=[];
-        },
-        delayHover: function(){
-          this.left=false;
-          window.setTimeout(()=>{
-            if(!this.left){
-                this.hovering=true
-            }
-          }, 150)
-        },
-        leave: function(){
-          this.left=true;
-          this.hovering=false;
-        }
+        }, 150)
+      },
+      leave: function(){
+        this.left=true;
+        this.hovering=false;
+      }
     },
     mounted: function(){
       this.$emit('created')

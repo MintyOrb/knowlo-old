@@ -357,7 +357,6 @@ const termComp = Vue.component('termComp',{
             Materialize.toast('Contains no terms.', 4000)
           }
         }, response => {
-          this.openModal()
           Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
@@ -692,6 +691,7 @@ const explore = Vue.component('exploreComp',{
 
         },
         changeLens: function(lens){
+          console.log(lens)
           if(lens === null){
               Cookies.set('lens', null)
           } else {
@@ -703,6 +703,7 @@ const explore = Vue.component('exploreComp',{
             $('.crossSectionSteps').flickity('destroy');
 
             this.crossSection = lens
+            // this.crossSection = /this.suggestions;
             this.$nextTick(function(){
               $('.crossSectionNav').flickity({
                 asNavFor: '.crossSectionSteps',
@@ -747,33 +748,39 @@ const explore = Vue.component('exploreComp',{
                   steps[stepIndex]['__vue__'].sort(key)
                 }
               }
-              // this.$refs.contentBin.sort(key);
+              // this.$refs.resourceBin.sort(key);
               this.sortOption = key;
             })
         },
         shuffle: function(key) {
-            this.$refs.contentBin.shuffle();
+            this.$refs.resourceBin.shuffle();
             this.$refs.key.shuffle();
             this.$refs.termQuery.shuffle();
         },
         filter: function(key) {
-            // this.$refs.contentBin.filter(key);
+            // this.$refs.resourceBin.filter(key);
             console.log(this.$refs)
-            // this.numberOfDisplayed =   this.$refs.contentBin.getFilteredItemElements().length
+            // this.numberOfDisplayed =   this.$refs.resourceBin.getFilteredItemElements().length
         },
         layout: function(mes) {
           console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
           this.$refs.termQuery.layout('masonry');
-          this.$refs.contentBin.layout('masonry');
+          // this.$refs.resourceBin.layout('masonry');
 
-           // pretty serious antipattern here...make a registery when using cross section views instead?
-          var steps = $('.step'); // get isotope containers with jquery
-          for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
-
-            if(steps[stepIndex].termName !== undefined && steps[stepIndex]['__vue__'] != null){
-              steps[stepIndex]['__vue__'].layout('masonry')
-            }
+          console.log(this.$refs)
+          for(termIndex in this.crossSection){
+            console.log(termIndex)
+            console.log(this.crossSection[termIndex].setID)
+            this.$refs['resourceBin' + this.crossSection[termIndex].setID][0].layout('masonry');
           }
+           // pretty serious antipattern here...make a registery when using cross section views instead?
+          // var steps = $('.step'); // get isotope containers with jquery
+          // for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
+          //
+          //   if(steps[stepIndex].termName !== undefined && steps[stepIndex]['__vue__'] != null){
+          //     steps[stepIndex]['__vue__'].layout('masonry')
+          //   }
+          // }
 
         },
         getTerms(){
@@ -786,7 +793,19 @@ const explore = Vue.component('exploreComp',{
             this.suggestions=response.body;
           }, response => {
           });
-        }
+        },
+        fetchContains: function(set){
+          console.log(set)
+          this.$http.get('/set/' + set.setID + '/contains/', {params: { languageCode: 'en'}}).then(response => {
+            if(response.body.length > 0){
+              this.changeLens(response.body);
+            } else {
+              Materialize.toast('Contains no terms.', 4000)
+            }
+          }, response => {
+            Materialize.toast('Something went wrong...are you online?', 4000)
+          });
+        },
 
     },
     mounted: function(){

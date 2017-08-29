@@ -51,6 +51,7 @@ module.exports = function(app, db){
            + "RETURN "
              + "collect(DISTINCT {term: synSet.uid, url: synSet.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, "
              + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
+             + "collect(DISTINCT synSet.uid) AS termIDs, "
              + "re AS resource "
            // + "ORDER BY {orderby} {updown}"
            + "SKIP {skip} "
