@@ -1,7 +1,13 @@
-module.exports = function(app, db) {
+// module.exports = function(app, db) {
+{
     var shortid = require('shortid');
     var async = require('async');
     const util = require('util')
+    // var db = require("seraph")({
+    //   server: "http://localhost:7474",
+    //   user: 'neo4j',
+    //   pass: 'admin'
+    // });
 
 
     // the functions to run (uncomment)
@@ -11,8 +17,150 @@ module.exports = function(app, db) {
     // fixDateFormat();
     // updateResourceSchema();
     // addOldMeta();
-    // add gathered link resources -- do reddit separate?
+    // parseReddit(); //; add gathered link resources -- do reddit separate?
+    getIconUrls();
+    // addTagsInTitle() // parse len 1 and 2 tokens from title, add as tags if in db
+    // addImgResources() //
 
+    /*
+    d8b                                                 888
+    Y8P                                                 888
+                                                        888
+    888  .d8888b .d88b.  88888b.       888  888 888d888 888 .d8888b
+    888 d88P"   d88""88b 888 "88b      888  888 888P"   888 88K
+    888 888     888  888 888  888      888  888 888     888 "Y8888b.
+    888 Y88b.   Y88..88P 888  888      Y88b 888 888     888      X88
+    888  "Y8888P "Y88P"  888  888       "Y88888 888     888  88888P'
+    */
+
+
+    function getIconUrls() {
+
+      require('./tempData/icon4Terms')
+
+      const GoogleImages = require('google-images');
+      const client = new GoogleImages('011351806300959179866:tq_4msn-ueo', 'AIzaSyBTN9vyCTPA8jSiP2hgd8ccw4Lew3Fzap8');
+
+
+      async.eachSeries(icon4Terms['data'], function(node, callback) {
+        console.log(node.row[0])
+        console.log(node.row[1])
+        client.search(node.row[1] + " icon")
+          .then(images => {
+            console.log(images)
+            var detailIDs = [];
+            for (var i = 0; i < Object.keys(details).length; i++) {
+              detailIDs.push(shortid.generate());
+            }
+
+            var cypher = "MATCH (synSet:synSet {uid: {synID}}) "
+                       + "WITH synSet, {detail} AS detail, {detailIDs} as dIDs, keys({detail}) AS keys "
+                       + "FOREACH (index IN range(0, size(keys)-1) | "
+                         + "MERGE (synSet)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index], uid: dIDs[index] })-[tr:HAS_TRANSLATION {languageCode: 'en'}]->(langNode:tester:translation {value: detail[keys[index]] } ) "
+                       + ") "
+                       + "RETURN synSet"
+            // db.query(cypher, {synID: node.row[0], detail: details, detailIDs: detailIDs },function(err, result) {
+            //   if (err) console.log(err);
+            //
+            //   console.log(result)
+            //   callback()
+            // })
+
+          });
+
+        }, function(err) {
+            if( err ) {
+              console.log('A term failed to process');
+            } else {
+              console.log('All terms have been processed successfully');
+            }
+        });
+
+
+    }
+    /*
+                                                                          888      888 d8b 888
+                                                                          888      888 Y8P 888
+                                                                          888      888     888
+    88888b.   8888b.  888d888 .d8888b   .d88b.       888d888 .d88b.   .d88888  .d88888 888 888888
+    888 "88b     "88b 888P"   88K      d8P  Y8b      888P"  d8P  Y8b d88" 888 d88" 888 888 888
+    888  888 .d888888 888     "Y8888b. 88888888      888    88888888 888  888 888  888 888 888
+    888 d88P 888  888 888          X88 Y8b.          888    Y8b.     Y88b 888 Y88b 888 888 Y88b.
+    88888P"  "Y888888 888      88888P'  "Y8888       888     "Y8888   "Y88888  "Y88888 888  "Y888
+    888
+    888
+    888
+    */
+    function parseReddit() {
+      require('./tempData/redditResources')
+      var scraperjs = require('scraperjs');
+      var noImg=[];
+
+      async.eachSeries(redditResources, function(link, callback) {
+        console.log(link)
+        scraperjs.StaticScraper.create(link)
+            .scrape(function($) {
+              return $(".title a").map(function() {
+                // console.log($(this).text())
+                // console.log($(this)[0].attribs.href)
+                return {title:$(this).text(),
+                        url: $(this)[0].attribs.href}
+              }).get();
+            }).then(function(scrape) {
+
+              var core = {
+                  mThumb:scrape[0].url,
+                  url: scrape[0].url,
+                  source: link,
+                  uid: shortid.generate()
+              }
+              var details = {
+                title: scrape[0].title,
+              }
+
+              console.log(core)
+              if(scrape[0].url.indexOf("http")>-1){
+                console.log('do all the stuff')
+                // callback()
+                var detailIDs = [];
+                for (var i = 0; i < Object.keys(details).length; i++) {
+                  detailIDs.push(shortid.generate());
+                }
+
+                var cypher = "CREATE (resource:resource) "
+                           + "SET resource={core}, resource.dateAdded=TIMESTAMP() "
+                           + "WITH resource, {detail} AS detail, {detailIDs} as dIDs, keys({detail}) AS keys "
+                           + "FOREACH (index IN range(0, size(keys)-1) | "
+                             + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index], uid: dIDs[index] })-[tr:HAS_TRANSLATION {languageCode: 'en'}]->(langNode:tester:translation {value: detail[keys[index]] } ) "
+                           + ") "
+                           + "RETURN resource"
+                //
+                db.query(cypher, {core: core, detail: details, detailIDs: detailIDs },function(err, result) {
+                  if (err) console.log(err);
+
+                  console.log(result)
+                  callback()
+                })
+              } else {
+                console.log('no url :|')
+                noImg.push(link)
+                callback()
+              }
+
+          	})
+
+      }, function(err) {
+          if( err ) {
+            console.log('A link failed to process');
+            console.log(noImg)
+          } else {
+            console.log('All links have been processed successfully');
+            console.log(noImg)
+          }
+      });
+
+
+    }
     /*
                   888      888               888      888                             888
                   888      888               888      888                             888

@@ -15,21 +15,21 @@ const addResource = Vue.component('addResource',{
         tags: [],
         resource:{ // these aren't all strings...
           core: {
-          'displayType':"",
-          'uid':"",
-          'viewCount':"0",
-          'viewTime':"",
-          'dateAdded':"",
-          // 'thumb': "", set on server
-          'URL': "", //just return english if not in language specified?
-          'source':"",
+            'displayType':"",
+            'uid':"",
+            'viewCount':"0",
+            'viewTime':"",
+            'dateAdded':"",
+            // 'thumb': "", set on server
+            'url': "", //just return english if not in language specified?
+            'source':"",
           },
           detail: {
             'title':"",
             'subtitle':"",
             'text':"",
             'description':"",
-            'URL':"",
+            'url':"",
             'languageCode': this.member.languageCode,
           }
         },
@@ -703,7 +703,7 @@ const explore = Vue.component('exploreComp',{
             $('.crossSectionSteps').flickity('destroy');
 
             this.crossSection = lens
-            // this.crossSection = /this.suggestions;
+            // this.crossSection = this.suggestions;
             this.$nextTick(function(){
               $('.crossSectionNav').flickity({
                 asNavFor: '.crossSectionSteps',
@@ -764,23 +764,14 @@ const explore = Vue.component('exploreComp',{
         },
         layout: function(mes) {
           console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
-          this.$refs.termQuery.layout('masonry');
-          // this.$refs.resourceBin.layout('masonry');
 
-          console.log(this.$refs)
-          for(termIndex in this.crossSection){
-            console.log(termIndex)
-            console.log(this.crossSection[termIndex].setID)
+          for(termIndex in this.crossSection){ // layout all isotope containers in cross section
             this.$refs['resourceBin' + this.crossSection[termIndex].setID][0].layout('masonry');
           }
-           // pretty serious antipattern here...make a registery when using cross section views instead?
-          // var steps = $('.step'); // get isotope containers with jquery
-          // for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
-          //
-          //   if(steps[stepIndex].termName !== undefined && steps[stepIndex]['__vue__'] != null){
-          //     steps[stepIndex]['__vue__'].layout('masonry')
-          //   }
-          // }
+          this.$refs.termQuery.layout('masonry');
+          if(!this.crossSection || this.crossSection.length == 0){
+            this.$refs.resourceBin.layout('masonry');
+          }
 
         },
         getTerms(){

@@ -69,7 +69,7 @@ module.exports = function(app, db){
             orderby: req.orderby,
             updown: req.updown,
             skip:0,
-            limit: 25, // TODO: change for mobile...
+            limit: 40, // TODO: change for mobile...based on display setting
             language: 'en'
         }, function(err, result) {
       if (err) {console.log(err);res.status(500).send()};

@@ -161,7 +161,7 @@ html {
 }
 .list {
     padding: 2% 8% 2% 8%;
-    width: 100vw;
+    width: 100%;
     min-height: 40px;
     font-size: 20px;
     display: inline-block;
@@ -613,4 +613,8 @@ html {
 }
 .modal .modal-content {
   padding: 0px;
+}
+
+.fullWidth{
+  width: 100vw;
 }

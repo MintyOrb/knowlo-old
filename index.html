@@ -120,7 +120,7 @@
 	-->
 
 	<template id="exploreTemplate">
-		<div class='color-picker'>
+		<div class='color-picker' style="min-height:100vh;">
 			<!-- view for term and resource page -->
 
 			<router-view :member="member" :term-Query="termQuery"></router-view>
@@ -233,7 +233,7 @@
 					<div class=" crossSectionSteps">
 						<div v-for="step in crossSection" class="stepContainer">
 							<isotope :ref='"resourceBin" + step.setID' class="step" :list="resources" :options='{}'>
-								<div v-for="re in resources" v-if="re.termIDs.includes(step.setID)" class='element-item'  key="re.uid">
+								<div v-for="re in resources" v-if="re.termIDs.includes(step.setID)" class='element-item' key="re.uid">
 										<resource :re="re" :display="display"></resource>
 								</div>
 							 </isotope>
@@ -245,8 +245,8 @@
 				<!-- results all together -->
 				<transition name="fade">
 				<div v-if="!crossSection" >
-			    <isotope ref="resourceBin" class="step" :list="resources" :options='getContentOptions()' id="container" >
-			        <div v-for="re in resources" class='element-item' key="re.resource.name">
+			    <isotope ref="resourceBin" class="step" :list="resources" :options='getContentOptions()' id="container"  >
+			        <div v-for="re in resources" class='element-item' key="re.resource.name" :class="{'fullWidth': display=='list'}">
 			          	<resource :re="re" :display="display"></resource>
 			        </div>
 			      </isotope>
@@ -722,7 +722,7 @@
 					<div class="">
 
 						<div class="mbtn trigger" v-bind:class="{'scaleIcon': hovering}">
-							<span v-if="!term.term.url" class="flexCenter border"> {{term.translation.name[0]}}</span>
+							<span v-if="!term.term.url" class="flexCenter border">{{term.translation.name[0]}}</span>
 							<div v-else class="thumb card-image border">
 								<img :src="term.term.url">
 							</div>
