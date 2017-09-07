@@ -117,7 +117,6 @@ module.exports = function(app, db){
         detailIDs: detailIDs
       },function(err, resource) {
       if (err) {console.log(err); res.status(500).send()};
-      console.log(resource);
       res.send(resource[0])
 
     })
@@ -180,10 +179,11 @@ module.exports = function(app, db){
     * @return {Object} resource
     */
 
-    var cypher ="MATCH (resource:resource {uid:{uid}})-[TAGGED_WITH]->(set:synSet)<-[setR:IN_SET]-(t:term)-[r:HAS_TRANSLATION]->(tr:translation) "
-               +"WHERE r.languageCode = {languageCode} AND setR.order=1 "
-               +"WITH resource, COLLECT(DISTINCT {setID: set.uid, term: t, translation: tr}) as terms "
-               +"RETURN resource, terms"
+    var cypher = "MATCH (resource:resource {uid:{uid}})"
+               + "OPTIONAL MATCH (resource)-[TAGGED_WITH]->(set:synSet)<-[setR:IN_SET]-(t:term)-[r:HAS_TRANSLATION]->(tr:translation) "
+               + "WHERE r.languageCode = {languageCode} AND setR.order=1 "
+               + "WITH resource, COLLECT(DISTINCT { setID: set.uid, term: set, translation: tr}) as terms "
+               + "RETURN resource, terms"
 
     db.query(cypher, {uid: req.params.uid, languageCode: req.query.languageCode || 'en'},function(err, resource) {
       if (err) {console.log(err); res.status(500).send()};

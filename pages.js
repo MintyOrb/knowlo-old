@@ -155,14 +155,14 @@ const termComp = Vue.component('termComp',{
     template: "#termTemplate",
     data: function() {
       return {
-        term: {name: 'default'},
+        term: {name: 'default',translation:{name:''},term:{iconURL:""}},
         definitions: [],
         translations:[],
         synonyms: [],
         groups: [],
         within: [],
         contains: [],
-        termSection: ["Definition","Synonyms","Groups","Within","Contains","Translations"] //stats? vote? member's relation? definition?
+        termSection: ["Icons","Definition","Synonyms","Within","Contains","Translations"] //stats? vote? member's relation? definition?
       }
     },
     methods:{
@@ -176,7 +176,6 @@ const termComp = Vue.component('termComp',{
              this.$route.params.name
              this.term.setID = this.$route.params.uid;
              this.fetchSynonyms();
-             this.fetchGroups();
              this.fetchWithin();
              this.fetchContains();
              this.fetchTranslations();
@@ -277,42 +276,6 @@ const termComp = Vue.component('termComp',{
            Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
-      fetchGroups: function(){
-        this.$http.get('/set/' + this.term.setID + '/group/', {params: { languageCode: 'en'}}).then(response => {
-          if(response.body.length > 0){
-            this.groups = response.body;
-          } else {
-            Materialize.toast('Groups not found.', 4000)
-          }
-        }, response => {
-          this.openModal()
-          Materialize.toast('Something went wrong...are you online?', 4000)
-        });
-      },
-      addGroup: function(group){
-        this.$http.put('/api/set/'+ this.term.setID +'/group/'+ group.term.uid).then(response => {
-          if(response.body){
-            Materialize.toast('Added!', 4000)
-            this.groups.push(group)
-          } else {
-            Materialize.toast('Something went wrong...', 4000)
-          }
-        }, response => {
-           Materialize.toast('Something went wrong...are you online?', 4000)
-        });
-      },
-      removeGroup: function(uid){
-        this.$http.delete('/api/set/'+ this.term.setID +'/group/'+ uid).then(response => {
-          if(response.body){
-            Materialize.toast('Removed!', 4000)
-            this.groups.splice(this.groups.findIndex( (term) => term.term.uid === uid) ,1)
-          } else {
-            Materialize.toast('Something went wrong...', 4000)
-          }
-        }, response => {
-           Materialize.toast('Something went wrong...are you online?', 4000)
-        });
-      },
       fetchWithin: function(){
         this.$http.get('/set/' + this.term.setID + '/within/', {params: { languageCode: 'en'}}).then(response => {
           if(response.body.length > 0){
@@ -384,6 +347,17 @@ const termComp = Vue.component('termComp',{
            Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
+      deleteSet(uid){
+        this.$http.delete('/api/set/'+ uid ).then(response => {
+          if(response.body){
+            Materialize.toast('Set deleted!', 4000)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      }
     },
     mounted: function(){
       this.init();
@@ -478,8 +452,9 @@ const resourceComp = Vue.component('resourceComp',{
                 // dimensions of the image
                 var w = 2000,
                     h = 1500,
-                    url = 'http://s3.amazonaws.com/submitted_images/'+this.resource.savedAs;
-                    console.log('http://s3.amazonaws.com/submitted_images/'+this.resource.savedAs)
+                    // url = 'http://s3.amazonaws.com/submitted_images/'+this.resource.savedAs;
+                    // console.log('http://s3.amazonaws.com/submitted_images/'+this.resource.savedAs)
+                    url = this.resource.url
                 var img = new Image();
                 img.onload = function() {
                   map.removeLayer(preLoad);
@@ -539,7 +514,21 @@ const resourceComp = Vue.component('resourceComp',{
         if(response.body.resource){
           this.resource = response.body.resource;
           this.terms = response.body.terms;
+          console.log(this.resource)
+          if(this.resource.url.match(/[^/]+(jpg|png|gif|jpeg)$/)){
+            console.log('uhhhhhhh')
+            this.resource.displayType = 'image'
+          } else if(this.resource.url.match(/[^/]+(gifv|webm)$/)){
+            console.log('not uh.')
+            this.resource.displayType = 'video'
+          } else if(this.resource.url.indexOf('youtube' > -1)){
+            this.resource.ytID = new URL(this.resource.url).searchParams.get('v')
+            console.log(new URL(this.resource.url).searchParams.get('v'))
+            this.resource.displayType = 'embed'
+          }
+
         } else {
+          console.log(response)
           Materialize.toast('Resource not found.', 4000)
         }
         this.init()

@@ -281,13 +281,19 @@
 
 			<!--  youtube/vimeo -->
 			<div v-if='resource.displayType=="embed"' class="video-container ">
-				 <iframe :src="'http://youtube.com/embed/'+resource.videoid"></iframe>
+				 <iframe :src="'http://youtube.com/embed/'+resource.ytID"></iframe>
 			</div>
 
 			<!-- website -->
 			<div v-if='resource.displayType=="webpage"' class="web-container">
-				<iframe :src="resource.webURL" ></iframe>
+				<iframe :src="resource.url" ></iframe>
 			</div>
+
+			<!-- video -->
+			<div v-if='resource.displayType=="video"' class="web-container">
+				<iframe :src="resource.url" ></iframe>
+			</div>
+
 
 			<!-- text -->
 			<!-- <div class="text-container">
@@ -349,10 +355,15 @@
 <template id="termTemplate">
 	<div id="termModal" class="modal fullPage">
 		<div class="termTitle" >
-			<term :term="term" :display="'thumb'"></term>
-			<p>
-				{{term.name}}
-			</p>
+			<span class='thumb'>
+					<img :src="term.term.iconURL">
+			</span>
+			<span>
+				{{term.translation.name}}
+			</span>
+			<span v-if='true'class='btn' v-on:click="deleteSet(term.setID)">delete set
+			</span>
+			<span class="right"><i class="fa fa-2x fa-times"></i></span>
 		</div>
 		<!-- flick navigation for isotope containers -->
 		<div class="termMeta">
@@ -366,7 +377,20 @@
 			<!-- isotope contianers -->
 			<div class="termSections">
 
+
+
+				<div class="stepContainer">hi
+					<!-- <div v-for="term in t" :key="term.translation.name">
+						<term
+							:term="term"
+							:display="thumb"
+							:key="term.translation.name"
+						</term>
+					</div> -->
+				</div>
+
 				<div class="stepContainer">
+					<p>icons</p>
 					<p>synonyms</p>
 					<p>groups</p>
 					<p>within</p>
@@ -381,7 +405,7 @@
 				</div>
 
 				<div class="stepContainer">
-					<!-- <isotope ref='syno' :list="synonyms" :options='{}'> -->
+					<isotope ref='syno' :list="synonyms" :options='{}'>
 						<div v-for="term in synonyms" :key="term.translation.name">
 							<term
 								:term="term"
@@ -390,20 +414,8 @@
 								v-on:exclude="removeSynonym(term.term.uid)">
 							</term>
 						</div>
-					<!-- </isotope> -->
-					<autocomplete :exclude="$route.params.uid" input-id="syn" v-on:select="addSynonym" ></autocomplete>
-				</div>
-				<div class="stepContainer">
-					<isotope ref='group' :list="groups" :options='{}'>
-						<div v-for="term in groups" :key="term.translation.name">
-							<term :term="term"
-								:display="'list'"
-								:key="term.translation.name"
-								v-on:exclude="removeGroup(term.setID)">
-							</term>
-						</div>
 					</isotope>
-					<autocomplete exclude="" input-id="group" v-on:select="addGroup"></autocomplete>
+					<autocomplete :exclude="$route.params.uid" input-id="syn" v-on:select="addSynonym" ></autocomplete>
 				</div>
 				<div class="stepContainer">
 						<isotope ref='withn' :list="within" :options='{}'>
@@ -722,9 +734,9 @@
 					<div class="">
 
 						<div class="mbtn trigger" v-bind:class="{'scaleIcon': hovering}">
-							<span v-if="!term.term.url" class="flexCenter border">{{term.translation.name[0]}}</span>
+							<span v-if="!term.term.iconURL" class="flexCenter border">{{term.translation.name[0]}}</span>
 							<div v-else class="thumb card-image border">
-								<img :src="term.term.url">
+								<img :src="term.term.iconURL">
 							</div>
 						</div>
 
@@ -844,6 +856,9 @@
 					{{re.resource.subtitle}}
 				</div>
 			</div>
+			<div v-if="re.resource.text && display !='thumb'">
+				{{re.resource.text}}
+			</div>
 			<div v-if="display =='card' " class='card-action'>
 	 			<span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(re.resource.viewcount,1) || 0}}</span>
 	 			<span v-if="re.resource.rating" class='right card-bottom'>{{re.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
@@ -875,7 +890,7 @@
 					<label :for="inputId" >Term name</label>
 					<ul id="ac" class="autocomplete-content dropdown-content"style="position:absolute" v-bind:class="{ hide: hidden }">
 						<li v-for="suggestion in suggestions" @click='pick(suggestion)'>
-							<img v-if="suggestion.url" :src="suggestion.url" class="left">
+							<img v-if="suggestion.term.iconURL" :src="suggestion.term.iconURL" class="left">
 							<span><i v-if="suggestion.new" class='material-icons  left'>add</i>{{suggestion.translation.name}}<span v-if="$route.name !='addTerm' && suggestion.new" @click="addWithDetail = true"><i class='material-icons right addDetail'>playlist_add</i></span></span>
 						</li>
 					</ul>
@@ -1076,6 +1091,12 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 <script src="components.js"></script>
 <script src="main.js"></script>
 
+<!-- iframe busting -->
+<script>
+  if(top != window) {
+    top.location = window.location
+  }
+</script>
 <!-- analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -147,7 +147,7 @@ html {
     position: relative;
     overflow: hidden;
     border-radius: 50%;
-    margin:20px;
+    /*margin:20px;*/
 }
 .thumb img {
     display: block;
@@ -195,7 +195,12 @@ html {
 }
 .termTitle {
   background-color: #2196F3;
-  margin-top: -20px;
+  padding: 25px;
+}
+.termTitle span {
+  font-weight: 200;
+  color:white;
+  font-size: 20px;
 }
 .termMeta {
   height: 100vh;
@@ -359,13 +364,13 @@ html {
 	width: 25vw;
 	height: 100vh;
   overflow: scroll;
-  padding-top: 20px;
-  padding-bottom: 200px;
+  padding-top: 30px;
+  padding-bottom: 400px;
 }
 @media (max-width:40.063em) {
   .stepContainer{  width: 80vw;}
   .addContainer{
-    padding-top: 30px;
+    padding-top: 200px;
     padding-bottom: 100px;
     padding-left: 50px;
     padding-right: 50px;
@@ -382,6 +387,7 @@ html {
 	height: 100%;
   position: relative;
   overflow: scroll;
+  padding-top:200px;
   display: flex !important;
   flex-flow: row wrap;
   justify-content: space-around;

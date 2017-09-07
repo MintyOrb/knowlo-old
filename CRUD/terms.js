@@ -38,7 +38,7 @@ app.get('/set/:name/:uid?', read);    // read details of a single set and transl
 app.get('/api/set', query);           // query sets based on user details and provided set IDs - /set/query instaed?
 app.put('/api/term/:uid', updateCore); // update a single resrouces core node data
 app.post('/api/set', create);         // create (or update, if present) a term core and single translation node.
-app.delete('/api/term', deleteCore);   // delete term core node and relationships....and translations?
+app.delete('/api/set/:setID', deleteCore);   // delete term core node and relationships....and translations?
 
 app.put('/god/name/:uid/:name', name);
 function name(req, res){
@@ -72,15 +72,14 @@ function query(req, res){
               + "WITH contentNode, COUNT(searchSets) as count "
               + "WHERE count = {searchTermsCount} "
               + "MATCH (set:synSet)<-[:TAGGED_WITH]-(contentNode), "
-                  + "(set)-[setR:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(translation:translation) "
+                + "(set:synSet)-[setR:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(translation:translation) "//", "
               + "WHERE setR.order=1 AND NOT set.uid IN {ignoreTerms} "
-              + "RETURN DISTINCT count(DISTINCT contentNode) AS connections, translation, set as term, set.uid AS setID "
+              + "RETURN distinct count(DISTINCT contentNode) AS connections, translation, set as term, set.uid AS setID "
               + "ORDER BY connections DESC "
               // + "ORDER BY {orderby} {updown}"
               // + "SKIP {skip} "
               + "LIMIT 20";
     var len = 0;
-
     if(req.query.include && req.query.include !== 'undefined'){
       len = req.query.include.length;
     } else { // maybe just don't send a get you know won't return anything...
@@ -100,17 +99,17 @@ function query(req, res){
 * @return {Object} resource
 */
 function read(req, res){
-  if(req.params.uid == 'undefined' && req.params.name){
-    var uid = req.params.name; // match term on name
-    var cypher = "MATCH (term:term)-[r:HAS_TRANSLATION]->(translation:translation) "
-               + "WHERE LOWER(translation.name)=LOWER({uid}) "
-               + "AND r.languageCode={languageCode} return term, translation"
-  } else {
+  // if(req.params.uid == 'undefined' && req.params.name){
+  //   var uid = req.params.name; // match term on name
+  //   var cypher = "MATCH (term:term)-[r:HAS_TRANSLATION]->(translation:translation) "
+  //              + "WHERE LOWER(translation.name)=LOWER({uid}) "
+  //              + "AND r.languageCode={languageCode} return term, translation"
+  // } else {
     var uid = req.params.uid; // match term on id
     var cypher ="MATCH (set:synSet {uid:{uid}})<-[s:IN_SET]-(term:term)-[r:HAS_TRANSLATION]->(translation:translation) "
-               +"WHERE r.languageCode={languageCode} return term, translation, set.UID as setID "
+               +"WHERE r.languageCode={languageCode} return set as term, translation, set.UID as setID "
                +"ORDER BY s.order"
-  }
+  // }
   db.query(cypher, {uid: uid, languageCode: req.query.languageCode || 'en'},function(err, result) {
     if (err) console.log(err);
     if(result){
@@ -192,6 +191,16 @@ function create(req, res){
 }
 
 function deleteCore(req, res){
+  //TODO: check permissions
+  //TODO: for production, re-lable rather than delete?
+  var cypher = "MATCH (set:synSet {uid: {uid}}), "
+              +"(set)-[sr:IN_SET]-(terms:term)-[r:HAS_TRANSLATION]-(ttr:translation), "
+              +"(set)-[Ppr:HAS_PROPERTY]-(props:prop)-[ppr:HAS_TRANSLATION]-(ptr:translation) "
+              + "DETACH DELETE set,terms,props,ttr,ptr "
+   db.query(cypher, {uid: req.params.setID },function(err, result) {
+     if (err) console.log(err);
+     res.send(result)
+   })
 }
 
 /*
@@ -494,7 +503,7 @@ function autocomplete(req,res){
       "MATCH (set:synSet)<-[:IN_SET]-(core:term)-[r:HAS_TRANSLATION {languageCode:{code}}]->(langNode) ",
       "WHERE langNode.name =~ {match} AND NOT set.uid IN [{exclude}] ",
       // "with langNode, collect(set) as term "
-      "RETURN DISTINCT set.uid AS setID, core.url AS url, set AS term, langNode AS translation  LIMIT 8" // order by....?
+      "RETURN DISTINCT set.uid AS setID, core.url AS url, set AS term, langNode AS translation LIMIT 8" // order by....?
   ].join('\n');
 
   db.query(query, properties, function (err, matches) {
@@ -511,7 +520,7 @@ function autocomplete(req,res){
 function most(req,res){
   var cypher = "MATCH (term:term)<-[:TAGGED_WITH]-(resource:resource) "
              + "RETURN term.english, COUNT(resource) AS score "
-             + "ORDER BY score DESC skip 30 limit 10"
+             + "ORDER BY score DESC limit 10"
   db.query(cypher, {languageCode: req.query.languageCode || 'en'},function(err, result) {
     if (err) console.log(err);
       res.send(result) // resource not found

@@ -3,11 +3,11 @@
     var shortid = require('shortid');
     var async = require('async');
     const util = require('util')
-    // var db = require("seraph")({
-    //   server: "http://localhost:7474",
-    //   user: 'neo4j',
-    //   pass: 'admin'
-    // });
+    var db = require("seraph")({
+      server: "http://localhost:7474",
+      user: 'neo4j',
+      pass: 'admin'
+    });
 
 
     // the functions to run (uncomment)
@@ -18,10 +18,93 @@
     // updateResourceSchema();
     // addOldMeta();
     // parseReddit(); //; add gathered link resources -- do reddit separate?
-    getIconUrls();
+    // getIconUrls();
     // addTagsInTitle() // parse len 1 and 2 tokens from title, add as tags if in db
     // addImgResources() //
 
+
+
+    /*
+    888                                    d8b               888    d8b 888    888
+    888                                    Y8P               888    Y8P 888    888
+    888                                                      888        888    888
+    888888  8888b.   .d88b.  .d8888b       888 88888b.       888888 888 888888 888  .d88b.  .d8888b
+    888        "88b d88P"88b 88K           888 888 "88b      888    888 888    888 d8P  Y8b 88K
+    888    .d888888 888  888 "Y8888b.      888 888  888      888    888 888    888 88888888 "Y8888b.
+    Y88b.  888  888 Y88b 888      X88      888 888  888      Y88b.  888 Y88b.  888 Y8b.          X88
+     "Y888 "Y888888  "Y88888  88888P'      888 888  888       "Y888 888  "Y888 888  "Y8888   88888P'
+                         888
+                    Y8b d88P
+                     "Y88P"
+    */
+
+    function addTagsInTitle(){
+      require('./tempData/titleTags')
+      async.eachSeries(titleTags['data'], function(node, callback) {
+        console.log(node.row[0])
+        console.log(node.row[1])
+        var tokens =[]
+        var nospecial = node.row[1].replace(/[^a-zA-Z0-9 ]/g, "");
+        var split = nospecial.split(' ')
+        var stop = ["undefined","a", "about", "above", "above", "across", "after", "afterwards", "again", "against", "all", "almost", "alone", "along", "already", "also","although","always","am","among", "amongst", "amoungst", "amount",  "an", "and", "another", "any","anyhow","anyone","anything","anyway", "anywhere", "are", "around", "as",  "at", "back","be","became", "because","become","becomes", "becoming", "been", "before", "beforehand", "behind", "being", "below", "beside", "besides", "between", "beyond", "bill", "both", "bottom","but", "by", "call", "can", "cannot", "cant", "co", "con", "could", "couldnt", "cry", "de", "describe", "detail", "do", "done", "down", "due", "during", "each", "eg", "eight", "either", "eleven","else", "elsewhere", "empty", "enough", "etc", "even", "ever", "every", "everyone", "everything", "everywhere", "except", "few", "fifteen", "fify", "fill", "find", "fire", "first", "five", "for", "former", "formerly", "forty", "found", "four", "from", "front", "full", "further", "get", "give", "go", "had", "has", "hasnt", "have", "he", "hence", "her", "here", "hereafter", "hereby", "herein", "hereupon", "hers", "herself", "him", "himself", "his", "how", "however", "hundred", "ie", "if", "in", "inc", "indeed", "interest", "into", "is", "it", "its", "itself", "keep", "last", "latter", "latterly", "least", "less", "ltd", "made", "many", "may", "me", "meanwhile", "might", "mill", "mine", "more", "moreover", "most", "mostly", "move", "much", "must", "my", "myself", "name", "namely", "neither", "never", "nevertheless", "next", "nine", "no", "nobody", "none", "noone", "nor", "not", "nothing", "now", "nowhere", "of", "off", "often", "on", "once", "one", "only", "onto", "or", "other", "others", "otherwise", "our", "ours", "ourselves", "out", "over", "own","part", "per", "perhaps", "please", "put", "rather", "re", "same", "see", "seem", "seemed", "seeming", "seems", "serious", "several", "she", "should", "show", "side", "since", "sincere", "six", "sixty", "so", "some", "somehow", "someone", "something", "sometime", "sometimes", "somewhere", "still", "such", "system", "take", "ten", "than", "that", "the", "their", "them", "themselves", "then", "thence", "there", "thereafter", "thereby", "therefore", "therein", "thereupon", "these", "they", "thickv", "thin", "third", "this", "those", "though", "three", "through", "throughout", "thru", "thus", "to", "together", "too", "top", "toward", "towards", "twelve", "twenty", "two", "un", "under", "until", "up", "upon", "us", "very", "via", "was", "we", "well", "were", "what", "whatever", "when", "whence", "whenever", "where", "whereafter", "whereas", "whereby", "wherein", "whereupon", "wherever", "whether", "which", "while", "whither", "who", "whoever", "whole", "whom", "whose", "why", "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the"];
+        var split = split.filter(function(word){
+          return stop.indexOf(word) == -1
+        })
+
+        for (var i = 0; i < split.length; i++) {
+          // console.log(split[i]+" "+split[i + 1])
+          tokens.push(split[i].toLowerCase())
+          tokens.push((split[i]+" "+split[i + 1]).toLowerCase())
+        }
+        // console.log(tokens)
+            async.eachSeries(tokens, function(token, callback) {
+              console.log(token)
+
+              tagResource(node.row[0], token, function(err, result){
+                  if(err){console.log(err)}
+                  console.log('back from tagging: ')
+                  console.log(result)
+                  callback()
+              })
+
+            }, function(err) {
+                if( err ) {
+
+                  console.log('A token failed to process');
+                } else {
+                  callback()
+                  console.log('All tokens have been processed successfully');
+                }
+            });
+      }, function(err) {
+          if( err ) {
+            console.log('A resource failed to process: ',err);
+          } else {
+
+            console.log('All resources have been processed successfully');
+          }
+      });
+    }
+    function tagResource(uid, snip, callback){
+
+
+      console.log('in do query')
+      // callback('hi')
+
+      var cypher = "MATCH (t:term)-[:IN_SET]->(set:synSet), (r:resource {uid:{ruid}}) "
+                 + "WHERE t.lower = {snip} "
+                 + "WITH set, r "
+                 + "MERGE (set)<-[rel:TAGGED_WITH]-(r) "
+                 + "RETURN set,r "
+      //
+      db.query(cypher, {ruid: uid, snip: snip },function(err, result) {
+        if (err) console.log(err);
+        console.log(err)
+        // console.log('back :')
+        // console.log(result)
+        callback(result)
+      })
+    }
     /*
     d8b                                                 888
     Y8P                                                 888
@@ -43,31 +126,48 @@
 
 
       async.eachSeries(icon4Terms['data'], function(node, callback) {
-        console.log(node.row[0])
-        console.log(node.row[1])
+
         client.search(node.row[1] + " icon")
           .then(images => {
-            console.log(images)
-            var detailIDs = [];
-            for (var i = 0; i < Object.keys(details).length; i++) {
-              detailIDs.push(shortid.generate());
+            // console.log(images)
+
+            var urls=[]
+            for (var i = 0; i < 3; i++) {
+              if(images[i].thumbnail){
+                  urls.push({
+                  order: i + 1,
+                  value:images[i].thumbnail.url,
+                  url:images[i].thumbnail.url,
+                  source: images[i].parentPage,
+                  detail: images[i].description,
+                  uid: shortid.generate()
+                })
+              }
+
             }
+            console.log(urls)
+            async.eachSeries(urls, function(prop, callback) {
+              console.log('in second asyc')
+              console.log(node.row[0])
+              console.log(prop)
+              img(node.row[0], prop, function(err, result){
+                console.log('done an icon')
+                console.log(err)
+                console.log(result)
 
-            var cypher = "MATCH (synSet:synSet {uid: {synID}}) "
-                       + "WITH synSet, {detail} AS detail, {detailIDs} as dIDs, keys({detail}) AS keys "
-                       + "FOREACH (index IN range(0, size(keys)-1) | "
-                         + "MERGE (synSet)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index], uid: dIDs[index] })-[tr:HAS_TRANSLATION {languageCode: 'en'}]->(langNode:tester:translation {value: detail[keys[index]] } ) "
-                       + ") "
-                       + "RETURN synSet"
-            // db.query(cypher, {synID: node.row[0], detail: details, detailIDs: detailIDs },function(err, result) {
-            //   if (err) console.log(err);
-            //
-            //   console.log(result)
-            //   callback()
-            // })
+                callback();
+              })
 
-          });
+            }, function(err) {
+                if( err ) {
+                  console.log('A term failed to process');
+                } else {
+                  console.log('All terms have been processed successfully');
+                  callback()
+                }
 
+            });
+          })
         }, function(err) {
             if( err ) {
               console.log('A term failed to process');
@@ -78,6 +178,27 @@
 
 
     }
+    function img(uid, props, callback){
+
+
+      console.log('in do query')
+      // callback('hi')
+
+      var cypher = "MATCH (set:synSet {uid:{uid}}) "
+                 + "WITH set, {detail} AS detail "
+                 + "MERGE (set)-[r:HAS_PROPERTY {order: {detail}.order, type: 'url' }]->(prop:prop:termUrlTest {type: 'url', uid: {detail}.uid })-[tr:HAS_TRANSLATION {languageCode: 'en'}]->(langNode:termUrlTest:translation ) "
+                 + "SET langNode =  {detail} "
+                 + "RETURN set, langNode "
+      //
+      db.query(cypher, {uid: uid, detail: props },function(err, result) {
+        if (err) console.log(err);
+        console.log(err)
+        console.log('back :')
+        console.log(result)
+        callback(result)
+      })
+    }
+
     /*
                                                                           888      888 d8b 888
                                                                           888      888 Y8P 888
