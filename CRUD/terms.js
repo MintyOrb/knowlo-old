@@ -193,9 +193,9 @@ function create(req, res){
 function deleteCore(req, res){
   //TODO: check permissions
   //TODO: for production, re-lable rather than delete?
-  var cypher = "MATCH (set:synSet {uid: {uid}}), "
-              +"(set)-[sr:IN_SET]-(terms:term)-[r:HAS_TRANSLATION]-(ttr:translation), "
-              +"(set)-[Ppr:HAS_PROPERTY]-(props:prop)-[ppr:HAS_TRANSLATION]-(ptr:translation) "
+  var cypher = "MATCH (set:synSet {uid: {uid}}) "
+              +"OPTIONAL MATCH (set)-[sr:IN_SET]-(terms:term)-[r:HAS_TRANSLATION]-(ttr:translation) "
+              +"OPTIONAL MATCH (set)-[Ppr:HAS_PROPERTY]-(props:prop)-[ppr:HAS_TRANSLATION]-(ptr:translation) "
               + "DETACH DELETE set,terms,props,ttr,ptr "
    db.query(cypher, {uid: req.params.setID },function(err, result) {
      if (err) console.log(err);
@@ -436,7 +436,8 @@ function deleteWithin(req, res){
 
 
 function contains(req, res){
-  var cypher = "MATCH (set:synSet {uid: {set} })<-[:IN_SET]-(syn:synSet)<-[r:IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
+  var cypher = "MATCH (set:synSet {uid: {set} })<-[:IN_SET]-(syn:synSet), "
+                 + "(syn)<-[r:IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
                  + "WHERE r.order=1 AND lang.languageCode IN [ {language} , 'en' ] "
                  + "RETURN DISTINCT syn as term, syn.uid as setID, translation , r "
                  + "ORDER BY  r.order"
@@ -505,7 +506,8 @@ function autocomplete(req,res){
       // "with langNode, collect(set) as term "
       "RETURN DISTINCT set.uid AS setID, core.url AS url, set AS term, langNode AS translation LIMIT 8" // order by....?
   ].join('\n');
-
+  //TODO:order by...
+  //TODO: only return top set if query matches mutiple terms in set
   db.query(query, properties, function (err, matches) {
       if (err) {console.log(err);}
       res.send(matches);

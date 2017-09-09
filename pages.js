@@ -162,6 +162,8 @@ const termComp = Vue.component('termComp',{
         groups: [],
         within: [],
         contains: [],
+        icons:[],
+        definitions:[],
         termSection: ["Icons","Definition","Synonyms","Within","Contains","Translations"] //stats? vote? member's relation? definition?
       }
     },
@@ -215,11 +217,18 @@ const termComp = Vue.component('termComp',{
       close: function(){
         console.log("close here after esc")
       },
+      deleteIcon: function(){
+
+      },
       fetchProps: function(){
         this.$http.get('/set/' + this.$route.params.uid + '/props/', {params: { languageCode: 'en'}}).then(response => {
           if(response.body.length > 0){
-            // this.props = response.body;
-            console.log(response.body)
+            this.icons = response.body.filter(prop => {
+              return prop.type=='url'
+            })
+            this.definitions = response.body.filter(prop => {
+              return prop.type=='definition';
+            })
           } else {
             Materialize.toast('Properties not found.', 4000)
           }
@@ -771,6 +780,7 @@ const explore = Vue.component('exploreComp',{
           }
           this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
             this.suggestions=response.body;
+            console.log(this.suggestions)
           }, response => {
           });
         },
@@ -789,7 +799,6 @@ const explore = Vue.component('exploreComp',{
 
     },
     mounted: function(){
-      // this.test()
 
       //alpha warning
       if(!Cookies.get('alpha-warning-seen')){
@@ -800,13 +809,6 @@ const explore = Vue.component('exploreComp',{
         Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
       }
 
-
-      // get previously selected display Style
-      if(!Cookies.get('displayStyle')){
-        this.display = "card";
-      } else {
-        this.display = Cookies.get('displayStyle');
-      }
       // get previously selected lens - (remove after generalized to any group as a lens)
       if(Cookies.get('lens') == 'null'){ // temporary until cross sections are generalized.
         this.changeLens(null)
@@ -815,6 +817,14 @@ const explore = Vue.component('exploreComp',{
       } else {
         this.changeLens(this.size)
       }
+
+      // get previously selected display Style
+      if(!Cookies.get('displayStyle')){
+        this.display = "card";
+      } else {
+        this.display = Cookies.get('displayStyle');
+      }
+
 
       $('.dropdown-button').dropdown();
 
@@ -828,6 +838,10 @@ const explore = Vue.component('exploreComp',{
           })
 
         });
+        // temp workaround as long as imagesLoaded() is not working
+        setInterval(x => {
+          this.layout();
+        }, 3000);
     },
     created: function(){
       this.bigHistory = bigHistory;
@@ -837,6 +851,10 @@ const explore = Vue.component('exploreComp',{
       termQuery: function(val){
         var include = [];
         var exclude = [];
+
+        Cookies.set('termQuery',val)
+        console.log(val)
+
         for (var termIndex = 0; termIndex < val.length; termIndex++) {
           if(val[termIndex]['status'].includeIcon){
             include.push(val[termIndex]['setID'])

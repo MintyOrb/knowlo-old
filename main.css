@@ -624,3 +624,36 @@ html {
 .fullWidth{
   width: 100vw;
 }
+.connections {
+  height: 1.3em;
+  width: 1.3em;
+  position: absolute;
+  top: 64px;
+  right: 18px;
+  z-index: 20;
+  font-size: 12px;
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px;
+}
+.rText{
+  font-size: 20px;
+  font-weight: 300;
+  padding:20px;
+}
+.clear{
+  font-size: 11px;
+    font-weight: 300;
+    line-height: 20px;
+    border-radius: 25px;
+    padding: 0px;
+    color: black;
+    height: 2em;
+    width: 5em;
+    padding-top: 2px;
+}

@@ -50,6 +50,12 @@ const app = new Vue({
   },
   mounted: function(){
 
+
+    // get term query
+    if(Cookies.get('termQuery')){
+        this.termQuery = Cookies.getJSON('termQuery');
+    }
+
     this.bigHistory = bigHistory.members//.slice(0,3);
     // this.termQuery= disciplines.members.slice(0,3);
 

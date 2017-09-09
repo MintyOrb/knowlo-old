@@ -124,9 +124,9 @@
 			<!-- view for term and resource page -->
 
 			<router-view :member="member" :term-Query="termQuery"></router-view>
-			<!-- <router-link :to="{ name: 'addResource'}">
+			<router-link :to="{ name: 'addResource'}">
 				add resource
-		 </router-link> -->
+		 </router-link>
 			<!-- sort FAB -->
 			<!-- <div class="fixed-action-btn click-to-toggle">
 		    <a class="btn-floating btn-large blue">
@@ -172,6 +172,9 @@
 								</term>
 		          </div>
 		        </isotope>
+						<div v-if="termQuery.length > 0" class="clear btn white waves-light" @click="termQuery=[]">
+							clear
+						</div>
 		    </div>
 
 				<!--  suggested -->
@@ -379,26 +382,27 @@
 
 
 
-				<div class="stepContainer">hi
-					<!-- <div v-for="term in t" :key="term.translation.name">
-						<term
-							:term="term"
-							:display="thumb"
-							:key="term.translation.name"
-						</term>
-					</div> -->
+				<div class="stepContainer">
+					<div v-for="icon in icons" :key="icon.setID">
+						<!-- {{icon}} -->
+						<resource
+							:re="icon"
+							:display="list"
+							>
+						</resource>
+						<img :src="icon.translation.value" />
+					</div>
 				</div>
 
 				<div class="stepContainer">
-					<p>icons</p>
-					<p>synonyms</p>
-					<p>groups</p>
-					<p>within</p>
-					<p>contains</p>
-					<p>definition</p>
-					<p>questions?</p>
-					<p>insights?</p>
-					translatins?
+						<div v-for="def in definitions" :key="term.translation.name">
+							<div class='card hoverable'>
+								<div class="card-content">
+										{{def.translation.text}}
+								</div>
+							</div>
+						</div>
+
 					<div @click="addDefinition">
 						add resource
 				 </div>
@@ -406,11 +410,11 @@
 
 				<div class="stepContainer">
 					<isotope ref='syno' :list="synonyms" :options='{}'>
-						<div v-for="term in synonyms" :key="term.translation.name">
+						<div v-for="term in synonyms" :key="term.setID">
 							<term
 								:term="term"
 								:display="'godMode'"
-								:key="term.translation.name"
+								:key="term.setID"
 								v-on:exclude="removeSynonym(term.term.uid)">
 							</term>
 						</div>
@@ -795,6 +799,9 @@
 						</div>
 					</div>
 				</div>
+				<div class="connections badge"v-if="term.connections">
+					{{term.connections}}
+				</div>
 				<div class="nameholder">
 					<div class="name">
 						{{term.translation.name}}
@@ -856,7 +863,7 @@
 					{{re.resource.subtitle}}
 				</div>
 			</div>
-			<div v-if="re.resource.text && display !='thumb'">
+			<div class="rText" v-if="re.resource.text && display !='thumb'">
 				{{re.resource.text}}
 			</div>
 			<div v-if="display =='card' " class='card-action'>
