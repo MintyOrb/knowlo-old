@@ -20,10 +20,6 @@ module.exports = function(app, db){
     if(err){console.log(err)};
     console.log(constraint);
   });
-  db.constraints.uniqueness.createIfNone('resource', 'url', function(err, constraint) {
-    if(err){console.log(err)};
-    console.log(constraint);
-  });
   db.constraints.uniqueness.createIfNone('resource', 'uid', function(err, constraint) {
     if(err){console.log(err)};
     console.log(constraint);

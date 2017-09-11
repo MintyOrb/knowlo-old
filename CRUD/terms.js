@@ -34,7 +34,7 @@ app.get('/set/:setID/props/', getProps);
 
 // core
 app.get('/set', query);           // query sets based on provided set IDs
-app.get('/set/:name/:uid?', read);    // read details of a single set and translation
+app.get('/set/:uid', read);    // read details of a single set and translation
 app.get('/api/set', query);           // query sets based on user details and provided set IDs - /set/query instaed?
 app.put('/api/term/:uid', updateCore); // update a single resrouces core node data
 app.post('/api/set', create);         // create (or update, if present) a term core and single translation node.

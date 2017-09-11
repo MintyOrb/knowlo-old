@@ -18,7 +18,7 @@
 .addDetail:hover{
   background-color:rgb(210, 210, 210);
 }
-.resource-modal {
+.odal {
   display: flex!important;
 }
 [v-cloak] { display: none }
@@ -185,13 +185,13 @@ html {
   color: #2196F3;
 }
 .resource-container {
-  height: 100%;
-  width: 50vw;
+  /*height: 100%;*/
+  width: 100vw;
   z-index: 999;
 }
 .resourceMeta {
-  height: 100%;
-  width: 50vw;
+  /*height: 100%;*/
+  width: 100vw;
 }
 .termTitle {
   background-color: #2196F3;
@@ -208,8 +208,8 @@ html {
 }
 
 #image-map {
-  width: 50vw;
-  height: 100vh;
+  width: 100vw;
+  height: 80vh;
 }
 .exit {
   position: absolute;
@@ -233,24 +233,24 @@ html {
   height: 100%;
   max-height: none;
   display: block;
-  overflow: hidden;
-  /*overflow hidden because wehn resourceStep is 100vh it goes beyond the page*/
+  overflow: scroll;
+}
+.resource-modal {
+  display: inherit!important;
+}
+.resource-container {
+  height: auto;
+  width: 100vw;
+  margin: auto;
+}
+
+.resourceMeta {
+  height: 100%;
+  width: 100vw;
 }
 @media (max-width:40.063em) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
   .resource-container {
-    height: auto;
     width: 100vw;
-  }
-  .resourceMeta {
-    height: 100%;
-    width: 100vw;
-  }
-  .resource-modal {
-    display: inherit!important;
-  }
-  #image-map {
-    width: 100vw;
-    height: 35vh;
   }
 }
 .web-container iframe, .video-container object, .video-container embed {
@@ -326,6 +326,8 @@ html {
 .resourceNav {
   position: sticky;
   top: 0;
+  z-index: 1000;
+  background-color: white;
 }
 .termNav {
   position: sticky;
@@ -375,15 +377,13 @@ html {
     padding-left: 50px;
     padding-right: 50px;
   }
-}
-.item{
-  /*width: 100%*/
+  .resourceStep{ width:80vw!important;}
 }
 .resourceSections{
   height: 100%;
 }
 .resourceStep {
-  width: 40vw;
+  /*width: 40vw;
 	height: 100%;
   position: relative;
   overflow: scroll;
@@ -391,7 +391,12 @@ html {
   display: flex !important;
   flex-flow: row wrap;
   justify-content: space-around;
-  align-content:center;
+  align-content:center;*/
+  width: 25vw;
+	height: 100vh;
+  overflow: scroll;
+  padding-top: 30px;
+  padding-bottom: 400px;
 }
 
 .table-of-contents-holder {
@@ -656,4 +661,7 @@ html {
     height: 2em;
     width: 5em;
     padding-top: 2px;
+}
+.hoverable {
+  box-shadow: none
 }

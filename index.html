@@ -165,7 +165,7 @@
 		            <term :term="word"
 									:display="'thumb'"
 									v-on:include="word.status.include=!word.status.include; word.status.exclude=!word.status.exclude;"
-									v-on:exclude="removeFrom(word, termQuery)"
+									v-on:exclude="removeTerm(word.setID)"
 									v-on:focus="focus"
 									v-on:lens="fetchContains"
 								>
@@ -283,8 +283,10 @@
 			<div v-if='resource.displayType=="image"' id="image-map"></div>
 
 			<!--  youtube/vimeo -->
-			<div v-if='resource.displayType=="embed"' class="video-container ">
-				 <iframe :src="'http://youtube.com/embed/'+resource.ytID"></iframe>
+			<div v-if='resource.displayType=="embed"'style="margin:auto;width:80%">
+				<div  class="video-container ">
+					 <iframe :src="'http://youtube.com/embed/'+resource.ytID"></iframe>
+				</div>
 			</div>
 
 			<!-- website -->
@@ -296,6 +298,10 @@
 			<div v-if='resource.displayType=="video"' class="web-container">
 				<iframe :src="resource.url" ></iframe>
 			</div>
+
+			<!-- imgur image/gallery -->
+			<!-- <blockquote class="imgur-embed-pub" lang="en" data-id="a/Y26eX"><a href="//imgur.com/Y26eX">Eyes</a></blockquote>
+			<script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script> -->
 
 
 			<!-- text -->
@@ -320,13 +326,15 @@
 					Activity
 				</div>
 				<div class="resourceStep" >
-					<term
-						v-for="term in terms"
-						:term="term"
-						key="term.name"
-						display="thumb"
-						v-on:exclude="removeTerm(term.setID)">
-					</term>
+					<isotope ref='terms' :list="terms" :options='{}'>
+						<term
+							v-for="term in terms"
+							:term="term"
+							key="term.name"
+							display="thumb"
+							v-on:exclude="removeTerm(term.setID)">
+						</term>
+					</isotope>
 					<autocomplete exclude="" input-id="resourceTest" v-on:select="addTerm"></autocomplete>
 				</div>
 				<div class="resourceStep">
@@ -387,10 +395,10 @@
 						<!-- {{icon}} -->
 						<resource
 							:re="icon"
-							:display="list"
+							:display="'list'"
 							>
 						</resource>
-						<img :src="icon.translation.value" />
+						<!-- <img :src="icon.translation.value" /> -->
 					</div>
 				</div>
 
@@ -837,7 +845,7 @@
 888     "Y8888   88888P'  "Y88P"   "Y88888 888     "Y8888P "Y8888
 -->
 <template id='resource'>
-	<div>
+	<div class='resource'>
 		<div
 		:class="{
 		'list waves-effect waves-block waves-light z-depth-1 hoverable': display=='list',
@@ -846,7 +854,8 @@
 			<div v-if="re.resource.mThumb"
 				v-bind:class="{
 				'thumb waves-effect waves-block waves-light z-depth-1 hoverable': display == 'thumb' || display =='list',
-			 	'card-image': display == 'card'}">
+			 	'card-image': display == 'card',
+				'margin20': display == 'thumb'}">
 				<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
 					<img :src="re.resource.mThumb" />
 				</router-link>

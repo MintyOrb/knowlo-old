@@ -169,9 +169,8 @@ const termComp = Vue.component('termComp',{
     },
     methods:{
        init: function(){
-         this.$http.get('/set/' + this.$route.params.name + '/' + this.$route.params.uid, {params: { languageCode: 'en'}}).then(response => {
+         this.$http.get('/set/' + this.$route.params.uid, {params: { languageCode: 'en'}}).then(response => {
            if(response.body.term){
-
              response.body.term.name = response.body.translation.name
              response.body.term.status = {};
              this.term = response.body;
@@ -222,8 +221,10 @@ const termComp = Vue.component('termComp',{
       },
       fetchProps: function(){
         this.$http.get('/set/' + this.$route.params.uid + '/props/', {params: { languageCode: 'en'}}).then(response => {
+
+          var tempIcon = []
           if(response.body.length > 0){
-            this.icons = response.body.filter(prop => {
+            tempIcon = response.body.filter(prop => {
               return prop.type=='url'
             })
             this.definitions = response.body.filter(prop => {
@@ -232,6 +233,18 @@ const termComp = Vue.component('termComp',{
           } else {
             Materialize.toast('Properties not found.', 4000)
           }
+
+          // temp prop renaming...
+          for(icon in tempIcon){
+            tempIcon[icon].resource = {}
+
+            tempIcon[icon].resource.mThumb = tempIcon[icon].translation.value
+            console.log('woahhhhhh')
+            console.log(tempIcon[icon])
+
+          }
+          this.icons=tempIcon;
+
         }, response => {
           this.openModal()
           Materialize.toast('Something went wrong...are you online?', 4000)
@@ -651,6 +664,7 @@ const explore = Vue.component('exploreComp',{
     methods: {
         includeSearch: function(set){
           this.termQuery.push(set);
+          console.log('hi')
           this.removeFrom(set, this.suggestions)
         },
         focus: function(set){
@@ -674,6 +688,12 @@ const explore = Vue.component('exploreComp',{
               if( theArray[i].setID == item.setID) theArray.splice(i,1);
           }
         },
+        removeTerm: function(id){ // removal looks funny...open issue: https://github.com/David-Desmaisons/Vue.Isotope/issues/24
+          for( i=this.termQuery.length-1; i>=0; i--) {
+              if( this.termQuery[i].setID == id) this.termQuery.splice(i,1);
+          }
+        },
+
         addToQuery: function(item){
             this.termQuery.push(item);
         },
@@ -780,12 +800,10 @@ const explore = Vue.component('exploreComp',{
           }
           this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
             this.suggestions=response.body;
-            console.log(this.suggestions)
           }, response => {
           });
         },
         fetchContains: function(set){
-          console.log(set)
           this.$http.get('/set/' + set.setID + '/contains/', {params: { languageCode: 'en'}}).then(response => {
             if(response.body.length > 0){
               this.changeLens(response.body);
@@ -853,7 +871,6 @@ const explore = Vue.component('exploreComp',{
         var exclude = [];
 
         Cookies.set('termQuery',val)
-        console.log(val)
 
         for (var termIndex = 0; termIndex < val.length; termIndex++) {
           if(val[termIndex]['status'].includeIcon){

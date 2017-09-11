@@ -129,7 +129,6 @@ Vue.component('resource',{
     },
   },
   mounted: function(){
-    console.log('resource here.')
   }
 })
 
