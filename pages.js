@@ -246,7 +246,6 @@ const termComp = Vue.component('termComp',{
           this.icons=tempIcon;
 
         }, response => {
-          this.openModal()
           Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
@@ -255,10 +254,10 @@ const termComp = Vue.component('termComp',{
           if(response.body.length > 0){
             this.translations = response.body;
           } else {
-            Materialize.toast('Synonyms not found.', 4000)
+            Materialize.toast('Translations not found.', 4000)
+            this.translations = []
           }
         }, response => {
-          this.openModal()
           Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
@@ -268,9 +267,9 @@ const termComp = Vue.component('termComp',{
             this.synonyms = response.body;
           } else {
             Materialize.toast('Synonyms not found.', 4000)
+            this.synonyms = []
           }
         }, response => {
-          this.openModal()
           Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
@@ -304,9 +303,9 @@ const termComp = Vue.component('termComp',{
             this.within = response.body;
           } else {
             Materialize.toast('Within not found.', 4000)
+            this.within = []
           }
         }, response => {
-          this.openModal()
           Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
@@ -340,6 +339,7 @@ const termComp = Vue.component('termComp',{
             this.contains = response.body;
           } else {
             Materialize.toast('Contains no terms.', 4000)
+            this.contains = []
           }
         }, response => {
           Materialize.toast('Something went wrong...are you online?', 4000)
