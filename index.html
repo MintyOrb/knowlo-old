@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="dep/flickity.min.css">
 	<link rel="stylesheet" href="dep/leaflet.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="dep\nouislider.css">
 	<link rel="stylesheet" href="main.css">
 
 	<script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
@@ -884,6 +885,10 @@
 	 			<span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(re.resource.viewcount,1) || 0}}</span>
 	 			<span v-if="re.resource.rating" class='right card-bottom'>{{re.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
 	 		</div>
+
+			<div v-if="voting & display !='thumb'" style='margin: 20px;'>
+				<div :id="'test-slider'+re.resource.uid"></div>
+			</div>
 	 	</div>
 
 </template>
@@ -1101,6 +1106,7 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 <script src="dep\leaflet.js"></script>
 <script src="dep\materialize.min.js"></script>
 <script src="https://cdn.jsdelivr.net/vue.resource/1.2.1/vue-resource.min.js"></script>
+<script src="dep\nouislider.min.js"></script>
 
 <script src="navSectionTemplates.js"></script>
 <script src="pages.js"></script>

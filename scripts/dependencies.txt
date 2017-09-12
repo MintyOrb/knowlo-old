@@ -12,5 +12,5 @@ node_modules\js-cookie\src\js.cookie.js
 node_modules\vue-headroom\dist\vue-headroom.min.js
 node_modules\leaflet\dist\leaflet.js
 node_modules\leaflet\dist\leaflet.css
-node_modules\imagesloaded\imagesloaded.pkgd.min.js
-node_modules\vue-images-loaded\dist\vueimagesloaded.js
+node_modules\materialize-css\extras\noUiSlider\nouislider.min.js
+node_modules\materialize-css\extras\noUiSlider\nouislider.css

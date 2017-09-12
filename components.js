@@ -113,7 +113,9 @@ Vue.component('resource',{
   props:['re','display'],
   name: "resource",
   data: () =>  {
-    return {}
+    return {
+      voting: false
+    }
   },
   methods:{
     trimNumber: function(num, digits) { // from http://stackoverflow.com/a/9462382/2061741 - displays number of views
@@ -129,6 +131,16 @@ Vue.component('resource',{
     },
   },
   mounted: function(){
+
+    var slider = document.getElementById('test-slider' + this.re.resource.uid);
+     noUiSlider.create(slider, {
+      start: [50],
+      connect: [true,false],
+      range: {
+        'min': 0,
+        'max': 100
+      }
+     });
   }
 })
 
