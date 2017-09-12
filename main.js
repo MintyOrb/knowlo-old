@@ -9,7 +9,7 @@ const routes = [
         { path: '/addTerm/:translation/:termID?', component: addTerm, name: 'addTerm' },
       ]
   },
-  {  name: "resource", path: '/r/:uid', component: resourceComp },
+  // {  name: "resource", path: '/r/:uid', component: resourceComp },
   {  path: "/home", component: home },
   {  path: "/trending", component: trending },
   {  path: "/status", component: status },

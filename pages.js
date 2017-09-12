@@ -419,7 +419,13 @@ const termComp = Vue.component('termComp',{
     window.setTimeout(()=>{
       next()
     }, 375)
-  }
+  },
+  watch: {
+    '$route.params.uid': function (id) {
+      this.init();
+      }
+    }
+
 });
 
 
@@ -437,14 +443,13 @@ const resourceComp = Vue.component('resourceComp',{
           return {
               resource: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if resource is not found
               terms: [],
-              resourceSection: ["Activity","terms","Vote","Stats","Related"]
+              resourceSection: ["Discussion","Terms","Vote","Stats","Related"]
             }
           },
     methods: {
       init: function(){
           this.$nextTick(function(){
             $('#resourceModal'+this.resource.uid).modal({
-                // dismissible: true, // Modal can be dismissed by clicking outside of the modal
                 opacity: .5, // Opacity of modal background
                 inDuration: 300, // Transition in duration
                 outDuration: 200, // Transition out duration
@@ -454,12 +459,14 @@ const resourceComp = Vue.component('resourceComp',{
                   $('body').css("overflow","hidden")
                 },
                 complete: () => {
+                  console.log('completeeeeee')
                   $('.resourceNav').flickity('destroy');
                   $('.resourceSections').flickity('destroy');
-                  $('body').css("overflow","auto")
+                  $('body').css("overflow","auto");
+                  router.go(-1);
                 }
               }).modal('open');
-
+              $('#resourceModal'+resource.uid).css('opaciy',1)
               // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
               if(this.resource.displayType == "image"){
                 // TODO: make dry and sensible...
@@ -550,7 +557,6 @@ const resourceComp = Vue.component('resourceComp',{
           }
 
         } else {
-          console.log(response)
           Materialize.toast('Resource not found.', 4000)
         }
         this.init()
@@ -579,23 +585,15 @@ const resourceComp = Vue.component('resourceComp',{
         dragThreshold: 20 // play around with this more?
       });
 
-      // listen for escape key (materalize closes modal on esc, but doesn't re-route)
-      document.addEventListener('keydown', event => {
-        if (event.key === 'Escape' || event.keyCode === 27) {
-          router.go(-1) || router.push('/')
-        }
-      });
     },
     beforeRouteLeave: function (to, from, next){
       if(this.resource && $('#resourceModal'+this.resource.id)){
         $('#resourceModal'+this.resource.id).modal('close');
       }
+      $('.modal-overlay').remove();
       window.setTimeout(()=>{
         next()
       }, 375)
-
-      document.removeEventListener('keydown',function(){})
-
     }
 });
 

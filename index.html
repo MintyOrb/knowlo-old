@@ -275,15 +275,15 @@
 
 
 <template id="resourceTemplate">
-	<div :id="'resourceModal'+resource.uid" class="modal fullPage resource-modal"  >
-		<router-link to="/" class="exit hide-on-med-and-down" ><i class="fa fa-3x fa-times"></i></router-link>
+	<div style="opacity:0" :id="'resourceModal'+resource.uid" class="modal fullPage resource-modal"  >
+		<span class="exit hide-on-med-and-down modal-close" ><i class="fa fa-3x fa-times"></i></span>
 		<!-- the resource -->
 		<div class="resource-container">
 			<!-- image -->
 			<div v-if='resource.displayType=="image"' id="image-map"></div>
 
 			<!--  youtube/vimeo -->
-			<div v-if='resource.displayType=="embed"'style="margin:auto;width:80%">
+			<div v-if='resource.displayType=="embed"'class="vid-container-container">
 				<div  class="video-container ">
 					 <iframe :src="'http://youtube.com/embed/'+resource.ytID"></iframe>
 				</div>
@@ -845,47 +845,47 @@
 888     "Y8888   88888P'  "Y88P"   "Y88888 888     "Y8888P "Y8888
 -->
 <template id='resource'>
-	<div class='resource'>
-		<div
+	<div class='resource'
 		:class="{
 		'list waves-effect waves-block waves-light z-depth-1 hoverable': display=='list',
 		'card waves-effect waves-block waves-light z-depth-1 hoverable': display=='card'}">
 
 			<div v-if="re.resource.mThumb"
-				v-bind:class="{
+				:class="{
 				'thumb waves-effect waves-block waves-light z-depth-1 hoverable': display == 'thumb' || display =='list',
 			 	'card-image': display == 'card',
-				'margin20': display == 'thumb'}">
+				'margin20': display == 'thumb',
+				'inline mb': display == 'list'}">
 				<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
 					<img :src="re.resource.mThumb" />
 				</router-link>
 			</div>
+
 			<div v-if="re.resource.title && display =='card' || display =='list'"
-				v-bind:class="{
-				'truncate thin': display=='list',
+				:class="{
+				'truncate thin inline tmargin': display=='list',
 				'card-content': display=='card'}"
 				>
 				<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
 					<span :class="{'title': display=='card'}">{{re.resource.title}}</span>
 				</router-link>
-				<div v-if="re.resource.subtitle">
+
+				<div class='subtitle' v-if="re.resource.subtitle">
 					{{re.resource.subtitle}}
 				</div>
 			</div>
 			<div class="rText" v-if="re.resource.text && display !='thumb'">
-				{{re.resource.text}}
+				<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
+					{{re.resource.text}}
+				</router-link>
 			</div>
+
 			<div v-if="display =='card' " class='card-action'>
 	 			<span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(re.resource.viewcount,1) || 0}}</span>
 	 			<span v-if="re.resource.rating" class='right card-bottom'>{{re.resource.rating.toString().substring(0,3)}}<i class="tiny material-icons">star</i></span>
 	 		</div>
 	 	</div>
-		</div>
 
-
-
-
-	</div>
 </template>
 <!--
  █████  ██    ██ ████████  ██████   ██████  ██████  ███    ███ ██████  ██      ███████ ████████ ███████
