@@ -78,7 +78,9 @@
 			<div class="right selectedterms">
 				<isotope class="termQuery" ref="termQuery" :list="termQuery" :options='{}'>
 					<span  v-for="term in termQuery" key="term.name">
-						<term :term="term" ></term>
+						<term :term="term"
+							:display="'thumb'">
+						</term>
 					</span>
 				</isotope>
 			</div>
@@ -199,9 +201,18 @@
   				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
   				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
 					<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
-  				<br/>
+					<span class='right'>
+						<a class="dropdown-button viewBtn" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
+						<ul id='order' class='dropdown-content'>
+							<li><a @click="changeLens(bigHistory)">Big History</a></li>
+							<li><a @click="changeLens(size)">Size</a></li>
+							<li><a @click="changeLens(null)">none</a></li>
+	  		    </ul>
+					</span>
+					<br/>
 				</div>
-				<div class="flexCenter margin20">
+
+				<!-- <div class="flexCenter margin20">
 					<div class="btn blue dropdown-button" data-activates='lens' data-hover="true">lens</div>
   		    <ul id='lens' class='dropdown-content'>
 						<li><a @click="changeLens(bigHistory)">Big History</a></li>
@@ -217,9 +228,10 @@
   					<li><a @click="shuffle()">Shuffle<i class="material-icons right">shuffle</i></a></li>
   		      <li v-for="(key, val) in getSortData"><a @click="sort(key)">{{key}}</a></li>
   		    </ul>
-				</div>
+				</div> -->
 
 			</div>
+
 			<div>
 				<transition name="fade">
 				<!-- results by cross section -->
@@ -257,10 +269,13 @@
 					</div>
 				</transition>
 
-				<div class="flexCenter" v-show="this.numberOfDisplayed === 0">
+				<div class="message" v-show="this.numberOfDisplayed === 0">
 					<p>
-						no results! Have someting you want to add?
+						No results! Have something you want to add?
 					</p>
+					<div>
+						<a @click="addDiss = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+					</div>
 				</div>
 		</div>
 		</div>
@@ -273,18 +288,25 @@
 	██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██          ██      ██   ██ ██    ██ ██
 	██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████     ██      ██   ██  ██████  ███████
 	-->
-
-
 <template id="resourceTemplate">
 	<div style="opacity:0" :id="'resourceModal'+resource.uid" class="modal fullPage resource-modal"  >
 		<span class="exit hide-on-med-and-down modal-close" ><i class="fa fa-3x fa-times"></i></span>
+
+		<!-- modal for adding to discussion -->
+		<add-resource v-if='addDiss == true'
+			v-on:close="addDiss=false"
+			v-on:added="addCreatedDiscussion">
+		</add-resource>
+
+
 		<!-- the resource -->
 		<div class="resource-container">
+
 			<!-- image -->
 			<div v-if='resource.displayType=="image"' id="image-map"></div>
 
 			<!--  youtube/vimeo -->
-			<div v-if='resource.displayType=="embed"'class="vid-container-container">
+			<div v-if='resource.displayType=="embed"' class="vid-container-container">
 				<div  class="video-container ">
 					 <iframe :src="'http://youtube.com/embed/'+resource.ytID"></iframe>
 				</div>
@@ -296,8 +318,10 @@
 			</div>
 
 			<!-- video -->
-			<div v-if='resource.displayType=="video"' class="web-container">
-				<iframe :src="resource.url" ></iframe>
+			<div v-if='resource.displayType=="video"' class="vid-container-container">
+				<div  class="video-container ">
+					<iframe :src="resource.url" ></iframe>
+				</div>
 			</div>
 
 			<!-- imgur image/gallery -->
@@ -306,8 +330,9 @@
 
 
 			<!-- text -->
-			<!-- <div class="text-container">
-			</div> -->
+			<div v-if='resource.displayType=="text"' class="text-container">
+				<span class="center">{{resource.text}}</span>
+			</div>
 
 		</div>
 
@@ -323,8 +348,39 @@
 			<!-- isotope contianers -->
 			<div class="resourceSections">
 
-				<div class="resourceStep">
-					Activity
+				<div class="resourceStep discussion">
+					<div class="center pad margin20">
+					 <span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
+					 <span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
+					 <span class='right'>
+						 <a class="dropdown-button viewBtn" data-activates='disOrder' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
+						 <ul id='disOrder' class='dropdown-content'>
+							 <li><a @click="changeLens(bigHistory)">Big History</a></li>
+							 <li><a @click="changeLens(size)">Size</a></li>
+							 <li><a @click="changeLens(null)">none</a></li>
+							 <!-- date added
+							 quality
+							 number of votes
+							 ... -->
+						 </ul>
+					 </span>
+					 <br/>
+				 </div>
+				 <div class='message well' v-if="discussion.length == 0">
+					<div style='margin-bottom:40px;'>
+						Nothing yet! Be the first to add your thoughts...
+					</div>
+					<div>
+						<a @click="addDiss = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+					</div>
+				 </div>
+
+				 <isotope v-else ref="discussionBin" class="step" :list="discussion" :options='{}' id="container"  >
+					 <div v-for="re in discussion" class='element-item' key="re.resource.name" :class="{'fullWidth': display=='list'}">
+							 <resource :re="re" :display="display"></resource>
+					 </div>
+				 </isotope>
+
 				</div>
 				<div class="resourceStep" >
 					<isotope ref='terms' :list="terms" :options='{}'>
@@ -349,8 +405,10 @@
 				</div>
 
 		 </div>
+		 <div class="addBtn">
+ 			<a @click="addDiss = true" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+ 		 </div>
 		</div>
-
 
  </div>
 </template>
@@ -367,14 +425,14 @@
 <template id="termTemplate">
 	<div id="termModal" class="modal fullPage">
 		<div class="termTitle" >
-			<span class='thumb'>
-					<img :src="term.term.iconURL">
+			<span  class=''>
+					<img class='circle'style='height:50px' :src="term.term.iconURL">
 			</span>
-			<span>
-				{{term.translation.name}}
+			<span >
+				<span>{{term.translation.name}}</span>
 			</span>
-			<span v-if='true'class='btn' v-on:click="deleteSet(term.setID)">delete set
-			</span>
+			<!-- <span v-if='true'class='btn' v-on:click="deleteSet(term.setID)">delete set
+			</span> -->
 			<span class="right"><i class="fa fa-2x fa-times"></i></span>
 		</div>
 		<!-- flick navigation for isotope containers -->
@@ -482,17 +540,26 @@
 	<div class="addMeta modal-content">
 		<div class="addNav">
 			<div class="navItems">
-				<h4>Identify</h4>
+				<span>Identify</span>
 			</div>
 			<div class="navItems">
-				<h4>Tag</h4>
+				<span>Tag</span>
 			</div>
 		</div>
 		<!-- isotope contianers -->
 		<div class="addSections">
 			<div class="addContainer">
-					<form>
 
+					<form v-if="discussion">
+						<div class="row">
+							<div class="input-field col s12">
+								<textarea v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
+								<label for="value">Text</label>
+							</div>
+						</div>
+					</form>
+
+					<form v-else>
 						<div class="row" v-if="">
 							<div class="input-field col s12">
 								<input v-model="resource.URL" id="url" type="url" class="validate">
@@ -1114,11 +1181,11 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 <script src="main.js"></script>
 
 <!-- iframe busting -->
-<script>
+<!-- <script>
   if(top != window) {
     top.location = window.location
   }
-</script>
+</script> -->
 <!-- analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

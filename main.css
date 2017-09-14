@@ -120,6 +120,12 @@ html {
 .dropdown-content li>a {
 	color: #2196F3
 }
+.dropdown-content li>span {
+  color: #2196F3;
+}
+.dropdown-content {
+  z-index: 2000
+}
 .card {
     width: 200px;
     margin: 10px;
@@ -184,9 +190,6 @@ html {
     border-bottom: 1px solid black;
     box-shadow: none;
 }
-.dropdown-content li>span {
-  color: #2196F3;
-}
 .input-field .prefix.active {
   color: #2196F3;
 }
@@ -200,6 +203,7 @@ iframe{
 }
 .resourceMeta {
   /*height: 100%;*/
+  position: relative;
   width: 100vw;
 }
 .termTitle {
@@ -245,7 +249,7 @@ iframe{
   overflow: scroll;
 }
 .resource-modal {
-  display: inherit!important;
+  /*display: inherit!important;*/
 }
 .resource-container {
   height: auto;
@@ -369,6 +373,7 @@ iframe{
   font-weight: 300;
   transition: font-weight .5s;
 }
+
 .is-nav-selected{
   font-weight: 600;
 }
@@ -635,6 +640,7 @@ iframe{
   padding: 10px;
   z-index: 1002;
   background: #fafafa;
+  font-size: 30px;
 }
 .modal .modal-content {
   padding: 0px;
@@ -678,6 +684,13 @@ iframe{
 .noUi-connect{
   background-color: #2196F3;
 }
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #2196F3;
+  box-shadow: 0 1px 0 0 #2196F3;
+}
+textarea.materialize-textarea:focus:not([readonly])+label {
+    color: #2196F3;
+}
 .clear{
   font-size: 11px;
     font-weight: 300;
@@ -691,4 +704,42 @@ iframe{
 }
 .hoverable {
   box-shadow: none
+}
+.discussion {
+  width:90vw;
+}
+.addBtn {
+  position: absolute;
+  z-index: 998;
+  bottom: -5px;
+  right: 10%;
+}
+.modal-overlay {
+  height: 200%;
+}
+.message {
+  font-size: 30px;
+  font-weight: 300;
+  text-align: center;
+  margin: 100px;
+  background-color: #ececec;
+  border-radius: 10px;
+  padding: 45px;
+}
+@media (max-width:40.063em) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+  .message {
+    font-size:16px;
+    margin:10px;
+    padding: 15px;
+
+  }
+}
+.text-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 40px;
+  font-weight: 200;
+  color: white;
 }

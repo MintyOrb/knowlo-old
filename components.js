@@ -132,15 +132,17 @@ Vue.component('resource',{
   },
   mounted: function(){
 
-    var slider = document.getElementById('test-slider' + this.re.resource.uid);
-     noUiSlider.create(slider, {
-      start: [50],
-      connect: [true,false],
-      range: {
-        'min': 0,
-        'max': 100
-      }
-     });
+    if(this.voting){
+      var slider = document.getElementById('test-slider' + this.re.resource.uid);
+       noUiSlider.create(slider, {
+        start: [50],
+        connect: [true,false],
+        range: {
+          'min': 0,
+          'max': 100
+        }
+       });
+    }
   }
 })
 
@@ -410,5 +412,184 @@ const addTerm = Vue.component('addTerm',{
         }
       }
     })
+  }
+});
+
+/*
+ █████  ██████  ██████      ██████  ███████ ███████  ██████  ██    ██ ██████   ██████ ███████
+██   ██ ██   ██ ██   ██     ██   ██ ██      ██      ██    ██ ██    ██ ██   ██ ██      ██
+███████ ██   ██ ██   ██     ██████  █████   ███████ ██    ██ ██    ██ ██████  ██      █████
+██   ██ ██   ██ ██   ██     ██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██
+██   ██ ██████  ██████      ██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████
+*/
+
+const addResource = Vue.component('addResource',{
+    template: "#addResource",
+    // props: ['member'],
+    data: function() {
+      return {
+        flickRegistry: [],
+        discussion: false,
+        tags: [],
+        resource:{ // these aren't all strings...
+          core: {
+            'displayType':"",
+            'uid':"",
+            'viewCount':"0",
+            'viewTime':"",
+            'dateAdded':"",
+            // 'thumb': "", set on server
+            'url': "", //just return english if not in language specified?
+            'source':"",
+            'mThumb':""
+          },
+          detail: {
+            'title':"",
+            'subtitle':"",
+            'text':"",
+            'description':"",
+            'url':"",
+            // 'languageCode': this.member.languageCode,
+          }
+        },
+      }
+    },
+    methods:{
+      open: function(){
+        $('#addResourceModal').modal({
+          dismissible: true, // Modal can be dismissed by clicking outside of the modal
+          opacity: .5, // Opacity of modal background
+          inDuration: 300, // Transition in duration
+          outDuration: 200, // Transition out duration
+          startingTop: '4%', // Starting top style attribute
+          // endingTop: '100%', // Ending top style attribute
+          ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+            $('body').css("overflow","hidden")
+          },
+          complete: () => {
+            $('.addNav').flickity('destroy');
+            $('.addSections').flickity('destroy');
+            $('body').css("overflow","auto")
+            this.$emit('close')
+          }
+        }).modal('open');
+
+        $('.addNav').flickity({
+          asNavFor: '.addSections',
+          pageDots: true,
+          prevNextButtons: true,
+          accessibility: false, // to prevent jumping when focused
+        })
+
+        $('.addSections').flickity({
+          // asNavFor: '.termNav',
+          wrapAround: true,
+          pageDots: false,
+          prevNextButtons: true,
+          accessibility: false, // to prevent jumping when focused
+          dragThreshold: 20 // play around with this more?
+        });
+      },
+      tagDiscussion: function(){ // add the discussion to the currently viewed resource
+        if(this.resource.core.uid.length > 0){
+          this.$http.put('/api/resource/'+this.$route.params.uid+'/discussion/'+this.resource.core.uid).then(response => {
+            if(response.body){
+              // this.tags.push(term)
+            } else {
+              Materialize.toast('Something went wrong...', 4000)
+            }
+          }, response => {
+             Materialize.toast('Something went wrong...are you online and logged in?', 4000)
+          });
+        } else {
+          Materialize.toast('Add a resource before taggging!', 4000)
+        }
+      },
+      addTag: function(term){ // add tag(s) to the newly created resource
+        if(this.resource.core.uid.length > 0){
+          this.$http.put('/api/resource/'+this.resource.core.uid+'/set/'+term.setID).then(response => {
+            if(response.body){
+              this.tags.push(term)
+            } else {
+              Materialize.toast('Something went wrong...', 4000)
+            }
+          }, response => {
+             Materialize.toast('Something went wrong...are you online and logged in?', 4000)
+          });
+        } else {
+          Materialize.toast('Add a resource before tagging!', 4000)
+        }
+      },
+      removeTag: function(uid) {
+        this.$http.delete('/api/resource/'+this.resource.core.uid+'/set/'+uid).then(response => {
+          if(response.body){
+            this.tags.splice(this.tags.findIndex( (term) => term.term.uid === uid) ,1)
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online and logged in?', 4000)
+        });
+      },
+      close: function(){
+        console.log("close here after esc")
+      },
+      checkURL: function(){
+        // parse youtube/vimeo/other....set display type?....settime to view
+
+      },
+      upsertResource(){
+        // create resource if no ID
+        //TODO: update by prop?
+
+        this.$http.post('/resource', {resource:this.resource}).then(response => {
+          if(response.body){
+            this.resource.core = response.body;
+            console.log(response.body)
+
+            //TODO: add/sugest relevant terms based on response?
+
+            if(this.discussion){
+              this.tagDiscussion();
+              // need to format like resource to push
+              var holder ={};
+              holder.resource=this.resource.core;
+              for(pindex in this.resource.detail){
+                holder.resource[pindex] = this.resource.detail[pindex]
+              }
+              console.log(holder)
+              this.$emit('added',holder)
+            }
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      }
+    },
+    mounted: function(){
+
+      if(this.$route.name=='resourceSub'){
+        this.discussion=true;
+      }
+      this.open();
+      $('.modal-overlay').eq(1).appendTo('.resource-modal'); // workaround for stacking context
+      console.log(this.$route.params.uid)
+      // question
+      // insight
+      // criticism
+      // praise?
+
+  },
+  beforeRouteLeave: function (to, from, next){
+    if($('#addResourceModal')){
+      $('#addResourceModal').modal('close');
+    }
+    window.setTimeout(()=>{
+      next()
+    }, 375)
+
+    document.removeEventListener('keydown',function(){})
   }
 });

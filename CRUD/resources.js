@@ -26,6 +26,11 @@ module.exports = function(app, db){
   app.put('/api/resource/:rUID/set/:sUID', updateSet);         // add a single set to a resources by id
   app.delete('/api/resource/:rUID/set/:sUID', deleteSet);   // remove a single set relationship from a resources | DELETE /term/:uid to delete term node itself
 
+  app.get('/resource/:ruid/discussion/', getDiscussion);
+  app.put('/api/resource/:rUID/discussion/:dUID', tagDiscussion);
+  // post /discussion is the same as post /resource ?
+    // post /resource/discussion instead?
+
 
   function query(req, res){
     /**
@@ -182,13 +187,23 @@ module.exports = function(app, db){
     var cypher = "MATCH (resource:resource {uid:{uid}})"
                + "OPTIONAL MATCH (resource)-[TAGGED_WITH]->(set:synSet)<-[setR:IN_SET]-(t:term)-[r:HAS_TRANSLATION]->(tr:translation) "
                + "WHERE r.languageCode = {languageCode} AND setR.order=1 "
-               + "WITH resource, COLLECT(DISTINCT { setID: set.uid, term: set, translation: tr}) as terms "
-               + "RETURN resource, terms"
+               + "OPTIONAL MATCH (resource)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
+               + "WHERE p.order=1 AND plang.languageCode IN [ {languageCode} , 'en' ] "
+               + "WITH resource, "
+               + "COLLECT(DISTINCT { setID: set.uid, term: set, translation: tr}) as terms, "
+               + "COLLECT(DISTINCT {type: prop.type, value: ptrans.value}) AS properties "
+               + "RETURN resource, terms, properties"
 
-    db.query(cypher, {uid: req.params.uid, languageCode: req.query.languageCode || 'en'},function(err, resource) {
+    db.query(cypher, {uid: req.params.uid, languageCode: req.query.languageCode || 'en'},function(err, result) {
       if (err) {console.log(err); res.status(500).send()};
-      if(resource){
-        res.send(resource[0])
+      if(result){
+        result = result[0]
+        // massage result for front end (put props  on resource core)
+        for(pindex in result.properties){
+          result.resource[result.properties[pindex].type] = result.properties[pindex].value;
+        }
+        delete result.properties // no need to send redundant data
+        res.send(result)
       } else {
         res.status(404).send() // resource not found
       }
@@ -198,6 +213,50 @@ module.exports = function(app, db){
   function updateFull(req, res){
   }
   function createFull(req, res){
+  }
+
+
+  function getDiscussion(req, res){
+    var cypher = "MATCH (re:resource {uid:{uid}}) "
+               + "OPTIONAL MATCH (re)-[TAGGED_WITH]->(discussion:resource)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
+               + "WHERE p.order=1 AND plang.languageCode IN [ {languageCode} , 'en' ] "
+               + "RETURN discussion as resource, "
+               + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties "
+               // + "ORDER BY {orderby} {updown}"
+              //  + "SKIP {skip} "
+              //  + "LIMIT {limit}";
+
+    db.query(cypher, {uid: req.params.ruid, languageCode: req.query.languageCode || 'en'},function(err, result) {
+      if (err) {console.log(err); res.status(500).send()};
+      if(result){
+        // massage result for front end (put props  on resource core)
+        for(rindex in result){
+          for(pindex in result[rindex].properties){
+            result[rindex].resource[result[rindex].properties[pindex].type] = result[rindex].properties[pindex].value;
+          }
+          delete result[rindex].properties // no need to send redundant data
+        }
+        res.send(result)
+      } else {
+        res.status(404).send() // resource not found
+      }
+    })
+  }
+  function tagDiscussion(req,res){
+    var cypher = "MATCH (resource:resource {uid:{resource}}) , (discussion:resource {uid:{dis}}) "
+               + "MERGE (resource)-[r:TAGGED_WITH]->(discussion) "
+               + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
+               + "RETURN resource, discussion"
+
+    db.query(cypher, {resource: req.params.rUID, dis: req.params.dUID, member: res.locals.user.uid },function(err, result) {
+      if (err) console.log(err);
+      if(result){
+        console.log(result)
+        res.send(result[0])
+      } else {
+        res.send()
+      }
+    })
   }
 
 }

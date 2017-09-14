@@ -1,148 +1,3 @@
-/*
- █████  ██████  ██████      ██████  ███████ ███████  ██████  ██    ██ ██████   ██████ ███████
-██   ██ ██   ██ ██   ██     ██   ██ ██      ██      ██    ██ ██    ██ ██   ██ ██      ██
-███████ ██   ██ ██   ██     ██████  █████   ███████ ██    ██ ██    ██ ██████  ██      █████
-██   ██ ██   ██ ██   ██     ██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██
-██   ██ ██████  ██████      ██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████
-*/
-
-const addResource = Vue.component('addResource',{
-    template: "#addResource",
-    props: ['member'],
-    data: function() {
-      return {
-        flickRegistry: [],
-        tags: [],
-        resource:{ // these aren't all strings...
-          core: {
-            'displayType':"",
-            'uid':"",
-            'viewCount':"0",
-            'viewTime':"",
-            'dateAdded':"",
-            // 'thumb': "", set on server
-            'url': "", //just return english if not in language specified?
-            'source':"",
-          },
-          detail: {
-            'title':"",
-            'subtitle':"",
-            'text':"",
-            'description':"",
-            'url':"",
-            'languageCode': this.member.languageCode,
-          }
-        },
-      }
-    },
-    methods:{
-      addTag: function(term){
-        if(this.resource.core.uid.length > 0){
-          this.$http.put('/api/resource/'+this.resource.core.uid+'/set/'+term.setID).then(response => {
-            if(response.body){
-              this.tags.push(term)
-            } else {
-              Materialize.toast('Something went wrong...', 4000)
-            }
-          }, response => {
-             Materialize.toast('Something went wrong...are you online and logged in?', 4000)
-          });
-        } else {
-          Materialize.toast('Add a resource before taggging!', 4000)
-        }
-
-      },
-      removeTag: function(uid) {
-        this.$http.delete('/api/resource/'+this.resource.core.uid+'/set/'+uid).then(response => {
-          if(response.body){
-            this.tags.splice(this.tags.findIndex( (term) => term.term.uid === uid) ,1)
-          } else {
-            Materialize.toast('Something went wrong...', 4000)
-          }
-        }, response => {
-           Materialize.toast('Something went wrong...are you online and logged in?', 4000)
-        });
-      },
-      close: function(){
-        console.log("close here after esc")
-      },
-      checkURL: function(){
-        // parse youtube/vimeo/other....set display type?....settime to view
-
-      },
-      upsertResource(){
-        // create resource if no ID
-        //TODO: update by prop
-
-        this.$http.post('/resource', {resource:this.resource}).then(response => {
-          if(response.body){
-            this.resource.core = response.body;
-            console.log(response.body)
-            //TODO: add relevant terms based on response?
-
-          } else {
-            Materialize.toast('Something went wrong...', 4000)
-          }
-        }, response => {
-           Materialize.toast('Something went wrong...are you online?', 4000)
-        });
-      }
-    },
-    mounted: function(){
-      $('#addResourceModal').modal({
-        dismissible: true, // Modal can be dismissed by clicking outside of the modal
-        opacity: .5, // Opacity of modal background
-        inDuration: 300, // Transition in duration
-        outDuration: 200, // Transition out duration
-        startingTop: '4%', // Starting top style attribute
-        endingTop: '10%', // Ending top style attribute
-        ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-          $('body').css("overflow","hidden")
-        },
-        complete: () => {
-          $('.addNav').flickity('destroy');
-          $('.addSections').flickity('destroy');
-          $('body').css("overflow","auto")
-        }
-      }).modal('open');
-
-      $('.addNav').flickity({
-        asNavFor: '.addSections',
-        pageDots: true,
-        prevNextButtons: true,
-        accessibility: false, // to prevent jumping when focused
-      })
-
-      $('.addSections').flickity({
-        // asNavFor: '.termNav',
-        wrapAround: true,
-        pageDots: false,
-        prevNextButtons: true,
-        accessibility: false, // to prevent jumping when focused
-        dragThreshold: 20 // play around with this more?
-      });
-
-      // listen for escape key (materalize closes modal on esc, but doesn't re-route)
-      // document.addEventListener('keydown', event => {
-      //   if (event.key === 'Escape' || event.keyCode === 27) {
-      //     router.go(-1) || router.push('/')
-      //   }
-      // });
-
-  },
-  beforeRouteLeave: function (to, from, next){
-    if($('#addResourceModal')){
-      $('#addResourceModal').modal('close');
-    }
-    window.setTimeout(()=>{
-      next()
-    }, 375)
-
-    document.removeEventListener('keydown',function(){})
-  }
-});
-
-
 
 /*
 ████████ ███████ ██████  ███    ███     ██████   █████   ██████  ███████
@@ -443,12 +298,78 @@ const resourceComp = Vue.component('resourceComp',{
           return {
               resource: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if resource is not found
               terms: [],
-              resourceSection: ["Discussion","Terms","Vote","Stats","Related"]
+              discussion: [],
+              display: 'card', // default display for discussion
+              resourceSection: ["Discussion","Terms","Vote","Stats","Related"],
+              addDiss:false
             }
           },
     methods: {
+      changeDisplay: function(disp){ // TODO: make dry ( essentially duplicated from explore) - make resource bin component?
+        this.display = disp
+        // Cookies.set('displayStyle', disp)
+        // weird to wrap a timeout with next tick, but css lags and screws up the layout after transistion
+        this.$nextTick(function(){
+          window.setTimeout(()=>{
+            // this.layout()
+            this.$refs.discussionBin.layout('masonry');
+          }, 375)
+        })
+      },
+      fetchResource: function(){
+        // TODO take language from member instead of hardcoding english...
+        this.$http.get('/resource/' + this.$route.params.uid + '/full', {params: { languageCode: 'en'}}).then(response => {
+          if(response.body.resource){
+            this.resource = response.body.resource;
+            this.terms = response.body.terms;
+            console.log(response.body)
+            if(this.resource.url){
+              if(this.resource.url.match(/[^/]+(jpg|png|gif|jpeg)$/)){
+                this.resource.displayType = 'image'
+              } else if(this.resource.url.match(/[^/]+(gifv|webm)$/)){
+                this.resource.displayType = 'video'
+              } else if(this.resource.url.indexOf('youtube') > -1){
+                this.resource.ytID = new URL(this.resource.url).searchParams.get('v')
+                this.resource.displayType = 'embed'
+              }
+            } else {
+              this.resource.displayType = 'text'
+            }
+
+          } else {
+            Materialize.toast('Resource not found.', 4000)
+          }
+          this.init()
+        }, response => {
+          this.init()
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
       init: function(){
+
+          this.fetchDiscussion();
+
           this.$nextTick(function(){
+
+            $('.resourceNav').flickity({
+              asNavFor: '.resourceSections',
+              // wrapAround: true,
+              pageDots: true,
+              prevNextButtons: true,
+              contain: true,
+              // freeScroll: true,
+              accessibility: false, // to prevent jumping when focused
+            })
+
+            $('.resourceSections').flickity({
+              wrapAround: true,
+              // asNavFor: '.resourceNav',
+              pageDots: false,
+              prevNextButtons: true,
+              accessibility: false, // to prevent jumping when focused
+              dragThreshold: 20 // play around with this more?
+            });
+
             $('#resourceModal'+this.resource.uid).modal({
                 opacity: .5, // Opacity of modal background
                 inDuration: 300, // Transition in duration
@@ -459,13 +380,13 @@ const resourceComp = Vue.component('resourceComp',{
                   $('body').css("overflow","hidden")
                 },
                 complete: () => {
-                  console.log('completeeeeee')
                   $('.resourceNav').flickity('destroy');
                   $('.resourceSections').flickity('destroy');
                   $('body').css("overflow","auto");
                   router.go(-1);
                 }
               }).modal('open');
+
               $('#resourceModal'+resource.uid).css('opaciy',1)
               // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
               if(this.resource.displayType == "image"){
@@ -512,6 +433,24 @@ const resourceComp = Vue.component('resourceComp',{
           })
 
       },
+      fetchDiscussion: function(){
+        this.$http.get('/resource/' + this.$route.params.uid + '/discussion', {params: { languageCode: 'en'}}).then(response => {
+          if(response.body){
+            console.log('discussion?')
+            console.log(response.body)
+            this.discussion = response.body;
+          } else {
+            // Materialize.toast('Resource not found.', 4000)
+          }
+        }, response => {
+          // Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      addCreatedDiscussion: function(dis){
+        console.log('adding created discussion')
+        console.log(dis)
+        this.discussion.push(dis)
+      },
       addTerm: function(set){
         this.$http.put('/api/resource/'+ this.resource.uid +'/set/'+ set.setID).then(response => {
           if(response.body){
@@ -535,55 +474,11 @@ const resourceComp = Vue.component('resourceComp',{
         }, response => {
            Materialize.toast('Something went wrong...are you online?', 4000)
         });
-      }
+      },
     },
     mounted: function(){
-      // TODO take language from member instead of hardcoding english...
-      this.$http.get('/resource/' + this.$route.params.uid + '/full', {params: { languageCode: 'en'}}).then(response => {
-        if(response.body.resource){
-          this.resource = response.body.resource;
-          this.terms = response.body.terms;
-          console.log(this.resource)
-          if(this.resource.url.match(/[^/]+(jpg|png|gif|jpeg)$/)){
-            console.log('uhhhhhhh')
-            this.resource.displayType = 'image'
-          } else if(this.resource.url.match(/[^/]+(gifv|webm)$/)){
-            console.log('not uh.')
-            this.resource.displayType = 'video'
-          } else if(this.resource.url.indexOf('youtube' > -1)){
-            this.resource.ytID = new URL(this.resource.url).searchParams.get('v')
-            console.log(new URL(this.resource.url).searchParams.get('v'))
-            this.resource.displayType = 'embed'
-          }
 
-        } else {
-          Materialize.toast('Resource not found.', 4000)
-        }
-        this.init()
-      }, response => {
-        this.init()
-        Materialize.toast('Something went wrong...are you online?', 4000)
-      });
-
-
-      $('.resourceNav').flickity({
-        asNavFor: '.resourceSections',
-        // wrapAround: true,
-        pageDots: true,
-        prevNextButtons: true,
-        contain: true,
-        // freeScroll: true,
-        accessibility: false, // to prevent jumping when focused
-      })
-
-      $('.resourceSections').flickity({
-        wrapAround: true,
-        // asNavFor: '.resourceNav',
-        pageDots: false,
-        prevNextButtons: true,
-        accessibility: false, // to prevent jumping when focused
-        dragThreshold: 20 // play around with this more?
-      });
+      this.fetchResource();
 
     },
     beforeRouteLeave: function (to, from, next){
@@ -594,7 +489,12 @@ const resourceComp = Vue.component('resourceComp',{
       window.setTimeout(()=>{
         next()
       }, 375)
-    }
+    },
+    watch: {
+      '$route.params.uid': function (id) {
+        this.fetchResource();
+        }
+      }
 });
 
 
