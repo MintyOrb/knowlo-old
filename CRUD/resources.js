@@ -44,6 +44,7 @@ module.exports = function(app, db){
     var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(synSet:synSet) "
            + "WHERE synSet.uid IN {includedSets} "
               //  + "NOT synSet.uid IN {excludedSets} " // this doesn't work...
+              // filter() or reduce() ?
            + "WITH re, count(*) AS connected "
            + "MATCH (re)-[:TAGGED_WITH]->(synSet:synSet)<-[synR:IN_SET]-(syn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
            + "WHERE "
@@ -228,7 +229,7 @@ module.exports = function(app, db){
 
     db.query(cypher, {uid: req.params.ruid, languageCode: req.query.languageCode || 'en'},function(err, result) {
       if (err) {console.log(err); res.status(500).send()};
-      if(result){
+      if(result[0].resource!=null){
         // massage result for front end (put props  on resource core)
         for(rindex in result){
           for(pindex in result[rindex].properties){
@@ -238,7 +239,7 @@ module.exports = function(app, db){
         }
         res.send(result)
       } else {
-        res.status(404).send() // resource not found
+        res.send() // resource not found
       }
     })
   }

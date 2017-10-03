@@ -123,39 +123,15 @@
 	-->
 
 	<template id="exploreTemplate">
-		<div class='color-picker' style="min-height:100vh;">
+		<div class='erything' style="min-height:100vh;">
 			<!-- view for term and resource page -->
-
 			<router-view :member="member" :term-Query="termQuery"></router-view>
+
+
 			<router-link :to="{ name: 'addResource'}">
 				add resource
-		 </router-link>
-			<!-- sort FAB -->
-			<!-- <div class="fixed-action-btn click-to-toggle">
-		    <a class="btn-floating btn-large blue">
-		      <i class="fa fa-2x fa-sort material-icons"></i>
-		    </a>
-		    <ul>
-		      <li>
-						<a class="btn-floating blue hoverable"><i class="material-icons">insert_chart</i></a>
-						<a href="#" class="btn-floating mobile-fab-tip">Edit</a>
-					</li>
-					<li><a class="btn-floating blue hoverable" @click="sort('original-order')">original order</a></li>
-					<li><a class="btn-floating blue hoverable" @click="shuffle()"><i class="material-icons right">shuffle</i></a></li>
-					<li class="btn-floating blue" v-for="(key, val) in getSortData"><a @click="sort(key)">{{key}}</a></li>
-		    </ul>
-		  </div> -->
-			<!-- <div class="fixed-action-btn horizontal">
-		    <a class="btn-floating btn-large red">
-		      <i class="large material-icons">mode_edit</i>
-		    </a>
-		    <ul>
-		      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-		      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-		      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-		      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-		    </ul>
-		  </div> -->
+		  </router-link>
+
 
 		<div class='container'>
 
@@ -179,22 +155,52 @@
 							clear
 						</div>
 		    </div>
+			</div>
+			<div>
+
 
 				<!--  suggested -->
 		    <div class='row'>
-		        <isotope ref="key" :list="suggestions" :options='{}' class="step">
-		          <div v-for="word in suggestions"  class='suggestion' key="word">
-								<term :term="word"
-									:display="'thumb'"
-									v-on:include="includeSearch"
-									v-on:exclude="includeSearch"
-									v-on:focus="focus"
-									v-on:lens="fetchContains"
-								>
-								</term>
+						<div v-if="suggestionGroups.length>0">
 
-		          </div>
-		        </isotope>
+							<div id='suggestionNav' class=" suggestionNav ">
+								<!-- flick navigation for isotope containers -->
+								<div v-for="group in suggestionGroups" class="navItems">
+									<term :term="group.group[0]"
+										:display="'thumb'"
+										>
+									</term>
+								</div>
+							</div>
+							<!-- isotope contianers -->
+							<div id='suggestionSteps' class=" suggestionSteps">
+								<div v-for="step in suggestionGroups" class="suggestionGroupStep" >
+									<isotope  :ref='"suggestionBin" + step.group[0].setID' class="step" :list="step.contains" :options='{}'>
+										<div v-for="term in step.contains" class='element-item' key="term.uid">
+											<term :term="term"
+												:display="'thumb'"
+												>
+											</term>
+										</div>
+									 </isotope>
+								</div>
+							</div>
+						</div>
+						<div v-else>
+							<isotope ref="key" :list="suggestions" :options='{}' class="step">
+			          <div v-for="word in suggestions"  class='suggestion' key="word">
+									<term :term="word"
+										:display="'thumb'"
+										v-on:include="includeSearch"
+										v-on:exclude="includeSearch"
+										v-on:focus="focus"
+										v-on:lens="fetchContains"
+									>
+									</term>
+			          </div>
+			        </isotope>
+						</div>
+
 		    </div>
 
 		    <div class="center pad margin20">
@@ -212,31 +218,13 @@
 					<br/>
 				</div>
 
-				<!-- <div class="flexCenter margin20">
-					<div class="btn blue dropdown-button" data-activates='lens' data-hover="true">lens</div>
-  		    <ul id='lens' class='dropdown-content'>
-						<li><a @click="changeLens(bigHistory)">Big History</a></li>
-						<li><a @click="changeLens(size)">Size</a></li>
-						<li><a @click="changeLens(null)">none</a></li>
-  		    </ul>
-				</div>
-
-				<div class="flexCenter margin20">
-					<div class="btn blue dropdown-button" data-activates='sortOp' data-hover="true">sort order</div>
-  		    <ul id='sortOp' class='dropdown-content'>
-  		      <li><a @click="sort('original-order')">original order</a></li>
-  					<li><a @click="shuffle()">Shuffle<i class="material-icons right">shuffle</i></a></li>
-  		      <li v-for="(key, val) in getSortData"><a @click="sort(key)">{{key}}</a></li>
-  		    </ul>
-				</div> -->
-
 			</div>
 
 			<div>
 				<transition name="fade">
 				<!-- results by cross section -->
 				<div v-if="crossSection" >
-					<div class=" crossSectionNav ">
+					<div id='crossSectionNav' class=" crossSectionNav ">
 						<!-- flick navigation for isotope containers -->
 						<div v-for="step in crossSection" class="navItems">
 							<term :term="step"
@@ -246,7 +234,7 @@
 						</div>
 					</div>
 					<!-- isotope contianers -->
-					<div class=" crossSectionSteps">
+					<div id='crossSectionSteps' class=" crossSectionSteps">
 						<div v-for="step in crossSection" class="stepContainer">
 							<isotope :ref='"resourceBin" + step.setID' class="step" :list="resources" :options='{}'>
 								<div v-for="re in resources" v-if="re.termIDs.includes(step.setID)" class='element-item' key="re.uid">
@@ -837,7 +825,7 @@
 							</div> -->
 							<div  v-if="true" class="rotater">
 								<div @click="lens" class="mbtn mbtn-icon flexCenter" :class="{'showCompress': status.lensIcon, expandNav: hovering&& inSidebar}">
-									<i class="fa fa-ellipsis-v fa-rotate-90"></i>
+									<i class="material-icons">more_horiz</i>
 								</div>
 							</div>
 							<div  v-if="false" class="rotater">
@@ -928,6 +916,11 @@
 					<img :src="re.resource.mThumb" />
 				</router-link>
 			</div>
+			<router-link v-if="re.resource.text && re.resource.text.length > 0 && display =='thumb'" :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
+				<div class="margin20 hoverable thumb">
+					{{re.resource.text.substring(0,5)}}...
+				</div>
+			</router-link>
 
 			<div v-if="re.resource.title && display =='card' || display =='list'"
 				:class="{

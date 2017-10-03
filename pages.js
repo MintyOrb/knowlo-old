@@ -190,6 +190,7 @@ const termComp = Vue.component('termComp',{
       },
       fetchContains: function(){
         this.$http.get('/set/' + this.term.setID + '/contains/', {params: { languageCode: 'en'}}).then(response => {
+            console.log(response.body)
           if(response.body.length > 0){
             this.contains = response.body;
           } else {
@@ -435,20 +436,16 @@ const resourceComp = Vue.component('resourceComp',{
       },
       fetchDiscussion: function(){
         this.$http.get('/resource/' + this.$route.params.uid + '/discussion', {params: { languageCode: 'en'}}).then(response => {
-          if(response.body){
-            console.log('discussion?')
-            console.log(response.body)
+          if(response.body.length>0){
             this.discussion = response.body;
           } else {
-            // Materialize.toast('Resource not found.', 4000)
+            this.discussion=[]
           }
         }, response => {
           // Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
       addCreatedDiscussion: function(dis){
-        console.log('adding created discussion')
-        console.log(dis)
         this.discussion.push(dis)
       },
       addTerm: function(set){
@@ -497,8 +494,6 @@ const resourceComp = Vue.component('resourceComp',{
       }
 });
 
-
-
 /*
 ███████ ██   ██ ██████  ██       ██████  ██████  ███████
 ██       ██ ██  ██   ██ ██      ██    ██ ██   ██ ██
@@ -513,6 +508,7 @@ const explore = Vue.component('exploreComp',{
         return {
             db: undefined,                      // search results to display - array of material objects
             crossSection: null,                 // object containing the name of the cross section and terms in lens group - object containing array of term objects and string name
+            suggestionGroups: [],               // holds suggestion groups and terms within
             // termQuery: [],                   // terms selected for search - - array of term objects with flags for include/exclude/pin etc.
             suggestions: [],                    // suggested terms...not sure about ui, currently  - array of term objects
             resources: [],                      // db when no lens, replace with db even though less items? - array of term objects
@@ -615,21 +611,21 @@ const explore = Vue.component('exploreComp',{
           }
 
           if(lens === null || this.crossSection===null || this.crossSection.name !== lens.name){
-            $('.crossSectionNav').flickity('destroy');
-            $('.crossSectionSteps').flickity('destroy');
+            $('#crossSectionNav').flickity('destroy');
+            $('#crossSectionSteps').flickity('destroy');
 
             this.crossSection = lens
-            // this.crossSection = this.suggestions;
+
             this.$nextTick(function(){
-              $('.crossSectionNav').flickity({
-                asNavFor: '.crossSectionSteps',
+              $('#crossSectionNav').flickity({
+                asNavFor: '#crossSectionSteps',
                 // wrapAround: true,
                 pageDots: true,
                 prevNextButtons: true,
                 accessibility: false, // to prevent jumping when focused
               })
 
-              $('.crossSectionSteps').flickity({
+              $('#crossSectionSteps').flickity({
                 // asNavFor: '.crossSectionNav',
                 wrapAround: true,
                 pageDots: false,
@@ -680,7 +676,9 @@ const explore = Vue.component('exploreComp',{
         },
         layout: function(mes) {
           console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
-
+          for(termIndex in this.suggestionGroups){ // layout all isotope containers in term suggestionGroups
+            this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID][0].layout('masonry');
+          }
           for(termIndex in this.crossSection){ // layout all isotope containers in cross section
             this.$refs['resourceBin' + this.crossSection[termIndex].setID][0].layout('masonry');
           }
@@ -697,7 +695,30 @@ const explore = Vue.component('exploreComp',{
             include.push(this.termQuery[termIndex]['term'].uid)
           }
           this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
-            this.suggestions=response.body;
+            // this.suggestions=response.body;
+            this.suggestionGroups=response.body;
+            // setup suggection flickity
+            this.$nextTick(function(){
+              $('#suggestionNav').flickity('destroy');
+              $('#suggestionSteps').flickity('destroy');
+              $('#suggestionNav').flickity({
+                asNavFor: '#suggestionSteps',
+                // wrapAround: true,
+                pageDots: true,
+                prevNextButtons: true,
+                accessibility: false, // to prevent jumping when focused
+              })
+
+              $('#suggestionSteps').flickity({
+                // asNavFor: '.crossSectionNav',
+                wrapAround: true,
+                pageDots: false,
+                prevNextButtons: true,
+                accessibility: false, // to prevent jumping when focused
+                dragThreshold: 40 // play around with this more?
+              });
+            });
+            console.log(response.body)
           }, response => {
           });
         },
