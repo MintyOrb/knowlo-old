@@ -40,6 +40,7 @@ const app = new Vue({
     touchMember: function(){
       // ensure member is in DB (add if first time signing in)
       this.$http.post('/api/member', {term: this.term, translation:this.translation}).then(response => {
+
         if(!response.body){
           Materialize.toast('Something went wrong...', 4000)
         }

@@ -127,8 +127,8 @@ html {
   z-index: 2000
 }
 .card {
-    width: 200px;
-    margin: 10px;
+    width: 20vw;
+    padding: 15px;
 		box-shadow: none;
 }
 .card-bottom {
@@ -225,6 +225,7 @@ iframe{
   height: 80vh;
 }
 .exit {
+  border-bottom-left-radius: 6px;
   position: absolute;
   top: 0;
   right: 0;
@@ -264,12 +265,6 @@ iframe{
 .resourceMeta {
   height: 100%;
   width: 100vw;
-}
-@media (max-width:40.063em) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-  .vid-container-container {
-    margin:auto;
-    width:100vw;
-  }
 }
 .web-container iframe, .video-container object, .video-container embed {
     position: absolute;
@@ -376,6 +371,8 @@ iframe{
 
 .is-nav-selected{
   font-weight: 600;
+  text-decoration: underline;
+  text-underline-position: under;
 }
 .crossSectionSteps {
 	width: 100%;
@@ -387,16 +384,6 @@ iframe{
   overflow: scroll;
   padding-top: 30px;
   padding-bottom: 400px;
-}
-@media (max-width:40.063em) {
-  .stepContainer{  width: 80vw;}
-  .addContainer{
-    padding-top: 200px;
-    padding-bottom: 100px;
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  .resourceStep{ width:80vw!important;}
 }
 .resourceSections{
   height: 100%;
@@ -548,11 +535,12 @@ iframe{
 		color: rgba(140, 139, 139, 0.68);
 }
 .name {
-    text-align: center;
-		font-weight: 300;
-    display: table-cell;
-   vertical-align: middle;
-   width: 95px;
+  text-align: center;
+  font-weight: 300;
+  display: table-cell;
+  vertical-align: middle;
+  width: 95px;
+  word-break: break-word;
 }
 .nameholder{
   height: 43px;
@@ -604,22 +592,75 @@ iframe{
 	color: #FFF;
 	width:auto;
 }
+/*http://www.designyourway.net/drb/a-detailed-overview-of-media-queries-and-how-to-use-them/*/
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 375px) {
+  .card{
+    width: calc(100vw - 10px);
+  }
+}
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 376px) {
+  .card{
+    width: calc(50vw - 10px);
 
-@media (max-width:40.063em) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+  }
+}
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
     .modal {
         top: 0!important;
         max-height: 100%!important;
         width: 100%!important;
         height: 100%!important;
         }
+    .message {
+      font-size:16px;
+      margin:10px;
+      padding: 15px;
+
+    }
+    .vid-container-container {
+      margin:auto;
+      width:100vw;
+    }
     .filter {
         margin: 0px;
     }
     .suggestionGroupStep{
       padding: 0;
     }
+    .stepContainer{  width: 80vw;}
+    .addContainer{
+      padding-top: 200px;
+      padding-bottom: 100px;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+    .resourceStep{ width:80vw!important;}
 }
-
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+  .card{
+    width: calc(25vw - 10px);
+  }
+}
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+  .card{
+    width: calc(20vw - 10px);
+  }
+}
+.card{
+  margin: 5px;
+}
 .hidden{
   visibility: hidden;
 }
@@ -649,7 +690,9 @@ iframe{
 .modal .modal-content {
   padding: 0px;
 }
-
+#addResourceModal{
+  border-radius: 6px;
+}
 .fullWidth{
   width: 100vw;
 }
@@ -730,14 +773,7 @@ textarea.materialize-textarea:focus:not([readonly])+label {
   border-radius: 10px;
   padding: 45px;
 }
-@media (max-width:40.063em) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-  .message {
-    font-size:16px;
-    margin:10px;
-    padding: 15px;
 
-  }
-}
 .text-container{
   display: flex;
   justify-content: center;

@@ -140,16 +140,17 @@
 				<!-- term query  -->
 		    <div class='row'>
 		        <isotope style="min-height:80px" ref="termQuery" :list="termQuery" :options='{}' class='step'>
-		          <div  v-for="word in termQuery"  class='selected' key="word.name">
-		            <term :term="word"
+		            <term v-for="word in termQuery"
+									key="word.setID"
+									:term="word"
 									:display="'thumb'"
-									v-on:include="word.status.include=!word.status.include; word.status.exclude=!word.status.exclude;"
-									v-on:exclude="removeTerm(word.setID)"
+									v-on:include="includeExclude(word)"
+									v-on:exclude="includeExclude(word)"
+									v-on:remove="removeTerm(word.setID)"
 									v-on:focus="focus"
 									v-on:lens="fetchContains"
 								>
 								</term>
-		          </div>
 		        </isotope>
 						<div v-if="termQuery.length > 0" class="clear btn white waves-light" @click="termQuery=[]">
 							clear
@@ -165,21 +166,30 @@
 
 							<div id='suggestionNav' class=" suggestionNav ">
 								<!-- flick navigation for isotope containers -->
-								<div v-for="group in suggestionGroups" class="navItems">
-									<term :term="group.group[0]"
-										:display="'thumb'"
-										>
-									</term>
-								</div>
+								<term
+									v-for="group in suggestionGroups"
+									:key="group.group[0].setID"
+									:term="group.group[0]"
+									:display="'thumb'"
+									v-on:include="addToQuery(group.group[0])"
+									v-on:exclude="addToQuery(group.group[0])"
+									v-on:focus="addToQuery(group.group[0])"
+									v-on:pin="addToQuery(group.group[0])"
+									>
+								</term>
 							</div>
 							<!-- isotope contianers -->
 							<div id='suggestionSteps' class=" suggestionSteps">
 								<div v-for="step in suggestionGroups" class="suggestionGroupStep" >
 									<isotope  :ref='"suggestionBin" + step.group[0].setID' class="step" :list="step.contains" :options='{}'>
-										<div v-for="term in step.contains" class='element-item' key="term.uid">
+										<div v-for="term in step.contains" class='element-item' key="term.setID">
 											<term :term="term"
 												:display="'thumb'"
-												>
+												v-on:include="addToQuery(term)"
+												v-on:exclude="addToQuery(term)"
+												v-on:focus="addToQuery(term)"
+												v-on:pin="addToQuery(term)"
+											>
 											</term>
 										</div>
 									 </isotope>
@@ -281,8 +291,9 @@
 		<span class="exit hide-on-med-and-down modal-close" ><i class="fa fa-3x fa-times"></i></span>
 
 		<!-- modal for adding to discussion -->
-		<add-resource v-if='addDiss == true'
-			v-on:close="addDiss=false"
+		<add-resource v-if='addResource == true'
+			:type="addResourceType"
+			v-on:close="addResource=false"
 			v-on:added="addCreatedDiscussion">
 		</add-resource>
 
@@ -359,7 +370,7 @@
 						Nothing yet! Be the first to add your thoughts...
 					</div>
 					<div>
-						<a @click="addDiss = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+						<a @click="addResourceType='discussion'; addResource = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 					</div>
 				 </div>
 
@@ -375,9 +386,13 @@
 						<term
 							v-for="term in terms"
 							:term="term"
-							key="term.name"
+							key="term.setID"
 							display="thumb"
-							v-on:exclude="removeTerm(term.setID)">
+							v-on:include="addToQuery(group.group[0])"
+							v-on:exclude="addToQuery(group.group[0])"
+							v-on:focus="addToQuery(group.group[0])"
+							v-on:pin="addToQuery(group.group[0])"
+							>
 						</term>
 					</isotope>
 					<autocomplete exclude="" input-id="resourceTest" v-on:select="addTerm"></autocomplete>
@@ -394,7 +409,7 @@
 
 		 </div>
 		 <div class="addBtn">
- 			<a @click="addDiss = true" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+ 			<a @click="addResourceType='discussion'; addDiss = true" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
  		 </div>
 		</div>
 
@@ -411,10 +426,18 @@
 
 
 <template id="termTemplate">
-	<div id="termModal" class="modal fullPage">
+	<div id="termModal" class="modal fullPage term-modal">
+
+		<!-- modal for adding to discussion -->
+		<add-resource v-if='addResource == true'
+			:type='addResourceType'
+			v-on:close="addResource=false"
+			v-on:added="">
+		</add-resource>
+
 		<div class="termTitle" >
 			<span  class=''>
-					<img class='circle'style='height:50px' :src="term.term.iconURL">
+					<img class='circle'style='height:50px;width:50px' :src="term.term.iconURL">
 			</span>
 			<span >
 				<span>{{term.translation.name}}</span>
@@ -435,11 +458,13 @@
 			<!-- isotope contianers -->
 			<div class="termSections">
 
-
-
 				<div class="stepContainer">
+
+					<div>
+						<a @click="addResourceType='icon'; addResource = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+					</div>
+
 					<div v-for="icon in icons" :key="icon.setID">
-						<!-- {{icon}} -->
 						<resource
 							:re="icon"
 							:display="'list'"
@@ -468,9 +493,14 @@
 						<div v-for="term in synonyms" :key="term.setID">
 							<term
 								:term="term"
-								:display="'godMode'"
+								:display="'thumb'"
 								:key="term.setID"
-								v-on:exclude="removeSynonym(term.term.uid)">
+								v-on:include="addToQuery(group.group[0])"
+								v-on:exclude="addToQuery(group.group[0])"
+								v-on:focus="addToQuery(group.group[0])"
+								v-on:pin="addToQuery(group.group[0])"
+								>
+								<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
 							</term>
 						</div>
 					</isotope>
@@ -482,8 +512,13 @@
 								<term :term="term"
 									:display="'thumb'"
 									:key="term.translation.name"
-									v-on:exclude="removeWithin(term.setID)">
+									v-on:include="addToQuery(group.group[0])"
+									v-on:exclude="addToQuery(group.group[0])"
+									v-on:focus="addToQuery(group.group[0])"
+									v-on:pin="addToQuery(group.group[0])"
+									>
 								</term>
+								<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
 							</div>
 						</isotope>
 						<autocomplete exclude="" input-id="within" v-on:select="addWithin"></autocomplete>
@@ -493,20 +528,30 @@
 							<div v-for="term in contains" :key="term.translation.name">
 								<term :term="term"
 									:display="'thumb'"
-									:key="term.translation.name"
-									v-on:exclude="removeContains(term.setID)">
+									:key="term.setID"
+									v-on:include="addToQuery(group.group[0])"
+									v-on:exclude="addToQuery(group.group[0])"
+									v-on:focus="addToQuery(group.group[0])"
+									v-on:pin="addToQuery(group.group[0])"
+									>
 								</term>
+								<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
 							</div>
 						</isotope>
 						<autocomplete exclude="" input-id="contains" v-on:select="addContains"></autocomplete>
 				</div>
 				<div class="stepContainer">
 					<isotope ref='trans' :list="translations" :options='{}'>
-						<div v-for="term in translations" :key="term.translation.name">
+						<div v-for="term in translations" :key="term.setID">
 							<term :term="term"
 							:display="'thumb'"
-							:key="term.translation.name">
+							:key="term.setID"v-on:include="addToQuery(group.group[0])"
+							v-on:exclude="addToQuery(group.group[0])"
+							v-on:focus="addToQuery(group.group[0])"
+							v-on:pin="addToQuery(group.group[0])"
+							>
 							</term>
+							<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
 						</div>
 					</isotope>
 				</div>
@@ -534,11 +579,12 @@
 				<span>Tag</span>
 			</div>
 		</div>
+
 		<!-- isotope contianers -->
 		<div class="addSections">
 			<div class="addContainer">
-
-					<form v-if="discussion">
+				{{type}}
+					<form v-if="type=='discussion'">
 						<div class="row">
 							<div class="input-field col s12">
 								<textarea v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
@@ -597,10 +643,10 @@
 			<div class="addContainer">
 				<autocomplete exclude="" input-id="tagNewResources" v-on:select="addTag"></autocomplete>
 				<isotope ref='tagged' :list="tags" :options='{}'>
-					<div v-for="term in tags" :key="term.translation.name">
+					<div v-for="term in tags" :key="term.setID">
 						<term :term="term"
 						:display="'thumb'"
-						:key="term.translation.name"
+						:key="term.setID"
 						v-on:exclude="removeTag(term.setID)">
 						</term>
 					</div>

@@ -65,10 +65,12 @@ Vue.component('term',{
       focus: function(){
         this.status.focusIcon = !this.status.focusIcon;
         this.term.status = this.status;
+        this.status.includeIcon = true;
         this.$emit('focus', this.term)
       },
       pin: function(){
         this.status.pinnedIcon = !this.status.pinnedIcon;
+        this.status.includeIcon = true;
         this.term.status = this.status;
         this.$emit('pin', this.term)
       },
@@ -114,7 +116,7 @@ Vue.component('resource',{
   name: "resource",
   data: () =>  {
     return {
-      voting: false
+      voting: true
     }
   },
   methods:{
@@ -425,11 +427,10 @@ const addTerm = Vue.component('addTerm',{
 
 const addResource = Vue.component('addResource',{
     template: "#addResource",
-    // props: ['member'],
+    props: ['member','type'],
     data: function() {
       return {
         flickRegistry: [],
-        discussion: false,
         tags: [],
         resource:{ // these aren't all strings...
           core: {
@@ -570,11 +571,12 @@ const addResource = Vue.component('addResource',{
     },
     mounted: function(){
 
-      if(this.$route.name=='resourceSub'){
+      if(this.$route.name=='resourceSub'){ //take in as param?
         this.discussion=true;
       }
       this.open();
       $('.modal-overlay').eq(1).appendTo('.resource-modal'); // workaround for stacking context
+      $('.modal-overlay').eq(0).appendTo('#termModal'); // workaround for stacking context
       console.log(this.$route.params.uid)
       // question
       // insight
@@ -586,6 +588,7 @@ const addResource = Vue.component('addResource',{
     if($('#addResourceModal')){
       $('#addResourceModal').modal('close');
     }
+    $('.modal-overlay').remove();
     window.setTimeout(()=>{
       next()
     }, 375)

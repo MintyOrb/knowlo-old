@@ -49,15 +49,16 @@ module.exports = function(app, db){
            + "MATCH (re)-[:TAGGED_WITH]->(synSet:synSet)<-[synR:IN_SET]-(syn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
            + "WHERE "
                + "synR.order=1 "
-               + "AND connected = {numberOfIncluded} "
+               + "AND connected = SIZE({includedSets}) "
                + "AND tlang.languageCode IN [ {language} , 'en' ] "
-           + "WITH synSet, tlangNode, tlang, re "
+               + "AND NOT synSet.uid IN {excludedSets} "
+           + "WITH synSet, tlangNode, tlang, re, collect(distinct synSet.setID) AS blah, filter(x IN re)"//filter(x IN collect(distinct{re:re,synSets:sets}) WHERE x.re.setID NOT IN {excludedSets}) as ree "
            + "OPTIONAL MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
            + "WHERE p.order=1 AND plang.languageCode IN [ {language} , 'en' ] "
            + "RETURN "
              + "collect(DISTINCT {term: synSet.uid, url: synSet.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, "
              + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
-             + "collect(DISTINCT synSet.uid) AS termIDs, "
+             + "collect(DISTINCT synSet.uid) AS termIDs, " // for filtering into suggestion group...no longer used?
              + "re AS resource "
            // + "ORDER BY {orderby} {updown}"
            + "SKIP {skip} "
@@ -71,7 +72,6 @@ module.exports = function(app, db){
         db.query(cypher, {
             includedSets: req.query.include || [],
             excludedSets: req.query.exclude || [],
-            numberOfIncluded: req.query.include.length,
             orderby: req.orderby,
             updown: req.updown,
             skip:0,

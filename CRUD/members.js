@@ -27,8 +27,9 @@ module.exports = function(app, db){
     }
 
     var cypher = "MERGE (member:member {uid:{map}.uid}) "
-               + "ON CREATE SET member={map}, member.joined=TIMESTAMP()"
-               + "ON MATCH SET member={map}, member.lastLogin=TIMESTAMP()"
+               + "ON CREATE SET member={map}, member.joined=TIMESTAMP() "
+               + "ON MATCH SET member={map}, member.lastLogin=TIMESTAMP() "
+               + "RETURN member"
 
     db.query(cypher, {map: member },function(err, result) {
       if (err) console.log(err);

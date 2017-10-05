@@ -11,6 +11,8 @@ const termComp = Vue.component('termComp',{
     data: function() {
       return {
         term: {name: 'default',translation:{name:''},term:{iconURL:""}},
+        addResource:false,
+        addResourceType: '',
         definitions: [],
         translations:[],
         synonyms: [],
@@ -19,7 +21,7 @@ const termComp = Vue.component('termComp',{
         contains: [],
         icons:[],
         definitions:[],
-        termSection: ["Icons","Definition","Synonyms","Within","Contains","Translations"] //stats? vote? member's relation? definition?
+        termSection: ["Icon","Definition","Synonyms","Within","Contains","Translations"] //stats? vote? member's relation? definition?
       }
     },
     methods:{
@@ -71,6 +73,9 @@ const termComp = Vue.component('termComp',{
       close: function(){
         console.log("close here after esc")
       },
+      addIcon: function(){
+
+      },
       deleteIcon: function(){
 
       },
@@ -92,7 +97,7 @@ const termComp = Vue.component('termComp',{
           // temp prop renaming...
           for(icon in tempIcon){
             tempIcon[icon].resource = {}
-
+            tempIcon[icon].resource.uid = icon;
             tempIcon[icon].resource.mThumb = tempIcon[icon].translation.value
             console.log('woahhhhhh')
             console.log(tempIcon[icon])
@@ -302,7 +307,8 @@ const resourceComp = Vue.component('resourceComp',{
               discussion: [],
               display: 'card', // default display for discussion
               resourceSection: ["Discussion","Terms","Vote","Stats","Related"],
-              addDiss:false
+              addResource:false,
+              addResourceType: '',
             }
           },
     methods: {
@@ -482,7 +488,6 @@ const resourceComp = Vue.component('resourceComp',{
       if(this.resource && $('#resourceModal'+this.resource.id)){
         $('#resourceModal'+this.resource.id).modal('close');
       }
-      $('.modal-overlay').remove();
       window.setTimeout(()=>{
         next()
       }, 375)
@@ -558,14 +563,15 @@ const explore = Vue.component('exploreComp',{
     methods: {
         includeSearch: function(set){
           this.termQuery.push(set);
-          console.log('hi')
           this.removeFrom(set, this.suggestions)
         },
         focus: function(set){
           console.log(set)
-          // set.focus = true;
-          // set.include = true;
-          this.termQuery = [set];
+          set.status.focusIcon=false;
+          for(tIndex in this.termQuery){
+            console.log(this.termQuery[tIndex].status.pinnedIcon)
+            if(!this.termQuery[tIndex].status.pinnedIcon && this.termQuery[tIndex].setID!=set.setID) this.termQuery.splice(tIndex,1);
+          }
         },
         addToFrom: function(term, to, from){ /// this is all stupid and needs to be re thought.
           console.log(term)
@@ -587,9 +593,26 @@ const explore = Vue.component('exploreComp',{
               if( this.termQuery[i].setID == id) this.termQuery.splice(i,1);
           }
         },
-
         addToQuery: function(item){
+            item.connections=0;
+            if(item.status.focusIcon){
+              this.focus(item);
+            }
             this.termQuery.push(item);
+        },
+        includeExclude: function(set){ // for including/excluding terms already in query
+          if(set.status.includeIcon){
+            set.status.include = false;
+            set.status.includeIcon = false;
+            status.exclude = true;
+            set.status.excludeIcon=true;
+          } else {
+            set.status.include = true;
+            set.status.includeIcon = true;
+            status.exclude = false;
+            set.status.excludeIcon=false;
+          }
+          this.fetchResources();
         },
         changeDisplay: function(disp){
           this.display = disp
@@ -733,6 +756,28 @@ const explore = Vue.component('exploreComp',{
             Materialize.toast('Something went wrong...are you online?', 4000)
           });
         },
+        fetchResources: function(){
+          var include = [];
+          var exclude = [];
+
+          for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
+            if(this.termQuery[termIndex]['status'].includeIcon){
+              include.push(this.termQuery[termIndex]['setID'])
+            } else {
+              exclude.push(this.termQuery[termIndex]['setID'])
+            }
+          }
+          this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
+            this.resources=response.body;
+            this.numberOfDisplayed = response.body.length;
+            this.getTerms();
+            window.setTimeout(() =>{
+              this.layout()
+            }, 500);
+          }, response => {
+            console.log('error getting resources... ', response)
+          });
+        }
 
     },
     mounted: function(){
@@ -786,28 +831,10 @@ const explore = Vue.component('exploreComp',{
     },
     watch: {
       termQuery: function(val){
-        var include = [];
-        var exclude = [];
 
         Cookies.set('termQuery',val)
+        this.fetchResources();
 
-        for (var termIndex = 0; termIndex < val.length; termIndex++) {
-          if(val[termIndex]['status'].includeIcon){
-            include.push(val[termIndex]['setID'])
-          } else {
-            exclude.push(val[termIndex]['setID'])
-          }
-        }
-        this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
-          this.resources=response.body;
-          this.numberOfDisplayed = response.body.length;
-          this.getTerms();
-          window.setTimeout(() =>{
-            this.layout()
-          }, 500);
-        }, response => {
-          console.log('error getting resources... ', response)
-        });
       },
     }
 });

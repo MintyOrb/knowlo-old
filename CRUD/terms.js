@@ -107,7 +107,6 @@ function query(req, res){
     }
     db.query(cypher, {searchSets: req.query.include, ignoreTerms: req.query.exclude, searchTermsCount: len, lang: 'en' },function(err, result) {
       if (err) console.log(err);
-      console.log(result)
       res.send(result)
     })
 }
