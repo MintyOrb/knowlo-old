@@ -126,6 +126,9 @@ html {
 .dropdown-content {
   z-index: 2000
 }
+.dropdown-button{
+  margin-top: 5px;
+}
 .card {
     width: 20vw;
     padding: 15px;

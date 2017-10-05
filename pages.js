@@ -486,9 +486,22 @@ const resourceComp = Vue.component('resourceComp',{
 
       this.fetchResource();
 
+      $('.dropdown-button').dropdown({
+           inDuration: 300,
+           outDuration: 225,
+           constrainWidth: false, // Does not change width of dropdown to that of the activator
+           hover: true, // Activate on hover
+           gutter: 0, // Spacing from edge
+           belowOrigin: false, // Displays dropdown below the button
+           alignment: 'right', // Displays dropdown with edge aligned to the left of button
+           stopPropagation: false // Stops event propagation
+         }
+       );
+
     },
     beforeRouteLeave: function (to, from, next){
 
+      $('.modal-overlay').remove(); // needed if navigating from resource page to set page
       if(this.resource && $('#resourceModal'+this.resource.id)){
         $('#resourceModal'+this.resource.id).modal('close');
       }
