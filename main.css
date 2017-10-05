@@ -592,6 +592,10 @@ iframe{
 	color: #FFF;
 	width:auto;
 }
+.card{
+  margin: 5px;
+  padding: 0px;
+}
 /*http://www.designyourway.net/drb/a-detailed-overview-of-media-queries-and-how-to-use-them/*/
 /* Smartphones (portrait) ----------- */
 @media only screen
@@ -602,10 +606,10 @@ and (max-width : 375px) {
 }
 /* Smartphones (landscape) ----------- */
 @media only screen
-and (min-width : 376px) {
+and (min-width : 376px)
+and (max-width : 767px) {
   .card{
     width: calc(50vw - 10px);
-
   }
 }
 /* Smartphones (portrait and landscape) ----------- */
@@ -645,8 +649,8 @@ and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e
 }
 /* iPads (portrait and landscape) ----------- */
 @media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px) {
+and (min-width : 768px)
+and (max-width : 1024px) {
   .card{
     width: calc(25vw - 10px);
   }
@@ -657,9 +661,6 @@ and (min-width : 1224px) {
   .card{
     width: calc(20vw - 10px);
   }
-}
-.card{
-  margin: 5px;
 }
 .hidden{
   visibility: hidden;

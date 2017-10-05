@@ -52,7 +52,7 @@ module.exports = function(app, db){
                + "AND connected = SIZE({includedSets}) "
                + "AND tlang.languageCode IN [ {language} , 'en' ] "
                + "AND NOT synSet.uid IN {excludedSets} "
-           + "WITH synSet, tlangNode, tlang, re, collect(distinct synSet.setID) AS blah, filter(x IN re)"//filter(x IN collect(distinct{re:re,synSets:sets}) WHERE x.re.setID NOT IN {excludedSets}) as ree "
+           + "WITH synSet, tlangNode, tlang, re "//collect(distinct synSet.setID) AS blah, filter(x IN re)"//filter(x IN collect(distinct{re:re,synSets:sets}) WHERE x.re.setID NOT IN {excludedSets}) as ree "
            + "OPTIONAL MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
            + "WHERE p.order=1 AND plang.languageCode IN [ {language} , 'en' ] "
            + "RETURN "

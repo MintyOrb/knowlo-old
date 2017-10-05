@@ -302,7 +302,9 @@
 		<div class="resource-container">
 
 			<!-- image -->
-			<div v-if='resource.displayType=="image"' id="image-map"></div>
+			<div v-if='resource.displayType=="image"'>
+				<div id="image-map"></div>
+			</div>
 
 			<!--  youtube/vimeo -->
 			<div v-if='resource.displayType=="embed"' class="vid-container-container">
@@ -493,7 +495,7 @@
 						<div v-for="term in synonyms" :key="term.setID">
 							<term
 								:term="term"
-								:display="'thumb'"
+								:display="'godMode'"
 								:key="term.setID"
 								v-on:include="addToQuery(group.group[0])"
 								v-on:exclude="addToQuery(group.group[0])"

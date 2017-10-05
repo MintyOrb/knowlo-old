@@ -139,6 +139,7 @@ Vue.component('resource',{
        noUiSlider.create(slider, {
         start: [50],
         connect: [true,false],
+        behavior: "tap-drag-hover",
         range: {
           'min': 0,
           'max': 100
@@ -463,7 +464,6 @@ const addResource = Vue.component('addResource',{
           inDuration: 300, // Transition in duration
           outDuration: 200, // Transition out duration
           startingTop: '4%', // Starting top style attribute
-          // endingTop: '100%', // Ending top style attribute
           ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
             $('body').css("overflow","hidden")
           },
@@ -589,6 +589,7 @@ const addResource = Vue.component('addResource',{
       $('#addResourceModal').modal('close');
     }
     $('.modal-overlay').remove();
+    
     window.setTimeout(()=>{
       next()
     }, 375)

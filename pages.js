@@ -329,7 +329,6 @@ const resourceComp = Vue.component('resourceComp',{
           if(response.body.resource){
             this.resource = response.body.resource;
             this.terms = response.body.terms;
-            console.log(response.body)
             if(this.resource.url){
               if(this.resource.url.match(/[^/]+(jpg|png|gif|jpeg)$/)){
                 this.resource.displayType = 'image'
@@ -357,7 +356,9 @@ const resourceComp = Vue.component('resourceComp',{
           this.fetchDiscussion();
 
           this.$nextTick(function(){
-
+            // if()
+            $('.resourceNav').flickity('destroy');
+            $('.resourceSections').flickity('destroy');
             $('.resourceNav').flickity({
               asNavFor: '.resourceSections',
               // wrapAround: true,
@@ -390,14 +391,18 @@ const resourceComp = Vue.component('resourceComp',{
                   $('.resourceNav').flickity('destroy');
                   $('.resourceSections').flickity('destroy');
                   $('body').css("overflow","auto");
-                  router.go(-1);
+                  router.go(-1) || router.push("/");
                 }
               }).modal('open');
 
               $('#resourceModal'+resource.uid).css('opaciy',1)
-              // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
+
+              // remove any existing leaflet elements from previous resource (probably a smarter way to handle this...)
+              $('.leaflet-control-container').remove();
+              $('.leaflet-pane').remove();
               if(this.resource.displayType == "image"){
-                // TODO: make dry and sensible...
+                // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
+
                 var map = L.map('image-map', {
                   minZoom: 1,
                   maxZoom: 4,
@@ -409,8 +414,6 @@ const resourceComp = Vue.component('resourceComp',{
                 // dimensions of the image
                 var w = 2000,
                     h = 1500,
-                    // url = 'http://s3.amazonaws.com/submitted_images/'+this.resource.savedAs;
-                    // console.log('http://s3.amazonaws.com/submitted_images/'+this.resource.savedAs)
                     url = this.resource.url
                 var img = new Image();
                 img.onload = function() {
@@ -485,6 +488,7 @@ const resourceComp = Vue.component('resourceComp',{
 
     },
     beforeRouteLeave: function (to, from, next){
+
       if(this.resource && $('#resourceModal'+this.resource.id)){
         $('#resourceModal'+this.resource.id).modal('close');
       }
