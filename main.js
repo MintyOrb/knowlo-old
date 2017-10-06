@@ -4,7 +4,7 @@ const routes = [
   {  name: "explore", path: '/', component: explore,
       children: [
         { path: '/r/:uid', component: resourceComp, name: 'resourceSub' },
-        { path: '/t/:name/:uid?', component: termComp, name: 'termSub' },
+        { path: '/t/:name/:uid?', component: termComp, name: 'setSub' },
         { path: '/addResource', component: addResource, name: 'addResource' },
         { path: '/addTerm/:translation/:termID?', component: addTerm, name: 'addTerm' },
       ]

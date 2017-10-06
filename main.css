@@ -8,6 +8,13 @@
 *{
   /*outline: 1px   solid black;*/
 }
+.rBar{
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+  padding: 10px 20px 6px 20px;
+}
 .addDetail{
   padding: 5px;
   margin-top: -5px;
@@ -371,9 +378,10 @@ iframe{
   font-weight: 300;
   transition: font-weight .5s;
 }
-
-.is-nav-selected{
+.is-nav-selected {
   font-weight: 600;
+}
+.is-nav-selected.containerr {
   text-decoration: underline;
   text-underline-position: under;
 }

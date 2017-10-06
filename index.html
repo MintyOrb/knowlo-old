@@ -157,10 +157,7 @@
 						</div>
 		    </div>
 			</div>
-			<div>
-
-
-				<!--  suggested -->
+			<div><!--  suggested -->
 		    <div class='row'>
 						<div v-if="suggestionGroups.length>0">
 
@@ -210,24 +207,27 @@
 			          </div>
 			        </isotope>
 						</div>
-
 		    </div>
+			</div><!-- suggested -->
 
-		    <div class="center pad margin20">
-  				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
-  				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
-					<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
-					<span class='right'>
-						<a class="dropdown-button viewBtn" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
-						<ul id='order' class='dropdown-content'>
-							<li><a @click="changeLens(bigHistory)">Big History</a></li>
-							<li><a @click="changeLens(size)">Size</a></li>
-							<li><a @click="changeLens(null)">none</a></li>
-	  		    </ul>
-					</span>
-					<br/>
-				</div>
-
+			<div class="center rBar">
+				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
+				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
+				<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
+				<span class='right'>
+					<a class="dropdown-button viewBtn" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
+					<ul id='order' class='dropdown-content'>
+						<li><a @click="changeLens(bigHistory)">Big History</a></li>
+						<li><a @click="changeLens(size)">Size</a></li>
+						<li><a @click="changeLens(null)">none</a></li>
+						<!-- date added
+						quality
+						time to view
+						depth? | difficulty | level....
+						... -->
+					</ul>
+				</span>
+				<br/>
 			</div>
 
 			<div>
@@ -474,17 +474,18 @@
 				</div>
 
 				<div class="stepContainer">
-						<div v-for="def in definitions" :key="term.translation.name">
-							<div class='card hoverable'>
-								<div class="card-content">
-										{{def.translation.text}}
-								</div>
+					<div>
+						<a @click="addResourceType='definition'; addResource = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+					</div>
+
+					<div v-for="def in definitions" :key="term.translation.name">
+						<div class='card hoverable'>
+							<div class="card-content">
+									{{def.translation.text}}
 							</div>
 						</div>
+					</div>
 
-					<div @click="addDefinition">
-						add resource
-				 </div>
 				</div>
 
 				<div class="stepContainer">
@@ -583,7 +584,7 @@
 		<div class="addSections">
 			<div class="addContainer">
 				{{type}}
-					<form v-if="type=='discussion'">
+					<form v-if="type=='discussion' || type=='definition'">
 						<div class="row">
 							<div class="input-field col s12">
 								<textarea v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
@@ -879,7 +880,7 @@
 								</div>
 							</div>
 							<div class="rotater">
-								<router-link :to="{ name: 'termSub', params: { uid: term.setID, name: term.translation.name }}">
+								<router-link :to="{ name: 'setSub', params: { uid: term.setID, name: term.translation.name }}">
 									<div class="mbtn mbtn-icon flexCenter":class="{showInfo: status.infoIcon, infoNav: hovering&& inSidebar }">
 										<i class="fa fa-info"></i>
 									</div>
@@ -930,7 +931,7 @@
 		<span>{{term.term.uid}}</span>
 		<input type="text" v-model='term.translation.name' v-on:blur="name(term.translation.uid,term.translation.name)" />
 		<!-- <span> ({{term.translation.languageCode}})</span> -->
-		<input type='text' v-model='term.term.order' v-on:blur="order(term.term.uid,term.term.order)" />
+		<input type='text' v-model='term.order' v-on:blur="order(term.term.uid,term.order)" />
 		<i  @click="exclude" class="fa fa-minus"></i>
 	</div>
 

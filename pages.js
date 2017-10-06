@@ -63,8 +63,10 @@ const termComp = Vue.component('termComp',{
                 $('body').css("overflow","hidden")
               },
               complete: () => {
-                $('.termNav').flickity('destroy');
-                $('.termSections').flickity('destroy');
+                if(  $('.termNav').flickity()){
+                  $('.termNav').flickity('destroy');
+                  $('.termSections').flickity('destroy');
+                }
                 $('body').css("overflow","auto")
               }
             }).modal('open');
@@ -195,7 +197,6 @@ const termComp = Vue.component('termComp',{
       },
       fetchContains: function(){
         this.$http.get('/set/' + this.term.setID + '/contains/', {params: { languageCode: 'en'}}).then(response => {
-            console.log(response.body)
           if(response.body.length > 0){
             this.contains = response.body;
           } else {
@@ -356,9 +357,10 @@ const resourceComp = Vue.component('resourceComp',{
           this.fetchDiscussion();
 
           this.$nextTick(function(){
-            // if()
-            $('.resourceNav').flickity('destroy');
-            $('.resourceSections').flickity('destroy');
+            if($('.resourceNav').flickity() && $('.resourceSections').flickity()){
+              $('.resourceNav').flickity('destroy');
+              $('.resourceSections').flickity('destroy');
+            }
             $('.resourceNav').flickity({
               asNavFor: '.resourceSections',
               // wrapAround: true,
@@ -651,8 +653,10 @@ const explore = Vue.component('exploreComp',{
           }
 
           if(lens === null || this.crossSection===null || this.crossSection.name !== lens.name){
-            $('#crossSectionNav').flickity('destroy');
-            $('#crossSectionSteps').flickity('destroy');
+            if($('#crossSectionNav').flickity()){
+              $('#crossSectionNav').flickity('destroy');
+              $('#crossSectionSteps').flickity('destroy');
+            }
 
             this.crossSection = lens
 
@@ -739,8 +743,10 @@ const explore = Vue.component('exploreComp',{
             this.suggestionGroups=response.body;
             // setup suggection flickity
             this.$nextTick(function(){
-              $('#suggestionNav').flickity('destroy');
-              $('#suggestionSteps').flickity('destroy');
+              if($('#suggestionNav').flickity() && $('#suggestionSteps').flickity()){
+                $('#suggestionNav').flickity('destroy');
+                $('#suggestionSteps').flickity('destroy');
+              }
               $('#suggestionNav').flickity({
                 asNavFor: '#suggestionSteps',
                 // wrapAround: true,

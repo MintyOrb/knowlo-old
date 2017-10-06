@@ -26,7 +26,7 @@ module.exports = function(app, db){
   app.put('/api/resource/:rUID/set/:sUID', updateSet);         // add a single set to a resources by id
   app.delete('/api/resource/:rUID/set/:sUID', deleteSet);   // remove a single set relationship from a resources | DELETE /term/:uid to delete term node itself
 
-  app.get('/resource/:ruid/discussion/', getDiscussion);
+  app.get('/resource/:ruid/discussion/', getDiscussion); // rename to meta???? add term/:tuid/meta
   app.put('/api/resource/:rUID/discussion/:dUID', tagDiscussion);
   // post /discussion is the same as post /resource ?
     // post /resource/discussion instead?

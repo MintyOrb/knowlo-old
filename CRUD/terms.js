@@ -48,10 +48,15 @@ function name(req, res){
      res.send(result)
    })
 }
-app.put('/god/order/:uid/:order', order);
+app.put('/god/order/:termID/:order/:setID', order);
+console.log('blah')
 function order(req, res){
-  var cypher = "MATCH (n:term {uid: {uid}})-[r]-(s:synSet) set n.order={order},r.order={order}  return n "
-   db.query(cypher, { order: parseInt(req.params.order.trim()), uid: req.params.uid },function(err, result) {
+  var cypher = "MATCH (n:term {uid: {termID}})-[r]-(s:synSet {uid: {setID}}) set r.order={order}  return n "
+   db.query(cypher, {
+     order: parseInt(req.params.order.trim()),
+     termID: req.params.termID,
+     setID: req.params.setID
+   },function(err, result) {
      if (err) console.log(err);
      res.send(result)
    })
@@ -260,8 +265,8 @@ function readSynonym(req, res){
   var cypher = "MATCH (set:synSet {uid: {set} })<-[r:IN_SET]-(syn:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
              + "WHERE "
                  + "lang.languageCode IN [ {language} , 'en' ] "
-                  + "RETURN DISTINCT set.uid as setID, syn as term, translation , r "
-                  + "ORDER BY  r.order"
+                  + "RETURN DISTINCT set.uid as setID, syn as term, translation , r.order as order "
+                  + "ORDER BY order"
 
   db.query(cypher, {set: req.params.setID, language: req.query.languageCode },function(err, result) {
     if (err) console.log(err);
