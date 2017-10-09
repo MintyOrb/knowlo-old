@@ -13,7 +13,7 @@ module.exports = function(app, db){
   app.get('/resource/:uid', readCore);       // read details of a single resource core
   app.put('/api/resource/:uid', updateCore); // update a single resource core node data
   app.post('/resource', createCore);     // create (or update, if present) a resource core node.
-  app.delete('/api/resource', deleteCore);   // delete resource core node and relationships....and translations?
+  app.delete('/api/resource/:uid/full', deleteFull);   // delete resource core node and relationships....and translations?
 
   app.get('/resource/:ruid/translation/', readTranslation);         // retrieve a translation of a resource based on resource id and provided langauge code. If language not found, attempt a translation. Also returns resource core
   app.put('/api/resource/:ruid/translation/:uid', updateTranslation);    // update single resoruce translation by ID | is /resource/:ruid superfluous? /resourceMeta/:uid instead?
@@ -128,7 +128,18 @@ module.exports = function(app, db){
     })
   }
 
-  function deleteCore(req,res){
+  function deleteFull(req,res){
+    // just remove label instead?
+    var cypher = "MATCH (re:resource {uid:{uid}})  "
+      + "OPTIONAL MATCH (re)-[:HAS_PROPERTY]-(p:prop)-[:HAS_TRANSLATION]-(t:translation) "
+      + "DETACH DELETE re, p, t "
+
+   db.query(cypher, {
+      uid: req.params.uid
+    },function(err, result) {
+     if (err) {console.log(err); res.status(500).send()};
+     res.send(result)
+   })
   }
   function readTranslation(req,res){
   }

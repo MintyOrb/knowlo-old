@@ -125,6 +125,19 @@ Vue.component('resource',{
     }
   },
   methods:{
+    deleteResource: function(uid){
+      this.$http.delete('/api/resource/'+uid+'/full').then(response => {
+        console.log(response.body)
+
+        if(response.body){
+          Materialize.toast('deleted resource', 4000)
+        } else {
+          Materialize.toast('Something went wrong...', 4000)
+        }
+      }, response => {
+         Materialize.toast('Something went wrong...are you online?', 4000)
+      });
+    },
     trimNumber: function(num, digits) { // from http://stackoverflow.com/a/9462382/2061741 - displays number of views
       if(num && digits){
         var si = [ { value: 1E18, symbol: "E" }, { value: 1E15, symbol: "P" }, { value: 1E12, symbol: "T" }, { value: 1E9,  symbol: "G" }, { value: 1E6,  symbol: "M" }, { value: 1E3,  symbol: "k" }], rx = /\.0+$|(\.[0-9]*[1-9])0+$/, i;
@@ -433,7 +446,13 @@ const addTerm = Vue.component('addTerm',{
 
 const addResource = Vue.component('addResource',{
     template: "#addResource",
-    props: ['member','type'],
+    props: {
+      member: Object,
+      type: {
+        type: String,
+        default: 'resource'
+      }
+    },
     data: function() {
       return {
         synSetMeta: false,  // tag resource to set
@@ -618,7 +637,6 @@ const addResource = Vue.component('addResource',{
       this.open();
       $('.modal-overlay').eq(1).appendTo('.resource-modal'); // workaround for stacking context
       $('.modal-overlay').eq(0).appendTo('#termModal'); // workaround for stacking context
-      console.log(this.$route.params.uid)
       // question
       // insight
       // criticism

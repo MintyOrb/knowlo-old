@@ -187,9 +187,6 @@ html {
   width: 100%;
   margin-left: 0%;
 }
-.definition{
-  width:50vw;
-}
 .item {
   display: inline-block;
 }
@@ -673,6 +670,12 @@ and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e
       width: 100%;
       margin-left: 0%;
     }
+    .definition{
+      width:100vw!important;
+    }
+    .discussion{
+      width:100vw!important;
+    }
     .stepContainer{  width: 100vw;}
     .addContainer{
       padding-top: 200px;
@@ -702,6 +705,9 @@ and (min-width : 1224px) {
 }
 
 .addContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   overflow: scroll;
@@ -710,6 +716,9 @@ and (min-width : 1224px) {
   padding-bottom: 100px;
   padding-left: 10px;
   padding-right: 10px;
+}
+.bigtop {
+  margin-top: 50vh
 }
 .addSections {
   height: 100%;
@@ -767,12 +776,13 @@ and (min-width : 1224px) {
 .noUi-connect{
   background-color: #2196F3;
 }
-textarea.materialize-textarea:focus:not([readonly]) {
+
+nput:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
   border-bottom: 1px solid #2196F3;
   box-shadow: 0 1px 0 0 #2196F3;
 }
-textarea.materialize-textarea:focus:not([readonly])+label {
-    color: #2196F3;
+input:not([type]):focus:not([readonly])+label, input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([readonly])+label, input[type=email]:focus:not([readonly])+label, input[type=url]:focus:not([readonly])+label, input[type=time]:focus:not([readonly])+label, input[type=date]:focus:not([readonly])+label, input[type=datetime]:focus:not([readonly])+label, input[type=datetime-local]:focus:not([readonly])+label, input[type=tel]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, input[type=search]:focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
+      color: #2196F3;
 }
 .clear{
   font-size: 11px;
@@ -810,4 +820,7 @@ textarea.materialize-textarea:focus:not([readonly])+label {
   font-size: 40px;
   font-weight: 200;
   color: white;
+}
+.definition{
+  width:50vw;
 }
