@@ -120,8 +120,12 @@ const termComp = Vue.component('termComp',{
           } else {
             Materialize.toast('No def found..... not found.', 4000)
           }
+          if(type=='definition'){
+            this.definitions=response.body;
+          } else if (type=='icon'){
+            this.icons=response.body;
+          }
 
-          this.definitions=response.body;
 
         }, response => {
           Materialize.toast('Something went wrong...are you online?', 4000)

@@ -128,9 +128,9 @@
 			<router-view :member="member" :term-Query="termQuery"></router-view>
 
 
-			<router-link :to="{ name: 'addResource'}">
+			<!-- <router-link :to="{ name: 'addResource'}">
 				add resource
-		  </router-link>
+		  </router-link> -->
 
 
 		<div class='container'>
@@ -262,7 +262,7 @@
 				<div v-if="!crossSection" >
 			    <isotope ref="resourceBin" class="step" :list="resources" :options='getContentOptions()' id="container"  >
 			        <div v-for="re in resources" class='element-item' key="re.resource.name" :class="{'fullWidth': display=='list'}">
-			          	<resource :re="re" :display="display"></resource>
+			          	<resource :re="re" :display="display" :class="{'listFullWidth': display=='list'}"></resource>
 			        </div>
 			      </isotope>
 					</div>
@@ -464,32 +464,27 @@
 						<a @click="addResourceType='icon'; addResource = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 					</div>
 
-					<div v-for="icon in icons" :key="icon.setID">
+					<div v-for="icon in icons" :key="icon['resource']['uid']">
 						<resource
 							:re="icon"
 							:display="'list'"
 							>
 						</resource>
-						<!-- <img :src="icon.translation.value" /> -->
 					</div>
 				</div>
 
-				<div class="stepContainer">
+				<div class="stepContainer definition">
 					<div>
 						<a @click="addResourceType='definition'; addResource = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 					</div>
 
-					<div v-for="def in definitions" :key="def['resource']['text']">
+					<div v-for="def in definitions" :key="def['resource']['uid']">
 						<resource
 							:re="def"
 							:display="'list'"
 							>
 						</resource>
-						<!-- <div class='card hoverable'>
-							<div class="card-content">
-									{{def.translation.text}}
-							</div>
-						</div> -->
+
 					</div>
 
 				</div>
@@ -579,62 +574,67 @@
 	<div class="addMeta modal-content">
 		<div class="addNav">
 			<div class="navItems">
-				<span>Identify</span>
+				<span>{{type}}</span>
 			</div>
-			<div class="navItems">
-				<span>Tag</span>
+			<div v-if="type=='discussion' || type=='full'" class="navItems">
+				<span>tag</span>
 			</div>
 		</div>
 
 		<!-- isotope contianers -->
 		<div class="addSections">
 			<div class="addContainer">
-				{{type}}
-					<form v-if="type=='discussion' || type=='definition'">
-						<div class="row">
+
+					<form>
+						<div v-if="type=='discussion' || type=='definition'" class="row">
 							<div class="input-field col s12">
 								<textarea v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
 								<label for="value">Text</label>
 							</div>
 						</div>
-					</form>
 
-					<form v-else>
-						<div class="row" v-if="">
+						<div class="row" v-if="type=='full'">
 							<div class="input-field col s12">
-								<input v-model="resource.URL" id="url" type="url" class="validate">
+								<input v-model="resource.url" id="url" type="url" class="validate">
 								<label for="url">URL</label>
 							</div>
 						</div>
 
-						<div class="row">
+						<div class="row" v-if="type=='icon'">
+							<div class="input-field col s12">
+								<input v-model="resource.core.mThumb" id="url" type="url" class="validate">
+								<label for="url">URL</label>
+							</div>
+						</div>
+
+						<div v-if="type=='full'" class="row">
 							<div class="input-field col s12">
 								<input v-model="resource.detail.title" id="title" type="text" class="validate">
 								<label for="title">Title</label>
 							</div>
 						</div>
-						<div class="row">
+						<div v-if="type=='full'" class="row">
 							<div class="input-field col s12">
 								<input v-model="resource.detail.subtitle" id="subtitle" type="text" class="validate">
 								<label for="subtitle">Subtitle</label>
 							</div>
 						</div>
 
-						<div class="row">
+						<div v-if="type=='full'" class="row">
 							<div class="input-field col s12">
 								<textarea v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
 								<label for="value">Text</label>
 							</div>
 						</div>
 
-						<div class="row">
+						<div v-if="type=='full'" class="row">
 							<div class="input-field col s12">
 								<textarea v-model="resource.detail.source" id="source" class="materialize-textarea"></textarea>
 								<label for="source">Source</label>
 							</div>
 						</div>
 
-						<div class="row">
+						<div v-if="type=='full'" class="row">
 							<div class="input-field col s12">
 								<textarea v-model="resource.detail.description" id="description" class="materialize-textarea"></textarea>
 								<label for="description">Description</label>
@@ -646,7 +646,7 @@
 						addddddddd
 					</div>
 			</div>
-			<div class="addContainer">
+			<div v-if="type=='discussion' || type=='full'" class="addContainer">
 				<autocomplete exclude="" input-id="tagNewResources" v-on:select="addTag"></autocomplete>
 				<div v-if='type=="discussion"'>
 					yes i m discussion..

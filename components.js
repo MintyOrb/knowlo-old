@@ -470,7 +470,7 @@ const addResource = Vue.component('addResource',{
           opacity: .5, // Opacity of modal background
           inDuration: 300, // Transition in duration
           outDuration: 200, // Transition out duration
-          startingTop: '4%', // Starting top style attribute
+          // startingTop: '4%', // Starting top style attribute
           ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
             // $('body').css("overflow","hidden")
 
@@ -479,7 +479,7 @@ const addResource = Vue.component('addResource',{
             $('.addNav').flickity('destroy');
             $('.addSections').flickity('destroy');
             // $('body').css("overflow","auto")
-          
+
             this.$emit('close')
           }
         }).modal('open');

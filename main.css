@@ -176,11 +176,19 @@ html {
     line-height: .1;
 }
 .list {
-    padding: 1% 0% 0% 8%;
-    width: 100%;
+    padding: 1% 1% 0% 2%;
+    width: 94%;
+    margin-left: 3%;
     min-height: 40px;
     font-size: 20px;
     display: inline-block;
+}
+.listFullWidth {
+  width: 100%;
+  margin-left: 0%;
+}
+.definition{
+  width:50vw;
 }
 .item {
   display: inline-block;
@@ -607,6 +615,15 @@ iframe{
   margin: 5px;
   padding: 0px;
 }
+.message {
+  font-size: 30px;
+  font-weight: 300;
+  text-align: center;
+  margin: 100px;
+  background-color: #ececec;
+  border-radius: 10px;
+  padding: 45px;
+}
 /*http://www.designyourway.net/drb/a-detailed-overview-of-media-queries-and-how-to-use-them/*/
 /* Smartphones (portrait) ----------- */
 @media only screen
@@ -636,12 +653,11 @@ and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e
         max-height: 100%!important;
         width: 100%!important;
         height: 100%!important;
-        }
+    }
     .message {
-      font-size:16px;
-      margin:10px;
+      font-size:20px;
+      margin:20px;
       padding: 15px;
-
     }
     .vid-container-container {
       margin:auto;
@@ -653,7 +669,11 @@ and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e
     .suggestionGroupStep{
       padding: 0;
     }
-    .stepContainer{  width: 80vw;}
+    .list {
+      width: 100%;
+      margin-left: 0%;
+    }
+    .stepContainer{  width: 100vw;}
     .addContainer{
       padding-top: 200px;
       padding-bottom: 100px;
@@ -710,7 +730,7 @@ and (min-width : 1224px) {
   border-radius: 6px;
 }
 .fullWidth{
-  width: 100vw;
+  width: 100%;
 }
 .connections {
   height: 1.3em;
@@ -780,15 +800,6 @@ textarea.materialize-textarea:focus:not([readonly])+label {
 .modal-overlay {
   height: 100vh;
   position: sticky;
-}
-.message {
-  font-size: 30px;
-  font-weight: 300;
-  text-align: center;
-  margin: 100px;
-  background-color: #ececec;
-  border-radius: 10px;
-  padding: 45px;
 }
 
 .text-container{

@@ -584,7 +584,8 @@ function most(req,res){
       //            + "WHERE tr.languageCode = {languageCode} "
       //            + "RETURN sr.type AS type, p AS property, t AS translation "
       //            + "ORDER BY sr.order "
-      var cypher= "MATCH (s:synSet {uid: {setID} })-[mr:HAS_META {type:{rtype}}]-(re:resource)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
+      var cypher= "MATCH (s:synSet {uid: {setID} })-[mr:HAS_META {type:{rtype}}]-(re:resource) "
+      + "OPTIONAL MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
       + "WHERE p.order=1 AND plang.languageCode IN [ {languageCode} , 'en' ] "
       + "RETURN re AS resource, mr.order AS order, "
         + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties "
@@ -605,9 +606,7 @@ function most(req,res){
     }
 
   function tagMeta(req,res){ //NOTE: untested.
-    console.log(req)
-    console.log(req.params)
-    console.log(req.body)
+
     var cypher = "MATCH (set:synSet {uid:{set}}) , (meta:resource {uid:{meta}}) "
                + "MERGE (set)-[r:HAS_META {type:{type}}]->(meta) "
                + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP(), r.order=0 "
@@ -616,7 +615,6 @@ function most(req,res){
     db.query(cypher, {set: req.params.sID, type: req.body.type, meta: req.params.mID, member: res.locals.user.uid },function(err, result) {
       if (err) console.log(err);
       if(result){
-        console.log(result)
         res.send(result[0])
       } else {
         res.send()
