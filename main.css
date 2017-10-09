@@ -623,10 +623,14 @@ and (max-width : 767px) {
     width: calc(50vw - 10px);
   }
 }
+
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+    #addResourceModal{
+      border-radius: 0px!important;
+    }
     .modal {
         top: 0!important;
         max-height: 100%!important;
@@ -656,7 +660,7 @@ and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e
       padding-left: 50px;
       padding-right: 50px;
     }
-    .resourceStep{ width:80vw!important;}
+    .resourceStep{ width:100vw!important;}
 }
 /* iPads (portrait and landscape) ----------- */
 @media only screen
@@ -774,7 +778,8 @@ textarea.materialize-textarea:focus:not([readonly])+label {
   right: 10%;
 }
 .modal-overlay {
-  height: 200%;
+  height: 100vh;
+  position: sticky;
 }
 .message {
   font-size: 30px;

@@ -47,6 +47,11 @@ Vue.component('term',{
            Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
+      main: function(){
+        this.status.includeIcon = !this.status.includeIcon;
+        this.term.status = this.status;
+        this.$emit('main', this.term)
+      },
       remove: function(){
         this.status.removeIcon = !this.status.removeIcon;
         this.term.status = this.status;
@@ -467,12 +472,14 @@ const addResource = Vue.component('addResource',{
           outDuration: 200, // Transition out duration
           startingTop: '4%', // Starting top style attribute
           ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-            $('body').css("overflow","hidden")
+            // $('body').css("overflow","hidden")
+
           },
           complete: () => {
             $('.addNav').flickity('destroy');
             $('.addSections').flickity('destroy');
-            $('body').css("overflow","auto")
+            // $('body').css("overflow","auto")
+          
             this.$emit('close')
           }
         }).modal('open');
@@ -497,7 +504,7 @@ const addResource = Vue.component('addResource',{
         if(this.resource.core.uid.length > 0){
           this.$http.put('/api/resource/'+this.$route.params.uid+'/discussion/'+this.resource.core.uid).then(response => {
             if(response.body){
-              // this.tags.push(term)
+              console.log('tagged to resource')
             } else {
               Materialize.toast('Something went wrong...', 4000)
             }
@@ -509,19 +516,19 @@ const addResource = Vue.component('addResource',{
         }
       },
       tagToSet: function(){ // connect to the currently viewed synSet
-        // if(this.resource.core.uid.length > 0){
-        //   this.$http.put('/api/set/'+this.$route.params.uid+'/discussion/'+this.resource.core.uid).then(response => {
-        //     if(response.body){
-        //       // this.tags.push(term)
-        //     } else {
-        //       Materialize.toast('Something went wrong...', 4000)
-        //     }
-        //   }, response => {
-        //      Materialize.toast('Something went wrong...are you online and logged in?', 4000)
-        //   });
-        // } else {
-        //   Materialize.toast('Add a resource before taggging!', 4000)
-        // }
+        if(this.resource.core.uid.length > 0){
+          this.$http.put('/api/set/'+this.$route.params.uid+'/meta/'+this.resource.core.uid,{type: this.type}).then(response => {
+            if(response.body){
+              console.log('tagged to set')
+            } else {
+              Materialize.toast('Something went wrong...', 4000)
+            }
+          }, response => {
+             Materialize.toast('Something went wrong...are you online and logged in?', 4000)
+          });
+        } else {
+          Materialize.toast('Add a resource before taggging!', 4000)
+        }
       },
       addTag: function(term){ // add tag(s) to the newly created resource
         if(this.resource.core.uid.length > 0){
@@ -577,9 +584,17 @@ const addResource = Vue.component('addResource',{
                 holder.resource[pindex] = this.resource.detail[pindex]
               }
               console.log(holder)
+              $('.addSections').flickity('selectCell', 1, true, false )//  value, isWrapped, isInstant
               this.$emit('added',holder)
             } else if (this.synSetMeta){
               this.tagToSet();
+              // need to format like resource to push
+              // could re-fetch on add but won't look as good to re-load all vs adding one.
+              var holder ={};
+              holder.resource=this.resource.core;
+              for(pindex in this.resource.detail){
+                holder.resource[pindex] = this.resource.detail[pindex]
+              }
               this.$emit('added',holder)
             }
           } else {
@@ -594,9 +609,12 @@ const addResource = Vue.component('addResource',{
 
       if(this.$route.name=='resourceSub'){ //take in as param?
         this.resourceMeta=true;
+        $('#addResourceModal').css("position","sticky")
       } else if (this.$route.name=='setSub'){
         this.synSetMeta=true;
+        $('#addResourceModal').css("position","sticky")
       } // else connect to neither (standalone resource)
+
       this.open();
       $('.modal-overlay').eq(1).appendTo('.resource-modal'); // workaround for stacking context
       $('.modal-overlay').eq(0).appendTo('#termModal'); // workaround for stacking context

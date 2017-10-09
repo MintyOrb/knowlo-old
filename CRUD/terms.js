@@ -32,6 +32,10 @@ app.delete('/api/set/:setID/contains/:otherID', deleteContains);
 // props
 app.get('/set/:setID/props/', getProps);
 
+// app.get('/set/:ruid/meta/', getMeta); //
+app.put('/api/set/:sID/meta/:mID', tagMeta);
+app.get('/set/:setID/meta/', getMeta);
+
 // core
 app.get('/set', query);           // query sets based on provided set IDs
 app.get('/set/:uid', read);    // read details of a single set and translation
@@ -49,7 +53,6 @@ function name(req, res){
    })
 }
 app.put('/god/order/:termID/:order/:setID', order);
-console.log('blah')
 function order(req, res){
   var cypher = "MATCH (n:term {uid: {termID}})-[r]-(s:synSet {uid: {setID}}) set r.order={order}  return n "
    db.query(cypher, {
@@ -566,7 +569,7 @@ function most(req,res){
 888                      888
 888                      888
 */
-  function getProps(req,res){
+  function getProps(req,res){ // TODO: re-write... getIcon getDefinition
     var cypher = "MATCH (s:synSet {uid: {setID} })-[sr:HAS_PROPERTY]->(p:prop)-[tr:HAS_TRANSLATION]->(t:translation) "
                + "WHERE tr.languageCode = {languageCode} "
                + "RETURN sr.type AS type, p AS property, t AS translation "
@@ -576,7 +579,49 @@ function most(req,res){
       res.send(result)
     })
   }
+   function getMeta(req,res){
+      // var cypher = "MATCH (s:synSet {uid: {setID} })-[sr:HAS_PROPERTY]->(p:prop)-[tr:HAS_TRANSLATION]->(t:translation) "
+      //            + "WHERE tr.languageCode = {languageCode} "
+      //            + "RETURN sr.type AS type, p AS property, t AS translation "
+      //            + "ORDER BY sr.order "
+      var cypher= "MATCH (s:synSet {uid: {setID} })-[mr:HAS_META {type:{rtype}}]-(re:resource)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
+      + "WHERE p.order=1 AND plang.languageCode IN [ {languageCode} , 'en' ] "
+      + "RETURN re AS resource, mr.order AS order, "
+        + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties "
+      + "ORDER BY order "
+      db.query(cypher, {setID: req.params.setID, rtype:req.query.type, languageCode: req.query.languageCode || 'en'},function(err, result) {
+        if (err) console.log(err);
+        // massage result for front end (collapse props onto core)...there's probably an alternative to iterating through all resources. Different schemea? Different query?
+        for(rindex in result){
+          for(pindex in result[rindex].properties){
+            result[rindex].resource[result[rindex].properties[pindex].type] = result[rindex].properties[pindex].value;
+          }
+          delete result[rindex].properties // no need to send redundant data
+          delete result[rindex].order
+        }
 
+        res.send(result)
+      })
+    }
 
+  function tagMeta(req,res){ //NOTE: untested.
+    console.log(req)
+    console.log(req.params)
+    console.log(req.body)
+    var cypher = "MATCH (set:synSet {uid:{set}}) , (meta:resource {uid:{meta}}) "
+               + "MERGE (set)-[r:HAS_META {type:{type}}]->(meta) "
+               + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP(), r.order=0 "
+               + "RETURN set, meta"
+
+    db.query(cypher, {set: req.params.sID, type: req.body.type, meta: req.params.mID, member: res.locals.user.uid },function(err, result) {
+      if (err) console.log(err);
+      if(result){
+        console.log(result)
+        res.send(result[0])
+      } else {
+        res.send()
+      }
+    })
+  }
 
 } // end module

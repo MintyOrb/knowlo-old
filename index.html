@@ -182,6 +182,7 @@
 										<div v-for="term in step.contains" class='element-item' key="term.setID">
 											<term :term="term"
 												:display="'thumb'"
+												v-on:main="addToQuery(term)"
 												v-on:include="addToQuery(term)"
 												v-on:exclude="addToQuery(term)"
 												v-on:focus="addToQuery(term)"
@@ -271,7 +272,7 @@
 					<p>
 						No results! Have something you want to add?
 					</p>
-					<div>
+					<div>fix me.
 						<a @click="addDiss = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 					</div>
 				</div>
@@ -358,7 +359,7 @@
 						 <ul id='disOrder' class='dropdown-content'>
 							 <li><a>Date Added</a></li>
 							 <li><a>Quality</a></li>
-							 <li><a># Votes</a></li>
+							 <li><a># of Votes</a></li>
 							 <!-- <li><a>Other thigns?</a></li> -->
 						 </ul>
 					 </span>
@@ -408,7 +409,7 @@
 
 		 </div>
 		 <div class="addBtn">
- 			<a @click="addResourceType='discussion'; addDiss = true" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+ 			<a @click="addResourceType='discussion'; addResource = true" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
  		 </div>
 		</div>
 
@@ -478,12 +479,17 @@
 						<a @click="addResourceType='definition'; addResource = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 					</div>
 
-					<div v-for="def in definitions" :key="term.translation.name">
-						<div class='card hoverable'>
+					<div v-for="def in definitions" :key="def['resource']['text']">
+						<resource
+							:re="def"
+							:display="'list'"
+							>
+						</resource>
+						<!-- <div class='card hoverable'>
 							<div class="card-content">
 									{{def.translation.text}}
 							</div>
-						</div>
+						</div> -->
 					</div>
 
 				</div>
@@ -642,6 +648,9 @@
 			</div>
 			<div class="addContainer">
 				<autocomplete exclude="" input-id="tagNewResources" v-on:select="addTag"></autocomplete>
+				<div v-if='type=="discussion"'>
+					yes i m discussion..
+				</div>
 				<isotope ref='tagged' :list="tags" :options='{}'>
 					<div v-for="term in tags" :key="term.setID">
 						<term :term="term"
@@ -847,7 +856,7 @@
 				<div class="menu" @mouseenter="delayHover()"  v-bind:class="{'active': hovering}">
 					<div class="">
 
-						<div class="mbtn trigger" v-bind:class="{'scaleIcon': hovering}">
+						<div @click="main" class="mbtn trigger" v-bind:class="{'scaleIcon': hovering}">
 							<span v-if="!term.term.iconURL" class="flexCenter border">{{term.translation.name[0]}}</span>
 							<div v-else class="thumb card-image border">
 								<img :src="term.term.iconURL">

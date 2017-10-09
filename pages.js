@@ -37,7 +37,8 @@ const termComp = Vue.component('termComp',{
              this.fetchWithin();
              this.fetchContains();
              this.fetchTranslations();
-             this.fetchProps();
+             this.fetchMeta('definition');
+             this.fetchMeta('icon');
            } else {
              Materialize.toast('Resource not found.', 4000)
            }
@@ -106,6 +107,21 @@ const termComp = Vue.component('termComp',{
 
           }
           this.icons=tempIcon;
+
+        }, response => {
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      fetchMeta: function(type){
+        this.$http.get('/set/' + this.$route.params.uid + '/meta/', {params: { languageCode: 'en', type: type }}).then(response => {
+          console.log(response.body)
+          if(response.body.length > 0){
+
+          } else {
+            Materialize.toast('No def found..... not found.', 4000)
+          }
+
+          this.definitions=response.body;
 
         }, response => {
           Materialize.toast('Something went wrong...are you online?', 4000)
@@ -585,15 +601,13 @@ const explore = Vue.component('exploreComp',{
           this.removeFrom(set, this.suggestions)
         },
         focus: function(set){
-          console.log(set)
           set.status.focusIcon=false;
-          for(tIndex in this.termQuery){
-            console.log(this.termQuery[tIndex].status.pinnedIcon)
+          var tIndex = this.termQuery.length;
+          while(tIndex--){
             if(!this.termQuery[tIndex].status.pinnedIcon && this.termQuery[tIndex].setID!=set.setID) this.termQuery.splice(tIndex,1);
           }
         },
         addToFrom: function(term, to, from){ /// this is all stupid and needs to be re thought.
-          console.log(term)
           if(to){this.addTo(term, to)};
           if(from) {this.removeFrom(term, from)};
 
@@ -721,7 +735,9 @@ const explore = Vue.component('exploreComp',{
         layout: function(mes) {
           console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
           for(termIndex in this.suggestionGroups){ // layout all isotope containers in term suggestionGroups
-            this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID][0].layout('masonry');
+            if(this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID]){
+              this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID][0].layout('masonry');
+            }
           }
           for(termIndex in this.crossSection){ // layout all isotope containers in cross section
             this.$refs['resourceBin' + this.crossSection[termIndex].setID][0].layout('masonry');
@@ -732,12 +748,13 @@ const explore = Vue.component('exploreComp',{
           }
 
         },
-        getTerms(){
+        getTerms: function(){
           var include = [];
           var exclude = [];
           for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
             include.push(this.termQuery[termIndex]['term'].uid)
           }
+          this.suggestionGroups =[];
           this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
             // this.suggestions=response.body;
             this.suggestionGroups=response.body;
@@ -764,8 +781,8 @@ const explore = Vue.component('exploreComp',{
                 dragThreshold: 40 // play around with this more?
               });
             });
-            console.log(response.body)
           }, response => {
+            // warning would be redundant?
           });
         },
         fetchContains: function(set){

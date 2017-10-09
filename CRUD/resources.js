@@ -79,7 +79,7 @@ module.exports = function(app, db){
             language: 'en'
         }, function(err, result) {
       if (err) {console.log(err);res.status(500).send()};
-        // massage result for front end...there's probably an alternative to iterating through all resources. Different shcemea? Different query?
+        // massage result for front end (collapse props onto core)...there's probably an alternative to iterating through all resources. Different schemea? Different query?
         for(rindex in result){
           for(pindex in result[rindex].properties){
             result[rindex].resource[result[rindex].properties[pindex].type] = result[rindex].properties[pindex].value;
@@ -252,7 +252,6 @@ module.exports = function(app, db){
     db.query(cypher, {resource: req.params.rUID, dis: req.params.dUID, member: res.locals.user.uid },function(err, result) {
       if (err) console.log(err);
       if(result){
-        console.log(result)
         res.send(result[0])
       } else {
         res.send()
