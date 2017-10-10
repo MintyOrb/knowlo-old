@@ -605,7 +605,7 @@ function most(req,res){
       })
     }
 
-  function tagMeta(req,res){ //NOTE: untested.
+  function tagMeta(req,res){
 
     var cypher = "MATCH (set:synSet {uid:{set}}) , (meta:resource {uid:{meta}}) "
                + "MERGE (set)-[r:HAS_META {type:{type}}]->(meta) "

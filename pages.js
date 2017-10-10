@@ -663,7 +663,6 @@ const explore = Vue.component('exploreComp',{
 
         },
         changeLens: function(lens){
-          console.log(lens)
           if(lens === null){
               Cookies.set('lens', null)
           } else {
@@ -811,16 +810,32 @@ const explore = Vue.component('exploreComp',{
               exclude.push(this.termQuery[termIndex]['setID'])
             }
           }
-          this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
-            this.resources=response.body;
-            this.numberOfDisplayed = response.body.length;
-            this.getTerms();
-            window.setTimeout(() =>{
-              this.layout()
-            }, 500);
-          }, response => {
-            console.log('error getting resources... ', response)
-          });
+          if(this.member.uid != null){ // member specific query if logged in
+            this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
+              this.resources=response.body;
+              console.log(response.body)
+              this.numberOfDisplayed = response.body.length;
+              this.getTerms();
+              window.setTimeout(() =>{
+                this.layout()
+              }, 500);
+            }, response => {
+              console.log('error getting resources... ', response)
+            });
+          } else { // general query if not logged in
+            this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
+              this.resources=response.body;
+
+              this.numberOfDisplayed = response.body.length;
+              this.getTerms();
+              window.setTimeout(() =>{
+                this.layout()
+              }, 500);
+            }, response => {
+              console.log('error getting resources... ', response)
+            });
+          }
+
         }
 
     },
@@ -852,7 +867,7 @@ const explore = Vue.component('exploreComp',{
       }
 
 
-      $('.dropdown-button').dropdown();
+      $('.dropdown-button').dropdown(); // init order-by dropdown
 
       $('.element-item').imagesLoaded() // layout when images loaded and on progress...... doesn't seem to be working
         .always( ( instance ) => {
@@ -868,17 +883,21 @@ const explore = Vue.component('exploreComp',{
         setInterval(x => {
           this.layout();
         }, 3000);
+
     },
     created: function(){
       this.bigHistory = bigHistory;
       this.size = disciplines;
     },
     watch: {
+      member: function() { // re-fetch on member login/logout
+        this.$nextTick(x=>{
+          this.fetchResources()
+        })
+      },
       termQuery: function(val){
-
         Cookies.set('termQuery',val)
         this.fetchResources();
-
       },
     }
 });

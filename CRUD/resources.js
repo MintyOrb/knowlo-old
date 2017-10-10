@@ -3,7 +3,7 @@ module.exports = function(app, db){
 
   // resource routes
   app.get('/resource', query);              // generic public query resources based on provided term IDs
-  // app.get('/api/resource', query);          // query resources based on user details and provided term IDs
+  app.get('/api/resource', memberQuery);    // query resources based on user details and provided term IDs
   //?app.get('/resource/:uid', readCore);   // read details of a single resource core
 
   app.get('/resource/:uid/full', readFull);   // read full details of a single resource (tagged terms and translation by language code)
@@ -91,6 +91,69 @@ module.exports = function(app, db){
       })
   }
 
+  function memberQuery(req, res){
+    /**
+    * searches for resources based on provide term IDs
+    * language code passed in as "languageCode" by query, default to english
+    * @param {Array} query // terms with status (include/exclude)
+    * @param {Array} excludedSets //uid
+    * @param {String} languageCode
+    * @return {Object} resource
+    */
+
+    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(synSet:synSet) "
+           + "WHERE synSet.uid IN {includedSets} "
+              //  + "NOT synSet.uid IN {excludedSets} " // this doesn't work...
+              // filter() or reduce() ?
+           + "WITH re, count(*) AS connected "
+           + "MATCH (re)-[:TAGGED_WITH]->(synSet:synSet)<-[synR:IN_SET]-(syn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
+           + "WHERE "
+               + "synR.order=1 "
+               + "AND connected = SIZE({includedSets}) "
+               + "AND tlang.languageCode IN [ {language} , 'en' ] "
+               + "AND NOT synSet.uid IN {excludedSets} "
+           + "WITH synSet, tlangNode, tlang, re "//collect(distinct synSet.setID) AS blah, filter(x IN re)"//filter(x IN collect(distinct{re:re,synSets:sets}) WHERE x.re.setID NOT IN {excludedSets}) as ree "
+           + "OPTIONAL MATCH (mem:member {uid:{mID}})-[mVote:CAST_VOTE]->(re)"
+           + "WITH mVote, synSet, tlangNode, tlang, re "
+           + "OPTIONAL MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
+           + "WHERE p.order=1 AND plang.languageCode IN [ {language} , 'en' ] "
+           + "RETURN "
+             + "collect(DISTINCT {term: synSet.uid, url: synSet.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, "
+             + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
+             + "collect(DISTINCT synSet.uid) AS termIDs, " // for filtering into suggestion group...no longer used?
+             + "{quality:mVote.quality,complexity:mVote.complexity} AS memberVote, "
+             + "re AS resource "
+           // + "ORDER BY {orderby} {updown}"
+           + "SKIP {skip} "
+           + "LIMIT {limit}";
+         if (typeof req.query.include === "undefined") {
+             req.query.include = [];
+         }
+         if (typeof req.query.exclude === "undefined") {
+             req.query.exclude = [];
+         }
+        db.query(cypher, {
+            mID: res.locals.user.uid,
+            includedSets: req.query.include || [],
+            excludedSets: req.query.exclude || [],
+            orderby: req.orderby,
+            updown: req.updown,
+            skip:0,
+            limit: 40, // TODO: change for mobile...based on display setting
+            language: 'en'
+        }, function(err, result) {
+      if (err) {console.log(err);res.status(500).send()};
+        // massage result for front end (collapse props onto core)...there's probably an alternative to iterating through all resources. Different schemea? Different query?
+        for(rindex in result){
+          for(pindex in result[rindex].properties){
+            result[rindex].resource[result[rindex].properties[pindex].type] = result[rindex].properties[pindex].value;
+          }
+          delete result[rindex].properties // no need to send redundant data
+        }
+        res.send(result)
+      })
+  }
+
   function readCore(req, res){
   }
   function updateCore(req,res){
@@ -131,6 +194,7 @@ module.exports = function(app, db){
 
   function deleteFull(req,res){
     // just remove label instead?
+    // delete votes?
     var cypher = "MATCH (re:resource {uid:{uid}})  "
       + "OPTIONAL MATCH (re)-[:HAS_PROPERTY]-(p:prop)-[:HAS_TRANSLATION]-(t:translation) "
       + "DETACH DELETE re, p, t "
@@ -293,16 +357,26 @@ module.exports = function(app, db){
   */
   function castVote(req,res){
     var cypher = "MATCH (re:resource {uid:{rID}}) , (mem:member {uid:{mID}}) "
-               + "MERGE (mem)-[r:TAGGED_WITH]->(re) "
+               + "MERGE (mem)-[r:CAST_VOTE]->(re) "
+               + "SET "
+                 + "r.quality={quality}, "
+                 + "r.complexity={complexity} "
+              //  + "RETURN r "
 
-    // TODO: should probably have some prop validation for vote and type...
-    db.query(cypher, {rID: req.params.rID, vote: req.body.vote, type: req.body.type, mID: res.locals.user.uid },function(err, result) {
+    // TODO: should probably have some prop validation for vote (val between 0->1)
+    db.query(cypher, {
+      rID: req.params.rID,
+      quality: req.body.vote.quality,
+      complexity: req.body.vote.complexity,
+      mID: res.locals.user.uid
+    },function(err, result) {
       if (err) console.log(err);
       if(result){
-        res.send(result[0])
+        res.send(result)
       } else {
         res.send()
       }
+      // call function to re-eval top icon and def...call from front end upon return?
     })
   }
 

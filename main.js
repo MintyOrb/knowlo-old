@@ -29,7 +29,7 @@ const app = new Vue({
   router,
   data: function() {
     return {
-        member: {uid:undefined},       // id and info for member if logged in, uid undefined if not
+        member: {uid:null},       // id and info for member if logged in, uid null if not
         termQuery: [],                 // array of term objects to be queried
       }
   },
@@ -40,7 +40,6 @@ const app = new Vue({
     touchMember: function(){
       // ensure member is in DB (add if first time signing in)
       this.$http.post('/api/member', {term: this.term, translation:this.translation}).then(response => {
-
         if(!response.body){
           Materialize.toast('Something went wrong...', 4000)
         }
@@ -88,15 +87,14 @@ const app = new Vue({
   		}).init();
 
       firebase.auth().onAuthStateChanged((member) => {
-          bus.$emit('login',member)
           if (member) {
             this.member = member;
             this.member.first = member.displayName.substr(0,member.displayName.indexOf(' ')); // get first name -  if there is no space at all, then the first line will return an empty string and the second line will return the entire string
             console.log(member)
             member.getToken().then((accessToken) => {
-              console.log(accessToken)
               Vue.http.headers.common['Authorization'] = "Bearer " + accessToken;
               this.touchMember();
+              bus.$emit('login',member)
             });
           } else {
             this.member = {uid:undefined}

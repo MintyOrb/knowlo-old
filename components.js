@@ -117,20 +117,24 @@ Vue.component('term',{
 */
 Vue.component('resource',{
   template: "#resource",
-  props:['re','display','member'],
+  props:['re','display'],
   name: "resource",
   data: () =>  {
     return {
-      voting: true
+      voting: true,
+      score: 'member',   // showing member's rating or global rating?
     }
   },
   methods:{
-    vote: function(type, vote){
-      this.$http.put('/api/resource/'+uid+'/vote',{member:this.member,vote:vote,type:type}).then(response => {
+    vote: function(){
+      this.$http.put('/api/resource/'+this.re.resource.uid+'/vote',{vote:this.re.memberVote}).then(response => {
         console.log(response.body)
 
         if(response.body){
           Materialize.toast('voted!', 4000)
+        } else if(response.status == 401){
+          Materialize.toast('You must be logged in to vote!', 4000)
+          $('#login-modal').modal('open')
         } else {
           Materialize.toast('Something went wrong...', 4000)
         }
@@ -162,29 +166,60 @@ Vue.component('resource',{
         return num.toFixed(digits).replace(rx, "$1");
       }
     },
+    initSlider: function(){
+
+      if(this.voting){
+         var quality = document.getElementById('quality-slider-' + this.re.resource.uid);
+         noUiSlider.create(quality, {
+          start: .5,
+          connect: [true,false],
+          behavior: "tap-drag-hover",
+          range: {
+            'min': 0,
+            'max': 1
+          }
+         });
+        quality.noUiSlider.on('set', (a,b,value) => {
+          if(this.score=="member" && this.re.memberVote.quality != value[0]){
+            console.log('voting')
+            this.re.memberVote.quality = value[0];
+            this.vote()
+          }
+        });
+
+        var complexity = document.getElementById('complexity-slider-' + this.re.resource.uid);
+        noUiSlider.create(complexity, {
+         start: .5,
+         connect: [true,false],
+         behavior: "tap-drag-hover",
+         range: {
+           'min': 0,
+           'max': 1
+         }
+        });
+       complexity.noUiSlider.on('set', (a,b,value) => {
+         if(this.score=="member" && this.re.memberVote.complexity != value[0]){
+           this.re.memberVote.complexity = value[0];
+           this.vote()
+         }
+       });
+      }
+    },
+    setSliders: function(){
+      this.$nextTick(x=>{
+        var quality = document.getElementById('quality-slider-' + this.re.resource.uid);
+        quality.noUiSlider.set(this.re.memberVote.quality)
+        var complexity = document.getElementById('complexity-slider-' + this.re.resource.uid);
+        complexity.noUiSlider.set(this.re.memberVote.complexity)
+      })
+    }
   },
   mounted: function(){
-    // put all in init slider fn?
-    if(this.voting){
-      var slider = document.getElementById('test-slider' + this.re.resource.uid);
-       noUiSlider.create(slider, {
-        start: [.5],
-        connect: [true,false],
-        behavior: "tap-drag-hover",
-        range: {
-          'min': 0,
-          'max': 1
-        }
-       });
-
-       slider.noUiSlider.on('set', function(value){
-      	// addClassFor(lChange, 'tShow', 450);
-        console.log(value)
-        // this.vote(type?,value)
-
-        // one vote rel {q:.54,difficulty:.76} vs one for each type?
-        // test merge with null props that exist in db already... (i.e. member previously voted on quality but now voting on difficulty)
-      });
+    this.initSlider();
+  },
+  watch: {
+    re: function() {
+      this.setSliders()
     }
   }
 })
