@@ -31,6 +31,7 @@ module.exports = function(app, db){
   // post /discussion is the same as post /resource ?
     // post /resource/discussion instead?
 
+  app.put('/api/resource/:rID/vote', castVote);
 
   function query(req, res){
     /**
@@ -227,6 +228,16 @@ module.exports = function(app, db){
   function createFull(req, res){
   }
 
+  /*
+                         888
+                         888
+                         888
+  88888b.d88b.   .d88b.  888888  8888b.
+  888 "888 "88b d8P  Y8b 888        "88b
+  888  888  888 88888888 888    .d888888
+  888  888  888 Y8b.     Y88b.  888  888
+  888  888  888  "Y8888   "Y888 "Y888888
+  */
 
   function getDiscussion(req, res){
     var cypher = "MATCH (re:resource {uid:{uid}}) "
@@ -261,6 +272,31 @@ module.exports = function(app, db){
                + "RETURN resource, discussion"
 
     db.query(cypher, {resource: req.params.rUID, dis: req.params.dUID, member: res.locals.user.uid },function(err, result) {
+      if (err) console.log(err);
+      if(result){
+        res.send(result[0])
+      } else {
+        res.send()
+      }
+    })
+  }
+
+  /*
+                    888
+                    888
+                    888
+  888  888  .d88b.  888888 .d88b.
+  888  888 d88""88b 888   d8P  Y8b
+  Y88  88P 888  888 888   88888888
+   Y8bd8P  Y88..88P Y88b. Y8b.
+    Y88P    "Y88P"   "Y888 "Y8888
+  */
+  function castVote(req,res){
+    var cypher = "MATCH (re:resource {uid:{rID}}) , (mem:member {uid:{mID}}) "
+               + "MERGE (mem)-[r:TAGGED_WITH]->(re) "
+
+    // TODO: should probably have some prop validation for vote and type...
+    db.query(cypher, {rID: req.params.rID, vote: req.body.vote, type: req.body.type, mID: res.locals.user.uid },function(err, result) {
       if (err) console.log(err);
       if(result){
         res.send(result[0])

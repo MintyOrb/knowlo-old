@@ -117,7 +117,7 @@ Vue.component('term',{
 */
 Vue.component('resource',{
   template: "#resource",
-  props:['re','display'],
+  props:['re','display','member'],
   name: "resource",
   data: () =>  {
     return {
@@ -125,6 +125,19 @@ Vue.component('resource',{
     }
   },
   methods:{
+    vote: function(type, vote){
+      this.$http.put('/api/resource/'+uid+'/vote',{member:this.member,vote:vote,type:type}).then(response => {
+        console.log(response.body)
+
+        if(response.body){
+          Materialize.toast('voted!', 4000)
+        } else {
+          Materialize.toast('Something went wrong...', 4000)
+        }
+      }, response => {
+         Materialize.toast('Something went wrong...are you online?', 4000)
+      });
+    },
     deleteResource: function(uid){
       this.$http.delete('/api/resource/'+uid+'/full').then(response => {
         console.log(response.body)
@@ -151,7 +164,7 @@ Vue.component('resource',{
     },
   },
   mounted: function(){
-
+    // put all in init slider fn?
     if(this.voting){
       var slider = document.getElementById('test-slider' + this.re.resource.uid);
        noUiSlider.create(slider, {
@@ -163,6 +176,15 @@ Vue.component('resource',{
           'max': 1
         }
        });
+
+       slider.noUiSlider.on('set', function(value){
+      	// addClassFor(lChange, 'tShow', 450);
+        console.log(value)
+        // this.vote(type?,value)
+
+        // one vote rel {q:.54,difficulty:.76} vs one for each type?
+        // test merge with null props that exist in db already... (i.e. member previously voted on quality but now voting on difficulty)
+      });
     }
   }
 })
