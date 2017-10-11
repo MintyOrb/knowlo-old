@@ -104,6 +104,15 @@ const termComp = Vue.component('termComp',{
           Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
+      newMeta: function(a,b){
+        console.log(a)
+        console.log(this.addResourceType)
+        if(this.addResourceType == 'definition'){
+          this.definitions.push(a)
+        } else if(this.addResourceType == 'icon'){
+          this.icons.push(a)
+        }
+      },
       fetchMeta: function(type){
         console.log(this.member.uid)
         if(this.member.uid != null){
@@ -263,16 +272,21 @@ const termComp = Vue.component('termComp',{
       deleteSet(uid){
         this.$http.delete('/api/set/'+ uid ).then(response => {
           if(response.body){
-            Materialize.toast('Set deleted!', 4000)
+            Materialize.toast('Set deleted.', 4000)
           } else {
             Materialize.toast('Something went wrong...', 4000)
           }
         }, response => {
            Materialize.toast('Something went wrong...are you online?', 4000)
         });
+      },
+      addToQuery: function(item){
+          this.$emit('add',item)
       }
     },
     mounted: function(){
+      console.log('term page here:')
+      console.log(this.termQuery)
       this.init();
       $('.termNav').flickity({
         asNavFor: '.termSections',
@@ -292,8 +306,8 @@ const termComp = Vue.component('termComp',{
 
       // TODO: set flickity tab in URL
       $('.termSections').flickity('selectCell', 1, true, true ) //  value, isWrapped, isInstant
-      // listen for escape key (materalize closes modal on esc, but doesn't re-route)
 
+      // listen for escape key (materalize closes modal on esc, but doesn't re-route)
       document.addEventListener('keydown', event => {
         if (event.key === 'Escape' || event.keyCode === 27) {
           router.go(-1) || router.push('/')
@@ -516,6 +530,9 @@ const resourceComp = Vue.component('resourceComp',{
            Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
+      addToQuery: function(item){
+          this.$emit('add',item)
+      }
     },
     mounted: function(){
 

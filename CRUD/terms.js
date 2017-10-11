@@ -308,15 +308,17 @@ function updateSynonym(req, res){
                      + "MERGE (main)-[new:IN_GROUP]-(g) "
                      + " SET new = rel "
                 + ") "
-                // copy props too?
+                // copy meta too?
                 // make MERGED_WITH rel between sets?
               + "return main "
 
 // member: res.locals.user.uid // :ADDED
   db.query(cypher, {setID: req.params.setID, otherID: req.params.otherID },function(err, result) {
     if (err) console.log(err);
+    console.log(result)
     if(result){
-      res.send(result[0])
+      console.log(result)
+      res.send(result)
     } else {
       res.send()
     }
@@ -622,7 +624,7 @@ function most(req,res){
        + "OPTIONAL MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
        + "WHERE p.order=1 AND plang.languageCode IN [ {languageCode} , 'en' ] "
        + "OPTIONAL MATCH (:member)-[gVote:CAST_VOTE]->(re) " // get global rankings
-         + "WITH s, ptrans, re, prop, AVG(gVote.quality) AS gq, AVG(gVote.complexity) AS gc, COUNT(gVote) AS votes "
+         + "WITH s, mr, ptrans, re, prop, AVG(gVote.quality) AS gq, AVG(gVote.complexity) AS gc, COUNT(gVote) AS votes "
        + "RETURN re AS resource, mr.order AS order, "
          + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
          + "{qualtiy: gq , complexity: gc } AS globalVote, "

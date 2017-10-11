@@ -77,11 +77,10 @@
 		<div id="query-slide" class="side-nav">
 			<div class="right selectedterms">
 				<isotope class="termQuery" ref="termQuery" :list="termQuery" :options='{}'>
-					<span  v-for="term in termQuery" :key="term.name">
-						<term :term="term"
+						<term  v-for="term in termQuery" :term="term"
+							:key="term.setID"
 							:display="'thumb'">
 						</term>
-					</span>
 				</isotope>
 			</div>
 		</div>
@@ -125,7 +124,7 @@
 	<template id="exploreTemplate">
 		<div class='erything' style="min-height:100vh;">
 			<!-- view for term and resource page -->
-			<router-view :member="member" :term-Query="termQuery"></router-view>
+			<router-view :member="member" :term-Query="termQuery" v-on:add="addToQuery"></router-view>
 
 
 			<!-- <router-link :to="{ name: 'addResource'}">
@@ -389,10 +388,10 @@
 							:term="term"
 							:key="term.setID"
 							display="thumb"
-							v-on:include="addToQuery(group.group[0])"
-							v-on:exclude="addToQuery(group.group[0])"
-							v-on:focus="addToQuery(group.group[0])"
-							v-on:pin="addToQuery(group.group[0])"
+							v-on:include="addToQuery(term)"
+							v-on:exclude="addToQuery(term)"
+							v-on:focus="addToQuery(term)"
+							v-on:pin="addToQuery(term)"
 							>
 						</term>
 					</isotope>
@@ -433,7 +432,7 @@
 		<add-resource v-if='addResource == true'
 			:type='addResourceType'
 			v-on:close="addResource=false"
-			v-on:added="">
+			v-on:added="newMeta">
 		</add-resource>
 
 		<div class="termTitle" >
@@ -497,10 +496,10 @@
 								:term="term"
 								:display="'godMode'"
 								:key="term.setID"
-								v-on:include="addToQuery(group.group[0])"
-								v-on:exclude="addToQuery(group.group[0])"
-								v-on:focus="addToQuery(group.group[0])"
-								v-on:pin="addToQuery(group.group[0])"
+								v-on:include="addToQuery(term)"
+								v-on:exclude="addToQuery(term)"
+								v-on:focus="addToQuery(term)"
+								v-on:pin="addToQuery(term)"
 								>
 								<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
 							</term>
@@ -514,10 +513,10 @@
 								<term :term="term"
 									:display="'thumb'"
 									:key="term.translation.name"
-									v-on:include="addToQuery(group.group[0])"
-									v-on:exclude="addToQuery(group.group[0])"
-									v-on:focus="addToQuery(group.group[0])"
-									v-on:pin="addToQuery(group.group[0])"
+									v-on:include="addToQuery(term)"
+									v-on:exclude="addToQuery(term)"
+									v-on:focus="addToQuery(term)"
+									v-on:pin="addToQuery(term)"
 									>
 								</term>
 								<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
@@ -531,10 +530,10 @@
 								<term :term="term"
 									:display="'thumb'"
 									:key="term.setID"
-									v-on:include="addToQuery(group.group[0])"
-									v-on:exclude="addToQuery(group.group[0])"
-									v-on:focus="addToQuery(group.group[0])"
-									v-on:pin="addToQuery(group.group[0])"
+									v-on:include="addToQuery(term)"
+									v-on:exclude="addToQuery(term)"
+									v-on:focus="addToQuery(term)"
+									v-on:pin="addToQuery(term)"
 									>
 								</term>
 								<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
@@ -547,10 +546,11 @@
 						<div v-for="term in translations" :key="term.setID">
 							<term :term="term"
 							:display="'thumb'"
-							:key="term.setID"v-on:include="addToQuery(group.group[0])"
-							v-on:exclude="addToQuery(group.group[0])"
-							v-on:focus="addToQuery(group.group[0])"
-							v-on:pin="addToQuery(group.group[0])"
+							:key="term.setID"
+							v-on:include="addToQuery(term)"
+							v-on:exclude="addToQuery(term)"
+							v-on:focus="addToQuery(term)"
+							v-on:pin="addToQuery(term)"
 							>
 							</term>
 							<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
@@ -662,7 +662,7 @@
 	</div>
 	<div class="modal-footer">
 		<a class="modal-action modal-close waves-effect waves-blue btn-flat ">cancel</a>
-		<a class="modal-action modal-close waves-effect waves-blue btn-flat disabled">save</a>
+		<!-- <a @click.once="upsertResource()" :class="{disabled: }" class="modal-action modal-close waves-effect waves-blue btn-flat">save</a> -->
 	</div>
 </div>
 </template>

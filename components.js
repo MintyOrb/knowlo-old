@@ -273,7 +273,7 @@ Vue.component('autocomplete',{
       this.$http.post('/api/set', {term: this.term, translation: this.translation}).then(response => {
         if(response.body.term){
           this.$emit('select', response.body)
-          Materialize.toast("'" + response.body.translation.name+ "'" + ' added!', 3000)
+          Materialize.toast("'" + response.body.translation.name+ "'" + ' created!', 3000)
         } else {
           Materialize.toast('Something went wrong...term not added.', 4000)
         }
@@ -672,6 +672,7 @@ const addResource = Vue.component('addResource',{
                 holder.resource[pindex] = this.resource.detail[pindex]
               }
               this.$emit('added',holder)
+              $('#addResourceModal').modal('close')
             }
           } else {
             Materialize.toast('Something went wrong...', 4000)
