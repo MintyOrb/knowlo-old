@@ -128,8 +128,6 @@ Vue.component('resource',{
   methods:{
     vote: function(){
       this.$http.put('/api/resource/'+this.re.resource.uid+'/vote',{vote:this.re.memberVote}).then(response => {
-        console.log(response.body)
-
         if(response.body){
           Materialize.toast('voted!', 4000)
         } else if(response.status == 401){
@@ -144,8 +142,6 @@ Vue.component('resource',{
     },
     deleteResource: function(uid){
       this.$http.delete('/api/resource/'+uid+'/full').then(response => {
-        console.log(response.body)
-
         if(response.body){
           Materialize.toast('deleted resource', 4000)
         } else {
@@ -181,7 +177,6 @@ Vue.component('resource',{
          });
         quality.noUiSlider.on('set', (a,b,value) => {
           if(this.score=="member" && this.re.memberVote.quality != value[0]){
-            console.log('voting')
             this.re.memberVote.quality = value[0];
             this.vote()
           }
@@ -203,6 +198,11 @@ Vue.component('resource',{
            this.vote()
          }
        });
+       this.$on('change',x=>{
+         complexity.noUiSlider.set(this.re.memberVote.complexity)
+         quality.noUiSlider.set(this.re.memberVote.quality)
+       })
+       this.setSliders();
       }
     },
     setSliders: function(){
@@ -219,7 +219,7 @@ Vue.component('resource',{
   },
   watch: {
     re: function() {
-      this.setSliders()
+      this.$emit('change')
     }
   }
 })

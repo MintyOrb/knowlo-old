@@ -621,85 +621,7 @@ iframe{
   border-radius: 10px;
   padding: 45px;
 }
-/*http://www.designyourway.net/drb/a-detailed-overview-of-media-queries-and-how-to-use-them/*/
-/* Smartphones (portrait) ----------- */
-@media only screen
-and (max-width : 375px) {
-  .card{
-    width: calc(100vw - 10px);
-  }
-}
-/* Smartphones (landscape) ----------- */
-@media only screen
-and (min-width : 376px)
-and (max-width : 767px) {
-  .card{
-    width: calc(50vw - 10px);
-  }
-}
 
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-    #addResourceModal{
-      border-radius: 0px!important;
-    }
-    .modal {
-        top: 0!important;
-        max-height: 100%!important;
-        width: 100%!important;
-        height: 100%!important;
-    }
-    .message {
-      font-size:20px;
-      margin:20px;
-      padding: 15px;
-    }
-    .vid-container-container {
-      margin:auto;
-      width:100vw;
-    }
-    .filter {
-        margin: 0px;
-    }
-    .suggestionGroupStep{
-      padding: 0;
-    }
-    .list {
-      width: 100%;
-      margin-left: 0%;
-    }
-    .definition{
-      width:100vw!important;
-    }
-    .discussion{
-      width:100vw!important;
-    }
-    .stepContainer{  width: 100vw;}
-    .addContainer{
-      padding-top: 200px;
-      padding-bottom: 100px;
-      padding-left: 50px;
-      padding-right: 50px;
-    }
-    .resourceStep{ width:100vw!important;}
-}
-/* iPads (portrait and landscape) ----------- */
-@media only screen
-and (min-width : 768px)
-and (max-width : 1024px) {
-  .card{
-    width: calc(25vw - 10px);
-  }
-}
-/* Desktops and laptops ----------- */
-@media only screen
-and (min-width : 1224px) {
-  .card{
-    width: calc(20vw - 10px);
-  }
-}
 .hidden{
   visibility: hidden;
 }
@@ -784,6 +706,7 @@ nput:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), 
 input:not([type]):focus:not([readonly])+label, input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([readonly])+label, input[type=email]:focus:not([readonly])+label, input[type=url]:focus:not([readonly])+label, input[type=time]:focus:not([readonly])+label, input[type=date]:focus:not([readonly])+label, input[type=datetime]:focus:not([readonly])+label, input[type=datetime-local]:focus:not([readonly])+label, input[type=tel]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, input[type=search]:focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
       color: #2196F3;
 }
+
 .clear{
   font-size: 11px;
     font-weight: 300;
@@ -820,7 +743,92 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:focus:not([reado
   font-size: 40px;
   font-weight: 200;
   color: white;
+  padding: 30px;
 }
 .definition{
   width:50vw;
+}
+
+/*http://www.designyourway.net/drb/a-detailed-overview-of-media-queries-and-how-to-use-them/*/
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 375px) {
+  .card{
+    width: calc(100vw - 10px);
+  }
+}
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 376px)
+and (max-width : 767px) {
+  .card{
+    width: calc(50vw - 10px);
+  }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+    #addResourceModal{
+      border-radius: 0px!important;
+    }
+    .text-container{
+      padding: 10px;
+      font-size: 20px;
+    }
+    .modal {
+        top: 0!important;
+        max-height: 100%!important;
+        width: 100%!important;
+        height: 100%!important;
+    }
+    .message {
+      font-size:20px;
+      margin:20px;
+      padding: 15px;
+    }
+    .vid-container-container {
+      margin:auto;
+      width:100vw;
+    }
+    .filter {
+        margin: 0px;
+    }
+    .suggestionGroupStep{
+      padding: 0;
+    }
+    .list {
+      width: 100%;
+      margin-left: 0%;
+    }
+    .definition{
+      width:100vw!important;
+    }
+    .discussion{
+      width:100vw!important;
+    }
+    .stepContainer{  width: 100vw;}
+    .addContainer{
+      padding-top: 200px;
+      padding-bottom: 100px;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+    .resourceStep{ width:100vw!important;}
+}
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px) {
+  .card{
+    width: calc(25vw - 10px);
+  }
+}
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+  .card{
+    width: calc(20vw - 10px);
+  }
 }

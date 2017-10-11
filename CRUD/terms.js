@@ -35,6 +35,7 @@ app.get('/set/:setID/props/', getProps);
 // app.get('/set/:ruid/meta/', getMeta); //
 app.put('/api/set/:sID/meta/:mID', tagMeta);
 app.get('/set/:setID/meta/', getMeta);
+app.get('/api/set/:setID/meta/', memberGetMeta);
 
 // core
 app.get('/set', query);           // query sets based on provided set IDs
@@ -579,18 +580,28 @@ function most(req,res){
       res.send(result)
     })
   }
-   function getMeta(req,res){
-      // var cypher = "MATCH (s:synSet {uid: {setID} })-[sr:HAS_PROPERTY]->(p:prop)-[tr:HAS_TRANSLATION]->(t:translation) "
-      //            + "WHERE tr.languageCode = {languageCode} "
-      //            + "RETURN sr.type AS type, p AS property, t AS translation "
-      //            + "ORDER BY sr.order "
+
+   function memberGetMeta(req,res){
+
       var cypher= "MATCH (s:synSet {uid: {setID} })-[mr:HAS_META {type:{rtype}}]-(re:resource) "
       + "OPTIONAL MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
       + "WHERE p.order=1 AND plang.languageCode IN [ {languageCode} , 'en' ] "
+      + "OPTIONAL MATCH (mem:member {uid:{mID}})-[mVote:CAST_VOTE]->(re) "
+        + "WITH mVote, s, ptrans, mr, re, prop "
+      + "OPTIONAL MATCH (:member)-[gVote:CAST_VOTE]->(re) " // get global rankings
+        + "WITH mVote, s, ptrans, mr, re, prop, AVG(gVote.quality) AS gq, AVG(gVote.complexity) AS gc, COUNT(gVote) AS votes "
       + "RETURN re AS resource, mr.order AS order, "
-        + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties "
+        + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
+        + "{quality:mVote.quality,complexity:mVote.complexity} AS memberVote, "
+        + "{qualtiy: gq , complexity: gc } AS globalVote, "
+        + "votes "
       + "ORDER BY order "
-      db.query(cypher, {setID: req.params.setID, rtype:req.query.type, languageCode: req.query.languageCode || 'en'},function(err, result) {
+      db.query(cypher, {
+        setID: req.params.setID,
+        rtype:req.query.type,
+        languageCode: req.query.languageCode || 'en',
+        mID: res.locals.user.uid,
+      },function(err, result) {
         if (err) console.log(err);
         // massage result for front end (collapse props onto core)...there's probably an alternative to iterating through all resources. Different schemea? Different query?
         for(rindex in result){
@@ -604,6 +615,33 @@ function most(req,res){
         res.send(result)
       })
     }
+
+    function getMeta(req,res){
+
+       var cypher= "MATCH (s:synSet {uid: {setID} })-[mr:HAS_META {type:{rtype}}]-(re:resource) "
+       + "OPTIONAL MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
+       + "WHERE p.order=1 AND plang.languageCode IN [ {languageCode} , 'en' ] "
+       + "OPTIONAL MATCH (:member)-[gVote:CAST_VOTE]->(re) " // get global rankings
+         + "WITH s, ptrans, re, prop, AVG(gVote.quality) AS gq, AVG(gVote.complexity) AS gc, COUNT(gVote) AS votes "
+       + "RETURN re AS resource, mr.order AS order, "
+         + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
+         + "{qualtiy: gq , complexity: gc } AS globalVote, "
+         + "votes "
+       + "ORDER BY order "
+       db.query(cypher, {setID: req.params.setID, rtype:req.query.type, languageCode: req.query.languageCode || 'en'},function(err, result) {
+         if (err) console.log(err);
+         // massage result for front end (collapse props onto core)...there's probably an alternative to iterating through all resources. Different schemea? Different query?
+         for(rindex in result){
+           for(pindex in result[rindex].properties){
+             result[rindex].resource[result[rindex].properties[pindex].type] = result[rindex].properties[pindex].value;
+           }
+           delete result[rindex].properties // no need to send redundant data
+           delete result[rindex].order
+         }
+
+         res.send(result)
+       })
+     }
 
   function tagMeta(req,res){
 

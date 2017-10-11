@@ -8,6 +8,7 @@
 */
 const termComp = Vue.component('termComp',{
     template: "#termTemplate",
+    props: ['termQuery','member'],
     data: function() {
       return {
         term: {name: 'default',translation:{name:''},term:{iconURL:""}},
@@ -48,9 +49,6 @@ const termComp = Vue.component('termComp',{
            Materialize.toast('Something went wrong...are you online?', 4000)
          });
       },
-      addDefinition: function (){
-
-      },
       openModal: function(){
         this.$nextTick(function(){
             $('#termModal'+this.term.id).modal({
@@ -75,12 +73,6 @@ const termComp = Vue.component('termComp',{
       },
       close: function(){
         console.log("close here after esc")
-      },
-      addIcon: function(){
-
-      },
-      deleteIcon: function(){
-
       },
       fetchProps: function(){
         this.$http.get('/set/' + this.$route.params.uid + '/props/', {params: { languageCode: 'en'}}).then(response => {
@@ -113,23 +105,40 @@ const termComp = Vue.component('termComp',{
         });
       },
       fetchMeta: function(type){
-        this.$http.get('/set/' + this.$route.params.uid + '/meta/', {params: { languageCode: 'en', type: type }}).then(response => {
-          console.log(response.body)
-          if(response.body.length > 0){
+        console.log(this.member.uid)
+        if(this.member.uid != null){
+          this.$http.get('/api/set/' + this.$route.params.uid + '/meta/', {params: { languageCode: 'en', type: type }}).then(response => {
+            console.log(response.body)
+            if(response.body.length > 0){
 
-          } else {
-            Materialize.toast('No def found..... not found.', 4000)
-          }
-          if(type=='definition'){
-            this.definitions=response.body;
-          } else if (type=='icon'){
-            this.icons=response.body;
-          }
+            } else {
+              Materialize.toast('No def found..... not found.', 4000)
+            }
+            if(type=='definition'){
+              this.definitions=response.body;
+            } else if (type=='icon'){
+              this.icons=response.body;
+            }
+          }, response => {
+            Materialize.toast('Something went wrong...are you online?', 4000)
+          });
+        } else {
+          this.$http.get('/set/' + this.$route.params.uid + '/meta/', {params: { languageCode: 'en', type: type }}).then(response => {
+            console.log(response.body)
+            if(response.body.length > 0){
 
-
-        }, response => {
-          Materialize.toast('Something went wrong...are you online?', 4000)
-        });
+            } else {
+              Materialize.toast('No def found..... not found.', 4000)
+            }
+            if(type=='definition'){
+              this.definitions=response.body;
+            } else if (type=='icon'){
+              this.icons=response.body;
+            }
+          }, response => {
+            Materialize.toast('Something went wrong...are you online?', 4000)
+          });
+        }
       },
       fetchTranslations: function() {
         this.$http.get('/set/' + this.$route.params.uid + '/translation/', {params: { languageCode: 'en'}}).then(response => {
@@ -265,7 +274,6 @@ const termComp = Vue.component('termComp',{
     },
     mounted: function(){
       this.init();
-
       $('.termNav').flickity({
         asNavFor: '.termSections',
         pageDots: true,
@@ -306,8 +314,13 @@ const termComp = Vue.component('termComp',{
     '$route.params.uid': function (id) {
       this.init();
       }
+    },
+    member: function() { // re-fetch on member login/logout
+      this.$nextTick(x=>{
+        this.fetchMeta('definition');
+        this.fetchMeta('icon');
+      })
     }
-
 });
 
 
