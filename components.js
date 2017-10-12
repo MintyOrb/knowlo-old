@@ -130,6 +130,8 @@ Vue.component('resource',{
       this.$http.put('/api/resource/'+this.re.resource.uid+'/vote',{vote:this.re.memberVote}).then(response => {
         if(response.body){
           Materialize.toast('voted!', 4000)
+          this.re.globalVote=response.body;
+          this.$emit('vote-cast')
         } else if(response.status == 401){
           Materialize.toast('You must be logged in to vote!', 4000)
           $('#login-modal').modal('open')
@@ -179,6 +181,8 @@ Vue.component('resource',{
           if(this.score=="member" && this.re.memberVote.quality != value[0]){
             this.re.memberVote.quality = value[0];
             this.vote()
+          } else {
+            // set back to global position
           }
         });
 
@@ -196,6 +200,8 @@ Vue.component('resource',{
          if(this.score=="member" && this.re.memberVote.complexity != value[0]){
            this.re.memberVote.complexity = value[0];
            this.vote()
+         } else {
+           // set back to global position
          }
        });
        this.$on('change',x=>{
@@ -646,7 +652,6 @@ const addResource = Vue.component('addResource',{
         this.$http.post('/resource', {resource:this.resource}).then(response => {
           if(response.body){
             this.resource.core = response.body;
-            console.log(response.body)
 
             //TODO: add/sugest relevant terms based on response?
 
@@ -659,7 +664,7 @@ const addResource = Vue.component('addResource',{
               for(pindex in this.resource.detail){
                 holder.resource[pindex] = this.resource.detail[pindex]
               }
-              console.log(holder)
+            
               $('.addSections').flickity('selectCell', 1, true, false )//  value, isWrapped, isInstant
               this.$emit('added',holder)
             } else if (this.synSetMeta){

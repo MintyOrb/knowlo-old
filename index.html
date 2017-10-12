@@ -375,7 +375,7 @@
 				 </div>
 
 				 <isotope v-else ref="discussionBin" class="step" :list="discussion" :options='{}' id="container"  >
-					 <div v-for="re in discussion" class='element-item' :key="re.resource.name" :class="{'fullWidth': display=='list'}">
+					 <div v-for="re in discussion" class='element-item' :key="re.resource.uid" :class="{'fullWidth': display=='list'}">
 							 <resource :re="re" :display="display"></resource>
 					 </div>
 				 </isotope>
@@ -436,7 +436,7 @@
 		</add-resource>
 
 		<div class="termTitle" >
-			<span  class=''>
+			<span  v-if="term.term.iconURL.length > 0" class=''>
 					<img class='circle'style='height:50px;width:50px' :src="term.term.iconURL">
 			</span>
 			<span >
@@ -468,6 +468,7 @@
 						<resource
 							:re="icon"
 							:display="'godMode'"
+							v-on:vote-cast='evalTopTerm'
 							>
 						</resource>
 					</div>
@@ -661,7 +662,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a class="modal-action modal-close waves-effect waves-blue btn-flat ">cancel</a>
+		<a class="modal-action modal-close waves-effect waves-blue btn-flat ">close</a>
 		<!-- <a @click.once="upsertResource()" :class="{disabled: }" class="modal-action modal-close waves-effect waves-blue btn-flat">save</a> -->
 	</div>
 </div>

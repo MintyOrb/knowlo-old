@@ -62,7 +62,7 @@ module.exports = function(app, db){
              + "collect(DISTINCT {term: synSet.uid, url: synSet.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, "
              + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
              + "collect(DISTINCT synSet.uid) AS termIDs, " // for filtering into suggestion group...no longer used?
-             + "{qualtiy: gq , complexity: gc } AS globalVote, "
+             + "{quality: gq , complexity: gc } AS globalVote, "
              + "votes, "
              + "re AS resource "
            // + "ORDER BY {orderby} {updown}"
@@ -128,7 +128,7 @@ module.exports = function(app, db){
              + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
              + "collect(DISTINCT synSet.uid) AS termIDs, " // for filtering into suggestion group...no longer used?
              + "{quality: mVote.quality, complexity: mVote.complexity} AS memberVote, "
-             + "{qualtiy: gq , complexity: gc } AS globalVote, "
+             + "{quality: gq , complexity: gc } AS globalVote, "
              + "votes, "
             //  + "{votes: votes, totalResources: total} AS totals "
             + "re AS resource "
@@ -370,7 +370,10 @@ module.exports = function(app, db){
                + "SET "
                  + "r.quality={quality}, "
                  + "r.complexity={complexity} "
-              //  + "RETURN r "
+               + "WITH re "
+               + "OPTIONAL MATCH (:member)-[gVote:CAST_VOTE]->(re) " // get global rankings
+                 + "WITH  AVG(gVote.quality) AS gq, AVG(gVote.complexity) AS gc, COUNT(gVote) AS votes "
+               + "RETURN {quality: gq , complexity: gc } AS globalVote "
 
     // TODO: should probably have some prop validation for vote (val between 0->1)
     db.query(cypher, {
@@ -381,11 +384,10 @@ module.exports = function(app, db){
     },function(err, result) {
       if (err) console.log(err);
       if(result){
-        res.send(result)
+        res.send(result[0])
       } else {
         res.send()
       }
-      // call function to re-eval top icon and def...call from front end upon return?
     })
   }
 

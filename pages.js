@@ -73,6 +73,21 @@ const termComp = Vue.component('termComp',{
       },
       close: function(){
         console.log("close here after esc")
+        // $('body').css("overflow","auto")
+      },
+      evalTopTerm: function(){
+        const top = this.icons.reduce(function(prev, current) {
+            return (prev.globalVote.quality > current.globalVote.quality) ? prev : current
+        })
+        if(top.resource.mThumb != this.term.term.iconURL && top.globalVote.quality !== null){
+          // triggering the new top icon from the front end is probably stupid.
+          this.term.term.iconURL = top.resource.mThumb;
+          this.$http.put('/api/set/'+ this.term.setID +'/'+ top.resource.uid + '/newTopIcon').then(response => {
+              Materialize.toast('back from new top', 4000)
+          }, response => {
+             Materialize.toast('Something went wrong...are you online?', 4000)
+          });
+        }
       },
       fetchProps: function(){
         this.$http.get('/set/' + this.$route.params.uid + '/props/', {params: { languageCode: 'en'}}).then(response => {

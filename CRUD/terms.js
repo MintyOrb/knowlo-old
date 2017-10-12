@@ -44,6 +44,7 @@ app.get('/api/set', query);           // query sets based on user details and pr
 app.put('/api/term/:uid', updateCore); // update a single resrouces core node data
 app.post('/api/set', create);         // create (or update, if present) a term core and single translation node.
 app.delete('/api/set/:setID', deleteCore);   // delete term core node and relationships....and translations?
+app.put('/api/set/:sID/:rID/newTopIcon', newTopIcon)
 
 app.put('/god/name/:uid/:name', name);
 function name(req, res){
@@ -595,7 +596,7 @@ function most(req,res){
       + "RETURN re AS resource, mr.order AS order, "
         + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
         + "{quality:mVote.quality,complexity:mVote.complexity} AS memberVote, "
-        + "{qualtiy: gq , complexity: gc } AS globalVote, "
+        + "{quality: gq , complexity: gc } AS globalVote, "
         + "votes "
       + "ORDER BY order "
       db.query(cypher, {
@@ -627,7 +628,7 @@ function most(req,res){
          + "WITH s, mr, ptrans, re, prop, AVG(gVote.quality) AS gq, AVG(gVote.complexity) AS gc, COUNT(gVote) AS votes "
        + "RETURN re AS resource, mr.order AS order, "
          + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
-         + "{qualtiy: gq , complexity: gc } AS globalVote, "
+         + "{quality: gq , complexity: gc } AS globalVote, "
          + "votes "
        + "ORDER BY order "
        db.query(cypher, {setID: req.params.setID, rtype:req.query.type, languageCode: req.query.languageCode || 'en'},function(err, result) {
@@ -653,6 +654,20 @@ function most(req,res){
                + "RETURN set, meta"
 
     db.query(cypher, {set: req.params.sID, type: req.body.type, meta: req.params.mID, member: res.locals.user.uid },function(err, result) {
+      if (err) console.log(err);
+      if(result){
+        res.send(result[0])
+      } else {
+        res.send()
+      }
+    })
+  }
+
+  function newTopIcon(req,res){
+    var cypher = "MATCH (set:synSet {uid:{set}}) , (meta:resource {uid:{meta}}) "
+               + "SET set.iconURL = meta.mThumb "
+               + "RETURN set, meta"
+    db.query(cypher, {set: req.params.sID, meta: req.params.rID},function(err, result) {
       if (err) console.log(err);
       if(result){
         res.send(result[0])
