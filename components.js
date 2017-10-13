@@ -122,6 +122,8 @@ Vue.component('resource',{
   data: () =>  {
     return {
       voting: true,
+      displayQuality: null,
+      displayComplexity: null,
       score: 'member',   // showing member's rating or global rating?
     }
   },
@@ -218,6 +220,8 @@ Vue.component('resource',{
         var complexity = document.getElementById('complexity-slider-' + this.re.resource.uid);
         complexity.noUiSlider.set(this.re.memberVote.complexity)
       })
+      this.displayQuality = this.re.globalVote.quality;
+      this.displayComplexity = this.re.globalVote.complexity;
     }
   },
   mounted: function(){
@@ -664,7 +668,7 @@ const addResource = Vue.component('addResource',{
               for(pindex in this.resource.detail){
                 holder.resource[pindex] = this.resource.detail[pindex]
               }
-            
+
               $('.addSections').flickity('selectCell', 1, true, false )//  value, isWrapped, isInstant
               this.$emit('added',holder)
             } else if (this.synSetMeta){

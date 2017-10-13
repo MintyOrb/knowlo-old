@@ -166,9 +166,14 @@ html {
     /*margin:20px;*/
 }
 .thumb img {
-    display: block;
-    margin: 0 auto;
-    height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
 }
 .title {
     font-size: 18px;
@@ -659,6 +664,7 @@ iframe{
 }
 #addResourceModal{
   border-radius: 6px;
+  position: absolute!important;
 }
 .fullWidth{
   width: 100%;
