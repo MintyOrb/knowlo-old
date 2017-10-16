@@ -163,7 +163,6 @@ html {
     position: relative;
     overflow: hidden;
     border-radius: 50%;
-    /*margin:20px;*/
 }
 .thumb img {
   position: absolute;
@@ -200,6 +199,9 @@ html {
 }
 .mb{
   margin-bottom: 12px;
+}
+.list span {
+  font-size: 15px;
 }
 /* label focus color */
 
@@ -592,9 +594,18 @@ iframe{
 }
 
 .margin20 {
-	margin:20px
+	margin:20px;
 }
-
+.rating{
+  opacity: .4;
+  transition: opacity .5s;
+}
+.rating:hover{
+  opacity: 1;
+}
+.rating.selected {
+  opacity: 1;
+}
 
 .drag-target{
   z-index: 1005;

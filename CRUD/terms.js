@@ -98,7 +98,7 @@ function query(req, res){
               + "WHERE scount = {searchTermsCount} " // necessary to match resources with all included sets
               + "MATCH (set:synSet)<-[:TAGGED_WITH]-(contentNode) " // get all sets tagged to all resources tagged that are with sets in query
               + "WITH distinct set as s1, count(DISTINCT contentNode) AS connections "
-              + "MATCH (s1)-[:IN_SET]->(s2), " // get sets 'containing' related sets
+              + "MATCH (s1)-[:IN_SET]->(s2:synSet), " // get sets 'containing' related sets
                 + "(s1)-[s1R:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(s1translation:translation), " // get translation
                 + "(s2)-[s2R:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(s2translation:translation) " // get translation
               + "WHERE s1R.order=1 AND s2R.order=1 AND NOT s2.uid IN {ignoreTerms} " // only top synonym and don't include search terms
