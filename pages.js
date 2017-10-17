@@ -415,14 +415,15 @@ const resourceComp = Vue.component('resourceComp',{
         });
       },
       init: function(){
-
           this.fetchDiscussion();
 
           this.$nextTick(function(){
+
             if($('.resourceNav').flickity() && $('.resourceSections').flickity()){
               $('.resourceNav').flickity('destroy');
               $('.resourceSections').flickity('destroy');
             }
+
             $('.resourceNav').flickity({
               asNavFor: '.resourceSections',
               // wrapAround: true,
@@ -452,57 +453,19 @@ const resourceComp = Vue.component('resourceComp',{
                   $('body').css("overflow","hidden")
                 },
                 complete: () => {
-                  $('.resourceNav').flickity('destroy');
-                  $('.resourceSections').flickity('destroy');
-                  $('body').css("overflow","auto");
+
+                  console.log('in complete')
                   router.go(-1) || router.push("/");
                 }
               }).modal('open');
 
-              $('#resourceModal'+resource.uid).css('opaciy',1)
+              // $('#resourceModal'+resource.uid).css('opaciy',1)
 
               // remove any existing leaflet elements from previous resource (probably a smarter way to handle this...)
               $('.leaflet-control-container').remove();
               $('.leaflet-pane').remove();
               if(this.resource.displayType == "image"){
-                // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
-
-                var map = L.map('image-map', {
-                  minZoom: 1,
-                  maxZoom: 4,
-                  center: [0, 0],
-                  zoom: 2,
-                  crs: L.CRS.Simple
-                });
-
-                // dimensions of the image
-                var w = 2000,
-                    h = 1500,
-                    url = this.resource.url
-                var img = new Image();
-                img.onload = function() {
-                  map.removeLayer(preLoad);
-                  var southWest = map.unproject([0, this.height], map.getMaxZoom()-1);
-                  var northEast = map.unproject([this.width, 0], map.getMaxZoom()-1);
-                  var bounds = new L.LatLngBounds(southWest, northEast);
-
-                  // add the image overlay,
-                  // so that it covers the entire map
-                  L.imageOverlay(url, bounds).addTo(map);
-                  map.setMaxBounds(bounds);
-                }
-                img.src=url;
-                // calculate the edges of the image, in coordinate space
-                var southWest = map.unproject([0, h], map.getMaxZoom()-1);
-                var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
-                var bounds = new L.LatLngBounds(southWest, northEast);
-
-                // add the image overlay,
-                // so that it covers the entire map
-                var preLoad = L.imageOverlay(url, bounds).addTo(map);
-
-                // tell leaflet that the map is exactly as big as the image
-                map.setMaxBounds(bounds);
+                this.initImage();
               }
           })
 
@@ -547,6 +510,46 @@ const resourceComp = Vue.component('resourceComp',{
       },
       addToQuery: function(item){
           this.$emit('add',item)
+      },
+      initImage: function(){
+        // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
+
+        var map = L.map('image-map', {
+          minZoom: 1,
+          maxZoom: 4,
+          center: [0, 0],
+          zoom: 2,
+          crs: L.CRS.Simple
+        });
+
+        // dimensions of the image
+        var w = 2000,
+            h = 1500,
+            url = this.resource.url
+        var img = new Image();
+        img.onload = function() {
+          map.removeLayer(preLoad);
+          var southWest = map.unproject([0, this.height], map.getMaxZoom()-1);
+          var northEast = map.unproject([this.width, 0], map.getMaxZoom()-1);
+          var bounds = new L.LatLngBounds(southWest, northEast);
+
+          // add the image overlay,
+          // so that it covers the entire map
+          L.imageOverlay(url, bounds).addTo(map);
+          map.setMaxBounds(bounds);
+        }
+        img.src=url;
+        // calculate the edges of the image, in coordinate space
+        var southWest = map.unproject([0, h], map.getMaxZoom()-1);
+        var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
+        var bounds = new L.LatLngBounds(southWest, northEast);
+
+        // add the image overlay,
+        // so that it covers the entire map
+        var preLoad = L.imageOverlay(url, bounds).addTo(map);
+
+        // tell leaflet that the map is exactly as big as the image
+        map.setMaxBounds(bounds);
       }
     },
     mounted: function(){
@@ -569,12 +572,9 @@ const resourceComp = Vue.component('resourceComp',{
     beforeRouteLeave: function (to, from, next){
 
       $('.modal-overlay').remove(); // needed if navigating from resource page to set page
-      if(this.resource && $('#resourceModal'+this.resource.id)){
-        $('#resourceModal'+this.resource.id).modal('close');
-      }
-      window.setTimeout(()=>{
-        next()
-      }, 375)
+
+      $('body').css("overflow","auto");
+      next();
     },
     watch: {
       '$route.params.uid': function (id) {
