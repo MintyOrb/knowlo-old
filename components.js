@@ -129,21 +129,27 @@ Vue.component('resource',{
   },
   methods:{
     vote: function(){
+      console.log('voting')
       this.$http.put('/api/resource/'+this.re.resource.uid+'/vote',{vote:this.re.memberVote}).then(response => {
         if(response.body){
           Materialize.toast('voted!', 2000);
-          this.re.globalVote=response.body;
+          this.re.globalVote=response.body.globalVote;
+          this.re.votes = response.body.votes;
+          console.log(response.body)
           this.$emit('vote-cast');
           this.setRatingSliders('member');
           this.ratingDisplay='member';
-        } else if(response.status == 401){
-          Materialize.toast('You must be logged in to vote!', 4000)
-          $('#login-modal').modal('open')
         } else {
           Materialize.toast('Something went wrong...', 4000)
         }
       }, response => {
-         Materialize.toast('Something went wrong...are you online?', 4000)
+        if(response.status == 401){
+          Materialize.toast('You must be logged in to vote!', 4000)
+          $('#login-modal').modal('open')
+          this.setRatingSliders('global');
+        } else {
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        }
       });
     },
     deleteResource: function(uid){
@@ -181,9 +187,13 @@ Vue.component('resource',{
             'max': 1
           }
          });
-        quality.noUiSlider.on('set', (a,b,value) => { //listen for vote
+        quality.noUiSlider.on('change', (a,b,value) => { //listen for vote
+          console.log('change')
           if(this.re.memberVote && this.re.memberVote.quality != value[0]){
             this.re.memberVote.quality = value[0];
+            this.vote();
+          } else if(!this.re.memberlVote){
+            this.re.memberVote = 'blah'
             this.vote();
           }
         });
@@ -198,16 +208,20 @@ Vue.component('resource',{
            'max': 1
          }
         });
-       complexity.noUiSlider.on('set', (a,b,value) => {
+       complexity.noUiSlider.on('change', (a,b,value) => {
          if(this.re.memberVote && this.re.memberVote.complexity != value[0]){
            this.re.memberVote.complexity = value[0];
            this.vote();
+         } else if(!this.re.memberlVote){
+           this.re.memberVote = 'blah'
+           this.vote();
          }
+
        });
       }
     },
     setRatingSliders: function(disp){
-      if(disp=='global' && !this.re.memberVote && this.re.globalVote){
+      if(disp=='global' && this.re.globalVote){
         this.$nextTick( x=> {
           var quality = document.getElementById('quality-slider-' + this.re.resource.uid);
           quality.noUiSlider.set(this.re.globalVote.quality)
@@ -225,6 +239,9 @@ Vue.component('resource',{
         })
         this.displayQuality = this.re.memberVote.quality;
         this.displayComplexity = this.re.memberVote.complexity;
+      } else {
+        Materialize.toast("You haven't voted on this!",2000)
+        this.ratingDisplay = 'global'
       }
     }
   },
@@ -234,6 +251,7 @@ Vue.component('resource',{
      this.setRatingSliders('member');
     })
     this.setRatingSliders('global');
+
   },
   watch: {
     re: function() {

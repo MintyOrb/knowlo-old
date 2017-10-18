@@ -596,6 +596,7 @@ const explore = Vue.component('exploreComp',{
   data: function() {
         return {
             db: undefined,                      // search results to display - array of material objects
+            loginCheck: false,                  // true after login status is checked
             crossSection: null,                 // object containing the name of the cross section and terms in lens group - object containing array of term objects and string name
             suggestionGroups: [],               // holds suggestion groups and terms within
             suggestionDisplay: "",              // the name of the currently selected display for suggestions
@@ -866,6 +867,7 @@ const explore = Vue.component('exploreComp',{
             }
           }
           if(this.member.uid != null){ // member specific query if logged in
+            console.log('get R - logged in')
             this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
               this.resources=response.body;
               console.log(response.body)
@@ -878,17 +880,18 @@ const explore = Vue.component('exploreComp',{
               console.log('error getting resources... ', response)
             });
           } else { // general query if not logged in
-            // this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
-            //   this.resources=response.body;
-            //
-            //   this.numberOfDisplayed = response.body.length;
-            //   this.getTerms();
-            //   window.setTimeout(() =>{
-            //     this.layout()
-            //   }, 500);
-            // }, response => {
-            //   console.log('error getting resources... ', response)
-            // });
+            console.log('get R - not logged in')
+            this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
+              this.resources=response.body;
+
+              this.numberOfDisplayed = response.body.length;
+              this.getTerms();
+              window.setTimeout(() =>{
+                this.layout()
+              }, 500);
+            }, response => {
+              console.log('error getting resources... ', response)
+            });
           }
 
         }
@@ -945,14 +948,21 @@ const explore = Vue.component('exploreComp',{
       this.size = disciplines;
     },
     watch: {
-      member: function() { // re-fetch on member login/logout
+      member: function(b,y) { // re-fetch on member login/logout
+        console.log(b)
+        console.log(y)
+        this.loginCheck = true;
         this.$nextTick(x=>{
           this.fetchResources()
         })
       },
       termQuery: function(val){
+        console.log('tq changed')
         Cookies.set('termQuery',val)
-        this.fetchResources();
+        console.log(this.member)
+        if(this.loginCheck){ // don't fetch before checking member login
+          this.fetchResources();
+        }
       },
       suggestionDisplay: function(val){
         console.log(val)

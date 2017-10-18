@@ -382,7 +382,7 @@ module.exports = function(app, db){
                + "WITH re "
                + "OPTIONAL MATCH (:member)-[gVote:CAST_VOTE]->(re) " // get global rankings
                  + "WITH  AVG(gVote.quality) AS gq, AVG(gVote.complexity) AS gc, COUNT(gVote) AS votes "
-               + "RETURN {quality: gq , complexity: gc } AS globalVote "
+               + "RETURN {quality: gq , complexity: gc } AS globalVote, votes "
 
     // TODO: should probably have some prop validation for vote (val between 0->1)
     db.query(cypher, {

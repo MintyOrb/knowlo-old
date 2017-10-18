@@ -1019,8 +1019,8 @@
 
 			<div v-if="voting & display !='thumb'" class="margin20" >
 				<div class="">
-					<i  @click="ratingDisplay='global'" class="fa fa-lg fa-globe rating" :class="{'selected': ratingDisplay == 'global'}"></i>
-					<i  @click="ratingDisplay='member'" class="fa fa-lg fa-user rating" :class="{'selected': ratingDisplay == 'member'}"></i>
+					<i  @click="ratingDisplay='global'" @mouseenter="ratingDisplay='global'" class="fa fa-lg fa-globe rating" :class="{'selected': ratingDisplay == 'global'}"></i>
+					<i  @click="ratingDisplay='member'" @mouseenter="ratingDisplay='member'" class="fa fa-lg fa-user rating" :class="{'selected': ratingDisplay == 'member'}"></i>
 				</div>
 				<span>
 					<span style="font-weight:300" >Quality</span><span v-if="displayQuality" style="font-weight:300" class='right'>{{displayQuality.toFixed(2).replace(/^0+/, '')}}</span>
@@ -1209,7 +1209,7 @@ videos = videos.concat(videos2) // combine split json (split becuase it was too 
 </script>
 
 <!-- firebase -->
-<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
 <script>
   // Initialize Firebase
   var config = {

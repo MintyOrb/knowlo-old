@@ -46,7 +46,7 @@ const app = new Vue({
       }, response => {
          Materialize.toast('Something went wrong...are you online?', 4000)
       });
-    }
+    },
   },
   mounted: function(){
 
@@ -87,16 +87,27 @@ const app = new Vue({
   		}).init();
 
       firebase.auth().onAuthStateChanged((member) => {
+         console.log('auth state changed....')
           if (member) {
+            console.log(member)
             this.member = member;
             this.member.first = member.displayName.substr(0,member.displayName.indexOf(' ')); // get first name -  if there is no space at all, then the first line will return an empty string and the second line will return the entire string
-            console.log(member)
-            member.getToken().then((accessToken) => {
-              Vue.http.headers.common['Authorization'] = "Bearer " + accessToken;
-              this.touchMember();
+            Vue.http.headers.common['Authorization'] = "Bearer " + member.Ed;
+
+            if(member.Ed){
+              console.log('found previous auth')
               bus.$emit('login',member)
-            });
+            } else {
+              member.getIdToken().then((accessToken) => {
+                Vue.http.headers.common['Authorization'] = "Bearer " + accessToken;
+                this.touchMember();
+                bus.$emit('login',member)
+              });
+
+            }
+
           } else {
+            console.log('in no member')
             this.member = {uid:undefined}
             Vue.http.headers.common['Authorization'] = '';
           }
