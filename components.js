@@ -182,7 +182,7 @@ Vue.component('resource',{
           }
          });
         quality.noUiSlider.on('set', (a,b,value) => { //listen for vote
-          if(this.re.memberVote.quality != value[0]){
+          if(this.re.memberVote && this.re.memberVote.quality != value[0]){
             this.re.memberVote.quality = value[0];
             this.vote();
           }
@@ -199,7 +199,7 @@ Vue.component('resource',{
          }
         });
        complexity.noUiSlider.on('set', (a,b,value) => {
-         if(this.re.memberVote.complexity != value[0]){
+         if(this.re.memberVote && this.re.memberVote.complexity != value[0]){
            this.re.memberVote.complexity = value[0];
            this.vote();
          }
@@ -573,8 +573,11 @@ const addResource = Vue.component('addResource',{
 
           },
           complete: () => {
-            $('.addNav').flickity('destroy');
-            $('.addSections').flickity('destroy');
+            if($('.addNav').flickity() && $('.addSections').flickity()){
+              $('.addNav').flickity('destroy');
+              $('.addSections').flickity('destroy');
+            }
+
             // $('body').css("overflow","auto")
 
             this.$emit('close')

@@ -132,7 +132,16 @@ module.exports = function(app, db){
              + "votes, "
             //  + "{votes: votes, totalResources: total} AS totals "
             + "re AS resource "
-           // + "ORDER BY {orderby} {updown}"
+            // + "ORDER BY globalVote.quality IS NOT NULL DESC, globalVote.quality DESC  "
+            + "ORDER BY COALESCE(globalVote.quality, -1) DESC "//IS NOT NULL DESC, globalVote.quality DESC  "
+           // order by can't be parameterized...have to resort to string building
+           //TODO support order by options:
+          //  # votes
+          //  global quality
+          //  global complexity
+          //  date created
+            // discussion size?
+
            + "SKIP {skip} "
            + "LIMIT {limit}";
          if (typeof req.query.include === "undefined") {

@@ -849,3 +849,17 @@ and (min-width : 1224px) {
     width: calc(20vw - 10px);
   }
 }
+
+#termSuggestionOptions {
+  margin-left: 15vw;
+}
+#termSuggestionOptions span {
+  margin-left: 40px;
+}
+
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:before, [type="radio"].with-gap:checked+label:after {
+    border: 2px solid #2196F3;
+}
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after {
+    background-color: #2196F3;
+}

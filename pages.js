@@ -598,6 +598,7 @@ const explore = Vue.component('exploreComp',{
             db: undefined,                      // search results to display - array of material objects
             crossSection: null,                 // object containing the name of the cross section and terms in lens group - object containing array of term objects and string name
             suggestionGroups: [],               // holds suggestion groups and terms within
+            suggestionDisplay: "",              // the name of the currently selected display for suggestions
             // termQuery: [],                   // terms selected for search - - array of term objects with flags for include/exclude/pin etc.
             suggestions: [],                    // suggested terms...not sure about ui, currently  - array of term objects
             resources: [],                      // db when no lens, replace with db even though less items? - array of term objects
@@ -796,6 +797,13 @@ const explore = Vue.component('exploreComp',{
           }
 
         },
+        changeSuggestionGroup: function(group){
+          console.log('in change to: ',group)
+          console.log(sizeScale)
+          if(group =='size'){
+            this.suggestionGroups=sizeScale;
+          }
+        },
         getTerms: function(){
           var include = [];
           var exclude = [];
@@ -806,6 +814,8 @@ const explore = Vue.component('exploreComp',{
           this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
             // this.suggestions=response.body;
             this.suggestionGroups=response.body;
+            console.log(response.body)
+
             // setup suggection flickity
             this.$nextTick(function(){
               if($('#suggestionNav').flickity() && $('#suggestionSteps').flickity()){
@@ -868,17 +878,17 @@ const explore = Vue.component('exploreComp',{
               console.log('error getting resources... ', response)
             });
           } else { // general query if not logged in
-            this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
-              this.resources=response.body;
-
-              this.numberOfDisplayed = response.body.length;
-              this.getTerms();
-              window.setTimeout(() =>{
-                this.layout()
-              }, 500);
-            }, response => {
-              console.log('error getting resources... ', response)
-            });
+            // this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
+            //   this.resources=response.body;
+            //
+            //   this.numberOfDisplayed = response.body.length;
+            //   this.getTerms();
+            //   window.setTimeout(() =>{
+            //     this.layout()
+            //   }, 500);
+            // }, response => {
+            //   console.log('error getting resources... ', response)
+            // });
           }
 
         }
@@ -904,7 +914,7 @@ const explore = Vue.component('exploreComp',{
         this.changeLens(this.size)
       }
 
-      // get previously selected display Style
+      // get previously selected resource display Style
       if(!Cookies.get('displayStyle')){
         this.display = "card";
       } else {
@@ -943,6 +953,10 @@ const explore = Vue.component('exploreComp',{
       termQuery: function(val){
         Cookies.set('termQuery',val)
         this.fetchResources();
+      },
+      suggestionDisplay: function(val){
+        console.log(val)
+        this.changeSuggestionGroup(val)
       },
     }
 });
