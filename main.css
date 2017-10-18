@@ -133,8 +133,19 @@ html {
 .dropdown-content {
   z-index: 2000
 }
+.sort {
+  width:150px!important;
+}
 .dropdown-button{
   margin-top: 5px;
+}
+.disabled {
+  background-color: #eee!important;
+  color: gray!important;
+}
+.disabled:hover {
+  cursor: not-allowed!important;
+  background-color: #eee!important;
 }
 .card {
     width: 20vw;

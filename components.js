@@ -37,6 +37,7 @@ Vue.component('term',{
         });
       },
       order:function(termID,order){
+        console.log(termID, order)
         this.$http.put('/god/order/'+termID+'/'+ order +'/'+ this.$route.params.uid).then(response => {
           if(response.body){
             Materialize.toast('changed order', 4000)
@@ -129,13 +130,11 @@ Vue.component('resource',{
   },
   methods:{
     vote: function(){
-      console.log('voting')
       this.$http.put('/api/resource/'+this.re.resource.uid+'/vote',{vote:this.re.memberVote}).then(response => {
         if(response.body){
           Materialize.toast('voted!', 2000);
           this.re.globalVote=response.body.globalVote;
           this.re.votes = response.body.votes;
-          console.log(response.body)
           this.$emit('vote-cast');
           this.setRatingSliders('member');
           this.ratingDisplay='member';
@@ -192,8 +191,8 @@ Vue.component('resource',{
           if(this.re.memberVote && this.re.memberVote.quality != value[0]){
             this.re.memberVote.quality = value[0];
             this.vote();
-          } else if(!this.re.memberlVote){
-            this.re.memberVote = 'blah'
+          } else if(!this.re.memberlVote){ // prevents vote trigger on resource init
+            this.re.memberVote = {};
             this.vote();
           }
         });

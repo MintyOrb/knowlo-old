@@ -785,7 +785,7 @@ const explore = Vue.component('exploreComp',{
         layout: function(mes) {
           console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
           for(termIndex in this.suggestionGroups){ // layout all isotope containers in term suggestionGroups
-            if(this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID]){
+            if(this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID][0]){
               this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID][0].layout('masonry');
             }
           }

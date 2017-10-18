@@ -56,7 +56,8 @@ function name(req, res){
 }
 app.put('/god/order/:termID/:order/:setID', order);
 function order(req, res){
-  var cypher = "MATCH (n:term {uid: {termID}})-[r]-(s:synSet {uid: {setID}}) set r.order={order}  return n "
+  console.log(req.params)
+  var cypher = "MATCH (n {uid: {termID}})-[r]-(s:synSet {uid: {setID}}) set r.order={order}  return n "
    db.query(cypher, {
      order: parseInt(req.params.order.trim()),
      termID: req.params.termID,
@@ -316,9 +317,7 @@ function updateSynonym(req, res){
 // member: res.locals.user.uid // :ADDED
   db.query(cypher, {setID: req.params.setID, otherID: req.params.otherID },function(err, result) {
     if (err) console.log(err);
-    console.log(result)
     if(result){
-      console.log(result)
       res.send(result)
     } else {
       res.send()
@@ -468,11 +467,11 @@ function deleteWithin(req, res){
 
 
 function contains(req, res){
-  var cypher = "MATCH (set:synSet {uid: {set} })<-[:IN_SET]-(syn:synSet), "
-                 + "(syn)<-[r:IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
-                 + "WHERE r.order=1 AND lang.languageCode IN [ {language} , 'en' ] "
-                 + "RETURN DISTINCT syn as term, syn.uid as setID, translation , r "
-                 + "ORDER BY  r.order"
+  var cypher = "MATCH (set:synSet {uid: {set} })<-[sr:IN_SET]-(syn:synSet), "
+                 + "(syn)<-[tr:IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
+                 + "WHERE tr.order=1 AND lang.languageCode IN [ {language} , 'en' ] "
+                 + "RETURN DISTINCT syn as term, syn.uid as setID, translation , tr, sr.order as order "
+                 + "ORDER BY order"
 
   db.query(cypher, {set: req.params.setID, language: req.query.languageCode },function(err, result) {
     if (err) console.log(err);

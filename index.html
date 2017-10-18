@@ -239,17 +239,17 @@
 				<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
 				<span class='right'>
 					<a class="dropdown-button viewBtn" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
-					<ul id='order' class='dropdown-content'>
-						<li><a @click="changeLens(bigHistory)">Big History</a></li>
+					<ul id='order' class='dropdown-content sort'>
+						<!-- <li><a @click="changeLens(bigHistory)">Big History</a></li>
 						<li><a @click="changeLens(size)">Size</a></li>
-						<li><a @click="changeLens(null)">none</a></li>
-						<!--
-						date added
-						quality
-						time to view
-						complexity
-						# votes
-						... -->
+						<li><a @click="changeLens(null)">none</a></li> -->
+						<li class=''><a>quality</a></li>
+						<li class='disabled'><a>complexity</a></li>
+						<li class='disabled'><a>date added</a></li>
+						<li class='disabled'><a>time to view</a></li>
+						<li class='disabled'><a># votes</a></li>
+						<li class='disabled'><a># views</a></li>
+						<li class='disabled'><a># responses</a></li>
 					</ul>
 				</span>
 				<br/>
@@ -554,7 +554,7 @@
 						<isotope ref='contains' :list="contains" :options='{}'>
 							<div v-for="term in contains" :key="term.translation.name">
 								<term :term="term"
-									:display="'thumb'"
+									:display="'godMode'"
 									:key="term.setID"
 									v-on:include="addToQuery(term)"
 									v-on:exclude="addToQuery(term)"
@@ -959,8 +959,10 @@
 
 	<div class='list hoverable waves-effect waves-light' v-if="display == 'godMode'">
 		<span>{{term.term.uid}}</span>
+		<!-- <span>{{term.setID}}</span> -->
 		<input type="text" v-model='term.translation.name' v-on:blur="name(term.translation.uid,term.translation.name)" />
 		<!-- <span> ({{term.translation.languageCode}})</span> -->
+
 		<input type='text' v-model='term.order' v-on:blur="order(term.term.uid,term.order)" />
 		<i  @click="exclude" class="fa fa-minus"></i>
 	</div>
