@@ -247,8 +247,8 @@
 						<li class='disabled'><a>complexity</a></li>
 						<li class='disabled'><a>date added</a></li>
 						<li class='disabled'><a>time to view</a></li>
-						<li class='disabled'><a># votes</a></li>
-						<li class='disabled'><a># views</a></li>
+						<li class='disabled'><a># of votes</a></li>
+						<li class='disabled'><a># of views</a></li>
 						<li class='disabled'><a># responses</a></li>
 					</ul>
 				</span>
@@ -361,6 +361,11 @@
 				<span class="center">{{resource.text}}</span>
 			</div>
 
+			<!-- set icon -->
+			<div v-if='resource.displayType=="icon"' class="text-container">
+				<img class='circle'style='height:60px;width:60px' :src="resource.mThumb">
+			</div>
+
 		</div>
 
 		<div class="resourceMeta">
@@ -375,20 +380,55 @@
 			<!-- isotope contianers -->
 			<div class="resourceSections">
 
+				<div class="resourceStep">
+
+					<span>{{resource.title}}</span>
+					<span>{{resource.description}}</span>
+				</div>
+
 				<div class="resourceStep discussion">
 					<div class="center pad margin20">
 					 <span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
 					 <span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
 					 <span class='right'>
 						 <a class="dropdown-button viewBtn" data-activates='disOrder' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
-						 <ul id='disOrder' class='dropdown-content'>
-							 <li><a>Date Added</a></li>
-							 <li><a>Quality</a></li>
-							 <li><a># of Votes</a></li>
-							 <!-- <li><a>Other thigns?</a></li> -->
+						 <ul id='disOrder' class='dropdown-content sort'>
+							 <li class=''><a>quality</a></li>
+ 							<li class='disabled'><a>complexity</a></li>
+ 							<li class='disabled'><a>date added</a></li>
+ 							<!-- <li class='disabled'><a>time to view</a></li> -->
+ 							<li class='disabled'><a># of votes</a></li>
+ 							<li class='disabled'><a># of views</a></li>
+ 							<li class='disabled'><a># responses</a></li>
 						 </ul>
 					 </span>
 					 <br/>
+				 </div>
+				 <div class='disSwitch center'>
+					 <div class="switch">
+						 <label>
+							 Insight
+							 <input type="checkbox" value="insight" v-model="discussionFilter">
+							 <span class="lever"></span>
+
+						 </label>
+					 </div>
+					 <div class="switch">
+						 <label>
+							 Question
+							 <input type="checkbox" value="question" v-model="discussionFilter">
+							 <span class="lever"></span>
+
+						 </label>
+					 </div>
+					 <div class="switch">
+						 <label>
+							 Criticism
+							 <input type="checkbox" value="criticism" v-model="discussionFilter">
+							 <span class="lever"></span>
+
+						 </label>
+					 </div>
 				 </div>
 				 <div class='message well' v-if="discussion.length == 0">
 					<div style='margin-bottom:40px;'>
@@ -398,10 +438,9 @@
 						<a @click="addResourceType='discussion'; addResource = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 					</div>
 				 </div>
-
 				 <isotope v-else ref="discussionBin" class="step" :list="discussion" :options='{}' id="container"  >
 					 <div v-for="re in discussion" class='element-item' :key="re.resource.uid" :class="{'fullWidth': display=='list'}">
-							 <resource :re="re" :display="display"></resource>
+							 <resource :re="re" :display="'godMode'"></resource>
 					 </div>
 				 </isotope>
 
@@ -421,12 +460,6 @@
 						</term>
 					</isotope>
 					<autocomplete exclude="" input-id="resourceTest" v-on:select="addTerm"></autocomplete>
-				</div>
-				<div class="resourceStep">
-					Vote
-				</div>
-				<div class="resourceStep">
-					Stats
 				</div>
 				<div class="resourceStep">
 					Related
@@ -492,7 +525,7 @@
 					<div v-for="icon in icons" :key="icon['resource']['uid']">
 						<resource
 							:re="icon"
-							:display="'list'"
+							:display="'godMode'"
 							v-on:vote-cast='evalTopTerm'
 							>
 						</resource>
@@ -523,11 +556,10 @@
 								:display="'godMode'"
 								:key="term.setID"
 								v-on:include="addToQuery(term)"
-								v-on:exclude="addToQuery(term)"
+								v-on:exclude="removeSynonym(term.term.uid)"
 								v-on:focus="addToQuery(term)"
 								v-on:pin="addToQuery(term)"
 								>
-								<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
 							</term>
 						</div>
 					</isotope>
@@ -666,11 +698,39 @@
 					<div class='btn blue' @click.once="upsertResource()">
 						add {{type}}
 					</div>
+					<div class='btn' @click="getSuggestedTerms">
+						bah
+					</div>
 			</div>
 			<div v-if="type=='discussion' || type=='resource'" class="addContainer">
 				<autocomplete exclude="" input-id="tagNewResources" v-on:select="addTag"></autocomplete>
 				<div v-if='type=="discussion"'>
-					yes i m discussion..
+					<div class='disSwitch center'>
+ 					 <div class="switch">
+ 						 <label>
+ 							 Insight
+ 							 <input type="checkbox" value="insight" v-model="discussionFilter">>
+ 							 <span class="lever"></span>
+
+ 						 </label>
+ 					 </div>
+ 					 <div class="switch">
+ 						 <label>
+ 							 Question
+ 							 <input type="checkbox" value="question" v-model="discussionFilter">
+ 							 <span class="lever"></span>
+
+ 						 </label>
+ 					 </div>
+ 					 <div class="switch">
+ 						 <label>
+ 							 Criticism
+ 							 <input type="checkbox" value="criticism" v-model="discussionFilter">
+ 							 <span class="lever"></span>
+
+ 						 </label>
+ 					 </div>
+ 				 </div>
 				</div>
 				<isotope ref='tagged' :list="tags" :options='{}'>
 					<div v-for="term in tags" :key="term.setID">

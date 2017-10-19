@@ -300,8 +300,6 @@ const termComp = Vue.component('termComp',{
       }
     },
     mounted: function(){
-      console.log('term page here:')
-      console.log(this.termQuery)
       this.init();
       $('.termNav').flickity({
         asNavFor: '.termSections',
@@ -368,8 +366,9 @@ const resourceComp = Vue.component('resourceComp',{
               resource: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if resource is not found
               terms: [],
               discussion: [],
+              discussionFilter: [], // which types of discussions should be displayed
               display: 'card', // default display for discussion
-              resourceSection: ["Discussion","Terms","Vote","Stats","Related"],
+              resourceSection: ["About","Discussion","Terms","Related"],
               addResource:false,
               addResourceType: '',
             }
@@ -390,6 +389,7 @@ const resourceComp = Vue.component('resourceComp',{
         // TODO take language from member instead of hardcoding english...
         this.$http.get('/resource/' + this.$route.params.uid + '/full', {params: { languageCode: 'en'}}).then(response => {
           if(response.body.resource){
+            console.log(response.body)
             this.resource = response.body.resource;
             this.terms = response.body.terms;
             if(this.resource.url){
@@ -401,6 +401,8 @@ const resourceComp = Vue.component('resourceComp',{
                 this.resource.ytID = new URL(this.resource.url).searchParams.get('v')
                 this.resource.displayType = 'embed'
               }
+            } else if(this.resource.hasOwnProperty('null')){ // not sure why it has the null prop to begin with...
+              this.resource.displayType = 'icon'
             } else {
               this.resource.displayType = 'text'
             }
@@ -814,8 +816,8 @@ const explore = Vue.component('exploreComp',{
           this.suggestionGroups =[];
           this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
             // this.suggestions=response.body;
+            // TODO: do I still need this.suggestions? maybe when all together?
             this.suggestionGroups=response.body;
-            console.log(response.body)
 
             // setup suggection flickity
             this.$nextTick(function(){

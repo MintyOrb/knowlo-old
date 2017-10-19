@@ -258,6 +258,10 @@ Vue.component('resource',{
     },
     ratingDisplay: function(val){
       this.setRatingSliders(val)
+    },
+    display: function(val){
+      console.log(val)
+      this.setRatingSliders(this.ratingDisplay)
     }
   }
 })
@@ -553,6 +557,7 @@ const addResource = Vue.component('addResource',{
         synSetMeta: false,  // tag resource to set
         resouceMeta: false, // tag resource to resource
         flickRegistry: [],
+        discussionFilter:"", // what type of discussion resources is this...can only be one (radio).
         tags: [],
         resource:{ // these aren't all strings...
           core: {
@@ -584,9 +589,8 @@ const addResource = Vue.component('addResource',{
           opacity: .5, // Opacity of modal background
           inDuration: 300, // Transition in duration
           outDuration: 200, // Transition out duration
-          // startingTop: '4%', // Starting top style attribute
           ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-            // $('body').css("overflow","hidden")
+            $('.fullPage').css("overflow","hidden")
 
           },
           complete: () => {
@@ -595,7 +599,7 @@ const addResource = Vue.component('addResource',{
               $('.addSections').flickity('destroy');
             }
 
-            // $('body').css("overflow","auto")
+            $('.fullPage').css("overflow","auto")
 
             this.$emit('close')
           }
@@ -673,6 +677,27 @@ const addResource = Vue.component('addResource',{
            Materialize.toast('Something went wrong...are you online and logged in?', 4000)
         });
       },
+      getSuggestedTerms: function(){ // find terms in text adn tag to resource
+        var textBlob = ""
+        textBlob = textBlob.concat(
+          " " + this.resource.detail['title'],
+          " " + this.resource.detail['subtitle'],
+          " " + this.resource.detail['text'],
+          " " + this.resource.detail['description']
+        )
+        // find and tag to resource
+        this.$http.put('/api/resource/'+this.resource.core.uid+'/termSuggest',{text:textBlob}).then(response => {
+          if(response.body){
+            console.log(response.body)
+            this.tags = response.body;
+            // for each this.tags.push(term) push to tags
+          } else {
+            Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online and logged in?', 4000)
+        });
+      },
       close: function(){
         console.log("close here after esc")
       },
@@ -702,6 +727,7 @@ const addResource = Vue.component('addResource',{
 
               $('.addSections').flickity('selectCell', 1, true, false )//  value, isWrapped, isInstant
               this.$emit('added',holder)
+              this.getSuggestedTerms();
             } else if (this.synSetMeta){
               this.tagToSet();
               // need to format like resource to push

@@ -686,7 +686,7 @@ iframe{
 }
 #addResourceModal{
   border-radius: 6px;
-  position: absolute!important;
+  /*position: absolute!important;*/
 }
 .fullWidth{
   width: 100%;
@@ -872,5 +872,15 @@ and (min-width : 1224px) {
     border: 2px solid #2196F3;
 }
 [type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after {
+    background-color: #2196F3;
+}
+.disSwitch div {
+  display: inline;
+  margin-left: 20px;
+}
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #8cc3ee;
+}
+.switch label input[type=checkbox]:checked+.lever:after {
     background-color: #2196F3;
 }
