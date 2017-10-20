@@ -557,9 +557,15 @@ const addResource = Vue.component('addResource',{
         synSetMeta: false,  // tag resource to set
         resouceMeta: false, // tag resource to resource
         flickRegistry: [],
-        discussionFilter:"", // what type of discussion resources is this...can only be one (radio).
+        discussionFilter:[],
+        dIDs: { // setIDS for adding by switch
+          'insight':'rJxPWooTO-',
+          'question':'B1pnQsYW-',
+          'quote':'BkF3xoFW-',
+          'criticism':'rJxYeYW43b',
+        },
         tags: [],
-        resource:{ // these aren't all strings...
+        resource:{ // TODO: these aren't all strings...
           core: {
             'displayType':"",
             'uid':"",
@@ -613,7 +619,6 @@ const addResource = Vue.component('addResource',{
         })
 
         $('.addSections').flickity({
-          // asNavFor: '.termNav',
           wrapAround: true,
           pageDots: false,
           prevNextButtons: true,
@@ -652,10 +657,12 @@ const addResource = Vue.component('addResource',{
         }
       },
       addTag: function(term){ // add tag(s) to the newly created resource
+        console.log('in add tag ', term)
         if(this.resource.core.uid.length > 0){
           this.$http.put('/api/resource/'+this.resource.core.uid+'/set/'+term.setID).then(response => {
             if(response.body){
-              this.tags.push(term)
+              console.log(response.body)
+              this.tags.push(response.body)
             } else {
               Materialize.toast('Something went wrong...', 4000)
             }
@@ -667,9 +674,11 @@ const addResource = Vue.component('addResource',{
         }
       },
       removeTag: function(uid) {
+        //TODO: revert discussion filter switch if discussion set removed by exclude
+
         this.$http.delete('/api/resource/'+this.resource.core.uid+'/set/'+uid).then(response => {
           if(response.body){
-            this.tags.splice(this.tags.findIndex( (term) => term.term.uid === uid) ,1)
+            this.tags.splice(this.tags.findIndex( (term) => term.setID === uid) ,1)
           } else {
             Materialize.toast('Something went wrong...', 4000)
           }
@@ -677,9 +686,9 @@ const addResource = Vue.component('addResource',{
            Materialize.toast('Something went wrong...are you online and logged in?', 4000)
         });
       },
-      getSuggestedTerms: function(){ // find terms in text adn tag to resource
+      getSuggestedTerms: function(){ // find terms in text and tag to resource
         var textBlob = ""
-        textBlob = textBlob.concat(
+        textBlob = textBlob.concat( // single string to consider
           " " + this.resource.detail['title'],
           " " + this.resource.detail['subtitle'],
           " " + this.resource.detail['text'],
@@ -690,7 +699,7 @@ const addResource = Vue.component('addResource',{
           if(response.body){
             console.log(response.body)
             this.tags = response.body;
-            // for each this.tags.push(term) push to tags
+            // for each this.tags.push(term) push to tags?
           } else {
             Materialize.toast('Something went wrong...', 4000)
           }
@@ -702,7 +711,7 @@ const addResource = Vue.component('addResource',{
         console.log("close here after esc")
       },
       checkURL: function(){
-        // parse youtube/vimeo/other....set display type?....settime to view
+        // parse youtube/vimeo/other....set display type?....settime to view...
 
       },
       upsertResource(){
@@ -724,10 +733,7 @@ const addResource = Vue.component('addResource',{
               for(pindex in this.resource.detail){
                 holder.resource[pindex] = this.resource.detail[pindex]
               }
-
-              $('.addSections').flickity('selectCell', 1, true, false )//  value, isWrapped, isInstant
               this.$emit('added',holder)
-              this.getSuggestedTerms();
             } else if (this.synSetMeta){
               this.tagToSet();
               // need to format like resource to push
@@ -740,6 +746,11 @@ const addResource = Vue.component('addResource',{
               this.$emit('added',holder)
               $('#addResourceModal').modal('close')
             }
+            if(!this.synSetMeta){
+                this.getSuggestedTerms();
+                $('.addSections').flickity('selectCell', 1, true, false )//  value, isWrapped, isInstant
+            }
+
           } else {
             Materialize.toast('Something went wrong...', 4000)
           }
@@ -761,10 +772,6 @@ const addResource = Vue.component('addResource',{
       this.open();
       $('.modal-overlay').eq(1).appendTo('.resource-modal'); // workaround for stacking context
       $('.modal-overlay').eq(0).appendTo('#termModal'); // workaround for stacking context
-      // question
-      // insight
-      // criticism
-      // praise?
 
   },
   beforeRouteLeave: function (to, from, next){
@@ -778,5 +785,22 @@ const addResource = Vue.component('addResource',{
     }, 375)
 
     document.removeEventListener('keydown',function(){})
+  },
+  watch: {
+    discussionFilter: function(now,before) {
+
+      for(nIndex in now){ // there's probably a clever way of combining these things more elegantly...
+        if(!before.includes(now[nIndex])){
+          console.log('add the thang! ',now[nIndex])
+          this.addTag({setID: this.dIDs[now[nIndex]] })
+        }
+      }
+      for(bIndex in before){
+        if(!now.includes(before[bIndex])){
+          console.log('remove the thang! ',before[bIndex])
+          this.removeTag(this.dIDs[before[bIndex]])
+        }
+      }
+    }
   }
 });

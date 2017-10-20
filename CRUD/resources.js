@@ -24,7 +24,7 @@ module.exports = function(app, db){
   app.get('/resource/:rUID/set/', readSets);               // retrieve a resources tagged sets
   app.put('/api/resource/:rUID/set/', updateSets);         // batch add sets to resource (with ids) - adds provided tags, doesn't remove relationships
   app.post('/api/resource/:rUID/set/', batchSetSets);      // batch set sets to resource (with ids) - delete all tags relationships and create for  tags provided
-  app.put('/api/resource/:rUID/set/:sUID', updateSet);         // add a single set to a resources by id
+  app.put('/api/resource/:rUID/set/:sUID', addSet);         // add a single set to a resources by id
   app.delete('/api/resource/:rUID/set/:sUID', deleteSet);   // remove a single set relationship from a resources | DELETE /term/:uid to delete term node itself
 
   app.get('/resource/:ruid/discussion/', getDiscussion); // rename to meta???? add term/:tuid/meta
@@ -241,12 +241,15 @@ module.exports = function(app, db){
   }
   function batchSetSets(req,res){
   }
-  function updateSet(req,res){
+  function addSet(req,res){
     // TODO:check for member authorization...
     var cypher = "MATCH (resource:resource {uid:{resource}}) , (set:synSet {uid:{set}}) "
                + "MERGE (resource)-[r:TAGGED_WITH]->(set) "
                + "SET r.connectedBy = {member}, r.dateConnected = TIMESTAMP() "
-               + "RETURN resource, set"
+               + "WITH set "
+               + "MATCH (set)-[sr:IN_SET]-(term:term)-[lang:HAS_TRANSLATION]-(translation:translation)"
+               + "WHERE sr.order=1 AND lang.languageCode IN [ 'en' ] " // TODO: need to take user language
+               + "RETURN set as term, translation, set.uid as setID "
 
     db.query(cypher, {resource: req.params.rUID, set: req.params.sUID, member: res.locals.user.uid },function(err, result) {
       if (err) console.log(err);

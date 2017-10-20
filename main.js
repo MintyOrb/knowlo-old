@@ -18,6 +18,7 @@ const routes = [
   {  path: "/profile", component: profile },
   {  path: "/involved", component: involved },
   {  path: "/legal", component: legal },
+  { path: '*', redirect: '/' }
 ]
 
 const router = new VueRouter({

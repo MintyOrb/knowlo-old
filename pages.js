@@ -83,7 +83,7 @@ const termComp = Vue.component('termComp',{
           // triggering the new top icon from the front end is probably stupid.
           this.term.term.iconURL = top.resource.mThumb;
           this.$http.put('/api/set/'+ this.term.setID +'/'+ top.resource.uid + '/newTopIcon').then(response => {
-              Materialize.toast('back from new top', 4000)
+              Materialize.toast('New top icon!', 4000)
           }, response => {
              Materialize.toast('Something went wrong...are you online?', 4000)
           });
@@ -784,8 +784,7 @@ const explore = Vue.component('exploreComp',{
             console.log(this.$refs)
             // this.numberOfDisplayed =   this.$refs.resourceBin.getFilteredItemElements().length
         },
-        layout: function(mes) {
-          console.log('in layout: ', mes) // just for testing vue-images-loaded. Which I may never get to wrok.
+        layout: function() {
           for(termIndex in this.suggestionGroups){ // layout all isotope containers in term suggestionGroups
             if(this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID][0]){
               this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID][0].layout('masonry');
@@ -832,15 +831,17 @@ const explore = Vue.component('exploreComp',{
                 prevNextButtons: true,
                 accessibility: false, // to prevent jumping when focused
               })
-
+              console.log(response.body.length/2)
               $('#suggestionSteps').flickity({
-                // asNavFor: '.crossSectionNav',
                 wrapAround: true,
                 pageDots: false,
                 prevNextButtons: true,
                 accessibility: false, // to prevent jumping when focused
-                dragThreshold: 40 // play around with this more?
+                dragThreshold: 40
               });
+
+              // $('#suggestionNav').flickity( 'selectCell', response.body.length/2, false, false ); // why is this not working?
+
             });
           }, response => {
             // warning would be redundant?

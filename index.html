@@ -572,7 +572,7 @@
 									:display="'thumb'"
 									:key="term.translation.name"
 									v-on:include="addToQuery(term)"
-									v-on:exclude="addToQuery(term)"
+									v-on:exclude="removeWithin(term.term.uid)"
 									v-on:focus="addToQuery(term)"
 									v-on:pin="addToQuery(term)"
 									>
@@ -589,7 +589,7 @@
 									:display="'godMode'"
 									:key="term.setID"
 									v-on:include="addToQuery(term)"
-									v-on:exclude="addToQuery(term)"
+									v-on:exclude="removeContains(term.term.uid)"
 									v-on:focus="addToQuery(term)"
 									v-on:pin="addToQuery(term)"
 									>
@@ -698,9 +698,7 @@
 					<div class='btn blue' @click.once="upsertResource()">
 						add {{type}}
 					</div>
-					<div class='btn' @click="getSuggestedTerms">
-						bah
-					</div>
+
 			</div>
 			<div v-if="type=='discussion' || type=='resource'" class="addContainer">
 				<autocomplete exclude="" input-id="tagNewResources" v-on:select="addTag"></autocomplete>
@@ -709,9 +707,8 @@
  					 <div class="switch">
  						 <label>
  							 Insight
- 							 <input type="checkbox" value="insight" v-model="discussionFilter">>
+ 							 <input type="checkbox" value="insight" v-model="discussionFilter">
  							 <span class="lever"></span>
-
  						 </label>
  					 </div>
  					 <div class="switch">
@@ -719,7 +716,6 @@
  							 Question
  							 <input type="checkbox" value="question" v-model="discussionFilter">
  							 <span class="lever"></span>
-
  						 </label>
  					 </div>
  					 <div class="switch">
@@ -727,7 +723,13 @@
  							 Criticism
  							 <input type="checkbox" value="criticism" v-model="discussionFilter">
  							 <span class="lever"></span>
-
+ 						 </label>
+ 					 </div>
+					 <div class="switch">
+ 						 <label>
+ 							 Quote
+ 							 <input type="checkbox" value="quote" v-model="discussionFilter">
+ 							 <span class="lever"></span>
  						 </label>
  					 </div>
  				 </div>
