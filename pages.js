@@ -80,7 +80,7 @@ const termComp = Vue.component('termComp',{
             return (prev.globalVote.quality > current.globalVote.quality) ? prev : current
         })
         if(top.resource.mThumb != this.term.term.iconURL && top.globalVote.quality !== null){
-          // triggering the new top icon from the front end is probably stupid.
+          // triggering new top icon from the front end is probably stupid.
           this.term.term.iconURL = top.resource.mThumb;
           this.$http.put('/api/set/'+ this.term.setID +'/'+ top.resource.uid + '/newTopIcon').then(response => {
               Materialize.toast('New top icon!', 4000)
@@ -89,43 +89,14 @@ const termComp = Vue.component('termComp',{
           });
         }
       },
-      fetchProps: function(){
-        this.$http.get('/set/' + this.$route.params.uid + '/props/', {params: { languageCode: 'en'}}).then(response => {
-
-          var tempIcon = []
-          if(response.body.length > 0){
-            tempIcon = response.body.filter(prop => {
-              return prop.type=='url'
-            })
-            this.definitions = response.body.filter(prop => {
-              return prop.type=='definition';
-            })
-          } else {
-            Materialize.toast('Properties not found.', 4000)
-          }
-
-          // temp prop renaming...
-          for(icon in tempIcon){
-            tempIcon[icon].resource = {}
-            tempIcon[icon].resource.uid = icon;
-            tempIcon[icon].resource.mThumb = tempIcon[icon].translation.value
-            console.log('woahhhhhh')
-            console.log(tempIcon[icon])
-
-          }
-          this.icons=tempIcon;
-
-        }, response => {
-          Materialize.toast('Something went wrong...are you online?', 4000)
-        });
-      },
       newMeta: function(a,b){
         console.log(a)
+        console.log(b)
         console.log(this.addResourceType)
         if(this.addResourceType == 'definition'){
-          this.definitions.push(a)
+          this.definitions.push(a)// doesn't contain uid?
         } else if(this.addResourceType == 'icon'){
-          this.icons.push(a)
+          this.icons.push(a)// doesn't contain uid?
         }
       },
       fetchMeta: function(type){
@@ -133,11 +104,6 @@ const termComp = Vue.component('termComp',{
         if(this.member.uid != null){
           this.$http.get('/api/set/' + this.$route.params.uid + '/meta/', {params: { languageCode: 'en', type: type }}).then(response => {
             console.log(response.body)
-            if(response.body.length > 0){
-
-            } else {
-              Materialize.toast('No def found..... not found.', 4000)
-            }
             if(type=='definition'){
               this.definitions=response.body;
             } else if (type=='icon'){
@@ -149,11 +115,6 @@ const termComp = Vue.component('termComp',{
         } else {
           this.$http.get('/set/' + this.$route.params.uid + '/meta/', {params: { languageCode: 'en', type: type }}).then(response => {
             console.log(response.body)
-            if(response.body.length > 0){
-
-            } else {
-              Materialize.toast('No def found..... not found.', 4000)
-            }
             if(type=='definition'){
               this.definitions=response.body;
             } else if (type=='icon'){
@@ -217,7 +178,6 @@ const termComp = Vue.component('termComp',{
           if(response.body.length > 0){
             this.within = response.body;
           } else {
-            Materialize.toast('Within not found.', 4000)
             this.within = []
           }
         }, response => {
@@ -343,6 +303,7 @@ const termComp = Vue.component('termComp',{
       }
     },
     member: function() { // re-fetch on member login/logout
+      console.log('in term page watch member')
       this.$nextTick(x=>{
         this.fetchMeta('definition');
         this.fetchMeta('icon');
@@ -799,13 +760,6 @@ const explore = Vue.component('exploreComp',{
           }
 
         },
-        changeSuggestionGroup: function(group){
-          console.log('in change to: ',group)
-          console.log(sizeScale)
-          if(group =='size'){
-            this.suggestionGroups=sizeScale;
-          }
-        },
         getTerms: function(){
           var include = [];
           var exclude = [];
@@ -816,7 +770,9 @@ const explore = Vue.component('exploreComp',{
           this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
             // this.suggestions=response.body;
             // TODO: do I still need this.suggestions? maybe when all together?
+
             this.suggestionGroups=response.body;
+
 
             // setup suggection flickity
             this.$nextTick(function(){
@@ -824,30 +780,30 @@ const explore = Vue.component('exploreComp',{
                 $('#suggestionNav').flickity('destroy');
                 $('#suggestionSteps').flickity('destroy');
               }
-              $('#suggestionNav').flickity({
-                asNavFor: '#suggestionSteps',
-                // wrapAround: true,
-                pageDots: true,
-                prevNextButtons: true,
-                accessibility: false, // to prevent jumping when focused
-              })
-              console.log(response.body.length/2)
-              $('#suggestionSteps').flickity({
-                wrapAround: true,
-                pageDots: false,
-                prevNextButtons: true,
-                accessibility: false, // to prevent jumping when focused
-                dragThreshold: 40
-              });
-
+              if(response.body.length >0){
+                $('#suggestionNav').flickity({
+                  asNavFor: '#suggestionSteps',
+                  // wrapAround: true,
+                  pageDots: true,
+                  prevNextButtons: true,
+                  accessibility: false, // to prevent jumping when focused
+                })
+                $('#suggestionSteps').flickity({
+                  wrapAround: true,
+                  pageDots: false,
+                  prevNextButtons: true,
+                  accessibility: false, // to prevent jumping when focused
+                  dragThreshold: 40
+                });
+              }
               // $('#suggestionNav').flickity( 'selectCell', response.body.length/2, false, false ); // why is this not working?
-
             });
+
           }, response => {
             // warning would be redundant?
           });
         },
-        fetchContains: function(set){
+        fetchContains: function(set){ // used in fetching resource lens...
           this.$http.get('/set/' + set.setID + '/contains/', {params: { languageCode: 'en'}}).then(response => {
             if(response.body.length > 0){
               this.changeLens(response.body);
@@ -861,7 +817,6 @@ const explore = Vue.component('exploreComp',{
         fetchResources: function(){
           var include = [];
           var exclude = [];
-
           for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
             if(this.termQuery[termIndex]['status'].includeIcon){
               include.push(this.termQuery[termIndex]['setID'])
@@ -873,12 +828,8 @@ const explore = Vue.component('exploreComp',{
             console.log('get R - logged in')
             this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
               this.resources=response.body;
-              console.log(response.body)
               this.numberOfDisplayed = response.body.length;
               this.getTerms();
-              window.setTimeout(() =>{
-                this.layout()
-              }, 500);
             }, response => {
               console.log('error getting resources... ', response)
             });
@@ -886,12 +837,8 @@ const explore = Vue.component('exploreComp',{
             console.log('get R - not logged in')
             this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
               this.resources=response.body;
-
               this.numberOfDisplayed = response.body.length;
               this.getTerms();
-              window.setTimeout(() =>{
-                this.layout()
-              }, 500);
             }, response => {
               console.log('error getting resources... ', response)
             });
@@ -911,7 +858,7 @@ const explore = Vue.component('exploreComp',{
         Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
       }
 
-      // get previously selected lens - (remove after generalized to any group as a lens)
+      // get previously selected resource lens - (remove after generalized to any group as a lens)
       if(Cookies.get('lens') == 'null'){ // temporary until cross sections are generalized.
         this.changeLens(null)
       } else if (Cookies.get('lens') == "Big_History"){
@@ -930,7 +877,8 @@ const explore = Vue.component('exploreComp',{
 
       $('.dropdown-button').dropdown(); // init order-by dropdown
 
-      $('.element-item').imagesLoaded() // layout when images loaded and on progress...... doesn't seem to be working
+      // this is not working...
+      $('.element-item').imagesLoaded() // layout when images loaded and on progress......
         .always( ( instance ) => {
           console.log('all images loaded');
           this.$nextTick(function(){
@@ -940,36 +888,30 @@ const explore = Vue.component('exploreComp',{
           })
 
         });
-        // temp workaround as long as imagesLoaded() is not working
+        // workaround as long as imagesLoaded() non-functional
         setInterval(x => {
           this.layout();
         }, 3000);
 
     },
-    created: function(){
-      this.bigHistory = bigHistory;
-      this.size = disciplines;
-    },
     watch: {
-      member: function(b,y) { // re-fetch on member login/logout
-        console.log(b)
-        console.log(y)
+      member: function(newVal,oldVal) { // re-fetch resources/terms on member login/logout
         this.loginCheck = true;
         this.$nextTick(x=>{
           this.fetchResources()
         })
       },
       termQuery: function(val){
-        console.log('tq changed')
+        console.log('term query changed')
         Cookies.set('termQuery',val)
-        console.log(this.member)
         if(this.loginCheck){ // don't fetch before checking member login
           this.fetchResources();
         }
       },
       suggestionDisplay: function(val){
         console.log(val)
-        this.changeSuggestionGroup(val)
+        // getTerms?
+        // this.changeSuggestionGroup(val)
       },
     }
 });

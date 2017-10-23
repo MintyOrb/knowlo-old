@@ -191,7 +191,7 @@ Vue.component('resource',{
           if(this.re.memberVote && this.re.memberVote.quality != value[0]){
             this.re.memberVote.quality = value[0];
             this.vote();
-          } else if(!this.re.memberlVote){ // prevents vote trigger on resource init
+          } else if(!this.re.memberVote){ // prevents vote trigger on resource init
             this.re.memberVote = {};
             this.vote();
           }
@@ -211,8 +211,8 @@ Vue.component('resource',{
          if(this.re.memberVote && this.re.memberVote.complexity != value[0]){
            this.re.memberVote.complexity = value[0];
            this.vote();
-         } else if(!this.re.memberlVote){
-           this.re.memberVote = 'blah'
+         } else if(!this.re.memberVote){
+           this.re.memberVote = {};
            this.vote();
          }
 
@@ -715,20 +715,25 @@ const addResource = Vue.component('addResource',{
 
       },
       upsertResource(){
-        // create resource if no ID
-        //TODO: update by prop?
-
         this.$http.post('/resource', {resource:this.resource}).then(response => {
           if(response.body){
             this.resource.core = response.body;
+            console.log(response.body)
 
-            //TODO: add/sugest relevant terms based on response?
+            var holder ={// need to format like resource to push to display
+              memberVote:{
+                qualtiy:null,
+                complexity:null
+              },
+              globalVote:{
+                qualtiy:null,
+                complexity:null
+              },
+              votes: 0
+            };
 
             if(this.resourceMeta){
               this.tagToResource();
-              // need to format like resource to push
-              // could re-fetch on add but won't look as good to re-load all vs adding one.
-              var holder ={};
               holder.resource=this.resource.core;
               for(pindex in this.resource.detail){
                 holder.resource[pindex] = this.resource.detail[pindex]
@@ -736,9 +741,6 @@ const addResource = Vue.component('addResource',{
               this.$emit('added',holder)
             } else if (this.synSetMeta){
               this.tagToSet();
-              // need to format like resource to push
-              // could re-fetch on add but won't look as good to re-load all vs adding one.
-              var holder ={};
               holder.resource=this.resource.core;
               for(pindex in this.resource.detail){
                 holder.resource[pindex] = this.resource.detail[pindex]
@@ -766,7 +768,7 @@ const addResource = Vue.component('addResource',{
         $('#addResourceModal').css("position","sticky")
       } else if (this.$route.name=='setSub'){
         this.synSetMeta=true;
-        $('#addResourceModal').css("position","sticky")
+        // $('#addResourceModal').css("position","sticky")
       } // else connect to neither (standalone resource)
 
       this.open();

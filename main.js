@@ -51,14 +51,10 @@ const app = new Vue({
   },
   mounted: function(){
 
-
     // get term query
     if(Cookies.get('termQuery')){
         this.termQuery = Cookies.getJSON('termQuery');
     }
-
-    this.bigHistory = bigHistory.members//.slice(0,3);
-    // this.termQuery= disciplines.members.slice(0,3);
 
     var lang = window.navigator.userLanguage || window.navigator.language;
     console.log(lang)
@@ -90,26 +86,18 @@ const app = new Vue({
       firebase.auth().onAuthStateChanged((member) => {
          console.log('auth state changed....')
           if (member) {
-            console.log(member)
             this.member = member;
             this.member.first = member.displayName.substr(0,member.displayName.indexOf(' ')); // get first name -  if there is no space at all, then the first line will return an empty string and the second line will return the entire string
-            Vue.http.headers.common['Authorization'] = "Bearer " + member.Ed;
 
-            if(member.Ed){
-              console.log('found previous auth')
+            member.getIdToken().then((accessToken) => {
+              Vue.http.headers.common['Authorization'] = "Bearer " + accessToken;
+              this.touchMember();
               bus.$emit('login',member)
-            } else {
-              member.getIdToken().then((accessToken) => {
-                Vue.http.headers.common['Authorization'] = "Bearer " + accessToken;
-                this.touchMember();
-                bus.$emit('login',member)
-              });
-
-            }
+            });
 
           } else {
             console.log('in no member')
-            this.member = {uid:undefined}
+            this.member = {uid:null};
             Vue.http.headers.common['Authorization'] = '';
           }
         }, function(error) {
