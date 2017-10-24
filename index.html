@@ -215,9 +215,26 @@
 								</div>
 							</div>
 						</div>
-						<!-- suggestions un-grouped -->
-						<div v-if="suggestionDisplay == 'none' || suggestionDisplay == 'size'">
-							<isotope ref="togetherrr" :list="termSuggestions" :options='{}' class="step">
+						<!-- suggestions un-grouped filck -->
+						<div v-if="'size disciplines time'.indexOf(suggestionDisplay) > -1">
+							<div id='suggestionNav' class=" suggestionNav ">
+								<term
+									v-for="term in termSuggestions"
+									:key="term.setID"
+									:term="term"
+									:display="'thumb'"
+									v-on:main="addToQuery(term)"
+									v-on:include="addToQuery(term)"
+									v-on:exclude="addToQuery(term)"
+									v-on:focus="addToQuery(term)"
+									v-on:pin="addToQuery(term)"
+								>
+								</term>
+							</div>
+						</div>
+						<!-- suggestions un-grouped iso -->
+						<div v-if="' none '.indexOf(suggestionDisplay) > -1">
+							<isotope ref="together" :list="termSuggestions" :options='{}' class="step">
 								<term
 									v-for="term in termSuggestions"
 									:key="term.setID"
@@ -501,7 +518,7 @@
 			</span>
 
 			<!-- setdelete -->
-			<!-- <span v-if='true'class='btn' v-on:click="deleteSet(term.setID)">delete set</span> -->
+			<!-- <span v-if='true' class='btn' v-on:click="deleteSet(term.setID)">delete set</span> -->
 
 			<span class="right"><i class="fa fa-2x fa-times"></i></span>
 		</div>

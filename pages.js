@@ -711,7 +711,7 @@ const explore = Vue.component('exploreComp',{
         layout: function() {
           if(this.termSuggestions.length>0 && this.suggestionDisplay == 'groups'){
             for(termIndex in this.termSuggestions){ // layout all isotope containers in term termSuggestions
-              if(this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID]){
+              if(this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID] && this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID][0]){
                 this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID][0].layout('masonry');
               }
             }
@@ -729,7 +729,7 @@ const explore = Vue.component('exploreComp',{
         },
         initSuggestionGroupFlickity: function(moreThanZero){
           // setup suggestion group flickity
-          this.$nextTick(function(){
+          this.$nextTick(x=>{
             if($('#suggestionNav').flickity() && $('#suggestionSteps').flickity()){
               $('#suggestionNav').flickity('destroy');
               $('#suggestionSteps').flickity('destroy');
@@ -741,15 +741,16 @@ const explore = Vue.component('exploreComp',{
                 prevNextButtons: true,
                 accessibility: false, // to prevent jumping when focused
               })
-              $('#suggestionSteps').flickity({
-                wrapAround: true,
-                pageDots: false,
-                prevNextButtons: true,
-                accessibility: false, // to prevent jumping when focused
-                dragThreshold: 40
-              });
+              if(this.suggestionDisplay=='groups'){
+                $('#suggestionSteps').flickity({
+                  wrapAround: true,
+                  pageDots: false,
+                  prevNextButtons: true,
+                  accessibility: false, // to prevent jumping when focused
+                  dragThreshold: 40
+                });
+              }
             }
-            // $('#suggestionNav').flickity( 'selectCell', response.body.length/2, false, false ); // why is this not working?
           });
         },
         getTerms: function(){
@@ -758,14 +759,16 @@ const explore = Vue.component('exploreComp',{
           for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
             include.push(this.termQuery[termIndex]['term'].uid)
           }
-          this.termSuggestions=[]; // TODO: check if necessary after vue update
+          this.termSuggestions=[]; // TODO: check if pre-emptying necessary after vue update
           this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: [''], type: this.suggestionDisplay}}).then(response => {
             this.termSuggestions=response.body;
-            console.log(response.body)
-            if(this.suggestionDisplay=='groups'){
-              this.initSuggestionGroupFlickity(response.body.length>0);
-            }
-            this.layout();
+            this.initSuggestionGroupFlickity(response.body.length>0);
+            this.$nextTick(x=>{
+              window.setTimeout(()=>{ // need time to get flickity situated...
+                $('#suggestionNav').flickity( 'selectCell', response.body.length/2, false, false ); // why is this not working?
+              }, 75)
+            })
+          this.layout();
           }, response => {
             // warning would be redundant?
           });

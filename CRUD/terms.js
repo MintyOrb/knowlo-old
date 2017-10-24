@@ -80,6 +80,7 @@ function query(req, res){
 
   //  set by number of related tagged resources
   var cypher="";
+  var scale=""  // for uid of requested scale
   console.log(req.query)
   if(req.query.type=='none'){
    cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchSets:synSet) "
@@ -94,8 +95,14 @@ function query(req, res){
           // + "ORDER BY {orderby} {updown}"
           // + "SKIP {skip} "
           + "LIMIT 20";
-  } else if(req.query.type=="size"){
-    cypher = "MATCH (n:synSet {uid:'BJgVf2ZQYW'})<-[sizeR:IN_SET]-(size:synSet) "
+  } else if("size disciplines time".indexOf(req.query.type) >-1){
+    var scaleIDs={
+      'size':'BJgVf2ZQYW',
+      'disciplines':'Bylx_hVBa-',
+      'time':'BJNgnDdk-'
+    }
+    scale=scaleIDs[req.query.type];
+    cypher = "MATCH (n:synSet {uid:{scale}})<-[sizeR:IN_SET]-(size:synSet) "
           + "WITH size, sizeR "
           + "MATCH (size)<-[setR:IN_SET]-(t:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(translation:translation) "
             + "WHERE setR.order=1 "
@@ -127,7 +134,13 @@ function query(req, res){
   } else { // maybe just don't send a get you know won't return anything...
     req.query.include =[];
   }
-  db.query(cypher, {searchSets: req.query.include, ignoreTerms: req.query.exclude, searchTermsCount: len, lang: 'en' },function(err, result) {
+  db.query(cypher, {
+    searchSets: req.query.include,
+    ignoreTerms: req.query.exclude,
+    scale: scale,
+    searchTermsCount: len,
+    lang: 'en'
+  },function(err, result) {
     if (err) console.log(err);
     res.send(result)
   })

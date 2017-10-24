@@ -37,6 +37,7 @@
 }
 .headroom--pinned {
     transform: translateY(0%);
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.2), 0 7px 11px 0 rgba(0,0,0,0.19);
 }
 .headroom--unpinned {
     transform: translateY(-100%);
