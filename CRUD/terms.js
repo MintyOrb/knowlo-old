@@ -79,47 +79,58 @@ function query(req, res){
   req.query.exclude = req.query.exclude.concat(req.query.include) // don't return query terms
 
   //  set by number of related tagged resources
-  //  var cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchSets:synSet) "
-  //             + "WHERE searchSets.uid IN {searchSets} "
-  //             + "WITH contentNode, COUNT(searchSets) as count "
-  //             // + "WHERE count = {searchTermsCount} " // necessary to match resources with all included sets
-  //             + "MATCH (set:synSet)<-[:TAGGED_WITH]-(contentNode), "
-  //               + "(set:synSet)-[setR:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(translation:translation) "
-  //             + "WHERE setR.order=1 AND NOT set.uid IN {ignoreTerms} "
-  //             + "RETURN distinct count(DISTINCT contentNode) AS connections, translation, set as term, set.uid AS setID "
-  //             // + "ORDER BY connections DESC "
-  //             // + "ORDER BY {orderby} {updown}"
-  //             // + "SKIP {skip} "
-  //             + "LIMIT 20";
+  var cypher="";
+  console.log(req.query)
+  if(req.query.type=='none'){
+   cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchSets:synSet) "
+          + "WHERE searchSets.uid IN {searchSets} "
+          + "WITH contentNode, COUNT(searchSets) as count "
+          // + "WHERE count = {searchTermsCount} " // necessary to match resources with all included sets
+          + "MATCH (set:synSet)<-[:TAGGED_WITH]-(contentNode), "
+            + "(set:synSet)-[setR:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(translation:translation) "
+          + "WHERE setR.order=1 AND NOT set.uid IN {ignoreTerms} "
+          + "RETURN distinct count(DISTINCT contentNode) AS connections, translation, set as term, set.uid AS setID "
+          + "ORDER BY connections DESC "
+          // + "ORDER BY {orderby} {updown}"
+          // + "SKIP {skip} "
+          + "LIMIT 20";
+  } else if(req.query.type=="size"){
+    cypher = "MATCH (n:synSet {uid:'BJgVf2ZQYW'})<-[sizeR:IN_SET]-(size:synSet) "
+          + "WITH size, sizeR "
+          + "MATCH (size)<-[setR:IN_SET]-(t:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(translation:translation) "
+            + "WHERE setR.order=1 "
+          + "RETURN translation, size as term, size.uid AS setID, sizeR.order AS order "
+          + "ORDER BY order "
+  } else {
+    // sets and the groups that contain them
+     cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchSets:synSet) "
+            + "WHERE searchSets.uid IN {searchSets} "
+            + "WITH contentNode, COUNT(searchSets) as scount "
+            + "WHERE scount = {searchTermsCount} " // necessary to match resources with all included sets
+            + "MATCH (set:synSet)<-[:TAGGED_WITH]-(contentNode) " // get all sets tagged to all resources tagged that are with sets in query
+            + "WITH distinct set as s1, count(DISTINCT contentNode) AS connections "
+            + "MATCH (s1)-[:IN_SET]->(s2:synSet), " // get sets 'containing' related sets
+              + "(s1)-[s1R:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(s1translation:translation), " // get translation
+              + "(s2)-[s2R:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(s2translation:translation) " // get translation
+            + "WHERE s1R.order=1 AND s2R.order=1 AND NOT s2.uid IN {ignoreTerms} " // only top synonym and don't include search terms
+            + "WITH s2, s2translation, collect({term: s1, translation: s1translation, setID:s1.uid, connections:connections}) as contains  "
+            + "RETURN COLLECT(distinct{term:s2, translation: s2translation, setID:s2.uid}) AS group, contains, size(contains) as numInGroup  "
+            + "ORDER BY numInGroup DESC "
+            + "LIMIT 10"
+            // + "SKIP {skip} "
+            // + "LIMIT {limit}";// necessary?
+  }
 
-  // sets and the groups that contain them
-   var cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchSets:synSet) "
-              + "WHERE searchSets.uid IN {searchSets} "
-              + "WITH contentNode, COUNT(searchSets) as scount "
-              + "WHERE scount = {searchTermsCount} " // necessary to match resources with all included sets
-              + "MATCH (set:synSet)<-[:TAGGED_WITH]-(contentNode) " // get all sets tagged to all resources tagged that are with sets in query
-              + "WITH distinct set as s1, count(DISTINCT contentNode) AS connections "
-              + "MATCH (s1)-[:IN_SET]->(s2:synSet), " // get sets 'containing' related sets
-                + "(s1)-[s1R:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(s1translation:translation), " // get translation
-                + "(s2)-[s2R:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(s2translation:translation) " // get translation
-              + "WHERE s1R.order=1 AND s2R.order=1 AND NOT s2.uid IN {ignoreTerms} " // only top synonym and don't include search terms
-              + "WITH s2, s2translation, collect({term: s1, translation: s1translation, setID:s1.uid, connections:connections}) as contains  "
-              + "RETURN COLLECT(distinct{term:s2, translation: s2translation, setID:s2.uid}) AS group, contains, size(contains) as numInGroup  "
-              + "ORDER BY numInGroup DESC "
-              + "LIMIT 10"
-              // + "SKIP {skip} "
-              // + "LIMIT {limit}";// necessary?
-
-    var len = 0;
-    if(req.query.include && req.query.include !== 'undefined'){
-      len = req.query.include.length;
-    } else { // maybe just don't send a get you know won't return anything...
-      req.query.include =[];
-    }
-    db.query(cypher, {searchSets: req.query.include, ignoreTerms: req.query.exclude, searchTermsCount: len, lang: 'en' },function(err, result) {
-      if (err) console.log(err);
-      res.send(result)
-    })
+  var len = 0;
+  if(req.query.include && req.query.include !== 'undefined'){
+    len = req.query.include.length;
+  } else { // maybe just don't send a get you know won't return anything...
+    req.query.include =[];
+  }
+  db.query(cypher, {searchSets: req.query.include, ignoreTerms: req.query.exclude, searchTermsCount: len, lang: 'en' },function(err, result) {
+    if (err) console.log(err);
+    res.send(result)
+  })
 }
 /**
 * reads term core node and translation

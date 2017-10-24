@@ -558,7 +558,7 @@ const explore = Vue.component('exploreComp',{
             db: undefined,                      // search results to display - array of material objects
             loginCheck: false,                  // true after login status is checked
             crossSection: null,                 // object containing the name of the cross section and terms in lens group - object containing array of term objects and string name
-            suggestionGroups: [],               // holds suggestion groups and terms within
+            termSuggestions: [],               // holds suggestion groups and terms within
             suggestionDisplay: "",              // the name of the currently selected display for suggestions
             // termQuery: [],                   // terms selected for search - - array of term objects with flags for include/exclude/pin etc.
             suggestions: [],                    // suggested terms...not sure about ui, currently  - array of term objects
@@ -675,15 +675,12 @@ const explore = Vue.component('exploreComp',{
           } else {
               Cookies.set('lens', lens.name)
           }
-
           if(lens === null || this.crossSection===null || this.crossSection.name !== lens.name){
             if($('#crossSectionNav').flickity()){
               $('#crossSectionNav').flickity('destroy');
               $('#crossSectionSteps').flickity('destroy');
             }
-
             this.crossSection = lens
-
             this.$nextTick(function(){
               $('#crossSectionNav').flickity({
                 asNavFor: '#crossSectionSteps',
@@ -692,7 +689,6 @@ const explore = Vue.component('exploreComp',{
                 prevNextButtons: true,
                 accessibility: false, // to prevent jumping when focused
               })
-
               $('#crossSectionSteps').flickity({
                 // asNavFor: '.crossSectionNav',
                 wrapAround: true,
@@ -701,53 +697,22 @@ const explore = Vue.component('exploreComp',{
                 accessibility: false, // to prevent jumping when focused
                 dragThreshold: 40 // play around with this more?
               });
-
               this.$nextTick(function(){
                   this.layout();
               })
-
             });
           };
-        },
-        getContentOptions: function() { // need to rethink managing multiple iso instances - single function that take parameter?
-            return {
-                sortAscending: this.sortAscending,
-                itemSelector: ".element-item",
-                getSortData: this.getSortData,
-                getFilterData: this.getFilterData,
-            }
-        },
-        sort: function(key) {
-            if(key == this.sortOption){ // switch ascending/descending if sort option already selected
-              this.sortAscending = !this.sortAscending;
-            }
-            this.$nextTick(()=>{
-              var steps = $('.step'); // pretty serious antipattern here...make a registery when using cross section views instead?
-              for (var stepIndex = 0; stepIndex < steps.length; stepIndex++) {
-                if(steps[stepIndex].termName  !== undefined){
-                  steps[stepIndex]['__vue__'].sort(key)
-                }
-              }
-              // this.$refs.resourceBin.sort(key);
-              this.sortOption = key;
-            })
         },
         shuffle: function(key) {
             this.$refs.resourceBin.shuffle();
             this.$refs.key.shuffle();
             this.$refs.termQuery.shuffle();
         },
-        filter: function(key) {
-            // this.$refs.resourceBin.filter(key);
-            console.log(this.$refs)
-            // this.numberOfDisplayed =   this.$refs.resourceBin.getFilteredItemElements().length
-        },
         layout: function() {
-          if(this.suggestionGroups.length>0){
-            for(termIndex in this.suggestionGroups){ // layout all isotope containers in term suggestionGroups
-              console.log(termIndex)
-              if(this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID]){
-                this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID][0].layout('masonry');
+          if(this.termSuggestions.length>0 && this.suggestionDisplay == 'groups'){
+            for(termIndex in this.termSuggestions){ // layout all isotope containers in term termSuggestions
+              if(this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID]){
+                this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID][0].layout('masonry');
               }
             }
           }
@@ -762,42 +727,45 @@ const explore = Vue.component('exploreComp',{
           }
 
         },
+        initSuggestionGroupFlickity: function(moreThanZero){
+          // setup suggestion group flickity
+          this.$nextTick(function(){
+            if($('#suggestionNav').flickity() && $('#suggestionSteps').flickity()){
+              $('#suggestionNav').flickity('destroy');
+              $('#suggestionSteps').flickity('destroy');
+            }
+            if(moreThanZero){
+              $('#suggestionNav').flickity({
+                asNavFor: '#suggestionSteps',
+                pageDots: true,
+                prevNextButtons: true,
+                accessibility: false, // to prevent jumping when focused
+              })
+              $('#suggestionSteps').flickity({
+                wrapAround: true,
+                pageDots: false,
+                prevNextButtons: true,
+                accessibility: false, // to prevent jumping when focused
+                dragThreshold: 40
+              });
+            }
+            // $('#suggestionNav').flickity( 'selectCell', response.body.length/2, false, false ); // why is this not working?
+          });
+        },
         getTerms: function(){
           var include = [];
           var exclude = [];
           for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
             include.push(this.termQuery[termIndex]['term'].uid)
           }
-          this.suggestionGroups =[];
-          this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
-
-            this.suggestionGroups=response.body;
-
-            // setup suggection flickity
-            this.$nextTick(function(){
-              if($('#suggestionNav').flickity() && $('#suggestionSteps').flickity()){
-                $('#suggestionNav').flickity('destroy');
-                $('#suggestionSteps').flickity('destroy');
-              }
-              if(response.body.length >0){
-                $('#suggestionNav').flickity({
-                  asNavFor: '#suggestionSteps',
-                  // wrapAround: true,
-                  pageDots: true,
-                  prevNextButtons: true,
-                  accessibility: false, // to prevent jumping when focused
-                })
-                $('#suggestionSteps').flickity({
-                  wrapAround: true,
-                  pageDots: false,
-                  prevNextButtons: true,
-                  accessibility: false, // to prevent jumping when focused
-                  dragThreshold: 40
-                });
-              }
-              // $('#suggestionNav').flickity( 'selectCell', response.body.length/2, false, false ); // why is this not working?
-            });
-
+          this.termSuggestions=[]; // TODO: check if necessary after vue update
+          this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: [''], type: this.suggestionDisplay}}).then(response => {
+            this.termSuggestions=response.body;
+            console.log(response.body)
+            if(this.suggestionDisplay=='groups'){
+              this.initSuggestionGroupFlickity(response.body.length>0);
+            }
+            this.layout();
           }, response => {
             // warning would be redundant?
           });
@@ -908,7 +876,7 @@ const explore = Vue.component('exploreComp',{
       suggestionDisplay: function(val){
         console.log(val)
         Cookies.set('suggestionDisplay',val)
-        // getTerms?
+        this.getTerms();
       },
     }
 });

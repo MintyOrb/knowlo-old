@@ -185,7 +185,7 @@
 							<div id='suggestionNav' class=" suggestionNav ">
 								<!-- flickity navigation for isotope containers -->
 								<term
-									v-for="group in suggestionGroups"
+									v-for="group in termSuggestions"
 									:key="group.group[0].setID"
 									:term="group.group[0]"
 									:display="'thumb'"
@@ -198,7 +198,7 @@
 							</div>
 							<!-- isotope contianers -->
 							<div id='suggestionSteps' class=" suggestionSteps">
-								<div v-for="step in suggestionGroups" class="suggestionGroupStep" >
+								<div v-for="step in termSuggestions" class="suggestionGroupStep" >
 									<isotope  :ref='"suggestionBin" + step.group[0].setID' class="step" :list="step.contains" :options='{}'>
 										<div v-for="term in step.contains" class='element-item' :key="term.setID">
 											<term :term="term"
@@ -216,21 +216,20 @@
 							</div>
 						</div>
 						<!-- suggestions un-grouped -->
-						<div v-if="suggestionDisplay == 'none'">
-							<isotope ref="key" :list="suggestionGroups" :options='{}' class="step">
-			          <div v-for="group in suggestionGroups"  class='suggestion'>
-									<term
-										v-for="group in suggestionGroups"
-										:key="group.group[0].setID"
-										:term="group.group[0]"
-										:display="'thumb'"
-										v-on:include="includeSearch"
-										v-on:exclude="includeSearch"
-										v-on:focus="focus"
-										v-on:lens="fetchContains"
-									>
-									</term>
-			          </div>
+						<div v-if="suggestionDisplay == 'none' || suggestionDisplay == 'size'">
+							<isotope ref="togetherrr" :list="termSuggestions" :options='{}' class="step">
+								<term
+									v-for="term in termSuggestions"
+									:key="term.setID"
+									:term="term"
+									:display="'thumb'"
+									v-on:main="addToQuery(term)"
+									v-on:include="addToQuery(term)"
+									v-on:exclude="addToQuery(term)"
+									v-on:focus="addToQuery(term)"
+									v-on:pin="addToQuery(term)"
+								>
+								</term>
 			        </isotope>
 						</div>
 		    </div>
@@ -284,7 +283,7 @@
 				<!-- results all together -->
 				<transition name="fade">
 				<div v-if="!crossSection" >
-			    <isotope ref="resourceBin" class="step" :list="resources" :options='getContentOptions()' id="container"  >
+		    <isotope ref="resourceBin" class="step" :list="resources" :options='{}' id="container"  >
 		        <div v-for="re in resources" class='element-item' :key="re.resource.uid" :class="{'fullWidth': resourceDisplay=='list'}">
 		          	<resource :re="re" :display="resourceDisplay" :class="{'listFullWidth': resourceDisplay=='list'}"></resource>
 		        </div>
@@ -501,6 +500,7 @@
 				<span>{{term.translation.name}}</span>
 			</span>
 
+			<!-- setdelete -->
 			<!-- <span v-if='true'class='btn' v-on:click="deleteSet(term.setID)">delete set</span> -->
 
 			<span class="right"><i class="fa fa-2x fa-times"></i></span>
