@@ -331,8 +331,11 @@ module.exports = function(app, db){
     var cypher = "MATCH (re:resource {uid:{uid}}) "
                + "OPTIONAL MATCH (re)-[TAGGED_WITH]->(discussion:resource)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
                + "WHERE p.order=1 AND plang.languageCode IN [ {languageCode} , 'en' ] "
+               + "WITH discussion, collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties "
+               + "OPTIONAL MATCH (discussion)-[:TAGGED_WITH]->(set:synSet) " // get sets for discussion filter
                + "RETURN discussion as resource, "
-               + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties "
+               + "collect(DISTINCT set.uid) AS setIDs, "
+               + "properties "
                // + "ORDER BY {orderby} {updown}"
               //  + "SKIP {skip} "
               //  + "LIMIT {limit}";

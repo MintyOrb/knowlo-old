@@ -849,6 +849,9 @@ and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e
       padding-right: 50px;
     }
     .resourceStep{ width:100vw!important;}
+    #termSuggestionOptions span {
+      width: 150px;
+    }
 }
 /* iPads (portrait and landscape) ----------- */
 @media only screen

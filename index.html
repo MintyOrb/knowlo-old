@@ -177,6 +177,10 @@
 		      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='none' id="none" />
 		      <label for="none">None</label>
 		    </span>
+				<span>
+		      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='member' id="member" />
+		      <label for="member">{{member.first}}</label>
+		    </span>
 		  </form>
 			<div><!--  suggested -->
 		    <div class='row'>
@@ -445,6 +449,13 @@
 
 						 </label>
 					 </div>
+					 <div class="switch">
+						 <label>
+							 Quote
+							 <input type="checkbox" value="quote" v-model="discussionFilter">
+							 <span class="lever"></span>
+						 </label>
+					 </div>
 				 </div>
 				 <div class='message well' v-if="discussion.length == 0">
 					<div style='margin-bottom:40px;'>
@@ -454,7 +465,7 @@
 						<a @click="addResourceType='discussion'; addResource = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 					</div>
 				 </div>
-				 <isotope v-else ref="discussionBin" class="step" :list="discussion" :options='{}' id="container"  >
+				 <isotope v-else ref="discussionBin" class="step" :list="discussion" :options='discussionIsotope()' id="container"  >
 					 <div v-for="re in discussion" class='element-item' :key="re.resource.uid" :class="{'fullWidth': display=='list'}">
 							 <resource :re="re" :display="'godMode'"></resource>
 					 </div>

@@ -326,11 +326,17 @@ const resourceComp = Vue.component('resourceComp',{
               resource: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if resource is not found
               terms: [],
               discussion: [],
-              discussionFilter: [], // which types of discussions should be displayed
               display: 'card', // default display for discussion
               resourceSection: ["About","Discussion","Terms","Related"],
               addResource:false,
               addResourceType: '',
+              discussionFilter: [], // which types of discussions should be displayed
+              filterIDs: { // setIDS for adding by switch
+                'insight':'rJxPWooTO-',
+                'question':'B1pnQsYW-',
+                'quote':'BkF3xoFW-',
+                'criticism':'rJxYeYW43b',
+              },
             }
           },
     methods: {
@@ -471,6 +477,24 @@ const resourceComp = Vue.component('resourceComp',{
       addToQuery: function(item){
           this.$emit('add',item)
       },
+      discussionIsotope: function() {
+        return {
+          getFilterData: {
+            "type": el => {
+              var setIDs = [] // ids of filter sets
+              // with name of sets, get ids from object with names and ides
+              for(nameIndex in this.discussionFilter){
+                if(this.filterIDs[this.discussionFilter[nameIndex]]){
+                  setIDs.push(this.filterIDs[this.discussionFilter[nameIndex]])
+                }
+              }
+              return el.setIDs.some(x => {
+                return setIDs.includes(x);
+              })
+            }
+          },
+        }
+      },
       initImage: function(){
         // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
 
@@ -539,8 +563,14 @@ const resourceComp = Vue.component('resourceComp',{
     watch: {
       '$route.params.uid': function (id) {
         this.fetchResource();
-        }
+      },
+      discussionFilter: function (a,b) {
+        console.log(a);
+        console.log(b);
+
+        this.$refs.discussionBin.filter('type');
       }
+    }
 });
 
 /*
@@ -690,7 +720,6 @@ const explore = Vue.component('exploreComp',{
                 accessibility: false, // to prevent jumping when focused
               })
               $('#crossSectionSteps').flickity({
-                // asNavFor: '.crossSectionNav',
                 wrapAround: true,
                 pageDots: false,
                 prevNextButtons: true,
@@ -722,7 +751,7 @@ const explore = Vue.component('exploreComp',{
           if(this.$refs.termQuery){
             this.$refs.termQuery.layout('masonry');
           }
-          if(!this.crossSection || this.crossSection.length == 0){
+          if(this.$refs.resourceBin && (!this.crossSection || this.crossSection.length == 0) ){
             this.$refs.resourceBin.layout('masonry');
           }
 
@@ -764,8 +793,8 @@ const explore = Vue.component('exploreComp',{
             this.termSuggestions=response.body;
             this.initSuggestionGroupFlickity(response.body.length>0);
             this.$nextTick(x=>{
-              window.setTimeout(()=>{ // need time to get flickity situated...
-                $('#suggestionNav').flickity( 'selectCell', response.body.length/2, false, false ); // why is this not working?
+              window.setTimeout(x=>{ // need time to get flickity situated...
+                $('#suggestionNav').flickity( 'selectCell', Math.round(response.body.length/2), false, false ); // why is this not working?
               }, 75)
             })
           this.layout();

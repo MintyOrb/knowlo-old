@@ -76,17 +76,16 @@ function order(req, res){
 */
 function query(req, res){
 
-  req.query.exclude = req.query.exclude.concat(req.query.include) // don't return query terms
+  req.query.exclude = req.query.exclude.concat(req.query.include) // don't return query terms with group
 
-  //  set by number of related tagged resources
   var cypher="";
   var scale=""  // for uid of requested scale
   console.log(req.query)
   if(req.query.type=='none'){
+    //  set by number of related tagged resources
    cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchSets:synSet) "
           + "WHERE searchSets.uid IN {searchSets} "
           + "WITH contentNode, COUNT(searchSets) as count "
-          // + "WHERE count = {searchTermsCount} " // necessary to match resources with all included sets
           + "MATCH (set:synSet)<-[:TAGGED_WITH]-(contentNode), "
             + "(set:synSet)-[setR:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(translation:translation) "
           + "WHERE setR.order=1 AND NOT set.uid IN {ignoreTerms} "
