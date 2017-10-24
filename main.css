@@ -12,8 +12,10 @@
   position: sticky;
   top: 0;
   background-color: white;
+  margin-bottom: 10px;
   z-index: 100;
   padding: 10px 20px 6px 20px;
+  box-shadow:0 5px 5px 0 rgba(0,0,0,0.2), 0 7px 11px 0 rgba(0,0,0,0.19);
 }
 .addDetail{
   padding: 5px;
@@ -369,11 +371,13 @@ iframe{
   margin: 0px;
   border-radius: 0;
 }
-.resourceNav {
+.metaNav {
   position: sticky;
   top: 0;
   z-index: 1000;
   background-color: white;
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,0.2), 0 7px 11px 0 rgba(0,0,0,0.19);
+  margin-bottom: 10px;
 }
 .termNav {
   position: sticky;

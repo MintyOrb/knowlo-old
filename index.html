@@ -41,9 +41,9 @@
 						  <!-- show icon on medium and down? no materialize-css class for it -->
 							<!-- <a data-target="login-modal" class="show-on-med-and-down"><i class="material-icons fa fa-lg fa-sign-in"></i></a> -->
 						</li>
-						<li v-else v-cloak style="margin:12px">
+						<li v-else v-cloak >
 							<!-- member icon here? -->
-							{{member.first}}
+							<router-link to="/profile">{{member.first}}</router-link>
 						</li>
 						<li><a data-activates="query-slide" class="termQuery-collapse show-on-large "><i class="material-icons">menu</i></a></li>
 					</ul>
@@ -181,7 +181,7 @@
 			<div><!--  suggested -->
 		    <div class='row'>
 						<!-- suggestions grouped -->
-						<div>
+						<div v-if="suggestionDisplay == 'groups'">
 							<div id='suggestionNav' class=" suggestionNav ">
 								<!-- flickity navigation for isotope containers -->
 								<term
@@ -216,10 +216,13 @@
 							</div>
 						</div>
 						<!-- suggestions un-grouped -->
-						<!-- <div>
-							<isotope ref="key" :list="suggestions" :options='{}' class="step">
-			          <div v-for="word in suggestions"  class='suggestion' :key="word.setID">
-									<term :term="word"
+						<div v-if="suggestionDisplay == 'none'">
+							<isotope ref="key" :list="suggestionGroups" :options='{}' class="step">
+			          <div v-for="group in suggestionGroups"  class='suggestion'>
+									<term
+										v-for="group in suggestionGroups"
+										:key="group.group[0].setID"
+										:term="group.group[0]"
 										:display="'thumb'"
 										v-on:include="includeSearch"
 										v-on:exclude="includeSearch"
@@ -229,7 +232,7 @@
 									</term>
 			          </div>
 			        </isotope>
-						</div> -->
+						</div>
 		    </div>
 			</div><!-- suggested -->
 
@@ -240,9 +243,6 @@
 				<span class='right'>
 					<a class="dropdown-button viewBtn" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
 					<ul id='order' class='dropdown-content sort'>
-						<!-- <li><a @click="changeLens(bigHistory)">Big History</a></li>
-						<li><a @click="changeLens(size)">Size</a></li>
-						<li><a @click="changeLens(null)">none</a></li> -->
 						<li class=''><a>quality</a></li>
 						<li class='disabled'><a>complexity</a></li>
 						<li class='disabled'><a>date added</a></li>
@@ -273,7 +273,7 @@
 						<div v-for="step in crossSection" class="stepContainer">
 							<isotope :ref='"resourceBin" + step.setID' class="step" :list="resources" :options='{}'>
 								<div v-for="re in resources" v-if="re.termIDs.includes(step.setID)" class='element-item' :key="re.resource.uid">
-										<resource :re="re" :display="display"></resource>
+										<resource :re="re" :display="resourceDisplay"></resource>
 								</div>
 							 </isotope>
 						</div>
@@ -285,8 +285,8 @@
 				<transition name="fade">
 				<div v-if="!crossSection" >
 			    <isotope ref="resourceBin" class="step" :list="resources" :options='getContentOptions()' id="container"  >
-		        <div v-for="re in resources" class='element-item' :key="re.resource.uid" :class="{'fullWidth': display=='list'}">
-		          	<resource :re="re" :display="display" :class="{'listFullWidth': display=='list'}"></resource>
+		        <div v-for="re in resources" class='element-item' :key="re.resource.uid" :class="{'fullWidth': resourceDisplay=='list'}">
+		          	<resource :re="re" :display="resourceDisplay" :class="{'listFullWidth': resourceDisplay=='list'}"></resource>
 		        </div>
 		      </isotope>
 					</div>
@@ -369,7 +369,7 @@
 		</div>
 
 		<div class="resourceMeta">
-			<div class="resourceNav">
+			<div class="metaNav">
 			 <!-- flick navigation for isotope containers -->
 			 <div v-for="step in resourceSection" class="navItems">
 				 <p>
@@ -500,13 +500,14 @@
 			<span >
 				<span>{{term.translation.name}}</span>
 			</span>
-			<!-- <span v-if='true'class='btn' v-on:click="deleteSet(term.setID)">delete set
-			</span> -->
+
+			<!-- <span v-if='true'class='btn' v-on:click="deleteSet(term.setID)">delete set</span> -->
+
 			<span class="right"><i class="fa fa-2x fa-times"></i></span>
 		</div>
 		<!-- flick navigation for isotope containers -->
 		<div class="termMeta">
-			<div class="termNav">
+			<div class="metaNav">
 				<div v-for="step in termSection" class="navItems">
 					<p>
 						{{step}}
@@ -1167,7 +1168,7 @@
 	 <li><a href="#" class="subheader" id="navName">Knowlo</a></li>
 		<li><div class="divider"></div></li>
 		<li v-if="!member.uid"><a data-target="login-modal" class="waves-effect"><i class="fa fa-lg fa-sign-in"></i>Login | Sign Up</a></li>
-		<li ><a @click="signOut" class="waves-effect"><i class="fa fa-lg fa-sign-out"></i>Log Out</a></li>
+		<li v-else ><a @click="signOut" class="waves-effect"><i class="fa fa-lg fa-sign-out"></i>Log Out</a></li>
 		<li><div class="divider"></div></li>
 		<li><a class="subheader"></a></li>
 	 <!-- <li><router-link class="waves-effect" to="/home"><i class="fa fa-lg fa-home"></i>Home</router-link></li> -->

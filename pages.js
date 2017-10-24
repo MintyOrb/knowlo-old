@@ -62,8 +62,8 @@ const termComp = Vue.component('termComp',{
                 $('body').css("overflow","hidden")
               },
               complete: () => {
-                if(  $('.termNav').flickity()){
-                  $('.termNav').flickity('destroy');
+                if(  $('.metaNav').flickity()){
+                  $('.metaNav').flickity('destroy');
                   $('.termSections').flickity('destroy');
                 }
                 $('body').css("overflow","auto")
@@ -261,7 +261,7 @@ const termComp = Vue.component('termComp',{
     },
     mounted: function(){
       this.init();
-      $('.termNav').flickity({
+      $('.metaNav').flickity({
         asNavFor: '.termSections',
         pageDots: true,
         prevNextButtons: true,
@@ -269,7 +269,6 @@ const termComp = Vue.component('termComp',{
       })
 
       $('.termSections').flickity({
-        // asNavFor: '.termNav',
         wrapAround: true,
         pageDots: false,
         prevNextButtons: true,
@@ -336,8 +335,7 @@ const resourceComp = Vue.component('resourceComp',{
           },
     methods: {
       changeDisplay: function(disp){ // TODO: make dry ( essentially duplicated from explore) - make resource bin component?
-        this.display = disp
-        // Cookies.set('displayStyle', disp)
+        this.resourceDisplay = disp
         // weird to wrap a timeout with next tick, but css lags and screws up the layout after transistion
         this.$nextTick(function(){
           window.setTimeout(()=>{
@@ -382,12 +380,12 @@ const resourceComp = Vue.component('resourceComp',{
 
           this.$nextTick(function(){
 
-            if($('.resourceNav').flickity() && $('.resourceSections').flickity()){
-              $('.resourceNav').flickity('destroy');
+            if($('.metaNav').flickity() && $('.resourceSections').flickity()){
+              $('.metaNav').flickity('destroy');
               $('.resourceSections').flickity('destroy');
             }
 
-            $('.resourceNav').flickity({
+            $('.metaNav').flickity({
               asNavFor: '.resourceSections',
               // wrapAround: true,
               pageDots: true,
@@ -399,7 +397,6 @@ const resourceComp = Vue.component('resourceComp',{
 
             $('.resourceSections').flickity({
               wrapAround: true,
-              // asNavFor: '.resourceNav',
               pageDots: false,
               prevNextButtons: true,
               accessibility: false, // to prevent jumping when focused
@@ -567,7 +564,7 @@ const explore = Vue.component('exploreComp',{
             suggestions: [],                    // suggested terms...not sure about ui, currently  - array of term objects
             resources: [],                      // db when no lens, replace with db even though less items? - array of term objects
             numberOfDisplayed: null,            // number of materials currently displayed
-            display: undefined,                 // display option for materials in search result - string name of displaytype (thumb, list, card)
+            resourceDisplay: undefined,                 // display option for materials in search result - string name of displaytype (thumb, list, card)
             currentLayout: 'masonry',           // incase want to change isotope display type...not used now
             sortOption: "original-order",       // to sort search results by - string name
             sortAscending: true,                // whether sort whould be ascending or descending - boolean
@@ -662,8 +659,8 @@ const explore = Vue.component('exploreComp',{
           this.fetchResources();
         },
         changeDisplay: function(disp){
-          this.display = disp
-          Cookies.set('displayStyle', disp)
+          this.resourceDisplay = disp
+          Cookies.set('resourceDisplay', disp)
           // weird to wrap a timeout with next tick, but css lags and screws up the layout after transistion
           this.$nextTick(function(){
             window.setTimeout(()=>{
@@ -746,15 +743,20 @@ const explore = Vue.component('exploreComp',{
             // this.numberOfDisplayed =   this.$refs.resourceBin.getFilteredItemElements().length
         },
         layout: function() {
-          for(termIndex in this.suggestionGroups){ // layout all isotope containers in term suggestionGroups
-            if(this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID][0]){
-              this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID][0].layout('masonry');
+          if(this.suggestionGroups.length>0){
+            for(termIndex in this.suggestionGroups){ // layout all isotope containers in term suggestionGroups
+              console.log(termIndex)
+              if(this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID]){
+                this.$refs['suggestionBin' + this.suggestionGroups[termIndex].group[0].setID][0].layout('masonry');
+              }
             }
           }
           for(termIndex in this.crossSection){ // layout all isotope containers in cross section
             this.$refs['resourceBin' + this.crossSection[termIndex].setID][0].layout('masonry');
           }
-          this.$refs.termQuery.layout('masonry');
+          if(this.$refs.termQuery){
+            this.$refs.termQuery.layout('masonry');
+          }
           if(!this.crossSection || this.crossSection.length == 0){
             this.$refs.resourceBin.layout('masonry');
           }
@@ -768,11 +770,8 @@ const explore = Vue.component('exploreComp',{
           }
           this.suggestionGroups =[];
           this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: ['']}}).then(response => {
-            // this.suggestions=response.body;
-            // TODO: do I still need this.suggestions? maybe when all together?
 
             this.suggestionGroups=response.body;
-
 
             // setup suggection flickity
             this.$nextTick(function(){
@@ -858,20 +857,18 @@ const explore = Vue.component('exploreComp',{
         Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
       }
 
-      // get previously selected resource lens - (remove after generalized to any group as a lens)
-      if(Cookies.get('lens') == 'null'){ // temporary until cross sections are generalized.
-        this.changeLens(null)
-      } else if (Cookies.get('lens') == "Big_History"){
-        this.changeLens(this.bigHistory)
+      // get previously selected resource display Style
+      if(!Cookies.get('resourceDisplay')){
+        this.resourceDisplay = "card";
       } else {
-        this.changeLens(this.size)
+        this.resourceDisplay = Cookies.get('resourceDisplay');
       }
 
-      // get previously selected resource display Style
-      if(!Cookies.get('displayStyle')){
-        this.display = "card";
+      // get previously selected suggestionDisplay
+      if(!Cookies.get('suggestionDisplay')){
+        this.suggestionDisplay = "size";
       } else {
-        this.display = Cookies.get('displayStyle');
+        this.suggestionDisplay = Cookies.get('suggestionDisplay');
       }
 
 
@@ -910,8 +907,8 @@ const explore = Vue.component('exploreComp',{
       },
       suggestionDisplay: function(val){
         console.log(val)
+        Cookies.set('suggestionDisplay',val)
         // getTerms?
-        // this.changeSuggestionGroup(val)
       },
     }
 });
