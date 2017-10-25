@@ -35,6 +35,7 @@ module.exports = function(app, db){
   app.put('/api/resource/:rID/vote', castVote);
   app.put('/api/resource/:rUID/termSuggest', suggestedTerms);
 
+  app.get('/resource/:rUID/related/', getRelated);
 
   function query(req, res){
     /**
@@ -366,6 +367,40 @@ module.exports = function(app, db){
       if (err) console.log(err);
       if(result){
         res.send(result[0])
+      } else {
+        res.send()
+      }
+    })
+  }
+
+  function getRelated(req,res){
+    var cypher = "MATCH (main:resource {uid:{resource}})-[:TAGGED_WITH]->(mainSets:synSet) "
+        + "WITH main.uid as mainID, collect(distinct mainSets.uid) as mainSetIDs "
+        + "MATCH (other:resource)-[:TAGGED_WITH]->(otherSet:synSet) "
+          + "WHERE otherSet.uid IN mainSetIDs AND NOT other.uid = mainID "
+        + "WITH other, count(*) AS connected "
+        + "OPTIONAL MATCH (:member)-[gVote:CAST_VOTE]->(other) " // get global rankings
+          + "WITH connected, other, AVG(gVote.quality) AS gq, AVG(gVote.complexity) AS gc, COUNT(distinct gVote) AS votes "
+        + "OPTIONAL MATCH (other)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
+        + "WHERE p.order=1 AND plang.languageCode IN [ {language} , 'en' ] "
+        + "RETURN "
+          // + "collect(DISTINCT {term: synSet.uid, url: synSet.url, translation: {name: tlangNode.name, languageCode: tlang.languageCode } } ) AS terms, " //will need to do the optional match if terms needed...
+          + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
+          + "{quality: gq , complexity: gc } AS globalVote, "
+          + "votes, "
+          + "other AS resource, connected "
+        + "ORDER BY connected DESC "
+        + "LIMIT 10" // should do param...
+    db.query(cypher, {resource: req.params.rUID, language: 'en' },function(err, result) {
+      if (err) console.log(err);
+      for(rindex in result){
+        for(pindex in result[rindex].properties){
+          result[rindex].resource[result[rindex].properties[pindex].type] = result[rindex].properties[pindex].value;
+        }
+        delete result[rindex].properties // no need to send redundant data
+      }
+      if(result){
+        res.send(result)
       } else {
         res.send()
       }

@@ -408,7 +408,7 @@
 
 				<div class="resourceStep discussion">
 					<div class="center pad margin20">
-					 <span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
+						<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
 					 <span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
 					 <span class='right'>
 						 <a class="dropdown-button viewBtn" data-activates='disOrder' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
@@ -422,6 +422,8 @@
  							<li class='disabled'><a># responses</a></li>
 						 </ul>
 					 </span>
+					 <span class="right" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
+
 					 <br/>
 				 </div>
 				 <div class='disSwitch center'>
@@ -489,9 +491,12 @@
 					<autocomplete exclude="" input-id="resourceTest" v-on:select="addTerm"></autocomplete>
 				</div>
 				<div class="resourceStep">
-					Related
+					<isotope ref='relatedBin' class="step" :list="related" :options='{}'>
+						<div v-for="re in related" class='element-item' :key="re.resource.uid">
+								<resource :re="re" :display="'card'"></resource>
+						</div>
+					 </isotope>
 				</div>
-
 		 </div>
 		 <div class="addBtn">
  			<a @click="addResourceType='discussion'; addResource = true" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
@@ -529,7 +534,7 @@
 			</span>
 
 			<!-- setdelete -->
-			<!-- <span v-if='true' class='btn' v-on:click="deleteSet(term.setID)">delete set</span> -->
+			<span v-if='true' class='btn' v-on:click="deleteSet(term.setID)">delete set</span>
 
 			<span class="right"><i class="fa fa-2x fa-times"></i></span>
 		</div>

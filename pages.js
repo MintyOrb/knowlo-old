@@ -324,14 +324,15 @@ const resourceComp = Vue.component('resourceComp',{
     data: function() {
           return {
               resource: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if resource is not found
-              terms: [],
-              discussion: [],
+              terms: [], // current resources terms
+              discussion: [], // resources within discussion
+              related: [], // resources related to current resource
               display: 'card', // default display for discussion
               resourceSection: ["About","Discussion","Terms","Related"],
               addResource:false,
               addResourceType: '',
-              discussionFilter: [], // which types of discussions should be displayed
-              filterIDs: { // setIDS for adding by switch
+              discussionFilter: ["insight","question","criticism","quote"], // which types of discussions should be displayed
+              filterIDs: { // setIDS for filtering by switch
                 'insight':'rJxPWooTO-',
                 'question':'B1pnQsYW-',
                 'quote':'BkF3xoFW-',
@@ -383,6 +384,7 @@ const resourceComp = Vue.component('resourceComp',{
       },
       init: function(){
           this.fetchDiscussion();
+          this.fetchRelated();
 
           this.$nextTick(function(){
 
@@ -449,6 +451,19 @@ const resourceComp = Vue.component('resourceComp',{
       },
       addCreatedDiscussion: function(dis){
         this.discussion.push(dis)
+      },
+      fetchRelated: function(){
+        console.log('in fetch related')
+        this.$http.get('/resource/' + this.$route.params.uid + '/related', {params: { languageCode: 'en'}}).then(response => {
+          console.log(response.body)
+          if(response.body.length>0){
+            this.related = response.body;
+          } else {
+            this.related=[]
+          }
+        }, response => {
+          // Materialize.toast('Something went wrong...are you online?', 4000)
+        });
       },
       addTerm: function(set){
         this.$http.put('/api/resource/'+ this.resource.uid +'/set/'+ set.setID).then(response => {
