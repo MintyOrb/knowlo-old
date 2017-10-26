@@ -37,6 +37,9 @@ module.exports = function(app, db){
 
   app.get('/resource/:rUID/related/', getRelated);
 
+
+  app.put('/api/resource/:rUID/viewed', viewed);
+
   function query(req, res){
     /**
     * searches for resources based on provide term IDs
@@ -304,10 +307,12 @@ module.exports = function(app, db){
       if(result){
         result = result[0]
         // massage result for front end (put props  on resource core)
-        for(pindex in result.properties){
-          result.resource[result.properties[pindex].type] = result.properties[pindex].value;
+        if(result && result.properties){
+          for(pindex in result.properties){
+            result.resource[result.properties[pindex].type] = result.properties[pindex].value;
+          }
+          delete result.properties // no need to send redundant data
         }
-        delete result.properties // no need to send redundant data
         res.send(result)
       } else {
         res.status(404).send() // resource not found
@@ -481,15 +486,26 @@ module.exports = function(app, db){
                + "WHERE lang.languageCode IN [ {language} , 'en' ] AND r.order=1 "
                + "WITH set, res, translation "
                + "MERGE (set)<-[rel:TAGGED_WITH]-(res) "
-               + "RETURN set.uid as setID, set as term, translation "
+               + "RETURN DISTINCT set.uid as setID, set as term, translation "
     //
     db.query(cypher, {ruid: uid, snip: snip, language: 'en' },function(err, result) {
       if (err) console.log(err);
-      console.log(result)
-      // need to remove duplicates...
       callback(null,result)
     })
   }
 
+
+  function viewed(req, res){
+    var cypher = "MATCH (m:member {uid:{mUID}}), (res:resource {uid:{rUID}}) "
+               + "MERGE (m)-[v:VIEWED]->(res) "
+               + "ON CREATE SET v.firstViewed=TIMESTAMP(), v.lastViewed=TIMESTAMP(), v.viewCount=1 " // add first/last viwed date, set viewcount=0
+               + "ON MATCH SET v.lastViewed=TIMESTAMP(), v.viewCount=v.viewCount+1 "  // update last viwed, viewcount = vc+1
+               + "RETURN v "
+
+    db.query(cypher, {rUID: req.params.rUID, mUID: res.locals.user.uid },function(err, result) {
+      if (err) console.log(err);
+      res.send(result)
+    })
+  }
 
 } // end module

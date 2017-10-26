@@ -14,3 +14,4 @@ node_modules\leaflet\dist\leaflet.js
 node_modules\leaflet\dist\leaflet.css
 node_modules\materialize-css\extras\noUiSlider\nouislider.min.js
 node_modules\materialize-css\extras\noUiSlider\nouislider.css
+node_modules\vue-resource\dist\vue-resource.min.js

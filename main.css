@@ -892,3 +892,23 @@ and (min-width : 1224px) {
 .switch label input[type=checkbox]:checked+.lever:after {
     background-color: #2196F3;
 }
+.login-head {
+    text-align: center;
+    margin: 20px!important;
+    font-weight: 300;
+}
+
+.shadowUnder {
+  box-shadow:0 5px 5px 0 rgba(0,0,0,0.2), 0 7px 11px 0 rgba(0,0,0,0.19);
+}
+/*styles for firefox (take un-removable scrollbar into account)*/
+_:-moz-tree-row(hover), .card {
+    width: calc(20vw - 15px);
+}
+ @media only screen
+and (min-width : 768px)
+and (max-width : 1024px) { _:-moz-tree-row(hover),
+  .card{
+    width: calc(25vw - 15px);
+  }
+}

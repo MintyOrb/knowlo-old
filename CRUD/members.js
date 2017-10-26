@@ -27,7 +27,7 @@ module.exports = function(app, db){
     }
 
     var cypher = "MERGE (member:member {uid:{map}.uid}) "
-               + "ON CREATE SET member={map}, member.joined=TIMESTAMP() "
+               + "ON CREATE SET {map}.joined=TIMESTAMP(), {map}.lastLogin=TIMESTAMP(), member={map} "
                + "ON MATCH SET member={map}, member.lastLogin=TIMESTAMP() "
                + "RETURN member"
 

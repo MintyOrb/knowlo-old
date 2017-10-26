@@ -12,8 +12,8 @@
 	<link rel="stylesheet" href="dep\nouislider.css">
 	<link rel="stylesheet" href="main.css">
 
-	<script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
-	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+	<script src="https://cdn.firebase.com/libs/firebaseui/2.4.1/firebaseui.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.4.1/firebaseui.css" />
 	<title>knowlo</title>
 
 </head>
@@ -65,7 +65,7 @@
 
 		<div id="login-modal" class="modal">
 			<div class="modal-content">
-	      <h4>Login | Sign Up</h4>
+	      <h4 class='login-head'>Login | Sign Up</h4>
 				<div id="firebaseui-auth-container"></div>
 	    </div>
 			<div class="modal-footer">
@@ -186,7 +186,7 @@
 		    <div class='row'>
 						<!-- suggestions grouped -->
 						<div v-if="suggestionDisplay == 'groups'">
-							<div id='suggestionNav' class=" suggestionNav ">
+							<div id='suggestionNav' class=" suggestionNav " :class="{ shadowUnder : 'groups'.indexOf(suggestionDisplay) > -1}">
 								<!-- flickity navigation for isotope containers -->
 								<term
 									v-for="group in termSuggestions"
@@ -332,7 +332,7 @@
 	██   ██ ██           ██ ██    ██ ██    ██ ██   ██ ██      ██          ██      ██   ██ ██    ██ ██
 	██   ██ ███████ ███████  ██████   ██████  ██   ██  ██████ ███████     ██      ██   ██  ██████  ███████
 	-->
-<template id="resourceTemplate">
+<template id="resourceTemplate" :member="member">
 	<div style="opacity:0" :id="'resourceModal'+resource.uid" class="modal fullPage resource-modal"  >
 		<span class="exit hide-on-med-and-down modal-close" ><i class="fa fa-3x fa-times"></i></span>
 
@@ -400,11 +400,11 @@
 			<!-- isotope contianers -->
 			<div class="resourceSections">
 
-				<div class="resourceStep">
+				<!-- <div class="resourceStep">
 
 					<span>{{resource.title}}</span>
 					<span>{{resource.description}}</span>
-				</div>
+				</div> -->
 
 				<div class="resourceStep discussion">
 					<div class="center pad margin20">
@@ -490,11 +490,14 @@
 					</isotope>
 					<autocomplete exclude="" input-id="resourceTest" v-on:select="addTerm"></autocomplete>
 				</div>
-				<div class="resourceStep">
+
+				<div class="resourceStep discussion">
 					<isotope ref='relatedBin' class="step" :list="related" :options='{}'>
-						<div v-for="re in related" class='element-item' :key="re.resource.uid">
-								<resource :re="re" :display="'card'" :voting='false'></resource>
-						</div>
+								<resource v-for="re in related"
+								:re="re"
+							  :key="re.resource.uid"
+								:display="'card'"
+								:voting='false'></resource>
 					 </isotope>
 				</div>
 		 </div>
@@ -1121,15 +1124,17 @@
 <template id='resource'>
 	<div class='resource'
 		:class="{
-		'list waves-effect waves-block waves-light z-depth-1 hoverable': display=='list',
-		'card waves-effect waves-block waves-light z-depth-1 hoverable': display=='card'}">
+    'list waves-effect waves-block waves-light z-depth-1 hoverable': display=='list',
+    'card waves-effect waves-block waves-light z-depth-1 hoverable': display=='card'}"
+		>
 
 		<div v-if="re.resource.mThumb"
 			:class="{
-			'thumb waves-effect waves-block waves-light z-depth-1 hoverable': display == 'thumb' || display =='list' || display=='godMode',
-		 	'card-image': display == 'card',
-			'margin20': display == 'thumb' || display == 'list' ,
-			'inline mb': display == 'list'}">
+      'thumb waves-effect waves-block waves-light z-depth-1 hoverable': display == 'thumb' || display =='list' || display=='godMode',
+      'card-image': display == 'card',
+      'margin20': display == 'thumb' || display == 'list' ,
+      'inline mb': display == 'list'}"
+			>
 			<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
 				<img :src="re.resource.mThumb" />
 			</router-link>
@@ -1142,8 +1147,8 @@
 
 		<div v-if="re.resource.title && display =='card' || display =='list'"
 			:class="{
-			'truncate thin inline tmargin': display=='list',
-			'card-content': display=='card'}"
+      'truncate thin inline tmargin': display=='list',
+      'card-content': display=='card'}"
 			>
 			<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
 				<span :class="{'title': display=='card'}">{{re.resource.title}}</span>
@@ -1396,8 +1401,8 @@
 <script src="dep\headroom.min.js"></script>
 <script src="dep\leaflet.js"></script>
 <script src="dep\materialize.min.js"></script>
-<script src="https://cdn.jsdelivr.net/vue.resource/1.2.1/vue-resource.min.js"></script>
 <script src="dep\nouislider.min.js"></script>
+<script src="dep\vue-resource.min.js"></script>
 
 <script src="navSectionTemplates.js"></script>
 <script src="pages.js"></script>

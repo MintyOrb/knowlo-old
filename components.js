@@ -784,7 +784,7 @@ const addResource = Vue.component('addResource',{
 
       this.open();
       $('.modal-overlay').eq(1).appendTo('.resource-modal'); // workaround for stacking context
-      $('.modal-overlay').eq(0).appendTo('#termModal'); // workaround for stacking context
+      $('.modal-overlay').eq(1).appendTo('#termModal'); // workaround for stacking context
 
   },
   beforeRouteLeave: function (to, from, next){

@@ -56,7 +56,6 @@ function name(req, res){
 }
 app.put('/god/order/:termID/:order/:setID', order);
 function order(req, res){
-  console.log(req.params)
   var cypher = "MATCH (n {uid: {termID}})-[r]-(s:synSet {uid: {setID}}) set r.order={order}  return n "
    db.query(cypher, {
      order: parseInt(req.params.order.trim()),
@@ -80,7 +79,6 @@ function query(req, res){
 
   var cypher="";
   var scale=""  // for uid of requested scale
-  console.log(req.query)
   if(req.query.type=='none'){
     //  set by number of related tagged resources
    cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchSets:synSet) "

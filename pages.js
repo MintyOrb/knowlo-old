@@ -265,7 +265,9 @@ const termComp = Vue.component('termComp',{
       }
     },
     mounted: function(){
-      this.init();
+      // if(this.member.uid){
+        this.init();
+      // }
       $('.metaNav').flickity({
         asNavFor: '.termSections',
         pageDots: false,
@@ -295,7 +297,6 @@ const termComp = Vue.component('termComp',{
   watch: {
     '$route.params.uid': function (id) {
       this.init();
-      }
     },
     member: function() { // re-fetch on member login/logout
       console.log('in term page watch member')
@@ -304,6 +305,7 @@ const termComp = Vue.component('termComp',{
         this.fetchMeta('icon');
       })
     }
+  }
 });
 
 
@@ -317,14 +319,15 @@ const termComp = Vue.component('termComp',{
 */
 const resourceComp = Vue.component('resourceComp',{
     template: "#resourceTemplate",
+    props: ['member'],
     data: function() {
           return {
-              resource: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if resource is not found
+              resource: {uid: undefined},
               terms: [], // current resources terms
               discussion: [], // resources within discussion
               related: [], // resources related to current resource
               display: 'card', // default display for discussion
-              resourceSection: ["About","Discussion","Terms","Related"],
+              resourceSection: ["Discussion","Terms","Related"],
               addResource:false,
               addResourceType: '',
               discussionFilter: ["insight","question","criticism","quote"], // which types of discussions should be displayed
@@ -342,7 +345,6 @@ const resourceComp = Vue.component('resourceComp',{
         // weird to wrap a timeout with next tick, but css lags and screws up the layout after transistion
         this.$nextTick(function(){
           window.setTimeout(()=>{
-            // this.layout()
             this.$refs.discussionBin.layout('masonry');
             this.$refs.relatedBin.layout('masonry');
 
@@ -350,28 +352,17 @@ const resourceComp = Vue.component('resourceComp',{
         })
       },
       fetchResource: function(){
+        console.log('in fetch res')
+        this.$nextTick(()=>{
 
-        // TODO take language from member instead of hardcoding english...
+        // this.terms=[];// seems that terms are otherwise sometimes just appended...(because of isotope?)
+      }) //this.resource={};
         this.$http.get('/resource/' + this.$route.params.uid + '/full', {params: { languageCode: 'en'}}).then(response => {
           if(response.body.resource){
             console.log(response.body)
             this.resource = response.body.resource;
             this.terms = response.body.terms;
-            if(this.resource.url){
-              if(this.resource.url.match(/[^/]+(jpg|png|gif|jpeg)$/)){
-                this.resource.displayType = 'image'
-              } else if(this.resource.url.match(/[^/]+(gifv|webm)$/)){
-                this.resource.displayType = 'video'
-              } else if(this.resource.url.indexOf('youtube') > -1){
-                this.resource.ytID = new URL(this.resource.url).searchParams.get('v')
-                this.resource.displayType = 'embed'
-              }
-            } else if(this.resource.hasOwnProperty('null')){ // not sure why it has the null prop to begin with...
-              this.resource.displayType = 'icon'
-            } else {
-              this.resource.displayType = 'text'
-            }
-
+            this.determineResourceDisplay();
           } else {
             Materialize.toast('Resource not found.', 4000)
           }
@@ -381,16 +372,33 @@ const resourceComp = Vue.component('resourceComp',{
           Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
+      determineResourceDisplay: function(){
+        if(this.resource.url){
+          if(this.resource.url.match(/[^/]+(jpg|png|gif|jpeg)$/)){
+            this.resource.displayType = 'image'
+          } else if(this.resource.url.match(/[^/]+(gifv|webm)$/)){
+            this.resource.displayType = 'video'
+          } else if(this.resource.url.indexOf('youtube') > -1){
+            this.resource.ytID = new URL(this.resource.url).searchParams.get('v')
+            this.resource.displayType = 'embed'
+          }
+        } else if(this.resource.hasOwnProperty('null')){ // not sure why it has the null prop to begin with...
+          this.resource.displayType = 'icon'
+        } else {
+          this.resource.displayType = 'text'
+        }
+      },
       init: function(){
           console.log('in resource init')
           this.fetchDiscussion();
           this.fetchRelated();
           this.$nextTick(function(){
 
-            if($('.metaNav').flickity() && $('.resourceSections').flickity()){
-              $('.metaNav').flickity('destroy');
-              $('.resourceSections').flickity('destroy');
-            }
+            // if($('.metaNav').flickity() && $('.resourceSections').flickity()){
+            //   $('.metaNav').flickity('destroy');
+            //   $('.resourceSections').flickity('destroy');
+            // }
+            // if(!$('.metaNav').flickity() && !$('.resourceSections').flickity()){
 
             $('.metaNav').flickity({
               asNavFor: '.resourceSections',
@@ -409,6 +417,7 @@ const resourceComp = Vue.component('resourceComp',{
               accessibility: false, // to prevent jumping when focused
               dragThreshold: 20 // play around with this more?
             });
+          // }
 
             $('#resourceModal'+this.resource.uid).modal({
                 opacity: .5, // Opacity of modal background
@@ -431,11 +440,10 @@ const resourceComp = Vue.component('resourceComp',{
 
       },
       fetchDiscussion: function(){
+        this.discussion=[];
         this.$http.get('/resource/' + this.$route.params.uid + '/discussion', {params: { languageCode: 'en'}}).then(response => {
           if(response.body.length>0){
             this.discussion = response.body;
-          } else {
-            this.discussion=[]
           }
         }, response => {
           // Materialize.toast('Something went wrong...are you online?', 4000)
@@ -445,15 +453,20 @@ const resourceComp = Vue.component('resourceComp',{
         this.discussion.push(dis)
       },
       fetchRelated: function(){
-        this.related=[]; // otherwise get a dom exception...due to isotope?
-        this.$http.get('/resource/' + this.$route.params.uid + '/related', {params: { languageCode: 'en'}}).then(response => {
-          this.related = response.body;
-          window.setTimeout(()=> {
-            this.$refs.relatedBin.layout('masonry');
-          }, 250)
-        }, response => {
-          // Materialize.toast('Something went wrong...are you online?', 4000)
-        });
+        console.log('in fetch related')
+        console.log(this.$route.params.uid)
+        // this.related=[]; // otherwise get a dom exception...due to vueisotope?
+        this.$nextTick(()=>{
+          this.$http.get('/resource/' + this.$route.params.uid + '/related', {params: { languageCode: 'en'}}).then(response => {
+            this.related = response.body;
+            window.setTimeout(()=> {
+              this.$refs.relatedBin.layout('masonry');
+            }, 250)
+          }, response => {
+            // Materialize.toast('Something went wrong...are you online?', 4000)
+          });
+        })
+
       },
       addTerm: function(set){
         this.$http.put('/api/resource/'+ this.resource.uid +'/set/'+ set.setID).then(response => {
@@ -541,11 +554,36 @@ const resourceComp = Vue.component('resourceComp',{
 
         // tell leaflet that the map is exactly as big as the image
         map.setMaxBounds(bounds);
+      },
+      markViewed: function(){
+        console.log('before mark v')
+        console.log('/api/resource/'+ this.$route.params.uid +'/viewed')
+        this.$http.put('/api/resource/'+ this.$route.params.uid +'/viewed').then(response => {
+          console.log('back')
+          if(response.body){
+            console.log(response.body)
+          } else {
+            // Materialize.toast('Something went wrong...', 4000)
+          }
+        }, response => {
+           Materialize.toast('Something went wrong...are you online?', 4000)
+        });
       }
     },
     mounted: function(){
 
+      // needed to recover from occasional mysterious DOM exception on resource change
+      Vue.config.errorHandler =  (err) => { //TODO figure out what is causing this...vueisotope?
+        Materialize.toast('whoops...hit a snag. Recovering.',2000)
+        window.setTimeout(()=> {
+          this.$router.go(this.$route)
+        }, 2000);
+      };
+
       this.fetchResource();
+      if(this.member.uid){
+        this.markViewed()
+      }
 
       $('.dropdown-button').dropdown({
            inDuration: 300,
@@ -566,14 +604,20 @@ const resourceComp = Vue.component('resourceComp',{
       next();
     },
     watch: {
-      '$route.params.uid': function (id) {
-        this.fetchResource();
+      '$route.params.uid': function () {
+        this.$nextTick(()=>{
+          this.fetchResource();
+        })
       },
       discussionFilter: function (a,b) {
-        console.log(a);
-        console.log(b);
-
         this.$refs.discussionBin.filter('type');
+      },
+      'member': function (member) {
+        if(member.uid){
+          this.$nextTick(()=>{
+            this.markViewed();
+          })
+        }
       }
     }
 });
@@ -925,13 +969,17 @@ const explore = Vue.component('exploreComp',{
             console.log(response.body)
             this.termSuggestions=response.body;
 
-
+            if(this.termSuggestions.length===0){
+              this.suggestionDisplay='size';
+            }
             this.$nextTick(x=>{
               this.initSuggestionGroupFlickity(response.body.length>0);
-              window.setTimeout(x=>{ // need time to get flickity situated...
-                $('#suggestionNav').flickity( 'selectCell', Math.round(response.body.length/2), false, false ); // why is this not working?
-                this.layout();
-              }, 175)
+              if($('#suggestionNav').flickity()){
+                window.setTimeout(x=>{ // need time to get flickity situated...
+                  $('#suggestionNav').flickity( 'selectCell', Math.round(response.body.length/2), false, false ); // why is this not working?
+                  this.layout();
+                }, 175)
+              }
             })
 
           }, response => {
@@ -1040,7 +1088,7 @@ const explore = Vue.component('exploreComp',{
       termQuery: function(val,x){
         console.log('term query changed')
         console.log(val,x)
-        if(this.termQuery.length==0){
+        if(this.termQuery.length===0){
           this.suggestionDisplay='size';
         }
         Cookies.set('termQuery',val)
