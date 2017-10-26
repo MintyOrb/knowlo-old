@@ -579,6 +579,109 @@ const resourceComp = Vue.component('resourceComp',{
 });
 
 /*
+                                     888
+                                     888
+                                     888
+88888b.d88b.   .d88b.  88888b.d88b.  88888b.   .d88b.  888d888      88888b.   8888b.   .d88b.   .d88b.
+888 "888 "88b d8P  Y8b 888 "888 "88b 888 "88b d8P  Y8b 888P"        888 "88b     "88b d88P"88b d8P  Y8b
+888  888  888 88888888 888  888  888 888  888 88888888 888          888  888 .d888888 888  888 88888888
+888  888  888 Y8b.     888  888  888 888 d88P Y8b.     888          888 d88P 888  888 Y88b 888 Y8b.
+888  888  888  "Y8888  888  888  888 88888P"   "Y8888  888          88888P"  "Y888888  "Y88888  "Y8888
+                                                                    888                    888
+                                                                    888               Y8b d88P
+                                                                    888                "Y88P"
+*/
+const memberPage = Vue.component('memberPage',{
+    template: "#memberPageTemplate",
+    data: function() {
+          return {
+              member: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if member is not found
+              memberSection: ["Following","Stream","Competence","Resources"],
+
+            }
+          },
+    methods: {
+
+      fetchMember: function(){
+        console.log('in fetchMember')
+        this.init()
+        this.$http.get('/member/' + this.$route.params.uid, {params: { languageCode: 'en'}}).then(response => {
+          console.log(response.body)
+          if(response.body.member){
+            console.log(response.body)
+
+          } else {
+            Materialize.toast('Member not found.', 4000)
+          }
+          this.init()
+        }, response => {
+          this.init()
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      init: function(){
+        console.log('in member init')
+          this.$nextTick(function(){
+
+            if($('.metaNav').flickity() && $('.memberSections').flickity()){
+              $('.metaNav').flickity('destroy');
+              $('.memberSections').flickity('destroy');
+            }
+
+            $('.metaNav').flickity({
+              asNavFor: '.memberSections',
+              // wrapAround: true,
+              pageDots: false,
+              prevNextButtons: false,
+              contain: true,
+              // freeScroll: true,
+              accessibility: false, // to prevent jumping when focused
+            })
+
+            $('.memberSections').flickity({
+              wrapAround: true,
+              pageDots: false,
+              prevNextButtons: true,
+              accessibility: false, // to prevent jumping when focused
+              dragThreshold: 20 // play around with this more?
+            });
+
+            $('#memberModal'+this.member.uid).modal({
+                opacity: .5, // Opacity of modal background
+                inDuration: 300, // Transition in duration
+                outDuration: 200, // Transition out duration
+                startingTop: '4%', // Starting top style attribute
+                endingTop: '10%', // Ending top style attribute
+                ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                  $('body').css("overflow","hidden")
+                },
+                complete: () => {
+                  router.push("/");
+                }
+              }).modal('open');
+          })
+
+      },
+
+    },
+    mounted: function(){
+      console.log('member mounted')
+      this.fetchMember();
+    },
+    beforeRouteLeave: function (to, from, next){
+      $('.modal-overlay').remove(); // needed if navigating from member page to set page
+      $('body').css("overflow","auto");
+      next();
+    },
+    watch: {
+      '$route.params.uid': function (id) {
+        console.log('in member watch')
+        this.fetchMember();
+      }
+    }
+});
+
+/*
 ███████ ██   ██ ██████  ██       ██████  ██████  ███████
 ██       ██ ██  ██   ██ ██      ██    ██ ██   ██ ██
 █████     ███   ██████  ██      ██    ██ ██████  █████

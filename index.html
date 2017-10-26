@@ -507,6 +507,63 @@
 </template>
 
 <!--
+                                     888
+                                     888
+                                     888
+88888b.d88b.   .d88b.  88888b.d88b.  88888b.   .d88b.  888d888      88888b.   8888b.   .d88b.   .d88b.
+888 "888 "88b d8P  Y8b 888 "888 "88b 888 "88b d8P  Y8b 888P"        888 "88b     "88b d88P"88b d8P  Y8b
+888  888  888 88888888 888  888  888 888  888 88888888 888          888  888 .d888888 888  888 88888888
+888  888  888 Y8b.     888  888  888 888 d88P Y8b.     888          888 d88P 888  888 Y88b 888 Y8b.
+888  888  888  "Y8888  888  888  888 88888P"   "Y8888  888          88888P"  "Y888888  "Y88888  "Y8888
+                                                                    888                    888
+                                                                    888               Y8b d88P
+                                                                    888                "Y88P"
+-->
+<template id="memberPageTemplate">
+	<div style="opacity:0" :id="'memberModal'+member.uid" class="modal fullPage member-modal"  >
+		<span class="exit hide-on-med-and-down modal-close" ><i class="fa fa-3x fa-times"></i></span>
+
+		<!-- the member -->
+		<div class="member-container">
+
+			uhhh
+
+		</div>
+
+		<div class="memberMeta">
+			<div class="metaNav">
+			 <!-- flick navigation for isotope containers -->
+			 <div v-for="step in memberSection" class="navItems">
+				 <p>
+					{{step}}
+				 </p>
+			 </div>
+			</div>
+			<!-- flick contianers -->
+			<div class="memberSections">
+
+				<div class="memberStep">
+
+				</div>
+
+				<div class="memberStep discussion">
+
+
+				</div>
+				<div class="memberStep" >
+
+				</div>
+				<div class="memberStep">
+
+				</div>
+		 </div>
+
+		</div>
+
+ </div>
+</template>
+
+<!--
 ████████ ███████ ██████  ███    ███     ██████   █████   ██████  ███████
    ██    ██      ██   ██ ████  ████     ██   ██ ██   ██ ██       ██
    ██    █████   ██████  ██ ████ ██     ██████  ███████ ██   ███ █████

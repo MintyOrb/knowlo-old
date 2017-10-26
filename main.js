@@ -3,6 +3,7 @@ const routes = [
   {  path: '/land', component: landing },
   {  name: "explore", path: '/', component: explore,
       children: [
+        { path: '/m/:uid', component: memberPage, name: 'memberPage' },
         { path: '/r/:uid', component: resourceComp, name: 'resourceSub' },
         { path: '/t/:name/:uid?', component: termComp, name: 'setSub' },
         { path: '/addResource', component: addResource, name: 'addResource' },
