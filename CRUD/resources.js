@@ -181,7 +181,8 @@ module.exports = function(app, db){
   function updateCore(req,res){
   }
   function createCore(req, res){
-    req.body.resource.core. uid = shortid.generate();
+    req.body.resource.core.uid = shortid.generate();
+    req.body.resource.viewCount = 0;
     // TODO: added vs added by member rel....
 
     // remove blank props
@@ -286,7 +287,9 @@ module.exports = function(app, db){
     * @return {Object} resource
     */
 
-    var cypher = "MATCH (resource:resource {uid:{uid}})"
+    var cypher = "MATCH (resource:resource {uid:{uid}}) "
+               + "SET resource.viewCount = resource.viewCount + 1 "
+               + "WITH resource "
                + "OPTIONAL MATCH (resource)-[TAGGED_WITH]->(set:synSet)<-[setR:IN_SET]-(t:term)-[r:HAS_TRANSLATION]->(tr:translation) "
                + "WHERE r.languageCode = {languageCode} AND setR.order=1 "
                + "OPTIONAL MATCH (resource)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
@@ -343,7 +346,7 @@ module.exports = function(app, db){
 
     db.query(cypher, {uid: req.params.ruid, languageCode: req.query.languageCode || 'en'},function(err, result) {
       if (err) {console.log(err); res.status(500).send()};
-      if(result[0].resource!=null){
+      if(result[0] && result[0].resource!=null){
         // massage result for front end (put props  on resource core)
         for(rindex in result){
           for(pindex in result[rindex].properties){
@@ -444,8 +447,7 @@ module.exports = function(app, db){
     })
   }
 
-// Religions are worth studying not for what they tell us about the nature of the universe, but for what they tell us about the nature of humans.
-  function suggestedTerms(req, res){ // finds and tags terms to resrource based on provided text - returns terms tagged
+  function suggestedTerms(req, res){ // finds and tags terms to resource based on provided text - returns terms tagged
     var blob = req.body.text;
       var tokens =[]
       var nospecial = blob.replace(/[^a-zA-Z0-9 ]/g, "");
@@ -456,10 +458,11 @@ module.exports = function(app, db){
       })
 
       for (var i = 0; i < split.length; i++) { // create one and two word tokens from text
-        tokens.push(split[i].toLowerCase())
-        tokens.push((split[i]+" "+split[i + 1]).toLowerCase())
+        tokens.push(split[i].toLowerCase().trim())
+        tokens.push((split[i]+" "+split[i + 1]).toLowerCase().trim())
       }
-      async.concat(tokens, function(token, callback) {
+      let uniqueTokens = Array.from(new Set(tokens)); // remove duplicates
+      async.concat(uniqueTokens, function(token, callback) {
         tagResource(req.params.rUID, token, function(err, result){
             if(err){console.log(err)}
             callback(null,result)

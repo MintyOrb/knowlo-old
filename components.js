@@ -118,11 +118,18 @@ Vue.component('term',{
 */
 Vue.component('resource',{
   template: "#resource",
-  props:['re','display'],
+  // props:['re','display'],
+  props: {
+    re: Object,
+    voting: {
+      type: Boolean,
+      default: true
+    },
+    display: String
+  },
   name: "resource",
   data: () =>  {
     return {
-      voting: true,
       displayQuality: null,
       displayComplexity: null,
       ratingDisplay: 'global',
@@ -163,7 +170,7 @@ Vue.component('resource',{
       });
     },
     trimNumber: function(num, digits) { // from http://stackoverflow.com/a/9462382/2061741 - displays number of views
-      if(num && digits){
+      if(num && digits && typeof(num)==='number'){
         var si = [ { value: 1E18, symbol: "E" }, { value: 1E15, symbol: "P" }, { value: 1E12, symbol: "T" }, { value: 1E9,  symbol: "G" }, { value: 1E6,  symbol: "M" }, { value: 1E3,  symbol: "k" }], rx = /\.0+$|(\.[0-9]*[1-9])0+$/, i;
         for (i = 0; i < si.length; i++) {
           if (num >= si[i].value) {
@@ -171,12 +178,15 @@ Vue.component('resource',{
           }
         }
         return num.toFixed(digits).replace(rx, "$1");
+      } else if (typeof(num)!='number'){
+        console.log('not number... ',typeof(num))
+        console.log(num)
       }
     },
     initSlider: function(){
 
       if(this.voting){
-         var quality = document.getElementById('quality-slider-' + this.re.resource.uid);
+         var quality = document.getElementById('quality-slider-' + this.re.resource.uid + this.$route.name);
          noUiSlider.create(quality, {
           start: .5,
           connect: [true,false],
@@ -187,7 +197,7 @@ Vue.component('resource',{
           }
          });
         quality.noUiSlider.on('change', (a,b,value) => { //listen for vote
-          console.log('change')
+
           if(this.re.memberVote && this.re.memberVote.quality != value[0]){
             this.re.memberVote.quality = value[0];
             this.vote();
@@ -197,7 +207,7 @@ Vue.component('resource',{
           }
         });
 
-        var complexity = document.getElementById('complexity-slider-' + this.re.resource.uid);
+        var complexity = document.getElementById('complexity-slider-' + this.re.resource.uid + this.$route.name);
         noUiSlider.create(complexity, {
          start: .5,
          connect: [true,false],
@@ -220,26 +230,28 @@ Vue.component('resource',{
       }
     },
     setRatingSliders: function(disp){
-      if(disp=='global' && this.re.globalVote){
+      if(disp=='global' && this.re.globalVote && this.voting){
         this.$nextTick( x=> {
-          var quality = document.getElementById('quality-slider-' + this.re.resource.uid);
+          var quality = document.getElementById('quality-slider-' + this.re.resource.uid + this.$route.name);
           quality.noUiSlider.set(this.re.globalVote.quality)
-          var complexity = document.getElementById('complexity-slider-' + this.re.resource.uid);
+          var complexity = document.getElementById('complexity-slider-' + this.re.resource.uid + this.$route.name);
           complexity.noUiSlider.set(this.re.globalVote.complexity)
         })
         this.displayQuality = this.re.globalVote.quality;
         this.displayComplexity = this.re.globalVote.complexity;
       } else if(this.re.memberVote){
         this.$nextTick( x=> {
-          var quality = document.getElementById('quality-slider-' + this.re.resource.uid);
+          var quality = document.getElementById('quality-slider-' + this.re.resource.uid + this.$route.name);
           quality.noUiSlider.set(this.re.memberVote.quality)
-          var complexity = document.getElementById('complexity-slider-' + this.re.resource.uid);
+          var complexity = document.getElementById('complexity-slider-' + this.re.resource.uid + this.$route.name);
           complexity.noUiSlider.set(this.re.memberVote.complexity)
         })
         this.displayQuality = this.re.memberVote.quality;
         this.displayComplexity = this.re.memberVote.complexity;
       } else {
-        Materialize.toast("You haven't voted on this!",2000)
+        // if(this.voting){
+        //   Materialize.toast("You haven't voted on this!",2000)
+        // }
         this.ratingDisplay = 'global'
       }
     }
@@ -565,14 +577,13 @@ const addResource = Vue.component('addResource',{
           'criticism':'rJxYeYW43b',
         },
         tags: [],
-        resource:{ // TODO: these aren't all strings...
+        resource:{
           core: {
-            'displayType':"",
-            'uid':"",
-            'viewCount':"0",
-            'viewTime':"",
-            'dateAdded':"",
-            // 'thumb': "", set on server
+            // 'uid':"", // set on server
+            // 'viewCount':0, // set on server
+            // 'viewTime':"", // seconds?
+            // 'dateAdded':"", // set on server
+            // 'thumb': "", // set on server
             'url': "", //just return english if not in language specified?
             'source':"",
             'mThumb':""

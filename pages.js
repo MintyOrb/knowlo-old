@@ -51,7 +51,7 @@ const termComp = Vue.component('termComp',{
       },
       openModal: function(){
         this.$nextTick(function(){
-            $('#termModal'+this.term.id).modal({
+            $('#termModal').modal({
               dismissible: true, // Modal can be dismissed by clicking outside of the modal
               opacity: .5, // Opacity of modal background
               inDuration: 300, // Transition in duration
@@ -62,16 +62,21 @@ const termComp = Vue.component('termComp',{
                 $('body').css("overflow","hidden")
               },
               complete: () => {
+                console.log('close')
+                $('.modal-overlay').remove(); // needed if navigating from resource page to set page
+
                 if(  $('.metaNav').flickity()){
                   $('.metaNav').flickity('destroy');
                   $('.termSections').flickity('destroy');
                 }
                 $('body').css("overflow","auto")
+                router.push("/");
               }
             }).modal('open');
           })
       },
       close: function(){
+          // $('#termModal'+this.term.setID).modal('close')
         console.log("close here after esc")
         // $('body').css("overflow","auto")
       },
@@ -263,8 +268,8 @@ const termComp = Vue.component('termComp',{
       this.init();
       $('.metaNav').flickity({
         asNavFor: '.termSections',
-        pageDots: true,
-        prevNextButtons: true,
+        pageDots: false,
+        prevNextButtons: false,
         accessibility: false, // to prevent jumping when focused
       })
 
@@ -279,19 +284,10 @@ const termComp = Vue.component('termComp',{
       // TODO: set flickity tab in URL
       $('.termSections').flickity('selectCell', 1, true, true ) //  value, isWrapped, isInstant
 
-      // listen for escape key (materalize closes modal on esc, but doesn't re-route)
-      document.addEventListener('keydown', event => {
-        if (event.key === 'Escape' || event.keyCode === 27) {
-          router.go(-1) || router.push('/')
-        }
-      });
-
   },
   beforeRouteLeave: function (to, from, next){
-    if($('#termModal'+this.term.id)){
-      $('#termModal'+this.term.id).modal('close');
-    }
-    document.removeEventListener('keydown',function(){})
+    $('.modal-overlay').remove(); // needed if navigating from resource page to set page
+    $('body').css("overflow","auto");
     window.setTimeout(()=>{
       next()
     }, 375)
@@ -348,10 +344,13 @@ const resourceComp = Vue.component('resourceComp',{
           window.setTimeout(()=>{
             // this.layout()
             this.$refs.discussionBin.layout('masonry');
+            this.$refs.relatedBin.layout('masonry');
+
           }, 375)
         })
       },
       fetchResource: function(){
+
         // TODO take language from member instead of hardcoding english...
         this.$http.get('/resource/' + this.$route.params.uid + '/full', {params: { languageCode: 'en'}}).then(response => {
           if(response.body.resource){
@@ -383,9 +382,9 @@ const resourceComp = Vue.component('resourceComp',{
         });
       },
       init: function(){
+          console.log('in resource init')
           this.fetchDiscussion();
           this.fetchRelated();
-
           this.$nextTick(function(){
 
             if($('.metaNav').flickity() && $('.resourceSections').flickity()){
@@ -396,8 +395,8 @@ const resourceComp = Vue.component('resourceComp',{
             $('.metaNav').flickity({
               asNavFor: '.resourceSections',
               // wrapAround: true,
-              pageDots: true,
-              prevNextButtons: true,
+              pageDots: false,
+              prevNextButtons: false,
               contain: true,
               // freeScroll: true,
               accessibility: false, // to prevent jumping when focused
@@ -421,17 +420,10 @@ const resourceComp = Vue.component('resourceComp',{
                   $('body').css("overflow","hidden")
                 },
                 complete: () => {
-
-                  console.log('in complete')
-                  router.go(-1) || router.push("/");
+                  router.push("/");
                 }
               }).modal('open');
 
-              // $('#resourceModal'+resource.uid).css('opaciy',1)
-
-              // remove any existing leaflet elements from previous resource (probably a smarter way to handle this...)
-              $('.leaflet-control-container').remove();
-              $('.leaflet-pane').remove();
               if(this.resource.displayType == "image"){
                 this.initImage();
               }
@@ -453,14 +445,12 @@ const resourceComp = Vue.component('resourceComp',{
         this.discussion.push(dis)
       },
       fetchRelated: function(){
-        console.log('in fetch related')
+        this.related=[]; // otherwise get a dom exception...due to isotope?
         this.$http.get('/resource/' + this.$route.params.uid + '/related', {params: { languageCode: 'en'}}).then(response => {
-          console.log(response.body)
-          if(response.body.length>0){
-            this.related = response.body;
-          } else {
-            this.related=[]
-          }
+          this.related = response.body;
+          window.setTimeout(()=> {
+            this.$refs.relatedBin.layout('masonry');
+          }, 250)
         }, response => {
           // Materialize.toast('Something went wrong...are you online?', 4000)
         });
@@ -512,8 +502,10 @@ const resourceComp = Vue.component('resourceComp',{
       },
       initImage: function(){
         // from http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
-
-        var map = L.map('image-map', {
+        if(window.map){ // remove previous map, if any (necessary for transistion from one image resource to another)
+          map.remove();
+        }
+        window.map = L.map('image-map', {
           minZoom: 1,
           maxZoom: 4,
           center: [0, 0],
@@ -569,9 +561,7 @@ const resourceComp = Vue.component('resourceComp',{
 
     },
     beforeRouteLeave: function (to, from, next){
-
       $('.modal-overlay').remove(); // needed if navigating from resource page to set page
-
       $('body').css("overflow","auto");
       next();
     },
@@ -605,7 +595,6 @@ const explore = Vue.component('exploreComp',{
             crossSection: null,                 // object containing the name of the cross section and terms in lens group - object containing array of term objects and string name
             termSuggestions: [],               // holds suggestion groups and terms within
             suggestionDisplay: "",              // the name of the currently selected display for suggestions
-            // termQuery: [],                   // terms selected for search - - array of term objects with flags for include/exclude/pin etc.
             suggestions: [],                    // suggested terms...not sure about ui, currently  - array of term objects
             resources: [],                      // db when no lens, replace with db even though less items? - array of term objects
             numberOfDisplayed: null,            // number of materials currently displayed
@@ -653,7 +642,10 @@ const explore = Vue.component('exploreComp',{
     },
     methods: {
         includeSearch: function(set){
-          this.termQuery.push(set);
+          console.log(set)
+          if(!this.termQuery.includes(set.setID)){
+            this.termQuery.push(set);
+          }
           this.removeFrom(set, this.suggestions)
         },
         focus: function(set){
@@ -687,7 +679,15 @@ const explore = Vue.component('exploreComp',{
             if(item.status.focusIcon){
               this.focus(item);
             }
-            this.termQuery.push(item);
+            console.log(item)
+            console.log(this.termQuery.includes(item))
+            // object.includes...
+            // var x = this.termQuery.filter(term => term.setID > 6);
+            if(this.termQuery.every(x=>x.setID != item.setID)){
+              this.termQuery.push(item);
+            } else {
+              Materialize.toast('Already in query!', 1500)
+            }
         },
         includeExclude: function(set){ // for including/excluding terms already in query
           if(set.status.includeIcon){
@@ -730,8 +730,8 @@ const explore = Vue.component('exploreComp',{
               $('#crossSectionNav').flickity({
                 asNavFor: '#crossSectionSteps',
                 // wrapAround: true,
-                pageDots: true,
-                prevNextButtons: true,
+                pageDots: false,
+                prevNextButtons: false,
                 accessibility: false, // to prevent jumping when focused
               })
               $('#crossSectionSteps').flickity({
@@ -773,46 +773,64 @@ const explore = Vue.component('exploreComp',{
         },
         initSuggestionGroupFlickity: function(moreThanZero){
           // setup suggestion group flickity
-          this.$nextTick(x=>{
-            if($('#suggestionNav').flickity() && $('#suggestionSteps').flickity()){
+          console.log('in init sug grups')
+          if($('#suggestionNav').flickity()){
               $('#suggestionNav').flickity('destroy');
-              $('#suggestionSteps').flickity('destroy');
-            }
-            if(moreThanZero){
+          }
+          if($('#suggestionSteps').flickity()){
+            $('#suggestionSteps').flickity('destroy');
+          }
+          if($('#suggestionTogether').flickity()){
+            $('#suggestionTogether').flickity('destroy');
+          }
+          if(moreThanZero){
+            if(this.suggestionDisplay=='groups'){
               $('#suggestionNav').flickity({
                 asNavFor: '#suggestionSteps',
-                pageDots: true,
-                prevNextButtons: true,
+                pageDots: false,
+                prevNextButtons: false,
                 accessibility: false, // to prevent jumping when focused
               })
-              if(this.suggestionDisplay=='groups'){
-                $('#suggestionSteps').flickity({
-                  wrapAround: true,
-                  pageDots: false,
-                  prevNextButtons: true,
-                  accessibility: false, // to prevent jumping when focused
-                  dragThreshold: 40
-                });
-              }
+
+              $('#suggestionSteps').flickity({
+                wrapAround: true,
+                pageDots: false,
+                prevNextButtons: true,
+                accessibility: false, // to prevent jumping when focused
+                dragThreshold: 40
+              });
+            } else {
+              $('#suggestionNav').flickity({
+                wrapAround: false,
+                pageDots: false,
+                prevNextButtons: true,
+                accessibility: false, // to prevent jumping when focused
+                dragThreshold: 40
+              })
             }
-          });
+          }
         },
         getTerms: function(){
           var include = [];
           var exclude = [];
           for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
-            include.push(this.termQuery[termIndex]['term'].uid)
+            include.push(this.termQuery[termIndex].setID)
           }
-          this.termSuggestions=[]; // TODO: check if pre-emptying necessary after vue update
+          this.termSuggestions=[];
           this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: [''], type: this.suggestionDisplay}}).then(response => {
+            console.log('back from get terms')
+            console.log(response.body)
             this.termSuggestions=response.body;
-            this.initSuggestionGroupFlickity(response.body.length>0);
+
+
             this.$nextTick(x=>{
+              this.initSuggestionGroupFlickity(response.body.length>0);
               window.setTimeout(x=>{ // need time to get flickity situated...
                 $('#suggestionNav').flickity( 'selectCell', Math.round(response.body.length/2), false, false ); // why is this not working?
-              }, 75)
+                this.layout();
+              }, 175)
             })
-          this.layout();
+
           }, response => {
             // warning would be redundant?
           });
@@ -829,6 +847,8 @@ const explore = Vue.component('exploreComp',{
           });
         },
         fetchResources: function(){
+          console.log(this.$route)
+
           var include = [];
           var exclude = [];
           for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
@@ -909,21 +929,28 @@ const explore = Vue.component('exploreComp',{
     watch: {
       member: function(newVal,oldVal) { // re-fetch resources/terms on member login/logout
         this.loginCheck = true;
+        console.log(newVal,oldVal)
         this.$nextTick(x=>{
           this.fetchResources()
         })
       },
-      termQuery: function(val){
+      termQuery: function(val,x){
         console.log('term query changed')
+        console.log(val,x)
+        if(this.termQuery.length==0){
+          this.suggestionDisplay='size';
+        }
         Cookies.set('termQuery',val)
         if(this.loginCheck){ // don't fetch before checking member login
           this.fetchResources();
         }
       },
-      suggestionDisplay: function(val){
-        console.log(val)
+      suggestionDisplay: function(val,x){
+        console.log(val,x)
         Cookies.set('suggestionDisplay',val)
-        this.getTerms();
+        if(x.length>0){
+          this.getTerms();
+        }
       },
     }
 });

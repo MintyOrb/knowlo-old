@@ -177,7 +177,7 @@
 		      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='none' id="none" />
 		      <label for="none">None</label>
 		    </span>
-				<span>
+				<span v-if="member.first">
 		      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='member' id="member" />
 		      <label for="member">{{member.first}}</label>
 		    </span>
@@ -259,7 +259,7 @@
 			<div class="center rBar">
 				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
 				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
-				<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
+				<!-- <span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span> -->
 				<span class='right'>
 					<a class="dropdown-button viewBtn" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
 					<ul id='order' class='dropdown-content sort'>
@@ -303,12 +303,12 @@
 
 				<!-- results all together -->
 				<transition name="fade">
-				<div v-if="!crossSection" >
-		    <isotope ref="resourceBin" class="step" :list="resources" :options='{}' id="container"  >
-		        <div v-for="re in resources" class='element-item' :key="re.resource.uid" :class="{'fullWidth': resourceDisplay=='list'}">
-		          	<resource :re="re" :display="resourceDisplay" :class="{'listFullWidth': resourceDisplay=='list'}"></resource>
-		        </div>
-		      </isotope>
+					<div v-if="!crossSection" >
+				    <isotope ref="resourceBin" class="step" :list="resources" :options='{}' id="container"  >
+			        <div v-for="re in resources" class='element-item' :key="re.resource.uid" :class="{'fullWidth': resourceDisplay=='list'}">
+			          	<resource :re="re" :display="resourceDisplay" :class="{'listFullWidth': resourceDisplay=='list'}"></resource>
+			        </div>
+			      </isotope>
 					</div>
 				</transition>
 
@@ -321,7 +321,7 @@
 					  </router-link>
 					</div>
 				</div>
-		</div>
+			</div>
 		</div>
 	</template>
 
@@ -475,7 +475,7 @@
 
 				</div>
 				<div class="resourceStep" >
-					<isotope ref='terms' :list="terms" :options='{}'>
+					<isotope ref='rTermBin' :list="terms" :options='{}'>
 						<term
 							v-for="term in terms"
 							:term="term"
@@ -493,7 +493,7 @@
 				<div class="resourceStep">
 					<isotope ref='relatedBin' class="step" :list="related" :options='{}'>
 						<div v-for="re in related" class='element-item' :key="re.resource.uid">
-								<resource :re="re" :display="'card'"></resource>
+								<resource :re="re" :display="'card'" :voting='false'></resource>
 						</div>
 					 </isotope>
 				</div>
@@ -536,7 +536,7 @@
 			<!-- setdelete -->
 			<span v-if='true' class='btn' v-on:click="deleteSet(term.setID)">delete set</span>
 
-			<span class="right"><i class="fa fa-2x fa-times"></i></span>
+			<span class="right modal-close"><i class="fa fa-2x fa-times"></i></span>
 		</div>
 		<!-- flick navigation for isotope containers -->
 		<div class="termMeta">
@@ -663,130 +663,129 @@
 -->
 <template id="addResource" :term-query="termQuery" :member="member">
 	<div id="addResourceModal" class="modal modal-fixed-footer">
-
-	<div class="addMeta modal-content">
-		<div class="addNav">
-			<div class="navItems">
-				<span>{{type}}</span>
-			</div>
-			<div v-if="type=='discussion' || type=='resource'" class="navItems">
-				<span>tag</span>
-			</div>
-		</div>
-
-		<!-- isotope contianers -->
-		<div class="addSections">
-			<div class="addContainer">
-					<form :class="{bigtop:type=='resource'}">
-
-						<div class="row" v-if="type=='resource'">
-							<div class="input-field col s12">
-								<input v-model="resource.url" id="url" type="url" class="validate">
-								<label for="url">URL</label>
-							</div>
-						</div>
-
-						<div class="row" v-if="type=='icon'">
-							<div class="input-field col s12">
-								<input v-model="resource.core.mThumb" id="url" type="url" class="validate">
-								<label for="url">URL</label>
-							</div>
-						</div>
-
-						<div v-if="type=='resource'" class="row">
-							<div class="input-field col s12">
-								<input v-model="resource.detail.title" id="title" type="text" class="validate">
-								<label for="title">Title</label>
-							</div>
-						</div>
-
-						<div v-if="type=='resource'" class="row">
-							<div class="input-field col s12">
-								<input v-model="resource.detail.subtitle" id="subtitle" type="text" class="validate">
-								<label for="subtitle">Subtitle</label>
-							</div>
-						</div>
-
-						<div v-if="type=='discussion' || type=='definition'|| type=='resource'" class="row">
-							<div class="input-field col s12">
-								<textarea v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
-								<label for="value">Text</label>
-							</div>
-						</div>
-
-						<div v-if="type=='resource'" class="row">
-							<div class="input-field col s12">
-								<textarea v-model="resource.detail.source" id="source" class="materialize-textarea"></textarea>
-								<label for="source">Source</label>
-							</div>
-						</div>
-
-						<div v-if="type=='resource'" class="row">
-							<div class="input-field col s12">
-								<textarea v-model="resource.detail.description" id="description" class="materialize-textarea"></textarea>
-								<label for="description">Description</label>
-							</div>
-						</div>
-
-					</form>
-					<div class='btn blue' @click.once="upsertResource()">
-						add {{type}}
-					</div>
-
-			</div>
-			<div v-if="type=='discussion' || type=='resource'" class="addContainer">
-				<autocomplete exclude="" input-id="tagNewResources" v-on:select="addTag"></autocomplete>
-				<div v-if='type=="discussion"'>
-					<div class='disSwitch center'>
- 					 <div class="switch">
- 						 <label>
- 							 Insight
- 							 <input type="checkbox" value="insight" v-model="discussionFilter">
- 							 <span class="lever"></span>
- 						 </label>
- 					 </div>
- 					 <div class="switch">
- 						 <label>
- 							 Question
- 							 <input type="checkbox" value="question" v-model="discussionFilter">
- 							 <span class="lever"></span>
- 						 </label>
- 					 </div>
- 					 <div class="switch">
- 						 <label>
- 							 Criticism
- 							 <input type="checkbox" value="criticism" v-model="discussionFilter">
- 							 <span class="lever"></span>
- 						 </label>
- 					 </div>
-					 <div class="switch">
- 						 <label>
- 							 Quote
- 							 <input type="checkbox" value="quote" v-model="discussionFilter">
- 							 <span class="lever"></span>
- 						 </label>
- 					 </div>
- 				 </div>
+		<div class="addMeta modal-content">
+			<div class="addNav">
+				<div class="navItems">
+					<span>{{type}}</span>
 				</div>
-				<isotope ref='tagged' :list="tags" :options='{}'>
-					<div v-for="term in tags" :key="term.setID">
-						<term :term="term"
-						:display="'thumb'"
-						:key="term.setID"
-						v-on:exclude="removeTag(term.setID)">
-						</term>
-					</div>
-				</isotope>
+				<div v-if="type=='discussion' || type=='resource'" class="navItems">
+					<span>tag</span>
+				</div>
 			</div>
-			<!--  here the user provides the url of the resource , or, eventually the file to be uploaded or the text -->
 
+			<!-- isotope contianers -->
+			<div class="addSections">
+				<div class="addContainer">
+						<form :class="{bigtop:type=='resource'}">
+
+							<div class="row" v-if="type=='resource'">
+								<div class="input-field col s12">
+									<input v-model="resource.url" id="url" type="url" class="validate">
+									<label for="url">URL</label>
+								</div>
+							</div>
+
+							<div class="row" v-if="type=='icon'">
+								<div class="input-field col s12">
+									<input v-model="resource.core.mThumb" id="url" type="url" class="validate">
+									<label for="url">URL</label>
+								</div>
+							</div>
+
+							<div v-if="type=='resource'" class="row">
+								<div class="input-field col s12">
+									<input v-model="resource.detail.title" id="title" type="text" class="validate">
+									<label for="title">Title</label>
+								</div>
+							</div>
+
+							<div v-if="type=='resource'" class="row">
+								<div class="input-field col s12">
+									<input v-model="resource.detail.subtitle" id="subtitle" type="text" class="validate">
+									<label for="subtitle">Subtitle</label>
+								</div>
+							</div>
+
+							<div v-if="type=='discussion' || type=='definition'|| type=='resource'" class="row">
+								<div class="input-field col s12">
+									<textarea v-model="resource.detail.text" id="text" class="materialize-textarea"></textarea>
+									<label for="value">Text</label>
+								</div>
+							</div>
+
+							<div v-if="type=='resource'" class="row">
+								<div class="input-field col s12">
+									<textarea v-model="resource.detail.source" id="source" class="materialize-textarea"></textarea>
+									<label for="source">Source</label>
+								</div>
+							</div>
+
+							<div v-if="type=='resource'" class="row">
+								<div class="input-field col s12">
+									<textarea v-model="resource.detail.description" id="description" class="materialize-textarea"></textarea>
+									<label for="description">Description</label>
+								</div>
+							</div>
+
+						</form>
+						<div class='btn blue' @click.once="upsertResource()">
+							add {{type}}
+						</div>
+
+				</div>
+				<div v-if="type=='discussion' || type=='resource'" class="addContainer">
+					<autocomplete exclude="" input-id="tagNewResources" v-on:select="addTag"></autocomplete>
+					<div v-if='type=="discussion"'>
+						<div class='disSwitch center'>
+	 					 <div class="switch">
+	 						 <label>
+	 							 Insight
+	 							 <input type="checkbox" value="insight" v-model="discussionFilter">
+	 							 <span class="lever"></span>
+	 						 </label>
+	 					 </div>
+	 					 <div class="switch">
+	 						 <label>
+	 							 Question
+	 							 <input type="checkbox" value="question" v-model="discussionFilter">
+	 							 <span class="lever"></span>
+	 						 </label>
+	 					 </div>
+	 					 <div class="switch">
+	 						 <label>
+	 							 Criticism
+	 							 <input type="checkbox" value="criticism" v-model="discussionFilter">
+	 							 <span class="lever"></span>
+	 						 </label>
+	 					 </div>
+						 <div class="switch">
+	 						 <label>
+	 							 Quote
+	 							 <input type="checkbox" value="quote" v-model="discussionFilter">
+	 							 <span class="lever"></span>
+	 						 </label>
+	 					 </div>
+	 				 </div>
+					</div>
+					<isotope ref='tagged' :list="tags" :options='{}'>
+						<div v-for="term in tags" :key="term.setID">
+							<term :term="term"
+							:display="'thumb'"
+							:key="term.setID"
+							v-on:exclude="removeTag(term.setID)">
+							</term>
+						</div>
+					</isotope>
+				</div>
+				<!--  here the user provides the url of the resource , or, eventually the file to be uploaded or the text -->
+
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a class="modal-action modal-close waves-effect waves-blue btn-flat ">close</a>
+			<!-- <a @click.once="upsertResource()" :class="{disabled: }" class="modal-action modal-close waves-effect waves-blue btn-flat">save</a> -->
 		</div>
 	</div>
-	<div class="modal-footer">
-		<a class="modal-action modal-close waves-effect waves-blue btn-flat ">close</a>
-		<!-- <a @click.once="upsertResource()" :class="{disabled: }" class="modal-action modal-close waves-effect waves-blue btn-flat">save</a> -->
-	</div>
-</div>
 </template>
 
 <!--
@@ -808,52 +807,40 @@
 				</div>
 			</div>
 
-		<div class="row">
-			<div class="input-field col s12">
-				<input v-model="translation.definition" id="definition" type="text" class="validate">
-				<label for="definition">Definition</label>
+			<div class="row">
+				<div class="input-field col s12">
+					<input v-model="translation.definition" id="definition" type="text" class="validate">
+					<label for="definition">Definition</label>
+				</div>
+			</div>
+			<div class="row">
+				<h4>Add Synonyms</h4>
+				<autocomplete exclude="" input-id="synonyms"></autocomplete>
+				<isotope ref='syno' :list="syns" :options='{}'>
+					<div v-for="syn in syns"  :key="syn.translation.name">
+						<term :term="syn" v-on:created="addSynonym(term.uid,syn.term.uid)" v-on:remove=""></term>
+					</div>
+				</isotope>
+			</div>
+			<div class="row">
+				<h4>In Group</h4>
+				<autocomplete exclude="" input-id="Group"autocomplete>
+				<isotope ref='group' :list="groups" :options='{}'>
+					<div v-for="group in groups" :key="group.translation.name">
+						<term :term="group"></term>
+					</div>
+				</isotope>
+			</div>
+			<div class="row">
+				<h4>Contains</h4>
+				<autocomplete exclude="" input-id="Contains"autocomplete>
+				<isotope ref='contain' :list="contains" :options='{}'>
+					<div v-for="contain in contains" :key="contain.translation.name">
+						<term :term="contain"></term>
+					</div>
+				</isotope>
 			</div>
 		</div>
-		<div class="row">
-			<h4>Add Synonyms</h4>
-			<autocomplete exclude="" input-id="synonyms"></autocomplete>
-			<isotope ref='syno' :list="syns" :options='{}'>
-				<div v-for="syn in syns"  :key="syn.translation.name">
-					<term :term="syn" v-on:created="addSynonym(term.uid,syn.term.uid)" v-on:remove=""></term>
-				</div>
-			</isotope>
-		</div>
-		<div class="row">
-			<h4>In Group</h4>
-			<autocomplete exclude="" input-id="Group"autocomplete>
-			<isotope ref='group' :list="groups" :options='{}'>
-				<div v-for="group in groups" :key="group.translation.name">
-					<term :term="group"></term>
-				</div>
-			</isotope>
-		</div>
-		<div class="row">
-			<h4>Contains</h4>
-			<autocomplete exclude="" input-id="Contains"autocomplete>
-			<isotope ref='contain' :list="contains" :options='{}'>
-				<div v-for="contain in contains" :key="contain.translation.name">
-					<term :term="contain"></term>
-				</div>
-			</isotope>
-		</div>
-		<!-- for icon crop/selection -->
-		<!-- <a class="btn" @click="toggleShow">set avatar</a>
-			<my-upload field="img"
-				:width="300"
-				:height="300"
-				url="/upload"
-				:params="params"
-				:headers="headers"
-		        lang-type="en"
-				:value.sync="show"
-				img-format="png"></my-upload>
-			<img :src="imgDataUrl"> -->
-			</div>
 	</div>
 </template>
 	<!--
@@ -967,101 +954,101 @@
 <template id="termContainer">
 	<div class='containerr'>
 
-	<div v-if="display == 'thumb' ">
-		<span @mouseleave="leave()">
-			<div class="termWidth">
-				<div class="menu" @mouseenter="delayHover()"  v-bind:class="{'active': hovering}">
-					<div class="">
+		<div v-if="display == 'thumb' ">
+			<span @mouseleave="leave()">
+				<div class="termWidth">
+					<div class="menu" @mouseenter="delayHover()"  v-bind:class="{'active': hovering}">
+						<div class="">
 
-						<div @click="main" class="mbtn trigger" v-bind:class="{'scaleIcon': hovering}">
-							<span v-if="!term.term.iconURL" class="flexCenter border">{{term.translation.name[0]}}</span>
-							<div v-else class="thumb card-image border">
-								<img :src="term.term.iconURL">
+							<div @click="main" class="mbtn trigger" v-bind:class="{'scaleIcon': hovering}">
+								<span v-if="!term.term.iconURL" class="flexCenter border">{{term.translation.name[0]}}</span>
+								<div v-else class="thumb card-image border">
+									<img :src="term.term.iconURL">
+								</div>
 							</div>
-						</div>
 
-						<!-- need a better way to determine when in sidebar... -->
-						<div id="hoverPad" v-if="inSidebar">
-						</div>
+							<!-- need a better way to determine when in sidebar... -->
+							<div id="hoverPad" v-if="inSidebar">
+							</div>
 
-						<div class="icons">
-							<div class="rotater">
-								<div @click="pin" class="mbtn mbtn-icon flexCenter" :class="{showPin: status.pinnedIcon, pinNav: hovering&& inSidebar }">
-									<i class="fa fa-thumb-tack" style="transform:rotate(-45deg)"></i>
-								</div>
-							</div>
-							<!-- <div  v-if="true" class="rotater">
-								<div class="mbtn mbtn-icon flexCenter" :class="{'nope':!term.group, expandNav: hovering&& inSidebar}">
-									<i class="fa fa-expand"></i>
-								</div>
-							</div> -->
-							<div  v-if="true" class="rotater">
-								<div @click="lens" class="mbtn mbtn-icon flexCenter" :class="{'showCompress': status.lensIcon, expandNav: hovering&& inSidebar}">
-									<i class="material-icons">more_horiz</i>
-								</div>
-							</div>
-							<div  v-if="false" class="rotater">
-								<div class="mbtn mbtn-icon flexCenter" :class="{showCompress: true, expandNav: hovering&& inSidebar}">
-									<i class="fa fa-compress"></i>
-								</div>
-							</div>
-							<div class="rotater">
-								<router-link :to="{ name: 'setSub', params: { uid: term.setID, name: term.translation.name }}">
-									<div class="mbtn mbtn-icon flexCenter":class="{showInfo: status.infoIcon, infoNav: hovering&& inSidebar }">
-										<i class="fa fa-info"></i>
+							<div class="icons">
+								<div class="rotater">
+									<div @click="pin" class="mbtn mbtn-icon flexCenter" :class="{showPin: status.pinnedIcon, pinNav: hovering&& inSidebar }">
+										<i class="fa fa-thumb-tack" style="transform:rotate(-45deg)"></i>
 									</div>
-								</router-link>
-							</div>
-							<div class="rotater">
-								<div @click="exclude" class="mbtn mbtn-icon flexCenter" :class="{showMinus: status.excludeIcon, excludeNav: hovering&& inSidebar }">
-									<i class="fa fa-minus"></i>
 								</div>
-							</div>
-							<div class="rotater">
-								<div @click="include" class="mbtn mbtn-icon flexCenter" :class="{showPlus: status.includeIcon, includeNav: hovering&& inSidebar }">
-									<i class="fa fa-plus"></i>
+								<!-- <div  v-if="true" class="rotater">
+									<div class="mbtn mbtn-icon flexCenter" :class="{'nope':!term.group, expandNav: hovering&& inSidebar}">
+										<i class="fa fa-expand"></i>
+									</div>
+								</div> -->
+								<div  v-if="true" class="rotater">
+									<div @click="lens" class="mbtn mbtn-icon flexCenter" :class="{'showCompress': status.lensIcon, expandNav: hovering&& inSidebar}">
+										<i class="material-icons">more_horiz</i>
+									</div>
 								</div>
-							</div>
-							<div class="rotater">
-								<div @click="focus" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: status.focusIcon, focusNav: hovering&& inSidebar }">
-									<i class="fa fa-crosshairs"></i>
+								<div  v-if="false" class="rotater">
+									<div class="mbtn mbtn-icon flexCenter" :class="{showCompress: true, expandNav: hovering&& inSidebar}">
+										<i class="fa fa-compress"></i>
+									</div>
 								</div>
-							</div>
-							<div class="">
-								<div @click="remove" class="mbtn mbtn-icon flexCenter" :class="{removeNav: hovering&& inSidebar }">
-									<i class="fa fa-times"></i>
+								<div class="rotater">
+									<router-link :to="{ name: 'setSub', params: { uid: term.setID, name: term.translation.name }}">
+										<div class="mbtn mbtn-icon flexCenter":class="{showInfo: status.infoIcon, infoNav: hovering&& inSidebar }">
+											<i class="fa fa-info"></i>
+										</div>
+									</router-link>
+								</div>
+								<div class="rotater">
+									<div @click="exclude" class="mbtn mbtn-icon flexCenter" :class="{showMinus: status.excludeIcon, excludeNav: hovering&& inSidebar }">
+										<i class="fa fa-minus"></i>
+									</div>
+								</div>
+								<div class="rotater">
+									<div @click="include" class="mbtn mbtn-icon flexCenter" :class="{showPlus: status.includeIcon, includeNav: hovering&& inSidebar }">
+										<i class="fa fa-plus"></i>
+									</div>
+								</div>
+								<div class="rotater">
+									<div @click="focus" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: status.focusIcon, focusNav: hovering&& inSidebar }">
+										<i class="fa fa-crosshairs"></i>
+									</div>
+								</div>
+								<div class="">
+									<div @click="remove" class="mbtn mbtn-icon flexCenter" :class="{removeNav: hovering&& inSidebar }">
+										<i class="fa fa-times"></i>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="connections badge"v-if="term.connections">
-					{{term.connections}}
-				</div>
-				<div class="nameholder">
-					<div class="name">
-						{{term.translation.name}}
+					<div class="connections badge"v-if="term.connections">
+						{{term.connections}}
+					</div>
+					<div class="nameholder">
+						<div class="name">
+							{{term.translation.name}}
+						</div>
 					</div>
 				</div>
-			</div>
 
-		</span>
-	</div>
+			</span>
+		</div>
 
-	<div class='list hoverable waves-effect waves-light' v-if="display == 'list'">
-		<div>{{term.translation.name}}</div>
-		<!-- <span> ({{term.translation.languageCode}})</span> -->
-	</div>
+		<div class='list hoverable waves-effect waves-light' v-if="display == 'list'">
+			<div>{{term.translation.name}}</div>
+			<!-- <span> ({{term.translation.languageCode}})</span> -->
+		</div>
 
-	<div class='list hoverable waves-effect waves-light' v-if="display == 'godMode'">
-		<span>{{term.term.uid}}</span>
-		<!-- <span>{{term.setID}}</span> -->
-		<input type="text" v-model='term.translation.name' v-on:blur="name(term.translation.uid,term.translation.name)" />
-		<!-- <span> ({{term.translation.languageCode}})</span> -->
+		<div class='list hoverable waves-effect waves-light' v-if="display == 'godMode'">
+			<span>{{term.term.uid}}</span>
+			<!-- <span>{{term.setID}}</span> -->
+			<input type="text" v-model='term.translation.name' v-on:blur="name(term.translation.uid,term.translation.name)" />
+			<!-- <span> ({{term.translation.languageCode}})</span> -->
 
-		<input type='text' v-model='term.order' v-on:blur="order(term.term.uid,term.order)" />
-		<i  @click="exclude" class="fa fa-minus"></i>
-	</div>
+			<input type='text' v-model='term.order' v-on:blur="order(term.term.uid,term.order)" />
+			<i  @click="exclude" class="fa fa-minus"></i>
+		</div>
 
 	</div>
 </template>
@@ -1080,75 +1067,74 @@
 		'list waves-effect waves-block waves-light z-depth-1 hoverable': display=='list',
 		'card waves-effect waves-block waves-light z-depth-1 hoverable': display=='card'}">
 
-			<div v-if="re.resource.mThumb"
-				:class="{
-				'thumb waves-effect waves-block waves-light z-depth-1 hoverable': display == 'thumb' || display =='list' || display=='godMode',
-			 	'card-image': display == 'card',
-				'margin20': display == 'thumb' || display == 'list' ,
-				'inline mb': display == 'list'}">
-				<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
-					<img :src="re.resource.mThumb" />
-				</router-link>
+		<div v-if="re.resource.mThumb"
+			:class="{
+			'thumb waves-effect waves-block waves-light z-depth-1 hoverable': display == 'thumb' || display =='list' || display=='godMode',
+		 	'card-image': display == 'card',
+			'margin20': display == 'thumb' || display == 'list' ,
+			'inline mb': display == 'list'}">
+			<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
+				<img :src="re.resource.mThumb" />
+			</router-link>
+		</div>
+		<router-link v-if="re.resource.text && re.resource.text.length > 0 && display =='thumb'" :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
+			<div class="margin20 hoverable thumb">
+				{{re.resource.text.substring(0,5)}}...
 			</div>
-			<router-link v-if="re.resource.text && re.resource.text.length > 0 && display =='thumb'" :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
-				<div class="margin20 hoverable thumb">
-					{{re.resource.text.substring(0,5)}}...
-				</div>
+		</router-link>
+
+		<div v-if="re.resource.title && display =='card' || display =='list'"
+			:class="{
+			'truncate thin inline tmargin': display=='list',
+			'card-content': display=='card'}"
+			>
+			<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
+				<span :class="{'title': display=='card'}">{{re.resource.title}}</span>
 			</router-link>
 
-			<div v-if="re.resource.title && display =='card' || display =='list'"
-				:class="{
-				'truncate thin inline tmargin': display=='list',
-				'card-content': display=='card'}"
-				>
-				<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
-					<span :class="{'title': display=='card'}">{{re.resource.title}}</span>
-				</router-link>
-
-				<div class='subtitle' v-if="re.resource.subtitle">
-					{{re.resource.subtitle}}
-				</div>
+			<div class='subtitle' v-if="re.resource.subtitle">
+				{{re.resource.subtitle}}
 			</div>
-			<div class="rText" v-if="re.resource.text && display !='thumb'">
-				<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
-					{{re.resource.text}}
-				</router-link>
+		</div>
+		<div class="rText" v-if="re.resource.text && display !='thumb'">
+			<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">
+				{{re.resource.text}}
+			</router-link>
+		</div>
+
+		<div v-if="voting & display !='thumb'" class="margin20" >
+			<div class="">
+				<i  @click="ratingDisplay='global'" @mouseenter="ratingDisplay='global'" class="fa fa-lg fa-globe rating" :class="{'selected': ratingDisplay == 'global'}"></i>
+				<i  @click="ratingDisplay='member'" @mouseenter="ratingDisplay='member'" class="fa fa-lg fa-user rating" :class="{'selected': ratingDisplay == 'member'}"></i>
 			</div>
+			<span>
+				<span style="font-weight:300" >Quality</span><span v-if="displayQuality" style="font-weight:300" class='right'>{{displayQuality.toFixed(2).replace(/^0+/, '')}}</span>
+				<div  style="margin-top:5px;margin-bottom:5px" :id="'quality-slider-'+re.resource.uid+$route.name"></div>
+				<!-- <span style="font-weight:300" >4.1</span> -->
+			</span>
+			<span>
+				<span style="font-weight:300" >Complexity</span><span v-if="displayComplexity" style="font-weight:300" class='right'>{{displayComplexity.toFixed(2).replace(/^0+/, '')}}</span>
+				<div  style="margin-top:5px;margin-bottom:5px" :id="'complexity-slider-'+re.resource.uid+$route.name"></div>
+			</span>
+		</div>
 
-			<div v-if="voting & display !='thumb'" class="margin20" >
-				<div class="">
-					<i  @click="ratingDisplay='global'" @mouseenter="ratingDisplay='global'" class="fa fa-lg fa-globe rating" :class="{'selected': ratingDisplay == 'global'}"></i>
-					<i  @click="ratingDisplay='member'" @mouseenter="ratingDisplay='member'" class="fa fa-lg fa-user rating" :class="{'selected': ratingDisplay == 'member'}"></i>
-				</div>
-				<span>
-					<span style="font-weight:300" >Quality</span><span v-if="displayQuality" style="font-weight:300" class='right'>{{displayQuality.toFixed(2).replace(/^0+/, '')}}</span>
-					<div  style="margin-top:5px;margin-bottom:5px" :id="'quality-slider-'+re.resource.uid"></div>
-					<!-- <span style="font-weight:300" >4.1</span> -->
-				</span>
-				<span>
-					<span style="font-weight:300" >Complexity</span><span v-if="displayComplexity" style="font-weight:300" class='right'>{{displayComplexity.toFixed(2).replace(/^0+/, '')}}</span>
-					<div  style="margin-top:5px;margin-bottom:5px" :id="'complexity-slider-'+re.resource.uid"></div>
-					<!-- <span style="font-weight:300" >4.1</span> -->
-				</span>
-			</div>
+		<div v-if="display =='card' " class='card-action'>
+ 			<span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(re.resource.viewCount,1) || 0}}</span>
 
-			<div v-if="display =='card' " class='card-action'>
-	 			<span class='left card-bottom'><i class="tiny material-icons">visibility</i>{{trimNumber(re.resource.viewcount,1) || 0}}</span>
+ 			<span class='right card-bottom'>{{re.votes}}
+				<img style='width:15px; position:inherit; margin-bottom:-2px' src="data:image/png;base64,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"  />
+			</span>
+ 		</div>
 
-	 			<span class='right card-bottom'>{{re.votes}}
-					<img style='width:15px; position:inherit; margin-bottom:-2px' src="data:image/png;base64,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"  />
-				</span>
-	 		</div>
+		<div class='' v-if='display=="godMode"'>
+			<input v-model='re.resource.uid'></input>
 
-			<div class='' v-if='display=="godMode"'>
-				<input v-model='re.resource.uid'></input>
-
-				<input type="text" v-if='re.resource.title' v-model='re.resource.title' v-on:blur="" />
-				<!-- <span> ({{term.translation.languageCode}})</span> -->
-				<input type='text' v-if='re.resource.text' v-model='re.resource.text' v-on:blur="" />
-				<span class='btn blue'@click='deleteResource(re.resource.uid)'>delete resource</span>
-			</div>
-	 	</div>
+			<input type="text" v-if='re.resource.title' v-model='re.resource.title' v-on:blur="" />
+			<!-- <span> ({{term.translation.languageCode}})</span> -->
+			<input type='text' v-if='re.resource.text' v-model='re.resource.text' v-on:blur="" />
+			<span class='btn blue'@click='deleteResource(re.resource.uid)'>delete resource</span>
+		</div>
+ 	</div>
 
 </template>
 <!--
@@ -1160,7 +1146,7 @@
 -->
 
 <template id="autocomplete">
-	<!-- search with typeahead -->
+
 	<div class="row" >
 		<div class="col s12">
 			<div class="">

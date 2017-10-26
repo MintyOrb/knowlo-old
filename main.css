@@ -378,7 +378,6 @@ iframe{
   z-index: 1000;
   background-color: white;
   box-shadow: 0 5px 5px 0 rgba(0,0,0,0.2), 0 7px 11px 0 rgba(0,0,0,0.19);
-  margin-bottom: 10px;
 }
 .termNav {
   position: sticky;
@@ -431,6 +430,7 @@ iframe{
   width: 25vw;
 	height: 100%;
   overflow: scroll;
+  padding-top: 10px;
 }
 .suggegstionSections{
   height: 100%;
