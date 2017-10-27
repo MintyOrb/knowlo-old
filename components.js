@@ -9,7 +9,18 @@
 Vue.component('term',{
     template: "#termContainer",
     name: "term",
-    props:['term', 'display'],
+    props:{
+      term: Object,
+      display: String,
+      hide: {
+        type: String,
+        default: ''
+      },
+      persistAction: {
+        type:Boolean,
+        default: true
+      }
+    },
     data: () =>  {
       return {
         inSidebar: false,
@@ -18,6 +29,7 @@ Vue.component('term',{
           pinnedIcon: false,
           includeIcon: false,
           excludeIcon: false,
+          removeIcon: false,
           focusIcon: false,
           infoIcon: false,
           lensIcon: false,
@@ -48,40 +60,57 @@ Vue.component('term',{
            Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
+      termAction: function(action){
+
+      },
       main: function(){
-        this.status.includeIcon = !this.status.includeIcon;
+        if(this.persistAction){
+          this.status.includeIcon = !this.status.includeIcon;
+        }
         this.term.status = this.status;
         this.$emit('main', this.term)
       },
       remove: function(){
-        this.status.removeIcon = !this.status.removeIcon;
+        if(this.persistAction){
+          this.status.removeIcon = !this.status.removeIcon;
+        }
         this.term.status = this.status;
         this.$emit('remove', this.term)
       },
       include: function(){
-        this.status.includeIcon = !this.status.includeIcon;
+        if(this.persistAction){
+          this.status.includeIcon = !this.status.includeIcon;
+        }
         this.term.status = this.status;
         this.$emit('include', this.term)
       },
       exclude: function(){
-        this.status.excludeIcon = !this.status.excludeIcon;
+        if(this.persistAction){
+          this.status.excludeIcon = !this.status.excludeIcon;
+        }
         this.term.status = this.status;
         this.$emit('exclude', this.term)
       },
       focus: function(){
-        this.status.focusIcon = !this.status.focusIcon;
+        if(this.persistAction){
+          this.status.focusIcon = !this.status.focusIcon;
+        }
         this.term.status = this.status;
         this.status.includeIcon = true;
         this.$emit('focus', this.term)
       },
       pin: function(){
-        this.status.pinnedIcon = !this.status.pinnedIcon;
+        if(this.persistAction){
+          this.status.pinnedIcon = !this.status.pinnedIcon;
+        }
         this.status.includeIcon = true;
         this.term.status = this.status;
         this.$emit('pin', this.term)
       },
       lens: function(){
-        this.status.lensIcon = !this.status.lensIcon;
+        if(this.persistAction){
+          this.status.lensIcon = !this.status.lensIcon;
+        }
         this.term.status = this.status;
         this.$emit('lens', this.term)
       },
@@ -106,6 +135,10 @@ Vue.component('term',{
       if(this.$parent.$el && this.$parent.$el._prevClass == 'termQuery'){ // stupid way to change css. cake component param/option instead
         this.inSidebar = true; // defaults to false
       }
+      for(x in this.hide){
+        this.status[this.hide[x]] = this.status[this.hide[x]]
+      }
+      console.log(this.hide)
     }
 });
 /*

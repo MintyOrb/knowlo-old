@@ -1,8 +1,9 @@
 module.exports = function(app, db){
 
   // member routes
-  app.get('/member/:id', readCore);   // read details of a single member core
-  app.put('/api/member/:id', updateCore); // update a single members core node data
+  app.get('/member/:muid', publicReadFull);       // read details of a single member page
+  app.get('/api/member/:muid', memberReadFull);   // read details of a single member page
+  app.put('/api/member/:muid', updateCore); // update a single members core node data
   app.post('/api/member', createCore);    // create (or update, if present) a member core node.
   app.delete('/api/member', deleteCore);  // delete member core node and relationships....and translations?
 
@@ -12,7 +13,41 @@ module.exports = function(app, db){
   // app.put('/member/:rid/term/:id', setTerm);         // add a single term to a members by id
   // app.delete('/member/:rid/term/:id', deleteTerm);   // remove a single term relationship from a members | DELETE /term/:id to delete term node itself
 
-  function readCore(req, res){
+  function publicReadFull(req, res){
+    console.log(req.params)
+    var cypher = "MATCH (mem:member {uid:{muid}}) "
+               + "OPTIONAL MATCH (mem)-[v:VIEWED]->(re:resource) "//"-[:TAGGED_WITH]-(sets:synSets) "
+               + "WITH re,v "
+               + "MATCH (mem)-[gVote:CAST_VOTE]->(re) " // get global rankings
+                 + "WITH re, v, AVG(gVote.quality) AS gq, AVG(gVote.complexity) AS gc, COUNT(distinct gVote) AS votes "
+               + "OPTIONAL MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
+               + "WHERE p.order=1 AND plang.languageCode IN [ {language} , 'en' ] "
+               + "RETURN  "
+               + "collect(DISTINCT {type: prop.type, value: ptrans.value}) AS properties, "
+               + "{quality: gq , complexity: gc } AS globalVote, "
+               + "votes, "
+               + "v, re as resource "
+               + "ORDER BY v.firstViewed "
+               + "LIMIT 3 "
+
+    db.query(cypher, { muid: req.params.muid, language: 'en' },function(err, result) {
+      if (err) console.log(err);
+      if(result){
+        console.log(result)
+        for(rindex in result){
+          for(pindex in result[rindex].properties){
+            result[rindex].resource[result[rindex].properties[pindex].type] = result[rindex].properties[pindex].value;
+          }
+          delete result[rindex].properties // no need to send redundant data
+        }
+        res.send(result)
+      } else {
+        res.send()
+      }
+    })
+  }
+
+  function memberReadFull(req, res){
   }
 
   function updateCore(req, res){

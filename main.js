@@ -10,7 +10,6 @@ const routes = [
         { path: '/addTerm/:translation/:termID?', component: addTerm, name: 'addTerm' },
       ]
   },
-  // {  name: "resource", path: '/r/:uid', component: resourceComp },
   {  path: "/home", component: home },
   {  path: "/trending", component: trending },
   {  path: "/status", component: status },
@@ -32,7 +31,7 @@ const app = new Vue({
   data: function() {
     return {
         member: {uid:null},       // id and info for member if logged in, uid null if not
-        termQuery: [],                 // array of term objects to be queried
+        termQuery: [],            // array of term objects to be queried
       }
   },
   methods: {
@@ -61,7 +60,6 @@ const app = new Vue({
     console.log(lang)
     lang = lang.substr(0,2); // get two letter language code
 
-
     this.$nextTick(function(){ // init term sidebar
       $('.termQuery-collapse').sideNav({
           menuWidth: 300, // Default is 300
@@ -72,7 +70,6 @@ const app = new Vue({
       });
 
       $('#login-modal').modal(); // init login modal
-
 
       // init headroom (hide/show navbar on scroll down/up)
       var elem = document.querySelector("#nav-slide");
@@ -85,24 +82,19 @@ const app = new Vue({
   		}).init();
 
       firebase.auth().onAuthStateChanged((member) => {
-         console.log('auth state changed....')
           if (member) {
             this.member = member;
             this.member.first = member.displayName.substr(0,member.displayName.indexOf(' ')); // get first name -  if there is no space at all, then the first line will return an empty string and the second line will return the entire string
-
             member.getIdToken().then((accessToken) => {
               Vue.http.headers.common['Authorization'] = "Bearer " + accessToken;
               this.touchMember();
               bus.$emit('login',member)
             });
-
           } else {
-            console.log('in no member')
             this.member = {uid:null};
             Vue.http.headers.common['Authorization'] = '';
           }
         }, function(error) {
-          console.log(error);
           Materialize.toast('Something went wrong...are you online?', 4000)
         });
 

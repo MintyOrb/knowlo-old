@@ -75,11 +75,6 @@ const termComp = Vue.component('termComp',{
             }).modal('open');
           })
       },
-      close: function(){
-          // $('#termModal'+this.term.setID).modal('close')
-        console.log("close here after esc")
-        // $('body').css("overflow","auto")
-      },
       evalTopTerm: function(){
         const top = this.icons.reduce(function(prev, current) {
             return (prev.globalVote.quality > current.globalVote.quality) ? prev : current
@@ -265,9 +260,7 @@ const termComp = Vue.component('termComp',{
       }
     },
     mounted: function(){
-      // if(this.member.uid){
-        this.init();
-      // }
+      this.init();
       $('.metaNav').flickity({
         asNavFor: '.termSections',
         pageDots: false,
@@ -453,9 +446,6 @@ const resourceComp = Vue.component('resourceComp',{
         this.discussion.push(dis)
       },
       fetchRelated: function(){
-        console.log('in fetch related')
-        console.log(this.$route.params.uid)
-        // this.related=[]; // otherwise get a dom exception...due to vueisotope?
         this.$nextTick(()=>{
           this.$http.get('/resource/' + this.$route.params.uid + '/related', {params: { languageCode: 'en'}}).then(response => {
             this.related = response.body;
@@ -637,11 +627,12 @@ const resourceComp = Vue.component('resourceComp',{
 */
 const memberPage = Vue.component('memberPage',{
     template: "#memberPageTemplate",
+    props: ['member'],
     data: function() {
           return {
-              member: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if member is not found
+              // member: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if member is not found
               memberSection: ["Following","Stream","Competence","Resources"],
-
+              seen: []
             }
           },
     methods: {
@@ -649,10 +640,16 @@ const memberPage = Vue.component('memberPage',{
       fetchMember: function(){
         console.log('in fetchMember')
         this.init()
-        this.$http.get('/member/' + this.$route.params.uid, {params: { languageCode: 'en'}}).then(response => {
+        this.$http.get('/member/' + this.$route.params.uid).then(response => {
           console.log(response.body)
-          if(response.body.member){
-            console.log(response.body)
+          if(response.body){
+            this.seen=response.body;
+            this.$nextTick(()=>{
+              window.setTimeout( ()=> {
+                this.$refs.seenBin.layout('masonry');
+              }, 1000);
+
+            })
 
           } else {
             Materialize.toast('Member not found.', 4000)
@@ -710,7 +707,11 @@ const memberPage = Vue.component('memberPage',{
     },
     mounted: function(){
       console.log('member mounted')
-      this.fetchMember();
+      console.log(this.member.uid)
+      if(this.member.uid){
+        this.fetchMember();
+      }
+
     },
     beforeRouteLeave: function (to, from, next){
       $('.modal-overlay').remove(); // needed if navigating from member page to set page
@@ -719,8 +720,14 @@ const memberPage = Vue.component('memberPage',{
     },
     watch: {
       '$route.params.uid': function (id) {
-        console.log('in member watch')
+        console.log('in uid watch')
         this.fetchMember();
+      },
+      member: function(current){
+        console.log('in member watch')
+        if(current.uid){
+          this.fetchMember();
+        }
       }
     }
 });
@@ -751,40 +758,6 @@ const explore = Vue.component('exploreComp',{
             sortAscending: true,                // whether sort whould be ascending or descending - boolean
             filterOption: "show all",
             searchStr: null,                    // current member entered search text - string
-            getSortData:  {                     // sort options for isotope...eventually include others...
-                rating: "rating",
-                viewcount: "viewcount",
-                author: "author",
-                dislikes: "dislikes",
-                length: "length",
-                likes: "likes"
-            },
-            getFilterData: {                    // isotop filter functions - filter here for crosssection/grou/lensp instead of with jquery?
-                "keywords": (el) => {
-                  foundAll = true
-                  for (var keyIndex = 0; keyIndex < this.termQuery.length; keyIndex++) {
-                    foundOne = false
-                    el.keywords.some((element, i) =>{
-                      if (this.termQuery[keyIndex]['name'].toLowerCase().trim() === element.toLowerCase().trim()) {
-                          foundOne = true;
-                      }
-                    })
-                    foundAll = foundAll && foundOne // "AND" search
-                  }
-                  return foundAll
-                },
-                "show all": function() {
-                    return true;
-                },
-                "contains": (el) => {
-                    return el.description.toLowerCase().includes(this.searchStr.toLowerCase())
-                    // return el.keywords.some((element, i) =>{
-                    //     if (this.searchStr.toLowerCase().trim() === element.toLowerCase().trim()) {
-                    //         return true;
-                    //     }
-                    // });
-                }
-            },
         }
     },
     methods: {
@@ -823,32 +796,17 @@ const explore = Vue.component('exploreComp',{
         },
         addToQuery: function(item){
             item.connections=0;
+            if(item.persistAction){ // this is handled really poorly...neeed to rethink term comp. Also, this doesn't work for pin
+              item.status.includeIcon = true;
+            }
             if(item.status.focusIcon){
               this.focus(item);
             }
-            console.log(item)
-            console.log(this.termQuery.includes(item))
-            // object.includes...
-            // var x = this.termQuery.filter(term => term.setID > 6);
-            if(this.termQuery.every(x=>x.setID != item.setID)){
+            if(this.termQuery.every(x=>x.setID != item.setID)){ // don't add if already in query
               this.termQuery.push(item);
             } else {
               Materialize.toast('Already in query!', 1500)
             }
-        },
-        includeExclude: function(set){ // for including/excluding terms already in query
-          if(set.status.includeIcon){
-            set.status.include = false;
-            set.status.includeIcon = false;
-            status.exclude = true;
-            set.status.excludeIcon=true;
-          } else {
-            set.status.include = true;
-            set.status.includeIcon = true;
-            status.exclude = false;
-            set.status.excludeIcon=false;
-          }
-          this.fetchResources();
         },
         changeDisplay: function(disp){
           this.resourceDisplay = disp
@@ -935,7 +893,7 @@ const explore = Vue.component('exploreComp',{
               $('#suggestionNav').flickity({
                 asNavFor: '#suggestionSteps',
                 pageDots: false,
-                prevNextButtons: false,
+                prevNextButtons: true,
                 accessibility: false, // to prevent jumping when focused
               })
 

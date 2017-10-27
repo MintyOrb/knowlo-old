@@ -139,15 +139,15 @@
 				<!-- term query  -->
 		    <div class='row'>
 		        <isotope style="min-height:80px" ref="termQuery" :list="termQuery" :options='{}' class='step'>
-		            <term v-for="word in termQuery"
-									:key="word.setID"
-									:term="word"
-									:display="'thumb'"
-									v-on:include="includeExclude(word)"
-									v-on:exclude="includeExclude(word)"
-									v-on:remove="removeTerm(word.setID)"
+		            <term v-for="term in termQuery"
+									:key="term.setID"
+									:term="term"
+									display="thumb"
+									v-on:include="removeTerm(term.setID)"
+									v-on:remove="removeTerm(term.setID)"
 									v-on:focus="focus"
 									v-on:lens="fetchContains"
+									v-on:main="removeTerm(term.setID)"
 								>
 								</term>
 		        </isotope>
@@ -193,6 +193,8 @@
 									:key="group.group[0].setID"
 									:term="group.group[0]"
 									:display="'thumb'"
+									:persist-action="false"
+									hide="remove lens"
 									v-on:include="addToQuery(group.group[0])"
 									v-on:exclude="addToQuery(group.group[0])"
 									v-on:focus="addToQuery(group.group[0])"
@@ -205,7 +207,8 @@
 								<div v-for="step in termSuggestions" class="suggestionGroupStep" >
 									<isotope  :ref='"suggestionBin" + step.group[0].setID' class="step" :list="step.contains" :options='{}'>
 										<div v-for="term in step.contains" class='element-item' :key="term.setID">
-											<term :term="term"
+											<term
+												:term="term"
 												:display="'thumb'"
 												v-on:main="addToQuery(term)"
 												v-on:include="addToQuery(term)"
@@ -227,6 +230,7 @@
 									:key="term.setID"
 									:term="term"
 									:display="'thumb'"
+									hide="remove lens"
 									v-on:main="addToQuery(term)"
 									v-on:include="addToQuery(term)"
 									v-on:exclude="addToQuery(term)"
@@ -408,6 +412,7 @@
 
 				<div class="resourceStep discussion">
 					<div class="center pad margin20">
+						<span class="left" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
 						<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
 					 <span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
 					 <span class='right'>
@@ -422,7 +427,6 @@
  							<li class='disabled'><a># responses</a></li>
 						 </ul>
 					 </span>
-					 <span class="right" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
 
 					 <br/>
 				 </div>
@@ -522,7 +526,7 @@
                                                                     888               Y8b d88P
                                                                     888                "Y88P"
 -->
-<template id="memberPageTemplate">
+<template id="memberPageTemplate" :member='member'>
 	<div style="opacity:0" :id="'memberModal'+member.uid" class="modal fullPage member-modal"  >
 		<span class="exit hide-on-med-and-down modal-close" ><i class="fa fa-3x fa-times"></i></span>
 
@@ -546,18 +550,24 @@
 			<div class="memberSections">
 
 				<div class="memberStep">
-
+					<isotope ref='seenBin' class="step" :list="seen" :options='{}'>
+								<resource v-for="re in seen"
+								:re="re"
+								:key="re.resource.uid"
+								:display="'card'"
+								:voting='true'></resource>
+					 </isotope>
 				</div>
 
 				<div class="memberStep discussion">
 
-
+indeed
 				</div>
 				<div class="memberStep" >
-
+yup
 				</div>
 				<div class="memberStep">
-
+yup
 				</div>
 		 </div>
 
@@ -1033,7 +1043,7 @@
 
 							<div class="icons">
 								<div class="rotater">
-									<div @click="pin" class="mbtn mbtn-icon flexCenter" :class="{showPin: status.pinnedIcon, pinNav: hovering&& inSidebar }">
+									<div @click="pin" class="mbtn mbtn-icon flexCenter" :class="{showPin: status.pinnedIcon, pinNav: hovering&& inSidebar, hide: hide.indexOf('pin')>-1 }">
 										<i class="fa fa-thumb-tack" style="transform:rotate(-45deg)"></i>
 									</div>
 								</div>
@@ -1042,43 +1052,44 @@
 										<i class="fa fa-expand"></i>
 									</div>
 								</div> -->
-								<div  v-if="true" class="rotater">
-									<div @click="lens" class="mbtn mbtn-icon flexCenter" :class="{'showCompress': status.lensIcon, expandNav: hovering&& inSidebar}">
-										<i class="material-icons">more_horiz</i>
+								<div  class="rotater">
+									<div @click="lens" class="mbtn mbtn-icon flexCenter" :class="{'showLens': status.lensIcon, expandNav: hovering&& inSidebar, hide: hide.indexOf('lens')>-1 }">
+										<i class="material-icons" style="margin-top:15px">more_horiz</i>
 									</div>
 								</div>
-								<div  v-if="false" class="rotater">
+								<!-- <div  v-if="false" class="rotater">
 									<div class="mbtn mbtn-icon flexCenter" :class="{showCompress: true, expandNav: hovering&& inSidebar}">
 										<i class="fa fa-compress"></i>
 									</div>
-								</div>
+								</div> -->
 								<div class="rotater">
 									<router-link :to="{ name: 'setSub', params: { uid: term.setID, name: term.translation.name }}">
-										<div class="mbtn mbtn-icon flexCenter":class="{showInfo: status.infoIcon, infoNav: hovering&& inSidebar }">
-											<i class="fa fa-info"></i>
+										<div class="mbtn mbtn-icon flexCenter":class="{showInfo: status.infoIcon, infoNav: hovering && inSidebar, hide: hide.indexOf('info')>-1 }">
+											<i class="fa fa-info" style="padding-right:10px;"></i>
 										</div>
 									</router-link>
 								</div>
 								<div class="rotater">
-									<div @click="exclude" class="mbtn mbtn-icon flexCenter" :class="{showMinus: status.excludeIcon, excludeNav: hovering&& inSidebar }">
-										<i class="fa fa-minus"></i>
+									<div @click="remove" class="mbtn mbtn-icon flexCenter" :class="{'showRemove': status.removeIcon, removeNav: hovering && inSidebar, hide: hide.indexOf('remove')>-1 }">
+										<i class="fa fa-times"></i>
 									</div>
 								</div>
+								<!-- <div class="rotater">
+									<div @click="exclude" class="mbtn mbtn-icon flexCenter" :class="{showMinus: status.excludeIcon, excludeNav: hovering&& inSidebar, hide: hide.indexOf('exclude')>-1 }">
+										<i class="fa fa-minus"></i>
+									</div>
+								</div> -->
 								<div class="rotater">
-									<div @click="include" class="mbtn mbtn-icon flexCenter" :class="{showPlus: status.includeIcon, includeNav: hovering&& inSidebar }">
+									<div @click="include" class="mbtn mbtn-icon flexCenter" :class="{showPlus: status.includeIcon, includeNav: hovering&& inSidebar, hide: hide.indexOf('include')>-1 }">
 										<i class="fa fa-plus"></i>
 									</div>
 								</div>
 								<div class="rotater">
-									<div @click="focus" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: status.focusIcon, focusNav: hovering&& inSidebar }">
+									<div @click="focus" class="mbtn mbtn-icon flexCenter"  :class="{showFocus: status.focusIcon, focusNav: hovering&& inSidebar, hide: hide.indexOf('focus')>-1 }">
 										<i class="fa fa-crosshairs"></i>
 									</div>
 								</div>
-								<div class="">
-									<div @click="remove" class="mbtn mbtn-icon flexCenter" :class="{removeNav: hovering&& inSidebar }">
-										<i class="fa fa-times"></i>
-									</div>
-								</div>
+
 							</div>
 						</div>
 					</div>
