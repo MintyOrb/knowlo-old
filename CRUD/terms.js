@@ -84,6 +84,7 @@ function query(req, res){
    cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchSets:synSet) "
           + "WHERE searchSets.uid IN {searchSets} "
           + "WITH contentNode, COUNT(searchSets) as count "
+          + "WHERE count = {searchTermsCount} "
           + "MATCH (set:synSet)<-[:TAGGED_WITH]-(contentNode), "
             + "(set:synSet)-[setR:IN_SET]-(:term)-[:HAS_TRANSLATION {languageCode: {lang} }]->(translation:translation) "
           + "WHERE setR.order=1 AND NOT set.uid IN {ignoreTerms} "

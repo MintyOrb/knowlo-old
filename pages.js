@@ -12,6 +12,7 @@ const termComp = Vue.component('termComp',{
     data: function() {
       return {
         term: {name: 'default',translation:{name:''},term:{iconURL:""}},
+        modalOpen: false,
         addResource:false,
         addResourceType: '',
         definitions: [],
@@ -43,13 +44,18 @@ const termComp = Vue.component('termComp',{
            } else {
              Materialize.toast('Resource not found.', 4000)
            }
-           this.openModal()
+           if(!this.modalOpen){
+             this.openModal()
+           }
          }, response => {
-           this.openModal()
+           if(!this.modalOpen){
+             this.openModal()
+           }
            Materialize.toast('Something went wrong...are you online?', 4000)
          });
       },
       openModal: function(){
+        this.modalOpen = true;
         this.$nextTick(function(){
             $('#termModal').modal({
               dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -62,9 +68,6 @@ const termComp = Vue.component('termComp',{
                 $('body').css("overflow","hidden")
               },
               complete: () => {
-                console.log('close')
-                $('.modal-overlay').remove(); // needed if navigating from resource page to set page
-
                 if(  $('.metaNav').flickity()){
                   $('.metaNav').flickity('destroy');
                   $('.termSections').flickity('destroy');
@@ -90,13 +93,10 @@ const termComp = Vue.component('termComp',{
         }
       },
       newMeta: function(a,b){
-        console.log(a)
-        console.log(b)
-        console.log(this.addResourceType)
         if(this.addResourceType == 'definition'){
-          this.definitions.push(a)// doesn't contain uid?
+          this.definitions.push(a)
         } else if(this.addResourceType == 'icon'){
-          this.icons.push(a)// doesn't contain uid?
+          this.icons.push(a)
         }
       },
       fetchMeta: function(type){
@@ -281,7 +281,6 @@ const termComp = Vue.component('termComp',{
 
   },
   beforeRouteLeave: function (to, from, next){
-    $('.modal-overlay').remove(); // needed if navigating from resource page to set page
     $('body').css("overflow","auto");
     window.setTimeout(()=>{
       next()
@@ -323,6 +322,7 @@ const resourceComp = Vue.component('resourceComp',{
               resourceSection: ["Discussion","Terms","Related"],
               addResource:false,
               addResourceType: '',
+              modalOpen: false,
               discussionFilter: ["insight","question","criticism","quote"], // which types of discussions should be displayed
               filterIDs: { // setIDS for filtering by switch
                 'insight':'rJxPWooTO-',
@@ -340,16 +340,10 @@ const resourceComp = Vue.component('resourceComp',{
           window.setTimeout(()=>{
             this.$refs.discussionBin.layout('masonry');
             this.$refs.relatedBin.layout('masonry');
-
           }, 375)
         })
       },
       fetchResource: function(){
-        console.log('in fetch res')
-        this.$nextTick(()=>{
-
-        // this.terms=[];// seems that terms are otherwise sometimes just appended...(because of isotope?)
-      }) //this.resource={};
         this.$http.get('/resource/' + this.$route.params.uid + '/full', {params: { languageCode: 'en'}}).then(response => {
           if(response.body.resource){
             console.log(response.body)
@@ -387,12 +381,6 @@ const resourceComp = Vue.component('resourceComp',{
           this.fetchRelated();
           this.$nextTick(function(){
 
-            // if($('.metaNav').flickity() && $('.resourceSections').flickity()){
-            //   $('.metaNav').flickity('destroy');
-            //   $('.resourceSections').flickity('destroy');
-            // }
-            // if(!$('.metaNav').flickity() && !$('.resourceSections').flickity()){
-
             $('.metaNav').flickity({
               asNavFor: '.resourceSections',
               // wrapAround: true,
@@ -410,9 +398,9 @@ const resourceComp = Vue.component('resourceComp',{
               accessibility: false, // to prevent jumping when focused
               dragThreshold: 20 // play around with this more?
             });
-          // }
-
-            $('#resourceModal'+this.resource.uid).modal({
+            if(!this.modalOpen){
+              this.modalOpen=true;
+              $('#resourceModal'+this.resource.uid).modal({
                 opacity: .5, // Opacity of modal background
                 inDuration: 300, // Transition in duration
                 outDuration: 200, // Transition out duration
@@ -425,10 +413,10 @@ const resourceComp = Vue.component('resourceComp',{
                   router.push("/");
                 }
               }).modal('open');
-
-              if(this.resource.displayType == "image"){
-                this.initImage();
-              }
+            }
+            if(this.resource.displayType == "image"){
+              this.initImage();
+            }
           })
 
       },
@@ -546,12 +534,9 @@ const resourceComp = Vue.component('resourceComp',{
         map.setMaxBounds(bounds);
       },
       markViewed: function(){
-        console.log('before mark v')
-        console.log('/api/resource/'+ this.$route.params.uid +'/viewed')
         this.$http.put('/api/resource/'+ this.$route.params.uid +'/viewed').then(response => {
-          console.log('back')
           if(response.body){
-            console.log(response.body)
+            console.log('back from viewed ',response.body)
           } else {
             // Materialize.toast('Something went wrong...', 4000)
           }
@@ -589,15 +574,12 @@ const resourceComp = Vue.component('resourceComp',{
 
     },
     beforeRouteLeave: function (to, from, next){
-      $('.modal-overlay').remove(); // needed if navigating from resource page to set page
       $('body').css("overflow","auto");
       next();
     },
     watch: {
       '$route.params.uid': function () {
-        this.$nextTick(()=>{
-          this.fetchResource();
-        })
+        this.fetchResource();
       },
       discussionFilter: function (a,b) {
         this.$refs.discussionBin.filter('type');
@@ -632,7 +614,8 @@ const memberPage = Vue.component('memberPage',{
           return {
               // member: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if member is not found
               memberSection: ["Following","Stream","Competence","Resources"],
-              seen: []
+              seen: [],
+              modalOpen: false
             }
           },
     methods: {
@@ -686,20 +669,22 @@ const memberPage = Vue.component('memberPage',{
               accessibility: false, // to prevent jumping when focused
               dragThreshold: 20 // play around with this more?
             });
-
-            $('#memberModal'+this.member.uid).modal({
-                opacity: .5, // Opacity of modal background
-                inDuration: 300, // Transition in duration
-                outDuration: 200, // Transition out duration
-                startingTop: '4%', // Starting top style attribute
-                endingTop: '10%', // Ending top style attribute
-                ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-                  $('body').css("overflow","hidden")
-                },
-                complete: () => {
-                  router.push("/");
-                }
-              }).modal('open');
+            if(!this.modalOpen){
+              this.modalOpen=true;
+              $('#memberModal'+this.member.uid).modal({
+                  opacity: .5, // Opacity of modal background
+                  inDuration: 300, // Transition in duration
+                  outDuration: 200, // Transition out duration
+                  startingTop: '4%', // Starting top style attribute
+                  endingTop: '10%', // Ending top style attribute
+                  ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                    $('body').css("overflow","hidden")
+                  },
+                  complete: () => {
+                    router.push("/");
+                  }
+                }).modal('open');
+              }
           })
 
       },
