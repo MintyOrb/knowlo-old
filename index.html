@@ -550,8 +550,8 @@
 			<div class="memberSections">
 
 				<div class="memberStep">
-					<isotope ref='seenBin' class="step" :list="seen" :options='{}'>
-								<resource v-for="re in seen"
+					<isotope ref='seenBin' class="step" :list="history" :options='{}'>
+								<resource v-for="re in history"
 								:re="re"
 								:key="re.resource.uid"
 								:display="'card'"
@@ -560,11 +560,37 @@
 				</div>
 
 				<div class="memberStep discussion">
-
-indeed
+topsssss
+					<isotope ref='top' :list="top" :options='{}'>
+						<div v-for="term in top" :key="term.setID">
+							<term
+								:term="term"
+								:display="'thumb'"
+								:key="term.setID"
+								v-on:include="addToQuery(term)"
+								v-on:exclude="removeSynonym(term.term.uid)"
+								v-on:focus="addToQuery(term)"
+								v-on:pin="addToQuery(term)"
+								>
+							</term>{{term.count}}
+						</div>
+					</isotope>
 				</div>
 				<div class="memberStep" >
-yup
+					<isotope ref='scale' :list="scale" :options='{}'>
+						<div v-for="term in scale" :key="term.setID">
+							<term
+								:term="term"
+								:display="'thumb'"
+								:key="term.setID"
+								v-on:include="addToQuery(term)"
+								v-on:exclude="removeSynonym(term.term.uid)"
+								v-on:focus="addToQuery(term)"
+								v-on:pin="addToQuery(term)"
+								>
+							</term>{{term.count}}
+						</div>
+					</isotope>
 				</div>
 				<div class="memberStep">
 yup

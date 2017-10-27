@@ -381,25 +381,26 @@ const resourceComp = Vue.component('resourceComp',{
           this.fetchRelated();
           this.$nextTick(function(){
 
-            $('.metaNav').flickity({
-              asNavFor: '.resourceSections',
-              // wrapAround: true,
-              pageDots: false,
-              prevNextButtons: false,
-              contain: true,
-              // freeScroll: true,
-              accessibility: false, // to prevent jumping when focused
-            })
 
-            $('.resourceSections').flickity({
-              wrapAround: true,
-              pageDots: false,
-              prevNextButtons: true,
-              accessibility: false, // to prevent jumping when focused
-              dragThreshold: 20 // play around with this more?
-            });
             if(!this.modalOpen){
               this.modalOpen=true;
+              $('.metaNav').flickity({
+                asNavFor: '.resourceSections',
+                // wrapAround: true,
+                pageDots: false,
+                prevNextButtons: false,
+                contain: true,
+                // freeScroll: true,
+                accessibility: false, // to prevent jumping when focused
+              })
+
+              $('.resourceSections').flickity({
+                wrapAround: true,
+                pageDots: false,
+                prevNextButtons: true,
+                accessibility: false, // to prevent jumping when focused
+                dragThreshold: 20 // play around with this more?
+              });
               $('#resourceModal'+this.resource.uid).modal({
                 opacity: .5, // Opacity of modal background
                 inDuration: 300, // Transition in duration
@@ -614,19 +615,62 @@ const memberPage = Vue.component('memberPage',{
           return {
               // member: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if member is not found
               memberSection: ["Following","Stream","Competence","Resources"],
-              seen: [],
+              history: [],
+              top:[],
+              scale:[],
               modalOpen: false
             }
           },
     methods: {
+      fetchSets: function(){
+        console.log('in fetch sets')
+        this.$http.get('/member/' + this.$route.params.uid+'/set/Bylx_hVBa-').then(response => {
+          console.log(response.body)
+          if(response.body){
+            this.scale=response.body;
+          //   this.sets=response.body;
+          //   this.$nextTick(()=>{
+          //     window.setTimeout( ()=> {
+          //       this.$refs.seenBin.layout('masonry');
+          //     }, 1000);
+          //
+          //   })
 
+          } else {
+            Materialize.toast('Member not found.', 4000)
+          }
+        }, response => {
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      fetchTop: function(){
+
+        console.log('in fetch top')
+        this.$http.get('/member/' + this.$route.params.uid+'/set/top').then(response => {
+          console.log(response.body)
+          if(response.body){
+            this.top=response.body;
+          //   this.sets=response.body;
+          //   this.$nextTick(()=>{
+          //     window.setTimeout( ()=> {
+          //       this.$refs.seenBin.layout('masonry');
+          //     }, 1000);
+          //
+          //   })
+
+          } else {
+            Materialize.toast('Member not found.', 4000)
+          }
+        }, response => {
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
       fetchMember: function(){
         console.log('in fetchMember')
-        this.init()
         this.$http.get('/member/' + this.$route.params.uid).then(response => {
           console.log(response.body)
           if(response.body){
-            this.seen=response.body;
+            this.history=response.body;
             this.$nextTick(()=>{
               window.setTimeout( ()=> {
                 this.$refs.seenBin.layout('masonry');
@@ -645,6 +689,8 @@ const memberPage = Vue.component('memberPage',{
       },
       init: function(){
         console.log('in member init')
+        this.fetchSets();
+        this.fetchTop();
           this.$nextTick(function(){
 
             if($('.metaNav').flickity() && $('.memberSections').flickity()){
