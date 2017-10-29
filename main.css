@@ -237,11 +237,6 @@ html {
 iframe{
   border-width: 0;
 }
-.resourceMeta {
-  /*height: 100%;*/
-  position: relative;
-  width: 100vw;
-}
 .termTitle {
   background-color: #2196F3;
   padding: 25px;
@@ -250,6 +245,20 @@ iframe{
   font-weight: 200;
   color:white;
   font-size: 20px;
+}
+.memberTitle div {
+  font-weight: 200;
+  color:black;
+  font-size: 30px;
+  padding-top:20px;
+}
+.about div {
+  font-weight: 200;
+  margin:30px;
+  font-size: 20px;
+}
+.about span {
+  font-weight: 300;
 }
 .termMeta {
   height: 100vh;
@@ -300,6 +309,7 @@ iframe{
 
 .resourceMeta {
   height: 100%;
+  position: relative;
   width: 100vw;
 }
 .web-container iframe, .video-container object, .video-container embed {
@@ -740,13 +750,16 @@ iframe{
 }
 
 nput:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #2196F3;
-  box-shadow: 0 1px 0 0 #2196F3;
+  border-bottom: 1px solid #2196F3!important;
+  box-shadow: 0 1px 0 0 #2196F3!important;
 }
 input:not([type]):focus:not([readonly])+label, input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([readonly])+label, input[type=email]:focus:not([readonly])+label, input[type=url]:focus:not([readonly])+label, input[type=time]:focus:not([readonly])+label, input[type=date]:focus:not([readonly])+label, input[type=datetime]:focus:not([readonly])+label, input[type=datetime-local]:focus:not([readonly])+label, input[type=tel]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, input[type=search]:focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
-      color: #2196F3;
+      color: #2196F3!important;
 }
-
+.rchart {
+  margin: auto;
+  width: 50%;
+}
 .clear{
   font-size: 11px;
     font-weight: 300;
@@ -762,7 +775,7 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:focus:not([reado
   box-shadow: none
 }
 .discussion {
-  width:90vw;
+  width:90vw!important;
 }
 .addBtn {
   position: absolute;
@@ -922,7 +935,13 @@ and (max-width : 1024px) { _:-moz-tree-row(hover),
 
 .member-container{
   height: 80px;
+  background-color: white;
 }
 .memberStep {
   width: 30vw;
+}
+.memberMeta {
+  height: 100vh;
+  position: relative;
+  width: 100vw;
 }

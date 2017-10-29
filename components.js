@@ -1,4 +1,43 @@
-
+Vue.component('radar', {
+  extends: VueChartJs.Radar,
+  props: ['data','dataLabel','labels'],
+  methods: {
+    render:function(){
+      this.renderChart({
+        labels: this.labels,
+        datasets: [
+          {
+            // label: this.dataLabel,
+            backgroundColor: '#2196F3',
+            data: this.data,
+            pointBorderColor: '#000000',
+            pointBackgroundColor: '#ffffff',
+          },
+        ],
+      },
+      {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        scale: {
+          pointLabels: {
+            fontSize: 15
+          }
+        }
+      })
+    }
+  },
+  mounted () {
+    this.render();
+  },
+  watch: {
+    data:function(){
+      this.render();
+    },
+  }
+})
 /*
 ████████ ███████ ██████  ███    ███
    ██    ██      ██   ██ ████  ████
@@ -755,7 +794,7 @@ const addResource = Vue.component('addResource',{
 
       },
       upsertResource(){
-        this.$http.post('/resource', {resource:this.resource}).then(response => {
+        this.$http.post('/api/resource', {resource:this.resource}).then(response => {
           if(response.body){
             this.resource.core = response.body;
 

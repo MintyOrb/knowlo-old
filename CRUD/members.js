@@ -1,7 +1,8 @@
 module.exports = function(app, db){
 
   // member routes
-  app.get('/member/:muid', publicReadFull);       // read details of a single member page
+  app.get('/member/:muid', publicRead);       // read details of a single member page
+  app.get('/member/:muid/history', readHistory);       // read member viweded history
   app.get('/member/:muid/set/top', readTopSets);       // read member sets in group
   app.get('/member/:muid/set/:guid', readGroups);       // read member sets in group
   app.get('/api/member/:muid', memberReadFull);   // read details of a single member page
@@ -15,13 +16,41 @@ module.exports = function(app, db){
   // app.put('/member/:rid/term/:id', setTerm);         // add a single term to a members by id
   // app.delete('/member/:rid/term/:id', deleteTerm);   // remove a single term relationship from a members | DELETE /term/:id to delete term node itself
 
-  function publicReadFull(req, res){
+  function publicRead(req, res){
+    console.log(req.params)
+    // resource viweded
+    // date joined (member since)
+    // number of votes? average complexity/quality rating...
+    var cypher = "MATCH (mem:member {uid:{muid}}) "
+               + "OPTIONAL MATCH (mem)-[v:VIEWED]->(re:resource) "//"-[:TAGGED_WITH]-(sets:synSets) "
+               + "WITH count(v) as totalViewed, mem "
+               + "OPTIONAL MATCH (mem)-[gVote:CAST_VOTE]->(:resource) " // get global rankings
+                 + "WITH mem, totalViewed, AVG(gVote.quality) AS gq, AVG(gVote.complexity) AS gc, COUNT(distinct gVote) AS totalVotes "
+               + "RETURN  "
+               + "{quality: gq , complexity: gc } AS globalVote, "
+               + "totalVotes, "
+               + "totalViewed, "
+               + "mem.name as name, "
+               + "mem.joined as joined "
+
+
+    db.query(cypher, { muid: req.params.muid, language: 'en' },function(err, result) {
+      if (err) console.log(err);
+      if(result){
+        res.send(result[0])
+      } else {
+        res.send()
+      }
+    })
+  }
+
+  function readHistory(req, res){
     console.log(req.params)
     // history of first viewed resources
     var cypher = "MATCH (mem:member {uid:{muid}}) "
                + "OPTIONAL MATCH (mem)-[v:VIEWED]->(re:resource) "//"-[:TAGGED_WITH]-(sets:synSets) "
                + "WITH re,v "
-               + "MATCH (mem)-[gVote:CAST_VOTE]->(re) " // get global rankings
+               + "OPTIONAL MATCH (mem)-[gVote:CAST_VOTE]->(re) " // get global rankings
                  + "WITH re, v, AVG(gVote.quality) AS gq, AVG(gVote.complexity) AS gc, COUNT(distinct gVote) AS votes "
                + "OPTIONAL MATCH (re)-[p:HAS_PROPERTY]->(prop:prop)-[plang:HAS_TRANSLATION ]->(ptrans:translation) "
                + "WHERE p.order=1 AND plang.languageCode IN [ {language} , 'en' ] "
@@ -30,7 +59,7 @@ module.exports = function(app, db){
                + "{quality: gq , complexity: gc } AS globalVote, "
                + "votes, "
                + "v, re as resource "
-               + "ORDER BY v.firstViewed "
+               + "ORDER BY v.lastViewed desc "
                + "LIMIT 10 "
 
     db.query(cypher, { muid: req.params.muid, groupUID: req.params.guid, language: 'en' },function(err, result) {

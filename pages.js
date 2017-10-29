@@ -613,29 +613,27 @@ const memberPage = Vue.component('memberPage',{
     props: ['member'],
     data: function() {
           return {
-              // member: {uid: 0, displayType: "none"}, // include defaults so init doesn't break if member is not found
-              memberSection: ["Following","Stream","Competence","Resources"],
+              memberSection: ["Overview","History","Top Terms","Time By Discplines"],
               history: [],
               top:[],
-              scale:[],
+              scale:{all:[]},
+              mem:{},
               modalOpen: false
             }
           },
     methods: {
       fetchSets: function(){
-        console.log('in fetch sets')
         this.$http.get('/member/' + this.$route.params.uid+'/set/Bylx_hVBa-').then(response => {
-          console.log(response.body)
           if(response.body){
-            this.scale=response.body;
-          //   this.sets=response.body;
-          //   this.$nextTick(()=>{
-          //     window.setTimeout( ()=> {
-          //       this.$refs.seenBin.layout('masonry');
-          //     }, 1000);
-          //
-          //   })
-
+            this.scale.all=response.body;
+            this.scale.data=[]
+            this.scale.labels=[]
+            this.scale.all.forEach(x=>{
+              this.scale.data.push(x.count)
+              this.scale.labels.push(x.translation.name)
+              x['connections'] = x.count;
+            })
+            this.scale.dataLabel=' '
           } else {
             Materialize.toast('Member not found.', 4000)
           }
@@ -644,22 +642,31 @@ const memberPage = Vue.component('memberPage',{
         });
       },
       fetchTop: function(){
-
-        console.log('in fetch top')
         this.$http.get('/member/' + this.$route.params.uid+'/set/top').then(response => {
-          console.log(response.body)
           if(response.body){
             this.top=response.body;
-          //   this.sets=response.body;
-          //   this.$nextTick(()=>{
-          //     window.setTimeout( ()=> {
-          //       this.$refs.seenBin.layout('masonry');
-          //     }, 1000);
-          //
-          //   })
-
+            this.top.forEach(x=>{
+              x['connections'] = x.count;
+            })
           } else {
             Materialize.toast('Member not found.', 4000)
+          }
+        }, response => {
+          Materialize.toast('Something went wrong...are you online?', 4000)
+        });
+      },
+      fetchHistory: function(){
+        console.log('in history')
+        this.$http.get('/member/' + this.$route.params.uid + '/history').then(response => {
+          if(response.body){
+            this.history=response.body;
+            this.$nextTick(()=>{
+              window.setTimeout( ()=> {
+                this.$refs.seenBin.layout('masonry');
+              }, 1000);
+            })
+          } else {
+            Materialize.toast('History not found.', 4000)
           }
         }, response => {
           Materialize.toast('Something went wrong...are you online?', 4000)
@@ -670,14 +677,7 @@ const memberPage = Vue.component('memberPage',{
         this.$http.get('/member/' + this.$route.params.uid).then(response => {
           console.log(response.body)
           if(response.body){
-            this.history=response.body;
-            this.$nextTick(()=>{
-              window.setTimeout( ()=> {
-                this.$refs.seenBin.layout('masonry');
-              }, 1000);
-
-            })
-
+            this.mem=response.body;
           } else {
             Materialize.toast('Member not found.', 4000)
           }
@@ -691,47 +691,48 @@ const memberPage = Vue.component('memberPage',{
         console.log('in member init')
         this.fetchSets();
         this.fetchTop();
-          this.$nextTick(function(){
+        this.fetchHistory();
+        this.$nextTick(function(){
 
-            if($('.metaNav').flickity() && $('.memberSections').flickity()){
-              $('.metaNav').flickity('destroy');
-              $('.memberSections').flickity('destroy');
-            }
+          if($('.metaNav').flickity() && $('.resourceSections').flickity()){
+            $('.metaNav').flickity('destroy');
+            $('.resourceSections').flickity('destroy');
+          }
 
-            $('.metaNav').flickity({
-              asNavFor: '.memberSections',
-              // wrapAround: true,
-              pageDots: false,
-              prevNextButtons: false,
-              contain: true,
-              // freeScroll: true,
-              accessibility: false, // to prevent jumping when focused
-            })
-
-            $('.memberSections').flickity({
-              wrapAround: true,
-              pageDots: false,
-              prevNextButtons: true,
-              accessibility: false, // to prevent jumping when focused
-              dragThreshold: 20 // play around with this more?
-            });
-            if(!this.modalOpen){
-              this.modalOpen=true;
-              $('#memberModal'+this.member.uid).modal({
-                  opacity: .5, // Opacity of modal background
-                  inDuration: 300, // Transition in duration
-                  outDuration: 200, // Transition out duration
-                  startingTop: '4%', // Starting top style attribute
-                  endingTop: '10%', // Ending top style attribute
-                  ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-                    $('body').css("overflow","hidden")
-                  },
-                  complete: () => {
-                    router.push("/");
-                  }
-                }).modal('open');
-              }
+          $('.metaNav').flickity({
+            asNavFor: '.resourceSections',
+            // wrapAround: true,
+            pageDots: false,
+            prevNextButtons: false,
+            contain: true,
+            // freeScroll: true,
+            accessibility: false, // to prevent jumping when focused
           })
+
+          $('.resourceSections').flickity({
+            wrapAround: true,
+            pageDots: false,
+            prevNextButtons: true,
+            accessibility: false, // to prevent jumping when focused
+            dragThreshold: 20 // play around with this more?
+          });
+          if(!this.modalOpen){
+            this.modalOpen=true;
+            $('#memberModal'+this.member.uid).modal({
+                opacity: .5, // Opacity of modal background
+                inDuration: 300, // Transition in duration
+                outDuration: 200, // Transition out duration
+                startingTop: '4%', // Starting top style attribute
+                endingTop: '10%', // Ending top style attribute
+                ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                  $('body').css("overflow","hidden")
+                },
+                complete: () => {
+                  router.push("/");
+                }
+              }).modal('open');
+            }
+        })
 
       },
 

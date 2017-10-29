@@ -13,7 +13,7 @@ module.exports = function(app, db){
 
   app.get('/resource/:uid', readCore);       // read details of a single resource core
   app.put('/api/resource/:uid', updateCore); // update a single resource core node data
-  app.post('/resource', createCore);     // create (or update, if present) a resource core node.
+  app.post('/api/resource', createCore);     // create (or update, if present) a resource core node.
   app.delete('/api/resource/:uid/full', deleteFull);   // delete resource core node and relationships....and translations?
 
   app.get('/resource/:ruid/translation/', readTranslation);         // retrieve a translation of a resource based on resource id and provided langauge code. If language not found, attempt a translation. Also returns resource core
@@ -200,6 +200,8 @@ module.exports = function(app, db){
     }
 
      var cypher = "CREATE (resource:resource:tester {core}) SET resource.dateAdded = TIMESTAMP() "
+                + "WITH resource "
+                + "MERGE (resource)<-[:ADDED {date: TIMESTAMP()}]-(:member {uid:{muid}}) "
                 + "WITH resource, {detail} AS detail, {detailIDs} as dIDs, keys({detail}) AS keys "
                 + "FOREACH (index IN range(0, size(keys)-1) | "
                   + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index], uid: dIDs[index] })-[tr:HAS_TRANSLATION {languageCode: 'en'}]->(langNode:tester:translation {value: detail[keys[index]] } ) "
@@ -210,7 +212,8 @@ module.exports = function(app, db){
         url: req.body.resource.url,
         core: req.body.resource.core,
         detail: req.body.resource.detail,
-        detailIDs: detailIDs
+        detailIDs: detailIDs,
+        muid: res.locals.user.uid
       },function(err, resource) {
       if (err) {console.log(err); res.status(500).send()};
       res.send(resource[0])
