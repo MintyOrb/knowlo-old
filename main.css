@@ -760,6 +760,9 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:focus:not([reado
   margin: auto;
   width: 50%;
 }
+.fade {
+  color:#a8a8a8;
+}
 .clear{
   font-size: 11px;
     font-weight: 300;
@@ -826,6 +829,10 @@ and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e
     #addResourceModal{
       border-radius: 0px!important;
     }
+    .rchart {
+      margin: auto;
+      width: 90%;
+    }
     .text-container{
       padding: 10px;
       font-size: 20px;
@@ -879,6 +886,10 @@ and (min-width : 768px)
 and (max-width : 1024px) {
   .card{
     width: calc(25vw - 10px);
+  }
+  .rchart {
+    margin: auto;
+    width: 90%;
   }
 }
 /* Desktops and laptops ----------- */

@@ -43,7 +43,7 @@
 						</li>
 						<li v-else v-cloak >
 							<!-- member icon here? -->
-							<router-link to="/profile">{{member.first}}</router-link>
+							<router-link :to="'/m/'+member.uid">{{member.first}}</router-link>
 						</li>
 						<li><a data-activates="query-slide" class="termQuery-collapse show-on-large "><i class="material-icons">menu</i></a></li>
 					</ul>
@@ -261,7 +261,7 @@
 			</div><!-- suggested -->
 
 			<div class="center rBar">
-				<span class="left" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
+				<span @click="flipViewed" class="left viewBtn" :class="{'fade': showViewed}" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
 				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
 				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
 				<!-- <span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span> -->
@@ -548,19 +548,19 @@
 			<div class="resourceSections">
 				<div class="resourceStep discussion about center">
 					<div>
+						<span>Member since:</span> {{mem.joined}}
+					</div>
+					<div>
 						<span>Resources viewed:</span> {{mem.totalViewed}}
 					</div>
 					<div>
 						<span>Total votes:</span> {{mem.totalVotes}}
 					</div>
 					<div>
-						<span>Member since:</span> {{mem.joined}}
+						<span>Average quality vote:</span> {{mem.globalVote.quality.toFixed(2)}}
 					</div>
 					<div>
-						<span>Average vote quality:</span> {{mem.globalVote.quality.toFixed(2)}}
-					</div>
-					<div>
-						<span>Average vote complexity:</span> {{mem.globalVote.complexity.toFixed(2)}}
+						<span>Average complexity vote:</span> {{mem.globalVote.complexity.toFixed(2)}}
 					</div>
 				</div>
 				<div class="resourceStep discussion">
@@ -569,7 +569,7 @@
 								:re="re"
 								:key="re.resource.uid"
 								:display="'list'"
-								:voting='true'>
+								:voting='false'>
 							</resource>
 					 </isotope>
 				</div>
@@ -1221,12 +1221,12 @@
 			</div>
 			<span>
 				<span style="font-weight:300" >Quality</span><span v-if="displayQuality" style="font-weight:300" class='right'>{{displayQuality.toFixed(2).replace(/^0+/, '')}}</span>
-				<div  style="margin-top:5px;margin-bottom:5px" :id="'quality-slider-'+re.resource.uid+$route.name"></div>
+				<div  style="margin-top:5px;margin-bottom:5px" :id="'quality-slider-'+_uid"></div>
 				<!-- <span style="font-weight:300" >4.1</span> -->
 			</span>
 			<span>
 				<span style="font-weight:300" >Complexity</span><span v-if="displayComplexity" style="font-weight:300" class='right'>{{displayComplexity.toFixed(2).replace(/^0+/, '')}}</span>
-				<div  style="margin-top:5px;margin-bottom:5px" :id="'complexity-slider-'+re.resource.uid+$route.name"></div>
+				<div  style="margin-top:5px;margin-bottom:5px" :id="'complexity-slider-'+_uid"></div>
 			</span>
 		</div>
 
@@ -1303,7 +1303,7 @@
 		<li><div class="divider"></div></li>
 		<li><a class="subheader"></a></li>
 	 <!-- <li><router-link class="waves-effect" to="/home"><i class="fa fa-lg fa-home"></i>Home</router-link></li> -->
-	 <!-- <li><router-link class="waves-effect" to="/profile"><i class="fa fa-lg fa-user"></i>Profile</router-link></li> -->
+	 <li v-if="member.uid"><router-link class="waves-effect" :to="'/m/'+member.uid"><i class="fa fa-lg fa-user"></i>Profile</router-link></li>
 	 <li><router-link class="waves-effect" to="/"><i class="fa fa-lg fa-compass"></i>Explore</router-link></li>
 	 <!-- <li><router-link class="waves-effect" to="/trending"><i class="material-icons">trending_up</i>Trending</router-link></li> -->
 	 <li><router-link class="waves-effect" to="/status"><i class="fa fa-lg fa-area-chart"></i>Status | Stats</router-link></li>

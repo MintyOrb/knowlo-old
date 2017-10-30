@@ -617,7 +617,7 @@ const memberPage = Vue.component('memberPage',{
               history: [],
               top:[],
               scale:{all:[]},
-              mem:{},
+              mem:{globalVote:{quality:0,complexity:0}},
               modalOpen: false
             }
           },
@@ -678,6 +678,8 @@ const memberPage = Vue.component('memberPage',{
           console.log(response.body)
           if(response.body){
             this.mem=response.body;
+            this.mem.joined= new Date(this.mem.joined).toLocaleDateString();
+
           } else {
             Materialize.toast('Member not found.', 4000)
           }
@@ -779,10 +781,11 @@ const explore = Vue.component('exploreComp',{
             db: undefined,                      // search results to display - array of material objects
             loginCheck: false,                  // true after login status is checked
             crossSection: null,                 // object containing the name of the cross section and terms in lens group - object containing array of term objects and string name
-            termSuggestions: [],               // holds suggestion groups and terms within
+            termSuggestions: [],                // holds suggestion groups and terms within
             suggestionDisplay: "",              // the name of the currently selected display for suggestions
             suggestions: [],                    // suggested terms...not sure about ui, currently  - array of term objects
             resources: [],                      // db when no lens, replace with db even though less items? - array of term objects
+            showViewed: false,                   // whether or not viewed resources should be returned.
             numberOfDisplayed: null,            // number of materials currently displayed
             resourceDisplay: undefined,                 // display option for materials in search result - string name of displaytype (thumb, list, card)
             currentLayout: 'masonry',           // incase want to change isotope display type...not used now
@@ -824,6 +827,16 @@ const explore = Vue.component('exploreComp',{
         removeTerm: function(id){ // removal looks funny...open issue: https://github.com/David-Desmaisons/Vue.Isotope/issues/24
           for( i=this.termQuery.length-1; i>=0; i--) {
               if( this.termQuery[i].setID == id) this.termQuery.splice(i,1);
+          }
+        },
+        flipViewed: function(){
+          this.showViewed=!this.showViewed;
+          this.fetchResources();
+          Cookies.set('showViewed', this.showViewed)
+          if(this.showViewed){
+            Materialize.toast('Include viewed resources',2000)
+          } else {
+            Materialize.toast('Hide viewed resources',2000)
           }
         },
         addToQuery: function(item){
@@ -1000,8 +1013,8 @@ const explore = Vue.component('exploreComp',{
             }
           }
           if(this.member.uid != null){ // member specific query if logged in
-            console.log('get R - logged in')
-            this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
+            console.log('get resources - logged in')
+            this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed }}).then(response => {
               this.resources=response.body;
               this.numberOfDisplayed = response.body.length;
               this.getTerms();
@@ -1009,7 +1022,7 @@ const explore = Vue.component('exploreComp',{
               console.log('error getting resources... ', response)
             });
           } else { // general query if not logged in
-            console.log('get R - not logged in')
+            console.log('get resources - not logged in')
             this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
               this.resources=response.body;
               this.numberOfDisplayed = response.body.length;
@@ -1038,6 +1051,13 @@ const explore = Vue.component('exploreComp',{
         this.resourceDisplay = "card";
       } else {
         this.resourceDisplay = Cookies.get('resourceDisplay');
+      }
+
+      // get previously show viewed setting
+      if(!Cookies.get('showViewed')){
+        this.showViewed = false;
+      } else {
+        this.showViewed = (Cookies.get('showViewed') == 'true');
       }
 
       // get previously selected suggestionDisplay

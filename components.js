@@ -254,7 +254,7 @@ Vue.component('resource',{
     initSlider: function(){
 
       if(this.voting){
-         var quality = document.getElementById('quality-slider-' + this.re.resource.uid + this.$route.name);
+         var quality = document.getElementById('quality-slider-' + this._uid);
          noUiSlider.create(quality, {
           start: .5,
           connect: [true,false],
@@ -275,7 +275,7 @@ Vue.component('resource',{
           }
         });
 
-        var complexity = document.getElementById('complexity-slider-' + this.re.resource.uid + this.$route.name);
+        var complexity = document.getElementById('complexity-slider-' + this._uid);
         noUiSlider.create(complexity, {
          start: .5,
          connect: [true,false],
@@ -298,20 +298,20 @@ Vue.component('resource',{
       }
     },
     setRatingSliders: function(disp){
-      if(disp=='global' && this.re.globalVote && this.voting){
+      if(disp=='global' && this.re.globalVote && this.voting && this.re.globalVote.quality){
         this.$nextTick( x=> {
-          var quality = document.getElementById('quality-slider-' + this.re.resource.uid + this.$route.name);
+          var quality = document.getElementById('quality-slider-' + this._uid);
           quality.noUiSlider.set(this.re.globalVote.quality)
-          var complexity = document.getElementById('complexity-slider-' + this.re.resource.uid + this.$route.name);
+          var complexity = document.getElementById('complexity-slider-' + this._uid);
           complexity.noUiSlider.set(this.re.globalVote.complexity)
         })
         this.displayQuality = this.re.globalVote.quality;
         this.displayComplexity = this.re.globalVote.complexity;
       } else if(this.re.memberVote){
         this.$nextTick( x=> {
-          var quality = document.getElementById('quality-slider-' + this.re.resource.uid + this.$route.name);
+          var quality = document.getElementById('quality-slider-' + this._uid);
           quality.noUiSlider.set(this.re.memberVote.quality)
-          var complexity = document.getElementById('complexity-slider-' + this.re.resource.uid + this.$route.name);
+          var complexity = document.getElementById('complexity-slider-' + this._uid);
           complexity.noUiSlider.set(this.re.memberVote.complexity)
         })
         this.displayQuality = this.re.memberVote.quality;

@@ -112,11 +112,13 @@ module.exports = function(app, db){
     * @return {Object} resource
     */
 
-    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(synSet:synSet) "
+    var cypher = "OPTIONAL MATCH (re:resource)-[:TAGGED_WITH]->(synSet:synSet) "
            + "WHERE synSet.uid IN {includedSets} "
-              //  + "NOT synSet.uid IN {excludedSets} " // this doesn't work...
-              // filter() or reduce() ?
-           + "WITH re, count(*) AS connected "
+          //  + " AND NOT synSet.uid IN {excludedSets} " // this doesn't work...
+           if(req.query.showViewed === 'false'){
+             cypher += "AND NOT ((:member {uid:{mID}})-[:VIEWED]->(re)) "
+           }
+           cypher += "WITH re, count(*) AS connected "
            + "MATCH (re)-[:TAGGED_WITH]->(synSet:synSet)<-[synR:IN_SET]-(syn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
            + "WHERE "
                + "synR.order=1 "
@@ -157,10 +159,11 @@ module.exports = function(app, db){
          if (typeof req.query.exclude === "undefined") {
              req.query.exclude = [];
          }
+        //  req.query.exclude.push('Syh41sK--') // video
         db.query(cypher, {
             mID: res.locals.user.uid,
-            includedSets: req.query.include || [],
-            excludedSets: req.query.exclude || [],
+            includedSets: req.query.include,
+            excludedSets: req.query.exclude,
             orderby: req.orderby,
             updown: req.updown,
             skip:0,
