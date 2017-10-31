@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var admin = require('firebase-admin')
-var serviceAccount = require("./knowlo-952cc-firebase-adminsdk-xglpa-f461a5d2be.json");
 var firebaseMiddleware = require('express-firebase-middleware');
 var db = require("seraph")({
   server: "http://localhost:7474",
@@ -11,7 +10,10 @@ var db = require("seraph")({
 });
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert({
+    "private_key": process.env.FIREBASE_PRIVATE_KEY,
+   "client_email": process.env.FIREBASE_CLIENT_EMAIL,
+  }),
   databaseURL: "https://knowlo-952cc.firebaseio.com/"
 });
 
@@ -27,6 +29,6 @@ require('./CRUD/members')(app, db);
 // task scripts
 // require('./dothings')(app, db);
 
-app.listen('8000', function () {
-  console.log('listening on port 8000')
+app.listen( process.env.PORT || '8000', function () {
+  console.log('listening...')
 })
