@@ -469,12 +469,12 @@
 						Nothing yet! Be the first to add your thoughts...
 					</div>
 					<div>
-						<a @click="addResourceType='discussion'; addResource = true" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+						<a @click="addResourceType='discussion'; addResource = true;" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 					</div>
 				 </div>
 				 <isotope v-else ref="discussionBin" class="step" :list="discussion" :options='discussionIsotope()' id="container"  >
 					 <div v-for="re in discussion" class='element-item' :key="re.resource.uid" :class="{'fullWidth': display=='list'}">
-							 <resource :re="re" :display="'godMode'"></resource>
+							 <resource :re="re" :display="resourceDisplay"></resource>
 					 </div>
 				 </isotope>
 
@@ -486,10 +486,10 @@
 							:term="term"
 							:key="term.setID"
 							display="thumb"
-							v-on:include="addToQuery(term)"
-							v-on:exclude="addToQuery(term)"
-							v-on:focus="addToQuery(term)"
-							v-on:pin="addToQuery(term)"
+							v-on:include="addToQuery(term); close();"
+							v-on:remove="removeTerm(term.setID)"
+							v-on:focus="addToQuery(term); close();"
+							v-on:pin="addToQuery(term); close();"
 							>
 						</term>
 					</isotope>
@@ -668,7 +668,7 @@
 					<div v-for="icon in icons" :key="icon['resource']['uid']">
 						<resource
 							:re="icon"
-							:display="'godMode'"
+							:display="'list'"
 							v-on:vote-cast='evalTopTerm'
 							>
 						</resource>
@@ -683,7 +683,7 @@
 					<div v-for="def in definitions" :key="def['resource']['uid']">
 						<resource
 							:re="def"
-							:display="'godMode'"
+							:display="'list'"
 							>
 						</resource>
 
@@ -696,7 +696,7 @@
 						<div v-for="term in synonyms" :key="term.setID">
 							<term
 								:term="term"
-								:display="'godMode'"
+								:display="'thumb'"
 								:key="term.setID"
 								v-on:include="addToQuery(term)"
 								v-on:exclude="removeSynonym(term.term.uid)"
@@ -729,7 +729,7 @@
 						<isotope ref='contains' :list="contains" :options='{}'>
 							<div v-for="term in contains" :key="term.translation.name">
 								<term :term="term"
-									:display="'godMode'"
+									:display="'thumb'"
 									:key="term.setID"
 									v-on:include="addToQuery(term)"
 									v-on:exclude="removeContains(term.term.uid)"

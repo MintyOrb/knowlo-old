@@ -117,9 +117,9 @@ Vue.component('term',{
         this.$emit('remove', this.term)
       },
       include: function(){
-        if(this.persistAction){
+        // if(this.persistAction){
           this.status.includeIcon = !this.status.includeIcon;
-        }
+        // }
         this.term.status = this.status;
         this.$emit('include', this.term)
       },
@@ -131,17 +131,17 @@ Vue.component('term',{
         this.$emit('exclude', this.term)
       },
       focus: function(){
-        if(this.persistAction){
+        // if(this.persistAction){
           this.status.focusIcon = !this.status.focusIcon;
-        }
+        // }
         this.term.status = this.status;
         this.status.includeIcon = true;
         this.$emit('focus', this.term)
       },
       pin: function(){
-        if(this.persistAction){
+        // if(this.persistAction){
           this.status.pinnedIcon = !this.status.pinnedIcon;
-        }
+        // }
         this.status.includeIcon = true;
         this.term.status = this.status;
         this.$emit('pin', this.term)

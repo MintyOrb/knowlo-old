@@ -45,8 +45,7 @@ module.exports = function(app, db){
   }
 
   function readHistory(req, res){
-    console.log(req.params)
-    // history of first viewed resources
+    // history of first when viewed resources
     var cypher = "MATCH (mem:member {uid:{muid}}) "
                + "OPTIONAL MATCH (mem)-[v:VIEWED]->(re:resource) "//"-[:TAGGED_WITH]-(sets:synSets) "
                + "WITH re,v "
@@ -78,7 +77,6 @@ module.exports = function(app, db){
     })
   }
   function readTopSets(req, res){
-    console.log('in read top')
     var cypher = "MATCH (mem:member {uid:{muid}}) "
                + "MATCH (mem)-[v:VIEWED]->(re:resource)-[:TAGGED_WITH]->(sets:synSet) "
                + "WITH sets, count(*) as count "
@@ -86,13 +84,11 @@ module.exports = function(app, db){
                + "WHERE setR.order=1 "
                + "RETURN translation, sets as term, sets.uid AS setID, "
                + " count  "
-               + "ORDER BY  count desc LIMIT 10 "
+               + "ORDER BY  count desc LIMIT 20 "
 
     db.query(cypher, { muid: req.params.muid, language: 'en' },function(err, result) {
       if (err) console.log(err);
-      console.log('back from fetch top...')
       if(result){
-        console.log(result)
         res.send(result)
       } else {
         res.send()

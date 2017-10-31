@@ -108,8 +108,8 @@ function query(req, res){
           + "ORDER BY order "
   } else {
     // sets and the groups that contain them
-     cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(searchSets:synSet) "
-            + "WHERE searchSets.uid IN {searchSets} "
+     cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(searchSets:synSet) "
+            + "WHERE searchSets.uid IN {searchSets} "//AND b.uid IN {searchSets} "
             + "WITH contentNode, COUNT(searchSets) as scount "
             + "WHERE scount = {searchTermsCount} " // necessary to match resources with all included sets
             + "MATCH (set:synSet)<-[:TAGGED_WITH]-(contentNode) " // get all sets tagged to all resources tagged that are with sets in query

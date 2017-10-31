@@ -282,6 +282,9 @@ const termComp = Vue.component('termComp',{
   },
   beforeRouteLeave: function (to, from, next){
     $('body').css("overflow","auto");
+    if($('.modal-overlay')){
+      $('.modal-overlay').remove();
+    }
     window.setTimeout(()=>{
       next()
     }, 375)
@@ -333,6 +336,10 @@ const resourceComp = Vue.component('resourceComp',{
             }
           },
     methods: {
+      close: function(){
+        console.log('kin clos')
+        $('#resourceModal'+this.resource.uid).modal('close')
+      },
       changeDisplay: function(disp){ // TODO: make dry ( essentially duplicated from explore) - make resource bin component?
         this.resourceDisplay = disp
         // weird to wrap a timeout with next tick, but css lags and screws up the layout after transistion
@@ -363,7 +370,7 @@ const resourceComp = Vue.component('resourceComp',{
         if(this.resource.url){
           if(this.resource.url.match(/[^/]+(jpg|png|gif|jpeg)$/)){
             this.resource.displayType = 'image'
-          } else if(this.resource.url.match(/[^/]+(gifv|webm)$/)){
+          } else if(this.resource.url.match(/[^/]+(gifv|webm|mp4)$/)){
             this.resource.displayType = 'video'
           } else if(this.resource.url.indexOf('youtube') > -1){
             this.resource.ytID = new URL(this.resource.url).searchParams.get('v')
@@ -376,12 +383,9 @@ const resourceComp = Vue.component('resourceComp',{
         }
       },
       init: function(){
-          console.log('in resource init')
           this.fetchDiscussion();
           this.fetchRelated();
           this.$nextTick(function(){
-
-
             if(!this.modalOpen){
               this.modalOpen=true;
               $('.metaNav').flickity({
@@ -536,11 +540,7 @@ const resourceComp = Vue.component('resourceComp',{
       },
       markViewed: function(){
         this.$http.put('/api/resource/'+ this.$route.params.uid +'/viewed').then(response => {
-          if(response.body){
-            console.log('back from viewed ',response.body)
-          } else {
-            // Materialize.toast('Something went wrong...', 4000)
-          }
+
         }, response => {
            Materialize.toast('Something went wrong...are you online?', 4000)
         });
@@ -558,7 +558,9 @@ const resourceComp = Vue.component('resourceComp',{
 
       this.fetchResource();
       if(this.member.uid){
-        this.markViewed()
+        window.setTimeout( ()=> {
+            this.markViewed();
+        }, 5000); // 5 seconds is pretty arbitrary...
       }
 
       $('.dropdown-button').dropdown({
@@ -576,6 +578,9 @@ const resourceComp = Vue.component('resourceComp',{
     },
     beforeRouteLeave: function (to, from, next){
       $('body').css("overflow","auto");
+      if($('.modal-overlay')){
+        $('.modal-overlay').remove();
+      }
       next();
     },
     watch: {
@@ -797,7 +802,6 @@ const explore = Vue.component('exploreComp',{
     },
     methods: {
         includeSearch: function(set){
-          console.log(set)
           if(!this.termQuery.includes(set.setID)){
             this.termQuery.push(set);
           }
@@ -830,14 +834,24 @@ const explore = Vue.component('exploreComp',{
           }
         },
         flipViewed: function(){
-          this.showViewed=!this.showViewed;
-          this.fetchResources();
-          Cookies.set('showViewed', this.showViewed)
-          if(this.showViewed){
-            Materialize.toast('Include viewed resources',2000)
+
+          if(this.member.uid){
+            this.showViewed=!this.showViewed;
+            this.$nextTick(()=>{
+                this.fetchResources();
+            })
+
+            Cookies.set('showViewed', this.showViewed);
+            if(!this.showViewed){
+              Materialize.toast('Include viewed resources',2000)
+            } else {
+              Materialize.toast('Hide viewed resources',2000)
+            }
           } else {
-            Materialize.toast('Hide viewed resources',2000)
+            Materialize.toast('Must be logged in to hide viewed resources!',2000)
+            $('#login-modal').modal('open')
           }
+
         },
         addToQuery: function(item){
             item.connections=0;
@@ -923,7 +937,6 @@ const explore = Vue.component('exploreComp',{
         },
         initSuggestionGroupFlickity: function(moreThanZero){
           // setup suggestion group flickity
-          console.log('in init sug grups')
           if($('#suggestionNav').flickity()){
               $('#suggestionNav').flickity('destroy');
           }
@@ -968,8 +981,7 @@ const explore = Vue.component('exploreComp',{
           }
           this.termSuggestions=[];
           this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: [''], type: this.suggestionDisplay}}).then(response => {
-            console.log('back from get terms')
-            console.log(response.body)
+
             this.termSuggestions=response.body;
 
             if(this.termSuggestions.length===0){
@@ -1001,8 +1013,6 @@ const explore = Vue.component('exploreComp',{
           });
         },
         fetchResources: function(){
-          console.log(this.$route)
-
           var include = [];
           var exclude = [];
           for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
@@ -1090,24 +1100,22 @@ const explore = Vue.component('exploreComp',{
     watch: {
       member: function(newVal,oldVal) { // re-fetch resources/terms on member login/logout
         this.loginCheck = true;
-        console.log(newVal,oldVal)
         this.$nextTick(x=>{
           this.fetchResources()
         })
       },
       termQuery: function(val,x){
-        console.log('term query changed')
-        console.log(val,x)
         if(this.termQuery.length===0){
           this.suggestionDisplay='size';
         }
         Cookies.set('termQuery',val)
         if(this.loginCheck){ // don't fetch before checking member login
-          this.fetchResources();
+          this.$nextTick(()=>{
+            this.fetchResources();
+          })
         }
       },
       suggestionDisplay: function(val,x){
-        console.log(val,x)
         Cookies.set('suggestionDisplay',val)
         if(x.length>0){
           this.getTerms();

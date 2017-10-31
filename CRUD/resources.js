@@ -49,17 +49,15 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
-    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(synSet:synSet) "
-           + "WHERE synSet.uid IN {includedSets} "
+    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
+           + "WHERE synSet.uid IN {includedSets} "//" AND b.uid IN {includedSets} "
               //  + "NOT synSet.uid IN {excludedSets} " // this doesn't work...
-              // filter() or reduce() ?
            + "WITH re, count(*) AS connected "
            + "MATCH (re)-[:TAGGED_WITH]->(synSet:synSet)<-[synR:IN_SET]-(syn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
            + "WHERE "
                + "synR.order=1 "
                + "AND connected = SIZE({includedSets}) "
                + "AND tlang.languageCode IN [ {language} , 'en' ] "
-               + "AND NOT synSet.uid IN {excludedSets} "
            + "WITH synSet, tlangNode, tlang, re "//collect(distinct synSet.setID) AS blah, filter(x IN re)"//filter(x IN collect(distinct{re:re,synSets:sets}) WHERE x.re.setID NOT IN {excludedSets}) as ree "
            + "OPTIONAL MATCH (:member)-[gVote:CAST_VOTE]->(re) " // get global rankings
              + "WITH synSet, tlangNode, tlang, re, AVG(gVote.quality) AS gq, AVG(gVote.complexity) AS gc, COUNT(gVote) AS votes "
@@ -111,18 +109,17 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
-
-    var cypher = "OPTIONAL MATCH (re:resource)-[:TAGGED_WITH]->(synSet:synSet) "
-           + "WHERE synSet.uid IN {includedSets} "
+    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
+           + "WHERE synSet.uid IN {includedSets} "//" AND b.uid IN {includedSets} "
           //  + " AND NOT synSet.uid IN {excludedSets} " // this doesn't work...
-           if(req.query.showViewed === 'false'){
+           if(req.query.showViewed === 'true'){
              cypher += "AND NOT ((:member {uid:{mID}})-[:VIEWED]->(re)) "
            }
-           cypher += "WITH re, count(*) AS connected "
+           cypher += "WITH DISTINCT re, count(*) AS connected "
            + "MATCH (re)-[:TAGGED_WITH]->(synSet:synSet)<-[synR:IN_SET]-(syn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
            + "WHERE "
                + "synR.order=1 "
-               + "AND connected = SIZE({includedSets}) "
+              //  + "AND connected = SIZE({includedSets}) "
                + "AND tlang.languageCode IN [ {language} , 'en' ] "
                + "AND NOT synSet.uid IN {excludedSets} "
              + "WITH synSet, tlangNode, tlang, re "//collect(distinct synSet.setID) AS blah, filter(x IN re)"//filter(x IN collect(distinct{re:re,synSets:sets}) WHERE x.re.setID NOT IN {excludedSets}) as ree "
@@ -139,7 +136,6 @@ module.exports = function(app, db){
              + "{quality: mVote.quality, complexity: mVote.complexity} AS memberVote, "
              + "{quality: gq , complexity: gc } AS globalVote, "
              + "votes, "
-            //  + "{votes: votes, totalResources: total} AS totals "
             + "re AS resource "
             // + "ORDER BY globalVote.quality IS NOT NULL DESC, globalVote.quality DESC  "
             + "ORDER BY COALESCE(globalVote.quality, -1) DESC "//IS NOT NULL DESC, globalVote.quality DESC  "
@@ -204,7 +200,8 @@ module.exports = function(app, db){
 
      var cypher = "CREATE (resource:resource:tester {core}) SET resource.dateAdded = TIMESTAMP() "
                 + "WITH resource "
-                + "MERGE (resource)<-[:ADDED {date: TIMESTAMP()}]-(:member {uid:{muid}}) "
+                + "MATCH (mem:member {uid:{muid}}) "
+                + "MERGE (resource)<-[:ADDED {date: TIMESTAMP()}]-(mem) "
                 + "WITH resource, {detail} AS detail, {detailIDs} as dIDs, keys({detail}) AS keys "
                 + "FOREACH (index IN range(0, size(keys)-1) | "
                   + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index], uid: dIDs[index] })-[tr:HAS_TRANSLATION {languageCode: 'en'}]->(langNode:tester:translation {value: detail[keys[index]] } ) "
@@ -297,7 +294,6 @@ module.exports = function(app, db){
     */
 
     var cypher = "MATCH (resource:resource {uid:{uid}}) "
-               + "SET resource.viewCount = resource.viewCount + 1 "
                + "WITH resource "
                + "OPTIONAL MATCH (resource)-[TAGGED_WITH]->(set:synSet)<-[setR:IN_SET]-(t:term)-[r:HAS_TRANSLATION]->(tr:translation) "
                + "WHERE r.languageCode = {languageCode} AND setR.order=1 "
@@ -503,6 +499,7 @@ module.exports = function(app, db){
 
   function viewed(req, res){
     var cypher = "MATCH (m:member {uid:{mUID}}), (res:resource {uid:{rUID}}) "
+               + "SET res.viewCount = res.viewCount + 1 "
                + "MERGE (m)-[v:VIEWED]->(res) "
                + "ON CREATE SET v.firstViewed=TIMESTAMP(), v.lastViewed=TIMESTAMP(), v.viewCount=1 " // add first/last viwed date, set viewcount=0
                + "ON MATCH SET v.lastViewed=TIMESTAMP(), v.viewCount=v.viewCount+1 "  // update last viwed, viewcount = vc+1
