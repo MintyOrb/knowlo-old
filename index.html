@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="dep/flickity.min.css">
 	<link rel="stylesheet" href="dep/leaflet.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="dep\nouislider.css">
+	<link rel="stylesheet" href="dep/nouislider.css">
 	<link rel="stylesheet" href="main.css">
 
 	<script src="https://cdn.firebase.com/libs/firebaseui/2.4.1/firebaseui.js"></script>
@@ -702,6 +702,7 @@
 								v-on:exclude="removeSynonym(term.term.uid)"
 								v-on:focus="addToQuery(term)"
 								v-on:pin="addToQuery(term)"
+								hide="remove"
 								>
 							</term>
 						</div>
@@ -718,6 +719,7 @@
 									v-on:exclude="removeWithin(term.term.uid)"
 									v-on:focus="addToQuery(term)"
 									v-on:pin="addToQuery(term)"
+									hide="remove"
 									>
 								</term>
 								<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
@@ -735,6 +737,7 @@
 									v-on:exclude="removeContains(term.term.uid)"
 									v-on:focus="addToQuery(term)"
 									v-on:pin="addToQuery(term)"
+									hide="remove"
 									>
 								</term>
 								<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
@@ -752,9 +755,9 @@
 							v-on:exclude="addToQuery(term)"
 							v-on:focus="addToQuery(term)"
 							v-on:pin="addToQuery(term)"
+							hide="remove"
 							>
 							</term>
-							<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
 						</div>
 					</isotope>
 				</div>

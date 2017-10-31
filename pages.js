@@ -149,7 +149,7 @@ const termComp = Vue.component('termComp',{
           Materialize.toast('Something went wrong...are you online?', 4000)
         });
       },
-      addSynonym: function(synonym){
+      addSynonym: function(synonym){ // TODO: this merges sets...need a separate method for adding term to set
         this.$http.put('/api/set/'+ this.term.setID +'/synonym/'+ synonym.setID).then(response => {
           if(response.body){
             Materialize.toast('Added!', 4000)
@@ -645,6 +645,9 @@ const memberPage = Vue.component('memberPage',{
         }, response => {
           Materialize.toast('Something went wrong...are you online?', 4000)
         });
+      },
+      addToQuery: function(item){
+          this.$emit('add',item)
       },
       fetchTop: function(){
         this.$http.get('/member/' + this.$route.params.uid+'/set/top').then(response => {

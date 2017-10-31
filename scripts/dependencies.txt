@@ -9,10 +9,10 @@ node_modules\vueisotope\src\vue_isotope.js
 node_modules\flickity\dist\flickity.pkgd.min.js
 node_modules\flickity\dist\flickity.min.css
 node_modules\js-cookie\src\js.cookie.js
-node_modules\vue-headroom\dist\vue-headroom.min.js
 node_modules\leaflet\dist\leaflet.js
 node_modules\leaflet\dist\leaflet.css
 node_modules\materialize-css\extras\noUiSlider\nouislider.min.js
 node_modules\materialize-css\extras\noUiSlider\nouislider.css
 node_modules\vue-resource\dist\vue-resource.min.js
 node_modules\vue-chartjs\dist\vue-chartjs.full.min.js
+node_modules\headroom.js\dist\headroom.min.js

@@ -846,7 +846,6 @@ const addResource = Vue.component('addResource',{
       } // else connect to neither (standalone resource)
 
       this.open();
-      console.log($('.modal-overlay'))
       $('.modal-overlay').eq(1).appendTo('.resource-modal'); // workaround for stacking context
       $('.modal-overlay').eq(1).appendTo('#termModal'); // workaround for stacking context
 
@@ -865,16 +864,13 @@ const addResource = Vue.component('addResource',{
   },
   watch: {
     discussionFilter: function(now,before) {
-
       for(nIndex in now){ // there's probably a clever way of combining these things more elegantly...
         if(!before.includes(now[nIndex])){
-          console.log('add the thang! ',now[nIndex])
           this.addTag({setID: this.dIDs[now[nIndex]] })
         }
       }
       for(bIndex in before){
         if(!now.includes(before[bIndex])){
-          console.log('remove the thang! ',before[bIndex])
           this.removeTag(this.dIDs[before[bIndex]])
         }
       }
