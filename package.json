@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "ss": "node server.js"
   },
+  "engines": {
+    "node": "7.4.0"
+  },
   "keywords": [
     "learning",
     "education",

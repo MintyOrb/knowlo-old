@@ -11,6 +11,7 @@ var db = require("seraph")({
 
 admin.initializeApp({
   credential: admin.credential.cert({
+     "project_id": "knowlo-952cc",
     "private_key": process.env.FIREBASE_PRIVATE_KEY,
    "client_email": process.env.FIREBASE_CLIENT_EMAIL,
   }),
