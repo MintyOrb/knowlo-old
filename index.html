@@ -37,9 +37,9 @@
 					</ul>
 					<ul class="right ">
 						<li v-if="!member.uid">
-							<a data-target="login-modal" class="hide-on-med-and-down">Login | Sign Up</a>
+							<a @click="loginModal" class="hide-on-med-and-down">Login | Sign Up</a>
 						  <!-- show icon on medium and down? no materialize-css class for it -->
-							<!-- <a data-target="login-modal" class="show-on-med-and-down"><i class="material-icons fa fa-lg fa-sign-in"></i></a> -->
+							<a data-target="login-modal" class="show-on-med-and-down"><i class="material-icons fa fa-lg fa-sign-in"></i></a>
 						</li>
 						<li v-else v-cloak >
 							<!-- member icon here? -->
@@ -1301,7 +1301,7 @@
 	 <!-- <li><div class="divider"></div></li> -->
 	 <li><a href="#" class="subheader" id="navName">Knowlo</a></li>
 		<li><div class="divider"></div></li>
-		<li v-if="!member.uid"><a data-target="login-modal" class="waves-effect"><i class="fa fa-lg fa-sign-in"></i>Login | Sign Up</a></li>
+		<li v-if="!member.uid"><a @click="loginModal" class="waves-effect"><i class="fa fa-lg fa-sign-in"></i>Login | Sign Up</a></li>
 		<li v-else ><a @click="signOut" class="waves-effect"><i class="fa fa-lg fa-sign-out"></i>Log Out</a></li>
 		<li><div class="divider"></div></li>
 		<li><a class="subheader"></a></li>
@@ -1448,7 +1448,7 @@
 <script src="node_modules\lodash\lodash.min.js"></script>
 <script src="node_modules\isotope-layout\dist\isotope.pkgd.min.js"></script>
 <script src="node_modules\vueisotope\src\vue_isotope.js"></script>
-{# <script src="dep\imagesloaded.pkgd.min.js"></script>#}
+<!-- <script src="dep\imagesloaded.pkgd.min.js"></script> -->
 <script src="node_modules\flickity\dist\flickity.pkgd.min.js"></script>
 <script src="node_modules\js-cookie\src\js.cookie.js"></script>
 <script src="node_modules\headroom.js\dist\headroom.min.js"></script>

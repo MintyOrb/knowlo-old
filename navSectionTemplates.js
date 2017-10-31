@@ -2,6 +2,9 @@ const sidebar = Vue.component('sidebar',{
   template: "#side-nav-template",
   props: ['member'],
   methods:{
+    loginModal: function(){
+      $('#login-modal').modal('open');
+    },
     signOut: function(){ // since this is a child component, probably should be emitting an event and using the signout method on main instead...
       firebase.auth().signOut().then(function() {
       // Sign-out successful.

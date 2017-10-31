@@ -38,6 +38,9 @@ const app = new Vue({
     close: function(){
       $('.termQuery-collapse').sideNav('hide');
     },
+    loginModal: function(){
+      $('#login-modal').modal('open');
+    },
     touchMember: function(){
       // ensure member is in DB (add if first time signing in)
       this.$http.post('/api/member', {term: this.term, translation:this.translation}).then(response => {
