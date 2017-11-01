@@ -620,7 +620,7 @@ iframe{
 
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .8s
+  transition: opacity .5s
 }
 .fade-enter, .fade-leave-active{
   opacity: 0
@@ -804,7 +804,15 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:focus:not([reado
 .definition{
   width:50vw;
 }
-
+#termSuggestionOptions {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+#termSuggestionOptions span {
+  margin: 10px 20px 0px 20px;
+  width: 110px;
+}
 /*http://www.designyourway.net/drb/a-detailed-overview-of-media-queries-and-how-to-use-them/*/
 /* Smartphones (portrait) ----------- */
 @media only screen
@@ -876,9 +884,6 @@ and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e
       padding-right: 50px;
     }
     .resourceStep{ width:100vw!important;}
-    #termSuggestionOptions span {
-      width: 150px;
-    }
 }
 /* iPads (portrait and landscape) ----------- */
 @media only screen
@@ -900,13 +905,6 @@ and (min-width : 1224px) {
   }
 }
 
-#termSuggestionOptions {
-  margin-left: 15vw;
-}
-#termSuggestionOptions span {
-  margin-left: 40px;
-}
-
 [type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:before, [type="radio"].with-gap:checked+label:after {
     border: 2px solid #2196F3;
 }
@@ -915,7 +913,14 @@ and (min-width : 1224px) {
 }
 .disSwitch div {
   display: inline;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 100px;
+}
+.disSwitch {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 .switch label input[type=checkbox]:checked+.lever {
     background-color: #8cc3ee;

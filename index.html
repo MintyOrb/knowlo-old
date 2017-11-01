@@ -36,16 +36,15 @@
 						<li><a data-activates="slide-out" class="navbar-collapse show-on-large"><i class="material-icons">menu</i></a></li>
 					</ul>
 					<ul class="right ">
-						<li v-if="!member.uid">
+						<li v-if="!member.uid" style="margin-right:13px" >
 							<a @click="loginModal" class="hide-on-med-and-down">Login | Sign Up</a>
-						  <!-- show icon on medium and down? no materialize-css class for it -->
-							<a data-target="login-modal" class="show-on-med-and-down"><i class="material-icons fa fa-lg fa-sign-in"></i></a>
+							<a @click="loginModal" class="show-on-med-and-down"><i class="material-icons fa fa-lg fa-sign-in"></i></a>
 						</li>
-						<li v-else v-cloak >
+						<li v-else v-cloak style="margin-right:13px" >
 							<!-- member icon here? -->
 							<router-link :to="'/m/'+member.uid">{{member.first}}</router-link>
 						</li>
-						<li><a data-activates="query-slide" class="termQuery-collapse show-on-large "><i class="material-icons">menu</i></a></li>
+						<!-- <li><a data-activates="query-slide" class="termQuery-collapse show-on-large "><i class="material-icons">menu</i></a></li> -->
 					</ul>
 				</div>
 			</nav>
@@ -175,7 +174,7 @@
 		    </span>
 				<span>
 		      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='none' id="none" />
-		      <label for="none">None</label>
+		      <label for="none">Ungrouped</label>
 		    </span>
 				<span v-if="member.first">
 		      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='member' id="member" />
@@ -428,39 +427,35 @@
  							<li class='disabled'><a># responses</a></li>
 						 </ul>
 					 </span>
-
 					 <br/>
 				 </div>
 				 <div class='disSwitch center'>
 					 <div class="switch">
 						 <label>
-							 Insight
 							 <input type="checkbox" value="insight" v-model="discussionFilter">
 							 <span class="lever"></span>
-
+							 Insight
 						 </label>
 					 </div>
 					 <div class="switch">
 						 <label>
-							 Question
 							 <input type="checkbox" value="question" v-model="discussionFilter">
 							 <span class="lever"></span>
-
+							 Question
 						 </label>
 					 </div>
 					 <div class="switch">
 						 <label>
-							 Criticism
 							 <input type="checkbox" value="criticism" v-model="discussionFilter">
 							 <span class="lever"></span>
-
+							 Criticism
 						 </label>
 					 </div>
 					 <div class="switch">
 						 <label>
-							 Quote
 							 <input type="checkbox" value="quote" v-model="discussionFilter">
 							 <span class="lever"></span>
+							 Quote
 						 </label>
 					 </div>
 				 </div>
@@ -546,7 +541,26 @@
 			</div>
 			<!-- flick contianers -->
 			<div class="resourceSections">
-				<div class="resourceStep discussion about center">
+
+				<div class="resourceStep discussion" >
+					<radar class="rchart" :data="scale.data" :data-label="scale.dataLabel" :labels="scale.labels"></radar>
+					<isotope ref='scale' :list="scale.all" :options='{}'>
+						<div v-for="term in scale.all" :key="term.setID">
+							<term
+								:term="term"
+								:display="'thumb'"
+								:key="term.setID"
+								v-on:include="addToQuery(term)"
+								v-on:exclude="removeSynonym(term.term.uid)"
+								v-on:focus="addToQuery(term)"
+								v-on:pin="addToQuery(term)"
+								>
+							</term>
+						</div>
+					</isotope>
+				</div>
+
+				<div class="resourceStep discussion about center" >
 					<div>
 						<span>Member since:</span> {{mem.joined}}
 					</div>
@@ -563,6 +577,7 @@
 						<span>Average complexity vote:</span> {{mem.globalVote.complexity.toFixed(2)}}
 					</div>
 				</div>
+
 				<div class="resourceStep discussion">
 					<isotope ref='seenBin' class="step" :list="history" :options='{}'>
 								<resource v-for="re in history"
@@ -577,23 +592,6 @@
 				<div class="resourceStep discussion">
 					<isotope ref='top' :list="top" :options='{}'>
 						<div v-for="term in top" :key="term.setID">
-							<term
-								:term="term"
-								:display="'thumb'"
-								:key="term.setID"
-								v-on:include="addToQuery(term)"
-								v-on:exclude="removeSynonym(term.term.uid)"
-								v-on:focus="addToQuery(term)"
-								v-on:pin="addToQuery(term)"
-								>
-							</term>
-						</div>
-					</isotope>
-				</div>
-				<div class="resourceStep discussion" >
-					<radar class="rchart" :data="scale.data" :data-label="scale.dataLabel" :labels="scale.labels"></radar>
-					<isotope ref='scale' :list="scale.all" :options='{}'>
-						<div v-for="term in scale.all" :key="term.setID">
 							<term
 								:term="term"
 								:display="'thumb'"

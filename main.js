@@ -54,6 +54,13 @@ const app = new Vue({
   },
   mounted: function(){
 
+    // needed to recover from occasional mystery DOM exception on resource/term suggestion change
+    // Vue.config.errorHandler =  (err) => { //TODO figure out what is causing this...vueisotope?
+    //   Materialize.toast('whoops...hit a snag. Recovering.',2000)
+    //   window.setTimeout(()=> {
+    //     this.$router.go(this.$route)
+    //   }, 2000);
+    // };
     // get term query
     if(Cookies.get('termQuery')){
         this.termQuery = Cookies.getJSON('termQuery');
