@@ -338,10 +338,6 @@ Vue.component('resource',{
     },
     ratingDisplay: function(val){
       this.setRatingSliders(val)
-    },
-    display: function(val){
-      console.log(val)
-      this.setRatingSliders(this.ratingDisplay)
     }
   }
 })

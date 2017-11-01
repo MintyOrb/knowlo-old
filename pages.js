@@ -438,12 +438,15 @@ const resourceComp = Vue.component('resourceComp',{
       addCreatedDiscussion: function(dis){
         this.discussion.push(dis)
       },
+      layout: function(){
+        this.$refs.relatedBin.layout('masonry');
+      },
       fetchRelated: function(){
         this.$nextTick(()=>{
           this.$http.get('/resource/' + this.$route.params.uid + '/related', {params: { languageCode: 'en'}}).then(response => {
             this.related = response.body;
             window.setTimeout(()=> {
-              this.$refs.relatedBin.layout('masonry');
+              this.layout();
             }, 250)
           }, response => {
             // Materialize.toast('Something went wrong...are you online?', 4000)
@@ -554,6 +557,10 @@ const resourceComp = Vue.component('resourceComp',{
             this.markViewed();
         }, 5000); // 5 seconds is pretty arbitrary...
       }
+      // workaround as long as imagesLoaded() non-functional
+      setInterval(x => {
+        this.layout();
+      }, 3000);
 
       $('.dropdown-button').dropdown({
            inDuration: 300,

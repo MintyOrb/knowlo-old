@@ -296,9 +296,13 @@
 					<div id='crossSectionSteps' class=" crossSectionSteps">
 						<div v-for="step in crossSection" class="stepContainer">
 							<isotope :ref='"resourceBin" + step.setID' class="step" :list="resources" :options='{}'>
-								<div v-for="re in resources" v-if="re.termIDs.includes(step.setID)" class='element-item' :key="re.resource.uid">
-										<resource :re="re" :display="resourceDisplay"></resource>
-								</div>
+										<resource
+											:key="re.resource.uid"
+											v-for="re in resources"
+											v-if="re.termIDs.includes(step.setID)"
+											:re="re"
+											:display="resourceDisplay">
+										</resource>
 							 </isotope>
 						</div>
 					</div>
@@ -309,9 +313,13 @@
 				<transition name="fade">
 					<div v-if="!crossSection" >
 				    <isotope ref="resourceBin" class="step" :list="resources" :options='{}' id="container"  >
-			        <div v-for="re in resources" class='element-item' :key="re.resource.uid" :class="{'fullWidth': resourceDisplay=='list'}">
-			          	<resource :re="re" :display="resourceDisplay" :class="{'listFullWidth': resourceDisplay=='list'}"></resource>
-			        </div>
+		          	<resource
+									v-for="re in resources"
+									:key="re.resource.uid"
+									:re="re"
+									:display="resourceDisplay"
+									:class="{'listFullWidth': resourceDisplay=='list'}">
+								</resource>
 			      </isotope>
 					</div>
 				</transition>
@@ -1198,7 +1206,7 @@
 
 		<div v-if="re.resource.title && display =='card' || display =='list'"
 			:class="{
-      'truncate thin inline tmargin': display=='list',
+      'truncate inline tmargin': display=='list',
       'card-content': display=='card'}"
 			>
 			<router-link :to="{ name: 'resourceSub', params: { uid: re.resource.uid }}">

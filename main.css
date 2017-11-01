@@ -151,7 +151,7 @@ html {
   background-color: #eee!important;
 }
 .card {
-    width: 20vw;
+    width: 20%;
     padding: 15px;
 		box-shadow: none;
 }
@@ -818,7 +818,7 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:focus:not([reado
 @media only screen
 and (max-width : 375px) {
   .card{
-    width: calc(100vw - 10px);
+    width: calc(100% - 10px);
   }
 }
 /* Smartphones (landscape) ----------- */
@@ -826,7 +826,7 @@ and (max-width : 375px) {
 and (min-width : 376px)
 and (max-width : 767px) {
   .card{
-    width: calc(50vw - 10px);
+    width: calc(50% - 10px);
   }
 }
 
@@ -890,7 +890,7 @@ and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e
 and (min-width : 768px)
 and (max-width : 1024px) {
   .card{
-    width: calc(25vw - 10px);
+    width: calc(25% - 10px);
   }
   .rchart {
     margin: auto;
@@ -901,7 +901,7 @@ and (max-width : 1024px) {
 @media only screen
 and (min-width : 1224px) {
   .card{
-    width: calc(20vw - 10px);
+    width: calc(20% - 10px);
   }
 }
 
@@ -939,13 +939,13 @@ and (min-width : 1224px) {
 }
 /*styles for firefox (take un-removable scrollbar into account)*/
 _:-moz-tree-row(hover), .card {
-    width: calc(20vw - 15px);
+    width: calc(20% - 15px);
 }
  @media only screen
 and (min-width : 768px)
 and (max-width : 1024px) { _:-moz-tree-row(hover),
   .card{
-    width: calc(25vw - 15px);
+    width: calc(25% - 15px);
   }
 }
 
