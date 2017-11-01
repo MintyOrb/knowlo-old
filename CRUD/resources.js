@@ -50,13 +50,11 @@ module.exports = function(app, db){
     * @return {Object} resource
     */
     var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
-           + "WHERE synSet.uid IN {includedSets} "//" AND b.uid IN {includedSets} "
-              //  + "NOT synSet.uid IN {excludedSets} " // this doesn't work...
-           + "WITH re, count(*) AS connected "
+           + "WITH distinct re, collect(synSet.uid) AS parentTags "
+           + "WHERE all(tag IN {includedSets} WHERE tag IN parentTags) "              //  + "NOT synSet.uid IN {excludedSets} " // this doesn't work...
            + "MATCH (re)-[:TAGGED_WITH]->(synSet:synSet)<-[synR:IN_SET]-(syn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
            + "WHERE "
                + "synR.order=1 "
-               + "AND connected = SIZE({includedSets}) "
                + "AND tlang.languageCode IN [ {language} , 'en' ] "
            + "WITH synSet, tlangNode, tlang, re "//collect(distinct synSet.setID) AS blah, filter(x IN re)"//filter(x IN collect(distinct{re:re,synSets:sets}) WHERE x.re.setID NOT IN {excludedSets}) as ree "
            + "OPTIONAL MATCH (:member)-[gVote:CAST_VOTE]->(re) " // get global rankings
@@ -110,16 +108,15 @@ module.exports = function(app, db){
     * @return {Object} resource
     */
     var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
-           + "WHERE synSet.uid IN {includedSets} "//" AND b.uid IN {includedSets} "
+           + "WITH distinct re, collect(synSet.uid) AS parentTags "
+           +"WHERE all(tag IN {includedSets} WHERE tag IN parentTags) "
           //  + " AND NOT synSet.uid IN {excludedSets} " // this doesn't work...
            if(req.query.showViewed === 'true'){
              cypher += "AND NOT ((:member {uid:{mID}})-[:VIEWED]->(re)) "
            }
-           cypher += "WITH DISTINCT re, count(*) AS connected "
-           + "MATCH (re)-[:TAGGED_WITH]->(synSet:synSet)<-[synR:IN_SET]-(syn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
+           cypher += "MATCH (re)-[:TAGGED_WITH]->(synSet:synSet)<-[synR:IN_SET]-(syn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
            + "WHERE "
                + "synR.order=1 "
-              //  + "AND connected = SIZE({includedSets}) "
                + "AND tlang.languageCode IN [ {language} , 'en' ] "
                + "AND NOT synSet.uid IN {excludedSets} "
              + "WITH synSet, tlangNode, tlang, re "//collect(distinct synSet.setID) AS blah, filter(x IN re)"//filter(x IN collect(distinct{re:re,synSets:sets}) WHERE x.re.setID NOT IN {excludedSets}) as ree "
