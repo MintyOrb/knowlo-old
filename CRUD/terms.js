@@ -29,9 +29,6 @@ app.get('/set/:setID/contains/', contains);
 app.put('/api/set/:setID/contains/:otherID', updateContains);
 app.delete('/api/set/:setID/contains/:otherID', deleteContains);
 
-// props
-app.get('/set/:setID/props/', getProps);
-
 // app.get('/set/:ruid/meta/', getMeta); //
 app.put('/api/set/:sID/meta/:mID', tagMeta);
 app.get('/set/:setID/meta/', getMeta);
@@ -248,7 +245,7 @@ function deleteCore(req, res){
   //TODO: for production, re-lable rather than delete?
   var cypher = "MATCH (set:synSet {uid: {uid}}) "
               +"OPTIONAL MATCH (set)-[sr:IN_SET]-(terms:term)-[r:HAS_TRANSLATION]-(ttr:translation) "
-              +"OPTIONAL MATCH (set)-[Ppr:HAS_PROPERTY]-(props:prop)-[ppr:HAS_TRANSLATION]-(ptr:translation) "
+              +"OPTIONAL MATCH (set)-[pr:HAS_PROPERTY]-(props:prop)-[ppr:HAS_TRANSLATION]-(ptr:translation) "
               + "DETACH DELETE set,terms,props,ttr,ptr "
    db.query(cypher, {uid: req.params.setID },function(err, result) {
      if (err) console.log(err);
@@ -594,16 +591,6 @@ function most(req,res){
 888                      888
 888                      888
 */
-  function getProps(req,res){ // TODO: re-write... getIcon getDefinition
-    var cypher = "MATCH (s:synSet {uid: {setID} })-[sr:HAS_PROPERTY]->(p:prop)-[tr:HAS_TRANSLATION]->(t:translation) "
-               + "WHERE tr.languageCode = {languageCode} "
-               + "RETURN sr.type AS type, p AS property, t AS translation "
-               + "ORDER BY sr.order "
-    db.query(cypher, {setID: req.params.setID, languageCode: req.query.languageCode || 'en'},function(err, result) {
-      if (err) console.log(err);
-      res.send(result)
-    })
-  }
 
    function memberGetMeta(req,res){
 

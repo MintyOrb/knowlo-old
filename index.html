@@ -524,7 +524,7 @@
 -->
 <template id="memberPageTemplate" :member='member'>
 	<div style="opacity:0" :id="'memberModal'+member.uid" class="modal fullPage member-modal"  >
-		<span class="exit hide-on-med-and-down modal-close" ><i class="fa fa-3x fa-times"></i></span>
+		<span class="exit modal-close" ><i class="fa fa-3x fa-times"></i></span>
 
 		<div class="member-container memberTitle center">
 			<div >{{mem.name}}</div>
@@ -641,7 +641,7 @@
 			</span>
 
 			<!-- setdelete -->
-			<span v-if='true' class='btn' v-on:click="deleteSet(term.setID)">delete set</span>
+			<!-- <span v-if='true' class='btn' v-on:click="deleteSet(term.setID)">delete set</span> -->
 
 			<span class="right modal-close"><i class="fa fa-2x fa-times"></i></span>
 		</div>

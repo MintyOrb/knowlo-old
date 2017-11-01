@@ -1,13 +1,24 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var admin = require('firebase-admin')
+var admin = require('firebase-admin');
 var firebaseMiddleware = require('express-firebase-middleware');
-var db = require("seraph")({
-  server: "http://localhost:7474",
-  user: 'neo4j',
-  pass: 'admin'
-});
+
+if(process.env.GRAPHENEDB_URL){
+  url = require('url').parse(process.env.GRAPHENEDB_URL);
+  var db = require("seraph")({
+    server: url.protocol + '//' + url.host,
+    user: url.auth.split(':')[0],
+    pass: url.auth.split(':')[1]
+  });
+} else {
+  var db = require("seraph")({
+    server: "http://localhost:7474",
+    user: 'neo4j',
+    pass: 'admin'
+  });
+}
+
 
 admin.initializeApp({
   credential: admin.credential.cert({

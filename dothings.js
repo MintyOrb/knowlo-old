@@ -21,7 +21,46 @@
     // getIconUrls();
     // addTagsInTitle() // parse len 1 and 2 tokens from title, add as tags if in db
     // addImgResources() //
+    simplifyTranslationSchema(){
+      require('./tempData/oldResources')
+      var cypher = "MATCH (t:translation )<-[:HAS_TRANSLATION]-() where ID(t)={id} "
 
+      //
+      db.query(cypher, {uid:  },function(err, result) {
+        if (err) console.log(err);
+
+        console.log(result)
+        callback()
+      })
+      // async.eachSeries(oldResources['data'], function(node, callback) {
+      //   console.log(node['row'][1])
+      //   var details = node['row'][0]
+      //   var detailIDs = [];
+      //   for (var i = 0; i < Object.keys(details).length; i++) {
+      //     detailIDs.push(shortid.generate());
+      //   }
+      //
+      //   var cypher = "MATCH (resource:resource {uid:{uid}}) "
+      //              + "WITH resource, {detail} AS detail, {detailIDs} as dIDs, keys({detail}) AS keys "
+      //              + "FOREACH (index IN range(0, size(keys)-1) | "
+      //                + "MERGE (resource)-[r:HAS_PROPERTY {order: 1, type: keys[index] }]->(prop:prop:tester {type: keys[index], uid: dIDs[index] })-[tr:HAS_TRANSLATION {languageCode: 'en'}]->(langNode:tester:translation {value: detail[keys[index]] } ) "
+      //              + ") "
+      //              + "RETURN resource"
+      //   //
+      //   db.query(cypher, {uid: node['row'][1], detail: details, detailIDs: detailIDs },function(err, result) {
+      //     if (err) console.log(err);
+      //
+      //     console.log(result)
+      //     callback()
+      //   })
+      //   }, function(err) {
+      //       if( err ) {
+      //         console.log('A resource failed to process');
+      //       } else {
+      //         console.log('All resources have been processed successfully');
+      //       }
+      //   });
+    }
 
 
     /*
