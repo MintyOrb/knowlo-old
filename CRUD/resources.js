@@ -107,6 +107,7 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
+    console.log(req.query)
     var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
            + "WITH distinct re, collect(synSet.uid) AS parentTags "
            +"WHERE all(tag IN {includedSets} WHERE tag IN parentTags) "
@@ -182,7 +183,6 @@ module.exports = function(app, db){
   function createCore(req, res){
     req.body.resource.core.uid = shortid.generate();
     req.body.resource.viewCount = 0;
-    // TODO: added vs added by member rel....
 
     // remove blank props
     for (thing in req.body.resource.detail) {

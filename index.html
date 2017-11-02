@@ -182,7 +182,7 @@
 		    </span>
 		  </form>
 			<div><!--  suggested -->
-		    <div class='row'>
+		    <div class=''>
 						<!-- suggestions grouped -->
 						<div v-if="suggestionDisplay == 'groups'">
 							<div id='suggestionNav' class=" suggestionNav " :class="{ shadowUnder : 'groups'.indexOf(suggestionDisplay) > -1}">
@@ -259,7 +259,7 @@
 		    </div>
 			</div><!-- suggested -->
 
-			<div class="center rBar">
+			<div class="center rBar" :class="{topBottomShadow:suggestionDisplay == 'groups'}">
 				<span @click="flipViewed" class="left viewBtn" :class="{'fade': showViewed}" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
 				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
 				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
@@ -277,11 +277,6 @@
 					</ul>
 				</span>
 				<br/>
-			</div>
-
-			<div>
-				<transition name="fade">
-				<!-- results by cross section -->
 				<div v-if="crossSection" >
 					<div id='crossSectionNav' class=" crossSectionNav ">
 						<!-- flick navigation for isotope containers -->
@@ -292,6 +287,13 @@
 							</term>
 						</div>
 					</div>
+				</div>
+			</div>
+
+			<div>
+				<transition name="fade">
+				<!-- results by cross section -->
+				<div v-if="crossSection" >
 					<!-- isotope contianers -->
 					<div id='crossSectionSteps' class=" crossSectionSteps">
 						<div v-for="step in crossSection" class="stepContainer">
@@ -798,7 +800,7 @@
 
 							<div class="row" v-if="type=='resource'">
 								<div class="input-field col s12">
-									<input v-model="resource.url" id="url" type="url" class="validate">
+									<input v-model="resource.core.url" id="url" type="url" class="validate">
 									<label for="url">URL</label>
 								</div>
 							</div>
@@ -900,7 +902,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<a class="modal-action modal-close waves-effect waves-blue btn-flat ">close</a>
+			<a @click="closeModal" class="waves-effect waves-blue btn-flat ">close</a>
 			<!-- <a @click.once="upsertResource()" :class="{disabled: }" class="modal-action modal-close waves-effect waves-blue btn-flat">save</a> -->
 		</div>
 	</div>

@@ -21,9 +21,12 @@
     // getIconUrls();
     // addTagsInTitle() // parse len 1 and 2 tokens from title, add as tags if in db
     // addImgResources() //
+    // simplifyTranslationSchema()
+
+
     simplifyTranslationSchema(){
-      require('./tempData/oldResources')
-      var cypher = "MATCH (t:translation )<-[:HAS_TRANSLATION]-() where ID(t)={id} "
+      // require('./tempData/oldResources')
+      var cypher = "MATCH (t:translation )<-[:HAS_TRANSLATION]-(base) where ID(t)={id} "
 
       //
       db.query(cypher, {uid:  },function(err, result) {

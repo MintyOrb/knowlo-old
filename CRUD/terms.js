@@ -12,7 +12,8 @@ app.post('/api/set/:setID/translation/', createTranslation);       // create set
 app.delete('/api/set/:setID/translation/:uid', deleteTranslation); // delete set translation by id | delete node or just relatinship??
 // synonym
 app.get('/set/:setID/synonym/', readSynonym);                // retrieve synonyms of a set based on set id and provided langauge code. If language not found, attempt translation? Also returns set core
-app.put('/api/set/:setID/synonym/:otherID', updateSynonym);    // add set synonym by ID | is /set/:setID - copy any other sets and resource relationships
+app.put('/api/set/:setID/synonym/:otherID', updateSynonym);    // TODO: this is really a merge... add set synonym by ID | is /set/:setID - copy any other sets and resource relationships
+// app.put('/api/set/:setID/synonym/:otherID/add', addSynonym);    // add term by ID | is /set/:setID - don't copy any other sets and resource relationships
 // ? don't need? app.post('/api/set/:setID/synonym/', createSynonym);      // create set synonym based on language code and connect to set. Return resrouce core and new synonym
 app.delete('/api/set/:setID/synonym/:termID', deleteSynonym); // delete term synonym by id | delete node or just relatinship??
 // groups
@@ -303,7 +304,7 @@ function readSynonym(req, res){
   })
 }
 
-function updateSynonym(req, res){
+function updateSynonym(req, res){//TODO this is really a merge..need to have just add as well
   // TODO:check for member authorization...
   var cypher = "MATCH (main:synSet {uid: {setID}}), (sub:synSet {uid: {otherID}}) "
              + "SET sub:merged REMOVE sub:synSet "
@@ -322,13 +323,13 @@ function updateSynonym(req, res){
                     + " SET new = rel "
                + ") "
                + "WITH main, sub "
-               + "MATCH (sub)-[r:IN_GROUP]-(g:GROUP) "// copy in groups
-               // does this work both ways?
-               + "WITH main, sub, g, COLLECT(r) as rels "
-               + "FOREACH (rel in rels | "
-                     + "MERGE (main)-[new:IN_GROUP]-(g) "
-                     + " SET new = rel "
-                + ") "
+              //  + "MATCH (sub)-[r:IN_SET]-(g:synSet) "// copy in groups
+              //  // does this work both ways?
+              //  + "WITH main, sub, g, COLLECT(r) as rels "
+              //  + "FOREACH (rel in rels | "
+              //        + "MERGE (main)-[new:IN_GROUP]-(g) "
+              //        + " SET new = rel "
+              //   + ") "
                 // copy meta too?
                 // make MERGED_WITH rel between sets?
               + "return main "

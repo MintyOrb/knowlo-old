@@ -701,6 +701,9 @@ const addResource = Vue.component('addResource',{
           dragThreshold: 20 // play around with this more?
         });
       },
+      closeModal(){
+        $('#addResourceModal').modal('close');
+      },
       tagToResource: function(){ // connect to the currently viewed resource
         if(this.resource.core.uid.length > 0){
           this.$http.put('/api/resource/'+this.$route.params.uid+'/discussion/'+this.resource.core.uid).then(response => {
