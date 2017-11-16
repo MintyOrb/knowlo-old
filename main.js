@@ -58,9 +58,9 @@ const app = new Vue({
     Vue.config.errorHandler =  (err) => { //TODO figure out what is causing this...vueisotope?
       Materialize.toast('whoops...hit a snag. Recovering.',2000)
       console.log(err)
-      window.setTimeout(()=> {
-        this.$router.go(this.$route)
-      }, 2000);
+      // window.setTimeout(()=> {
+      //   this.$router.go(this.$route)
+      // }, 2000);
     };
     // get term query
     if(Cookies.get('termQuery')){
@@ -85,7 +85,7 @@ const app = new Vue({
       // init headroom (hide/show navbar on scroll down/up)
       var elem = document.querySelector("#nav-slide");
     	var headroom = new Headroom(elem, {
-    		"offset": 220,
+    		"offset": 50,
     		"tolerance" : {
         down : 0,
         up : 10

@@ -427,7 +427,6 @@ iframe{
 }
 .crossSectionSteps {
 	width: 100%;
-  margin-bottom: 50px;
 }
 .stepContainer {
 	width: 25vw;
@@ -966,4 +965,22 @@ and (max-width : 1024px) { _:-moz-tree-row(hover),
   height: 100vh;
   position: relative;
   width: 100vw;
+}
+.suggestionNav {
+  z-index: 1;
+}
+
+.collapsible-body {
+  padding:0;
+}
+.collapsible {
+  margin:0;
+}
+.input-field{
+  margin-top: 0;
+  width: 80vw;
+  max-width: 100%;
+}
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+  margin-bottom:0;
 }

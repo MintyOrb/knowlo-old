@@ -3,17 +3,18 @@ module.exports = function(app, db){
   var async = require('async');
 
   // resource routes
-  app.get('/resource', query);              // generic public query resources based on provided term IDs
-  app.get('/api/resource', memberQuery);    // query resources based on user details and provided term IDs
-  //?app.get('/resource/:uid', readCore);   // read details of a single resource core
+  app.get('/resource', query);                         // generic public query resources based on provided term IDs
+  app.get('/api/resource', memberQuery);               // query resources based on user details and provided term IDs
+  app.get('/resource/count', count);                   // query number of resources related to terms
+  app.get('/api/resource/count', memberCount);         // query number of resources related to terms; return number seen by member;  based on user details and provided term IDs
 
-  app.get('/resource/:uid/full', readFull);   // read full details of a single resource (tagged terms and translation by language code)
-  app.put('/api/resource/:uid/full', updateFull); // update full details of a single resource (tagged terms and translation by language code)
-  app.post('/api/resource/:uid/full', createFull); // create full details of a single resource (tagged terms and translation by language code)
+  app.get('/resource/:uid/full', readFull);            // read full details of a single resource (tagged terms and translation by language code)
+  app.put('/api/resource/:uid/full', updateFull);      // update full details of a single resource (tagged terms and translation by language code)
+  app.post('/api/resource/:uid/full', createFull);     // create full details of a single resource (tagged terms and translation by language code)
 
-  app.get('/resource/:uid', readCore);       // read details of a single resource core
-  app.put('/api/resource/:uid', updateCore); // update a single resource core node data
-  app.post('/api/resource', createCore);     // create (or update, if present) a resource core node.
+  app.get('/resource/:uid', readCore);                 // read details of a single resource core
+  app.put('/api/resource/:uid', updateCore);           // update a single resource core node data
+  app.post('/api/resource', createCore);               // create (or update, if present) a resource core node.
   app.delete('/api/resource/:uid/full', deleteFull);   // delete resource core node and relationships....and translations?
 
   app.get('/resource/:ruid/translation/', readTranslation);         // retrieve a translation of a resource based on resource id and provided langauge code. If language not found, attempt a translation. Also returns resource core
@@ -107,12 +108,11 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
-    console.log(req.query)
     var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
            + "WITH distinct re, collect(synSet.uid) AS parentTags "
            +"WHERE all(tag IN {includedSets} WHERE tag IN parentTags) "
           //  + " AND NOT synSet.uid IN {excludedSets} " // this doesn't work...
-           if(req.query.showViewed === 'true'){
+           if(req.query.showViewed === 'false'){
              cypher += "AND NOT ((:member {uid:{mID}})-[:VIEWED]->(re)) "
            }
            cypher += "MATCH (re)-[:TAGGED_WITH]->(synSet:synSet)<-[synR:IN_SET]-(syn:term)-[tlang:HAS_TRANSLATION]->(tlangNode:translation) "
@@ -173,6 +173,47 @@ module.exports = function(app, db){
           delete result[rindex].properties // no need to send redundant data
         }
         res.send(result)
+      })
+  }
+
+  function memberCount(req, res){
+
+    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
+           + "WITH distinct re, collect(synSet.uid) AS parentTags "
+           + "WHERE all(tag IN {includedSets} WHERE tag IN parentTags) "
+           + "WITH collect(re.uid) as ids, count(re) as relatedResources  "
+           + "OPTIONAL MATCH (:member {uid:{mID}})-[v:VIEWED]->(re) "
+           + "WHERE re.uid in ids "
+           + "RETURN relatedResources, count(v) as viewedResources "
+
+         if (typeof req.query.include === "undefined") {
+             req.query.include = [];
+         }
+
+        db.query(cypher, {
+            mID: res.locals.user.uid,
+            includedSets: req.query.include,
+        }, function(err, result) {
+      if (err) {console.log(err);res.status(500).send()};
+        res.send(result[0])
+      })
+  }
+
+  function count(req, res){
+    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
+           + "WITH distinct re, collect(synSet.uid) AS parentTags "
+           + "WHERE all(tag IN {includedSets} WHERE tag IN parentTags) "
+           + "RETURN count(re) as relatedResources"
+
+         if (typeof req.query.include === "undefined") {
+             req.query.include = [];
+         }
+
+        db.query(cypher, {
+            includedSets: req.query.include,
+        }, function(err, result) {
+      if (err) {console.log(err);res.status(500).send()};
+        res.send(result[0])
       })
   }
 

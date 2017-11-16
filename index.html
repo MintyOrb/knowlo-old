@@ -131,13 +131,20 @@
 		  </router-link> -->
 
 
-		<div class='container'>
+		<ul class="collapsible" data-collapsible="accordion">
 
-				<autocomplete exclude="" input-id="mainSearch" v-on:select="addToQuery"></autocomplete>
+		<li>
+			<div class="collapsible-header">
+				<autocomplete exclude="" input-id="mainSearch" holder-text="Search" v-on:select="addToQuery"></autocomplete>
+				<span class='badge right'>{{termQuery.length}} term<span v-if="termQuery.length != 1">s</span> in search</span>
+			</div>
+			<div class='container collapsible-body' >
+
+
 
 				<!-- term query  -->
 		    <div class='row'>
-		        <isotope style="min-height:80px" ref="termQuery" :list="termQuery" :options='{}' class='step'>
+		        <isotope style="min-height:150px" ref="termQuery" :list="termQuery" :options='{}' class='step'>
 		            <term v-for="term in termQuery"
 									:key="term.setID"
 									:term="term"
@@ -155,187 +162,201 @@
 						</div>
 		    </div>
 			</div>
-			<form id='termSuggestionOptions'>
-		    <span>
-		      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='size' id="size" />
-		      <label for="size">Size</label>
-		    </span>
-		    <span>
-		      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='time' id="time" />
-		      <label for="time">Time</label>
-		    </span>
-		    <span>
-		      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='disciplines' id="disciplines"  />
-		      <label for="disciplines">Disciplines</label>
-		    </span>
-		    <span>
-		      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='groups' id="groups" />
-		      <label for="groups">Groups</label>
-		    </span>
-				<span>
-		      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='none' id="none" />
-		      <label for="none">Ungrouped</label>
-		    </span>
-				<span v-if="member.first">
-		      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='member' id="member" />
-		      <label for="member">{{member.first}}</label>
-		    </span>
-		  </form>
-			<div><!--  suggested -->
-		    <div class=''>
-						<!-- suggestions grouped -->
-						<div v-if="suggestionDisplay == 'groups'">
-							<div id='suggestionNav' class=" suggestionNav " :class="{ shadowUnder : 'groups'.indexOf(suggestionDisplay) > -1}">
-								<!-- flickity navigation for isotope containers -->
-								<term
-									v-for="group in termSuggestions"
-									:key="group.group[0].setID"
-									:term="group.group[0]"
+		</li>
+		<li>
+			<div class="collapsible-header"><i class="fa fa-filter"></i>Refine | Terms | Suggestions</div>
+			<div class="collapsible-body">
+				<form id='termSuggestionOptions'>
+			    <span>
+			      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='size' id="size" />
+			      <label for="size">Size</label>
+			    </span>
+			    <span>
+			      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='time' id="time" />
+			      <label for="time">Time</label>
+			    </span>
+			    <span>
+			      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='disciplines' id="disciplines"  />
+			      <label for="disciplines">Disciplines</label>
+			    </span>
+			    <span>
+			      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='groups' id="groups" />
+			      <label for="groups">Groups</label>
+			    </span>
+					<span>
+			      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='none' id="none" />
+			      <label for="none">Ungrouped</label>
+			    </span>
+					<span v-if="member.first">
+			      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='member' id="member" />
+			      <label for="member">{{member.first}}</label>
+			    </span>
+			  </form>
+				<div><!--  suggested -->
+			    <div class=''>
+							<!-- suggestions grouped -->
+							<div v-if="suggestionDisplay == 'groups'">
+								<div id='suggestionNav' class=" suggestionNav " :class="{ shadowUnder : 'groups'.indexOf(suggestionDisplay) > -1}">
+									<!-- flickity navigation for isotope containers -->
+									<term
+										v-for="group in termSuggestions"
+										:key="group.group[0].setID"
+										:term="group.group[0]"
+										:display="'thumb'"
+										:persist-action="false"
+										hide="remove lens"
+										v-on:include="addToQuery(group.group[0])"
+										v-on:exclude="addToQuery(group.group[0])"
+										v-on:focus="addToQuery(group.group[0])"
+										v-on:pin="addToQuery(group.group[0])"
+										>
+									</term>
+								</div>
+								<!-- isotope contianers -->
+								<div id='suggestionSteps' class=" suggestionSteps">
+									<div v-for="step in termSuggestions" class="suggestionGroupStep" >
+										<isotope  :ref='"suggestionBin" + step.group[0].setID' class="step" :list="step.contains" :options='{}'>
+											<div v-for="term in step.contains" class='element-item' :key="term.setID">
+												<term
+													:term="term"
+													:display="'thumb'"
+													v-on:main="addToQuery(term)"
+													v-on:include="addToQuery(term)"
+													v-on:exclude="addToQuery(term)"
+													v-on:focus="addToQuery(term)"
+													v-on:pin="addToQuery(term)"
+												>
+												</term>
+											</div>
+										 </isotope>
+									</div>
+								</div>
+							</div>
+							<!-- suggestions un-grouped filck -->
+							<div v-if="'size disciplines time'.indexOf(suggestionDisplay) > -1">
+								<div id='suggestionNav' class=" suggestionNav ">
+									<term
+										v-for="term in termSuggestions"
+										:key="term.setID"
+										:term="term"
+										:display="'thumb'"
+										hide="remove lens"
+										v-on:main="addToQuery(term)"
+										v-on:include="addToQuery(term)"
+										v-on:exclude="addToQuery(term)"
+										v-on:focus="addToQuery(term)"
+										v-on:pin="addToQuery(term)"
+									>
+									</term>
+								</div>
+							</div>
+							<!-- suggestions un-grouped iso -->
+							<div v-if="' none '.indexOf(suggestionDisplay) > -1">
+								<isotope ref="together" :list="termSuggestions" :options='{}' class="step">
+									<term
+										v-for="term in termSuggestions"
+										:key="term.setID"
+										:term="term"
+										:display="'thumb'"
+										v-on:main="addToQuery(term)"
+										v-on:include="addToQuery(term)"
+										v-on:exclude="addToQuery(term)"
+										v-on:focus="addToQuery(term)"
+										v-on:pin="addToQuery(term)"
+									>
+									</term>
+				        </isotope>
+							</div>
+			    </div>
+				</div><!-- suggested -->
+			</div>
+		</li>
+		<li>
+			<div class="collapsible-header"><i class="material-icons">image</i>Resources<span class="right badge">{{resourcesRelated}} resource<span v-if="resourcesRelated !=1">s</span> matched</span></div>
+			<div class="collapsible-body">
+				<div class="center rBar" :class="{topBottomShadow:suggestionDisplay == 'groups'}">
+					<span @click="flipViewed" class="left viewBtn" :class="{'fade': showViewed}" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
+					<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
+					<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
+					<!-- <span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span> -->
+					<span class='right'>
+						<a class="dropdown-button viewBtn" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
+						<ul id='order' class='dropdown-content sort'>
+							<li class=''><a>quality</a></li>
+							<li class='disabled'><a>complexity</a></li>
+							<li class='disabled'><a>date added</a></li>
+							<li class='disabled'><a>time to view</a></li>
+							<li class='disabled'><a># of votes</a></li>
+							<li class='disabled'><a># of views</a></li>
+							<li class='disabled'><a># responses</a></li>
+						</ul>
+					</span>
+
+					<br/>
+					<div class="right">
+						<div>Showing {{resources.length}} of {{resourcesRelated}}</div>
+						<div v-if='member.uid'><span v-if="showViewed">Including</span><span v-else>Excluding</span> {{resourcesViewed}} viewed</div>
+					</div>
+					<div v-if="crossSection" >
+						<div id='crossSectionNav' class=" crossSectionNav ">
+							<!-- flick navigation for isotope containers -->
+							<div v-for="step in crossSection" class="navItems">
+								<term :term="step"
 									:display="'thumb'"
-									:persist-action="false"
-									hide="remove lens"
-									v-on:include="addToQuery(group.group[0])"
-									v-on:exclude="addToQuery(group.group[0])"
-									v-on:focus="addToQuery(group.group[0])"
-									v-on:pin="addToQuery(group.group[0])"
 									>
 								</term>
 							</div>
-							<!-- isotope contianers -->
-							<div id='suggestionSteps' class=" suggestionSteps">
-								<div v-for="step in termSuggestions" class="suggestionGroupStep" >
-									<isotope  :ref='"suggestionBin" + step.group[0].setID' class="step" :list="step.contains" :options='{}'>
-										<div v-for="term in step.contains" class='element-item' :key="term.setID">
-											<term
-												:term="term"
-												:display="'thumb'"
-												v-on:main="addToQuery(term)"
-												v-on:include="addToQuery(term)"
-												v-on:exclude="addToQuery(term)"
-												v-on:focus="addToQuery(term)"
-												v-on:pin="addToQuery(term)"
-											>
-											</term>
-										</div>
-									 </isotope>
-								</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<transition name="fade">
+					<!-- results by cross section -->
+					<div v-if="crossSection" >
+						<!-- isotope contianers -->
+						<div id='crossSectionSteps' class=" crossSectionSteps">
+							<div v-for="step in crossSection" class="stepContainer">
+								<isotope :ref='"resourceBin" + step.setID' class="step" :list="resources" :options='{}'>
+											<resource
+												:key="re.resource.uid"
+												v-for="re in resources"
+												v-if="re.termIDs.includes(step.setID)"
+												:re="re"
+												:display="resourceDisplay">
+											</resource>
+								 </isotope>
 							</div>
 						</div>
-						<!-- suggestions un-grouped filck -->
-						<div v-if="'size disciplines time'.indexOf(suggestionDisplay) > -1">
-							<div id='suggestionNav' class=" suggestionNav ">
-								<term
-									v-for="term in termSuggestions"
-									:key="term.setID"
-									:term="term"
-									:display="'thumb'"
-									hide="remove lens"
-									v-on:main="addToQuery(term)"
-									v-on:include="addToQuery(term)"
-									v-on:exclude="addToQuery(term)"
-									v-on:focus="addToQuery(term)"
-									v-on:pin="addToQuery(term)"
-								>
-								</term>
-							</div>
-						</div>
-						<!-- suggestions un-grouped iso -->
-						<div v-if="' none '.indexOf(suggestionDisplay) > -1">
-							<isotope ref="together" :list="termSuggestions" :options='{}' class="step">
-								<term
-									v-for="term in termSuggestions"
-									:key="term.setID"
-									:term="term"
-									:display="'thumb'"
-									v-on:main="addToQuery(term)"
-									v-on:include="addToQuery(term)"
-									v-on:exclude="addToQuery(term)"
-									v-on:focus="addToQuery(term)"
-									v-on:pin="addToQuery(term)"
-								>
-								</term>
-			        </isotope>
-						</div>
-		    </div>
-			</div><!-- suggested -->
+					</div>
+					</transition>
 
-			<div class="center rBar" :class="{topBottomShadow:suggestionDisplay == 'groups'}">
-				<span @click="flipViewed" class="left viewBtn" :class="{'fade': showViewed}" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
-				<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
-				<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
-				<!-- <span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span> -->
-				<span class='right'>
-					<a class="dropdown-button viewBtn" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
-					<ul id='order' class='dropdown-content sort'>
-						<li class=''><a>quality</a></li>
-						<li class='disabled'><a>complexity</a></li>
-						<li class='disabled'><a>date added</a></li>
-						<li class='disabled'><a>time to view</a></li>
-						<li class='disabled'><a># of votes</a></li>
-						<li class='disabled'><a># of views</a></li>
-						<li class='disabled'><a># responses</a></li>
-					</ul>
-				</span>
-				<br/>
-				<div v-if="crossSection" >
-					<div id='crossSectionNav' class=" crossSectionNav ">
-						<!-- flick navigation for isotope containers -->
-						<div v-for="step in crossSection" class="navItems">
-							<term :term="step"
-								:display="'thumb'"
-								>
-							</term>
+					<!-- results all together -->
+					<transition name="fade">
+						<div v-if="!crossSection" >
+					    <isotope ref="resourceBin" class="step" :list="resources" :options='{}' id="container"  >
+			          	<resource
+										v-for="re in resources"
+										:key="re.resource.uid"
+										:re="re"
+										:display="resourceDisplay"
+										:class="{'listFullWidth': resourceDisplay=='list'}">
+									</resource>
+				      </isotope>
+						</div>
+					</transition>
+
+					<div class="message" v-show="this.numberOfDisplayed === 0">
+						<p>
+							No results! Have something you want to add?
+						</p>
+						<div>
+							<router-link :to="{ name: 'addResource'}" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i>
+						  </router-link>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<div>
-				<transition name="fade">
-				<!-- results by cross section -->
-				<div v-if="crossSection" >
-					<!-- isotope contianers -->
-					<div id='crossSectionSteps' class=" crossSectionSteps">
-						<div v-for="step in crossSection" class="stepContainer">
-							<isotope :ref='"resourceBin" + step.setID' class="step" :list="resources" :options='{}'>
-										<resource
-											:key="re.resource.uid"
-											v-for="re in resources"
-											v-if="re.termIDs.includes(step.setID)"
-											:re="re"
-											:display="resourceDisplay">
-										</resource>
-							 </isotope>
-						</div>
-					</div>
-				</div>
-				</transition>
-
-				<!-- results all together -->
-				<transition name="fade">
-					<div v-if="!crossSection" >
-				    <isotope ref="resourceBin" class="step" :list="resources" :options='{}' id="container"  >
-		          	<resource
-									v-for="re in resources"
-									:key="re.resource.uid"
-									:re="re"
-									:display="resourceDisplay"
-									:class="{'listFullWidth': resourceDisplay=='list'}">
-								</resource>
-			      </isotope>
-					</div>
-				</transition>
-
-				<div class="message" v-show="this.numberOfDisplayed === 0">
-					<p>
-						No results! Have something you want to add?
-					</p>
-					<div>
-						<router-link :to="{ name: 'addResource'}" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i>
-					  </router-link>
-					</div>
-				</div>
-			</div>
+			</ul>
 		</div>
 	</template>
 
@@ -1270,13 +1291,13 @@
 
 <template id="autocomplete">
 
-	<div class="row" >
-		<div class="col s12">
-			<div class="">
-				<div class="input-field col s12">
+	<!-- <div class="row" >
+		<div class="col s12"> -->
+			<!-- <div class=""> -->
+				<div class="input-field ">
 					<i class="material-icons prefix">search</i>
-					<input type="text" :id="inputId" class="autocomplete" v-model="input" @blur="hide" @focus="hidden=false">
-					<label :for="inputId" >Term name</label>
+					<input type="text" v-on:click.stop.prevent="" :id="inputId" class="autocomplete" v-model="input" @blur="hide" @focus="hidden=false">
+					<label :for="inputId" >{{holderText}}</label>
 					<ul id="ac" class="autocomplete-content dropdown-content"style="position:absolute" v-bind:class="{ hide: hidden }">
 						<li v-for="suggestion in suggestions" @click='pick(suggestion)'>
 							<img v-if="suggestion.term.iconURL" :src="suggestion.term.iconURL" class="left">
@@ -1284,9 +1305,9 @@
 						</li>
 					</ul>
 				</div>
-			</div>
+			<!-- </div>
 		</div>
-	</div>
+	</div> -->
 </template>
 
 <!--

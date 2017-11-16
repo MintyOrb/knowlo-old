@@ -787,21 +787,23 @@ const explore = Vue.component('exploreComp',{
   props: ['termQuery','member'],
   data: function() {
         return {
-            db: undefined,                      // search results to display - array of material objects
+            db: null,                           // search results to display - array of material objects
             loginCheck: false,                  // true after login status is checked
             crossSection: null,                 // object containing the name of the cross section and terms in lens group - object containing array of term objects and string name
             termSuggestions: [],                // holds suggestion groups and terms within
             suggestionDisplay: "",              // the name of the currently selected display for suggestions
-            suggestions: [],                    // suggested terms...not sure about ui, currently  - array of term objects
+            suggestions: [],                    // suggested terms - array of term objects
             resources: [],                      // db when no lens, replace with db even though less items? - array of term objects
-            showViewed: false,                   // whether or not viewed resources should be returned.
-            numberOfDisplayed: null,            // number of materials currently displayed
-            resourceDisplay: undefined,                 // display option for materials in search result - string name of displaytype (thumb, list, card)
+            showViewed: false,                  // whether or not viewed resources should be returned.
+            resourcesRelated: null,             // total number of resources related
+            resourcesViewed: null,              // number of related resources logged in member has viwed
+            resourceDisplay: null,              // display option for materials in search result - string name of displaytype (thumb, list, card)
             currentLayout: 'masonry',           // incase want to change isotope display type...not used now
             sortOption: "original-order",       // to sort search results by - string name
             sortAscending: true,                // whether sort whould be ascending or descending - boolean
             filterOption: "show all",
             searchStr: null,                    // current member entered search text - string
+            selectedPane: null                  // current selected selectedPane (search, terms, or resources)
         }
     },
     methods: {
@@ -846,7 +848,7 @@ const explore = Vue.component('exploreComp',{
             })
 
             Cookies.set('showViewed', this.showViewed);
-            if(!this.showViewed){
+            if(this.showViewed){
               Materialize.toast('Include viewed resources',2000)
             } else {
               Materialize.toast('Hide viewed resources',2000)
@@ -939,8 +941,9 @@ const explore = Vue.component('exploreComp',{
           }
 
         },
-        initSuggestionGroupFlickity: function(moreThanZero){
+        initSuggestionGroupFlickity: function(length){
           // setup suggestion group flickity
+
           if($('#suggestionNav').flickity()){
               $('#suggestionNav').flickity('destroy');
           }
@@ -950,7 +953,8 @@ const explore = Vue.component('exploreComp',{
           if($('#suggestionTogether').flickity()){
             $('#suggestionTogether').flickity('destroy');
           }
-          if(moreThanZero){
+
+          if(length >0){
             if(this.suggestionDisplay=='groups'){
               $('#suggestionNav').flickity({
                 asNavFor: '#suggestionSteps',
@@ -975,7 +979,14 @@ const explore = Vue.component('exploreComp',{
                 dragThreshold: 40
               })
             }
+            if($('#suggestionNav').flickity()){
+              window.setTimeout(x=>{ // need time to get flickity situated...
+                $('#suggestionNav').flickity( 'selectCell', Math.round(length/2), false, false ); // why is this not working?
+                this.layout();
+              }, 175)
+            }
           }
+
         },
         getTerms: function(){
           var include = [];
@@ -991,18 +1002,9 @@ const explore = Vue.component('exploreComp',{
             if(this.termSuggestions.length===0){
               this.suggestionDisplay='size';
             }
-            this.$nextTick(x=>{
-              this.initSuggestionGroupFlickity(response.body.length>0);
-              if($('#suggestionNav').flickity()){
-                window.setTimeout(x=>{ // need time to get flickity situated...
-                  $('#suggestionNav').flickity( 'selectCell', Math.round(response.body.length/2), false, false ); // why is this not working?
-                  this.layout();
-                }, 175)
-              }
+            this.$nextTick(()=>{
+              this.initSuggestionGroupFlickity(response.body.length);  
             })
-
-          }, response => {
-            // warning would be redundant?
           });
         },
         fetchContains: function(set){ // used in fetching resource lens...
@@ -1027,27 +1029,41 @@ const explore = Vue.component('exploreComp',{
             }
           }
           if(this.member.uid != null){ // member specific query if logged in
-            console.log('get resources - logged in')
             this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed }}).then(response => {
               this.resources=response.body;
-              this.numberOfDisplayed = response.body.length;
-              this.getTerms();
-            }, response => {
-              console.log('error getting resources... ', response)
             });
           } else { // general query if not logged in
-            console.log('get resources - not logged in')
             this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
               this.resources=response.body;
-              this.numberOfDisplayed = response.body.length;
-              this.getTerms();
-            }, response => {
-              console.log('error getting resources... ', response)
             });
           }
 
-        }
+        },
+        fetchResourceQuantity: function(){
+          var include = [];
+          var exclude = [];
+          for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
+            if(this.termQuery[termIndex]['status'].includeIcon){
+              include.push(this.termQuery[termIndex]['setID'])
+            } else {
+              exclude.push(this.termQuery[termIndex]['setID'])
+            }
+          }
+          if(this.member.uid != null){ // member specific query if logged in
+            this.$http.get('/api/resource/count', {params: { languageCode: 'en', include: include }}).then(response => {
+              this.resourcesRelated = response.body.relatedResources;
+              this.resourcesViewed = response.body.viewedResources;
+            });
+          } else { // general query if not logged in
+            this.$http.get('/resource/count', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
+              this.resourcesRelated = response.body.relatedResources;
+            });
+          }
 
+        },
+        switchPane(selected){
+          this.selectedPane=selected;
+        }
     },
     mounted: function(){
 
@@ -1105,6 +1121,8 @@ const explore = Vue.component('exploreComp',{
       member: function(newVal,oldVal) { // re-fetch resources/terms on member login/logout
         this.loginCheck = true;
         this.$nextTick(x=>{
+          this.fetchResourceQuantity();
+          // if()
           this.fetchResources()
         })
       },
@@ -1116,11 +1134,19 @@ const explore = Vue.component('exploreComp',{
         if(this.loginCheck){ // don't fetch before checking member login
           this.$nextTick(()=>{
             this.fetchResources();
+            this.fetchResourceQuantity();
           })
         }
       },
       suggestionDisplay: function(val,x){
         Cookies.set('suggestionDisplay',val)
+        if(x.length>0){
+          this.getTerms();
+        }
+      },
+      selectedPane: function(val,x){
+        // Cookies.set('suggestionDisplay',val)
+        console.log(val," ",x)
         if(x.length>0){
           this.getTerms();
         }

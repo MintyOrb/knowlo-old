@@ -352,7 +352,7 @@ Vue.component('resource',{
 //<!-- ajax auto complete adapted from  http://stackoverflow.com/a/42757285/2061741 -->
 Vue.component('autocomplete',{
   template: "#autocomplete",
-  props:['ajaxUrl','inputId','exclude'],
+  props:['ajaxUrl','inputId','exclude','holderText'],
   name: "autocomplete",
   data: () =>  {
     return {
