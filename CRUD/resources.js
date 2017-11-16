@@ -30,16 +30,16 @@ module.exports = function(app, db){
 
   app.get('/resource/:ruid/discussion/', getDiscussion); // rename to meta???? add term/:tuid/meta
   app.put('/api/resource/:rUID/discussion/:dUID', tagDiscussion);
-  // post /discussion is the same as post /resource ?
-    // post /resource/discussion instead?
-
+  
   app.put('/api/resource/:rID/vote', castVote);
   app.put('/api/resource/:rUID/termSuggest', suggestedTerms);
 
   app.get('/resource/:rUID/related/', getRelated);
 
-
   app.put('/api/resource/:rUID/viewed', viewed);
+
+
+
 
   function query(req, res){
     /**

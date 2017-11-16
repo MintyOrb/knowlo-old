@@ -418,9 +418,7 @@ Vue.component('autocomplete',{
         minLength: 1
     };
     var $input = $("#" + options.inputId);
-    console.log('asdfadf')
     if(this.$route.name === 'explore'){
-      console.log('ahhhh')
       $('#ac').appendTo('#search'); // workaround for stacking context
     }
     if (options.ajaxUrl) {

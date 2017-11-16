@@ -100,7 +100,6 @@ const termComp = Vue.component('termComp',{
         }
       },
       fetchMeta: function(type){
-        console.log(this.member.uid)
         if(this.member.uid != null){
           this.$http.get('/api/set/' + this.$route.params.uid + '/meta/', {params: { languageCode: 'en', type: type }}).then(response => {
             console.log(response.body)
@@ -321,7 +320,7 @@ const resourceComp = Vue.component('resourceComp',{
               terms: [], // current resources terms
               discussion: [], // resources within discussion
               related: [], // resources related to current resource
-              display: 'card', // default display for discussion
+              resourceDisplay: 'card', // default display for discussion
               resourceSection: ["Discussion","Terms","Related"],
               addResource:false,
               addResourceType: '',
@@ -925,7 +924,7 @@ const explore = Vue.component('exploreComp',{
             this.$refs.termQuery.shuffle();
         },
         layout: function() {
-          if(this.termSuggestions.length>0 && this.suggestionDisplay == 'groups'){
+          if(this.termSuggestions.length>0 && this.suggestionDisplay == 'groups' && this.selectedPane==='terms'){
             for(termIndex in this.termSuggestions){ // layout all isotope containers in term termSuggestions
               if(this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID] && this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID][0]){
                 this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID][0].layout('masonry');
@@ -935,10 +934,10 @@ const explore = Vue.component('exploreComp',{
           for(termIndex in this.crossSection){ // layout all isotope containers in cross section
             this.$refs['resourceBin' + this.crossSection[termIndex].setID][0].layout('masonry');
           }
-          if(this.$refs.termQuery){
+          if(this.$refs.termQuery && this.selectedPane==='search'){
             this.$refs.termQuery.layout('masonry');
           }
-          if(this.$refs.resourceBin && (!this.crossSection || this.crossSection.length == 0) ){
+          if(this.selectedPane==='resources' && this.$refs.resourceBin && (!this.crossSection || this.crossSection.length == 0) ){
             this.$refs.resourceBin.layout('masonry');
           }
 
@@ -988,7 +987,6 @@ const explore = Vue.component('exploreComp',{
               }, 175)
             }
           }
-
         },
         getTerms: function(){
           var include = [];
@@ -1104,17 +1102,10 @@ const explore = Vue.component('exploreComp',{
              })
            }
          }, // Callback for Collapsible open
-         onClose: (el) => {
-           console.log(el)
+         onClose: (el) => { // keep at least one pane open - default to resources
            if( el[0] && el[0].dataset.pane === this.selectedPane){
-             if(this.selectedPane === 'resources'){
-               console.log('opening 1...')
                $('.exploreBins').collapsible('open', 2);
                this.selectedPane = 'resources'
-             } else {
-               $('.exploreBins').collapsible('open', 2);
-               this.selectedPane = 'resources'
-             }
            }
          } // Callback for Collapsible close
        });
@@ -1142,8 +1133,9 @@ const explore = Vue.component('exploreComp',{
         this.loginCheck = true;
         this.$nextTick(x=>{
           this.fetchResourceQuantity();
-          // if()
-          this.fetchResources()
+          if(this.selectedPane === 'resources'){
+            this.fetchResources()
+          }
         })
       },
       termQuery: function(val,x){
@@ -1153,7 +1145,11 @@ const explore = Vue.component('exploreComp',{
         Cookies.set('termQuery',val)
         if(this.loginCheck){ // don't fetch before checking member login
           this.$nextTick(()=>{
-            this.fetchResources();
+            if(this.selectedPane === 'resources'){
+              this.fetchResources();
+            } else if (this.selectedPane === 'terms'){
+              this.getTerms();
+            }
             this.fetchResourceQuantity();
           })
         }
@@ -1165,14 +1161,11 @@ const explore = Vue.component('exploreComp',{
         }
       },
       selectedPane: function(newVal,oldVal){
-        // Cookies.set('suggestionDisplay',val)
-        console.log(oldVal," ",newVal)
-         if(newVal === 'resources' && this.resources.length === 0){
+         if(newVal != oldVal && newVal === 'resources'){
           this.fetchResources();
-        } else if(newVal === 'terms' && this.termSuggestions.length === 0){
+        } else if(newVal != oldVal && newVal === 'terms'){
           this.getTerms()
         }
-
       },
     }
 });
