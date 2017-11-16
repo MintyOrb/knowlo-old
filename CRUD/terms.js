@@ -106,7 +106,6 @@ function query(req, res){
           + "ORDER BY order "
   } else {
     // sets and the groups that contain them
-    console.log('group query')
      cypher = "MATCH (contentNode:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(searchSets:synSet) "
             + "WHERE searchSets.uid IN {searchSets} "//AND b.uid IN {searchSets} "
             + "WITH contentNode, COUNT(searchSets) as scount "
@@ -139,8 +138,6 @@ function query(req, res){
     lang: 'en'
   },function(err, result) {
     if (err) console.log(err);
-    console.log('back from query')
-    console.log(result)
     res.send(result)
   })
 }

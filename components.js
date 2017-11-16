@@ -309,17 +309,16 @@ Vue.component('resource',{
         this.displayComplexity = this.re.globalVote.complexity;
       } else if(this.re.memberVote){
         this.$nextTick( x=> {
-          var quality = document.getElementById('quality-slider-' + this._uid);
-          quality.noUiSlider.set(this.re.memberVote.quality)
-          var complexity = document.getElementById('complexity-slider-' + this._uid);
-          complexity.noUiSlider.set(this.re.memberVote.complexity)
+          if(document.getElementById('quality-slider-' + this._uid)){ //TODO: figure out why element is sometimes not found when switching display types? Race condition?
+            var quality = document.getElementById('quality-slider-' + this._uid);
+            quality.noUiSlider.set(this.re.memberVote.quality)
+            var complexity = document.getElementById('complexity-slider-' + this._uid);
+            complexity.noUiSlider.set(this.re.memberVote.complexity)
+          }
         })
         this.displayQuality = this.re.memberVote.quality;
         this.displayComplexity = this.re.memberVote.complexity;
       } else {
-        // if(this.voting){
-        //   Materialize.toast("You haven't voted on this!",2000)
-        // }
         this.ratingDisplay = 'global'
       }
     }
@@ -419,7 +418,11 @@ Vue.component('autocomplete',{
         minLength: 1
     };
     var $input = $("#" + options.inputId);
-
+    console.log('asdfadf')
+    if(this.$route.name === 'explore'){
+      console.log('ahhhh')
+      $('#ac').appendTo('#search'); // workaround for stacking context
+    }
     if (options.ajaxUrl) {
         var $autocomplete = $('#ac'),
             request,

@@ -327,6 +327,7 @@ const resourceComp = Vue.component('resourceComp',{
               addResourceType: '',
               modalOpen: false,
               discussionFilter: ["insight","question","criticism","quote"], // which types of discussions should be displayed
+              tempIntervalID: '', // ID for layout() set interval (fix layout if images are loaded)
               filterIDs: { // setIDS for filtering by switch
                 'insight':'rJxPWooTO-',
                 'question':'B1pnQsYW-',
@@ -558,7 +559,7 @@ const resourceComp = Vue.component('resourceComp',{
         }, 5000); // 5 seconds is pretty arbitrary...
       }
       // workaround as long as imagesLoaded() non-functional
-      setInterval(x => {
+      this.tempIntervalID = setInterval(x => {
         this.layout();
       }, 3000);
 
@@ -580,6 +581,7 @@ const resourceComp = Vue.component('resourceComp',{
       if($('.modal-overlay')){
         $('.modal-overlay').remove();
       }
+      clearInterval(this.tempIntervalID)
       next();
     },
     watch: {
@@ -803,7 +805,7 @@ const explore = Vue.component('exploreComp',{
             sortAscending: true,                // whether sort whould be ascending or descending - boolean
             filterOption: "show all",
             searchStr: null,                    // current member entered search text - string
-            selectedPane: null                  // current selected selectedPane (search, terms, or resources)
+            selectedPane: 'resources'                  // current selected selectedPane (search, terms, or resources)
         }
     },
     methods: {
@@ -1003,7 +1005,7 @@ const explore = Vue.component('exploreComp',{
               this.suggestionDisplay='size';
             }
             this.$nextTick(()=>{
-              this.initSuggestionGroupFlickity(response.body.length);  
+              this.initSuggestionGroupFlickity(response.body.length);
             })
           });
         },
@@ -1060,9 +1062,6 @@ const explore = Vue.component('exploreComp',{
             });
           }
 
-        },
-        switchPane(selected){
-          this.selectedPane=selected;
         }
     },
     mounted: function(){
@@ -1096,9 +1095,30 @@ const explore = Vue.component('exploreComp',{
       } else {
         this.suggestionDisplay = Cookies.get('suggestionDisplay');
       }
-
-
-      $('.dropdown-button').dropdown(); // init order-by dropdown
+      $('.exploreBins').collapsible({
+         onOpen: (el) =>{
+           this.selectedPane = el[0].dataset.pane;
+           if(el[0].dataset.pane === 'resources'){
+             this.$nextTick(()=>{
+               $('.dropdown-button').dropdown(); // init order-by dropdown
+             })
+           }
+         }, // Callback for Collapsible open
+         onClose: (el) => {
+           console.log(el)
+           if( el[0] && el[0].dataset.pane === this.selectedPane){
+             if(this.selectedPane === 'resources'){
+               console.log('opening 1...')
+               $('.exploreBins').collapsible('open', 2);
+               this.selectedPane = 'resources'
+             } else {
+               $('.exploreBins').collapsible('open', 2);
+               this.selectedPane = 'resources'
+             }
+           }
+         } // Callback for Collapsible close
+       });
+       $('.exploreBins').collapsible('open', 2);
 
       // this is not working...
       $('.element-item').imagesLoaded() // layout when images loaded and on progress......
@@ -1144,12 +1164,15 @@ const explore = Vue.component('exploreComp',{
           this.getTerms();
         }
       },
-      selectedPane: function(val,x){
+      selectedPane: function(newVal,oldVal){
         // Cookies.set('suggestionDisplay',val)
-        console.log(val," ",x)
-        if(x.length>0){
-          this.getTerms();
+        console.log(oldVal," ",newVal)
+         if(newVal === 'resources' && this.resources.length === 0){
+          this.fetchResources();
+        } else if(newVal === 'terms' && this.termSuggestions.length === 0){
+          this.getTerms()
         }
+
       },
     }
 });

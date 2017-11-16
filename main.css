@@ -137,7 +137,7 @@ html {
   color: #2196F3;
 }
 .dropdown-content {
-  z-index: 2000
+  z-index: 2000;
 }
 .sort {
   width:150px!important;
@@ -978,9 +978,33 @@ and (max-width : 1024px) { _:-moz-tree-row(hover),
 }
 .input-field{
   margin-top: 0;
-  width: 80vw;
+  /*width: 80vw;*/
   max-width: 100%;
 }
 input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
   margin-bottom:0;
+}
+
+.collapsible-header {
+    position:sticky;
+    top:0;
+    z-index: 2;
+    font-weight: 300;
+  }
+  .searchHead{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .resourceCont {
+    margin-top:50px;
+  }
+  .quantity {
+    font-weight: 300;
+    margin-right: 40px;
+  }
+.searchDrop{
+  width:80vw;
+  right:10vw;
+  margin-top:0px;
 }
