@@ -56,7 +56,7 @@ const app = new Vue({
 
     // needed to recover from occasional mystery DOM exception on resource/term suggestion change
     Vue.config.errorHandler =  (err) => { //TODO figure out what is causing this...vueisotope?
-      Materialize.toast('whoops...hit a snag. Recovering.',2000)
+      Materialize.toast('whoops...hit a snag. Reload the page if things seem off...',3000)
       console.log(err)
       // window.setTimeout(()=> {
       //   this.$router.go(this.$route)

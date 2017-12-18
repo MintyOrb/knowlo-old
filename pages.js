@@ -792,7 +792,7 @@ const explore = Vue.component('exploreComp',{
             loginCheck: false,                  // true after login status is checked
             crossSection: null,                 // object containing the name of the cross section and terms in lens group - object containing array of term objects and string name
             termSuggestions: [],                // holds suggestion groups and terms within
-            suggestionDisplay: "",              // the name of the currently selected display for suggestions
+            suggestionDisplay: "",              // the name of the currently selected display for term suggestions
             suggestions: [],                    // suggested terms - array of term objects
             resources: [],                      // db when no lens, replace with db even though less items? - array of term objects
             showViewed: false,                  // whether or not viewed resources should be returned.
@@ -956,7 +956,7 @@ const explore = Vue.component('exploreComp',{
           }
 
           if(length >0){
-            if(this.suggestionDisplay=='groups'){
+            if(this.suggestionDisplay!='none'){
               $('#suggestionNav').flickity({
                 asNavFor: '#suggestionSteps',
                 pageDots: false,
@@ -989,14 +989,48 @@ const explore = Vue.component('exploreComp',{
           }
         },
         getTerms: function(){
-          var include = [];
-          var exclude = [];
-          for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
-            include.push(this.termQuery[termIndex].setID)
-          }
-          this.termSuggestions=[];
-          this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: [''], type: this.suggestionDisplay}}).then(response => {
+          if('size disciplines time'.indexOf(this.suggestionDisplay) > -1){// this is dumb and should be untangled.
+            this.getBatchTerms();
+          } else {
+            var include = [];
+            var exclude = [];
+            for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
+              include.push(this.termQuery[termIndex].setID)
+            }
+            this.termSuggestions=[];
+            this.$http.get('/set/', {params: { languageCode: 'en', include: include, exclude: [''], type: this.suggestionDisplay}}).then(response => {
 
+              this.termSuggestions=response.body;
+
+              if(this.termSuggestions.length===0){
+                this.suggestionDisplay='size';
+              }
+              this.$nextTick(()=>{
+                this.initSuggestionGroupFlickity(response.body.length);
+              })
+            });
+          }
+        },
+        getBatchTerms: function(){
+          var scaleIDs={
+            'size':'BJgVf2ZQYW',
+            'disciplines':'Bylx_hVBa-',
+            'time':'BJNgnDdk-'
+          }
+          var id = scaleIDs[this.suggestionDisplay];
+          this.termSuggestions=[];
+          this.$http.get('/set/'+id+'/crossSection', {params: { languageCode: 'en'}}).then(response => {
+            for(x in response.body){
+
+              if(response.body[x].contains[0].term == null){
+                 response.body[x].contains =[]
+              }
+              if(response.body[x].group[0].translation == null){
+                response.body[x].group[0].translation = 'uhhhhh'
+                console.log(response.body[x].group[0])
+                // no translation because contains no terms
+              }
+            }
             this.termSuggestions=response.body;
 
             if(this.termSuggestions.length===0){
@@ -1147,8 +1181,8 @@ const explore = Vue.component('exploreComp',{
           this.$nextTick(()=>{
             if(this.selectedPane === 'resources'){
               this.fetchResources();
-            } else if (this.selectedPane === 'terms'){
-              this.getTerms();
+            } else {
+              this.getTerms(); // only get terms if not loaded or set to groups or ungrouped
             }
             this.fetchResourceQuantity();
           })
@@ -1166,6 +1200,7 @@ const explore = Vue.component('exploreComp',{
         } else if(newVal != oldVal && newVal === 'terms'){
           this.getTerms()
         }
+        this.layout();
       },
     }
 });

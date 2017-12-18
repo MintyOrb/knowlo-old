@@ -37,6 +37,7 @@ app.get('/api/set/:setID/meta/', memberGetMeta);
 
 // core
 app.get('/set', query);           // query sets based on provided set IDs
+app.get('/set/:coreID/crossSection', crossSection);   // get crossSection sets
 app.get('/set/:uid', read);    // read details of a single set and translation
 app.get('/api/set', query);           // query sets based on user details and provided set IDs - /set/query instaed?
 app.put('/api/term/:uid', updateCore); // update a single resrouces core node data
@@ -141,6 +142,32 @@ function query(req, res){
     res.send(result)
   })
 }
+
+// using any token uid for cross section
+// returns object with two arrays or array of objects
+function crossSection(req, res){
+  var cypher = "MATCH (coreSet:synSet {uid: {coreID} })<-[r:IN_SET]-(member:synSet) "
+             + "WITH r, collect(distinct member) AS members "
+             + "UNWIND members AS member "
+             + "OPTIONAL MATCH (memTrans:translation)<-[memLang:HAS_TRANSLATION]-(memTerm:term)-[memR:IN_SET]->(member)<-[IN_SET]-(inMembers:synSet)<-[inR:IN_SET]-(inTerm:term)-[inLang:HAS_TRANSLATION]->(inTrans:translation)  "
+             + "WHERE "
+             + "memLang.languageCode IN [ {language} , 'en' ] AND memR.order=1  "
+             + "AND inLang.languageCode IN [ {language} , 'en' ] AND inR.order=1  "
+             + "WITH r, member, memTrans, COLLECT({term: inMembers, translation: inTrans, setID: inMembers.uid}) AS contains "
+             // TODO: where inMebmer->ids of filter token (ex just concepts)
+             + "RETURN DISTINCT r, COLLECT({setID: member.uid, translation: memTrans, term: member}) AS group,  "
+             + "contains "
+             + "ORDER BY  r.order"
+  db.query(cypher, {coreID: req.params.coreID, language: req.query.languageCode },function(err, result) {
+    if (err) console.log(err);
+    if(result){
+      res.send(result)
+    } else {
+      res.send()
+    }
+  })
+}
+
 /**
 * reads term core node and translation
 * language code passed via member as "member.languageCode" on body, default to english
@@ -446,6 +473,7 @@ function within(req, res){
     }
   })
 }
+
 function updateWithin(req, res){
   // TODO:check for member authorization...
   var cypher = "MATCH (base:synSet {uid:{baseID}}) , (other:synSet {uid:{otherID}}) "
@@ -685,5 +713,6 @@ function most(req,res){
       }
     })
   }
+
 
 } // end module

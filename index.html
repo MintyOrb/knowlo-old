@@ -136,10 +136,13 @@
 			<li data-pane="search" id='search'>
 				<div class="collapsible-header searchHead" >
 					<autocomplete exclude="" input-id="mainSearch" holder-text="Search" v-on:select="addToQuery"></autocomplete>
-					<span class='right'>{{termQuery.length}} term<span v-if="termQuery.length != 1">s</span> in search</span>
-					<!-- <span v-if="termQuery.length > 0" class="clear btn white waves-light" @click="termQuery=[]">
-						clear
-					</span> -->
+					<span class='right'>
+						{{termQuery.length}} term<span v-if="termQuery.length != 1">s</span>
+						in search
+						<span v-if="termQuery.length > 0" class="clear btn white waves-light" @click.stop.prevent="termQuery=[]">
+							clear
+						</span>
+					</span>
 				</div>
 				<div class='container collapsible-body' >
 
@@ -186,7 +189,7 @@
 				    </span>
 						<span>
 				      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='none' id="none" />
-				      <label for="none">Ungrouped</label>
+				      <label for="none">Top</label>
 				    </span>
 						<span v-if="member.first">
 				      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='member' id="member" />
@@ -196,7 +199,7 @@
 					<div><!--  suggested -->
 				    <div class=''>
 								<!-- suggestions grouped -->
-								<div v-if="suggestionDisplay == 'groups'">
+								<div v-if="suggestionDisplay != 'none'">
 									<div id='suggestionNav' class=" suggestionNav " :class="{ shadowUnder : 'groups'.indexOf(suggestionDisplay) > -1}">
 										<!-- flickity navigation for isotope containers -->
 										<term
@@ -234,7 +237,7 @@
 									</div>
 								</div>
 								<!-- suggestions un-grouped filck -->
-								<div v-if="'size disciplines time'.indexOf(suggestionDisplay) > -1">
+								<!-- <div v-if="'size disciplines time'.indexOf(suggestionDisplay) > -1">
 									<div id='suggestionNav' class=" suggestionNav ">
 										<term
 											v-for="term in termSuggestions"
@@ -250,7 +253,7 @@
 										>
 										</term>
 									</div>
-								</div>
+								</div> -->
 								<!-- suggestions un-grouped iso -->
 								<div v-if="' none '.indexOf(suggestionDisplay) > -1">
 									<isotope ref="together" :list="termSuggestions" :options='{}' class="step">
@@ -348,7 +351,8 @@
 												:key="re.resource.uid"
 												:re="re"
 												:display="resourceDisplay"
-												:class="{'listFullWidth': resourceDisplay=='list'}">
+												:class="{'listFullWidth': resourceDisplay=='list'}"
+												:voting='false'>
 											</resource>
 						      </isotope>
 								</div>
@@ -1012,7 +1016,7 @@
 					<div class="row center">
 						<h4 class="header col s12 light">collective insight</h4>
 						<!-- <h5 class="header col s12 light">It's about learning from each other.</h5> -->
-						<h5 class="header col s12 light">We're all giants.</h5>
+						<h5 class="header col s12 light">Organize everything, learn anything.</h5>
 					</div>
 					<div class="row center">
 						<router-link to="/" class="btn-large waves-effect waves-light blue">explore</router-link>
@@ -1461,7 +1465,7 @@
             return true;
           }
         },
-        signInSuccessUrl: '/#/profile',
+        signInSuccessUrl: '/#/',
         signInOptions: [
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
 					firebase.auth.FacebookAuthProvider.PROVIDER_ID,
