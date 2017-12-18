@@ -808,6 +808,13 @@ const explore = Vue.component('exploreComp',{
         }
     },
     methods: {
+        random: function(){
+          this.$http.get('/resource/random').then(response => {
+            console.log(response)
+            router.push({ name: 'resourceSub', params: { uid: response.body.uid }})
+
+          });
+        },
         includeSearch: function(set){
           if(!this.termQuery.includes(set.setID)){
             this.termQuery.push(set);

@@ -8,6 +8,9 @@ module.exports = function(app, db){
   app.get('/resource/count', count);                   // query number of resources related to terms
   app.get('/api/resource/count', memberCount);         // query number of resources related to terms; return number seen by member;  based on user details and provided term IDs
 
+  app.get('/resource/random', random);                 // send back id for random resource, tagged with provided tokens
+  // app.get('/api/resource/random', memberRandom);             // send back id for random resource, tagged with provided tokens. Option for only unseen.
+
   app.get('/resource/:uid/full', readFull);            // read full details of a single resource (tagged terms and translation by language code)
   app.put('/api/resource/:uid/full', updateFull);      // update full details of a single resource (tagged terms and translation by language code)
   app.post('/api/resource/:uid/full', createFull);     // create full details of a single resource (tagged terms and translation by language code)
@@ -30,7 +33,7 @@ module.exports = function(app, db){
 
   app.get('/resource/:ruid/discussion/', getDiscussion); // rename to meta???? add term/:tuid/meta
   app.put('/api/resource/:rUID/discussion/:dUID', tagDiscussion);
-  
+
   app.put('/api/resource/:rID/vote', castVote);
   app.put('/api/resource/:rUID/termSuggest', suggestedTerms);
 
@@ -546,6 +549,18 @@ module.exports = function(app, db){
     db.query(cypher, {rUID: req.params.rUID, mUID: res.locals.user.uid },function(err, result) {
       if (err) console.log(err);
       res.send(result)
+    })
+  }
+
+  function random(req, res){
+    var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(:synSet) "
+               + "RETURN re.uid as uid, rand() as r "
+               + "ORDER BY r "
+               + "limit 1"
+
+    db.query(cypher, {},function(err, result) {
+      if (err) console.log(err);
+      res.send(result[0])
     })
   }
 
