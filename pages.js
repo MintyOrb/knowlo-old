@@ -804,7 +804,7 @@ const explore = Vue.component('exploreComp',{
             sortAscending: true,                // whether sort whould be ascending or descending - boolean
             filterOption: "show all",
             searchStr: null,                    // current member entered search text - string
-            selectedPane: 'resources'                  // current selected selectedPane (search, terms, or resources)
+            selectedPane: 'resources'           // current selected selectedPane (search, terms, or resources)
         }
     },
     methods: {

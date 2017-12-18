@@ -366,7 +366,7 @@ Vue.component('autocomplete',{
       translation: {
         name: "",
         definition: "",
-        languageCode: 'en' // don't hard code this you idiot
+        languageCode: 'en' // don't hard code
       }
     }
   },
@@ -410,6 +410,11 @@ Vue.component('autocomplete',{
       }, 250)
     }
   },
+  updated:function(){
+    if(this.$route.name === 'explore'){
+      $('#ac').appendTo('#search'); // workaround for stacking context
+    }
+  },
   mounted:function(){
     var options = {
         inputId: this.inputId || 'autocomplete-input',
@@ -418,9 +423,9 @@ Vue.component('autocomplete',{
         minLength: 1
     };
     var $input = $("#" + options.inputId);
-    if(this.$route.name === 'explore'){
-      $('#ac').appendTo('#search'); // workaround for stacking context
-    }
+    // if(this.$route.name === 'explore'){
+    //   $('#ac').appendTo('#search'); // workaround for stacking context
+    // }
     if (options.ajaxUrl) {
         var $autocomplete = $('#ac'),
             request,

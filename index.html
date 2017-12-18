@@ -136,6 +136,14 @@
 			<li data-pane="search" id='search'>
 				<div class="collapsible-header searchHead" >
 					<autocomplete exclude="" input-id="mainSearch" holder-text="Search" v-on:select="addToQuery"></autocomplete>
+
+					<transition-group name='fade'>
+						<span v-for="term in termQuery" @click.stop.prevent='removeTerm(term.setID)' :key="term.setID" >
+							<img v-if="term.term.iconURL" class='circle hoverable' style='height:40px;margin-right:10px;padding:3px;' :src="term.term.iconURL" />
+							<span v-else class='circle hoverable' style='text-align:center;padding:10px;width:40px;width:40px;position:absolute;font-size;2em' >{{term.translation.name[0]}}</span>
+						</span>
+					</transition-group>
+
 					<span class='right'>
 						{{termQuery.length}} term<span v-if="termQuery.length != 1">s</span>
 						in search
@@ -358,7 +366,7 @@
 								</div>
 							</transition>
 
-							<div class="message" v-show="this.numberOfDisplayed === 0">
+							<div class="message" v-show="resources.length === 0">
 								<p>
 									No results! Have something you want to add?
 								</p>
