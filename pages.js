@@ -337,7 +337,6 @@ const resourceComp = Vue.component('resourceComp',{
           },
     methods: {
       close: function(){
-        console.log('kin clos')
         $('#resourceModal'+this.resource.uid).modal('close')
       },
       changeDisplay: function(disp){ // TODO: make dry ( essentially duplicated from explore) - make resource bin component?
@@ -1065,13 +1064,17 @@ const explore = Vue.component('exploreComp',{
           });
         },
         fetchResources: function(infinite){
-          this.loadingResources=true;
+          this.loadingResources = true;
           this.endOfResources = false;
           var include = [];
           var exclude = [];
           var limit = 30; // default for large devices
           if( screen.width <= 480 ){ // less for mobile
             limit = 10;
+          }
+          var skip = 0;
+          if(infinite){ // only skip if infinite scrolling
+            skip = this.resources.length;
           }
           for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
             if(this.termQuery[termIndex]['status'].includeIcon){
@@ -1081,7 +1084,7 @@ const explore = Vue.component('exploreComp',{
             }
           }
           if(this.member.uid != null){ // member specific query if logged in
-            this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed, skip: this.resources.length, limit: limit }}).then(response => {
+            this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed, skip: skip, limit: limit }}).then(response => {
               if(response.body.length == 0){
                 this.endOfResources = true;
               } else if(infinite){
@@ -1092,7 +1095,7 @@ const explore = Vue.component('exploreComp',{
               this.loadingResources = false;
             });
           } else { // general query if not logged in
-            this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude, skip: this.resources.length, limit: limit }}).then(response => {
+            this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude, skip: skip, limit: limit }}).then(response => {
               if(response.body.length == 0){
                 this.endOfResources = true;
               } else if(infinite){
