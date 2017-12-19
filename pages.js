@@ -804,15 +804,17 @@ const explore = Vue.component('exploreComp',{
             sortAscending: true,                // whether sort whould be ascending or descending - boolean
             filterOption: "show all",
             searchStr: null,                    // current member entered search text - string
-            selectedPane: 'resources'           // current selected selectedPane (search, terms, or resources)
+            selectedPane: 'resources',          // current selected selectedPane (search, terms, or resources)
+            busy: false                         // status for infinte scroll (true when fetching more resources)
         }
     },
     methods: {
+        infinite: function(){
+          this.fetchResources(true)
+        },
         random: function(){
           this.$http.get('/resource/random').then(response => {
-            console.log(response)
             router.push({ name: 'resourceSub', params: { uid: response.body.uid }})
-
           });
         },
         includeSearch: function(set){
@@ -1033,8 +1035,8 @@ const explore = Vue.component('exploreComp',{
                  response.body[x].contains =[]
               }
               if(response.body[x].group[0].translation == null){
-                response.body[x].group[0].translation = 'uhhhhh'
-                console.log(response.body[x].group[0])
+                response.body[x].group[0].translation = ''
+                console.log("I need to be dealt with - improve query.")
                 // no translation because contains no terms
               }
             }
@@ -1059,7 +1061,8 @@ const explore = Vue.component('exploreComp',{
             Materialize.toast('Something went wrong...are you online?', 4000)
           });
         },
-        fetchResources: function(){
+        fetchResources: function(infinite){
+          this.busy=true;
           var include = [];
           var exclude = [];
           for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
@@ -1070,12 +1073,22 @@ const explore = Vue.component('exploreComp',{
             }
           }
           if(this.member.uid != null){ // member specific query if logged in
-            this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed }}).then(response => {
-              this.resources=response.body;
+            this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed, skip: this.resources.length, limit: 10 }}).then(response => {
+              if(infinite){
+                this.resources.push.apply(this.resources, response.body)
+              } else{
+                this.resources=response.body;
+              }
+              this.busy = false;
             });
           } else { // general query if not logged in
-            this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude}}).then(response => {
-              this.resources=response.body;
+            this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude, skip: this.resources.length, limit: 10}}).then(response => {
+              if(infinite){
+                this.resources.push.apply(this.resources, response.body)
+              } else{
+                this.resources=response.body;
+              }
+              this.busy = false;
             });
           }
 
@@ -1202,7 +1215,7 @@ const explore = Vue.component('exploreComp',{
         }
       },
       selectedPane: function(newVal,oldVal){
-         if(newVal != oldVal && newVal === 'resources'){
+         if(newVal != oldVal && newVal === 'resources' && this.loginCheck){
           this.fetchResources();
         } else if(newVal != oldVal && newVal === 'terms'){
           this.getTerms()

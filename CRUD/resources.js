@@ -53,6 +53,9 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
+    if(req.query.limit > 50){
+      req.query.limit = 50;
+    }
     var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
            + "WITH distinct re, collect(synSet.uid) AS parentTags "
            + "WHERE all(tag IN {includedSets} WHERE tag IN parentTags) "              //  + "NOT synSet.uid IN {excludedSets} " // this doesn't work...
@@ -73,7 +76,9 @@ module.exports = function(app, db){
              + "votes, "
              + "re AS resource "
            // + "ORDER BY {orderby} {updown}"
-           + "SKIP {skip} "
+           if(parseInt(req.query.skip) > 0){
+             cypher += "SKIP {skip} ";
+           }
            + "LIMIT {limit}";
          if (typeof req.query.include === "undefined") {
              req.query.include = [];
@@ -86,8 +91,8 @@ module.exports = function(app, db){
             excludedSets: req.query.exclude || [],
             orderby: req.orderby,
             updown: req.updown,
-            skip:0,
-            limit: 40, // TODO: change for mobile...based on display setting
+            skip: parseInt(req.query.skip),
+            limit: parseInt(req.query.limit), // TODO: change for mobile...based on display setting
             language: 'en'
         }, function(err, result) {
       if (err) {console.log(err);res.status(500).send()};
@@ -111,6 +116,9 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
+    if(req.query.limit > 50){
+      req.query.limit = 50;
+    }
     var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
            + "WITH distinct re, collect(synSet.uid) AS parentTags "
            +"WHERE all(tag IN {includedSets} WHERE tag IN parentTags) "
@@ -139,7 +147,7 @@ module.exports = function(app, db){
              + "votes, "
             + "re AS resource "
             // + "ORDER BY globalVote.quality IS NOT NULL DESC, globalVote.quality DESC  "
-            + "ORDER BY COALESCE(globalVote.quality, -1) DESC "//IS NOT NULL DESC, globalVote.quality DESC  "
+            + "ORDER BY COALESCE(globalVote.quality, -1) DESC ";//IS NOT NULL DESC, globalVote.quality DESC  "
            // order by can't be parameterized...have to resort to string building
            //TODO support order by options:
           //  # votes
@@ -147,24 +155,24 @@ module.exports = function(app, db){
           //  global complexity
           //  date created
             // discussion size?
-
-           + "SKIP {skip} "
-           + "LIMIT {limit}";
+         if(parseInt(req.query.skip) > 0){
+           cypher += "SKIP {skip} ";
+         }
+           cypher += "LIMIT {limit}";
          if (typeof req.query.include === "undefined") {
              req.query.include = [];
          }
          if (typeof req.query.exclude === "undefined") {
              req.query.exclude = [];
          }
-        //  req.query.exclude.push('Syh41sK--') // video
         db.query(cypher, {
             mID: res.locals.user.uid,
             includedSets: req.query.include,
             excludedSets: req.query.exclude,
             orderby: req.orderby,
             updown: req.updown,
-            skip:0,
-            limit: 40, // TODO: change for mobile...based on display setting
+            skip: parseInt(req.query.skip),
+            limit: parseInt(req.query.limit), // TODO: change for mobile...based on display setting
             language: 'en'
         }, function(err, result) {
       if (err) {console.log(err);res.status(500).send()};

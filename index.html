@@ -309,7 +309,7 @@
 						</span>
 					</span>
 				</div>
-				<div class="collapsible-body">
+				<div class="collapsible-body" style="border-bottom:none;">
 						<br/>
 						<div class="right quantity">
 							<div>Showing {{resources.length}} of {{resourcesRelated}}</div>
@@ -351,7 +351,7 @@
 
 							<!-- results all together -->
 							<transition name="fade">
-								<div v-if="!crossSection" >
+								<div v-if="!crossSection" v-infinite-scroll="infinite" infinite-scroll-disabled="busy" infinite-scroll-distance="10" infinite-scroll-throttle-delay="1000" infinite-scroll-immediate-check="false">
 							    <isotope ref="resourceBin" class="step" :list="resources" :options='{}' id="container"  >
 					          	<resource
 												v-for="re in resources"
@@ -362,6 +362,7 @@
 												:voting='false'>
 											</resource>
 						      </isotope>
+									<vue-simple-spinner v-show='busy'></vue-simple-spinner>
 								</div>
 							</transition>
 
@@ -1491,7 +1492,6 @@
     </script>
 
 <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
-
 <script src="node_modules\jquery\dist\jquery.min.js"></script>
 <script src="node_modules\vue\dist\vue.js"></script>
 <script src="node_modules\vue-router\dist\vue-router.min.js"></script>
@@ -1507,6 +1507,9 @@
 <script src="node_modules\materialize-css\extras\noUiSlider\nouislider.min.js"></script>
 <script src="node_modules\vue-resource\dist\vue-resource.min.js"></script>
 <script src="node_modules\vue-chartjs\dist\vue-chartjs.full.min.js"></script>
+
+<script src=" https://unpkg.com/vue-infinite-scroll"></script>
+<script src="https://cdn.rawgit.com/dzwillia/vue-simple-spinner/v1.2.5/dist/vue-simple-spinner.min.js"></script>
 
 <script src="navSectionTemplates.js"></script>
 <script src="pages.js"></script>
