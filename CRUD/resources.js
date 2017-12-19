@@ -79,7 +79,8 @@ module.exports = function(app, db){
            if(parseInt(req.query.skip) > 0){
              cypher += "SKIP {skip} ";
            }
-           + "LIMIT {limit}";
+           cypher += "LIMIT {limit}";
+           
          if (typeof req.query.include === "undefined") {
              req.query.include = [];
          }
