@@ -362,17 +362,21 @@
 												:voting='false'>
 											</resource>
 						      </isotope>
-									<vue-simple-spinner v-show='busy'></vue-simple-spinner>
+									<vue-simple-spinner v-show='loadingResources'></vue-simple-spinner>
 								</div>
 							</transition>
 
-							<div class="message" v-show="resources.length === 0">
-								<p>
-									No results! Have something you want to add?
+							<div class="message" v-show="resources.length === 0 || endOfResources">
+								<p v-if="resources.length === 0">
+									No results! Add a resource or shuffle?
+								</p>
+								<p v-if="endOfResources">
+									No more results! Add a resource or shuffle?
 								</p>
 								<div>
 									<router-link :to="{ name: 'addResource'}" class="hoverable btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i>
 								  </router-link>
+									<span @click="random" class='btn-floating hoverable btn-large waves-effect waves-light red'><i class="fa fa-random fa-2x "></i></span>
 								</div>
 							</div>
 						</div>

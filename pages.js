@@ -805,12 +805,15 @@ const explore = Vue.component('exploreComp',{
             filterOption: "show all",
             searchStr: null,                    // current member entered search text - string
             selectedPane: 'resources',          // current selected selectedPane (search, terms, or resources)
-            busy: false                         // status for infinte scroll (true when fetching more resources)
+            endOfResources: false,              // status for reached end of infinite scroll
+            loadingResources: false             // status for fetching resources
         }
     },
     methods: {
         infinite: function(){
-          this.fetchResources(true)
+          if(!this.endOfResources){
+            this.fetchResources(true)
+          }
         },
         random: function(){
           this.$http.get('/resource/random').then(response => {
@@ -1062,9 +1065,14 @@ const explore = Vue.component('exploreComp',{
           });
         },
         fetchResources: function(infinite){
-          this.busy=true;
+          this.loadingResources=true;
+          this.endOfResources = false;
           var include = [];
           var exclude = [];
+          var limit = 30; // default for large devices
+          if( screen.width <= 480 ){ // less for mobile
+            limit = 10;
+          }
           for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
             if(this.termQuery[termIndex]['status'].includeIcon){
               include.push(this.termQuery[termIndex]['setID'])
@@ -1073,22 +1081,26 @@ const explore = Vue.component('exploreComp',{
             }
           }
           if(this.member.uid != null){ // member specific query if logged in
-            this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed, skip: this.resources.length, limit: 10 }}).then(response => {
-              if(infinite){
+            this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed, skip: this.resources.length, limit: limit }}).then(response => {
+              if(response.body.length == 0){
+                this.endOfResources = true;
+              } else if(infinite){
                 this.resources.push.apply(this.resources, response.body)
-              } else{
+              } else {
                 this.resources=response.body;
               }
-              this.busy = false;
+              this.loadingResources = false;
             });
           } else { // general query if not logged in
-            this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude, skip: this.resources.length, limit: 10}}).then(response => {
-              if(infinite){
+            this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude, skip: this.resources.length, limit: limit }}).then(response => {
+              if(response.body.length == 0){
+                this.endOfResources = true;
+              } else if(infinite){
                 this.resources.push.apply(this.resources, response.body)
-              } else{
+              } else {
                 this.resources=response.body;
               }
-              this.busy = false;
+              this.loadingResources = false;
             });
           }
 

@@ -80,7 +80,7 @@ module.exports = function(app, db){
              cypher += "SKIP {skip} ";
            }
            cypher += "LIMIT {limit}";
-           
+
          if (typeof req.query.include === "undefined") {
              req.query.include = [];
          }
@@ -93,7 +93,7 @@ module.exports = function(app, db){
             orderby: req.orderby,
             updown: req.updown,
             skip: parseInt(req.query.skip),
-            limit: parseInt(req.query.limit), // TODO: change for mobile...based on display setting
+            limit: parseInt(req.query.limit),
             language: 'en'
         }, function(err, result) {
       if (err) {console.log(err);res.status(500).send()};
@@ -173,7 +173,7 @@ module.exports = function(app, db){
             orderby: req.orderby,
             updown: req.updown,
             skip: parseInt(req.query.skip),
-            limit: parseInt(req.query.limit), // TODO: change for mobile...based on display setting
+            limit: parseInt(req.query.limit),
             language: 'en'
         }, function(err, result) {
       if (err) {console.log(err);res.status(500).send()};
