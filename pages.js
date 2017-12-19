@@ -1162,6 +1162,8 @@ const explore = Vue.component('exploreComp',{
       } else {
         this.suggestionDisplay = Cookies.get('suggestionDisplay');
       }
+
+      // init paned sections
       $('.exploreBins').collapsible({
          onOpen: (el) =>{
            this.selectedPane = el[0].dataset.pane;
@@ -1173,8 +1175,15 @@ const explore = Vue.component('exploreComp',{
          }, // Callback for Collapsible open
          onClose: (el) => { // keep at least one pane open - default to resources
            if( el[0] && el[0].dataset.pane === this.selectedPane){
-               $('.exploreBins').collapsible('open', 2);
+
+             if(this.selectedPane != 'resources'){
                this.selectedPane = 'resources'
+               $('.exploreBins').collapsible('open', 2);
+             } else {
+               this.selectedPane = 'terms'
+               $('.exploreBins').collapsible('open', 1);
+             }
+
            }
          } // Callback for Collapsible close
        });
