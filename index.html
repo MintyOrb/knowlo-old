@@ -1026,87 +1026,65 @@
 					<br>
 					<h1 class="header center blue-text thin">knowlo</h1>
 					<div class="row center">
-						<h4 class="header col s12 light">collective insight</h4>
-						<!-- <h5 class="header col s12 light">It's about learning from each other.</h5> -->
-						<h5 class="header col s12 light">Organize everything, learn anything.</h5>
-					</div>
-					<div class="row center">
-						<router-link to="/" class="btn-large waves-effect waves-light blue">explore</router-link>
-					</div>
-					<br>
-					<br>
+						<!-- <h4 class="header col s12 light">collective insight</h4> -->
+						<h4 style="margin-bottom:40px" class="header col s12 light">Organize everything, learn anything.</h4>
 
+						<h5 style="line-height:1.3em;" class="header light">Knowlo is a <router-link to="/principals"><span class="red-text">principled</span></router-link>, <a target="_blank" href="http://github.com/bornytm/knowlo"><span class="red-text">open source</span></a> experiment in identifying humanities greatest insights, organizing them into <span class="red-text">big picture frameworks</span>, and finding the best resources to teach them.</h3>
+					</div>
+					<div style='margin-top: 80px;' class="row center" >
+						<router-link to="/" class="btn-large waves-effect waves-light blue margin20"><i class="fa fa-compass fa-2x "></i> explore</router-link> <span style="font-weight:200">or</span> <span @click="random" class='margin20 btn-large waves-effect waves-light blue'><i class="fa fa-random fa-2x "></i> shuffle</span>
+					</div>
+					<br>
+					<br>
 				</div>
 			</div>
-			<div class="container">
-				<div class="section">
-
-					<!--   Icon Section   -->
-					<div class="row">
-						<div class="col s12 m4">
-							<div class="icon-block">
-								<h2 class="center light-blue-text"><i class="material-icons large">collections</i></h2>
-								<h5 class="center">the best explanations</h5>
-
-								<p class="light">Gather and rank the most insightful images, articles, and videos on every subject.</p>
-							</div>
-						</div>
-
-						<div class="col s12 m4">
-							<div class="icon-block">
-								<h2 class="center light-blue-text"><i class="material-icons large">explore</i></h2>
-								<h5 class="center">universal context</h5>
-
-								<p class="light">Develop a holistic perspective and see the big picture by understanding big ideas across the time and size scales of the universe.</p>
-							</div>
-						</div>
-
-						<div class="col s12 m4">
-							<div class="icon-block">
-								<h2 class="center light-blue-text"><i class="material-icons large">group</i></h2>
-								<h5 class="center">see further</h5>
-
-								<p class="light">Test and expand the depth of your knowledge by contributing questions, answers, comments, criticims, and insights.</p>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="row">
-						<ul class="collapsible" data-collapsible="accordion">
-								<li>
-									<div class="collapsible-header active"><i class="fa fa-lightbulb-o"></i>What is Knowlo?</div>
-									<div class="collapsible-body">
-										<span>
-											<p>Right now? Not much more than a collection of interesting videos. However, the intention is for knowlo to become the best place to stand on the shoulder of giants.</p>
-											<p>In truth, we're all giants and can learn from one another. Knowlo is about getting the ideas and people together in the same platform.</p>
-											<!-- <p>It's a place where anyone can develop a <span class="bold">Universal Literacy</span> and track their progress along the way.</p> -->
-											<!-- <p>Thanks to the internet, the sum of human knowledge is at our fingertips. But, there is no guide and it's difficult to search for something if you don't know that it exists.</p> -->
-											<!-- <p>Knowlo wants to provide a map of human knowledge and provide the means for anyone to explore its depths.</p> -->
-											<!-- To show the best paths to the highest summits and to illustrate the current edges while provide the tools to expand them. -->
-											<!-- <p>This map across all of time and size provides context for how our best insights relate to one another and are fundamentally part of the same fabric.</p> -->
-											<!-- <p>The goal is to make this map personal. To help you in identifying the current limits of your knowledge and how to expand it.</p> -->
-									</span>
-									</div>
-								</li>
-								<li>
-									<div class="collapsible-header active"><i class="fa fa-book"></i>What is Universal Literacy?</div>
-									<div class="collapsible-body">
-										<span>
-											<p>Universal literacy is a curriculum of the big ideas across the time and size scales of the universe.</p>
-											<p>It's about developing a basic understanding of our best explanations for what there is and how it works.</p>
-											<!-- <p>The major concepts, big ideas, probing questions, jargon, experiments, and evidence within every discipline are explicitly highlighted along with the best materials for learning about them.</p> -->
-											<!-- <p>It uses the time and size scales of the universe as a framework to organize it all.</p> -->
-										</span>
-									</div>
-								</li>
-							</ul>
-					</div>
-
+			<div class="container deets">
+				<div class='deet'>
+					<img src="/intro/add.PNG"/>
+					<h4>Add</h4>
+					<p>
+						Members add and organize videos, images, insights, questions, and other media to the knowlo library.
+					</p>
 				</div>
-				<br>
-				<br>
 
+				<div class='deet'>
+					<img src="/intro/vote.PNG"/>
+					<h4>Vote</h4>
+					<p>
+						Resources are ranked based on their quality and complexity.
+					</p>
+				</div>
+				<div class='deet'>
+					<img src="/intro/dis.PNG"/>
+					<h4>Discuss</h4>
+					<p>
+						For each resource, members can discuss, ciritize, ask questions, and distill insights.
+					</p>
+				</div>
+				<div class='deet'>
+					<img src="/intro/tag.PNG"/>
+					<h4>Tag</h4>
+					<p>
+						Resources are tagged with tokens in order to easily identify and search for them.
+					</p>
+				</div>
+				<div class='deet'>
+					<img src="/intro/hi.PNG"/>
+					<h4>Organize</h4>
+					<p>
+						Tokens  are organized into a hierarchy, making it easy to see relationships between concepts.
+					</p>
+				</div>
+				<div class='deet'>
+					<img src="/intro/search.PNG"/>
+					<h4>Search</h4>
+					<p>
+						Explore the library by combining tokens. More tokens are suggested to further refine the results.
+					</p>
+				</div>
+			</div>
+			<div class="row center" >
+				<router-link to="/" class="btn-large waves-effect waves-light blue margin20"><i class="fa fa-compass fa-2x "></i> explore</router-link> <span style="font-weight:200">or</span> <span @click="random" class='margin20 btn-large waves-effect waves-light blue'><i class="fa fa-random fa-2x "></i> shuffle</span>
 			</div>
 		</main>
 	</template>

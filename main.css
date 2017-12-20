@@ -985,6 +985,32 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
   margin-bottom:0;
 }
 
+.deets {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+.deet {
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  flex-flow: column ;
+  font-weight: 300;
+}
+.deet p {
+  font-size: 18px;
+  height:100px;
+}
+.deet h4 {
+  font-weight: 300;
+}
+.deet img {
+  max-width: 100%;
+}
+
+
+
 .collapsible-header {
     position:sticky;
     top:0;

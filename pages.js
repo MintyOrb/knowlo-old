@@ -1259,6 +1259,13 @@ const explore = Vue.component('exploreComp',{
 */
 const landing = {
     template: "#landingTemplate",
+    methods: {
+      random: function(){
+        this.$http.get('/resource/random').then(response => {
+          router.push({ name: 'resourceSub', params: { uid: response.body.uid }})
+        });
+      },
+    },
     mounted: function(){
       $('.collapsible').collapsible();
       $('.button-collapse').sideNav({
