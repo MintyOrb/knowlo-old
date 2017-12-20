@@ -255,7 +255,8 @@ const termComp = Vue.component('termComp',{
         });
       },
       addToQuery: function(item){
-          this.$emit('add',item)
+          this.$emit('add',item);
+          $('#termModal').modal('close');
       }
     },
     mounted: function(){

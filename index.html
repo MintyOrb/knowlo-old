@@ -138,7 +138,7 @@
 
 					<transition-group name='fade'>
 						<span v-for="term in termQuery" @click.stop.prevent='removeTerm(term.setID)' :key="term.setID" >
-							<img v-if="term.term.iconURL" class='circle hoverable' style='height:40px;margin-right:10px;padding:3px;' :src="term.term.iconURL" />
+							<img v-if="term.term.iconURL" class='circle hoverable' style='height:40px;width:40px;margin-right:10px;padding:3px;' :src="term.term.iconURL" />
 							<span v-else class='circle hoverable' style='text-align:center;padding:10px;width:40px;width:40px;position:absolute;font-size;2em' >{{term.translation.name[0]}}</span>
 						</span>
 					</transition-group>
@@ -291,20 +291,20 @@
 						<span >{{resourcesRelated}} resource<span v-if="resourcesRelated !=1">s</span> matched</span>
 					</span>
 					<span v-else>
-						<span @click="flipViewed" class="left viewBtn" :class="{'fade': !showViewed}" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
-						<span class="viewBtn" @click="changeDisplay('list')"><i class="material-icons">view_list</i></span>
-						<span class="viewBtn" @click="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
+						<span @click.stop.prevent="flipViewed" class="left viewBtn" :class="{'fade': !showViewed}" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
+						<span class="viewBtn" @click.stop.prevent="changeDisplay('list')"><i class="material-icons">view_list</i></span>
+						<span class="viewBtn" @click.stop.prevent="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
 						<!-- <span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span> -->
 						<span class='right'>
-							<a class="dropdown-button viewBtn" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
+							<a @click.stop="" class="dropdown-button viewBtn" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
 							<ul id='order' class='dropdown-content sort'>
-								<li class=''><a>quality</a></li>
-								<li class='disabled'><a>complexity</a></li>
-								<li class='disabled'><a>date added</a></li>
-								<li class='disabled'><a>time to view</a></li>
-								<li class='disabled'><a># of votes</a></li>
-								<li class='disabled'><a># of views</a></li>
-								<li class='disabled'><a># responses</a></li>
+								<li @click.stop="" class=''><a>quality</a></li>
+								<li @click.stop="" class='disabled'><a>complexity</a></li>
+								<li @click.stop="" class='disabled'><a>date added</a></li>
+								<li @click.stop="" class='disabled'><a>time to view</a></li>
+								<li @click.stop="" class='disabled'><a># of votes</a></li>
+								<li @click.stop="" class='disabled'><a># of views</a></li>
+								<li @click.stop="" class='disabled'><a># responses</a></li>
 							</ul>
 						</span>
 					</span>
