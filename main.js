@@ -1,6 +1,5 @@
 const routes = [
 
-  {  path: '/land', component: landing },
   {  name: "explore", path: '/', component: explore,
       children: [
         { path: '/m/:uid', component: memberPage, name: 'memberPage' },
@@ -10,12 +9,10 @@ const routes = [
         { path: '/addTerm/:translation/:termID?', component: addTerm, name: 'addTerm' },
       ]
   },
-  {  path: "/home", component: home },
   {  path: "/trending", component: trending },
   {  path: "/status", component: status },
-  {  path: "/about", component: about },
+  {  path: "/about", component: landing },
   {  path: "/principals", component: principals },
-  {  path: "/profile", component: profile },
   {  path: "/involved", component: involved },
   {  path: "/legal", component: legal },
   { path: '*', redirect: '/' }

@@ -91,7 +91,9 @@
 ██  ██  ██ ██   ██ ██ ██  ██ ██      ██  ██  ██ ██      ██ ███ ██
 ██      ██ ██   ██ ██ ██   ████       ████   ██ ███████  ███ ███
 -->
+	<transition name="fade" mode="out-in" appear>
 		<router-view :term-query="termQuery" :member="member" style="padding-top:90px"></router-view>
+	</transition>
 
 		<!--
 		███████  ██████   ██████  ████████ ███████ ██████
@@ -1029,7 +1031,7 @@
 						<!-- <h4 class="header col s12 light">collective insight</h4> -->
 						<h4 style="margin-bottom:40px" class="header col s12 light">Organize everything, learn anything.</h4>
 
-						<h5 style="line-height:1.3em;" class="header light">Knowlo is a <router-link to="/principals"><span class="red-text">principled</span></router-link>, <a target="_blank" href="http://github.com/bornytm/knowlo"><span class="red-text">open source</span></a> experiment in identifying humanities greatest insights, organizing them into <span class="red-text">big picture frameworks</span>, and finding the best resources to teach them.</h3>
+						<h5 style="line-height:1.3em;" class="header light">Knowlo is a <router-link to="/principals"><span >principled</span></router-link>, <a target="_blank" href="http://github.com/bornytm/knowlo"><span >open source</span></a> experiment in identifying humanities greatest insights, organizing them into <span >big picture frameworks</span>, and finding the best resources to teach them.</h3>
 					</div>
 					<div style='margin-top: 80px;' class="row center" >
 						<router-link to="/" class="btn-large waves-effect waves-light blue margin20"><i class="fa fa-compass fa-2x "></i> explore</router-link> <span style="font-weight:200">or</span> <span @click="random" class='margin20 btn-large waves-effect waves-light blue'><i class="fa fa-random fa-2x "></i> shuffle</span>
@@ -1040,7 +1042,7 @@
 			</div>
 			<div class="container deets">
 				<div class='deet'>
-					<img src="/intro/add.PNG"/>
+					<img src="https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/about%2Fadd-min.PNG?alt=media&token=eb6bc12e-b52e-46dc-8436-ebc049837877"/>
 					<h4>Add</h4>
 					<p>
 						Members add and organize videos, images, insights, questions, and other media to the knowlo library.
@@ -1048,35 +1050,35 @@
 				</div>
 
 				<div class='deet'>
-					<img src="/intro/vote.PNG"/>
+					<img src="https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/about%2Fvote-min.PNG?alt=media&token=6a3b44bd-fa24-4b75-9338-fddaa9b12a32"/>
 					<h4>Vote</h4>
 					<p>
 						Resources are ranked based on their quality and complexity.
 					</p>
 				</div>
 				<div class='deet'>
-					<img src="/intro/dis.PNG"/>
+					<img src="https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/about%2Fdis-min.PNG?alt=media&token=da6dc5e3-a9e3-4dbf-98ab-ef8787db9678"/>
 					<h4>Discuss</h4>
 					<p>
 						For each resource, members can discuss, ciritize, ask questions, and distill insights.
 					</p>
 				</div>
 				<div class='deet'>
-					<img src="/intro/tag.PNG"/>
+					<img src="https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/about%2Ftag-min.PNG?alt=media&token=27c56cd2-9356-4055-b5e5-e5ce7ba86680"/>
 					<h4>Tag</h4>
 					<p>
 						Resources are tagged with tokens in order to easily identify and search for them.
 					</p>
 				</div>
 				<div class='deet'>
-					<img src="/intro/hi.PNG"/>
+					<img src="https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/about%2Fhis-min.PNG?alt=media&token=882af20e-3983-431a-948b-dfcc3b674439"/>
 					<h4>Organize</h4>
 					<p>
 						Tokens  are organized into a hierarchy, making it easy to see relationships between concepts.
 					</p>
 				</div>
 				<div class='deet'>
-					<img src="/intro/search.PNG"/>
+					<img src="https://firebasestorage.googleapis.com/v0/b/knowlo-952cc.appspot.com/o/about%2Fsearch-min.PNG?alt=media&token=f88fc955-2c6a-4b18-8794-15657bc1c48f"/>
 					<h4>Search</h4>
 					<p>
 						Explore the library by combining tokens. More tokens are suggested to further refine the results.
@@ -1362,57 +1364,52 @@
 -->
 
 <template id="principals">
-	<div>
-		<div class="flexCenter margin20">
-			<i class="fa fa-5x fa-lightbulb-o"></i>
-		</div>
+	<div class="prince">
+
 		<h2 class="thin center">
-			Principles
+			knowlo principals
 		</h2>
-		<div class="row">
-		    <div class="col s12 m9 l10">
-		      <div id="introduction" class="section scrollspy">
-		        <h4 class="thin">Introduction </h4>
-		      </div>
+		<p class='center row'>Note: this is <a target="_blank" href="https://docs.google.com/document/d/1k5Bb3jpCC47O39yQE2V6ufHCMIQbRfJuPRLbVDCPOTA/edit?usp=sharing">a living document</a> and is subject to change with community consensus.</p>
+		<div class="row" style='float:right'>
+		    <div class="col" style="max-width:700px;">
 
 		      <div id="transparency" class="section scrollspy">
-		        <h4 class="thin">Default to Transparency </h4>
+		        <h5>Default to Transparency </h5>
+						<p>(Almost) everything is open. Aside from reasonable concerns over member's private information and other sensitive data (as deemed by the community), everything is available for all to see. This includes but is not limited to:</p>
+						<p> - all <a target="_blank" href="https://docs.google.com/spreadsheets/d/1wqII5thbehl0WQNtKQrxbegW4s7i9pWrQWQ_WwGf3MM/edit?usp=sharing">financial information</a> (income & expenses: server costs, donations, bounty payments, etc.)</p>
+						<p> - the <a target="_blank" href="http://github.com/bornytm/knowlo">knowlo codebase</a> </p>
+						<p> - <router-link to="/status">real-time usage stats</router-link></p>
+						<p> - development plans and roadmap</p>
+						<p> - most everything else</p>
 		      </div>
 
 					<div id="community" class="section scrollspy">
-		        <h4 class="thin">Community Driven </h4>
+		        <h5>Community Driven</h5>
+						<p>All decisions regarding future development (prioritization of features, philosophical growth direct, etc.) will be in the hands of the community and taken in the form of a community-defined <a target="_blank" href="https://en.wikipedia.org/wiki/Weighted_voting">weighted vote</a>.</p>
 		      </div>
 
 					<div id="ReciprocalSharing" class="section scrollspy">
-		        <h4 class="thin">Reciprocal Sharing </h4>
-		      </div>
-
-		      <div id="PrivatleyPublic" class="section scrollspy">
-		        <h4 class="thin">Privately Public </h4>
-						<p>
-							Privately Public is a way of sharing information about yourself without losing your anonymity.
-						</p>
-						<!-- Private, public, privatley public - graphic? -->
+		        <h5>Reciprocal Sharing </h5>
+						<p>To see any information about other members, you must first share that information about yourself.</p>
+						<p>Details include, but aren't limited to: background, expertise, income, interests, approximate age, sex, and approximate location.</p>
+						<p>Sharing is on a per category basis. For example, if you choose to share your interests, but not your sex, you will then be able to see the interests of other members, but will not be able to see any members sex.</p>
+						<p>Of course, you can choose to share without reciprocation as well. For example, if you're sharing evidence of your expertise in an area, you can allow that information to be shared with people that have not provided evidence of their own expertise.</p>
 		      </div>
 
 					<div id="cost" class="section scrollspy">
-		        <h4 class="thin">No Cost Barriers - Proportinal Subscription</h4>
+		        <h5>No Cost Barriers - Proportional Subscription</h5>
+						<p>Knowlo is currently a completely free platform with no immediate plans for that to change.</p>
+						<p>That said, it does cost time and money to build, maintain, and host a project like this and ideally knowlo will be financially self sustaining.</p>
+						<p>Within reasonable limitations (knowlo can't buy everyone a computer and internet access) finances will never be a barrier to someone's ability to take part in the community.</p>
+						<p>For example, if knowlo were to become a subscription or donation based platform, membership or recommended donation amount would be a percentage of the users income (say, 1/500th or 1/1000th) rather than a fixed rate.</p>
 		      </div>
-
-					<div id="DigitalCommons" class="section scrollspy">
-		        <h4 class="thin">Digital Commons </h4>
-		      </div>
-
 		    </div>
-		    <div class="col hide-on-small-only m3 l2 table-of-contents-holder">
+		    <div class="col hide-on-med-and-down m3 l2 table-of-contents-holder"style="width:250px;">
 		      <ul class="section table-of-contents">
-		        <li><a href="#introduction">Introduction</a></li>
 		        <li><a href="#transparency">Default to Transparency</a></li>
 						<li><a href="#community">Community Driven</a></li>
 						<li><a href="#ReciprocalSharing">Reciprocal Sharing</a></li>
-						<li><a href="#PrivatleyPublic">Privately Public</a></li>
-						<li><a href="#cost">Flexible Cost</a></li>
-						<li><a href="#DigitalCommons">Digital Commons</a></li>
+						<li><a href="#cost">No Cost Barrier</a></li>
 		      </ul>
 		    </div>
 		  </div>

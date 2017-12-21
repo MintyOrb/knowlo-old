@@ -1137,8 +1137,9 @@ const explore = Vue.component('exploreComp',{
       //alpha warning
       if(!Cookies.get('alpha-warning-seen')){
         Cookies.set('alpha-warning-seen', true, { expires: 7 });
-        var $toastContent = $("<span>Hi! Knowlo is pre-alpha right now. There's not a lot to see and what there is will probably break.</span>");
+        var $toastContent = $("<span>Hi! Knowlo is in alpha right now...everthing is subject to change and break.</span>");
         Materialize.toast($toastContent, 10000);
+        this.$router.push("/about")
       } else {
         Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
       }
