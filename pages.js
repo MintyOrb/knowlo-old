@@ -1191,6 +1191,9 @@ const explore = Vue.component('exploreComp',{
        });
        $('.exploreBins').collapsible('open', 2);
 
+       // init order by dropdown
+       $('.orderby').dropdown();
+
       // this is not working...
       $('.element-item').imagesLoaded() // layout when images loaded and on progress......
         .always( ( instance ) => {

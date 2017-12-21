@@ -298,7 +298,7 @@
 						<span class="viewBtn" @click.stop.prevent="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
 						<!-- <span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span> -->
 						<span class='right'>
-							<a @click.stop="" class="dropdown-button viewBtn" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
+							<a @click.stop="" class="dropdown-button viewBtn orderby" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
 							<ul id='order' class='dropdown-content sort'>
 								<li @click.stop="" class=''><a>quality</a></li>
 								<li @click.stop="" class='disabled'><a>complexity</a></li>
@@ -1034,7 +1034,7 @@
 						<h5 style="line-height:1.3em;" class="header light">Knowlo is a <router-link to="/principals"><span >principled</span></router-link>, <a target="_blank" href="http://github.com/bornytm/knowlo"><span >open source</span></a> experiment in identifying humanities greatest insights, organizing them into <span >big picture frameworks</span>, and finding the best resources to teach them.</h3>
 					</div>
 					<div style='margin-top: 80px;' class="row center" >
-						<router-link to="/" class="btn-large waves-effect waves-light blue margin20"><i class="fa fa-compass fa-2x "></i> explore</router-link> <span style="font-weight:200">or</span> <span @click="random" class='margin20 btn-large waves-effect waves-light blue'><i class="fa fa-random fa-2x "></i> shuffle</span>
+						<router-link to="/" class="btn-large waves-effect waves-light blue margin20"><i class="fa fa-compass fa-2x "></i> explore</router-link> <span style="font-weight:200">  </span> <span @click="random" class='margin20 btn-large waves-effect waves-light blue'><i class="fa fa-random fa-2x "></i> shuffle</span>
 					</div>
 					<br>
 					<br>
@@ -1086,7 +1086,7 @@
 				</div>
 			</div>
 			<div class="row center" >
-				<router-link to="/" class="btn-large waves-effect waves-light blue margin20"><i class="fa fa-compass fa-2x "></i> explore</router-link> <span style="font-weight:200">or</span> <span @click="random" class='margin20 btn-large waves-effect waves-light blue'><i class="fa fa-random fa-2x "></i> shuffle</span>
+				<router-link to="/" class="btn-large waves-effect waves-light blue margin20"><i class="fa fa-compass fa-2x "></i> explore</router-link> <span style="font-weight:200">  </span> <span @click="random" class='margin20 btn-large waves-effect waves-light blue'><i class="fa fa-random fa-2x "></i> shuffle</span>
 			</div>
 		</main>
 	</template>
@@ -1347,7 +1347,7 @@
 	 <li><router-link class="waves-effect" to="/status"><i class="fa fa-lg fa-area-chart"></i>Status | Stats</router-link></li>
 	 <li><a class="subheader"></a></li>
 		<li><div class="divider"></div></li>
-	 <li><router-link class="waves-effect" to="/land"><i class="fa fa-lg fa-info"></i>About</router-link></li>
+	 <li><router-link class="waves-effect" to="/about"><i class="fa fa-lg fa-info"></i>About</router-link></li>
 	 <li><router-link class="waves-effect" to="/principals"><i class="fa fa-lg fa-lightbulb-o"></i>Principals</router-link></li>
 	 <li><router-link class="waves-effect" to="/involved"><i class="fa fa-lg fa-users"></i>Get Involved</router-link></li>
 	 <li><router-link class="waves-effect" to="/legal"><i class="fa fa-lg fa-gavel"></i>Legal</router-link></li>
