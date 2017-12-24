@@ -533,6 +533,14 @@
 				 </isotope>
 
 				</div>
+				<div class="resourceStep ">
+					<div v-if="resource.source">
+						Source: <a :href='resource.source' target="_blank">{{resource.source}}</a>
+					</div>
+					<div v-if="resource.description">
+						Description: {{resource.description}}
+					</div>
+				</div>
 				<div class="resourceStep" >
 					<isotope ref='rTermBin' :list="terms" :options='{}'>
 						<term
@@ -1029,7 +1037,8 @@
 					<h1 class="header center blue-text thin">knowlo</h1>
 					<div class="row center">
 						<!-- <h4 class="header col s12 light">collective insight</h4> -->
-						<h4 style="margin-bottom:40px" class="header col s12 light">Organize everything, learn anything.</h4>
+						<!-- <h4 style="margin-bottom:40px" class="header col s12 light">Organize everything, learn anything.</h4> -->
+						<h4 style="margin-bottom:40px" class="header col s12 light">What's worth knowing?</h4>
 
 						<h5 style="line-height:1.3em;" class="header light">Knowlo is a <router-link to="/principals"><span >principled</span></router-link>, <a target="_blank" href="http://github.com/bornytm/knowlo"><span >open source</span></a> experiment in identifying humanities greatest insights, organizing them into <span >big picture frameworks</span>, and finding the best resources to teach them.</h3>
 					</div>
@@ -1183,12 +1192,12 @@
 			</span>
 		</div>
 
-		<div class='list hoverable waves-effect waves-light' v-if="display == 'list'">
+		<div class='list hoverable' v-if="display == 'list'">
 			<div>{{term.translation.name}}</div>
 			<!-- <span> ({{term.translation.languageCode}})</span> -->
 		</div>
 
-		<div class='list hoverable waves-effect waves-light' v-if="display == 'godMode'">
+		<div class='list hoverable' v-if="display == 'godMode'">
 			<span>{{term.term.uid}}</span>
 			<!-- <span>{{term.setID}}</span> -->
 			<input type="text" v-model='term.translation.name' v-on:blur="name(term.translation.uid,term.translation.name)" />
@@ -1212,8 +1221,8 @@
 <template id='resource'>
 	<div class='resource'
 		:class="{
-    'list waves-effect waves-block waves-light z-depth-1 hoverable': display=='list',
-    'card waves-effect waves-block waves-light z-depth-1 hoverable': display=='card'}"
+    'list z-depth-1 hoverable': display=='list',
+    'card z-depth-1 hoverable': display=='card'}"
 		>
 
 		<div v-if="re.resource.mThumb"
@@ -1390,8 +1399,8 @@
 
 					<div id="ReciprocalSharing" class="section scrollspy">
 		        <h5>Reciprocal Sharing </h5>
-						<p>To see any information about other members, you must first share that information about yourself.</p>
-						<p>Details include, but aren't limited to: background, expertise, income, interests, approximate age, sex, and approximate location.</p>
+						<p>Sharing of any personal details is completely optional. However, to see any information about other members, whether in cumulative community demographics or in discussion, you must first share that information about yourself.</p>
+						<p>This includes but isn't limited to backgrounds, expertise, incomes, interests, approximate age, sex, and approximate location.</p>
 						<p>Sharing is on a per category basis. For example, if you choose to share your interests, but not your sex, you will then be able to see the interests of other members, but will not be able to see any members sex.</p>
 						<p>Of course, you can choose to share without reciprocation as well. For example, if you're sharing evidence of your expertise in an area, you can allow that information to be shared with people that have not provided evidence of their own expertise.</p>
 		      </div>
@@ -1476,7 +1485,7 @@
 <script src="node_modules\vue-router\dist\vue-router.min.js"></script>
 <script src="node_modules\lodash\lodash.min.js"></script>
 <script src="node_modules\isotope-layout\dist\isotope.pkgd.min.js"></script>
-<script src="node_modules\vueisotope\src\vue_isotope.js"></script>
+<script src="node_modules\vueisotope\dist\vue_isotope.min.js"></script>
 <!-- <script src="dep\imagesloaded.pkgd.min.js"></script> -->
 <script src="node_modules\flickity\dist\flickity.pkgd.min.js"></script>
 <script src="node_modules\js-cookie\src\js.cookie.js"></script>

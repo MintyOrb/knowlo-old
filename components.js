@@ -246,7 +246,7 @@ Vue.component('resource',{
           }
         }
         return num.toFixed(digits).replace(rx, "$1");
-      } else if (typeof(num)!='number'){
+      } else if (this.voting && typeof(num)!='number'){
         console.log('not number... ',typeof(num))
         console.log(num)
       }
@@ -254,6 +254,7 @@ Vue.component('resource',{
     initSlider: function(){
 
       if(this.voting){
+        console.log('voting is true')
          var quality = document.getElementById('quality-slider-' + this._uid);
          noUiSlider.create(quality, {
           start: .5,
@@ -325,15 +326,16 @@ Vue.component('resource',{
   },
   mounted: function(){
     this.initSlider();
-    this.$on('change',x=>{
+    this.$on('dataupdated',x=>{
      this.setRatingSliders('member');
     })
     this.setRatingSliders('global');
 
   },
   watch: {
-    re: function() {
-      this.$emit('change')
+    re: function(x,b) {
+      console.log('data updated')
+      this.$emit('dataupdated')
     },
     ratingDisplay: function(val){
       this.setRatingSliders(val)
@@ -757,7 +759,7 @@ const addResource = Vue.component('addResource',{
           Materialize.toast('Add a resource before tagging!', 4000)
         }
       },
-      removeTag: function(uid) {
+      removeTerm: function(uid) {
         //TODO: revert discussion filter switch if discussion set removed by exclude
 
         this.$http.delete('/api/resource/'+this.resource.core.uid+'/set/'+uid).then(response => {

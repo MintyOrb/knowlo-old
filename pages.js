@@ -322,7 +322,7 @@ const resourceComp = Vue.component('resourceComp',{
               discussion: [], // resources within discussion
               related: [], // resources related to current resource
               resourceDisplay: 'card', // default display for discussion
-              resourceSection: ["Discussion","Terms","Related"],
+              resourceSection: ["Discussion","Detail","Tokens","Related"],
               addResource:false,
               addResourceType: '',
               modalOpen: false,
@@ -353,7 +353,6 @@ const resourceComp = Vue.component('resourceComp',{
       fetchResource: function(){
         this.$http.get('/resource/' + this.$route.params.uid + '/full', {params: { languageCode: 'en'}}).then(response => {
           if(response.body.resource){
-            console.log(response.body)
             this.resource = response.body.resource;
             this.terms = response.body.terms;
             this.determineResourceDisplay();
@@ -936,6 +935,7 @@ const explore = Vue.component('exploreComp',{
             this.$refs.termQuery.shuffle();
         },
         layout: function() {
+          console.log('in layout')
           if(this.termSuggestions.length>0 && this.suggestionDisplay == 'groups' && this.selectedPane==='terms'){
             for(termIndex in this.termSuggestions){ // layout all isotope containers in term termSuggestions
               if(this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID] && this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID][0]){
@@ -1065,49 +1065,50 @@ const explore = Vue.component('exploreComp',{
           });
         },
         fetchResources: function(infinite){
-          this.loadingResources = true;
-          this.endOfResources = false;
-          var include = [];
-          var exclude = [];
-          var limit = 30; // default for large devices
-          if( screen.width <= 480 ){ // less for mobile
-            limit = 10;
-          }
-          var skip = 0;
-          if(infinite){ // only skip if infinite scrolling
-            skip = this.resources.length;
-          }
-          for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
-            if(this.termQuery[termIndex]['status'].includeIcon){
-              include.push(this.termQuery[termIndex]['setID'])
-            } else {
-              exclude.push(this.termQuery[termIndex]['setID'])
+          if(!this.loadingResources && !(infinite && this.resources.length===0)){ // don't fetch if initial resrouces hadn't had time to load to avoid ending up with top resources twice
+            this.loadingResources = true;
+            this.endOfResources = false;
+            var include = [];
+            var exclude = [];
+            var limit = 30; // default for large devices
+            if( screen.width <= 480 ){ // less for mobile
+              limit = 10;
+            }
+            var skip = 0;
+            if(infinite){ // only skip if infinite scrolling
+              skip = this.resources.length;
+            }
+            for (var termIndex = 0; termIndex < this.termQuery.length; termIndex++) {
+              if(this.termQuery[termIndex]['status'].includeIcon){
+                include.push(this.termQuery[termIndex]['setID'])
+              } else {
+                exclude.push(this.termQuery[termIndex]['setID'])
+              }
+            }
+            if(this.member.uid != null){ // member specific query if logged in
+              this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed, skip: skip, limit: limit }}).then(response => {
+                if(response.body.length == 0){
+                  this.endOfResources = true;
+                } else if(infinite){
+                  this.resources.push.apply(this.resources, response.body)
+                } else {
+                  this.resources=response.body;
+                }
+                this.loadingResources = false;
+              });
+            } else { // general query if not logged in
+              this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude, skip: skip, limit: limit }}).then(response => {
+                if(response.body.length == 0){
+                  this.endOfResources = true;
+                } else if(infinite){
+                  this.resources.push.apply(this.resources, response.body)
+                } else {
+                  this.resources=response.body;
+                }
+                this.loadingResources = false;
+              });
             }
           }
-          if(this.member.uid != null){ // member specific query if logged in
-            this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed, skip: skip, limit: limit }}).then(response => {
-              if(response.body.length == 0){
-                this.endOfResources = true;
-              } else if(infinite){
-                this.resources.push.apply(this.resources, response.body)
-              } else {
-                this.resources=response.body;
-              }
-              this.loadingResources = false;
-            });
-          } else { // general query if not logged in
-            this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude, skip: skip, limit: limit }}).then(response => {
-              if(response.body.length == 0){
-                this.endOfResources = true;
-              } else if(infinite){
-                this.resources.push.apply(this.resources, response.body)
-              } else {
-                this.resources=response.body;
-              }
-              this.loadingResources = false;
-            });
-          }
-
         },
         fetchResourceQuantity: function(){
           var include = [];
@@ -1134,6 +1135,9 @@ const explore = Vue.component('exploreComp',{
     },
     mounted: function(){
 
+      if(!this.resourcesRelated){
+        this.fetchResourceQuantity();
+      }
       //alpha warning
       if(!Cookies.get('alpha-warning-seen')){
         Cookies.set('alpha-warning-seen', true, { expires: 7 });
@@ -1230,7 +1234,7 @@ const explore = Vue.component('exploreComp',{
           this.$nextTick(()=>{
             if(this.selectedPane === 'resources'){
               this.fetchResources();
-            } else {
+            } else if (this.selectedPane === 'terms') {
               this.getTerms(); // only get terms if not loaded or set to groups or ungrouped
             }
             this.fetchResourceQuantity();
