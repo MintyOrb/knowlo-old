@@ -45,18 +45,7 @@
 .headroom--unpinned {
     transform: translateY(-100%);
 }
-.navbar-fixed {
-  height: 90px;
-}
-.navbar-fixed nav{
-  height: 90px;
-}
-.nav-wrapper ul {
-  margin-bottom: 13px;
-}
-.nav-wrapper a {
-  margin-top: 13px;
-}
+
 #nav-slide{
   position: fixed;
   width: 100vw;

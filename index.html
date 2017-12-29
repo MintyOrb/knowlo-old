@@ -300,8 +300,8 @@
 						<span class='right'>
 							<a @click.stop="" class="dropdown-button viewBtn orderby" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
 							<ul id='order' class='dropdown-content sort'>
-								<li @click.stop="" class=''><a>quality</a></li>
-								<li @click.stop="" class='disabled'><a>complexity</a></li>
+								<li @click.stop="setOrderAndDescending('quality')"  class=''>{{descending}}<a>quality</a></li>
+								<li @click.stop="setOrderAndDescending('complexity')"  class=''>{{descending}}<a>complexity</a></li>
 								<li @click.stop="" class='disabled'><a>date added</a></li>
 								<li @click.stop="" class='disabled'><a>time to view</a></li>
 								<li @click.stop="" class='disabled'><a># of votes</a></li>
@@ -477,8 +477,8 @@
 					 <span class='right'>
 						 <a class="dropdown-button viewBtn" data-activates='disOrder' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
 						 <ul id='disOrder' class='dropdown-content sort'>
-							 <li class=''><a>quality</a></li>
- 							<li class='disabled'><a>complexity</a></li>
+							<li class=''><a>quality</a></li>
+ 							<li class=''><a>complexity</a></li>
  							<li class='disabled'><a>date added</a></li>
  							<!-- <li class='disabled'><a>time to view</a></li> -->
  							<li class='disabled'><a># of votes</a></li>
@@ -1036,11 +1036,10 @@
 					<br>
 					<h1 class="header center blue-text thin">knowlo</h1>
 					<div class="row center">
-						<!-- <h4 class="header col s12 light">collective insight</h4> -->
-						<!-- <h4 style="margin-bottom:40px" class="header col s12 light">Organize everything, learn anything.</h4> -->
-						<h4 style="margin-bottom:40px" class="header col s12 light">What's worth knowing?</h4>
 
-						<h5 style="line-height:1.3em;" class="header light">Knowlo is a <router-link to="/principals"><span >principled</span></router-link>, <a target="_blank" href="http://github.com/bornytm/knowlo"><span >open source</span></a> experiment in identifying humanities greatest insights, organizing them into <span >big picture frameworks</span>, and finding the best resources to teach them.</h3>
+						<h4 style="margin-bottom:40px" class="header col s12 light">What's worth discussing?</h4>
+
+						<h5 style="line-height:1.3em;" class="header light">Knowlo is a <router-link to="/principals"><span >principled</span></router-link>, <a target="_blank" href="http://github.com/bornytm/knowlo"><span >open source</span></a> experiment in aggregating and organizing ideas and media.</h3>
 					</div>
 					<div style='margin-top: 80px;' class="row center" >
 						<router-link to="/" class="btn-large waves-effect waves-light blue margin20"><i class="fa fa-compass fa-2x "></i> explore</router-link> <span style="font-weight:200">  </span> <span @click="random" class='margin20 btn-large waves-effect waves-light blue'><i class="fa fa-random fa-2x "></i> shuffle</span>
@@ -1393,14 +1392,16 @@
 		      </div>
 
 					<div id="community" class="section scrollspy">
-		        <h5>Community Driven</h5>
-						<p>All decisions regarding future development (prioritization of features, philosophical growth direct, etc.) will be in the hands of the community and taken in the form of a community-defined <a target="_blank" href="https://en.wikipedia.org/wiki/Weighted_voting">weighted vote</a>.</p>
+		        <h5>Radically Community Driven</h5>
+						<p>All decisions regarding future development are in the hands of the community and will be taken in the form of community-defined <a target="_blank" href="https://en.wikipedia.org/wiki/Weighted_voting">weighted voting</a>.</p>
+						<p>Everything from what features should be developed (and how they're prioritized) to the logo, name, and even the mission is determined by the community. </p>
+						<p>Though knowlo has been seeded with some direction, it's better thought of as an app version of the game <a href='https://en.wikipedia.org/wiki/1000_Blank_White_Cards' target="_blank">1000 Blank White Cards.</a> </p>
 		      </div>
 
 					<div id="ReciprocalSharing" class="section scrollspy">
 		        <h5>Reciprocal Sharing </h5>
 						<p>Sharing of any personal details is completely optional. However, to see any information about other members, whether in cumulative community demographics or in discussion, you must first share that information about yourself.</p>
-						<p>This includes but isn't limited to backgrounds, expertise, incomes, interests, approximate age, sex, and approximate location.</p>
+						<p>This includes things like stats on members activity on knowlo (date joined, resources viewed, time spent by token, etc) as well as member's backgrounds, expertise, incomes, interests, approximate age, sex, and approximate location.</p>
 						<p>Sharing is on a per category basis. For example, if you choose to share your interests, but not your sex, you will then be able to see the interests of other members, but will not be able to see any members sex.</p>
 						<p>Of course, you can choose to share without reciprocation as well. For example, if you're sharing evidence of your expertise in an area, you can allow that information to be shared with people that have not provided evidence of their own expertise.</p>
 		      </div>

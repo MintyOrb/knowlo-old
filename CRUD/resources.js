@@ -56,6 +56,8 @@ module.exports = function(app, db){
     if(req.query.limit > 50){
       req.query.limit = 50;
     }
+    console.log(req.query)
+
     var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
            + "WITH distinct re, collect(synSet.uid) AS parentTags "
            + "WHERE all(tag IN {includedSets} WHERE tag IN parentTags) "              //  + "NOT synSet.uid IN {excludedSets} " // this doesn't work...
@@ -74,13 +76,28 @@ module.exports = function(app, db){
              + "collect(DISTINCT synSet.uid) AS termIDs, " // for filtering into suggestion group...no longer used?
              + "{quality: gq , complexity: gc } AS globalVote, "
              + "votes, "
-             + "re AS resource "
+             + "re AS resource ";
+             // determine orderby
+             console.log(req.query.orderby === 'complexity')
+             console.log(req.query.orderby)
+             console.log('complexity')
+             if(req.query.orderby === 'quality'){
+               cypher += "ORDER BY COALESCE(globalVote.quality, -1) ";//IS NOT NULL, globalVote.quality DESC  "
+             } else if (req.query.orderby === 'complexity') {
+               cypher += "ORDER BY COALESCE(globalVote.complexity, -1) ";//IS NOT NULL DESC, globalVote.quality DESC  "
+             }
+             // ascending/descending
+             if(req.query.descending === 'true'){
+               cypher += "DESC ";//IS NOT NULL DESC, globalVote.quality DESC  "
+             }
+
            // + "ORDER BY {orderby} {updown}"
+           console.log(parseInt(req.query.skip))
            if(parseInt(req.query.skip) > 0){
              cypher += "SKIP {skip} ";
            }
            cypher += "LIMIT {limit}";
-
+   console.log(cypher)
          if (typeof req.query.include === "undefined") {
              req.query.include = [];
          }
@@ -90,8 +107,6 @@ module.exports = function(app, db){
         db.query(cypher, {
             includedSets: req.query.include || [],
             excludedSets: req.query.exclude || [],
-            orderby: req.orderby,
-            updown: req.updown,
             skip: parseInt(req.query.skip),
             limit: parseInt(req.query.limit),
             language: 'en'
@@ -148,7 +163,17 @@ module.exports = function(app, db){
              + "votes, "
             + "re AS resource "
             // + "ORDER BY globalVote.quality IS NOT NULL DESC, globalVote.quality DESC  "
-            + "ORDER BY COALESCE(globalVote.quality, -1) DESC ";//IS NOT NULL DESC, globalVote.quality DESC  "
+
+            // determine orderby
+            if(req.query.orderby === 'quality'){
+              cypher += "ORDER BY COALESCE(globalVote.quality, -1) ";//IS NOT NULL, globalVote.quality DESC  "
+            } else if (req.query.complexity === 'complexity') {
+              cypher += "ORDER BY COALESCE(globalVote.complexity, -1) ";//IS NOT NULL DESC, globalVote.quality DESC  "
+            }
+            // ascending/descending
+            if(req.query.descending === 'true'){
+              cypher += "DESC ";//IS NOT NULL DESC, globalVote.quality DESC  "
+            }
            // order by can't be parameterized...have to resort to string building
            //TODO support order by options:
           //  # votes
@@ -166,12 +191,11 @@ module.exports = function(app, db){
          if (typeof req.query.exclude === "undefined") {
              req.query.exclude = [];
          }
+           console.log(req.query)
         db.query(cypher, {
             mID: res.locals.user.uid,
             includedSets: req.query.include,
             excludedSets: req.query.exclude,
-            orderby: req.orderby,
-            updown: req.updown,
             skip: parseInt(req.query.skip),
             limit: parseInt(req.query.limit),
             language: 'en'

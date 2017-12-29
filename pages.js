@@ -798,17 +798,24 @@ const explore = Vue.component('exploreComp',{
             resourcesRelated: null,             // total number of resources related
             resourcesViewed: null,              // number of related resources logged in member has viwed
             resourceDisplay: null,              // display option for materials in search result - string name of displaytype (thumb, list, card)
-            currentLayout: 'masonry',           // incase want to change isotope display type...not used now
-            sortOption: "original-order",       // to sort search results by - string name
-            sortAscending: true,                // whether sort whould be ascending or descending - boolean
-            filterOption: "show all",
             searchStr: null,                    // current member entered search text - string
             selectedPane: 'resources',          // current selected selectedPane (search, terms, or resources)
             endOfResources: false,              // status for reached end of infinite scroll
-            loadingResources: false             // status for fetching resources
+            loadingResources: false,            // status for fetching resources
+            orderby: 'complexity',                      // order for returned resources (quality, complexity, number of views, etc.)
+            descending: false                    // should resources be returned in ascending or descending order
         }
     },
     methods: {
+        setOrderAndDescending: function(by){
+          console.log('in')
+          if(by === this.orderby){
+            this.descending = !this.descending;
+          } else {
+            this.orderby = by;
+          }
+          this.fetchResources();
+        },
         infinite: function(){
           if(!this.endOfResources){
             this.fetchResources(true)
@@ -1086,7 +1093,7 @@ const explore = Vue.component('exploreComp',{
               }
             }
             if(this.member.uid != null){ // member specific query if logged in
-              this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed, skip: skip, limit: limit }}).then(response => {
+              this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed, skip: skip, limit: limit, orderby: this.orderby, descending: this.descending }}).then(response => {
                 if(response.body.length == 0){
                   this.endOfResources = true;
                 } else if(infinite){
@@ -1097,7 +1104,7 @@ const explore = Vue.component('exploreComp',{
                 this.loadingResources = false;
               });
             } else { // general query if not logged in
-              this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude, skip: skip, limit: limit }}).then(response => {
+              this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude, skip: skip, limit: limit, orderby: this.orderby, descending: this.descending }}).then(response => {
                 if(response.body.length == 0){
                   this.endOfResources = true;
                 } else if(infinite){
