@@ -186,7 +186,6 @@ Vue.component('term',{
 */
 Vue.component('resource',{
   template: "#resource",
-  // props:['re','display'],
   props: {
     re: Object,
     voting: {
@@ -330,6 +329,7 @@ Vue.component('resource',{
      this.setRatingSliders('member');
     })
     this.setRatingSliders('global');
+     $('.testtt').dropdown(); // init order-by dropdown
 
   },
   watch: {

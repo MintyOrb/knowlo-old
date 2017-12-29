@@ -38,7 +38,7 @@
 					<ul class="right ">
 						<li v-if="!member.uid" style="margin-right:13px" >
 							<a @click="loginModal" class="hide-on-med-and-down">Login | Sign Up</a>
-							<a @click="loginModal" class="show-on-med-and-down"><i class="material-icons fa fa-lg fa-sign-in"></i></a>
+							<a @click="loginModal" class="hide-on-med-and-up"><i class="material-icons fa fa-lg fa-sign-in"></i></a>
 						</li>
 						<li v-else v-cloak style="margin-right:13px" >
 							<!-- member icon here? -->
@@ -298,7 +298,7 @@
 						<span class="viewBtn" @click.stop.prevent="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
 						<!-- <span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span> -->
 						<span class='right'>
-							<a @click.stop="" class="dropdown-button viewBtn orderby" data-activates='order' data-hover="true" data-alignment='right'><i class="material-icons ">sort</i></a>
+							<a @click.stop="" class="dropdown-button viewBtn orderby" data-activates='order' data-hover="true" data-alignment='right'><span class=''>{{orderby}}</span><i class="material-icons ">sort</i></a>
 							<ul id='order' class='dropdown-content sort'>
 								<li @click.stop="setOrderAndDescending('quality')"  class=''><a>quality</a></li>
 								<li @click.stop="setOrderAndDescending('complexity')"  class=''><a>complexity</a></li>
@@ -1223,7 +1223,16 @@
     'list z-depth-1 hoverable': display=='list',
     'card z-depth-1 hoverable': display=='card'}"
 		>
-
+		<!-- <div style="height:20px;"@click.stop.prevent="" class="right boo" data-activates='reOptions' data-hover="true" data-alignment='right'><i class='material-icons'>more_horiz</i></div>
+		<ul id="reOptions" class="dropdown-content">
+			<li>add token</li>
+			<li>expand</li>
+			<li>shrink</li>
+			<li>vote</li>
+			<li>open</li>
+			<li>change</li>
+			<li>...</li>
+		</ul> -->
 		<div v-if="re.resource.mThumb"
 			:class="{
       'thumb waves-effect waves-block waves-light z-depth-1 hoverable': display == 'thumb' || display =='list' || display=='godMode',

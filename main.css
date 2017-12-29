@@ -976,6 +976,14 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 .orderby{
   color:black;
 }
+.orderby span {
+  text-transform: uppercase;
+  vertical-align: super;
+  font-size: .9em;
+}
+.boo:hover{
+  background-color: red;
+}
 .prince {
   margin-left: 20px;
   margin-right: 20px;
