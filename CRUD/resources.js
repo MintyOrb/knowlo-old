@@ -53,10 +53,9 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
-    if(req.query.limit > 50){
+    if(parseInt(req.query.limit) > 50){
       req.query.limit = 50;
     }
-    console.log(req.query)
 
     var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
            + "WITH distinct re, collect(synSet.uid) AS parentTags "
@@ -78,13 +77,10 @@ module.exports = function(app, db){
              + "votes, "
              + "re AS resource ";
              // determine orderby
-             console.log(req.query.orderby === 'complexity')
-             console.log(req.query.orderby)
-             console.log('complexity')
              if(req.query.orderby === 'quality'){
                cypher += "ORDER BY COALESCE(globalVote.quality, -1) ";//IS NOT NULL, globalVote.quality DESC  "
              } else if (req.query.orderby === 'complexity') {
-               cypher += "ORDER BY COALESCE(globalVote.complexity, -1) ";//IS NOT NULL DESC, globalVote.quality DESC  "
+               cypher += "ORDER BY COALESCE(globalVote.complexity, -1) ";
              } else if (req.query.orderby === 'added') {
                cypher += "ORDER BY resource.dateAdded ";
              } else if (req.query.orderby === 'votes') {
@@ -98,12 +94,10 @@ module.exports = function(app, db){
              }
 
            // + "ORDER BY {orderby} {updown}"
-           console.log(parseInt(req.query.skip))
            if(parseInt(req.query.skip) > 0){
              cypher += "SKIP {skip} ";
            }
            cypher += "LIMIT {limit}";
-   console.log(cypher)
          if (typeof req.query.include === "undefined") {
              req.query.include = [];
          }
@@ -138,7 +132,7 @@ module.exports = function(app, db){
     * @param {String} languageCode
     * @return {Object} resource
     */
-    if(req.query.limit > 50){
+    if(parseInt(req.query.limit) > 50){
       req.query.limit = 50;
     }
     var cypher = "MATCH (re:resource)-[:TAGGED_WITH]->(b:synSet)-[:IN_SET*0..3]->(synSet:synSet) "
@@ -168,25 +162,24 @@ module.exports = function(app, db){
              + "{quality: gq , complexity: gc } AS globalVote, "
              + "votes, "
             + "re AS resource "
-            // + "ORDER BY globalVote.quality IS NOT NULL DESC, globalVote.quality DESC  "
 
-            // determine orderby
-            if(req.query.orderby === 'quality'){
-              cypher += "ORDER BY COALESCE(globalVote.quality, -1) ";//IS NOT NULL, globalVote.quality DESC  "
-            } else if (req.query.complexity === 'complexity') {
-              cypher += "ORDER BY COALESCE(globalVote.complexity, -1) ";//IS NOT NULL DESC, globalVote.quality DESC  "
-            }
-            // ascending/descending
-            if(req.query.descending === 'true'){
-              cypher += "DESC ";//IS NOT NULL DESC, globalVote.quality DESC  "
-            }
-           // order by can't be parameterized...have to resort to string building
-           //TODO support order by options:
-          //  # votes
-          //  global quality
-          //  global complexity
-          //  date created
-            // discussion size?
+          // determine orderby
+          if(req.query.orderby === 'quality'){
+            cypher += "ORDER BY COALESCE(globalVote.quality, -1) ";//IS NOT NULL, globalVote.quality DESC  "
+          } else if (req.query.orderby === 'complexity') {
+            cypher += "ORDER BY COALESCE(globalVote.complexity, -1) ";
+          } else if (req.query.orderby === 'added') {
+            cypher += "ORDER BY resource.dateAdded ";
+          } else if (req.query.orderby === 'votes') {
+            cypher += "ORDER BY votes ";
+          } else if (req.query.orderby === 'views') {
+            cypher += "ORDER BY resource.viewCount ";
+          }
+          // ascending/descending
+          if(req.query.descending === 'true'){
+            cypher += "DESC ";
+          }
+
          if(parseInt(req.query.skip) > 0){
            cypher += "SKIP {skip} ";
          }

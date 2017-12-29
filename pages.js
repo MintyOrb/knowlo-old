@@ -1093,7 +1093,16 @@ const explore = Vue.component('exploreComp',{
               }
             }
             if(this.member.uid != null){ // member specific query if logged in
-              this.$http.get('/api/resource', {params: { languageCode: 'en', include: include, exclude: exclude, showViewed: this.showViewed, skip: skip, limit: limit, orderby: this.orderby, descending: this.descending }}).then(response => {
+              this.$http.get('/api/resource', {params: {
+                languageCode: 'en',
+                include: include,
+                exclude: exclude,
+                showViewed: this.showViewed,
+                skip: skip,
+                limit: limit,
+                orderby: this.orderby,
+                descending: this.descending }
+              }).then(response => {
                 if(response.body.length == 0){
                   this.endOfResources = true;
                 } else if(infinite){
@@ -1104,7 +1113,15 @@ const explore = Vue.component('exploreComp',{
                 this.loadingResources = false;
               });
             } else { // general query if not logged in
-              this.$http.get('/resource', {params: { languageCode: 'en', include: include, exclude: exclude, skip: skip, limit: limit, orderby: this.orderby, descending: this.descending }}).then(response => {
+              this.$http.get('/resource', {params: {
+                languageCode: 'en',
+                include: include,
+                exclude: exclude,
+                skip: skip,
+                limit: limit,
+                orderby: this.orderby,
+                descending: this.descending }
+              }).then(response => {
                 if(response.body.length == 0){
                   this.endOfResources = true;
                 } else if(infinite){
