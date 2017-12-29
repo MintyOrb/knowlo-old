@@ -564,12 +564,12 @@ function deleteContains(req, res){
 }
 // get tokens contained by another, organized by the returned tokens groups
 function containsByGroup(req, res){
-  var cypher = "MATCH (set:synSet {uid: {set} })<-[sr:IN_SET]-(syn:synSet), "
-                 + "(syn)<-[tr:IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
-                 = "OPTIONAL MATCH (syn:synSet)-[:IN_SET]->(group:synSet)"
-                 + "WHERE tr.order=1 AND lang.languageCode IN [ {language} , 'en' ] "
-                 + "RETURN DISTINCT syn as term, syn.uid as setID, translation , tr, sr.order as order "
-                 + "ORDER BY order"
+  // var cypher = "MATCH (set:synSet {uid: {set} })<-[sr:IN_SET]-(syn:synSet), "
+  //                + "(syn)<-[tr:IN_SET]-(t:term)-[lang:HAS_TRANSLATION]->(translation:translation) "
+  //                + "OPTIONAL MATCH (syn:synSet)-[:IN_SET]->(group:synSet)"
+  //                + "WHERE tr.order=1 AND lang.languageCode IN [ {language} , 'en' ] "
+  //                + "RETURN DISTINCT syn as term, syn.uid as setID, translation , tr, sr.order as order "
+  //                + "ORDER BY order"
 
   db.query(cypher, {set: req.params.setID, language: req.query.languageCode },function(err, result) {
     if (err) console.log(err);
