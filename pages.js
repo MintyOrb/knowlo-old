@@ -802,17 +802,18 @@ const explore = Vue.component('exploreComp',{
             selectedPane: 'resources',          // current selected selectedPane (search, terms, or resources)
             endOfResources: false,              // status for reached end of infinite scroll
             loadingResources: false,            // status for fetching resources
-            orderby: 'complexity',                      // order for returned resources (quality, complexity, number of views, etc.)
-            descending: false                    // should resources be returned in ascending or descending order
+            orderby: 'quality',                 // order for returned resources (quality, complexity, number of views, etc.)
+            descending: true                    // should resources be returned in ascending or descending order
         }
     },
     methods: {
         setOrderAndDescending: function(by){
-          console.log('in')
           if(by === this.orderby){
             this.descending = !this.descending;
+            Cookies.set('descending',!this.descending)
           } else {
             this.orderby = by;
+            Cookies.set('orderby',by)
           }
           this.fetchResources();
         },
@@ -1158,7 +1159,9 @@ const explore = Vue.component('exploreComp',{
         }
     },
     mounted: function(){
-
+      if(this.selectedPane === 'resources'){
+        this.fetchResources();
+      }
       if(!this.resourcesRelated){
         this.fetchResourceQuantity();
       }
@@ -1177,6 +1180,20 @@ const explore = Vue.component('exploreComp',{
         this.resourceDisplay = "card";
       } else {
         this.resourceDisplay = Cookies.get('resourceDisplay');
+      }
+
+      // get previously selected orderby
+      if(!Cookies.get('orderby')){
+        this.orderby = "quality";
+      } else {
+        this.orderby = Cookies.get('orderby');
+      }
+
+      // get previously selected desc/asc setting
+      if(!Cookies.get('descending')){
+        this.descending = true;
+      } else {
+        this.descending = (Cookies.get('descending') === 'true');
       }
 
       // get previously show viewed setting
