@@ -298,7 +298,7 @@
 						<span class="viewBtn" @click.stop.prevent="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
 						<!-- <span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span> -->
 						<span class='right'>
-							<a @click.stop="" class="dropdown-button viewBtn orderby" data-activates='order' data-hover="true" data-alignment='right'><span >{{orderby}}</span><i class="material-icons " :class="{'flipVert': !descending }">sort</i></a>
+							<a @click.stop="" class="dropdown-button viewBtn orderby" ><span class="dropdown-button" data-activates='order' data-hover="true" data-alignment='right'>{{orderby}}</span><i @click="descending = !descending; fetchResources()" class="material-icons " :class="{'flipVert': !descending }">sort</i></a>
 							<ul id='order' class='dropdown-content sort'>
 								<li @click.stop="setOrderAndDescending('quality')" ><a>quality</a></li>
 								<li @click.stop="setOrderAndDescending('complexity')" ><a>complexity</a></li>
