@@ -85,6 +85,12 @@ module.exports = function(app, db){
                cypher += "ORDER BY COALESCE(globalVote.quality, -1) ";//IS NOT NULL, globalVote.quality DESC  "
              } else if (req.query.orderby === 'complexity') {
                cypher += "ORDER BY COALESCE(globalVote.complexity, -1) ";//IS NOT NULL DESC, globalVote.quality DESC  "
+             } else if (req.query.orderby === 'added') {
+               cypher += "ORDER BY resource.dateAdded ";
+             } else if (req.query.orderby === 'votes') {
+               cypher += "ORDER BY votes ";
+             } else if (req.query.orderby === 'views') {
+               cypher += "ORDER BY resource.viewCount ";
              }
              // ascending/descending
              if(req.query.descending === 'true'){

@@ -302,11 +302,11 @@
 							<ul id='order' class='dropdown-content sort'>
 								<li @click.stop="setOrderAndDescending('quality')"  class=''>{{descending}}<a>quality</a></li>
 								<li @click.stop="setOrderAndDescending('complexity')"  class=''>{{descending}}<a>complexity</a></li>
-								<li @click.stop="" class='disabled'><a>date added</a></li>
-								<li @click.stop="" class='disabled'><a>time to view</a></li>
-								<li @click.stop="" class='disabled'><a># of votes</a></li>
-								<li @click.stop="" class='disabled'><a># of views</a></li>
-								<li @click.stop="" class='disabled'><a># responses</a></li>
+								<li @click.stop="setOrderAndDescending('added')" class=''><a>date added</a></li>
+								<li class='disabled'><a>time to view</a></li>
+								<li @click.stop="setOrderAndDescending('votes')" class=''><a># of votes</a></li>
+								<li @click.stop="setOrderAndDescending('views')" class=''><a># of views</a></li>
+								<li class='disabled'><a># responses</a></li>
 							</ul>
 						</span>
 					</span>
