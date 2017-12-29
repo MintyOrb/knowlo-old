@@ -91,7 +91,7 @@ function query(req, res){
           + "ORDER BY connections DESC "
           // + "ORDER BY {orderby} {updown}"
           // + "SKIP {skip} "
-          + "LIMIT 20";
+          + "LIMIT {limit}";
   } else if("size disciplines time".indexOf(req.query.type) >-1){
     var scaleIDs={
       'size':'BJgVf2ZQYW',
@@ -120,7 +120,7 @@ function query(req, res){
             + "WITH s2, s2translation, collect({term: s1, translation: s1translation, setID:s1.uid, connections:connections}) as contains  "
             + "RETURN COLLECT(distinct{term:s2, translation: s2translation, setID:s2.uid}) AS group, contains, size(contains) as numInGroup  "
             + "ORDER BY numInGroup DESC "
-            + "LIMIT 10"
+            + "LIMIT {limit}"
             // + "SKIP {skip} "
             // + "LIMIT {limit}";// necessary?
   }
@@ -136,7 +136,9 @@ function query(req, res){
     ignoreTerms: req.query.exclude,
     scale: scale,
     searchTermsCount: len,
-    lang: 'en'
+    lang: 'en',
+    limit: parseInt(req.query.limit) || 10,
+    skip: parseInt(req.query.skip) || 0
   },function(err, result) {
     if (err) console.log(err);
     res.send(result)

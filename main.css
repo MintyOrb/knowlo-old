@@ -981,6 +981,12 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
   vertical-align: super;
   font-size: .9em;
 }
+.orderby i{
+  transition: transform .5s;
+}
+.flipVert {
+  transform: scaleY(-1);
+}
 .boo:hover{
   background-color: red;
 }

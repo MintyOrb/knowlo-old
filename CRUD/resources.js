@@ -90,7 +90,7 @@ module.exports = function(app, db){
              }
              // ascending/descending
              if(req.query.descending === 'true'){
-               cypher += "DESC ";//IS NOT NULL DESC, globalVote.quality DESC  "
+               cypher += " DESC ";//IS NOT NULL DESC, globalVote.quality DESC  "
              }
 
            // + "ORDER BY {orderby} {updown}"
@@ -104,6 +104,7 @@ module.exports = function(app, db){
          if (typeof req.query.exclude === "undefined") {
              req.query.exclude = [];
          }
+
         db.query(cypher, {
             includedSets: req.query.include || [],
             excludedSets: req.query.exclude || [],
@@ -190,7 +191,7 @@ module.exports = function(app, db){
          if (typeof req.query.exclude === "undefined") {
              req.query.exclude = [];
          }
-           console.log(req.query)
+
         db.query(cypher, {
             mID: res.locals.user.uid,
             includedSets: req.query.include,
@@ -258,7 +259,7 @@ module.exports = function(app, db){
   }
   function createCore(req, res){
     req.body.resource.core.uid = shortid.generate();
-    req.body.resource.viewCount = 0;
+    req.body.resource.core.viewCount = 0;
 
     // remove blank props
     for (thing in req.body.resource.detail) {

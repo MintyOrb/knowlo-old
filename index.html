@@ -298,14 +298,14 @@
 						<span class="viewBtn" @click.stop.prevent="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
 						<!-- <span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span> -->
 						<span class='right'>
-							<a @click.stop="" class="dropdown-button viewBtn orderby" data-activates='order' data-hover="true" data-alignment='right'><span class=''>{{orderby}}</span><i class="material-icons ">sort</i></a>
+							<a @click.stop="" class="dropdown-button viewBtn orderby" data-activates='order' data-hover="true" data-alignment='right'><span >{{orderby}}</span><i class="material-icons " :class="{'flipVert': !descending }">sort</i></a>
 							<ul id='order' class='dropdown-content sort'>
-								<li @click.stop="setOrderAndDescending('quality')"  class=''><a>quality</a></li>
-								<li @click.stop="setOrderAndDescending('complexity')"  class=''><a>complexity</a></li>
-								<li @click.stop="setOrderAndDescending('added')" class=''><a>date added</a></li>
+								<li @click.stop="setOrderAndDescending('quality')" ><a>quality</a></li>
+								<li @click.stop="setOrderAndDescending('complexity')" ><a>complexity</a></li>
+								<li @click.stop="setOrderAndDescending('added')"><a>date added</a></li>
 								<li class='disabled'><a>time to view</a></li>
-								<li @click.stop="setOrderAndDescending('votes')" class=''><a># of votes</a></li>
-								<li @click.stop="setOrderAndDescending('views')" class=''><a># of views</a></li>
+								<li @click.stop="setOrderAndDescending('votes')"><a># of votes</a></li>
+								<li @click.stop="setOrderAndDescending('views')"><a># of views</a></li>
 								<li class='disabled'><a># responses</a></li>
 							</ul>
 						</span>
