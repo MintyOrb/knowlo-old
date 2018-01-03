@@ -521,9 +521,13 @@
 					</div>
 				 </div>
 				 <isotope v-else ref="discussionBin" class="step" :list="discussion" :options='discussionIsotope()' id="container"  >
-					 <div v-for="re in discussion" class='element-item' :key="re.resource.uid" :class="{'fullWidth': discussionDisplay=='list'}">
-							 <resource :re="re" :display="discussionDisplay"></resource>
-					 </div>
+						 <resource
+							 :key="re.resource.uid"
+							 v-for="re in discussion"
+							 :re="re"
+							 :class="{'fullWidth': discussionDisplay=='list'}"
+							 :display="discussionDisplay">
+					 	 </resource>
 				 </isotope>
 
 				</div>

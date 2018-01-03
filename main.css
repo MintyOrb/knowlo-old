@@ -705,7 +705,7 @@ iframe{
   /*position: absolute!important;*/
 }
 .fullWidth{
-  width: 100%;
+  width: calc(100% - 60px);
 }
 .connections {
   height: 1.3em;
