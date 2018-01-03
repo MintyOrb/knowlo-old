@@ -1242,10 +1242,12 @@ const explore = Vue.component('exploreComp',{
           this.layout();
         }, 3000);
 
-        if(this.selectedPane === 'resources'){
-          console.log(this.termQuery)
-          // this.fetchResources();
-        }
+        // fixes fetching resources when navigating from a different page (ex /about)...this seems exceedinly inelegant
+        setTimeout( () => {
+          if(this.selectedPane === 'resources' && this.resources.length===0){
+            this.fetchResources();
+          }
+        }, 500);
 
     },
     watch: {
