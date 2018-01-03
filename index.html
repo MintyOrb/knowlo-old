@@ -463,12 +463,6 @@
 			<!-- isotope contianers -->
 			<div class="resourceSections">
 
-				<!-- <div class="resourceStep">
-
-					<span>{{resource.title}}</span>
-					<span>{{resource.description}}</span>
-				</div> -->
-
 				<div class="resourceStep discussion">
 					<div class="center pad margin20">
 						<span class="left" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
@@ -527,8 +521,8 @@
 					</div>
 				 </div>
 				 <isotope v-else ref="discussionBin" class="step" :list="discussion" :options='discussionIsotope()' id="container"  >
-					 <div v-for="re in discussion" class='element-item' :key="re.resource.uid" :class="{'fullWidth': display=='list'}">
-							 <resource :re="re" :display="resourceDisplay"></resource>
+					 <div v-for="re in discussion" class='element-item' :key="re.resource.uid" :class="{'fullWidth': discussionDisplay=='list'}">
+							 <resource :re="re" :display="discussionDisplay"></resource>
 					 </div>
 				 </isotope>
 
@@ -569,7 +563,7 @@
 				</div>
 		 </div>
 		 <div class="addBtn">
- 			<a @click="addResourceType='discussion'; addResource = true" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+ 			<a @click="addResourceType='discussion'; addResource = true;" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
  		 </div>
 		</div>
 
@@ -949,7 +943,8 @@
 							<term :term="term"
 							:display="'thumb'"
 							:key="term.setID"
-							v-on:exclude="removeTag(term.setID)">
+							hide="lens include focus info pin"
+							v-on:remove="removeTerm(term.setID)">
 							</term>
 						</div>
 					</isotope>
@@ -1219,6 +1214,7 @@
 -->
 <template id='resource'>
 	<div class='resource'
+
 		:class="{
     'list z-depth-1 hoverable': display=='list',
     'card z-depth-1 hoverable': display=='card'}"

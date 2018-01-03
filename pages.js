@@ -102,7 +102,6 @@ const termComp = Vue.component('termComp',{
       fetchMeta: function(type){
         if(this.member.uid != null){
           this.$http.get('/api/set/' + this.$route.params.uid + '/meta/', {params: { languageCode: 'en', type: type }}).then(response => {
-            console.log(response.body)
             if(type=='definition'){
               this.definitions=response.body;
             } else if (type=='icon'){
@@ -113,7 +112,6 @@ const termComp = Vue.component('termComp',{
           });
         } else {
           this.$http.get('/set/' + this.$route.params.uid + '/meta/', {params: { languageCode: 'en', type: type }}).then(response => {
-            console.log(response.body)
             if(type=='definition'){
               this.definitions=response.body;
             } else if (type=='icon'){
@@ -294,7 +292,6 @@ const termComp = Vue.component('termComp',{
       this.init();
     },
     member: function() { // re-fetch on member login/logout
-      console.log('in term page watch member')
       this.$nextTick(x=>{
         this.fetchMeta('definition');
         this.fetchMeta('icon');
@@ -321,7 +318,7 @@ const resourceComp = Vue.component('resourceComp',{
               terms: [], // current resources terms
               discussion: [], // resources within discussion
               related: [], // resources related to current resource
-              resourceDisplay: 'card', // default display for discussion
+              discussionDisplay: 'card', // default display for discussion
               resourceSection: ["Discussion","Detail","Tokens","Related"],
               addResource:false,
               addResourceType: '',
@@ -340,8 +337,8 @@ const resourceComp = Vue.component('resourceComp',{
       close: function(){
         $('#resourceModal'+this.resource.uid).modal('close')
       },
-      changeDisplay: function(disp){ // TODO: make dry ( essentially duplicated from explore) - make resource bin component?
-        this.resourceDisplay = disp
+      changeDisplay: function(disp){
+        this.discussionDisplay = disp
         // weird to wrap a timeout with next tick, but css lags and screws up the layout after transistion
         this.$nextTick(function(){
           window.setTimeout(()=>{
@@ -383,7 +380,7 @@ const resourceComp = Vue.component('resourceComp',{
       },
       init: function(){
           this.fetchDiscussion();
-          this.fetchRelated();
+          this.fetchRelated(); //TODO: only fetch when on related panel
           this.$nextTick(function(){
             if(!this.modalOpen){
               this.modalOpen=true;
@@ -665,7 +662,6 @@ const memberPage = Vue.component('memberPage',{
         });
       },
       fetchHistory: function(){
-        console.log('in history')
         this.$http.get('/member/' + this.$route.params.uid + '/history').then(response => {
           if(response.body){
             this.history=response.body;
@@ -682,9 +678,7 @@ const memberPage = Vue.component('memberPage',{
         });
       },
       fetchMember: function(){
-        console.log('in fetchMember')
         this.$http.get('/member/' + this.$route.params.uid).then(response => {
-          console.log(response.body)
           if(response.body){
             this.mem=response.body;
             this.mem.joined= new Date(this.mem.joined).toLocaleDateString();
@@ -699,7 +693,6 @@ const memberPage = Vue.component('memberPage',{
         });
       },
       init: function(){
-        console.log('in member init')
         this.fetchSets();
         this.fetchTop();
         this.fetchHistory();
@@ -749,8 +742,6 @@ const memberPage = Vue.component('memberPage',{
 
     },
     mounted: function(){
-      console.log('member mounted')
-      console.log(this.member.uid)
       if(this.member.uid){
         this.fetchMember();
       }
@@ -763,11 +754,9 @@ const memberPage = Vue.component('memberPage',{
     },
     watch: {
       '$route.params.uid': function (id) {
-        console.log('in uid watch')
         this.fetchMember();
       },
       member: function(current){
-        console.log('in member watch')
         if(current.uid){
           this.fetchMember();
         }
@@ -943,7 +932,6 @@ const explore = Vue.component('exploreComp',{
             this.$refs.termQuery.shuffle();
         },
         layout: function() {
-          console.log('in layout')
           if(this.termSuggestions.length>0 && this.suggestionDisplay == 'groups' && this.selectedPane==='terms'){
             for(termIndex in this.termSuggestions){ // layout all isotope containers in term termSuggestions
               if(this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID] && this.$refs['suggestionBin' + this.termSuggestions[termIndex].group[0].setID][0]){
@@ -1159,12 +1147,7 @@ const explore = Vue.component('exploreComp',{
         }
     },
     mounted: function(){
-      if(this.selectedPane === 'resources'){
-        this.fetchResources();
-      }
-      if(!this.resourcesRelated){
-        this.fetchResourceQuantity();
-      }
+
       //alpha warning
       if(!Cookies.get('alpha-warning-seen')){
         Cookies.set('alpha-warning-seen', true, { expires: 7 });
@@ -1173,6 +1156,10 @@ const explore = Vue.component('exploreComp',{
         this.$router.push("/about")
       } else {
         Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
+      }
+
+      if(!this.resourcesRelated){
+        this.fetchResourceQuantity();
       }
 
       // get previously selected resource display Style
@@ -1254,6 +1241,11 @@ const explore = Vue.component('exploreComp',{
         setInterval(x => {
           this.layout();
         }, 3000);
+
+        if(this.selectedPane === 'resources'){
+          console.log(this.termQuery)
+          // this.fetchResources();
+        }
 
     },
     watch: {

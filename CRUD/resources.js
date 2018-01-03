@@ -165,6 +165,7 @@ module.exports = function(app, db){
             + "re AS resource "
 
           // determine orderby
+          // TODO: replace with es6 string templates? (here and elsehwere)
           if(req.query.orderby === 'quality'){
             cypher += "ORDER BY COALESCE(globalVote.quality, -1) ";//IS NOT NULL, globalVote.quality DESC  "
           } else if (req.query.orderby === 'complexity') {

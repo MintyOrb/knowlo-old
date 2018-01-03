@@ -557,7 +557,6 @@ const addTerm = Vue.component('addTerm',{
       createTerm: function(){
         this.$http.post('/api/term', {term: this.term, translation:this.translation}).then(response => {
           if(response.body){
-            console.log(response.body)
             this.term.uid = response.body.term.uid
             router.replace('/addTerm/'+response.body.translation.name+"/"+response.body.term.uid)
           } else {
@@ -761,7 +760,6 @@ const addResource = Vue.component('addResource',{
       },
       removeTerm: function(uid) {
         //TODO: revert discussion filter switch if discussion set removed by exclude
-
         this.$http.delete('/api/resource/'+this.resource.core.uid+'/set/'+uid).then(response => {
           if(response.body){
             this.tags.splice(this.tags.findIndex( (term) => term.setID === uid) ,1)
@@ -783,7 +781,6 @@ const addResource = Vue.component('addResource',{
         // find and tag to resource
         this.$http.put('/api/resource/'+this.resource.core.uid+'/termSuggest',{text:textBlob}).then(response => {
           if(response.body){
-            console.log(response.body)
             this.tags = response.body;
             // for each this.tags.push(term) push to tags?
           } else {
@@ -878,7 +875,7 @@ const addResource = Vue.component('addResource',{
       }
       for(bIndex in before){
         if(!now.includes(before[bIndex])){
-          this.removeTag(this.dIDs[before[bIndex]])
+          this.removeTerm(this.dIDs[before[bIndex]])
         }
       }
     }
