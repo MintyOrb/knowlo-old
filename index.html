@@ -1196,16 +1196,31 @@
 			</span>
 		</div>
 
-		<router-link :to="{ name: 'setSub', params: { uid: term.setID, name: term.translation.name.replace(' ', '-') }}" v-if="display == 'list'" class='tokenlist-detail'>
-				<span v-if="!term.term.iconURL" class="flexCenter border">{{term.translation.name[0]}}</span>
-				<span v-else class=" listimg">
-					<img class='circle' :src="term.term.iconURL">
+		<router-link :to="{ name: 'setSub', params: { uid: term.setID, name: term.translation.name.replace(' ', '-') }}" v-if="display == 'list' || display == 'card'" class='cont'>
+				<span class='tokenlist-title'>
+					<span class='tokenlist-title-left'>
+						<!-- <span class='score'>8</span>
+						<span class='vote'>
+							<i class="fa fa-caret-up"></i>
+							<i class="fa fa-caret-down"></i>
+						</span> -->
+
+						<span v-if="!term.term.iconURL" class="flexCenter border">{{term.translation.name[0]}}</span>
+						<span v-else class=" listimg">
+							<img class='circle' :src="term.term.iconURL">
+						</span>
+						<span style='margin-left:10px;'>{{term.translation.name}}</span>
+					</span>
+					<!-- <i class="fa fa-crosshairs"></i>
+					<i class="fa fa-plus"></i>
+					<i class="fa fa-info" style="padding-right:10px;"></i> -->
+					<!-- <i class="material-icons" >more_horiz</i> -->
 				</span>
-				<span style='margin-left:10px;'>{{term.translation.name}}</span>
-			<!-- <i class="fa fa-crosshairs"></i>
-			<i class="fa fa-plus"></i>
-			<i class="fa fa-info" style="padding-right:10px;"></i> -->
-			<!-- <i class="material-icons" style="align-item:flex-end">more_horiz</i> -->
+
+				<!-- <div class='token-definition'>
+					definition here
+				</div> -->
+
 		</router-link>
 
 		<div class='hoverable' v-if="display == 'godMode'">

@@ -1052,7 +1052,8 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 }
 
 .tokenlist {
-  height: 60px;
+  /* height: 60px; */
+  font-size: 0.8em;
   vertical-align: middle;
   font-weight: 300;
   display: flex;
@@ -1067,8 +1068,35 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
   width:35px;
   height: 35px;
 }
-.tokenlist-detail {
+.tokenlist-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.tokenlist-title-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.vote {
+  display: flex;
+  flex-direction: column;
+  margin-right:8px;
+}
+.vote i{
+  transition: transform .2s ease-in-out;
+}
+.vote i:hover{
+  transform: scale(1.2);
+}
+.score {
+  margin:8px;
+}
+.token-definition{
+  display: block;
+  padding: 10px;
+  min-height: 80px;
+}
+.cont {
+  width: 100%;
 }
