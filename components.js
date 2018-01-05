@@ -174,6 +174,14 @@ Vue.component('term',{
       if(this.$parent.$el && this.$parent.$el._prevClass == 'termQuery'){ // stupid way to change css. cake component param/option instead
         this.inSidebar = true; // defaults to false
       }
+
+      // setup info dropdown
+      $(".dd"+this.term.setID).dropdown({
+          alignment: 'right'
+        }
+      );
+
+
     }
 });
 /*

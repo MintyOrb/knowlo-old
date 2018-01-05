@@ -1211,10 +1211,20 @@
 						</span>
 						<span style='margin-left:10px;'>{{term.translation.name}}</span>
 					</span>
-					<!-- <i class="fa fa-crosshairs"></i>
-					<i class="fa fa-plus"></i>
-					<i class="fa fa-info" style="padding-right:10px;"></i> -->
-					<!-- <i class="material-icons" >more_horiz</i> -->
+					<span>
+						<i @click.prevent="" class="material-icons  more" :class="'dd'+term.setID" :data-activates='term.setID' >more_horiz</i>
+						<!-- <i @click.prevent="" class="material-icons  more" :class="'dd'+term.setID" :data-activates='term.setID' >keyboard_arrow_down</i> -->
+					</span>
+					<ul :id='term.setID' class='dropdown-content token-dropdown '>
+						<li @click="focus"><a><i class="fa fa-crosshairs"></i>Focus</a></li>
+						<li @click="include"><a><i class="fa fa-plus"></i>Add</a></li>
+						<li @click="pin"><a><i class="fa fa-thumb-tack"></i>Pin</a></li>
+						<!-- <li @click="lens"><a><i class="fa fa-crosshairs"></i>Cross Section</a></li> -->
+						<li @click="remove"><a><i class="fa fa-times"></i>Remove</a></li>
+						<li @click=""><router-link :to="{ name: 'setSub', params: { uid: term.setID, name: term.translation.name }}"><i class="fa fa-info"></i>Token Page</router-link></li>
+					</ul>
+
+
 				</span>
 
 				<!-- <div class='token-definition'>

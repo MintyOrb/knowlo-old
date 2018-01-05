@@ -1067,11 +1067,13 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 .tokenHW {
   width:35px;
   height: 35px;
+  font-size: 20px!important;
 }
 .tokenlist-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 5px;
 }
 .tokenlist-title-left {
   display: flex;
@@ -1099,4 +1101,24 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 }
 .cont {
   width: 100%;
+}
+.cont:hover i {
+  opacity: 1;
+}
+.more {
+  opacity: 0;
+  transition: opacity .6s ease-in-out;
+
+}
+.def {
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+
+}
+.token-dropdown {
+  font-weight: 300;
+  width: 180px!important;
+}
+.token-dropdown li a {
+  color: black!important;
 }
