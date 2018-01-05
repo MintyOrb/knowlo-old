@@ -758,45 +758,46 @@
 
 				<div class="stepContainer">
 					<isotope ref='syno' :list="synonyms" :options='{}'>
-						<div v-for="term in synonyms" :key="term.setID">
-							<term
-								:term="term"
-								:display="'thumb'"
-								:key="term.setID"
-								v-on:include="addToQuery(term)"
-								v-on:exclude="removeSynonym(term.term.uid)"
-								v-on:focus="addToQuery(term)"
-								v-on:pin="addToQuery(term)"
-								hide="remove"
-								>
-							</term>
-						</div>
+						<term
+						  v-for="term in synonyms"
+							:key="term.setID"
+							:term="term"
+							:display="termDisplay"
+							:key="term.setID"
+							v-on:include="addToQuery(term)"
+							v-on:exclude="removeSynonym(term.term.uid)"
+							v-on:focus="addToQuery(term)"
+							v-on:pin="addToQuery(term)"
+							hide="remove"
+							>
+						</term>
 					</isotope>
 					<autocomplete :exclude="$route.params.uid" input-id="syn" v-on:select="addSynonym" ></autocomplete>
 				</div>
 				<div class="stepContainer">
 						<isotope ref='withn' :list="within" :options='{}'>
-							<div v-for="term in within" :key="term.translation.name">
-								<term :term="term"
-									:display="'thumb'"
-									:key="term.translation.name"
-									v-on:include="addToQuery(term)"
-									v-on:exclude="removeWithin(term.term.uid)"
-									v-on:focus="addToQuery(term)"
-									v-on:pin="addToQuery(term)"
-									hide="remove"
-									>
-								</term>
+							<term :term="term"
+								v-for="term in within"
+								:key="term.translation.name"
+								:display="termDisplay"
+								:key="term.translation.name"
+								v-on:include="addToQuery(term)"
+								v-on:exclude="removeWithin(term.term.uid)"
+								v-on:focus="addToQuery(term)"
+								v-on:pin="addToQuery(term)"
+								hide="remove"
+								>
+							</term>
 								<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
-							</div>
 						</isotope>
 						<autocomplete exclude="" input-id="within" v-on:select="addWithin"></autocomplete>
 				</div>
 				<div class="stepContainer">
 						<isotope ref='contains' :list="contains" :options='{}'>
-							<div v-for="term in contains" :key="term.translation.name">
 								<term :term="term"
-									:display="'thumb'"
+									v-for="term in contains"
+									:key="term.translation.name"
+									:display="termDisplay"
 									:key="term.setID"
 									v-on:include="addToQuery(term)"
 									v-on:exclude="removeContains(term.term.uid)"
@@ -806,24 +807,23 @@
 									>
 								</term>
 								<!-- v-on:exclude="removeSynonym(term.term.uid)" -->
-							</div>
 						</isotope>
 						<autocomplete exclude="" input-id="contains" v-on:select="addContains"></autocomplete>
 				</div>
 				<div class="stepContainer">
 					<isotope ref='trans' :list="translations" :options='{}'>
-						<div v-for="term in translations" :key="term.setID">
-							<term :term="term"
-							:display="'thumb'"
+						<term :term="term"
+							v-for="term in translations"
+							:key="term.setID"
+							:display="termDisplay"
 							:key="term.setID"
 							v-on:include="addToQuery(term)"
 							v-on:exclude="addToQuery(term)"
 							v-on:focus="addToQuery(term)"
 							v-on:pin="addToQuery(term)"
 							hide="remove"
-							>
-							</term>
-						</div>
+						>
+						</term>
 					</isotope>
 				</div>
 		 </div>
@@ -1205,9 +1205,9 @@
 							<i class="fa fa-caret-down"></i>
 						</span> -->
 
-						<span v-if="!term.term.iconURL" class="flexCenter border">{{term.translation.name[0]}}</span>
+						<span v-if="!term.term.iconURL" class="flexCenter border tokenHW">{{term.translation.name[0]}}</span>
 						<span v-else class=" listimg">
-							<img class='circle' :src="term.term.iconURL">
+							<img class='circle tokenHW' :src="term.term.iconURL">
 						</span>
 						<span style='margin-left:10px;'>{{term.translation.name}}</span>
 					</span>

@@ -1064,7 +1064,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 .tokenlist a {
   color: black;
 }
-.listimg img{
+.tokenHW {
   width:35px;
   height: 35px;
 }

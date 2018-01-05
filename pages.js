@@ -12,6 +12,7 @@ const termComp = Vue.component('termComp',{
     data: function() {
       return {
         term: {name: 'default',translation:{name:''},term:{iconURL:""}},
+        termDisplay: 'list',
         modalOpen: false,
         addResource:false,
         addResourceType: '',
