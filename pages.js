@@ -386,8 +386,10 @@ const resourceComp = Vue.component('resourceComp',{
               this.modalOpen=true;
               $('.metaNav').flickity({
                 asNavFor: '.resourceSections',
+                selectedAttraction: 0.2,
+                friction: 0.8,
                 // wrapAround: true,
-                pageDots: false,
+                // pageDots: false,
                 prevNextButtons: false,
                 contain: true,
                 // freeScroll: true,
@@ -398,6 +400,8 @@ const resourceComp = Vue.component('resourceComp',{
                 wrapAround: true,
                 pageDots: false,
                 prevNextButtons: true,
+                selectedAttraction: 0.2,
+                friction: 0.8,
                 accessibility: false, // to prevent jumping when focused
                 dragThreshold: 20 // play around with this more?
               });
@@ -1100,6 +1104,10 @@ const explore = Vue.component('exploreComp',{
                   this.resources=response.body;
                 }
                 this.loadingResources = false;
+              }, failed => {
+                console.log(failed)
+                Materalize.toast('Something went wrong...')
+                this.loadingResources = false;
               });
             } else { // general query if not logged in
               this.$http.get('/resource', {params: {
@@ -1118,6 +1126,10 @@ const explore = Vue.component('exploreComp',{
                 } else {
                   this.resources=response.body;
                 }
+                this.loadingResources = false;
+              }, failed => {
+                console.log(failed)
+                Materalize.toast('Something went wrong...')
                 this.loadingResources = false;
               });
             }

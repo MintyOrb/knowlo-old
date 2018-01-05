@@ -1050,3 +1050,25 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
   right:10vw;
   margin-top:0px;
 }
+
+.tokenlist {
+  height: 60px;
+  vertical-align: middle;
+  font-weight: 300;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: black;
+}
+.tokenlist a {
+  color: black;
+}
+.listimg img{
+  width:35px;
+  height: 35px;
+}
+.tokenlist-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

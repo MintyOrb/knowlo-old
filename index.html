@@ -287,16 +287,16 @@
 			<li data-pane="resources">
 				<div class="collapsible-header searchHead" :class="{'shadowUnder': selectedPane === 'resources'}">
 					<span>
-						<i class="material-icons">image</i>Resources
+						<i class="material-icons">image</i><span class="hide-on-med-and-down">Resources</span>
 					</span>
-					<span class="right badge" v-if="selectedPane != 'resources'">
+					<span v-if="selectedPane != 'resources'" class="right badge" >
 						<span >{{resourcesRelated}} resource<span v-if="resourcesRelated !=1">s</span> matched</span>
 					</span>
 					<span v-else>
 						<span @click.stop.prevent="flipViewed" class="left viewBtn" :class="{'fade': !showViewed}" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
 						<span class="viewBtn" @click.stop.prevent="changeDisplay('list')"><i class="material-icons">view_list</i></span>
 						<span class="viewBtn" @click.stop.prevent="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
-						<!-- <span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span> -->
+						<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
 						<span class='right'>
 							<a @click.stop="" class="dropdown-button viewBtn orderby" ><span class="dropdown-button" data-activates='order' data-hover="true" data-alignment='right'>{{orderby}}</span><i @click="descending = !descending; fetchResources()" class="material-icons " :class="{'flipVert': !descending }">sort</i></a>
 							<ul id='order' class='dropdown-content sort'>
@@ -462,7 +462,7 @@
 			</div>
 			<!-- isotope contianers -->
 			<div class="resourceSections">
-
+				<!-- discussion -->
 				<div class="resourceStep discussion">
 					<div class="center pad margin20">
 						<span class="left" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
@@ -531,6 +531,7 @@
 				 </isotope>
 
 				</div>
+				<!-- Description -->
 				<div class="resourceStep ">
 					<div v-if="resource.source">
 						Source: <a :href='resource.source' target="_blank">{{resource.source}}</a>
@@ -539,13 +540,14 @@
 						Description: {{resource.description}}
 					</div>
 				</div>
+				<!-- tokens -->
 				<div class="resourceStep" >
 					<isotope ref='rTermBin' :list="terms" :options='{}'>
 						<term
 							v-for="term in terms"
 							:term="term"
 							:key="term.setID"
-							display="thumb"
+							display="list"
 							v-on:include="addToQuery(term); close();"
 							v-on:remove="removeTerm(term.setID)"
 							v-on:focus="addToQuery(term); close();"
@@ -555,7 +557,7 @@
 					</isotope>
 					<autocomplete exclude="" input-id="resourceTest" v-on:select="addTerm"></autocomplete>
 				</div>
-
+				<!-- related -->
 				<div class="resourceStep discussion">
 					<isotope ref='relatedBin' class="step" :list="related" :options='{}'>
 								<resource v-for="re in related"
@@ -1106,7 +1108,11 @@
 	   ██    ███████ ██   ██ ██      ██
 	-->
 <template id="termContainer">
-	<div class='containerr'>
+	<div class='containerr'
+		:class="{
+			'tokenlist list hoverable': display == 'list'
+		}"
+	>
 
 		<div v-if="display == 'thumb' ">
 			<span @mouseleave="leave()">
@@ -1190,12 +1196,19 @@
 			</span>
 		</div>
 
-		<div class='list hoverable' v-if="display == 'list'">
-			<div>{{term.translation.name}}</div>
-			<!-- <span> ({{term.translation.languageCode}})</span> -->
-		</div>
+		<router-link :to="{ name: 'setSub', params: { uid: term.setID, name: term.translation.name.replace(' ', '-') }}" v-if="display == 'list'" class='tokenlist-detail'>
+				<span v-if="!term.term.iconURL" class="flexCenter border">{{term.translation.name[0]}}</span>
+				<span v-else class=" listimg">
+					<img class='circle' :src="term.term.iconURL">
+				</span>
+				<span style='margin-left:10px;'>{{term.translation.name}}</span>
+			<!-- <i class="fa fa-crosshairs"></i>
+			<i class="fa fa-plus"></i>
+			<i class="fa fa-info" style="padding-right:10px;"></i> -->
+			<!-- <i class="material-icons" style="align-item:flex-end">more_horiz</i> -->
+		</router-link>
 
-		<div class='list hoverable' v-if="display == 'godMode'">
+		<div class='hoverable' v-if="display == 'godMode'">
 			<span>{{term.term.uid}}</span>
 			<!-- <span>{{term.setID}}</span> -->
 			<input type="text" v-model='term.translation.name' v-on:blur="name(term.translation.uid,term.translation.name)" />
