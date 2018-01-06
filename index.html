@@ -180,14 +180,14 @@
 				<div class="collapsible-header"><i class="fa fa-filter"></i>Refine | Terms | Suggestions</div>
 				<div class="collapsible-body">
 					<form id='termSuggestionOptions'>
-				    <span>
+				    <!-- <span>
 				      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='size' id="size" />
 				      <label for="size">Size</label>
 				    </span>
 				    <span>
 				      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='time' id="time" />
 				      <label for="time">Time</label>
-				    </span>
+				    </span> -->
 				    <span>
 				      <input v-model="suggestionDisplay" class="with-gap" name="group1" type="radio" value='disciplines' id="disciplines"  />
 				      <label for="disciplines">Disciplines</label>
@@ -209,7 +209,7 @@
 				    <div class=''>
 								<!-- suggestions grouped -->
 								<div v-if="suggestionDisplay != 'none'">
-									<div id='suggestionNav' class=" suggestionNav " :class="{ shadowUnder : 'groups'.indexOf(suggestionDisplay) > -1}">
+									<div id='suggestionNav' class=" suggestionNav " :class="{ shadowUnder : 'groups disciplines'.indexOf(suggestionDisplay) > -1}">
 										<!-- flickity navigation for isotope containers -->
 										<term
 											v-for="group in termSuggestions"
@@ -229,18 +229,18 @@
 									<div id='suggestionSteps' class=" suggestionSteps">
 										<div v-for="step in termSuggestions" class="suggestionGroupStep" >
 											<isotope  :ref='"suggestionBin" + step.group[0].setID' class="step" :list="step.contains" :options='{}'>
-												<div v-for="term in step.contains" class='element-item' :key="term.setID">
-													<term
-														:term="term"
-														:display="'thumb'"
-														v-on:main="addToQuery(term)"
-														v-on:include="addToQuery(term)"
-														v-on:exclude="addToQuery(term)"
-														v-on:focus="addToQuery(term)"
-														v-on:pin="addToQuery(term)"
-													>
-													</term>
-												</div>
+												<term
+													v-for="term in step.contains"
+													:key="term.setID"
+													:term="term"
+													:display="'list'"
+													v-on:main="addToQuery(term)"
+													v-on:include="addToQuery(term)"
+													v-on:exclude="addToQuery(term)"
+													v-on:focus="addToQuery(term)"
+													v-on:pin="addToQuery(term)"
+												>
+												</term>
 											 </isotope>
 										</div>
 									</div>
@@ -296,7 +296,7 @@
 						<span @click.stop.prevent="flipViewed" class="left viewBtn" :class="{'fade': !showViewed}" style="margin-right:15px"><i class="material-icons ">remove_red_eye</i></span>
 						<span class="viewBtn" @click.stop.prevent="changeDisplay('list')"><i class="material-icons">view_list</i></span>
 						<span class="viewBtn" @click.stop.prevent="changeDisplay('card')"><i class="material-icons">dashboard</i></span>
-						<span class="viewBtn" @click="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
+						<span class="viewBtn" @click.stop.prevent="changeDisplay('thumb')"><i class="material-icons">dialpad</i></span>
 						<span class='right'>
 							<a @click.stop="" class="dropdown-button viewBtn orderby" ><span class="dropdown-button" data-activates='order' data-hover="true" data-alignment='right'>{{orderby}}</span><i @click="descending = !descending; fetchResources()" class="material-icons " :class="{'flipVert': !descending }">sort</i></a>
 							<ul id='order' class='dropdown-content sort'>
@@ -317,6 +317,15 @@
 							<div>Showing {{resources.length}} of {{resourcesRelated}}</div>
 							<div v-if='member.uid'><span v-if="showViewed">Including</span><span v-else>Excluding</span> {{resourcesViewed}} viewed</div>
 						</div>
+						<!-- <transition name="fade">
+							<div>
+								<term v-for="term in base"
+									:term="term"
+									:display="'thumb'"
+									>
+								</term>
+							</div>
+						</transition> -->
 
 						<div v-if="crossSection" >
 							<div id='crossSectionNav' class=" crossSectionNav ">
@@ -1040,7 +1049,7 @@
 
 						<h4 style="margin-bottom:40px" class="header col s12 light">What's worth discussing?</h4>
 
-						<h5 style="line-height:1.3em;" class="header light">Knowlo is a <router-link to="/principals"><span >principled</span></router-link>, <a target="_blank" href="http://github.com/bornytm/knowlo"><span >open source</span></a> experiment in collaborative aggregation of media resources and organization of the ideas they convey</h3>
+						<h5 style="line-height:1.3em;" class="header light">Knowlo is a <router-link to="/principals"><span >principled</span></router-link>, <a target="_blank" href="http://github.com/bornytm/knowlo"><span >open source</span></a>, experiment in collaborative knowledge sharing</h3>
 					</div>
 					<div style='margin-top: 80px;' class="row center" >
 						<router-link to="/" class="btn-large waves-effect waves-light blue margin20"><i class="fa fa-compass fa-2x "></i> explore</router-link> <span style="font-weight:200">  </span> <span @click="random" class='margin20 btn-large waves-effect waves-light blue'><i class="fa fa-random fa-2x "></i> shuffle</span>
@@ -1196,7 +1205,7 @@
 			</span>
 		</div>
 
-		<router-link :to="{ name: 'setSub', params: { uid: term.setID, name: term.translation.name.replace(' ', '-') }}" v-if="display == 'list' || display == 'card'" class='cont'>
+		<div @click="main" v-if="display == 'list' || display == 'card'" class='cont'>
 				<span class='tokenlist-title'>
 					<span class='tokenlist-title-left'>
 						<!-- <span class='score'>8</span>
@@ -1231,7 +1240,7 @@
 					definition here
 				</div> -->
 
-		</router-link>
+		</div>
 
 		<div class='hoverable' v-if="display == 'godMode'">
 			<span>{{term.term.uid}}</span>

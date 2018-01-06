@@ -797,7 +797,7 @@ const explore = Vue.component('exploreComp',{
             endOfResources: false,              // status for reached end of infinite scroll
             loadingResources: false,            // status for fetching resources
             orderby: 'quality',                 // order for returned resources (quality, complexity, number of views, etc.)
-            descending: true                    // should resources be returned in ascending or descending order
+            descending: true,                   // should resources be returned in ascending or descending order
         }
     },
     methods: {
@@ -1016,7 +1016,8 @@ const explore = Vue.component('exploreComp',{
               this.termSuggestions=response.body;
 
               if(this.termSuggestions.length===0){
-                this.suggestionDisplay='size';
+                this.suggestionDisplay='disciplines';
+                Materialize.toast('No tokens found...',2000)
               }
               this.$nextTick(()=>{
                 this.initSuggestionGroupFlickity(response.body.length);
@@ -1107,7 +1108,7 @@ const explore = Vue.component('exploreComp',{
                 this.loadingResources = false;
               }, failed => {
                 console.log(failed)
-                Materalize.toast('Something went wrong...')
+                Materialize.toast('Something went wrong...')
                 this.loadingResources = false;
               });
             } else { // general query if not logged in
@@ -1130,7 +1131,7 @@ const explore = Vue.component('exploreComp',{
                 this.loadingResources = false;
               }, failed => {
                 console.log(failed)
-                Materalize.toast('Something went wrong...')
+                Materialize.toast('Something went wrong...')
                 this.loadingResources = false;
               });
             }
@@ -1164,8 +1165,7 @@ const explore = Vue.component('exploreComp',{
       //alpha warning
       if(!Cookies.get('alpha-warning-seen')){
         Cookies.set('alpha-warning-seen', true, { expires: 7 });
-        var $toastContent = $("<span>Hi! Knowlo is in alpha right now...everthing is subject to change and break.</span>");
-        Materialize.toast($toastContent, 10000);
+        Materialize.toast('Hi! Knowlo is in alpha right now...everthing is subject to change and break.', 10000);
         this.$router.push("/about")
       } else {
         Cookies.set('alpha-warning-seen', true, { expires: 7 }); // reset expiry
@@ -1275,7 +1275,7 @@ const explore = Vue.component('exploreComp',{
       },
       termQuery: function(val,x){
         if(this.termQuery.length===0){
-          this.suggestionDisplay='size';
+          this.suggestionDisplay='disciplines';
         }
         Cookies.set('termQuery',val)
         if(this.loginCheck){ // don't fetch before checking member login
@@ -1298,6 +1298,9 @@ const explore = Vue.component('exploreComp',{
       selectedPane: function(newVal,oldVal){
          if(newVal != oldVal && newVal === 'resources' && this.loginCheck){
           this.fetchResources();
+          this.$nextTick( () => {
+            $('.dropdown-button').dropdown(); // init order-by dropdown
+          })
         } else if(newVal != oldVal && newVal === 'terms'){
           this.getTerms()
         }

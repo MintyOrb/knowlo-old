@@ -177,7 +177,8 @@ Vue.component('term',{
 
       // setup info dropdown
       $(".dd"+this.term.setID).dropdown({
-          alignment: 'right'
+          alignment: 'right',
+          hover: true
         }
       );
 
