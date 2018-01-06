@@ -859,6 +859,10 @@ and (max-device-width : 480px) { /* portrait tablets, portrait iPad, landscape e
     }
     .suggestionGroupStep{
       padding: 0;
+      width: 90vw;
+    }
+    .cont i {
+      opacity: 1;
     }
     .list {
       width: 100%;
@@ -1107,13 +1111,8 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 }
 .more {
   opacity: 0;
+  padding: 8px;
   transition: opacity .6s ease-in-out;
-
-}
-.def {
-  opacity: 0;
-  transition: opacity .3s ease-in-out;
-
 }
 .token-dropdown {
   font-weight: 300;

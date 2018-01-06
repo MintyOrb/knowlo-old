@@ -1221,7 +1221,7 @@
 						<span style='margin-left:10px;'>{{term.translation.name}}</span>
 					</span>
 					<span>
-						<i @click.prevent="" class="material-icons  more" :class="'dd'+term.setID" :data-activates='term.setID' >more_horiz</i>
+						<i @click.stop.prevent="" class="material-icons  more" :class="'dd'+term.setID" :data-activates='term.setID' >more_horiz</i>
 						<!-- <i @click.prevent="" class="material-icons  more" :class="'dd'+term.setID" :data-activates='term.setID' >keyboard_arrow_down</i> -->
 					</span>
 					<ul :id='term.setID' class='dropdown-content token-dropdown '>
